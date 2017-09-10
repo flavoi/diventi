@@ -7,7 +7,7 @@ SECRET_KEY = 't##w+fo_&i#r89bj%_o4kq*m3e2i(02d7fp)yg!&&go^ie&=7o'
 DEBUG = True
 
 # Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+# https://devcenter.heroku.com/articles/heroku-postgresql
 
 DATABASES = {
     "default": {

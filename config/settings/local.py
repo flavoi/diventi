@@ -7,7 +7,7 @@ SECRET_KEY = 't##w+fo_&i#r89bj%_o4kq*m3e2i(02d7fp)yg!&&go^ie&=7o'
 DEBUG = True
 
 # Database
-# https://devcenter.heroku.com/articles/heroku-postgresql
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     "default": {
@@ -25,5 +25,5 @@ CACHE_TIMEOUT = 30
 
 ALLOWED_HOSTS = [
     '127.0.0.1', 
-    'localhost'
+    'localhost',
 ]

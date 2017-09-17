@@ -1,6 +1,6 @@
 # Secrets
-diventi/media/
-diventi/static/
+diventi/media/*
+diventi/static/*
 
 # Python bytecode
 *.py[co]

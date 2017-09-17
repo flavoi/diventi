@@ -1,6 +1,6 @@
 from django.db import models
 
-from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 
 
 class TimeStampedModel(models.Model):
@@ -17,7 +17,7 @@ class TimeStampedModel(models.Model):
 
 class Category(models.Model):
     """
-        Defines the main argument of any post.
+        Defines the main argument of any article.
     """
     title = models.CharField(max_length=60, unique=True)
 
@@ -28,9 +28,9 @@ class Category(models.Model):
     	verbose_name_plural = "categories"
 
 
-class PostImage(models.Model):
+class HeaderImage(models.Model):
     """
-    	Decorates a Post with a beautiful image and its appropriate 
+    	Decorates an article with a beautiful image and its appropriate 
     	credits.
     """
     image = models.ImageField(blank=True, upload_to='media/diventi/')
@@ -40,15 +40,15 @@ class PostImage(models.Model):
         return u'%s' % (self.caption)
 
 
-class Post(TimeStampedModel):
+class Article(TimeStampedModel):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
     """
     title = models.CharField(max_length=60)
     category = models.ForeignKey(Category)
-    image = models.ForeignKey(PostImage)
-    content = HTMLField()
+    image = models.ForeignKey(HeaderImage)
+    content = RichTextField()
     published = models.BooleanField(default=False)
     publication_date = models.DateField(auto_now_add=True, null=True)
     hot = models.BooleanField(default=False)
@@ -60,22 +60,22 @@ class Post(TimeStampedModel):
 
     # Pubblication date is updated if published has been modified from False to True
     def __init__(self, *args, **kwargs):
-        super(Post, self).__init__(*args, **kwargs)
+        super(Article, self).__init__(*args, **kwargs)
         self.old_published = self.published
 
     def save(self, *args, **kwargs):
         if self.old_published != self.published and self.published:
             self.publication_date = timezone.now()
-        super(Post, self).save(*args, **kwargs)
+        super(Article, self).save(*args, **kwargs)
 
 
 class Attachment(models.Model):
     """
-        Stores one or more files for a given Post.
+        Stores one or more files for a given article.
     """
     title = models.CharField(max_length=60)
     file = models.FileField(upload_to='media/attachments/')
-    post = models.ForeignKey(Post)
+    article = models.ForeignKey(Article)
 
     def save(self, *args, **kwargs):
         if self.goal:

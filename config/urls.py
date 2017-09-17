@@ -19,7 +19,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^staff/', admin.site.urls),
     # url(r'^blog/', include('blog.urls', namespace='blog')),
 ]

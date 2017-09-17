@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Category, Attachment
+from .models import Article, Category, HeaderImage, Attachment
 
 
 class AttachmentInline(admin.TabularInline):
@@ -8,7 +8,7 @@ class AttachmentInline(admin.TabularInline):
     fields = ('title', 'file')
 
 
-class PostAdmin(admin.ModelAdmin):
+class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'published', 'hot']
     prepopulated_fields = {"slug": ("title",)}
     inlines = [
@@ -16,5 +16,6 @@ class PostAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category)
+admin.site.register(HeaderImage)

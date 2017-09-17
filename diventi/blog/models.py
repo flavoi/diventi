@@ -24,6 +24,9 @@ class Category(models.Model):
     def __unicode__(self):
         return u'%s' % (self.title)
 
+    class Meta:
+    	verbose_name_plural = "categories"
+
 
 class PostImage(models.Model):
     """

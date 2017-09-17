@@ -24,9 +24,9 @@ def get_env_variable(var_name):
         error_msg = 'Set the {} environment variable'.format(var_name)
         raise ImproperlyConfigured(error_msg)
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-MEDIA_ROOT = BASE_DIR / 'diventi' / 'media'
-STATIC_ROOT = BASE_DIR / 'diventi' / 'static'
+BASE_DIR = Path(__file__).resolve().parent.parent.parent / 'diventi'
+MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR / 'static'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

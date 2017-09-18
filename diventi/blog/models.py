@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from ckeditor.fields import RichTextField
 
@@ -21,8 +22,8 @@ class Category(models.Model):
     """
     title = models.CharField(max_length=60, unique=True)
 
-    def __unicode__(self):
-        return u'%s' % (self.title)
+    def __str__(self):
+        return self.title
 
     class Meta:
     	verbose_name_plural = "categories"
@@ -36,8 +37,8 @@ class HeaderImage(models.Model):
     image = models.ImageField(blank=True, upload_to='media/diventi/')
     caption = models.CharField(max_length=60, blank=True)
 
-    def __unicode__(self):
-        return u'%s' % (self.caption)
+    def __str__(self):
+        return self.caption
 
 
 class Article(TimeStampedModel):
@@ -53,10 +54,10 @@ class Article(TimeStampedModel):
     publication_date = models.DateField(auto_now_add=True, null=True)
     hot = models.BooleanField(default=False)
     slug = models.SlugField()
-    # author = models.ForeignKey(User)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
 
-    def __unicode__(self):
-        return u'%s' % self.title
+    def __str__(self):
+        return self.title
 
     # Pubblication date is updated if published has been modified from False to True
     def __init__(self, *args, **kwargs):

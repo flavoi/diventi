@@ -4,6 +4,37 @@ from django.conf import settings
 from ckeditor.fields import RichTextField
 
 
+class ArticleManager(models.QuerySet):
+    
+    # Get all the published articles 
+    def published(self):
+        articles = self.filter(published=True)
+        return articles
+
+    # Get the list of published articles from the most recent to the least 
+    def history(self):
+        articles = self.get_published_articles().order_by('-hot', '-publication_date')
+        return articles
+
+    # Get the list of published articles of a certain category
+    def category(self, category_title):
+        articles = self.history().filter(category__title=category_title)
+        return articles
+
+    # Get the hottest article
+    def hottest(self):
+        article = self.history().filter(hot=True).latest('publication_date')
+        return article
+
+    # Get the most recent article
+    def current(self):
+        try:
+            article = self.get_hottest_article()
+        except ObjectDoesNotExist:
+            article = self.get_published_articles().latest('publication_date')
+        return article
+
+
 class TimeStampedModel(models.Model):
     """
     An abstract base class model that provides self-updating
@@ -55,6 +86,8 @@ class Article(TimeStampedModel):
     hot = models.BooleanField(default=False)
     slug = models.SlugField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    objects = ArticleManager()
 
     def __str__(self):
         return self.title

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Article, Category, HeaderImage, Attachment
+from .models import Article, Category, Attachment
 
 
 class AttachmentInline(admin.TabularInline):
@@ -18,4 +18,3 @@ class ArticleAdmin(admin.ModelAdmin):
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category)
-admin.site.register(HeaderImage)

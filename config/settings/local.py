@@ -27,3 +27,13 @@ ALLOWED_HOSTS = [
     '127.0.0.1', 
     'localhost',
 ]
+
+# Enables static files
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static' / 'assets',
+]
+
+# Enables user uploaded files
+MEDIA_URL = '/media/'

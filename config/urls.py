@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 admin.autodiscover()
 
 urlpatterns = [
     url(r'^staff/', admin.site.urls),
-    # url(r'^blog/', include('blog.urls', namespace='blog')),
-]
+    url(r'^blog/', include('diventi.blog.urls', namespace='blog')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

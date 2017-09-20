@@ -65,6 +65,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 LOCAL_APPS = [
@@ -143,7 +144,7 @@ CKEDITOR_CONFIGS = {
             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
             {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
             {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak']},
-            {'name': 'styles', 'items': ['Format']},
+            {'name': 'styles', 'items': ['Format', 'Source']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']}, 
             '/',
             {'name': 'basicstyles',

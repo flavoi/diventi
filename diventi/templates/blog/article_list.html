@@ -2,7 +2,7 @@
 
 {% load humanize %}
 
-{% block title %}blog{% endblock title %}
+{% block title %}Blog{% endblock title %}
 
 {% block pageheader %}
 <div class="page-header header-filter header-small" data-parallax="true">
@@ -28,46 +28,32 @@
                     {% for article in articles %}                    
                         <div class="card card-plain card-blog">
                             <div class="row">
-                                {% if forloop.counter|divisibleby:2 %}
-                                {% else %}
-                                    <div class="col-md-5">
-                                        <div class="card-image">
-                                            <a href="{% url 'blog:detail' article.slug %}">
-                                                {% if article.image %}
-                                                    <img class="img img-raised" src="{{ article.image.url }}">
-                                                {% endif %}
-                                            </a>
-                                        </div>
-                                    </div>                                
-                                {% endif %}
-                                <div class="col-md-7">                              
+                                <div class="col-md-4">
+                                    <div class="card-image">
+                                        <a href="{% url 'blog:detail' article.slug %}">
+                                            {% if article.image %}
+                                                <img class="img img-raised" src="{{ article.image.url }}">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">                              
                                     {% if article.hot %}
                                         <h6 class="category text-danger"><i class="material-icons">whatshot</i> Hot Story</h6>
                                     {% else %}
-                                        <h6 class="category text-warning">{{ article.category }}</h6>
+                                        <h6 class="category text-info">{{ article.category }}</h6>
                                     {% endif %}
                                     <h3 class="card-title">
                                         <a href="">{{ article.title }}</a>
                                     </h3>
                                     <p class="card-description">
                                         {{ article.content|striptags|truncatechars:170 }}
-                                        <a class="text-info" href="#pablo"> Read More </a>
+                                        <a href="{% url 'blog:detail' article.slug %}"> Read More </a>
                                     </p>
                                     <p class="author">
                                         Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author }}</b></a>.
                                     </p>
                                 </div>
-                                {% if forloop.counter|divisibleby:2 %}
-                                    <div class="col-md-5">
-                                        <div class="card-image">
-                                            <a href="{% url 'blog:detail' article.slug %}">
-                                                {% if article.image %}
-                                                    <img class="img img-raised" src="{{ article.image.url }}">
-                                                {% endif %}
-                                            </a>
-                                        </div>
-                                    </div>
-                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}

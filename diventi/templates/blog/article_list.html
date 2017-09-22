@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}blog{% endblock title %}
+
+{% block pageheader %}
+<div class="page-header header-filter header-small" data-parallax="true">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h2 class="title">A Place to Share and Discover New Stories</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pageheader %}
+
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2 class="title">Latest Blogposts</h2>
+                <br />
+                {% if articles %}
+                    {% for article in articles %}                    
+                        <div class="card card-plain card-blog">
+                            <div class="row">
+                                {% if forloop.counter|divisibleby:2 %}
+                                {% else %}
+                                    <div class="col-md-5">
+                                        <div class="card-image">
+                                            <a href="{% url 'blog:detail' article.slug %}">
+                                                {% if article.image %}
+                                                    <img class="img img-raised" src="{{ article.image.url }}">
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                    </div>                                
+                                {% endif %}
+                                <div class="col-md-7">                              
+                                    {% if article.hot %}
+                                        <h6 class="category text-danger"><i class="material-icons">whatshot</i> Hot Story</h6>
+                                    {% else %}
+                                        <h6 class="category text-warning">{{ article.category }}</h6>
+                                    {% endif %}
+                                    <h3 class="card-title">
+                                        <a href="">{{ article.title }}</a>
+                                    </h3>
+                                    <p class="card-description">
+                                        {{ article.content|striptags|truncatechars:170 }}
+                                        <a class="text-info" href="#pablo"> Read More </a>
+                                    </p>
+                                    <p class="author">
+                                        Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author }}</b></a>.
+                                    </p>
+                                </div>
+                                {% if forloop.counter|divisibleby:2 %}
+                                    <div class="col-md-5">
+                                        <div class="card-image">
+                                            <a href="{% url 'blog:detail' article.slug %}">
+                                                {% if article.image %}
+                                                    <img class="img img-raised" src="{{ article.image.url }}">
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>There are no posts yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
+                {% endif %}    
+            </div> <!-- End grid column -->
+        </div> <!-- End row -->
+        {% if is_paginated %}
+            <br />
+          <ul class="pagination" style="justify-content: center;">
+            {% if page_obj.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% else %}
+              <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+              {% if page_obj.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            {% else %}
+              <li class="page-item disabled"><span class="page-link">Next</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+    </div> <!-- End container -->
+</div> <!-- End section -->
+{% endblock content %}
+
+{% block footerclass %}section-gray{% endblock footerclass %}

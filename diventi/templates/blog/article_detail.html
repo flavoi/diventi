@@ -4,14 +4,15 @@
 
 {% block title %}{{ article.title}}{% endblock title %}
 
+{% block bodyclass %}blog-post{% endblock bodyclass %}
+
 {% block content %}
 <div class="section section-text" style="margin-top:25px;"">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="text-center title">
                 <span class="label label-warning main-tag">{{ article.category }}</span>
-                <h3 class="title">{{ article.title }}</h3>
-                <br />
+                <h2 class="title">{{ article.title }}</h2>
             </div>
             {% if article.image %}
             <div class="col-md-12">

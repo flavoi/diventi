@@ -28,7 +28,7 @@
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
-  <nav class="navbar navbar-default navbar-transparent navbar-absolute">
+  <nav class="navbar navbar-default navbar-fixed-top navbar-color-on-scroll" color-on-scroll=" ">
       {% block navigation %}
         <div class="container">
          <div class="navbar-header">
@@ -45,7 +45,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                   <a href="{% url "blog:home" %}">
-                    Blog
+                    <i class="material-icons">view_day</i> Blog
                   </a>
                 </li>
             </ul>

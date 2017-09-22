@@ -1,2 +1,2 @@
 # diventi
-The next generation of suspended modernity adventures.
+The next generation of fantastic adventures.

@@ -4,6 +4,8 @@ from django.utils import timezone
 
 from ckeditor.fields import RichTextField
 
+from diventi.core.models import TimeStampedModel
+
 
 class ArticleManager(models.Manager):
     
@@ -34,18 +36,6 @@ class ArticleManager(models.Manager):
         except ObjectDoesNotExist:
             article = self.published().latest('publication_date')
         return article
-
-
-class TimeStampedModel(models.Model):
-    """
-    An abstract base class model that provides self-updating
-    ``created`` and ``modified`` field.
-    """
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
 
 
 class Category(models.Model):

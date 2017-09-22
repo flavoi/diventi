@@ -19,9 +19,6 @@
   <!-- Fonts and icons -->
   <link type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" />
   
-  <script defer src="{% static "font-awesome/packs/solid.js" %}"></script>
-  <script defer src="{% static "font-awesome/fontawesome.min.js" %}"></script>
-
   {% block extrahead %}{% endblock %}
 
 </head>
@@ -38,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">Diventi</a>
+            <a class="navbar-brand" href="{% url "landing:home" %}">Diventi</a>
           </div>
 
           <div class="collapse navbar-collapse">

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}{{ article.title}}{% endblock title %}
+
+{% block content %}
+<div class="section section-text" style="margin-top:25px;"">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="text-center title">
+                <span class="label label-warning main-tag">{{ article.category }}</span>
+                <h3 class="title">{{ article.title }}</h3>
+                <br />
+            </div>
+            {% if article.image %}
+            <div class="col-md-12">
+                <div class="card card-blog card-plain">
+                    <div class="card-image">
+                        <img src="{{ article.image.url }}" alt="">
+                        <div class="card-title">
+                            {{ article.caption }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            {% endif %}
+            {{ article.content|safe }}
+        </div>                    
+    </div>
+</div>
+{% endblock content %}

@@ -4,19 +4,6 @@
 
 {% block title %}Blog{% endblock title %}
 
-{% block pageheader %}
-<div class="page-header header-filter header-small" data-parallax="true">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h2 class="title">A Place to Share and Discover New Stories</h1>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock pageheader %}
-
-
 {% block content %}
 <div class="section">
     <div class="container">
@@ -39,16 +26,16 @@
                                 </div>
                                 <div class="col-md-8">                              
                                     {% if article.hot %}
-                                        <h6 class="category text-danger"><i class="material-icons">whatshot</i> Hot Story</h6>
+                                        <h6 class="category text-danger"><i class="fa fa-fire"></i> Hot Story</h6>
                                     {% else %}
-                                        <h6 class="category text-info">{{ article.category }}</h6>
+                                        <h6 class="category text-warning">{{ article.category }}</h6>
                                     {% endif %}
                                     <h3 class="card-title">
-                                        <a href="">{{ article.title }}</a>
+                                        <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
                                     </h3>
                                     <p class="card-description">
                                         {{ article.content|striptags|truncatechars:170 }}
-                                        <a href="{% url 'blog:detail' article.slug %}"> Read More </a>
+                                        <a class="text-info" href="{% url 'blog:detail' article.slug %}"> Read More </a>
                                     </p>
                                     <p class="author">
                                         Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author }}</b></a>.

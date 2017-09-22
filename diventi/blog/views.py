@@ -21,4 +21,4 @@ class ArticleDetailView(DetailView):
     # Enables published articles only
     def get_queryset(self):
         qs = super(ArticleDetailView, self).get_queryset()
-        return qs.published()
+        return qs.filter(published=True)

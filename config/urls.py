@@ -21,7 +21,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^staff/', admin.site.urls),
+    url(r'^staff/', admin.site.urls, name='staff'),
     url(r'^blog/', include('diventi.blog.urls', namespace='blog')),
     url(r'^', include('diventi.landing.urls', namespace='landing')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

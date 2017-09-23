@@ -56,6 +56,7 @@ DEBUG = None
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 

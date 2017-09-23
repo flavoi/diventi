@@ -1,6 +1,7 @@
 # Secrets
 diventi/media/*
 diventi/static/*
+landing.json
 
 # Python bytecode
 *.py[co]

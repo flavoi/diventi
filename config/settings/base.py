@@ -96,6 +96,9 @@ ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+# Diventi user model
+AUTH_USER_MODEL = 'landing.DiventiUser'
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from .views import LandingView
+
+from .views import landing
 
 urlpatterns = [
-    url(r'^$', LandingView.as_view(), name='home'),
+    url(r'^$', landing, name='home'),
 ]

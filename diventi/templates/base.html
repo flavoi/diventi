@@ -70,12 +70,12 @@
                             {{ user.first_name }}
                         </li>
                         <li class="divider"></li>
-                        <li><a href="{% url 'landing:logout' %}">Sign-out</a></li>
+                        <li><a href="{% url 'accounts:logout' %}">Sign-out</a></li>
                     </ul>
                   </li>
                 {% else %}
                   <li>
-                    <a href="{% url 'landing:login' %}">
+                    <a href="{% url 'accounts:login' %}">
                       <i class="material-icons">forward</i> Sign-in
                     </a>
                   </li>

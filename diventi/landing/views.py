@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.contrib.auth.views import LoginView, LogoutView
 
-from .models import DiventiUser, Profile
+from .models import Profile
+from diventi.accounts.models import DiventiUser
 
 
 def landing(request):
@@ -25,17 +25,3 @@ def landing(request):
 			"staff": DiventiUser.objects.filter(is_staff=True),
 		},
 	)
-
-
-class DiventiLoginView(LoginView):
-	"""
-		Logic dedicated to user sign-in.
-	"""
-	template_name = "landing/login.html"
-
-
-class DiventiLogoutView(LogoutView):
-	"""
-		Logic dedicated to user sign-out.
-	"""
-	template_name = "landing/logout.html"

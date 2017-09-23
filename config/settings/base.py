@@ -72,6 +72,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'diventi.core',
+    'diventi.accounts',
     'diventi.blog',
     'diventi.landing',
 ]
@@ -98,7 +99,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Diventi user model
-AUTH_USER_MODEL = 'landing.DiventiUser'
+AUTH_USER_MODEL = 'accounts.DiventiUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

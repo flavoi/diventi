@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
 
-from .models import DiventiUser
+from .models import DiventiUser, Profile
 
 
 def landing(request):
@@ -9,9 +9,19 @@ def landing(request):
 		Renders the landing page with Diventi's main features and
 		team members. 
 	"""
+	try:
+		active_profile = Profile.objects.get(active=True)
+	except Profile.DoesNotExist:
+		msg = "There is no active profile."
+		raise Profile.DoesNotExist(msg)
+	except Profile.MultipleObjectsReturned:
+		msg = "There must be only one profile at a time. Please fix!"
+		raise Profile.MultipleObjectsReturned(msg)
+		
 	return render(request,
 		"landing/landing.html",
-		{
+		{	
+			"profile": active_profile,
 			"staff": DiventiUser.objects.filter(is_staff=True),
 		},
 	)

@@ -90,3 +90,6 @@ class Attachment(models.Model):
     title = models.CharField(max_length=60)
     file = models.FileField(upload_to='media/attachments/')
     article = models.ForeignKey(Article)
+
+    def __str__(self):
+        return self.title

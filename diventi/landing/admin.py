@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import DiventiUser
+from .models import DiventiUser, Profile, Feature
 
 
 class UserAdmin(auth_admin.UserAdmin):
@@ -34,4 +34,17 @@ class UserAdmin(auth_admin.UserAdmin):
     readonly_fields = ('last_login', 'date_joined',)
 
 
+class FeatureInline(admin.TabularInline):
+    model = Feature
+    fields = ('title', 'icon', 'color', 'description')
+
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['title', 'active']    
+    inlines = [
+        FeatureInline,
+    ]
+
+
 admin.site.register(DiventiUser, UserAdmin)
+admin.site.register(Profile, ProfileAdmin)

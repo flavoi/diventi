@@ -22,6 +22,7 @@ class Profile(models.Model):
 	title = models.CharField(max_length=50)
 	abstract = RichTextField()
 	description = RichTextField()
+	image = models.ImageField(blank=True, upload_to='landing/')
 	active = models.BooleanField(default=False)
 
 	def __str__(self):

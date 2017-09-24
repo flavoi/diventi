@@ -22,29 +22,26 @@ ALLOWED_HOSTS = [
 ]
 
 
-# Amazon S3 support
+# Host static and media on Amazon S3 support
 # http://aws.amazon.com/
-
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3BotoStorage'
 
 AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = get_env_variable('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_QUERYSTRING_AUTH = False
-AWS_PRELOAD_METADATA = False
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-STATIC_S3_PATH = 'static'
-DEFAULT_S3_PATH = 'media'
 
-STATIC_URL = '//%s/' % AWS_S3_CUSTOM_DOMAIN
-STATICFILES_DIRS = (BASE_DIR / 'static' / 'diventi',)
-STATIC_ROOT = 'staticfiles'
-MEDIA_URL = STATIC_URL + DEFAULT_S3_PATH
-MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+AWS_LOCATION = 'static'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+DEFAULT_FILE_STORAGE = 'diventi.core.storages.MediaStorage'

@@ -1,7 +1,7 @@
 import dj_database_url
 
 from .base import *
-from .storages import DiventiMediaStorage
+from storages.backends.s3boto3 import S3Boto3Storage
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable('SECRET_KEY')
@@ -43,5 +43,8 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+class DiventiMediaStorage(S3Boto3Storage):
+    location = 'media'
 
 DEFAULT_FILE_STORAGE = 'DiventiMediaStorage'

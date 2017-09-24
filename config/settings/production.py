@@ -1,7 +1,7 @@
 import dj_database_url
 
 from .base import *
-
+from diventi.core.storages import MediaStorage
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable('SECRET_KEY')
@@ -44,4 +44,4 @@ STATIC_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-DEFAULT_FILE_STORAGE = 'diventi.core.storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'DiventiMediaStorage'

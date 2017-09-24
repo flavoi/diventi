@@ -21,7 +21,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^staff/', admin.site.urls, name='staff'),
+    url(r'^dashbloard/', admin.site.urls),
     url(r'^blog/', include('diventi.blog.urls', namespace='blog')),
     url(r'^accounts/', include('diventi.accounts.urls', namespace='accounts')),
     url(r'^', include('diventi.landing.urls', namespace='landing')),

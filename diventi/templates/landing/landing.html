@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock title %}
+{% block titleseparator %}{% endblock titleseparator %}
+{% block title %}{% endblock title %}
 
 {% block bodyclass %}landing-page{% endblock bodyclass %}
 
 
 {% block pageheader %}
-    <div class="page-header header-filter" data-parallax="true" {% if profile.image %}style="background-image: url('{{ profile.image.url }}');"{% endif %}>
+    <div class="page-header header-filter" data-parallax="true" {% if presentation.image %}style="background-image: url('{{ presentation.image.url }}');"{% endif %}>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="title">{{ profile.title }}</h1>
-                    <h4>{{ profile.abstract|safe }}</h4>
+                    <h1 class="title">{{ presentation.title }}</h1>
+                    <h4>{{ presentation.abstract|safe }}</h4>
                     <br />
                 </div>
             </div>
@@ -24,13 +25,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h2 class="title">Let's talk product</h2>
-                <h5 class="description">{{ profile.description|safe }}</h5>
+                <h5 class="description">{{ presentation.description|safe }}</h5>
             </div>
         </div>
 
         <div class="features">
             <div class="row">
-                {% for feature in profile.feature_set.all %}
+                {% for feature in presentation.feature_set.all %}
                     <div class="col-md-4">
                         <div class="info">
                             <div class="icon icon-{{ feature.color }}">
@@ -51,7 +52,7 @@
             <div class="row">
             	{% for member in staff %}
 	                <div class="col-md-6">
-	                    <div class="card card-profile card-plain">
+	                    <div class="card card-presentation card-plain">
 	                        <div class="col-md-5">
 	                            <div class="card-image">
 	                                <a href="">

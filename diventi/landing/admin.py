@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Profile, Feature
+from .models import Presentation, Feature
 
 
 class FeatureInline(admin.TabularInline):
@@ -8,11 +8,11 @@ class FeatureInline(admin.TabularInline):
     fields = ('title', 'icon', 'color', 'description')
 
 
-class ProfileAdmin(admin.ModelAdmin):
+class PresentationAdmin(admin.ModelAdmin):
     list_display = ['title', 'active']    
     inlines = [
         FeatureInline,
     ]
 
 
-admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Presentation, PresentationAdmin)

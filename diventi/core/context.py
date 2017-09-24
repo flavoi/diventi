@@ -1,12 +1,8 @@
 """
-    Custom context processors for the page app.
+    Custom context processors for the core app.
     This script contains useful informations for every template.
 """
 from datetime import date
-
-from django.conf import settings
-from django.shortcuts import get_object_or_404
-
 
 def footer(request):
     """ Automatic signature: Diventi YYYY-YYYY """

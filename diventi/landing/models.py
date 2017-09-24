@@ -3,31 +3,50 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 
-class Profile(models.Model):
-	title = models.CharField(max_length=50)
-	abstract = RichTextField()
-	description = RichTextField()
-	image = models.ImageField(blank=True, upload_to='landing/')
-	active = models.BooleanField(default=False)
+COLORS_CHOICES = (
+    ('info', 'Blue'),
+    ('primary', 'Rose'),
+    ('danger', 'Red'),
+    ('success', 'Green'),
+    ('default', 'Gray'),       
+)
 
-	def __str__(self):
-		return self.title
+
+class PresentationManager(models.Manager):
+
+    def active(self):
+        try:
+            active_presentation = Presentation.objects.get(active=True)
+        except Presentation.DoesNotExist:
+            msg = "There is no active profile."
+            raise Presentation.DoesNotExist(msg)
+        except Presentation.MultipleObjectsReturned:
+            msg = "There must be only one profile at a time. Please fix!"
+            raise Presentation.MultipleObjectsReturned(msg)
+        return active_presentation
+
+
+class Presentation(models.Model):
+    title = models.CharField(max_length=50)
+    abstract = RichTextField()
+    description = RichTextField()
+    image = models.ImageField(blank=True, upload_to='landing/')
+    staff_special_url = models.URLField()
+    staff_special_color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default')
+    active = models.BooleanField(default=False)
+
+    objects = PresentationManager()
+
+    def __str__(self):
+        return self.title
 
 
 class Feature(models.Model):
-	COLORS_CHOICES = (
-		('info', 'Blue'),
-		('primary', 'Rose'),
-		('danger', 'Red'),
-		('success', 'Green'),
-		('default', 'Gray'),	   
-	)
+    icon = models.CharField(max_length=30)
+    title = models.CharField(max_length=50)
+    description = RichTextField()
+    color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default')
+    profile = models.ForeignKey(Presentation)
 
-	icon = models.CharField(max_length=30)
-	title = models.CharField(max_length=50)
-	description = RichTextField()
-	color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default')
-	profile = models.ForeignKey(Profile)
-
-	def __str__(self):
-		return self.title
+    def __str__(self):
+        return self.title

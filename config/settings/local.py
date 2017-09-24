@@ -28,12 +28,13 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
-# Enables static files
-STATIC_URL = '/static/'
+# Media and Static files
 
+STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static' / 'assets',
+    BASE_DIR / 'static' / 'diventi',
 ]
 
-# Enables user uploaded files
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

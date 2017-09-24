@@ -44,3 +44,7 @@ class DiventiUser(AbstractUser):
 
     def get_full_name(self):
         return u'{0} {1}'.format(self.first_name, self.last_name)
+
+    def clean(self):
+        """ Set email as username before saving a user """
+        self.username = self.email

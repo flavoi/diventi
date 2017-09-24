@@ -26,74 +26,94 @@
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
   <nav class="navbar navbar-inverse navbar-fixed-top navbar-color-on-scroll" color-on-scroll=" ">
-      {% block navigation %}
-        <div class="container">
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'landing:home' %}">Diventi</a>
-          </div>
 
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                  <a href="{% url 'blog:home' %}">
-                    <i class="material-icons">format_align_center</i> Blog
-                  </a>
-                </li>        
-                {% if user.is_authenticated %}
-                  {% if user.is_staff %}
-                    <li>
-                        <a href="{{ staff_special_url }}" class="btn btn-{{ staff_special_color }} btn-raised btn-fab btn-fab-mini" >
-                          <i class="material-icons">description</i>
-                        </a>
-                    </li>
-                  {% endif %}
-                  <li class="dropdown">
-                    {% if user.avatar %}
-                      <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown">                      
-                        <div class="profile-photo-small">                          
-                            <img src="{{ user.avatar.url }}" alt="Circle Image" class="img-circle img-responsive" />
-                        </div>               
-                      </a>
-                    {% else %}
-                      <a href="" class="btn btn-default btn-raised btn-fab btn-fab-mini dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">face</i>
-                      </a>
-                    {% endif %}
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">
-                            {{ user.first_name }}
-                        </li>
-                        <li><a href="{% url 'admin:index' %}">Dashboard</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{% url 'accounts:logout' %}">Sign-out</a></li>
-                    </ul>
-                  </li>
-                {% else %}
+    {% block messages %}
+      {% if messages %}
+        <div class="col-md-4 col-md-offset-4">
+          {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}">
+              <div class="container-fluid">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                </button>
+                  {{ message }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="clearfix"></div>
+      {% endif %}
+    {% endblock messages %}
+
+    {% block navigation %}
+      <div class="container">
+       <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'landing:home' %}">Diventi</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="{% url 'blog:home' %}">
+                  <i class="material-icons">format_align_center</i> Blog
+                </a>
+              </li>        
+              {% if user.is_authenticated %}
+                {% if user.is_staff %}
                   <li>
-                    <a href="{% url 'accounts:login' %}">
-                      <i class="material-icons">forward</i> Sign-in
-                    </a>
+                      <a href="{{ staff_special_url }}" class="btn btn-{{ staff_special_color }} btn-raised btn-fab btn-fab-mini" >
+                        <i class="material-icons">description</i>
+                      </a>
                   </li>
                 {% endif %}
-            </ul>
-            <!--
-            <form role="search" class="form-inline my-2 my-lg-0" action="" method="get">
-              <div class="input-group margin-bottom-sm mr-sm-4">
-                <input class="form-control" type="text" placeholder="Search" name="q" aria-label="Search" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
-                <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
-              </div>
-            </form>
-            -->
-          </div>
-
+                <li class="dropdown">
+                  {% if user.avatar %}
+                    <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown">                      
+                      <div class="profile-photo-small">                          
+                          <img src="{{ user.avatar.url }}" alt="Circle Image" class="img-circle img-responsive" />
+                      </div>               
+                    </a>
+                  {% else %}
+                    <a href="" class="btn btn-default btn-raised btn-fab btn-fab-mini dropdown-toggle" data-toggle="dropdown">
+                      <i class="material-icons">face</i>
+                    </a>
+                  {% endif %}
+                  <ul class="dropdown-menu">
+                      <li class="dropdown-header">
+                          {{ user.first_name }}
+                      </li>
+                      <li><a href="{% url 'admin:index' %}">Dashboard</a></li>
+                      <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+                      <li class="divider"></li>
+                      <li><a href="{% url 'accounts:logout' %}">Sign-out</a></li>
+                  </ul>
+                </li>
+              {% else %}
+                <li>
+                  <a href="{% url 'accounts:login' %}">
+                    <i class="material-icons">forward</i> Sign-in
+                  </a>
+                </li>
+              {% endif %}
+          </ul>
+          <!--
+          <form role="search" class="form-inline my-2 my-lg-0" action="" method="get">
+            <div class="input-group margin-bottom-sm mr-sm-4">
+              <input class="form-control" type="text" placeholder="Search" name="q" aria-label="Search" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
+              <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+            </div>
+          </form>
+          -->
         </div>
-      {% endblock navigation %}
+
+      </div>
+    {% endblock navigation %}
   </nav>
 
   {% block pageheader %}

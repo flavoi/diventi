@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Sign-{% endblock title %}
+{% block title %}Sign-In{% endblock title %}
 
 {% block bodyclass %}login-page{% endblock bodyclass %}
 
 {% block pageheader %}
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
 
     {% if next %}
         {% if user.is_authenticated %}
@@ -44,6 +41,20 @@
                                     </span>
                                     <input type="password" placeholder="Password..." class="form-control" name="password" required id="id_password" />
                                 </div>
+
+                                {% if form.errors %}                                  
+                                    <div class="col-md-11 col-md-offset-1">
+                                        <div class="alert alert-danger">    
+                                          <div class="alert-icon">
+                                            <i class="material-icons">error_outline</i>
+                                          </div>
+                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                          </button>
+                                          <b>Sign-in has failed.</b>
+                                        </div>
+                                    </div>                                  
+                                {% endif %}
 
                             </div>
                             <div class="footer text-center">

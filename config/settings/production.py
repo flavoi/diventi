@@ -1,7 +1,7 @@
 import dj_database_url
 
 from .base import *
-from diventi.core.storages import MediaStorage
+from diventi.core.storages import DiventiMediaStorage
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable('SECRET_KEY')

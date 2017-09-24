@@ -1,5 +1,7 @@
 # Secrets
 diventi/media/*
+diventi/static/ckeditor
+diventi/static/admin
 landing.json
 
 # Python bytecode

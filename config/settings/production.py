@@ -45,5 +45,5 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 MEDIA_LOCATION = 'media'
 MEDIA_ROOT = '/%s/' % MEDIA_LOCATION
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3BotoStorage'
 MEDIA_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIA_LOCATION)

@@ -74,10 +74,11 @@
               </li>        
               {% if user.is_authenticated %}
                 {% if user.is_staff %}
-                  <li>
-                      <a href="{{ staff_special_url }}" class="btn btn-{{ staff_special_color }} btn-raised btn-fab btn-fab-mini" >
-                        <i class="material-icons">description</i>
-                      </a>
+                  <li>               
+                    <a href="{{ staff_special_url }}" class="btn btn-{{ staff_special_color }} btn-raised btn-fab btn-fab-mini" >
+                      <i class="material-icons">description</i>
+                      <div class="ripple-container"></div></a>
+                    </a>
                   </li>
                 {% endif %}
                 <li class="dropdown">

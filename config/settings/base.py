@@ -139,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static' / 'diventi',
+    BASE_DIR / 'static',
 ]
 
 

@@ -73,14 +73,6 @@
                 </a>
               </li>        
               {% if user.is_authenticated %}
-                {% if user.is_staff %}
-                  <li>               
-                    <a href="{{ staff_special_url }}" class="btn btn-{{ staff_special_color }} btn-raised btn-fab btn-fab-mini" >
-                      <i class="material-icons">description</i>
-                      <div class="ripple-container"></div></a>
-                    </a>
-                  </li>
-                {% endif %}
                 <li class="dropdown">
                   {% if user.avatar %}
                     <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown">                      
@@ -97,7 +89,10 @@
                       <li class="dropdown-header">
                           {{ user.first_name }}
                       </li>
-                      <li><a href="{% url 'admin:index' %}">Dashboard</a></li>
+                      {% if user.is_staff %}
+                        <li><a href="{{ paper_url }}">Paper</a></li>
+                        <li><a href="{% url 'admin:index' %}">Dashboard</a></li>                      
+                      {% endif %}
                       <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
                       <li class="divider"></li>
                       <li><a href="{% url 'accounts:logout' %}">Sign-out</a></li>

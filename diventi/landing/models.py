@@ -31,8 +31,7 @@ class Presentation(models.Model):
     abstract = RichTextField()
     description = RichTextField()
     image = models.ImageField(blank=True, upload_to='landing/')
-    staff_special_url = models.URLField()
-    staff_special_color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default')
+    paper_url = models.URLField()
     active = models.BooleanField(default=False)
 
     objects = PresentationManager()

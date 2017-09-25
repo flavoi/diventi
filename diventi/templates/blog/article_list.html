@@ -38,7 +38,7 @@
                                         <a class="text-info" href="{% url 'blog:detail' article.slug %}"> Read More </a>
                                     </p>
                                     <p class="author">
-                                        Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author }}</b></a>.
+                                        Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author.first_name }}</b></a>.
                                     </p>
                                 </div>
                             </div>

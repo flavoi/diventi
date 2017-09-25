@@ -36,9 +36,6 @@ class DiventiUser(AbstractUser):
         verbose_name_plural = 'Users'
         ordering = ('id', )
 
-    def __unicode__(self):
-        return u'{0} ({1})'.format(self.get_full_name(), self.email)
-
     def get_short_name(self):
         return self.first_name
 
@@ -48,3 +45,6 @@ class DiventiUser(AbstractUser):
     def clean(self):
         """ Set email as username before saving a user """
         self.username = self.email
+
+    def __str__(self):
+        return u'{0} ({1})'.format(self.get_full_name(), self.email)

@@ -11,7 +11,6 @@ def staff_special(request):
     """ Staff only buttons are rendered by this view. """
     p = Presentation.objects.active()
     staff_special = {
-        'staff_special_url': p.staff_special_url,
-        'staff_special_color': p.staff_special_color,
+        'paper_url': p.paper_url,        
     }
     return staff_special

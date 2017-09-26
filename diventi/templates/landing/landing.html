@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 {% block titleseparator %}{% endblock titleseparator %}
+
 {% block title %}{% endblock title %}
 
-{% block bodyclass %}landing-page{% endblock bodyclass %}
+{% block extrahead %}
+    {% load static %}
+    <link type="text/css" href="{% static 'rpg-awesome/css/rpg-awesome.css' %}" rel="stylesheet">
+{% endblock extrahead %}
 
+{% block bodyclass %}landing-page{% endblock bodyclass %}
 
 {% block pageheader %}
     <div class="page-header header-filter" data-parallax="true" {% if presentation.image %}style="background-image: url('{{ presentation.image.url }}');"{% endif %}>
@@ -39,7 +44,7 @@
                     <div class="col-md-4">
                         <div class="info">
                             <div class="icon icon-{{ feature.color }}">
-                                <i class="material-icons">{{ feature.icon }}</i>
+                                <i class="ra ra-{{ feature.icon }} ra-lg"></i>
                             </div>
                             <h4 class="info-title">{{ feature.title }}</h4>
                             <p>{{ feature.description|safe }}</p>

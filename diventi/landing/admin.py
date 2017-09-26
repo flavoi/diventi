@@ -6,6 +6,7 @@ from .models import Presentation, Feature
 class FeatureInline(admin.TabularInline):
     model = Feature
     fields = ('title', 'icon', 'color', 'description')
+    extra = 0
 
 
 class PresentationAdmin(admin.ModelAdmin):
@@ -13,6 +14,5 @@ class PresentationAdmin(admin.ModelAdmin):
     inlines = [
         FeatureInline,
     ]
-
 
 admin.site.register(Presentation, PresentationAdmin)

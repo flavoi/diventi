@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import PasswordChangeForm
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
+
+from .models import DiventiUser
 
 
 class DiventiLoginView(LoginView):
@@ -30,3 +33,10 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', {
         'form': form,
     })
+
+
+class DiventiUserCreationView(CreateView):
+
+    form_class = UserCreationForm
+    model = DiventiUser
+    template_name = 'accounts/signup.html'

@@ -88,25 +88,9 @@
                 <h2 class="text-center title">Join our community</h2>
                 <h4 class="text-center description">Sign-up to know more and start exploring.</h4>
                 <form class="contact-form">
-                    <!--
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group label-floating">
-                                <label class="control-label">Your Name</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group label-floating">
-                                <label class="control-label">Your Email</label>
-                                <input type="email" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    -->
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4 text-center">
-                            <button type="button" class="btn btn-info btn-raised" data-toggle="popover" data-placement="top" title="" data-content="We will keep your data safe." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721582">Sign-up<div class="ripple-container"></div></button>
+                            <a href="{% url 'accounts:signup' %}" class="btn btn-info btn-raised">Sign-up</a>
                         </div>
                     </div>
                 </form>

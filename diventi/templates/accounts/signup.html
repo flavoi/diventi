@@ -8,11 +8,12 @@
 <div class="page-header header-filter" filter-color="rose" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-6 col-md-offset-3">
 
                     <div class="card card-signup">
-                        <h2 class="card-title text-center">Register</h2>
+                        <h2 class="card-title text-center">Sign-up</h2>
                         <div class="row">
+                            <!--
                             <div class="col-md-5 col-md-offset-1">
                                 <div class="info info-horizontal">
                                     <div class="icon icon-rose">
@@ -50,28 +51,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="social text-center">
-                                    <button class="btn btn-just-icon btn-round btn-twitter">
-                                        <i class="fa fa-twitter"></i>
-                                    </button>
-                                    <button class="btn btn-just-icon btn-round btn-dribbble">
-                                        <i class="fa fa-dribbble"></i>
-                                    </button>
-                                    <button class="btn btn-just-icon btn-round btn-facebook">
-                                        <i class="fa fa-facebook"> </i>
-                                    </button>
-                                    <h4> or be classical </h4>
-                                </div>
-
+                            -->
+                            <div class="col-md-12">
                                 <form class="form" method="" action="">
+                                    {% csrf_token %}
                                     <div class="card-content">
+                                        {% for field in form %}
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                <i class="material-icons">face</i>
                                             </span>
-                                            <input type="text" class="form-control" placeholder="First Name...">
+                                            {{ field }}
+                                            {% for error in field.errors %}
+                                              <p style="color: red">{{ error }}</p>
+                                            {% endfor %}
                                         </div>
+                                        {% endfor %}
 
                                         <div class="input-group">
                                             <span class="input-group-addon">
@@ -86,18 +80,9 @@
                                             </span>
                                             <input type="password" placeholder="Password..." class="form-control" />
                                         </div>
-
-                                        <!-- If you want to add a checkbox to this form, uncomment this code -->
-
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes" checked>
-                                                I agree to the <a href="#something">terms and conditions</a>.
-                                            </label>
-                                        </div>
                                     </div>
                                     <div class="footer text-center">
-                                        <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
+                                        <a href="#pablo" class="btn btn-info">Get Started</a>
                                     </div>
                                 </form>
                             </div>

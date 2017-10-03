@@ -1,16 +1,15 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.forms import TextInput, PasswordInput
+from django import forms
 
 from .models import DiventiUser
 
 
-class DiventiUserCreationForm(UserCreationForm):
+class DiventiUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = DiventiUser
-        fields = ("email", "avatar", "password1", "password2")
+        fields = ('first_name', 'email', 'password')
         widgets = {
-            'email': TextInput(attrs={'class': 'form-control', 'placeholder': 'Email...'}),            
-            'password1': PasswordInput(attrs={'class': 'form-control', 'placeholder': "Password..."}),
-            'password2': PasswordInput(attrs={'class': 'form-control', 'placeholder': "Repeat the password..."}),
-        }
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your name...'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email...'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password...'}),
+        }   

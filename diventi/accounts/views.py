@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
 
 from .models import DiventiUser
 from .forms import DiventiUserCreationForm
@@ -41,3 +42,9 @@ class DiventiUserCreationView(CreateView):
     form_class = DiventiUserCreationForm
     model = DiventiUser
     template_name = 'accounts/signup.html'
+    success_msg = 'You have signed up!'
+    success_url = reverse_lazy('landing:home')
+
+    def form_valid(self, form):
+        messages.success(self.request, self.success_msg)
+        return super(DiventiUserCreationView, self).form_valid(form)

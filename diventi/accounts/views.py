@@ -1,22 +1,24 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, login, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth import REDIRECT_FIELD_NAME, login
+from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
 from .models import DiventiUser
 from .forms import DiventiUserCreationForm
 
 
-class DiventiLoginView(LoginView):
+class DiventiLoginView(AnonymousRequiredMixin, LoginView):
 
 	template_name = "accounts/login.html"
 
 
-class DiventiLogoutView(LogoutView):
+class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 
 	template_name = "accounts/logout.html"
 
@@ -37,14 +39,29 @@ def change_password(request):
     })
 
 
-class DiventiUserCreationView(CreateView):
+class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 
     form_class = DiventiUserCreationForm
     model = DiventiUser
     template_name = 'accounts/signup.html'
     success_msg = 'You have signed up!'
     success_url = reverse_lazy('landing:home')
+    fail_msg = 'Your sign-up has failed.'
+    fail_url = reverse_lazy('accounts:signup')
 
     def form_valid(self, form):
-        messages.success(self.request, self.success_msg)
+        username = form.cleaned_data['email']
+        password = form.cleaned_data['password']
+        if username and password:
+            form.save()
+            user = get_object_or_404(DiventiUser, email=username)
+            login(self.request, user)
+            messages.success(self.request, self.success_msg)
+            redirect(self.success_url)
+        else:
+            messages.error(self.request, self.fail_msg)
         return super(DiventiUserCreationView, self).form_valid(form)
+
+
+
+

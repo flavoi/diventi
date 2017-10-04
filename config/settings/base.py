@@ -82,6 +82,7 @@ THIRD_PARTY_APPS = [
     'ckeditor',
     'storages',
     'django_comments',
+    'braces',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS

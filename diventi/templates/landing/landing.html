@@ -49,56 +49,60 @@
         </div>
     </div>
 
-    <div class="section text-center">
-        <h2 class="title">Here is our team</h2>
-        <div class="team">
-            <div class="row">
-            	{% for member in staff %}
-	                <div class="col-md-6 col-xs-6">
-	                    <div class="card card-presentation card-plain">
-	                        <div class="col-md-5">
-	                            <div class="card-image">
-	                                <a href="">
-	                                	{% if member.avatar %}
-	                                    	<img class="img" src="{{ member.avatar.url }}" />
-	                                	{% endif %}
-	                                </a>
-	                            </div>
-	                        </div>
-	                        <div class="col-md-7">
-	                            <div class="card-content">
-	                                <h4 class="card-title">{{ member.get_full_name}}</h4>
-	                                <h6 class="category text-muted">{{ member.role }}</h6>
-	                                <p class="card-description">
-	                                    {{ member.bio }}
-	                                </p>                                
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-                {% endfor %}          
+    <div class="section text-center section-dark">
+        <div class="container">
+            <h2 class="title">Here is our team</h2>
+            <div class="team">
+                <div class="row">
+                	{% for member in staff %}
+    	                <div class="col-md-6 col-xs-6">
+    	                    <div class="card card-presentation card-plain">
+    	                        <div class="col-md-5">
+    	                            <div class="card-image">
+    	                                <a href="">
+    	                                	{% if member.avatar %}
+    	                                    	<img class="img" src="{{ member.avatar.url }}" />
+    	                                	{% endif %}
+    	                                </a>
+    	                            </div>
+    	                        </div>
+    	                        <div class="col-md-7">
+    	                            <div class="card-content">
+    	                                <h4 class="card-title">{{ member.get_full_name}}</h4>
+    	                                <h6 class="category text-muted">{{ member.role }}</h6>
+    	                                <p class="card-description">
+    	                                    {{ member.bio }}
+    	                                </p>                                
+    	                            </div>
+    	                        </div>
+    	                    </div>
+    	                </div>
+                    {% endfor %}          
+                </div>
             </div>
         </div>
     </div>
 
 
-    <div class="section section-contacts">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                {% if user.is_authenticated %}
-                    <h2 class="text-center title">Hello {{ user.first_name }}!</h2>
-                    <h4 class="text-center description">It's nice to have you onboard.</h4>
-                {% else %}
-                    <h2 class="text-center title">Join our community</h2>
-                    <h4 class="text-center description">Sign-up to know more and start exploring.</h4>
-                    <form class="contact-form">
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-4 text-center">
-                                <a href="{% url 'accounts:signup' %}" class="btn btn-info btn-raised">Sign-up</a>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    {% if user.is_authenticated %}
+                        <h2 class="text-center title">Hello {{ user.first_name }}!</h2>
+                        <h4 class="text-center description">It's nice to have you onboard.</h4>
+                    {% else %}
+                        <h2 class="text-center title">Join our community</h2>
+                        <h4 class="text-center description">Sign-up to know more and start exploring.</h4>
+                        <form class="contact-form">
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4 text-center">
+                                    <a href="{% url 'accounts:signup' %}" class="btn btn-info btn-raised">Sign-up</a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                {% endif %}
+                        </form>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

@@ -25,26 +25,28 @@
 
 {% block content %}
     <div class="section text-center">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h2 class="title">Let's talk product</h2>
-                <h5 class="description">{{ presentation.description|safe }}</h5>
-            </div>
-        </div>
-
-        <div class="features">
+        <div class="container">
             <div class="row">
-                {% for feature in presentation.feature_set.all %}
-                    <div class="col-md-4">
-                        <div class="info">
-                            <div class="icon icon-{{ feature.color }}">
-                                <i class="ra ra-{{ feature.icon }} ra-lg"></i>
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="title">Let's talk product</h2>
+                    <h5 class="description">{{ presentation.description|safe }}</h5>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="row">
+                    {% for feature in presentation.feature_set.all %}
+                        <div class="col-md-4">
+                            <div class="info">
+                                <div class="icon icon-{{ feature.color }}">
+                                    <i class="ra ra-{{ feature.icon }} ra-lg"></i>
+                                </div>
+                                <h4 class="info-title">{{ feature.title|title }}</h4>
+                                <p>{{ feature.description|safe }}</p>
                             </div>
-                            <h4 class="info-title">{{ feature.title|title }}</h4>
-                            <p>{{ feature.description|safe }}</p>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

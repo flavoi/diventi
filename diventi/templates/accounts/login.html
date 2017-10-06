@@ -22,24 +22,20 @@
                     <div class="card card-signup">
                         <form method="post" action="{% url 'accounts:login' %}">
                             {% csrf_token %}
-                            <div class="header header-info text-center">
-                                <h4 class="card-title">Sign-in</h4>
-                            </div>
-
                             <div class="card-content">
-
+                                <h2 class="card-title text-center">Sign-in</h2>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Email..." name="username" autofocus maxlength="254" required id="id_username">                                    
+                                    <input type="text" class="form-control" placeholder="Your Email" name="username" autofocus maxlength="254" required id="id_username">                                    
                                 </div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
                                     </span>
-                                    <input type="password" placeholder="Password..." class="form-control" name="password" required id="id_password" />
+                                    <input type="password" placeholder="Your Password" class="form-control" name="password" required id="id_password" />
                                 </div>
 
                                 {% if form.errors %}                                  
@@ -58,7 +54,7 @@
 
                             </div>
                             <div class="footer text-center">
-                                <input class="btn btn-info btn-simple btn-wd btn-lg" type="submit" value="Get Started" />
+                                <input class="btn btn-info btn-wd" type="submit" value="Get Started" />
                                 <input type="hidden" name="next" value="{{ next }}" />
                             </div>
                         </form>

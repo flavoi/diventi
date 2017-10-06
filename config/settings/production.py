@@ -6,7 +6,7 @@ from .base import *
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

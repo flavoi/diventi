@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^accounts/', include('diventi.accounts.urls', namespace='accounts')),
     url(r'^', include('diventi.landing.urls', namespace='landing')),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -24,12 +24,14 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-8">                              
-                                    {% if article.hot %}
-                                        <h6 class="category text-danger"><i class="fa fa-fire"></i> Hot Story</h6>
-                                    {% else %}
-                                        <h6 class="category text-warning">{{ article.category }}</h6>
-                                    {% endif %}
+                                <div class="col-md-8">                                                                  
+                                    <h6 class="category">
+                                        <span class="{% if article.hot %}text-danger{% else %}text-warning{% endif %}"">
+                                            {% if article.hot %}<i class="fa fa-fire"></i>{% endif %}
+                                            {{ article.category }}
+                                        </span>
+                                        &middot; <i class="ra ra-helmet ra-lg"></i> {{ article.promotions.count }}
+                                    </h6>                
                                     <h3 class="card-title">
                                         <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
                                     </h3>
@@ -39,7 +41,7 @@
                                     </p>
                                     <p class="author">
                                         Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author.first_name }}</b></a>.
-                                    </p>
+                                    </p>                            
                                 </div>
                             </div>
                         </div>

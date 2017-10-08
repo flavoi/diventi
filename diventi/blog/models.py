@@ -4,7 +4,7 @@ from django.utils import timezone
 
 from ckeditor.fields import RichTextField
 
-from diventi.core.models import TimeStampedModel
+from diventi.core.models import TimeStampedModel, PromotableModel
 
 
 class ArticleManager(models.Manager):
@@ -51,7 +51,7 @@ class Category(models.Model):
     	verbose_name_plural = "categories"
 
 
-class Article(TimeStampedModel):
+class Article(TimeStampedModel, PromotableModel):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
@@ -64,7 +64,7 @@ class Article(TimeStampedModel):
     published = models.BooleanField(default=False)
     publication_date = models.DateField(auto_now_add=True, null=True)
     hot = models.BooleanField(default=False)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     objects = ArticleManager()

@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash, login, authenticate
+from django.contrib.auth import update_session_auth_hash, authenticate, login, REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.contrib.auth import REDIRECT_FIELD_NAME, login
+
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
 from .models import DiventiUser

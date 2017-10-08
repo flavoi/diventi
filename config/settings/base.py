@@ -83,6 +83,7 @@ THIRD_PARTY_APPS = [
     'storages',
     'django_comments',
     'braces',
+    'rest_framework',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS

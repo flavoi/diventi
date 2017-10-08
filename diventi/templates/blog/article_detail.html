@@ -37,9 +37,9 @@
 <div class="section section-blog-info">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <button type="button" class="btn btn-rose pull-right" data-toggle="popover" data-placement="top" title="" data-content="You will be able to like everything." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721582">
-                <i class="ra ra-helmet ra-lg"></i> Promote &middot; 0
-            </button>
+            <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn {% if user_has_promoted %}btn-rose{% endif %} btn-promote pull-right">
+                <i class="ra ra-helmet ra-lg"></i> {% if user_has_promoted %}Demote{% else %}Promote{% endif %} &middot; {{ article.promotions.count }}
+            </a>
         </div>
     </div>
     <hr />
@@ -79,7 +79,7 @@
                     {% get_comment_form for article as form %}
                     <form action="{% comment_form_target %}" method="POST">
                         {% csrf_token %}
-                        <a class="pull-left author" href="#pablo">
+                        <a class="pull-left author" href="">
                             <div class="avatar">
                                 {% if user.avatar %}
                                     <img class="media-object" alt="64x64" src="{{ user.avatar.url }}" />
@@ -107,3 +107,43 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block extrascript %}
+<script>
+    function updateText(btn, newCount, verb){
+        btn.attr("data-promotions", newCount)
+        icon = "<i class='ra ra-helmet ra-lg'></i>"
+        suffix = "&middot;" + " " + newCount
+        btn.html(icon + " " + verb + " " + suffix)        
+    }
+
+    $(".btn-promote").click(function(e){
+        e.preventDefault()
+        var this_ = $(this)
+        var promoteUrl = this_.attr("data-href")
+        var promotionsCount = parseInt(this_.attr("data-promotions"))
+        var addPromotion = promotionsCount + 1
+        var removePromotion = promotionsCount - 1
+        $.ajax({
+            url: promoteUrl,
+            method: "GET",
+            data: {},
+            success: function(data){
+                console.log(data)
+                var newPromotions;
+                var newLabel;
+                if (data.promoted){
+                    updateText(this_, addPromotion, "Demote")
+                    this_.addClass("btn-rose")
+                } else {
+                    updateText(this_, removePromotion, "Promote")
+                    this_.removeClass("btn-rose")
+                }            
+            }, error: function(error){
+                console.log(error)
+                console.log("error")
+            }
+        })
+    })
+</script>
+{% endblock extrascript %}

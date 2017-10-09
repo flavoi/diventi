@@ -11,42 +11,29 @@ from .models import Article, Category
 
 
 class ArticlesListView(ListView):
-    """
-    View to display the list of published Article.
-    
-    """
+
     model = Article
     context_object_name = 'articles'
     paginate_by = 6
 
     def get_queryset(self):
-        return Article.objects.history().prefetch_related('promotions')
+        return Article.objects.history().promotions()
 
 
 class ArticleDetailView(DetailView):
-    """
-    View to display a published Article.
 
-    """
     model = Article
     context_object_name = 'article'
 
     # Returns only published articles
     def get_queryset(self):
         qs = super(ArticleDetailView, self).get_queryset()
-        return qs.filter(published=True).prefetch_related('promotions')
+        return qs.published().promotions()
 
+    # Returns True if the user has promoted the article
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
-        """
-            To do: move the queryset to the model manager
-        """
-        qs = self.get_queryset()
-        if len(qs) > 1:
-            msg = "There must be only one published article with the same slug at a time. Please fix!"
-            raise Article.MultipleObjectsReturned(msg)
-        else:
-            article = qs[0] # get the article fetched by the queryset
+        article = self.object
         user = self.request.user
         user_has_promoted = False
         if user in article.promotions.all():
@@ -73,12 +60,7 @@ class ArticlePromoteToggleView(RedirectView):
 
 
 class ArticlePromoteToggleAPIView(APIView):
-    """
-    View to toggle promoted Articles.
 
-    * Requires session authentication.
-    * Only registered users are able to access this view.
-    """
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 

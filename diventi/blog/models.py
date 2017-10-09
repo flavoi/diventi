@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 from diventi.core.models import TimeStampedModel, PromotableModel
 
 
-class ArticleManager(models.Manager):
+class ArticleQuerySet(models.QuerySet):
     
     # Get all the published articles 
     def published(self):
@@ -27,6 +27,11 @@ class ArticleManager(models.Manager):
     # Get the hottest article
     def hottest(self):
         article = self.history().filter(hot=True).latest('publication_date')
+        return article
+
+    # Fetch all the promotions related to the article
+    def promotions(self):
+        article = self.prefetch_related('promotions')
         return article
 
     # Get the most recent article
@@ -65,9 +70,9 @@ class Article(TimeStampedModel, PromotableModel):
     publication_date = models.DateField(auto_now_add=True, null=True)
     hot = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='articles')
 
-    objects = ArticleManager()
+    objects = ArticleQuerySet.as_manager()
 
     def __str__(self):
         return self.title

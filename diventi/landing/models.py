@@ -28,10 +28,10 @@ class PresentationManager(models.Manager):
 
 class Presentation(models.Model):
     title = models.CharField(max_length=50)
-    abstract = RichTextField()
-    description = RichTextField()
+    abstract = RichTextField(blank=True)
+    description = RichTextField(blank=True)
     image = models.ImageField(blank=True, upload_to='landing/')
-    paper_url = models.URLField()
+    paper_url = models.URLField(blank=True)
     active = models.BooleanField(default=False)
 
     objects = PresentationManager()

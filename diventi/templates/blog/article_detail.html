@@ -33,22 +33,40 @@
     </div>
 </div>
 
-
 <div class="section section-blog-info">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn {% if user_has_promoted %}btn-rose{% endif %} btn-promote pull-right">
-                <i class="ra ra-helmet ra-lg"></i> {% if user_has_promoted %}Demote{% else %}Promote{% endif %} &middot; {{ article.promotions.count }}
-            </a>
+            <hr />
+            <div class="card card-profile card-plain">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="card-avatar">
+                            <a href="#pablo">
+                                <img class="img" src="{{ article.author.avatar.url }}">
+                            </a>
+                        <div class="ripple-container"></div></div>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="card-title">{{ article.author.get_full_name }}</h4>
+                        <p class="description">{{ article.author.bio }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn {% if user_has_promoted %}btn-rose{% endif %} btn-promote pull-right">
+                            <i class="ra ra-helmet ra-lg"></i> {% if user_has_promoted %}Demote{% else %}Promote{% endif %} &middot; {{ article.promotions.count }}
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <hr />
 </div>
 
 <div class="section section-comments">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="media-area">
+                {% get_comment_count for article as comment_count %}
+                <h3 class="title text-center">{{ comment_count }} Comments</h3>
                 {% get_comment_list for article as comment_list %}
                 {% for comment in comment_list %}
                     <div class="media">

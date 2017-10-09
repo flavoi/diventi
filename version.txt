@@ -1,3 +1,7 @@
+0.3.0 → 0.4.0 - xx/xx/xxxx
+    - Introduced a promotions/demotions system to blogposts and comments 
+    - Introduced author section in blogpost's page
+
 0.2.0 → 0.3.0 - 06/10/2017
     - Introduced a commenting system for the blogposts
     - Introduced a sign-up system

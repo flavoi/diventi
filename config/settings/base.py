@@ -76,6 +76,7 @@ LOCAL_APPS = [
     'diventi.accounts',
     'diventi.blog',
     'diventi.landing',
+    'diventi.comments',
 ]
 
 THIRD_PARTY_APPS = [
@@ -87,6 +88,8 @@ THIRD_PARTY_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+COMMENTS_APP = 'diventi.comments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

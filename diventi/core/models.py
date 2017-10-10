@@ -19,7 +19,7 @@ class PromotableModel(models.Model):
     An abstract base class model that enables a promotion feature
     similar to a facebook like on any model.
     """
-    promotions = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='promotions')
+    promotions = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     class Meta:
         abstract = True

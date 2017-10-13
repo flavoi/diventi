@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 
-{% load comments %}
-{% load humanize %}
-
 {% block title %}{{ article.title}}{% endblock title %}
 
 {% block bodyclass %}blog-post{% endblock bodyclass %}
@@ -51,8 +48,8 @@
                         <p class="description">{{ article.author.bio }}</p>
                     </div>
                     <div class="col-md-2">
-                        <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn {% if user_has_promoted %}btn-rose{% endif %} btn-promote pull-right">
-                            <i class="ra ra-helmet ra-lg"></i> {% if user_has_promoted %}Demote{% else %}Promote{% endif %} &middot; {{ article.promotions.count }}
+                        <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn {% if user_has_promoted %}btn-rose{% endif %} btn-promote pull-right" {% if user_has_promoted %}{% else %}data-toggle="tooltip" data-placement="top" title="Promote this article"{% endif %}>
+                            <i class="ra ra-helmet ra-lg"></i> &middot; {{ article.promotions.count }}
                         </a>
                     </div>
                 </div>
@@ -61,69 +58,8 @@
     </div>
 </div>
 
-<div class="section section-comments">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="media-area">
-                {% get_comment_count for article as comment_count %}
-                <h3 class="title text-center">{{ comment_count }} Comments</h3>
-                {% get_comment_list for article as comment_list %}
-                {% for comment in comment_list %}
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <div class="avatar">
-                                {% if comment.user.avatar %}
-                                    <img class="media-object" src="{{ comment.user.avatar.url }}" />
-                                {% endif %}
-                            </div>
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ comment.user.first_name }} <small>&middot; {{ comment.submit_date|naturaltime }}</small></h4>
-                            <h6 class="text-muted"></h6>
-                            <p>{{ comment.comment }}</p>
-                            <div class="media-footer">           
-                                <button type="button" class="btn btn-simple pull-right">
-                                    <i class="ra ra-helmet ra-lg"></i> {{ comment.promotions.count }}
-                                </button>
-                            </div>
-                        </div>
-                    </div>                    
-                {% endfor %}
-            </div>
+{% include "comments/comment_list.html" %}
 
-            <h3 class="title text-center">Post your comment</h3>
-            <div class="media media-post">
-                {% if user.is_authenticated %}
-                    {% get_comment_form for article as form %}
-                    <form action="{% comment_form_target %}" method="POST">
-                        {% csrf_token %}
-                        <a class="pull-left author" href="">
-                            <div class="avatar">
-                                {% if user.avatar %}
-                                    <img class="media-object" alt="64x64" src="{{ user.avatar.url }}" />
-                                {% endif %}
-                            </div>
-                        </a>                        
-                        <div class="media-body">
-                            <textarea name="comment" id="id_comment" class="form-control" placeholder="Write some nice stuff or nothing..." rows="6"></textarea>
-                            {{ form.content_type }}
-                            <span style="display:none">{{ form.honeypot }}</span>
-                            {{ form.object_pk }}
-                            {{ form.timestamp }}
-                            {{ form.security_hash }}
-                            <div class="media-footer">
-                                <input type="hidden" name="next" value="{% url 'blog:detail' article.slug %}" />
-                                <input class="btn btn-info btn-wd pull-right" type="submit" value="Post comment" id="id_submit" />
-                            </div>
-                        </div>
-                    </form>
-                {% else %}
-                    <p>Please <a href="{% url 'accounts:login' %}">log in</a> to leave a comment.</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock content %}
 
 {% block extrascript %}
@@ -131,8 +67,8 @@
     function updateText(btn, newCount, verb){
         btn.attr("data-promotions", newCount)
         icon = "<i class='ra ra-helmet ra-lg'></i>"
-        suffix = "&middot;" + " " + newCount
-        btn.html(icon + " " + verb + " " + suffix)        
+        suffix = newCount
+        btn.html(icon + " &middot; " + suffix)        
     }
 
     $(".btn-promote").click(function(e){
@@ -163,5 +99,7 @@
             }
         })
     })
+
+    $('[data-toggle="tooltip"]').tooltip();
 </script>
 {% endblock extrascript %}

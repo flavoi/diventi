@@ -21,5 +21,11 @@ class PromotableModel(models.Model):
     """
     promotions = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
+    def user_has_promoted(self):
+        if self.user in self.promotions.all():
+            return True
+        else:
+            return False
+
     class Meta:
         abstract = True

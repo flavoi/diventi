@@ -30,20 +30,6 @@ class ArticleDetailView(DetailView):
         qs = super(ArticleDetailView, self).get_queryset()
         return qs.published().promotions()
 
-    # Returns True if the user has promoted the article
-    def get_context_data(self, **kwargs):
-        context = super(ArticleDetailView, self).get_context_data(**kwargs)
-        article = self.object
-        user = self.request.user
-        user_has_promoted = False
-        if user in article.promotions.all():
-            user_has_promoted = True
-        extra_context = {
-            'user_has_promoted': user_has_promoted,
-        }
-        context.update(extra_context)
-        return context
-
 
 class ArticlePromoteToggleView(RedirectView):
 

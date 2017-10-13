@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from cuser.middleware import CuserMiddleware
+
 
 class TimeStampedModel(models.Model):
     """
@@ -22,7 +24,9 @@ class PromotableModel(models.Model):
     promotions = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     def user_has_promoted(self):
-        if self.user in self.promotions.all():
+        # Fetch the logged user thanks to a dedicated middleware
+        user = CuserMiddleware.get_user() 
+        if user in self.promotions.all():
             return True
         else:
             return False

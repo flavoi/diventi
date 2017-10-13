@@ -65,6 +65,7 @@ class Article(TimeStampedModel, PromotableModel):
     category = models.ForeignKey(Category)
     image = models.ImageField(blank=True, upload_to='articles/')
     caption = models.CharField(max_length=60, blank=True)
+    abstract = RichTextField(max_length=250)
     content = RichTextField()
     published = models.BooleanField(default=False)
     publication_date = models.DateField(auto_now_add=True, null=True)

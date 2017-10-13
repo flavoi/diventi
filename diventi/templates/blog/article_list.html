@@ -26,18 +26,17 @@
                                 </div>
                                 <div class="col-md-8">                                                                  
                                     <h6 class="category">
-                                        <span class="{% if article.hot %}text-danger{% else %}text-warning{% endif %}"">
+                                        <span class="{% if article.hot %}text-danger{% else %}text-info{% endif %}"">
                                             {% if article.hot %}<i class="fa fa-fire"></i>{% endif %}
-                                            {{ article.category }}
-                                        </span>
+                                            {{ article.category }}                                        
                                         &middot; <i class="ra ra-helmet ra-lg"></i> {{ article.promotions.count }}
+                                        </span>
                                     </h6>                
                                     <h3 class="card-title">
                                         <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
                                     </h3>
                                     <p class="card-description">
-                                        {{ article.content|striptags|truncatechars:170 }}
-                                        <a class="text-info" href="{% url 'blog:detail' article.slug %}"> Read More </a>
+                                        {{ article.abstract|striptags }}                                        
                                     </p>
                                     <p class="author">
                                         Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author.first_name }}</b></a>.

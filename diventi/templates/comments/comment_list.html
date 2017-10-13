@@ -1,0 +1,64 @@
+{% load comments %}
+{% load humanize %}
+
+<div class="section section-comments">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="media-area">
+                {% get_comment_count for article as comment_count %}
+                <h3 class="title text-center">Post your comment</h3>
+                <div class="media media-post">
+                    {% if user.is_authenticated %}
+                        {% get_comment_form for article as form %}
+                        <form action="{% comment_form_target %}" method="POST">
+                            {% csrf_token %}
+                            <a class="pull-left author" href="">
+                                <div class="avatar">
+                                    {% if user.avatar %}
+                                        <img class="media-object" alt="64x64" src="{{ user.avatar.url }}" />
+                                    {% endif %}
+                                </div>
+                            </a>                        
+                            <div class="media-body">
+                                <textarea name="comment" id="id_comment" class="form-control" placeholder="Write your comment." rows="3"></textarea>
+                                {{ form.content_type }}
+                                <span style="display:none">{{ form.honeypot }}</span>
+                                {{ form.object_pk }}
+                                {{ form.timestamp }}
+                                {{ form.security_hash }}
+                                <div class="media-footer">
+                                    <input type="hidden" name="next" value="{% url 'blog:detail' article.slug %}" />
+                                    <input class="btn btn-info btn-wd pull-right" type="submit" value="Post" id="id_submit" />
+                                </div>
+                            </div>
+                        </form>
+                    {% else %}
+                        <p>Please <a href="{% url 'accounts:login' %}">log in</a> to leave a comment.</p>
+                    {% endif %}
+                </div>                
+                <h3 class="title text-center">{{ comment_count }} Comments</h3>
+                {% get_comment_list for article as comment_list %}
+                {% for comment in comment_list %}
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <div class="avatar">
+                                {% if comment.user.avatar %}
+                                    <img class="media-object" src="{{ comment.user.avatar.url }}" />
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ comment.user.first_name }} <small>&middot; {{ comment.submit_date|naturaltime }}</small></h4>
+                            <h6 class="text-muted"></h6>
+                            <p>{{ comment.comment }}</p>                        
+                            <div class="media-footer">   
+                                <a data-href="{% url 'comments:promote-toggle-api' comment.id %}" href="{% url 'comments:promote-toggle' comment.id %}" data-promotions="{{ comment.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if comment.user_has_promoted %} btn-rose{% endif %} pull-right"><i class="ra ra-helmet ra-lg"></i> &middot; {{ comment.promotions.count }}</a>                                
+                            </div>
+                        </div>
+                    </div>                    
+                {% endfor %}
+                <hr />
+            </div>
+        </div>
+    </div>
+</div>

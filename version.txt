@@ -1,4 +1,4 @@
-0.3.0 → 0.4.0 - xx/xx/xxxx
+0.3.0 → 0.4.0 - 13/10/2017
     - Introduced a promotions/demotions system for the articles
     - Introduced a promotions/demotions system for the comments section
     - Introduced author section under the article's

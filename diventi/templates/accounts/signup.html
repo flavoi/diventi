@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
+{% block extrahead %}
+<style type="text/css"> 
+    @media screen and (max-height: 575px)
+    { 
+        #rc-imageselect, .g-recaptcha {
+            transform:scale(0.77);
+            -webkit-transform:scale(0.77);
+            transform-origin:0 0;
+            -webkit-transform-origin:0 0;
+        } 
+    } 
+</style> 
+{% endblock extrahead %}
+
 {% block title %}Sign-up{% endblock title %}
 
 {% block bodyclass %}signup-page{% endblock bodyclass %}
@@ -35,7 +49,7 @@
                                             {{ form.password }}                                            
                                         </div>
                                         <div class="input-group">
-                                            <div class="col-md-4 col-md-offset-4">         
+                                            <div class="col-sm-4 col-sm-offset-4">
                                                 {{ form.captcha }}
                                             </div>
                                         </div>

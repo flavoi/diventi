@@ -158,6 +158,16 @@ STATICFILES_DIRS = [
 ]
 
 
+# Recaptcha config
+# https://github.com/praekelt/django-recaptcha
+
+NOCAPTCHA = True
+RECAPTCHA_USE_SSL = False
+# RECAPTCHA_PUBLIC_KEY = '6LdgbDQUAAAAABpPWmAQswiJAW7Z0oLeGaQPD97n'
+# RECAPTCHA_PRIVATE_KEY = '6LdgbDQUAAAAAPHki6skRaH2w3I1eAuNJNmG6uu8'
+        
+
+
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
@@ -207,5 +217,3 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
-
-NOCAPTCHA = True

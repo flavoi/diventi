@@ -36,8 +36,3 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
-
-# Recaptcha keys
-# https://github.com/praekelt/django-recaptcha
-
-RECAPTCHA_PROXY = 'http://127.0.0.1:8000'

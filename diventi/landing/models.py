@@ -31,7 +31,6 @@ class Presentation(models.Model):
     abstract = RichTextField(blank=True)
     description = RichTextField(blank=True)
     image = models.ImageField(blank=True, upload_to='landing/')
-    paper_url = models.URLField(blank=True)
     active = models.BooleanField(default=False)
 
     objects = PresentationManager()

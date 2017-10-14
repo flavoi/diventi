@@ -8,6 +8,7 @@ SECRET_KEY = get_env_variable('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -33,7 +34,6 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-
 STATICFILES_LOCATION = 'static'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -47,3 +47,10 @@ MEDIAFILES_LOCATION = 'media'
 MEDIA_ROOT = '/%s/' % MEDIAFILES_LOCATION
 DEFAULT_FILE_STORAGE = 'diventi.core.storages.MediaStorage'
 MEDIA_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+
+
+# Recaptcha config
+# https://github.com/praekelt/django-recaptcha
+
+RECAPTCHA_PUBLIC_KEY = get_env_variable('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = get_env_variable('RECAPTCHA_PRIVATE_KEY')

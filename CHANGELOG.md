@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Introduced section "comment preview" under the comment post form
+
 ### Changed
 - Renamed version.txt to CHANGELOG and adopted Keep a Changelog method for versioning
 - Updated README with LICENCE, versioning and incipit infos

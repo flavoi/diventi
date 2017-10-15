@@ -18,16 +18,15 @@
                                         <img class="media-object" alt="64x64" src="{{ user.avatar.url }}" />
                                     {% endif %}
                                 </div>
-                            </a>                        
+                            </a>
                             <div class="media-body">
-                                <textarea name="comment" id="id_comment" class="form-control" placeholder="Write your comment." rows="3"></textarea>
+                                <textarea name="comment" id="id_comment" class="form-control" placeholder="Write your comment." rows="3" required></textarea>
                                 {{ form.content_type }}
                                 <span style="display:none">{{ form.honeypot }}</span>
                                 {{ form.object_pk }}
                                 {{ form.timestamp }}
                                 {{ form.security_hash }}
                                 <div class="media-footer">
-                                    <!--<input type="hidden" name="next" value="{% url 'blog:detail' article.slug %}" />-->
                                     <input class="btn btn-info btn-wd pull-right" type="submit" value="Post" id="id_submit" />
                                 </div>
                             </div>

@@ -1,5 +1,7 @@
 # diventi
+
 [![Latest release](https://img.shields.io/github/release/flavoi/diventi/all.svg)](https://github.com/flavoi/diventi/releases/latest)
+
 The next generation of fantastic adventures.
 
 ## Resources

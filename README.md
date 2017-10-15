@@ -2,7 +2,7 @@
 
 [![Latest release](https://img.shields.io/github/release/flavoi/diventi/all.svg)](https://github.com/flavoi/diventi/releases/latest)
 
-The next generation of fantastic adventures.
+More than a set of homebrew elements, Diventi is a style of play that embraces fun, encourages role playing and help game masters to better prepare their fantastic adventures.
 
 ### Resources
 This web application is inspired on the lazy dungeon master techniques by [Sly Flourish](http://slyflourish.com).

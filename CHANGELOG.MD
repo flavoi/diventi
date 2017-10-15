@@ -1,13 +1,30 @@
-0.3.0 → 0.4.0 - xx/10/2017
-    - Introduced a promotions system for articles and comments
-    - Introduced an author section on the article page
-    - Introduced a recaptcha field on the sign-up page
+# Changelog
+All notable changes to this project will be documented in this file.
 
-0.2.0 → 0.3.0 - 06/10/2017
-    - Introduced a commenting system for the articles
-    - Introduced a sign-up page with username, email and password 
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-demo → version 0.2.0 - 24/09/2017
-    - Introduced a landing page with the presentation of our product
-    - Introduced a simple accounts management system
-    - Introduced a blog section
+
+## [Unreleased]
+### Added
+### Changed
+- Renamed version.txt to CHANGELOG and adopted Keep a Changelog method for versioning
+
+## [0.3.0 → 0.4.0] - 2017-10-14
+### Added
+- Introduced a promotions system for articles and comments
+- Introduced an author section on the article page
+- Introduced a recaptcha field on the sign-up page
+
+
+## [0.2.0 → 0.3.0] - 2017-10-01
+### Added
+- Introduced a commenting system for the articles
+- Introduced a sign-up page with username, email and password 
+
+
+## [0.1.0 → 0.2.0] - 2017-09-24
+### Added
+- Introduced a landing page with the presentation of our product
+- Introduced a simple accounts management system
+- Introduced a blog section

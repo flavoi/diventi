@@ -12,9 +12,8 @@ This web application is inspired on the lazy dungeon master techniques by [Sly F
 * [Bootstrap](http://getbootstrap.com) - The toolkit used for the visuals;
 * [Rpg-Awesome](https://nagoshiashumari.github.io/Rpg-Awesome/) - The rpg-themed icons.
 
+## Versioning
+The development is tracked with [Semantic versioning](http://semver.org) guidelines.
+
 ## License
 This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Versioning
-
-The development is tracked with [Semantic versioning](http://semver.org) guidelines.

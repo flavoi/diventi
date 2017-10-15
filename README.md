@@ -1,4 +1,4 @@
-# Diventi, a modern fantasy game.
+## Diventi, a modern fantasy game.
 
 [![Latest release](https://img.shields.io/github/release/flavoi/diventi/all.svg)](https://github.com/flavoi/diventi/releases/latest)
 

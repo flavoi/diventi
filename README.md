@@ -16,4 +16,4 @@ This web application is inspired on the lazy dungeon master techniques by [Sly F
 This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Versioning
-Versioning and uses the [Semantic versioning](http://semver.org) guidelines.
+The development is tracked with [Semantic versioning](http://semver.org) guidelines.

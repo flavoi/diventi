@@ -1,5 +1,6 @@
 {% load comments %}
 {% load humanize %}
+{% load comment_extras %}
 
 <div class="section section-comments">
     <div class="row">
@@ -28,7 +29,6 @@
                         <p>Please <a href="{% url 'accounts:login' %}">log in</a> to leave a comment.</p>
                     {% endif %}
                 </div>
-
                 <h3 class="title text-center">Comment preview</h3>
                 <div class="media">
                     <a class="pull-left author" href=""><div id="lp-avatar"></div></a>
@@ -39,9 +39,8 @@
                         </div>
                     </div>
                 </div>
-
                 <h3 class="title text-center">{{ comment_count }} Comments</h3>
-                {% get_comment_list for article as comment_list %}
+                {% get_comment_list_by_promotions for article as comment_list %}
                 {% for comment in comment_list %}
                     <div class="media">
                         <a class="pull-left" href="#">

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Renamed version.txt to CHANGELOG and adopted Keep a Changelog method for versioning
 - Updated README with LICENCE, versioning and incipit infos
+- Updated navbar icons with rpg-awesome's
 
 ## [0.3.0 → 0.4.0] - 2017-10-14
 ### Added

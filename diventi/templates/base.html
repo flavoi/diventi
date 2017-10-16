@@ -78,14 +78,15 @@
           <ul class="nav navbar-nav navbar-right">
               <li>
                 <a href="{% url 'blog:home' %}">
-                  <i class="material-icons">format_align_center</i> Blog
+                  <i class="ra ra-quill-ink ra-lg ra-fw"></i>&nbsp; Blog
                 </a>
               </li>              
               {% if user.is_authenticated %}
                 {% if user.is_staff %}
                   <li>                    
                     <a href="{% url 'admin:index' %}">
-                      <i class="material-icons">dashboard</i> Dashboard
+                      
+                      <i class="ra ra-castle-flag ra-lg ra-fw"></i>&nbsp; Staff
                     </a>
                   </li>
                 {% endif %}

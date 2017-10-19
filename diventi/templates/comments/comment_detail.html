@@ -1,0 +1,21 @@
+{% load humanize %}
+
+<div class="media">
+    <a class="pull-left" href="#">
+        <div class="avatar">
+            {% if comment.user.avatar %}
+                <img class="media-object" src="{{ comment.user.avatar.url }}" />
+            {% endif %}
+        </div>
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">{{ comment.user.first_name }} <small> {{ comment.submit_date|naturaltime }}</small></h4>
+        <h6 class="text-muted"></h6>
+        <p>{{ comment.comment }}</p>                        
+        <div class="media-footer">   
+            <a data-href="{% url 'comments:promote-toggle-api' comment.id %}" href="{% url 'comments:promote-toggle' comment.id %}" data-promotions="{{ comment.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if comment.user_has_promoted %} btn-rose{% endif %} pull-right"><i class="ra ra-helmet ra-lg"></i> 
+                {{ comment.promotions.count }}
+            </a>
+        </div>
+    </div>
+</div>

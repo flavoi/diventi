@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced section "comment preview" under the comment post form
 - Introduced navigation for the ordering of comments by promotions or submit date
+- Introduced comment toggle button to hide/display all comments
 
 ### Changed
 - Renamed version.txt to CHANGELOG and adopted Keep a Changelog method for versioning

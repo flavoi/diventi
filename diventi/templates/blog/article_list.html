@@ -28,8 +28,11 @@
                                     <h6 class="category">
                                         <span class="{% if article.hot %}text-danger{% else %}text-info{% endif %}"">
                                             {% if article.hot %}<i class="fa fa-fire"></i>{% endif %}
-                                            {{ article.category }}                                        
-                                        &middot; <i class="ra ra-helmet ra-lg"></i> {{ article.promotions.count }}
+                                            {{ article.category }}
+                                        </span>
+                                        &middot; 
+                                        <span class="text-rose">                                    
+                                            <i class="ra ra-helmet ra-lg"></i> {{ article.promotions.count }}
                                         </span>
                                     </h6>                
                                     <h3 class="card-title">

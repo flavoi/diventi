@@ -8,6 +8,7 @@ register = template.Library()
 
 
 class PaginatedListNote:
+    """ Activate pagination utilities for comment nodes. """
     
     def get_paginated_qs(self, context, qs, pages):
         paginator = Paginator(qs, pages)
@@ -31,13 +32,12 @@ class DateOrderedCommentListNode(CommentListNode):
         return qs
 
 
-class PromotionOrderedCommentListNode(CommentListNode, PaginatedListNote):
+class PromotionOrderedCommentListNode(CommentListNode):
     """Insert a list of comments ordered by the number of promotions into the context."""
 
     def get_context_value_from_queryset(self, context, qs):
         qs = qs.annotate(promotions_count=Count('promotions'))
         qs = qs.order_by('-promotions_count')
-        qs = self.get_paginated_qs(context, qs, 3)
         return qs
 
 

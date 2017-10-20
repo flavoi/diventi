@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [0.4.0 → 0.5.0] - 2017-10-20
+## [0.4.0 → 0.5.1] - 2017-10-20
 ### Added
 - Introduced section "comment preview" under the comment post form
 - Introduced navigation for the ordering of comments by promotions or submit date
@@ -13,8 +13,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Renamed version.txt to CHANGELOG and adopted Keep a Changelog method for versioning
 - Updated README with LICENCE, versioning and incipit infos
-- Updated navbar icons with rpg-awesome's
 - Updated cover visuals in blogposts page
+
+### Fixed
+- Fixed avatar requirement 
+
+### Removed
+- Removed icons from navbar
 
 ## [0.3.0 → 0.4.0] - 2017-10-14
 ### Added

@@ -40,7 +40,9 @@
                     <div class="col-md-2">
                         <div class="card-avatar">
                             <a href="#">
-                                <img class="img" src="{{ article.author.avatar.url }}">
+                                {% if article.author.avatar %}
+                                    <img class="img" src="{{ article.author.avatar.url }}">
+                                {% endif %}
                             </a>
                         <div class="ripple-container"></div></div>
                     </div>

@@ -30,10 +30,6 @@
                                             {% if article.hot %}<i class="fa fa-fire"></i>{% endif %}
                                             {{ article.category }}
                                         </span>
-                                        &middot; 
-                                        <span class="text-rose">                                    
-                                            <i class="ra ra-helmet ra-lg"></i> {{ article.promotions.count }}
-                                        </span>
                                     </h6>                
                                     <h3 class="card-title">
                                         <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
@@ -42,7 +38,10 @@
                                         {{ article.abstract|striptags }}                                        
                                     </p>
                                     <p class="author">
-                                        Posted {{ article.publication_date|naturalday }} by <a href=""><b>{{ article.author.first_name }}</b></a>.
+                                        <span class="text-danger">                                    
+                                            <i class="ra ra-helmet ra-lg"></i> {{ article.promotions.count }}
+                                        </span> &middot; 
+                                        {{ article.publication_date|naturalday }}
                                     </p>                            
                                 </div>
                             </div>

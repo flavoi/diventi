@@ -13,7 +13,7 @@
         <h6 class="text-muted"></h6>
         <p>{{ comment.comment }}</p>                        
         <div class="media-footer">   
-            <a data-href="{% url 'comments:promote-toggle-api' comment.id %}" href="{% url 'comments:promote-toggle' comment.id %}" data-promotions="{{ comment.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if comment.user_has_promoted %} btn-rose{% endif %} pull-right"><i class="ra ra-helmet ra-lg"></i> 
+            <a data-href="{% url 'comments:promote-toggle-api' comment.id %}" href="{% url 'comments:promote-toggle' comment.id %}" data-promotions="{{ comment.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if comment.user_has_promoted %} btn-danger{% endif %} pull-right"><i class="ra ra-helmet ra-lg"></i> 
                 {{ comment.promotions.count }}
             </a>
         </div>

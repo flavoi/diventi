@@ -1,13 +1,9 @@
 
-<a href="javascript:toggleDiv('myContent');" style="background-color: #ccc; padding: 5px 10px;">
-    Toggle All Comments
-</a>
-
 {% for comment in comment_list %}    
     {% if forloop.first %}
         {% include "comments/comment_detail.html" %}
     {% endif %}
-        <div class="myContent">
+        <div class="myContent" style="display: none;"">
             {% include "comments/comment_detail.html" %}
         </div>
 {% endfor %}

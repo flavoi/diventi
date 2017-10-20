@@ -4,6 +4,20 @@
 
 {% block bodyclass %}blog-post{% endblock bodyclass %}
 
+{% block pageheader %}
+    <div class="page-header header-filter" data-parallax="true" style="background-image: {% if article.image %} url('{{ article.image.url }}');{% endif %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="title">{{ article.title }}</h1>
+                    <h4>{{ article.abstract|striptags }}</h4>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock pageheader %}
+
 {% block content %}
 <div class="section section-text" style="margin-top:25px;"">
     <div class="row">
@@ -12,19 +26,6 @@
                 <span class="label label-info main-tag">{{ article.category }}</span>
                 <h2 class="title">{{ article.title }}</h2>
             </div>
-            {% if article.image %}
-            <div class="col-md-12">
-                <div class="card card-blog card-plain">
-                    <div class="card-image">
-                        <img class="img-rounded img-responsive img-raised" src="{{ article.image.url }}" alt="">
-                        <div class="card-title">
-                            {{ article.caption }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            {% endif %}
             {{ article.content|safe }}
         </div>                    
     </div>

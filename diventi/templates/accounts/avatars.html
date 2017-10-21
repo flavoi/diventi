@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block extrahead %}
+{% load static %}
+<link href="{% static 'image-picker/css/image-picker.css' %}" rel="stylesheet"/>
+{% endblock extrahead %}
+
+{% block title %}Avatars{% endblock title %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2 class="title">Choose your favourite avatar</h2>
+                <br />
+                <div class="picker">
+                    <select class="image-picker">
+                        <div class="col-md-2">
+                            <option data-img-src="{% static 'image-picker/img/page1.png' %}" data-img-class="first"     data-img-alt="Page 1" value="1">  Page 1  </option>
+                        </div>
+                        <div class="col-md-2">
+                            <option data-img-src="{% static 'image-picker/img/page2.png' %}" data-img-alt="Page 2" value="2">  Page 2  </option>
+                        </div>
+                        <div class="col-md-2">
+                            <option data-img-src="{% static 'image-picker/img/page3.png' %}" data-img-alt="Page 3" value="3">  Page 3  </option>
+                        </div>
+                        <div class="col-md-2">
+                            <option data-img-src="{% static 'image-picker/img/page4.png' %}" data-img-class="last" data-img-alt="Page 4" value="4">  Page 4  </option>
+                        </div>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-danger btn-raised" data-toggle="popover" data-placement="right" title="" data-content="We will show you something special." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721583">
+                    Save                        
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extrascript %}
+<script src="{% static 'image-picker/js/image-picker.min.js' %}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $("select").imagepicker()
+</script>
+{% endblock extrascript %}

@@ -27,7 +27,6 @@ class CommentPromoteToggleView(RedirectView):
         return reverse_lazy(next)
 
 
-
 class CommentPromoteToggleAPIView(APIView):
 
     authentication_classes = (authentication.SessionAuthentication,)

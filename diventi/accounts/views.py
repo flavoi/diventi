@@ -2,17 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, authenticate, login, REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic.base import TemplateView
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
 from .models import DiventiUser
-from .forms import DiventiUserCreationForm
+from .forms import DiventiUserCreationForm, DiventiUserUpdateForm
+from diventi.core.views import DiventiActionMixin
 
 
 class DiventiLoginView(AnonymousRequiredMixin, LoginView):
@@ -65,6 +64,19 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
         return super(DiventiUserCreationView, self).form_valid(form)
 
 
-class DiventiAvatarsView(TemplateView):
+class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
-    template_name = "accounts/avatars.html"
+    form_class = DiventiUserUpdateForm
+    model = DiventiUser
+    template_name = "accounts/update.html"
+    success_msg = 'Profile updated!'
+    fail_msg = 'Profile has not been updated.'
+
+    def form_valid(self, form):
+        avatar = form.cleaned_data['profilepic']        
+        print("Form: %s" % avatar)
+        print(self.object.avatar)
+        self.object.avatar = avatar
+        return super(DiventiUserUpdateView, self).form_valid(form)
+
+

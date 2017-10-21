@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import models as auth_models
+from django.core.urlresolvers import reverse_lazy
 
 
 class DiventiUserManager(auth_models.BaseUserManager):
@@ -35,6 +36,9 @@ class DiventiUser(AbstractUser):
         verbose_name = 'User'
         verbose_name_plural = 'Users'
         ordering = ('id', )
+
+    def get_absolute_url(self):
+        return reverse_lazy('accounts:update', kwargs={'pk': self.pk})
 
     def get_short_name(self):
         return self.first_name

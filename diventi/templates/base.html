@@ -104,8 +104,9 @@
                   <ul class="dropdown-menu">
                       <li class="dropdown-header">
                           {{ user.first_name }}
-                      </li>                      
+                      </li>
                       <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+                      <li><a href="{% url 'accounts:update' user.pk %}">Update profile</a></li>
                       <li class="divider"></li>
                       <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
                   </ul>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block extrahead %}
+{% load static %}
+<link href="{% static 'image-picker/css/image-picker.css' %}" rel="stylesheet"/>
+{% endblock extrahead %}
+
+{% block title %}Avatars{% endblock title %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2 class="title">Choose your favourite avatar</h2>
+                <br />
+                
+                <form method="post" action="{% url 'accounts:update' user.pk %}">
+                    {{ form.errors }}
+                    {% csrf_token %}
+
+
+                    <select class="image-picker show-html" name="avatar" id="id_avatar">
+
+                    {% for choice in form.avatar %}                        
+                        {{ choice.tag }}
+                    {% endfor %}
+                    </select>
+                    
+                    <!--
+                    <select class="image-picker show-html" name="profilepic">
+                        {% for key, value in form.fields.avatar.choices %}
+                            <option data-img-src="{{ form.choice.image.url }}" data-img-alt="{{ choice.id }}" value="{{ choice.id }}">
+                                {{ choice.id }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    -->
+                    <input type="submit" class="btn btn-danger btn-raised" value="Save" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extrascript %}
+<script src="{% static 'image-picker/js/image-picker.min.js' %}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(".image-picker").imagepicker()
+</script>
+{% endblock extrascript %}

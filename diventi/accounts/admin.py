@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import DiventiUser
+from .models import DiventiUser, DiventiAvatar
 
 
 class UserAdmin(auth_admin.UserAdmin):
@@ -33,5 +33,9 @@ class UserAdmin(auth_admin.UserAdmin):
     ordering = ('email',)
     readonly_fields = ('last_login', 'date_joined',)
 
+class DiventiAvatarAdmin(admin.ModelAdmin):
+    list_display= ( 'label', 'image_tag')
+    
 
 admin.site.register(DiventiUser, UserAdmin)
+admin.site.register(DiventiAvatar, DiventiAvatarAdmin)

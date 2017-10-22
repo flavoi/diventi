@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
-from .models import DiventiUser
+from .models import DiventiUser, DiventiAvatar
 from .forms import DiventiUserCreationForm, DiventiUserUpdateForm
 from diventi.core.views import DiventiActionMixin
 
@@ -72,11 +72,19 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
     success_msg = 'Profile updated!'
     fail_msg = 'Profile has not been updated.'
 
+    def get_context_data(self, **kwargs):
+        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)
+        context['avatars'] = DiventiAvatar.objects.all()
+        return context
+
+    """
     def form_valid(self, form):
-        avatar = form.cleaned_data['profilepic']        
-        print("Form: %s" % avatar)
-        print(self.object.avatar)
-        self.object.avatar = avatar
+        avatar = form.cleaned_data.get('id_avatar', '')
+        print(form)
+        print(avatar)
+        # print(avatar.pop('avatar'))
+        # self.object.avatar = avatar
         return super(DiventiUserUpdateView, self).form_valid(form)
+    """
 
 

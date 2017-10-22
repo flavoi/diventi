@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse_lazy
+from django.utils.html import mark_safe
 
 
 class DiventiUserManager(auth_models.BaseUserManager):
@@ -21,9 +22,38 @@ class DiventiUserManager(auth_models.BaseUserManager):
         return user
 
 
+class DiventiAvatarQuerySet(models.QuerySet):
+
+    # Fetch all users related to the avatar
+    def users(self):
+        avatar = self.diventiuser.all()
+        return avatar
+
+
+class DiventiAvatar(models.Model):
+    image = models.ImageField(blank=True, upload_to='avatars/')
+    label = models.CharField(max_length=50, blank=True)
+
+    objects = DiventiAvatarQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = 'Avatar'
+        verbose_name_plural = 'Avatars'
+
+    def image_tag(self):
+        if self.image.url:
+            return mark_safe('<img src="%s" height="42" width="42" />' % self.image.url)
+        else:
+            return u'(Nessuna immagine)'
+    image_tag.short_description = 'Avatar'
+
+    def __str__(self):
+        return u'{0}'.format(self.label)
+
+
 class DiventiUser(AbstractUser):
     email = models.EmailField(unique=True)
-    avatar = models.ImageField(blank=True, upload_to='avatars/')
+    avatar = models.ForeignKey(DiventiAvatar, null=True, related_name='diventiuser')
     bio = models.TextField(blank=True)
     role = models.CharField(blank=True, max_length=70)
 

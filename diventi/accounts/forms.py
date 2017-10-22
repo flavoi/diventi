@@ -2,8 +2,8 @@ from django import forms
 
 from captcha.fields import ReCaptchaField
 
-from .models import DiventiUser
-
+from .models import DiventiUser, DiventiAvatar
+from .widgets import DiventiAvatarSelect
 
 class DiventiUserCreationForm(forms.ModelForm):
     captcha = ReCaptchaField(
@@ -23,20 +23,16 @@ class DiventiUserCreationForm(forms.ModelForm):
 
 
 class DiventiUserUpdateForm(forms.ModelForm):
-    path = '/static/image-picker/img/'
-    AVATAR_CHOICES = ( 
-        (path + 'page1.png', 'page1'), 
-        (path + 'page2.png', 'page2'), 
-        (path + 'page3.png', 'page3'), 
-        (path + 'page4.png', 'page4'), 
+
+    avatar = forms.ModelChoiceField(
+        queryset = DiventiAvatar.objects.all(),
+        widget = DiventiAvatarSelect(),
     )
-    profilepic = forms.ChoiceField(
-        required=False, 
-        choices=AVATAR_CHOICES,
-        widget = forms.Select(attrs={'class': 'image-picker', 'name': 'profilepic'},),
-    )
+
+    def __init__(self, *args, **kwargs):
+        super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['avatar'].required = False 
 
     class Meta:        
         model = DiventiUser
-        fields = ['profilepic',]
-
+        fields = ['avatar']

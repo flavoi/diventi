@@ -10,9 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced profile page with avatar, bio and favourite class customization options
+- Introduced a dedicated profile picture for staff members
 
 ### Changed
 - Updated name of comment subpage to better reflect its role
+- Hard coded role label for every staff member in the landing page
 
 ### Fixed
 - Fixed a problem that caused double comments in comment section

@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that caused the avatar to be hidden in the landing page
 
 
-## [0.5.1] → 2017-10-20
+## [0.2.1] → 2017-10-20
 
 ### Added
 - Introduced section "comment preview" under the comment post form
@@ -41,24 +41,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed icons from navbar
 
 
-## [0.4.0] → 2017-10-14
-
-### Added
-- Introduced a promotions system for articles and comments
-- Introduced an author section on the article page
-- Introduced a recaptcha field on the sign-up page
-
-
-## [0.3.0] → 2017-10-01
-
-### Added
-- Introduced a commenting system for the articles
-- Introduced a sign-up page with username, email and password 
-
-
-## [0.2.0] → 2017-09-24
+## [0.1.0] → 2017-10-14
 
 ### Added
 - Introduced a landing page with the presentation of our product
 - Introduced a simple accounts management system
 - Introduced a blog section
+- Introduced a commenting system for the articles
+- Introduced a sign-up page with username, email and password 
+- Introduced a promotions system for articles and comments
+- Introduced an author section on the article page
+- Introduced a recaptcha field on the sign-up page

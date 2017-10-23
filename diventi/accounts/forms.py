@@ -14,7 +14,7 @@ class DiventiUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = DiventiUser
-        fields = ('first_name', 'email', 'password')
+        fields = ['first_name', 'email', 'password']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your name'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),
@@ -35,4 +35,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
 
     class Meta:        
         model = DiventiUser
-        fields = ['avatar']
+        fields = ['avatar', 'bio', 'role']
+        widgets = {
+            'bio': forms.TextInput(attrs={'class': 'form-control',}),
+            'role': forms.TextInput(attrs={'class': 'form-control',}),
+        }

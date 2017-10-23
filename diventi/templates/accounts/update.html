@@ -21,7 +21,16 @@
                         {% for choice in form.avatar %}
                             {{ choice.tag }}
                         {% endfor %}
-                    </select>                    
+                    </select>
+                    <div class="col-md-6">
+                        <h2 class="title">Your bio</h2>
+                        {{ form.bio }}
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="title">Your favourite class</h2>
+                        {{ form.role }}
+                    </div>
+                    <div class="clearfix"></div>
                     <input type="submit" class="btn btn-danger btn-raised" value="Save" />
                 </form>
             </div>

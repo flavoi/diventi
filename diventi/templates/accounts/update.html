@@ -13,32 +13,17 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <h2 class="title">Choose your favourite avatar</h2>
-                <br />
-                
+                <br />            
                 <form method="post" action="{% url 'accounts:update' user.pk %}">
                     {{ form.errors }}
                     {% csrf_token %}
-
-
                     <select class="image-picker show-html" name="avatar" id="id_avatar">
-
-                    {% for choice in form.avatar %}                        
-                        {{ choice.tag }}
-                    {% endfor %}
-                    </select>
-                    
-                    <!--
-                    <select class="image-picker show-html" name="profilepic">
-                        {% for key, value in form.fields.avatar.choices %}
-                            <option data-img-src="{{ form.choice.image.url }}" data-img-alt="{{ choice.id }}" value="{{ choice.id }}">
-                                {{ choice.id }}
-                            </option>
+                        {% for choice in form.avatar %}
+                            {{ choice.tag }}
                         {% endfor %}
-                    </select>
-                    -->
+                    </select>                    
                     <input type="submit" class="btn btn-danger btn-raised" value="Save" />
                 </form>
-
             </div>
         </div>
     </div>

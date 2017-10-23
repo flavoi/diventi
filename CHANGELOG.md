@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- Introduced profile page with avatar customization options
+- Introduced profile page with avatar, bio and favourite class customization options
 
 ### Changed
 - Updated name of comment subpage to better reflect its role

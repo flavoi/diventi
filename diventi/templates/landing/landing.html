@@ -62,8 +62,8 @@
     	                        <div class="col-md-5">
     	                            <div class="card-image">
     	                                <a href="">
-    	                                	{% if member.avatar %}
-    	                                    	<img class="img" src="{{ member.avatar.image.url }}" />
+    	                                	{% if member.profilepic %}
+    	                                    	<img class="img" src="{{ member.profilepic.url }}" />
     	                                	{% endif %}
     	                                </a>
     	                            </div>
@@ -71,7 +71,7 @@
     	                        <div class="col-md-7">
     	                            <div class="card-content">
     	                                <h4 class="card-title">{{ member.get_full_name}}</h4>
-    	                                <h6 class="category text-muted">{{ member.role }}</h6>
+    	                                <h6 class="category text-muted">Member</h6>
     	                                <p class="card-description">
     	                                    {{ member.bio }}
     	                                </p>                                

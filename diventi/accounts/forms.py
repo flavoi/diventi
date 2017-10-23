@@ -1,6 +1,7 @@
 from django import forms
 
 from captcha.fields import ReCaptchaField
+from cuser.middleware import CuserMiddleware
 
 from .models import DiventiUser, DiventiAvatar
 from .widgets import DiventiAvatarSelect
@@ -30,9 +31,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
     )
 
     def __init__(self, *args, **kwargs):
-        super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['avatar'].required = False 
-
+        super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)        
+        
     class Meta:        
         model = DiventiUser
         fields = ['avatar', 'bio', 'role']

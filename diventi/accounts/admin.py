@@ -8,14 +8,14 @@ from .models import DiventiUser, DiventiAvatar
 class UserAdmin(auth_admin.UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'bio', 'avatar', 'role')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'bio', 'avatar', 'profilepic', 'role')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     limited_fieldsets = (
         (None, {'fields': ('email',)}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'bio', 'avatar')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'bio', 'avatar', 'profilepic')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (

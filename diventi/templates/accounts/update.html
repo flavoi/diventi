@@ -12,8 +12,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <h2 class="title">Choose your favourite avatar</h2>
-                <br />            
+                <h2 class="title">The avatar that inspires you the most</h2>
+                <br />
                 <form method="post" action="{% url 'accounts:update' user.pk %}">
                     {{ form.errors }}
                     {% csrf_token %}

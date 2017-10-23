@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed a problem that caused double comments in comment section
+- Fixed a problem that caused the avatar to be hidden in the landing page
 
 
 ## [0.4.0 → 0.5.1] - 2017-10-20

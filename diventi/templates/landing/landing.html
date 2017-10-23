@@ -63,7 +63,7 @@
     	                            <div class="card-image">
     	                                <a href="">
     	                                	{% if member.avatar %}
-    	                                    	<img class="img" src="{{ member.avatar.url }}" />
+    	                                    	<img class="img" src="{{ member.avatar.image.url }}" />
     	                                	{% endif %}
     	                                </a>
     	                            </div>
@@ -84,7 +84,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="section">
         <div class="container">

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced profile page with avatar, bio and favourite class customization options
 - Introduced a dedicated profile picture for staff members
+- Introduced detailed profile cards into profile update page
 
 ### Changed
 - Updated name of comment subpage to better reflect its role
@@ -21,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that caused the avatar to be hidden in the landing page
 
 
-## [0.4.0 → 0.5.1] - 2017-10-20
+## [0.5.1] → 2017-10-20
 
 ### Added
 - Introduced section "comment preview" under the comment post form
@@ -40,7 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed icons from navbar
 
 
-## [0.3.0 → 0.4.0] - 2017-10-14
+## [0.4.0] → 2017-10-14
 
 ### Added
 - Introduced a promotions system for articles and comments
@@ -48,14 +49,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a recaptcha field on the sign-up page
 
 
-## [0.2.0 → 0.3.0] - 2017-10-01
+## [0.3.0] → 2017-10-01
 
 ### Added
 - Introduced a commenting system for the articles
 - Introduced a sign-up page with username, email and password 
 
 
-## [0.1.0 → 0.2.0] - 2017-09-24
+## [0.2.0] → 2017-09-24
 
 ### Added
 - Introduced a landing page with the presentation of our product

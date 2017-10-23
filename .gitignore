@@ -2,6 +2,7 @@
 diventi/media/*
 diventi/static/*
 landing.json
+blog.json
 
 # Python bytecode
 *.py[co]

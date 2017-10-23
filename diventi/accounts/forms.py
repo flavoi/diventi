@@ -24,7 +24,7 @@ class DiventiUserCreationForm(forms.ModelForm):
 
 
 class DiventiUserUpdateForm(forms.ModelForm):
-
+    
     avatar = forms.ModelChoiceField(
         queryset = DiventiAvatar.objects.all(),
         widget = DiventiAvatarSelect(),

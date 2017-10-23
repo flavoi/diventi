@@ -1,0 +1,26 @@
+
+{% for comment in comment_list %}    
+    {% if forloop.first %}
+        {% include "comments/comment_detail.html" %}
+    {% else %}
+        <div class="myContent" style="display: none;"">
+            {% include "comments/comment_detail.html" %}
+        </div>
+    {% endif %}
+{% endfor %}
+
+{% block extrascript %}
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous">
+</script>
+
+<script type="text/javascript">
+function toggleDiv(divId) {
+   $("."+divId).toggle();
+}
+</script>
+
+{% endblock extrascript %}

@@ -49,9 +49,10 @@
                                             {{ form.password }}                                            
                                         </div>
                                         <div class="input-group">
-                                            <div class="col-sm-4 col-sm-offset-4">
-                                                {{ form.captcha }}
-                                            </div>
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">mouse</i>
+                                            </span>
+                                            {{ form.captcha }}
                                         </div>
                                     </div>
                                     {% if form.errors %}                                  

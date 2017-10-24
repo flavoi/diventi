@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Updated name of comment subpage to better reflect its role
 - Hard coded role label for every staff member in the landing page
+- Restyled icon addon of sign-up recaptcha to improve its responsiveness
 
 ### Fixed
 - Fixed a problem that caused double comments in comment section

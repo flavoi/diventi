@@ -27,6 +27,9 @@ class DiventiUserUpdateForm(forms.ModelForm):
     class Meta:        
         model = DiventiUser
         fields = ['avatar', 'bio', 'role']
+        labels = {
+            'role': 'Favourite class',
+        }
         widgets = {
             'bio': forms.TextInput(attrs={'class': 'form-control',}),
             'role': forms.TextInput(attrs={'class': 'form-control',}),

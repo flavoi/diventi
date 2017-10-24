@@ -34,7 +34,7 @@ class UserAdmin(auth_admin.UserAdmin):
     readonly_fields = ('last_login', 'date_joined',)
 
 class DiventiAvatarAdmin(admin.ModelAdmin):
-    list_display= ( 'label', 'image_tag')
+    list_display= ( 'label', 'image_tag', 'staff_only')
     
 
 admin.site.register(DiventiUser, UserAdmin)

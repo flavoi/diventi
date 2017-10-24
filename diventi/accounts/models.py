@@ -33,6 +33,7 @@ class DiventiAvatarQuerySet(models.QuerySet):
 class DiventiAvatar(models.Model):
     image = models.ImageField(blank=True, upload_to='avatars/')
     label = models.CharField(max_length=50, blank=True)
+    staff_only = models.BooleanField()
 
     objects = DiventiAvatarQuerySet.as_manager()
 

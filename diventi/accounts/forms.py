@@ -1,7 +1,6 @@
 from django import forms
 
 from captcha.fields import ReCaptchaField
-from cuser.middleware import CuserMiddleware
 
 from .models import DiventiUser, DiventiAvatar
 from .widgets import DiventiAvatarSelect
@@ -23,16 +22,8 @@ class DiventiUserCreationForm(forms.ModelForm):
         }
 
 
-class DiventiUserUpdateForm(forms.ModelForm):
-    
-    avatar = forms.ModelChoiceField(
-        queryset = DiventiAvatar.objects.all(),
-        widget = DiventiAvatarSelect(),
-    )
+class DiventiUserUpdateForm(forms.ModelForm):  
 
-    def __init__(self, *args, **kwargs):
-        super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)        
-        
     class Meta:        
         model = DiventiUser
         fields = ['avatar', 'bio', 'role']
@@ -40,3 +31,22 @@ class DiventiUserUpdateForm(forms.ModelForm):
             'bio': forms.TextInput(attrs={'class': 'form-control',}),
             'role': forms.TextInput(attrs={'class': 'form-control',}),
         }
+
+    def get_avatar_queryset(self):
+        """ Fetch special avatars if the user is an admin."""
+        user = self.user
+        avatar_queryset = DiventiAvatar.objects.all().order_by('-staff_only')
+        if user and not user.is_staff:
+            avatar_queryset = avatar_queryset.filter(staff_only=False)
+        print(avatar_queryset)        
+        return avatar_queryset                    
+
+    avatar = forms.ModelChoiceField(
+        queryset = DiventiAvatar.objects.all(),
+        widget = DiventiAvatarSelect(),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')        
+        super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)        
+        self.fields['avatar'].queryset = self.get_avatar_queryset()

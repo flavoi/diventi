@@ -15,8 +15,8 @@ class DiventiAvatarSelect(forms.Select):
         option_attrs['data-img-alt'] = value
         if value and int(value) > 0:
             avatar = DiventiAvatar.objects.get(id=int(value))
-            option_attrs['data-img-src'] = avatar.image.url  
-            option_attrs['data-img-class'] = 'img-responsive'   
+            option_attrs['data-img-src'] = avatar.image.url             
+            option_attrs['data-img-class'] = 'img-responsive' 
         if selected:
             option_attrs.update(self.checked_attribute)
         if 'id' in option_attrs:

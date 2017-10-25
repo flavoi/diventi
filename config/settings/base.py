@@ -110,6 +110,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Diventi user model
 AUTH_USER_MODEL = 'accounts.DiventiUser'
+AUTHENTICATION_BACKENDS = ('diventi.accounts.backends.EmailBackend',)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

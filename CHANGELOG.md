@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.3.1] → 2017-10-24
+## [0.3.2] → 2017-10-24
 
 ### Added
 - Introduced profile page with avatar, bio and favourite class customization options
@@ -17,11 +17,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated name of comment subpage to better reflect its role
 - Hard coded role label for every staff member in the landing page
 - Restyled icon addon of sign-up recaptcha to improve its responsiveness
+- Succes url of signup changed from landing page to login page
 
 ### Fixed
 - Fixed a problem that caused double comments in comment section
 - Fixed a problem that caused the avatar to be hidden in the landing page
 - Fixed a problem that caused the sign-up form to fail silently
+
+### Removed
+- Removed automatic login after user signup
 
 
 ## [0.2.1] → 2017-10-20

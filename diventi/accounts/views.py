@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash, authenticate, login, REDIRECT_FIELD_NAME
+from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.forms import PasswordChangeForm
@@ -46,7 +46,7 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     model = DiventiUser
     template_name = 'accounts/signup.html'
     success_msg = 'You have signed up!'
-    success_url = reverse_lazy('landing:home')
+    success_url = reverse_lazy('accounts:signin')
     fail_msg = 'Your sign-up has failed.'
     fail_url = reverse_lazy('accounts:signup')
 
@@ -55,12 +55,12 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
         password = form.cleaned_data['password1']
         if username and password:
             form.save()
-            user = get_object_or_404(DiventiUser, email=username)
-            login(self.request, user)
-            messages.success(self.request, self.success_msg)
-            redirect(self.success_url)
-        else:
-            messages.error(self.request, self.fail_msg)
+            user = authenticate(self.request, username=username, password=password)
+            if user is not None:
+                messages.success(self.request, self.success_msg)
+                redirect(self.success_url)
+            else:
+                messages.error(self.request, self.fail_msg)
         return super(DiventiUserCreationView, self).form_valid(form)
 
 

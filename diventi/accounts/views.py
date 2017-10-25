@@ -52,7 +52,7 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 
     def form_valid(self, form):
         username = form.cleaned_data['email']
-        password = form.cleaned_data['password']
+        password = form.cleaned_data['password1']
         if username and password:
             form.save()
             user = get_object_or_404(DiventiUser, email=username)

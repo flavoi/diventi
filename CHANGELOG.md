@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.3.0] → 2017-10-24
+## [0.3.1] → 2017-10-24
 
 ### Added
 - Introduced profile page with avatar, bio and favourite class customization options
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fixed a problem that caused double comments in comment section
 - Fixed a problem that caused the avatar to be hidden in the landing page
+- Fixed a problem that caused the sign-up form to fail silently
 
 
 ## [0.2.1] → 2017-10-20

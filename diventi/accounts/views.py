@@ -16,15 +16,15 @@ from diventi.core.views import DiventiActionMixin
 
 class DiventiLoginView(AnonymousRequiredMixin, LoginView):
 
-	template_name = "accounts/login.html"
+	template_name = "accounts/signin.html"
 
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 
-	template_name = "accounts/logout.html"
+	template_name = "accounts/signout.html"
 
 
-@login_required(redirect_field_name='accounts:login')
+@login_required(redirect_field_name='accounts:signin')
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)

@@ -108,13 +108,13 @@
                       <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
                       <li><a href="{% url 'accounts:update' user.pk %}">Update profile</a></li>
                       <li class="divider"></li>
-                      <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                      <li><a href="{% url 'accounts:signout' %}">Sign-out</a></li>
                   </ul>
                 </li>
               {% else %}
                 <li>
-                  <a href="{% url 'accounts:login' %}">
-                    <i class="material-icons">forward</i>Login
+                  <a href="{% url 'accounts:signin' %}">
+                    <i class="material-icons">forward</i>Sign-in
                   </a>
                 </li>
               {% endif %}

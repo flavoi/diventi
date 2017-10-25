@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Logout{% endblock title %}
+
+{% block bodyclass %}login-page{% endblock bodyclass %}
+
+{% block pageheader %}
+<div class="page-header header-filter" style="background-image: url(''); background-size: cover; background-position: top center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <div class="card">
+                    <div class="card-content">                        
+                        <h4 class="card-title">
+                            Sign-out complete!
+                        </h4>
+                        You can leave the page or sign-in <b><a class="text-info" href="{% url 'accounts:signin' %}">here.</a></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pageheader %}
+
+{% block main %}{% endblock main %}
+

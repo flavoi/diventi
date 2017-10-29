@@ -94,7 +94,7 @@ class Attachment(models.Model):
         Stores one or more files for a given article.
     """
     title = models.CharField(max_length=60)
-    file = models.FileField(upload_to='media/attachments/')
+    file = models.FileField(upload_to='articles/attachments/')
     article = models.ForeignKey(Article)
 
     def __str__(self):

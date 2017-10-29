@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.3.2] → 2017-10-24
+## [0.3.3] → 2017-10-29
 
 ### Added
 - Introduced profile page with avatar, bio and favourite class customization options
@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Removed automatic login after user signup
+- Removed new relic monitoring
 
 
 ## [0.2.1] → 2017-10-20

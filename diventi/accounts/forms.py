@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from captcha.fields import ReCaptchaField
 
 from .models import DiventiUser, DiventiAvatar
-from .widgets import DiventiAvatarSelect
+from .widgets import DiventiAvatarSelect, DiventiAvatarChoiceField
 
 
 class DiventiUserCreationForm(UserCreationForm):
@@ -41,7 +41,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
         model = DiventiUser
         fields = ['avatar', 'bio', 'role']
         labels = {
-            'role': 'Favourite class',
+            'bio': "What's you story?",
+            'role': "What's your favourite class?",
         }
         widgets = {
             'bio': forms.TextInput(attrs={'class': 'form-control',}),
@@ -53,13 +54,14 @@ class DiventiUserUpdateForm(forms.ModelForm):
         user = self.user
         avatar_queryset = DiventiAvatar.objects.all().order_by('-staff_only')
         if user and not user.is_staff:
-            avatar_queryset = avatar_queryset.filter(staff_only=False)
-        print(avatar_queryset)        
+            avatar_queryset = avatar_queryset.filter(staff_only=False)        
         return avatar_queryset                    
 
-    avatar = forms.ModelChoiceField(
+    avatar = DiventiAvatarChoiceField(
         queryset = DiventiAvatar.objects.all(),
-        widget = DiventiAvatarSelect(),
+        widget = DiventiAvatarSelect(attrs = {
+            'class': 'image-picker show-html'
+        }),        
     )
 
     def __init__(self, *args, **kwargs):

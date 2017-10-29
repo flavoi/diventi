@@ -15,8 +15,8 @@ class DiventiAvatarSelect(forms.Select):
         option_attrs['data-img-alt'] = value
         if value and int(value) > 0:
             avatar = DiventiAvatar.objects.get(id=int(value))
-            option_attrs['data-img-src'] = avatar.image.url             
-            option_attrs['data-img-class'] = 'img-responsive' 
+            option_attrs['data-img-src'] = avatar.image.url
+            option_attrs['data-img-class'] = 'img-responsive'
         if selected:
             option_attrs.update(self.checked_attribute)
         if 'id' in option_attrs:
@@ -31,3 +31,54 @@ class DiventiAvatarSelect(forms.Select):
             'type': self.input_type,
             'template_name': self.option_template_name,
         }
+
+
+class GroupedModelChoiceField(forms.ModelChoiceField):
+
+    def set_optgroup_label(self, optgroup):
+        return ""
+
+    def optgroup_from_instance(self, obj):
+        return ""
+
+    def __choice_from_instance__(self, obj):
+        return (obj.id, self.label_from_instance(obj))
+
+    def _get_choices(self):
+        if not self.queryset:
+            return []
+
+        all_choices = []
+        if self.empty_label:
+            current_optgroup = ""
+            current_optgroup_choices = [("", self.empty_label)]
+        else:
+            current_optgroup = self.optgroup_from_instance(self.queryset[0])
+            current_optgroup_choices = []
+
+        for item in self.queryset:
+            optgroup_from_instance = self.optgroup_from_instance(item)
+            optgroup_from_instance = self.set_optgroup_label(optgroup=optgroup_from_instance)
+            if current_optgroup != optgroup_from_instance:
+                all_choices.append((current_optgroup, current_optgroup_choices))
+                current_optgroup_choices = []
+                current_optgroup = optgroup_from_instance
+            current_optgroup_choices.append(self.__choice_from_instance__(item))
+
+        all_choices.append((current_optgroup, current_optgroup_choices))
+        return all_choices
+
+    choices = property(_get_choices, forms.ChoiceField._set_choices)
+    
+
+class DiventiAvatarChoiceField(GroupedModelChoiceField):
+
+    def optgroup_from_instance(self, obj):
+        group = obj.staff_only
+        return group
+
+    def set_optgroup_label(self, optgroup):
+        optgroup_name = "Members avatar"
+        if optgroup: # Staff_only = True
+            optgroup_name = "Staff avatar"
+        return optgroup_name

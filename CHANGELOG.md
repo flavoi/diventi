@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Introduced avatar grouping to better distinguish those reserved to staff members
+
 ### Changed
 - Avatar is now optional for user sign-up
 - Updated media upload folders to better reflect the app names 

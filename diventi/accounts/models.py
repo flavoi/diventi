@@ -64,7 +64,7 @@ class DiventiAvatar(models.Model):
 
 class DiventiUser(AbstractUser):    
     email = models.EmailField(unique=True)
-    avatar = models.ForeignKey(DiventiAvatar, null=True, related_name='diventiuser')
+    avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser')
     profilepic = models.ImageField(blank=True, upload_to='profilepic/') # For the landing page, staff use only
     bio = models.TextField(blank=True)
     role = models.CharField(blank=True, max_length=70)    

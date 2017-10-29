@@ -1,1 +1,1 @@
-web: run-program gunicorn --pythonpath diventi config.wsgi
+web: gunicorn --pythonpath diventi config.wsgi

@@ -63,7 +63,7 @@ class Article(TimeStampedModel, PromotableModel):
     """
     title = models.CharField(max_length=60)
     category = models.ForeignKey(Category)
-    image = models.ImageField(blank=True, upload_to='articles/')
+    image = models.ImageField(blank=True, upload_to='blog/')
     caption = models.CharField(max_length=60, blank=True)
     abstract = RichTextField(max_length=250)
     content = RichTextField()
@@ -94,7 +94,7 @@ class Attachment(models.Model):
         Stores one or more files for a given article.
     """
     title = models.CharField(max_length=60)
-    file = models.FileField(upload_to='articles/attachments/')
+    file = models.FileField(upload_to='blog/attachments/')
     article = models.ForeignKey(Article)
 
     def __str__(self):

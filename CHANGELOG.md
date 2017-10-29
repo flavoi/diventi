@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Avatar is now optional for user sign-up
-- Updated articles' upload folder from 'media' to 'articles/attachments' 
+- Updated media upload folders to better reflect the app names 
 
 
 ## [0.3.3] → 2017-10-29

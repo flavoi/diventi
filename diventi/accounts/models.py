@@ -41,7 +41,7 @@ class DiventiAvatarQuerySet(models.QuerySet):
 
 
 class DiventiAvatar(models.Model):
-    image = models.ImageField(blank=True, upload_to='avatars/')
+    image = models.ImageField(blank=True, upload_to='accounts/avatars/')
     label = models.CharField(max_length=50, blank=True)
     staff_only = models.BooleanField()
 
@@ -65,7 +65,7 @@ class DiventiAvatar(models.Model):
 class DiventiUser(AbstractUser):    
     email = models.EmailField(unique=True)
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser')
-    profilepic = models.ImageField(blank=True, upload_to='profilepic/') # For the landing page, staff use only
+    profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/') # For the landing page, staff use only
     bio = models.TextField(blank=True)
     role = models.CharField(blank=True, max_length=70)    
 

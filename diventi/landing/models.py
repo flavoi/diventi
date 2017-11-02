@@ -48,3 +48,8 @@ class Feature(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Timeline(Feature):
+    """ A timeline element has almost the same attributes of a Feature."""
+    event_date = models.Field()

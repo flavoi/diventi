@@ -10,7 +10,7 @@ def landing(request):
         team members. 
     """
     presentation = Presentation.objects.active()
-        
+
     return render(request,
         "landing/landing.html",
         {    

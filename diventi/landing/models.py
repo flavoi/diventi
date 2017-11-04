@@ -2,21 +2,16 @@ from django.db import models
 
 from ckeditor.fields import RichTextField
 
-
-COLORS_CHOICES = (
-    ('info', 'Blue'),
-    ('primary', 'Rose'),
-    ('danger', 'Red'),
-    ('success', 'Green'),
-    ('default', 'Gray'),       
-)
+from diventi.core.models import Element
 
 
 class PresentationManager(models.Manager):
 
     def active(self):
         try:
-            active_presentation = Presentation.objects.get(active=True)
+            active_presentation = Presentation.objects.prefetch_related('features')
+            active_presentation = active_presentation.prefetch_related('events')
+            active_presentation = active_presentation.get(active=True)
         except Presentation.DoesNotExist:
             msg = "There is no active landing page."
             raise Presentation.DoesNotExist(msg)
@@ -39,17 +34,10 @@ class Presentation(models.Model):
         return self.title
 
 
-class Feature(models.Model):
-    icon = models.CharField(max_length=30)
-    title = models.CharField(max_length=50)
-    description = RichTextField()
-    color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default')
-    profile = models.ForeignKey(Presentation)
-
-    def __str__(self):
-        return self.title
+class Feature(Element):    
+    profile = models.ForeignKey(Presentation, related_name='features')
 
 
-class Timeline(Feature):
-    """ A timeline element has almost the same attributes of a Feature."""
+class Event(Element):
+    profile = models.ForeignKey(Presentation, related_name='events')
     event_date = models.DateField(blank=True)

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced avatar grouping to better distinguish those reserved to staff members
 - Introduced a storyline section in landing page to display a list of main events ordered by date
+- Introduced the option to show or hide a staff user on the landing page.
 
 ### Changed
 - Avatar is now optional for user sign-up

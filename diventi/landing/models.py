@@ -18,10 +18,10 @@ class PresentationManager(models.Manager):
         try:
             active_presentation = Presentation.objects.get(active=True)
         except Presentation.DoesNotExist:
-            msg = "There is no active profile."
+            msg = "There is no active landing page."
             raise Presentation.DoesNotExist(msg)
         except Presentation.MultipleObjectsReturned:
-            msg = "There must be only one profile at a time. Please fix!"
+            msg = "There must be only one landing page at a time. Please fix!"
             raise Presentation.MultipleObjectsReturned(msg)
         return active_presentation
 
@@ -52,4 +52,4 @@ class Feature(models.Model):
 
 class Timeline(Feature):
     """ A timeline element has almost the same attributes of a Feature."""
-    event_date = models.Field()
+    event_date = models.DateField(blank=True)

@@ -58,13 +58,14 @@ class DiventiUserUpdateForm(forms.ModelForm):
         return avatar_queryset                    
 
     avatar = DiventiAvatarChoiceField(
-        queryset = DiventiAvatar.objects.all(),
+        queryset = DiventiAvatar.objects.none(),
         widget = DiventiAvatarSelect(attrs = {
             'class': 'image-picker show-html'
-        }),        
+        }),
     )
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')        
         super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)        
         self.fields['avatar'].queryset = self.get_avatar_queryset()
+        print(self.fields['avatar'].queryset)

@@ -71,11 +71,11 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    'diventi.core',
+    'diventi.core',    
     'diventi.accounts',
     'diventi.blog',
     'diventi.landing',
-    'diventi.comments',
+    'diventi.comments',    
 ]
 
 THIRD_PARTY_APPS = [

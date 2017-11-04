@@ -2,10 +2,7 @@ from django import forms
 
 from .models import DiventiAvatar
 
-class DiventiAvatarSelect(forms.Select):
-    
-    # option_template_name = 'django/forms/widgets/select_option.html'
-    # option_template_name = 'select_option.html'
+class DiventiAvatarSelect(forms.Select):    
     
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
         index = str(index) if subindex is None else "%s_%s" % (index, subindex)
@@ -38,6 +35,12 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
     def set_optgroup_label(self, optgroup):
         return ""
 
+    def get_queryset(self):
+        queryset = []
+        if self.queryset:
+            queryset = self.queryset        
+        return queryset
+
     def optgroup_from_instance(self, obj):
         return ""
 
@@ -45,28 +48,28 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
         return (obj.id, self.label_from_instance(obj))
 
     def _get_choices(self):
-        if not self.queryset:
-            return []
-
-        all_choices = []
-        if self.empty_label:
-            current_optgroup = ""
-            current_optgroup_choices = [("", self.empty_label)]
-        else:
-            current_optgroup = self.optgroup_from_instance(self.queryset[0])
-            current_optgroup_choices = []
-
-        for item in self.queryset:
-            optgroup_from_instance = self.optgroup_from_instance(item)
-            optgroup_from_instance = self.set_optgroup_label(optgroup=optgroup_from_instance)
-            if current_optgroup != optgroup_from_instance:
-                all_choices.append((current_optgroup, current_optgroup_choices))
+        if self.get_queryset():          
+            all_choices = []
+            if self.empty_label:
+                current_optgroup = ""
+                current_optgroup_choices = [("", self.empty_label)]
+            else:
+                current_optgroup = self.optgroup_from_instance(self.get_queryset()[0])
                 current_optgroup_choices = []
-                current_optgroup = optgroup_from_instance
-            current_optgroup_choices.append(self.__choice_from_instance__(item))
 
-        all_choices.append((current_optgroup, current_optgroup_choices))
-        return all_choices
+            for item in self.get_queryset():
+                optgroup_from_instance = self.optgroup_from_instance(item)
+                optgroup_from_instance = self.set_optgroup_label(optgroup=optgroup_from_instance)
+                if current_optgroup != optgroup_from_instance:
+                    all_choices.append((current_optgroup, current_optgroup_choices))
+                    current_optgroup_choices = []
+                    current_optgroup = optgroup_from_instance
+                current_optgroup_choices.append(self.__choice_from_instance__(item))
+
+            all_choices.append((current_optgroup, current_optgroup_choices))
+            return all_choices
+        else:
+            return []
 
     choices = property(_get_choices, forms.ChoiceField._set_choices)
     

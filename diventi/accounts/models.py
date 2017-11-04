@@ -61,7 +61,7 @@ class DiventiAvatar(models.Model):
     def __str__(self):
         return u'{0}'.format(self.label)
 
-
+        
 class DiventiUser(AbstractUser):    
     email = models.EmailField(unique=True)
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser')
@@ -93,3 +93,4 @@ class DiventiUser(AbstractUser):
 
     def __str__(self):
         return u'{0} ({1})'.format(self.get_full_name(), self.email)
+

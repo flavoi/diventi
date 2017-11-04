@@ -10,11 +10,12 @@ def landing(request):
         team members. 
     """
     presentation = Presentation.objects.active()
+    staff = DiventiUser.objects.members()
 
     return render(request,
         "landing/landing.html",
         {    
             "presentation": presentation,
-            "staff": DiventiUser.objects.filter(is_staff=True),
+            "staff": staff,
         },
     )

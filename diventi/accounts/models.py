@@ -31,13 +31,16 @@ class DiventiUserManager(auth_models.BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
         return self._create_user(email, password, **extra_fields)
 
+    def members(self):
+        return DiventiUser.objects.filter(is_staff=True).filter(member=True)
+
 
 class DiventiAvatarQuerySet(models.QuerySet):
 
     # Fetch all users related to the avatar
     def users(self):
         avatar = self.diventiuser.all()
-        return avatar
+        return avatar 
 
 
 class DiventiAvatar(models.Model):
@@ -67,7 +70,8 @@ class DiventiUser(AbstractUser):
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser')
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/') # For the landing page, staff use only
     bio = models.TextField(blank=True)
-    role = models.CharField(blank=True, max_length=70)    
+    role = models.CharField(blank=True, max_length=70) # Favourite class
+    member = models.BooleanField(default=False) # If true the user appears in the landing page
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

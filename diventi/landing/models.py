@@ -41,3 +41,6 @@ class Feature(Element):
 class Event(Element):
     profile = models.ForeignKey(Presentation, related_name='events')
     event_date = models.DateField(blank=True)
+
+    class Meta:
+        ordering = ['event_date']

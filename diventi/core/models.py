@@ -9,7 +9,7 @@ COLORS_CHOICES = (
     ('primary', 'Rose'),
     ('danger', 'Red'),
     ('success', 'Green'),
-    ('default', 'Gray'),       
+    ('default', 'Gray'),
 )
 
 

@@ -114,20 +114,23 @@
                 <div class="card card-plain">
                     <div class="card-content">
                         <ul class="timeline">
-                            {% for feature in presentation.events.all %}
-                            <li>
-                                <div class="timeline-badge success">
-                                    <i class="material-icons">extension</i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="label label-success">Another One</span>
+                            {% for event in presentation.events.all %}
+                                <li {% if forloop.counter|divisibleby:2 %}class="timeline-inverted"{% endif %}>
+                                    <div class="timeline-badge {{ event.color }}">
+                                        <i class="material-icons">{{ event.icon }}</i>
                                     </div>
-                                    <div class="timeline-body">
-                                        <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <span class="label label-{{ event.color }}">{{ event.title }}</span>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>{{ event.description }}</p>
+                                        </div>
+                                        <h6>
+                                            <i class="ti-time"></i> {{ event.event_date }}
+                                        </h6>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
                             {% endfor %}
                             
                             <!--

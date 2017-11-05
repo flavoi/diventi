@@ -59,31 +59,46 @@
                                     <label>Email address</label>
                                     <p>{{ user.email }}</p><br />
                                 </div>
-                                <div class="col-md-6">
-                                    <label>{{ form.bio.label }}</label>
-                                    {{ form.bio }}
-                                </div>            
-                                <div class="col-md-6">
-                                    <label>{{ form.role.label }}</label>
-                                    {{ form.role }}
-                                </div>
 
-                                <div class="col-md-12">                                    
-                                    {{ form.avatar }}
-                                    <!--
-                                    <label>{{ form.avatar.label }}</label>
-                                    <select class="image-picker show-html" name="avatar" id="id_avatar">
-                                        {% for choice in form.avatar %}
-                                            <div class="col-md-6">                     
-                                                {{ choice.tag }}
+                                <div class="col-md-2">
+                                    <ul class="nav nav-pills nav-pills-info nav-stacked">
+                                      <li class="active">                                        
+                                        <a href="#pill1" data-toggle="tab">        
+                                            Profile
+                                        </a>
+                                      </li>
+                                      <li>                                      
+                                        <a href="#pill2" data-toggle="tab">        
+                                            Avatar
+                                        </a>
+                                      </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="pill1">
+                                            <div class="col-md-6">
+                                                <label>{{ form.bio.label }}</label>
+                                                {{ form.bio }}
+                                            </div>            
+                                            <div class="col-md-6">
+                                                <label>{{ form.role.label }}</label>
+                                                {{ form.role }}
                                             </div>
-                                        {% endfor %}
-                                    </select>
-                                    -->
-                                </div>                                
-                                <div class="footer text-center">
+                                        </div>
+                                        <div class="tab-pane" id="pill2">
+                                          <div class="col-md-12">                                    
+                                            {{ form.avatar }}
+                                            </div>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                
+                                <div class="footer">
                                     <input type="submit" class="btn btn-danger btn-raised" value="Update my details" />
                                 </div>
+                                
                             </div>                            
                         </div>                        
                     </div>

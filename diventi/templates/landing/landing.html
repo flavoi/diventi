@@ -4,9 +4,9 @@
 {% block title %}{% endblock title %}
 
 {% block extrahead %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'vertical-timeline/css/style.css' %}">
-<script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vertical-timeline/css/style.css' %}">
+    <script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
 {% endblock extrahead %}
 
 {% block bodyclass %}landing-page{% endblock bodyclass %}
@@ -147,5 +147,5 @@
 {% endblock content %}
 
 {% block extrascript %}
-<script src="{% static 'vertical-timeline/js/main.js' %}"></script>
+    <script src="{% static 'vertical-timeline/js/main.js' %}"></script>
 {% endblock extrascript %}

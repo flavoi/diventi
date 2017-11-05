@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Avatar is now optional for user sign-up
 - Updated media upload folders to better reflect the app names 
+- Reorganized profile page with profile and avatar pillows
 
 ## Fixed
 - Fixed a problem in accounts/widgets that caused an error while migrating the database.

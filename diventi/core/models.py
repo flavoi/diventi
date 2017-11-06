@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from cuser.middleware import CuserMiddleware
+from ckeditor.fields import RichTextField
 
 
 COLORS_CHOICES = (
@@ -51,7 +52,7 @@ class Element(models.Model):
     """
     icon = models.CharField(max_length=30)
     title = models.CharField(max_length=50)
-    description = models.TextField()
+    description = RichTextField()
     color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default')
 
     def __str__(self):

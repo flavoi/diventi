@@ -130,7 +130,7 @@
                                             <span class="label label-{{ event.color }}">{{ event.title }}</span>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>{{ event.description }}</p>
+                                            <p>{{ event.description|safe }}</p>
                                         </div>
                                         <h6>
                                             <i class="ti-time"></i> {{ event.event_date }}

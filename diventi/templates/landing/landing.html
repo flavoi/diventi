@@ -7,6 +7,13 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'vertical-timeline/css/style.css' %}">
     <script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
+    <style>
+        .feature-info {
+            max-width: 360px;
+            margin: 0 auto;
+            padding: 70px 0 30px;
+        }
+    </style>
 {% endblock extrahead %}
 
 {% block bodyclass %}landing-page{% endblock bodyclass %}
@@ -31,18 +38,18 @@
 {% block content %}
     <div class="section text-center">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h2 class="title">Let's talk product</h2>
-                    <h5 class="description">{{ presentation.description|safe }}</h5>
-                </div>
-            </div>
-
-            <div class="features">
+            <div class="features-1">
                 <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="title">Let's talk product</h2>
+                        <h5 class="description">{{ presentation.description|safe }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                     {% for feature in presentation.features.all %}
                         <div class="col-md-4">
-                            <div class="info">
+                            <div class="feature-info">
                                 <div class="icon icon-{{ feature.color }}">
                                     <i class="ra ra-{{ feature.icon }} ra-lg"></i>
                                 </div>
@@ -51,6 +58,7 @@
                             </div>
                         </div>
                     {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

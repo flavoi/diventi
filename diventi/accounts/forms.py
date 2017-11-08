@@ -41,7 +41,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
         model = DiventiUser
         fields = ['avatar', 'bio', 'role']
         labels = {
-            'bio': "What's you story?",
+            'bio': "What's your story?",
             'role': "What's your favourite class?",
         }
         widgets = {

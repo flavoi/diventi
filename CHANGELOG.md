@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.4.1] → 2017-11-05
+## [0.4.2] → 2017-11-08
 
 ### Added
 - Introduced avatar grouping to better distinguish those reserved to staff members
@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated media upload folders to better reflect the app names 
 - Reorganized profile page with profile and avatar pillows
 - Enabled rich text for page elements
+- Updated the description of the storyline section
 
 ## Fixed
 - Fixed a problem in accounts/widgets that caused an error while migrating the database.

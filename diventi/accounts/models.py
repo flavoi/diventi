@@ -44,9 +44,9 @@ class DiventiAvatarQuerySet(models.QuerySet):
 
 
 class DiventiAvatar(models.Model):
-    image = models.ImageField(blank=True, upload_to='accounts/avatars/')
+    image = models.URLField()
     label = models.CharField(max_length=50, blank=True)
-    staff_only = models.BooleanField()
+    staff_only = models.BooleanField(default=False)
 
     objects = DiventiAvatarQuerySet.as_manager()
 
@@ -54,12 +54,27 @@ class DiventiAvatar(models.Model):
         verbose_name = 'Avatar'
         verbose_name_plural = 'Avatars'
 
+    def image_thumbnail(self):
+        # imgur legend
+        # 't' stands for 'small thumbnail'
+        # 's' stands for 'small square'
+        IMAGE_MODE = 't'
+        original_image = self.image
+        image = original_image.replace('.png', '{0}.png'.format(IMAGE_MODE))
+        if image == original_image:
+            image = self.image.replace('.jpg', '{0}.jpg'.format(IMAGE_MODE))
+        print(image)
+        return image
+
     def image_tag(self):
-        if self.image.url:
-            return mark_safe('<img src="%s" height="42" width="42" />' % self.image.url)
+        if self.image:            
+            return mark_safe('<img src="{0}" />'.format(self.image_thumbnail()))
         else:
             return u'(Nessuna immagine)'
     image_tag.short_description = 'Avatar'
+
+    
+
 
     def __str__(self):
         return u'{0}'.format(self.label)
@@ -67,7 +82,7 @@ class DiventiAvatar(models.Model):
         
 class DiventiUser(AbstractUser):    
     email = models.EmailField(unique=True)
-    avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser')
+    avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL)
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/') # For the landing page, staff use only
     bio = models.TextField(blank=True)
     role = models.CharField(blank=True, max_length=70) # Favourite class

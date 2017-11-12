@@ -29,16 +29,16 @@
                 <form method="post" action="{% url 'accounts:update' user.pk %}">
                     {{ form.errors }}
                     {% csrf_token %}
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-3">
                         <div class="card card-profile">
                             <div class="card-image">
                                 <a href="">
-                                    <img class="img" src="{{ user.avatar.image.url }}">
+                                    <img class="img" src="{{ user.avatar.image }}">
                                     <div class="card-title">
                                         {{ user.first_name }}
                                     </div>
                                 </a>
-                            <div class="colored-shadow" style="background-image: url({{ user.avatar.image.url }}); opacity: 1;"></div></div>
+                            <div class="colored-shadow" style="background-image: url({{ user.avatar.image }}); opacity: 1;"></div></div>
                             <div class="card-content">
                                 <h6 class="category text-info">Supporter of Diventi</h6>
                                 <p class="card-description">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-sm-9">
                         <div class="card">
                             <div class="card-content">
                                 <h3 class="text-muted">

@@ -67,5 +67,4 @@ class DiventiUserUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')        
         super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)        
-        self.fields['avatar'].queryset = self.get_avatar_queryset()
-        print(self.fields['avatar'].queryset)
+        self.fields['avatar'].queryset = self.get_avatar_queryset()        

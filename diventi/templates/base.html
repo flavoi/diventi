@@ -12,13 +12,13 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
 
-  <!-- Core styles CSS -->
-  <link href="{% static 'material-kit/css/bootstrap.min.css' %}" rel="stylesheet"/>
-  <link href="{% static 'material-kit/css/material-kit.css' %}" rel="stylesheet"/>
-
   <!-- Fonts and icons -->
   <link type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" />
   <link type="text/css" href="{% static 'rpg-awesome/css/rpg-awesome.css' %}" rel="stylesheet">
+
+  <!-- Core styles CSS -->
+  <link href="{% static 'material-kit/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'material-kit/css/material-kit.css' %}" rel="stylesheet"/>
   
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
@@ -42,7 +42,7 @@
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
-  <nav class="navbar navbar-inverse navbar-fixed-top navbar-color-on-scroll" color-on-scroll=" ">
+  <nav class="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll">
 
     {% block messages %}
       {% if messages %}

@@ -5,8 +5,6 @@
 
 {% block extrahead %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'vertical-timeline/css/style.css' %}">
-    <script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
     <style>
         .feature-info {
             max-width: 360px;
@@ -19,7 +17,7 @@
 {% block bodyclass %}landing-page{% endblock bodyclass %}
 
 {% block pageheader %}
-    <div class="page-header header-filter" data-parallax="true" {% if presentation.image %}style="background-image: url('{{ presentation.image.url }}');"{% endif %}>
+    <div class="page-header header-filter" {% if presentation.image %}style="background-image: url('{{ presentation.image.url }}');"{% endif %}>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -121,11 +119,11 @@
         </div>
     </div>
 
-    <div class="section text-center">
+    <div class="section">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <h2 class="text-center title">The Lost Files of Diventi</h2>
-                <h5 class="description">Get a glimpse of the story with the following super-secret files.</h5>
+                <h5 class="text-center description">Get a glimpse of the story with the following super-secret files.</h5>
                 <div class="card card-plain">
                     <div class="card-content">
                         <ul class="timeline">
@@ -153,8 +151,12 @@
             </div>
         </div>
     </div>
+
 {% endblock content %}
 
 {% block extrascript %}
+<!--
+    <script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
     <script src="{% static 'vertical-timeline/js/main.js' %}"></script>
+-->
 {% endblock extrascript %}

@@ -62,8 +62,7 @@ class DiventiAvatar(models.Model):
         original_image = self.image
         image = original_image.replace('.png', '{0}.png'.format(IMAGE_MODE))
         if image == original_image:
-            image = self.image.replace('.jpg', '{0}.jpg'.format(IMAGE_MODE))
-        print(image)
+            image = self.image.replace('.jpg', '{0}.jpg'.format(IMAGE_MODE))        
         return image
 
     def image_tag(self):

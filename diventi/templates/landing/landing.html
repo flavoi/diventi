@@ -102,8 +102,13 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     {% if user.is_authenticated %}
-                        <h2 class="text-center title">Hello {{ user.first_name }}!</h2>
-                        <h4 class="text-center description">It's nice to have you onboard.</h4>
+                    <div class="text-center">
+                        <h2 class="title">Hello {{ user.first_name }}!</h2>
+                        <h5 class="description">You have signed-in. Feel free to explore or deep dive into <a href="{% url 'blog:home'%}" class="text-info">our blog</a>.</h5>
+                        <a href="{% url 'accounts:update' user.pk %}" class="btn btn-info">
+                            <i class="ra ra-scroll-unfurled ra-lg"></i> View profile
+                        </a>
+                    </div>
                     {% else %}
                         <h2 class="text-center title">Join our community</h2>
                         <h4 class="text-center description">Sign-up to know more and start exploring.</h4>

@@ -40,7 +40,13 @@
                                 </a>
                             <div class="colored-shadow" style="background-image: url({{ user.avatar.image }}); opacity: 1;"></div></div>
                             <div class="card-content">
-                                <h6 class="category text-info">Supporter of Diventi</h6>
+                                <h6 class="category text-gray">
+                                {% if user.member %}
+                                    Member of Diventi
+                                {% else %}
+                                    Supporter of Diventi
+                                {% endif %}
+                                </h6>
                                 <p class="card-description">
                                     {{ user.bio }}<br />
                                     <strong>Favourite class:</strong> {{ user.role }}                                    
@@ -51,7 +57,7 @@
                     <div class="col-md-9 col-sm-9">
                         <div class="card">
                             <div class="card-content">
-                                <h3 class="text-muted">
+                                <h3 class="text-gray">
                                     <i class="ra ra-scroll-unfurled"></i> Your details
                                 </h3>
                                 <br />

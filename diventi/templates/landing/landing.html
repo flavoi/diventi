@@ -5,6 +5,7 @@
 
 {% block extrahead %}
     {% load static %}
+    <link rel="stylesheet" href="{% static 'vertical-timeline/css/style.css' %}">
     <style>
         .feature-info {
             max-width: 360px;
@@ -155,8 +156,6 @@
 {% endblock content %}
 
 {% block extrascript %}
-<!--
     <script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
     <script src="{% static 'vertical-timeline/js/main.js' %}"></script>
--->
 {% endblock extrascript %}

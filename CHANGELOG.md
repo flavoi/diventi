@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Optimized profile page layout for tables
 
 ### Fixed
+- Fixed a problem that caused the cov image to disappear
 
 
 ## [0.4.2] → 2017-11-08
@@ -22,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced avatar grouping to better distinguish those reserved to staff members
 - Introduced an animated storyline in the landing page to display a list of main events ordered by date
-- Introduced the option to show or hide a staff user on the landing page.
+- Introduced the option to show or hide a staff user on the landing page
 
 ### Changed
 - Avatar is now optional for user sign-up
@@ -32,7 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated the description of the storyline section
 
 ## Fixed
-- Fixed a problem in accounts/widgets that caused an error while migrating the database.
+- Fixed a problem in accounts/widgets that caused an error while migrating the database
 
 
 ## [0.3.3] → 2017-10-29

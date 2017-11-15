@@ -11,23 +11,10 @@ def landing(request):
     """
     presentation = Presentation.objects.active()
     staff = DiventiUser.objects.members()
-    NCOLUMNS = 3
-    i = 0
-    events = presentation.events.all().order_by('event_date')
-    events_columns = []
-    for k in range(0, NCOLUMNS):
-        events_columns.append([])
-    for ev in events:
-        events_columns[i].append(ev)
-        if i < NCOLUMNS - 1:
-            i += 1
-        elif i == NCOLUMNS - 1:
-            i = 0
     return render(request,
         "landing/landing.html",
         {    
             "presentation": presentation,
             "staff": staff,
-            "events_columns": events_columns,
         },
     )

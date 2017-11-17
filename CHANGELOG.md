@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Avatars are now rendered as urls and uploaded in imgur
 - Optimized profile page layout for tables
 - Improved responsiveness of the timeline
+- Blog's articles pub date is now a datetime field to improve the ordering in blogpost page
 
 ### Fixed
 - Fixed a problem that caused the cov image to disappear

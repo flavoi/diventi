@@ -68,7 +68,7 @@ class Article(TimeStampedModel, PromotableModel):
     abstract = RichTextField(max_length=250)
     content = RichTextField()
     published = models.BooleanField(default=False)
-    publication_date = models.DateField(auto_now_add=True, null=True)
+    publication_date = models.DateTimeField(auto_now_add=True, null=True)
     hot = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='articles')

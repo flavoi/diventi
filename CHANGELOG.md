@@ -10,15 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Refined profile section of the landing page with a button and a link to the blog page
+- Added creation and modification date in blog admin page
 
 ### Changed
 - Avatars are now rendered as urls and uploaded in imgur
 - Optimized profile page layout for tables
 - Improved responsiveness of the timeline
+- Blog's articles pub date is now a datetime field to improve the ordering in blogpost page
 
 ### Fixed
 - Fixed a problem that caused the cov image to disappear
 - Fixed user role in profile page
+- Fixed a problem that caused the avatar to not be displayed in article page
 
 
 ## [0.4.2] → 2017-11-08

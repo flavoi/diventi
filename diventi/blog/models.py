@@ -16,7 +16,7 @@ class ArticleQuerySet(models.QuerySet):
 
     # Get the list of published articles from the most recent to the least 
     def history(self):
-        articles = self.published().order_by('-hot', '-publication_date')
+        articles = self.published().order_by('-hot', 'publication_date')
         return articles
 
     # Get the list of published articles of a certain category

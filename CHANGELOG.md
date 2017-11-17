@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Avatars are now rendered as urls and uploaded in imgur
 - Optimized profile page layout for tables
+- Improved responsiveness of the timeline
 
 ### Fixed
 - Fixed a problem that caused the cov image to disappear

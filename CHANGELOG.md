@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that caused the cov image to disappear
 - Fixed user role in profile page
 - Fixed a problem that caused the avatar to not be displayed in article page
+- Fixed a problem that caused the avatar to not be displayed in comment section
 
 
 ## [0.4.2] → 2017-11-08

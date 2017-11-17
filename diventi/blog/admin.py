@@ -8,11 +8,16 @@ def make_published(modeladmin, request, queryset):
 make_published.short_description = "Mark selected stories as published"
 
 
+def make_unpublished(modeladmin, request, queryset):
+    queryset.update(published=False)
+make_unpublished.short_description = "Mark selected stories as hidden"
+
+
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'published', 'hot', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)}   
-    actions = [make_published]
+    actions = [make_published, make_unpublished]
 
 
 admin.site.register(Article, ArticleAdmin)

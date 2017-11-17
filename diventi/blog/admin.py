@@ -10,11 +10,8 @@ class AttachmentInline(admin.TabularInline):
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'published', 'hot']
-    prepopulated_fields = {"slug": ("title",)}
-    inlines = [
-        AttachmentInline,
-    ]
-
+    readonly_fields = ['created', 'modified']
+    prepopulated_fields = {"slug": ("title",)}   
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category)

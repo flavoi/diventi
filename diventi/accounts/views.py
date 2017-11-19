@@ -50,6 +50,16 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     fail_msg = 'Your sign-up has failed.'
     fail_url = reverse_lazy('accounts:signup')
 
+    def get_initial(self):
+        # Retrieve initial data from user inputs on the landing page
+        initial_email = self.request.session.get('initial_email', None)
+        initial_first_name = self.request.session.get('initial_first_name', None)
+        initial = {
+            'email': initial_email,
+            'first_name': initial_first_name,
+        }
+        return initial
+
     def form_valid(self, form):
         username = form.cleaned_data['email']
         password = form.cleaned_data['password1']

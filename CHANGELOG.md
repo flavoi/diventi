@@ -9,9 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] → xxxx-xx-xx
 
 ### Added
-- Refined profile section of the landing page with a button and a link to the blog page
+- Added profile section on the landing page with a link to the blog page
 - Added creation and modification date in blog admin page
 - Added admin action to publish articles
+- Added a sign up form on the landing page that redirects to the main sign up page
 
 ### Changed
 - Avatars are now rendered as urls and uploaded in imgur

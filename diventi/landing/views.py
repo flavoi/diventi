@@ -15,6 +15,9 @@ def landing(request):
     if request.method == "POST":
         registration_form = DiventiUserInitForm(request.POST)
         if registration_form.is_valid():
+            # Save the user inputs and pass them to the sign up page
+            request.session['initial_email'] = registration_form['email'].value()
+            request.session['initial_first_name'] = registration_form['first_name'].value()
             return redirect('accounts:signup')
     else:
         registration_form = DiventiUserInitForm()

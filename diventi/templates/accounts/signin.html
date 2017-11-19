@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Sign-in{% endblock title %}
+{% block title %}sign in{% endblock title %}
 
 {% block bodyclass %}login-page{% endblock bodyclass %}
 
@@ -9,9 +9,9 @@
     {% if next %}
         {% if user.is_authenticated %}
         <p>Your account doesn't have access to this page. To proceed,
-        please sign-in with an account that has access.</p>
+        please sign in with an account that has access.</p>
         {% else %}
-        <p>Please sign-in to see this page.</p>
+        <p>Please sign in to see this page.</p>
         {% endif %}
     {% endif %}
 
@@ -23,7 +23,7 @@
                         <form method="post" action="{% url 'accounts:signin' %}">
                             {% csrf_token %}
                             <div class="card-content">
-                                <h2 class="card-title text-center">Sign-in</h2>
+                                <h2 class="card-title text-center">sign in</h2>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>
@@ -47,7 +47,7 @@
                                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true"><i class="material-icons">clear</i></span>
                                           </button>
-                                          <b>Sign-in has failed.</b>
+                                          <b>sign in has failed.</b>
                                         </div>
                                     </div>                                  
                                 {% endif %}

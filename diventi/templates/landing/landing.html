@@ -26,9 +26,9 @@
                     <h1 class="title">{{ presentation.title }}</h1>
                     <h4>{{ presentation.abstract|safe }}</h4>
                     <br />
-                    <button type="button" class="btn btn-danger btn-raised btn-lg" data-toggle="popover" data-placement="right" title="" data-content="We will show you something special." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721583">
+                    <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
                     <i class="ra ra-potion ra-fw ra-lg"></i> Have a taste                        
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -129,61 +129,6 @@
             </div>
         </div>
     </div>
-
-    <div class="section">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <h2 class="text-center title">The Lost Files of Diventi</h2>
-                <h5 class="text-center description">Get a glimpse of the story with the following super-secret files.</h5>
-                {% for events in events_columns %}
-                <div class="col-md-4">
-                    {% for event in events %}
-                        <div class="card card-raised card-background" style="background-image: url('assets/img/examples/office2.jpg')">
-                            <div class="card-content">
-                                <h6 class="category text-info">{{ event.event_date }}</h6>
-                                <a href="#pablo">
-                                    <h3 class="card-title">{{ event.title }}</h3>
-                                </a>
-                                <p class="card-description">
-                                    {{ event.description|safe }}
-                                </p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>                          
-                {% endfor %}
-                <div class="card card-plain">
-                    <div class="card-content">
-                        <ul class="timeline">
-                            {% for event in presentation.events.all %}
-                                <li class="cd-timeline-block {% if forloop.counter|divisibleby:2 %}timeline-inverted{% endif %}">
-                                    <div class="cd-timeline-img timeline-badge {{ event.color }}">
-                                        <i class="material-icons">{{ event.icon }}</i>
-                                    </div>
-                                    <div class="cd-timeline-content timeline-panel">
-                                        <div class="timeline-heading">
-                                            <span class="label label-{{ event.color }}">{{ event.title }}</span>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>{{ event.description|safe }}</p>
-                                        </div>
-                                        <h6>
-                                            <i class="ti-time"></i> {{ event.event_date }}
-                                        </h6>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section text-center text-muted">
-        <i class="ra ra-regeneration ra-2x"></i>
-    </div>
-
 {% endblock content %}
 
 {% block extrascript %}

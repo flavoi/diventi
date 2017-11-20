@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Presentation
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
+from diventi.products.models import Product
 
 
 def landing(request):
@@ -12,7 +13,8 @@ def landing(request):
     """
     presentation = Presentation.objects.active()
     staff = DiventiUser.objects.members()
-    if request.method == "POST":
+    featured_product = Product.objects.featured()
+    if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
         if registration_form.is_valid():
             # Save the user inputs and pass them to the sign up page
@@ -22,10 +24,11 @@ def landing(request):
     else:
         registration_form = DiventiUserInitForm()
     return render(request,
-        "landing/landing.html",
+        'landing/landing.html',
         {    
-            "presentation": presentation,
-            "staff": staff,
-            "registration_form": registration_form,
+            'presentation': presentation,
+            'staff': staff,
+            'registration_form': registration_form,
+            'featured_product': featured_product,
         },
     )

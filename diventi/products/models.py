@@ -13,14 +13,15 @@ class ProductQuerySet(models.QuerySet):
     # Get the featured product that appears on the landing page 
     def featured(self):
         try:
-            product = self.published().get(featured=True)
+            featured_product = self.published().get(featured=True)
+            featured_product = featured_product.prefetch_related('events')
         except Product.DoesNotExist:
             msg = 'We are out of featured products!'
             raise Product.DoesNotExist(msg)
         except Product.MultipleObjectsReturned:
             msg = 'Multiple featured products returned. Please fix!'
-            raise Product.MultipleObjectsReturned(msg)
-        return product
+            raise Product.MultipleObjectsReturned(msg)        
+        return featured_product
 
 
 class Product(models.Model):

@@ -9,7 +9,7 @@ class PresentationManager(models.Manager):
 
     def active(self):
         try:
-            active_presentation = Presentation.objects.prefetch_related('features')
+            active_presentation = self.prefetch_related('features')
             active_presentation = active_presentation.prefetch_related('events')
             active_presentation = active_presentation.get(active=True)
         except Presentation.DoesNotExist:

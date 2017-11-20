@@ -35,7 +35,6 @@ class UserAdmin(auth_admin.UserAdmin):
 
 class DiventiAvatarAdmin(admin.ModelAdmin):
     list_display= ( 'label', 'image_tag', 'staff_only')
-    
 
 admin.site.register(DiventiUser, UserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)

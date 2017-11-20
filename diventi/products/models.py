@@ -14,6 +14,8 @@ class ProductQuerySet(models.QuerySet):
     def featured(self):
         try:
             featured_product = self.prefetch_related('events')
+            featured_product = featured_product.prefetch_related('chapters')
+            featured_product = featured_product.prefetch_related('characteristics')
             featured_product = featured_product.published().get(featured=True)    
         except Product.DoesNotExist:
             msg = 'We are out of featured products!'
@@ -58,6 +60,8 @@ class Characteristic(Element):
 
 
 class ImagePreview(DiventiImageModel):    
+    """A list of cool images of the product."""
+    product = models.ForeignKey(Product, related_name='imagepreviews')
 
     class Meta:
         verbose_name = 'Image'

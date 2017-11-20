@@ -1,6 +1,6 @@
 from django.db import models
 
-from diventi.core.models import Element
+from diventi.core.models import Element, DiventiImageModel
 
 
 class ProductQuerySet(models.QuerySet):
@@ -45,3 +45,24 @@ class Event(Element):
 
     class Meta:
         ordering = ['event_date']
+
+
+class Chapter(Element):
+    """ A stand-alone chapter of an adventure."""
+    product = models.ForeignKey(Product, related_name='chapters')
+
+
+class Characteristic(Element):
+    """ A specific detail of a product."""
+    product = models.ForeignKey(Product, related_name='characteristics')
+
+
+class ImagePreview(DiventiImageModel):    
+
+    class Meta:
+        verbose_name = 'Image'
+        verbose_name_plural = 'Images'
+
+
+
+

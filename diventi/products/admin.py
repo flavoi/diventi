@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Event
+from .models import Product, Event, Chapter, Characteristic
 
 
 def make_published(modeladmin, request, queryset):
@@ -18,11 +18,22 @@ class EventInline(admin.TabularInline):
     fields = ('title', 'icon', 'color', 'description', 'event_date')
     extra = 0
 
+class ChapterInline(admin.TabularInline):
+    model = Chapter
+    fields = ('title', 'icon', 'color', 'description')
+    extra = 0
+
+class CharacteristicInline(admin.TabularInline):
+    model = Characteristic
+    fields = ('title', 'icon', 'color', 'description')
+    extra = 0
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'published', 'featured']    
     inlines = [
         EventInline,
+        ChapterInline,
+        CharacteristicInline,
     ]
     prepopulated_fields = {"slug": ("title",)}
     actions = [make_published, make_unpublished]

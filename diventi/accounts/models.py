@@ -2,9 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse_lazy
-from django.utils.html import mark_safe
 
 from django.contrib.auth.models import BaseUserManager
+
+
+from diventi.core.models import DiventiImageModel
 
 
 class DiventiUserManager(auth_models.BaseUserManager):
@@ -43,9 +45,7 @@ class DiventiAvatarQuerySet(models.QuerySet):
         return avatar 
 
 
-class DiventiAvatar(models.Model):
-    image = models.URLField()
-    label = models.CharField(max_length=50, blank=True)
+class DiventiAvatar(DiventiImageModel):    
     staff_only = models.BooleanField(default=False)
 
     objects = DiventiAvatarQuerySet.as_manager()
@@ -53,30 +53,6 @@ class DiventiAvatar(models.Model):
     class Meta:
         verbose_name = 'Avatar'
         verbose_name_plural = 'Avatars'
-
-    def image_thumbnail(self):
-        # imgur legend
-        # 't' stands for 'small thumbnail'
-        # 's' stands for 'small square'
-        IMAGE_MODE = 't'
-        original_image = self.image
-        image = original_image.replace('.png', '{0}.png'.format(IMAGE_MODE))
-        if image == original_image:
-            image = self.image.replace('.jpg', '{0}.jpg'.format(IMAGE_MODE))        
-        return image
-
-    def image_tag(self):
-        if self.image:            
-            return mark_safe('<img src="{0}" />'.format(self.image_thumbnail()))
-        else:
-            return u'(Nessuna immagine)'
-    image_tag.short_description = 'Avatar'
-
-    
-
-
-    def __str__(self):
-        return u'{0}'.format(self.label)
 
         
 class DiventiUser(AbstractUser):    

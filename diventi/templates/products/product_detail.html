@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.title }}{% endblock title %}
+
+{% block extrahead %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vertical-timeline/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vertical-timeline/css/diventi.css' %}">
+    <style>
+        .feature-info {
+            max-width: 360px;
+            margin: 0 auto;
+            padding: 70px 0 30px;
+        }
+    </style>
+{% endblock extrahead %}
+
+{% block bodyclass %}product-page{% endblock bodyclass %}
+
+
+{% block pageheader %}
+<div class="page-header header-filter">
+</div>
+{% endblock pageheader %}
+
+{% block main %}
+<div class="section section-gray">
+        <div class="container">
+            <div class="main main-raised main-product">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="tab-content">
+                            {% for imagepreview in product.imagepreviews.all %}
+                            <div class="tab-pane {% if forloop.first %}active{% endif %}" id="product-page{{ imagepreview.id }}">
+                                 <img src="{{ imagepreview.image }}"/>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="nbs-flexisel-container">
+                            <div class="nbs-flexisel-inner">
+                                <ul class="nav flexi-nav nbs-flexisel-ul" role="tablist" id="flexiselDemo1">
+                                    {% for imagepreview in product.imagepreviews.all %}
+                                    <li class="nbs-flexisel-item">
+                                        <a href="#product-page{{ imagepreview.id }}" role="tab" data-toggle="tab" aria-expanded="false">
+                                            <img src="{{ imagepreview.image }}"/>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <!--                
+                                Activate in case of many items
+                                <div class="nbs-flexisel-nav-left">
+                                    <i class="material-icons">chevron_left</i>
+                                </div>
+                                <div class="nbs-flexisel-nav-right">
+                                    <i class="material-icons">chevron_right</i>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <h2 class="title">{{ product.title }}</h2>
+                        <div id="acordeon">
+                            <div class="panel-group" id="accordion">
+                          <div class="panel panel-border panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h4 class="panel-title">
+                                    Description
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                              <div class="panel-body">
+                                <p>{{ product.description }}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel panel-border panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
+                                    <h4 class="panel-title">
+                                    Details and Care
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                <ul>
+                                    {% for characteristic in product.characteristics.all %}
+                                     <li>{{ characteristic.description|striptags|capfirst }}</li>
+                                    {% endfor %}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        </div><!--  end acordeon -->
+                        
+                        <div class="row text-right">
+                            <button type="button" class="btn btn-danger" data-toggle="popover" data-placement="left" title="" data-content="We will show you something special." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721583">
+                            Get the PDF &nbsp; <i class="ra ra-load ra-lg"></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-products">
+                <h3 class="title text-center">Playable chapters</h3>
+                <div class="row">
+                    {% for chapter in product.chapters.all %}
+                    <div class="col-sm-6 col-md-3">
+                        <div class="card card-product">
+                            <div class="card-image">
+                                <a href="#pablo">
+                                    <img class="img" src="">
+                                </a>
+                            <div class="colored-shadow" style="background-image: url(); opacity: 1;"></div></div>
+                            <div class="card-content">
+                                <h6 class="category">Chapter {{ forloop.counter }}</h6>
+                                <h4 class="card-title">
+                                    <a href="#pablo">{{ chapter.title|title }}</a>
+                                </h4>
+                                <div class="card-description">
+                                    {{ chapter.description|striptags|capfirst }}
+                                </div>
+                                <div class="footer">
+                                    <div class="stats">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-simple" data-original-title="Promote this item">
+                                            <i class="ra ra-helmet"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h3 class="text-center title">The story so far</h3>
+                    <h5 class="text-center description">Get a glimpse of the events that can kick start your adventure with the following top-secret transmissions.</h5>
+                    <div class="card card-plain">
+                        <div class="card-content">
+                            <ul class="timeline">
+                                {% for event in product.events.all %}
+                                    <li class="cd-timeline-block {% if forloop.counter|divisibleby:2 %}timeline-inverted{% endif %}">
+                                        <div class="cd-timeline-img timeline-badge {{ event.color }}">
+                                            <i class="material-icons">{{ event.icon }}</i>
+                                        </div>
+                                        <div class="cd-timeline-content timeline-panel">
+                                            <div class="timeline-heading">
+                                                <span class="label label-{{ event.color }}">{{ event.title }}</span>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>{{ event.description|safe }}</p>
+                                            </div>
+                                            <h6>
+                                                <i class="ti-time"></i> {{ event.event_date }}
+                                            </h6>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
+
+{% block extrascript %}
+    <script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
+    <script src="{% static 'vertical-timeline/js/main.js' %}"></script>
+{% endblock extrascript %}

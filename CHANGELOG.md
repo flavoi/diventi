@@ -31,6 +31,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that caused the avatar to not be displayed in comment section
 - Fixed a problem that made the background image of blogposts disappear
 
+### Removed
+- Removed timeline events from the landing app
+
 
 ## [0.4.2] → 2017-11-08
 

@@ -10,7 +10,6 @@ class PresentationManager(models.Manager):
     def active(self):
         try:
             active_presentation = self.prefetch_related('features')
-            active_presentation = active_presentation.prefetch_related('events')
             active_presentation = active_presentation.get(active=True)
         except Presentation.DoesNotExist:
             msg = "There is no active landing page."
@@ -36,11 +35,3 @@ class Presentation(models.Model):
 
 class Feature(Element):    
     profile = models.ForeignKey(Presentation, related_name='features')
-
-
-class Event(Element):
-    profile = models.ForeignKey(Presentation, related_name='events')
-    event_date = models.DateField(blank=True)
-
-    class Meta:
-        ordering = ['event_date']

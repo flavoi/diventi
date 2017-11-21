@@ -65,40 +65,40 @@
                                     <label>Email address</label>
                                     <p>{{ user.email }}</p><br />
                                 </div>
+                                
+                                <div class="col-md-6">
+                                    <label>{{ form.bio.label }}</label>
+                                    {{ form.bio }}
+                                </div>            
+                                <div class="col-md-6">
+                                    <label>{{ form.role.label }}</label>
+                                    {{ form.role }}
+                                </div>
 
-                                <div class="col-md-2">
-                                    <ul class="nav nav-pills nav-pills-info nav-stacked">
-                                      <li class="active">                                        
-                                        <a href="#pill1" data-toggle="tab">        
-                                            Profile
-                                        </a>
-                                      </li>
-                                      <li>                                      
-                                        <a href="#pill2" data-toggle="tab">        
-                                            Avatar
-                                        </a>
-                                      </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="pill1">
-                                            <div class="col-md-6">
-                                                <label>{{ form.bio.label }}</label>
-                                                {{ form.bio }}
-                                            </div>            
-                                            <div class="col-md-6">
-                                                <label>{{ form.role.label }}</label>
-                                                {{ form.role }}
+                                <div class="col-md-12">
+                                    <div id="acordeon">
+                                        <div class="panel-group" id="accordion">
+                                          <div class="panel panel-border panel-default">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
+                                                    <h4 class="panel-title">
+                                                    Avatar
+                                                    <i class="material-icons">keyboard_arrow_down</i>
+                                                    </h4>
+                                                </a>
                                             </div>
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                              <div class="panel-body">
+                                                <div class="col-md-12">                                    
+                                                    {{ form.avatar }}
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                         </div>
-                                        <div class="tab-pane" id="pill2">
-                                          <div class="col-md-12">                                    
-                                            {{ form.avatar }}
-                                            </div>                                        
-                                        </div>
-                                    </div>
+                                    </div><!--  end acordeon -->
                                 </div>
+
                                 <div class="clearfix"></div>
                                 
                                 <div class="footer">

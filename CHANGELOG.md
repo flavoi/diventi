@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.5.0] → 2017-11-21
+## [0.5.x] → xxxx-xx-xx
 
 ### Added
 - Introduced a profile section on the landing page with a link to the blog page
@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The product page includes: details of the document, playable chapters and the story timeline
 - Introduced a unique logo on the navbar and favicon
 - Introduced a unique logo into the landing page
+- Added 'yellow' as a choice to any element in the website
 
 ### Changed
 - Avatars are now rendered as urls and uploaded in imgur

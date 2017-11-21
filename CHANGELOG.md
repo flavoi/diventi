@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a product page to present the featured adventure of the moment
 - The product page includes: details of the document, playable chapters and the story timeline
 - Introduced a unique logo on the navbar and favicon
+- Introduced a unique logo into the landing page
 
 ### Changed
 - Avatars are now rendered as urls and uploaded in imgur

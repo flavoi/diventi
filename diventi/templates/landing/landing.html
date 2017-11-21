@@ -38,27 +38,29 @@
 {% block content %}
     <div class="section text-center">
         <div class="container">
-            <div class="features-1">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h2 class="title">Why Diventi</h2>
-                        <h5 class="description">{{ presentation.description|safe }}</h5>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="card-image">
+                        <img class="img img-responsive" src="{% static 'brand/diventi-logo.png' %}" />
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                    {% for feature in presentation.features.all %}
-                        <div class="col-md-4">
-                            <div class="feature-info">
-                                <div class="icon icon-{{ feature.color }}">
-                                    <i class="ra ra-{{ feature.icon }} ra-lg"></i>
-                                </div>
-                                <h4 class="info-title">{{ feature.title|title }}</h4>
-                                <p>{{ feature.description|safe }}</p>
+                <div class="col-md-8 col-md-offset-2">
+                    <h5 class="description">{{ presentation.description|safe }}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                {% for feature in presentation.features.all %}
+                    <div class="col-md-4">
+                        <div class="feature-info">
+                            <div class="icon icon-{{ feature.color }}">
+                                <i class="ra ra-{{ feature.icon }} ra-lg"></i>
                             </div>
+                            <h4 class="info-title">{{ feature.title|title }}</h4>
+                            <p>{{ feature.description|safe }}</p>
                         </div>
-                    {% endfor %}
                     </div>
+                {% endfor %}
                 </div>
             </div>
         </div>

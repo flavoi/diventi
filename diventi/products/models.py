@@ -16,10 +16,10 @@ class ProductQuerySet(models.QuerySet):
             featured_product = self.prefetch_related('events')
             featured_product = featured_product.prefetch_related('chapters')
             featured_product = featured_product.prefetch_related('characteristics')
-            featured_product = featured_product.published().get(featured=True)    
+            featured_product = featured_product.published().get(featured=True) 
         except Product.DoesNotExist:
-            msg = 'We are out of featured products!'
-            raise Product.DoesNotExist(msg)
+            # Fail silently, return nothing
+            featured_product = self.none() 
         except Product.MultipleObjectsReturned:
             msg = 'Multiple featured products returned. Please fix!'
             raise Product.MultipleObjectsReturned(msg)        

@@ -26,9 +26,11 @@
                     <h1 class="title">{{ presentation.title }}</h1>
                     <h4>{{ presentation.abstract|safe }}</h4>
                     <br />
-                    <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
-                    <i class="ra ra-potion ra-fw ra-lg"></i> Have a taste                        
-                    </a>
+                    {% if featured_product %}
+                        <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
+                            <i class="ra ra-potion ra-fw ra-lg"></i> Have a taste
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>

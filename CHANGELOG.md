@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that caused the avatar to not be displayed in article page
 - Fixed a problem that caused the avatar to not be displayed in comment section
 - Fixed a problem that made the background image of blogposts disappear
+- Fixed a problem that made the landing page crush if no featured product were found
 
 ### Removed
 - Removed timeline events from the landing app

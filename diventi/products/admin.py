@@ -20,12 +20,12 @@ class EventInline(admin.TabularInline):
 
 class ChapterInline(admin.TabularInline):
     model = Chapter
-    fields = ('title', 'icon', 'color', 'description')
+    fields = ('title', 'description')
     extra = 0
 
 class CharacteristicInline(admin.TabularInline):
     model = Characteristic
-    fields = ('title', 'icon', 'color', 'description')
+    fields = ('title', 'description')
     extra = 0
 
 

@@ -14,7 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced admin actions to publish and upublish articles
 - Introduced a sign up form on the landing page that redirects to the main sign up page
 - Introduced a product page to present the featured adventure of the moment
-- Introduced a unique logo and favicon
+- The product page includes: details of the document, playable chapters and the story timeline
+- Introduced a unique logo on the navbar and favicon
 
 ### Changed
 - Avatars are now rendered as urls and uploaded in imgur

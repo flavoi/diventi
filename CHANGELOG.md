@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a unique logo on the navbar and favicon
 - Introduced a unique logo into the landing page
 - Added 'yellow' as a choice to any element in the website
+- Added alternative presentation pages for demo purposes
 
 ### Changed
 - Avatars are now rendered as urls and uploaded in imgur

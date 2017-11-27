@@ -1,8 +1,8 @@
 from django.conf.urls import url
-from django.contrib.auth import views as auth_views
 
-from .views import landing
+from .views import landing, PresentationDetailView
 
 urlpatterns = [
     url(r'^$', landing, name='home'),
+    url(r'^presentation/(?P<pk>\d+)/$', PresentationDetailView.as_view(), name='presentation'),
 ]

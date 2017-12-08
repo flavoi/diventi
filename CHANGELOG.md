@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Blog's articles pub date is now a datetime field to improve the ordering in blogpost page
 - Replaced alien fire of the blog list page with a fire icon
 - Replaced nav pills with accordion panels in profile page
+- Replaced mini logo with the full logo on the navbar
 
 ### Fixed
 - Fixed a problem that caused the cov image to disappear

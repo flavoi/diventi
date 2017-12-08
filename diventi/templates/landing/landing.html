@@ -28,7 +28,7 @@
                     <br />
                     {% if featured_product %}
                         <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
-                            <i class="ra ra-potion ra-fw ra-lg"></i> Have a taste
+                            <i class="fal fa-gift fa-lg"></i> Have a taste
                         </a>
                     {% endif %}
                 </div>
@@ -56,7 +56,7 @@
                     <div class="col-md-4">
                         <div class="feature-info">
                             <div class="icon icon-{{ feature.color }}">
-                                <i class="ra ra-{{ feature.icon }} ra-lg"></i>
+                                <i class="fal fa-{{ feature.icon }} fa-5x"></i>
                             </div>
                             <h4 class="info-title">{{ feature.title|title }}</h4>
                             <p>{{ feature.description|safe }}</p>
@@ -109,9 +109,9 @@
                     {% if user.is_authenticated %}
                     <div class="text-center">
                         <h2 class="title">Hello {{ user.first_name }}!</h2>
-                        <h5 class="description">You have signed-in. Feel free to explore or deep dive into <a href="{% url 'blog:home'%}" class="text-info">our blog</a>.</h5>
-                        <a href="{% url 'accounts:update' user.pk %}" class="btn btn-info">
-                            <i class="ra ra-scroll-unfurled ra-lg"></i> View profile
+                        <h5 class="description">You have signed-in. Feel free to explore or deep dive into <a href="{% url 'blog:home'%}" class="text-warning">our blog</a>.</h5>
+                        <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning">
+                            <i class="fal fa-user-circle fa-lg"></i> View profile
                         </a>
                     </div>
                     {% else %}
@@ -134,8 +134,3 @@
         </div>
     </div>
 {% endblock content %}
-
-{% block extrascript %}
-    <script src="{% static 'vertical-timeline/js/modernizr.js' %}"></script>
-    <script src="{% static 'vertical-timeline/js/main.js' %}"></script>
-{% endblock extrascript %}

@@ -6,13 +6,6 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'vertical-timeline/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'vertical-timeline/css/diventi.css' %}">
-    <style>
-        .feature-info {
-            max-width: 360px;
-            margin: 0 auto;
-            padding: 70px 0 30px;
-        }
-    </style>
 {% endblock extrahead %}
 
 {% block bodyclass %}product-page{% endblock bodyclass %}
@@ -80,7 +73,7 @@
                               </div>
                               <div class="panel panel-border panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
+                                    <a class="text-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
                                         <h4 class="panel-title">
                                         Details and Care
                                         <i class="material-icons">keyboard_arrow_down</i>
@@ -101,7 +94,7 @@
                         </div><!--  end acordeon -->                        
                         <div class="row text-right">
                             <button type="button" class="btn btn-danger" data-toggle="popover" data-placement="left" title="" data-content="We will show you something special." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721583">
-                            Get the PDF &nbsp; <i class="ra ra-load ra-lg"></i>
+                            <i class="fal fa-download fa-lg"></i> Get the PDF
                             </button>
                         </div>                    
                     </div>
@@ -129,9 +122,6 @@
                                 </div>
                                 <div class="footer">
                                     <div class="stats">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-simple" data-original-title="Promote this item (coming soon)">
-                                            <i class="ra ra-helmet"></i>
-                                        </button>
                                     </div>
                                 </div>
                             </div>

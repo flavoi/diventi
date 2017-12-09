@@ -50,9 +50,9 @@ class Event(Element):
         ordering = ['event_date']
 
 
-class Chapter(Element):
+class Chapter(Element, DiventiImageModel):
     """ A stand-alone chapter of an adventure."""
-    product = models.ForeignKey(Product, related_name='chapters')
+    product = models.ForeignKey(Product, related_name='chapters')     
 
 
 class Characteristic(Element):

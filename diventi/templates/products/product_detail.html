@@ -12,7 +12,7 @@
 
 
 {% block pageheader %}
-<div class="page-header header-filter" style="background-image: url('');">
+<div class="page-header header-filter" {% if product.image %}style="background-image: url('{{ product.image.url }}');"{% endif %}">
 </div>
 {% endblock pageheader %}
 
@@ -93,7 +93,7 @@
                             </div>
                         </div><!--  end acordeon -->                        
                         <div class="row text-right">
-                            <button type="button" class="btn btn-danger" data-toggle="popover" data-placement="left" title="" data-content="We will show you something special." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721583">
+                            <button type="button" class="btn btn-danger" data-toggle="popover" data-placement="bottom" title="" data-content="We will show you something special." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721583">
                             <i class="fal fa-download fa-lg"></i> Get the PDF
                             </button>
                         </div>                    
@@ -101,33 +101,36 @@
                 </div>
             </div>
 
-            <div class="related-products">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
                 <h3 class="title text-center">Playable chapters</h3>
-                <div class="row">
-                    {% for chapter in product.chapters.all %}
-                    <div class="col-sm-6 col-md-3">
-                        <div class="card card-product">
-                            <div class="card-image">
-                                <a href="#pablo">
-                                    <img class="img" src="">
-                                </a>
-                            <div class="colored-shadow" style="background-image: url(); opacity: 1;"></div></div>
-                            <div class="card-content">
-                                <h6 class="category">Chapter {{ forloop.counter }}</h6>
-                                <h4 class="card-title">
-                                    {{ chapter.title|title }}
-                                </h4>
-                                <div class="card-description">
-                                    {{ chapter.description|striptags|capfirst }}
-                                </div>
-                                <div class="footer">
-                                    <div class="stats">
+                <h5 class="text-center description">Each chapter can be played as a standalone adventure or can be integrated as a storyarc in your own campaign.</h5>
+                    <div class="row">
+                        {% for chapter in product.chapters.all %}
+                        <div class="col-sm-6 col-md-4">
+                            <div class="card card-product">
+                                <div class="card-image">
+                                    <a href="#pablo">
+                                        <img class="img" src="">
+                                    </a>
+                                <div class="colored-shadow" style="background-image: url(); opacity: 1;"></div></div>
+                                <div class="card-content">
+                                    <h6 class="category">Chapter {{ forloop.counter }}</h6>
+                                    <h4 class="card-title">
+                                        {{ chapter.title|title }}
+                                    </h4>
+                                    <div class="card-description">
+                                        {{ chapter.description|striptags|capfirst }}
+                                    </div>
+                                    <div class="footer">
+                                        <div class="stats">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
 
@@ -141,7 +144,7 @@
                                 {% for event in product.events.all %}
                                     <li class="cd-timeline-block {% if forloop.counter|divisibleby:2 %}timeline-inverted{% endif %}">
                                         <div class="cd-timeline-img timeline-badge {{ event.color }}">
-                                            <i class="material-icons">{{ event.icon }}</i>
+                                            <i class="far fa-{{ event.icon }}"></i>
                                         </div>
                                         <div class="cd-timeline-content timeline-panel">
                                             <div class="timeline-heading">

@@ -32,6 +32,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     slug = models.SlugField(unique=True)
     featured = models.BooleanField(default=False)
+    cover = models.ImageField(blank=True, upload_to='products/')
     published = models.BooleanField(default=False)
 
     objects = ProductQuerySet.as_manager()

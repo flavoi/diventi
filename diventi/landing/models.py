@@ -24,7 +24,7 @@ class Presentation(models.Model):
     title = models.CharField(max_length=50)
     abstract = RichTextField(blank=True)
     description = RichTextField(blank=True)
-    image = models.ImageField(blank=True, upload_to='landing/')
+    cover = models.ImageField(blank=True, upload_to='landing/')
     active = models.BooleanField(default=False)
 
     objects = PresentationManager()

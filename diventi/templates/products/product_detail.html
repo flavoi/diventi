@@ -101,37 +101,38 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                <h3 class="title text-center">Playable chapters</h3>
-                <h5 class="text-center description">Each chapter can be played as a standalone adventure or can be integrated as a storyarc in your own campaign.</h5>
-                    <div class="row">
-                        {% for chapter in product.chapters.all %}
-                        <div class="col-sm-6 col-md-4">
-                            <div class="card card-product">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img class="img" src="{{ chapter.image }}">
-                                    </a>
-                                    <div class="colored-shadow" style="background-image: url({{ chapter.image }};); opacity: 1;"></div>
-                                    <div class="ripple-container"></div>
-                                </div>
-                                <div class="card-content">
-                                    <h6 class="category">Chapter {{ forloop.counter }}</h6>
-                                    <h4 class="card-title">
-                                        {{ chapter.title|title }}
-                                    </h4>
-                                    <div class="card-description">
-                                        {{ chapter.description|striptags|capfirst }}
+            <div class="related-products">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                    <h3 class="title text-center">Playable chapters</h3>
+                        <div class="row">
+                            {% for chapter in product.chapters.all %}
+                            <div class="col-sm-6 col-md-4">
+                                <div class="card card-product">
+                                    <div class="card-image">
+                                        <a href="#">
+                                            <img class="img" src="{{ chapter.image }}">
+                                        </a>
+                                        <div class="colored-shadow" style="background-image: url({{ chapter.image }};); opacity: 1;"></div>
+                                        <div class="ripple-container"></div>
                                     </div>
-                                    <div class="footer">
-                                        <div class="stats">
+                                    <div class="card-content">
+                                        <h6 class="category">Chapter {{ forloop.counter }}</h6>
+                                        <h4 class="card-title">
+                                            {{ chapter.title|title }}
+                                        </h4>
+                                        <div class="card-description">
+                                            {{ chapter.description|striptags|capfirst }}
+                                        </div>
+                                        <div class="footer">
+                                            <div class="stats">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -166,8 +167,14 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2"><hr /></div>
+            </div>
+
         </div>
-    </div>
+    </div>    
+
 {% endblock main %}
 
 {% block extrascript %}

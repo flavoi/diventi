@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-8 col-md-offset-2">
                     <h5 class="description">{{ presentation.description|safe }}</h5>
-                </div>
+                </div>                
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -68,11 +68,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2"><hr /></div>
+    </div>
+
     <div class="section text-center">
-        <div class="container">
+        <div class="container">            
             <h2 class="title">Here is our team</h2>
             <div class="team">
-                <div class="row">
+                <div class="row">                    
                 	{% for member in staff %}
     	                <div class="col-md-6 col-xs-6">
     	                    <div class="card card-presentation card-plain">
@@ -100,6 +104,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2"><hr /></div>
     </div>
 
     <div class="section">

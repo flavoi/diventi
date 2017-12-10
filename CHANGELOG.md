@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced cover image for product chatpers
+- Added search field in the navbar
+
+### Changed
+- Twicked positioning of the header content of the landing page
 
 ### Fixed
 - Replaced '-' with space on 'signed in/out/up' text occurrences

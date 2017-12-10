@@ -92,13 +92,13 @@
               {% if user.is_staff %}
                 <li>                    
                   <a href="{% url 'admin:index' %}">
-                     Dashboard
+                    <i class="fal fa-cog fa-lg fa-fw"></i> Dashboard
                   </a>
                 </li>
               {% endif %}
               <li>
                 <a href="{% url 'blog:home' %}">
-                  Blog
+                  <i class="fal fa-align-center fa-lg fa-fw"></i> Blog
                 </a>
               </li>              
               {% if user.is_authenticated %}

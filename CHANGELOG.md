@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Replaced '-' with space on 'signed in/out/up' text occurrences
+- Fixed misplaced colors of sign up and sign in buttons
+- Fixed fire icon of hot articles
 
 ### Security
 - Fixed a problem that a user could expose to update other profiles

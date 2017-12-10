@@ -23,14 +23,14 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
+            <div class="col-md-10 col-md-offset-1 text-center">
                 <h1 class="title">{{ presentation.title }}</h1>
                 <h4>{{ presentation.abstract|safe }}</h4>
                 <br />
                 <div class="buttons">
                     {% if featured_product %}
                         <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
-                            <i class="fal fa-glass-martini fa-lg"></i> Have a taste
+                            <i class="fal fa-arrow-alt-to-bottom fa-lg fa-fw"></i> Download {{ featured_product.title }}
                         </a>
                     {% endif %}
                 </div>
@@ -38,23 +38,6 @@
         </div>
     </div>
 
-    <!--
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 class="title">{{ presentation.title }}</h1>
-                    <h4>{{ presentation.abstract|safe }}</h4>
-                    <br />
-                    {% if featured_product %}
-                        <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
-                            <i class="fal fa-glass-martini fa-lg"></i> Have a taste
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
--->
 </div>
 {% endblock pageheader %}
 

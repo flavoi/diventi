@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import PermissionDenied
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
@@ -82,10 +83,19 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
     success_msg = 'Profile updated!'
     fail_msg = 'Profile has not been updated.'
 
+    def user_passes_test(self):
+        """ A user may update his own profile only. """
+        if self.object.pk == self.request.user.pk:
+            return 1
+        return 0
+
     def get_form_kwargs(self):
-        """ Inject form with additional keyword arguments."""
+        """ Inject form with additional keyword arguments. """
         kwargs = super(DiventiUserUpdateView, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
+        if not self.user_passes_test():
+            raise PermissionDenied("A user may update his own profile only.")
+        kwargs['user'] = self.request.user        
         return kwargs
+    
 
 

@@ -20,6 +20,25 @@
 
 {% block pageheader %}
     <div class="page-header header-filter" {% if presentation.image %}style="background-image: url('{{ presentation.image.url }}');"{% endif %}>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h1 class="title">{{ presentation.title }}</h1>
+                <h4>{{ presentation.abstract|safe }}</h4>
+                <br />
+                <div class="buttons">
+                    {% if featured_product %}
+                        <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
+                            <i class="fal fa-glass-martini fa-lg"></i> Have a taste
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -35,6 +54,8 @@
             </div>
         </div>
     </div>
+-->
+</div>
 {% endblock pageheader %}
 
 {% block content %}
@@ -78,7 +99,11 @@
             <div class="team">
                 <div class="row">                    
                 	{% for member in staff %}
+                        {% if forloop.last %}
+                        <div class="col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3">
+                        {% else %}
     	                <div class="col-md-6 col-xs-6">
+                        {% endif %}
     	                    <div class="card card-presentation card-plain">
     	                        <div class="col-md-5">
     	                            <div class="card-image">

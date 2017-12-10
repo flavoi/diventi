@@ -37,9 +37,11 @@
       box-shadow: none;
       transition-duration: 0.3s;
     }
+    
     .panel .panel-heading a {
       color: #3C4858;
     }
+
     .feature-info {
         max-width: 360px;
         margin: 0 auto;
@@ -48,6 +50,15 @@
 
     .panel .panel-heading a:hover, .panel .panel-heading a:active, .panel .panel-heading a[aria-expanded="true"] {
         color: #ff9800;
+    }
+
+    .navbar-brand
+    {
+        position: absolute !important;
+        width: 100%;
+        left: 0;
+        text-align: center !important;
+        margin:0 auto;
     }
   </style>
 </head>
@@ -63,7 +74,7 @@
             <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}">
               <div class="container-fluid">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                  <span aria-hidden="true"><i class="fal fa-justify"></i></span>
                 </button>
                   {{ message }}
               </div>
@@ -87,26 +98,11 @@
             <span><img src="{% static 'brand/diventi-logo-transparent-white.png' %}" height="40" /></span>
           </a>
         </div>
-        <div class="collapse navbar-collapse">
 
-          <ul class="nav navbar-nav navbar-right">
-              {% if user.is_staff %}
-                <li>                    
-                  <a href="{% url 'admin:index' %}">
-                    <i class="fal fa-cog fa-lg fa-fw"></i> Dashboard
-                  </a>
-                </li>
-              {% endif %}
-              <li>
-                <a href="{% url 'blog:home' %}">
-                  <i class="fal fa-align-center fa-lg fa-fw"></i> Blog
-                </a>
-              </li>
-              <li>
-                  <a href="#pablo" class="btn btn-warning btn-raised btn-fab btn-fab-mini" data-toggle="dropdown">
-                      <i class="material-icons">search</i>
-                  <div class="ripple-container"></div></a>
-              </li>
+        <div class="collapse navbar-collapse">     
+
+          <ul class="nav navbar-nav navbar-left">
+
               {% if user.is_authenticated %}                
                 <li class="dropdown">
                   <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown">
@@ -137,21 +133,35 @@
                 </li>                
               {% else %}
                 <li>
-                  <a href="{% url 'accounts:signin' %}" data-toggle="tooltip" data-placement="left" title="" data-container="body" data-original-title="Sign In">
-                    <i class="fal fa-2x fa-sign-in-alt"></i>
+                  <a href="{% url 'accounts:signin' %}">
+                    <i class="fal fa-lg fa-fw fa-sign-in-alt"></i> Sign in
                   </a>
                 </li>
-              {% endif %}          
-            </ul>
+              {% endif %}                
+              <li>
+                <a href="{% url 'blog:home' %}">
+                  Blog
+                </a>
+              </li>        
+              {% if user.is_staff %}
+                <li>                    
+                  <a href="{% url 'admin:index' %}">
+                    Dashboard
+                  </a>
+                </li>
+              {% endif %}
+            </ul>            
 
-            <!--
-                        <form class="navbar-form navbar-right" role="search">
-            <div class="form-group form-white is-empty">
-              <input type="text" class="form-control" placeholder="Search" name="q" aria-label="Search" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
-            <span class="material-input"></span></div>
-            <button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini"><i class="material-icons">search</i><div class="ripple-container"></div></button>
-          </form>
-          -->
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group form-search is-empty">
+                    <input type="text" class="form-control" placeholder="Search" name="q" aria-label="Search" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
+                    <span class="material-input"></span>
+                <span class="material-input"></span></div>
+                <button type="submit" class="btn btn-white btn-round btn-simple btn-just-icon">
+                    <i class="fal fa-search fa-sm"></i>
+                    <div class="ripple-container"></div>
+                </button>
+            </form>
         </div>
       </div>
     {% endblock navigation %}

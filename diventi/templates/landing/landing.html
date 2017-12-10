@@ -28,7 +28,7 @@
                     <br />
                     {% if featured_product %}
                         <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
-                            <i class="fal fa-gift fa-lg"></i> <span style="margin-left: 1rem;">Have a taste</span>
+                            <i class="fal fa-glass-martini fa-lg"></i> Have a taste
                         </a>
                     {% endif %}
                 </div>
@@ -117,7 +117,7 @@
                     {% if user.is_authenticated %}
                     <div class="text-center">
                         <h2 class="title">Hello {{ user.first_name }}!</h2>
-                        <h5 class="description">You have signed in. Feel free to explore or deep dive into <a href="{% url 'blog:home'%}" class="text-warning">our blog</a>.</h5>
+                        <h5 class="description">You have signed in. Feel free to explore or deep dive into your profile.</h5>
                         <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning">
                             <i class="fal fa-user-circle fa-lg"></i> View profile
                         </a>

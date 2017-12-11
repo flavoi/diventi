@@ -19,7 +19,7 @@
 {% block bodyclass %}landing-page{% endblock bodyclass %}
 
 {% block pageheader %}
-    <div class="page-header header-filter" {% if presentation.image %}style="background-image: url('{{ presentation.image.url }}');"{% endif %}>
+    <div class="page-header header-filter" {% if presentation.cover %}style="background-image: url('{{ presentation.cover.url }}');"{% endif %}>
 
     <div class="container">
         <div class="row">

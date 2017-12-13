@@ -32,7 +32,7 @@
                                         </span>
                                     </h6>                
                                     <h3 class="card-title">
-                                        <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
+                                        <a href="{% url 'blog:detail' article.slug %}">{{ article.title|title }}</a>
                                     </h3>
                                     <p class="card-description">
                                         {{ article.abstract|striptags }}                                        

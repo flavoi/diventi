@@ -111,7 +111,11 @@
                 <li class="dropdown">
                   <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown">
                       <div class="profile-photo-small">
-                          <img src="{{ user.avatar.image }}" alt="Circle Image" class="img-circle img-responsive">
+                      {% if user.avatar.image %}                    
+                          <img src="{{ user.avatar.image }}" alt="User" class="img-circle img-responsive">
+                      {% else %}
+                          <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="img-circle img-responsive">
+                      {% endif %}
                       </div>
                   </a>
                   <ul class="dropdown-menu">

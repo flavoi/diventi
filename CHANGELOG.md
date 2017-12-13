@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced cover image for product chatpers
 - Added search field in the navbar
+- Added placeholder image if the user doesn't have a proper avatar
 
 ### Changed
 - Twicked positioning of the header content of the landing page

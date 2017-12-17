@@ -52,7 +52,7 @@
                         </div>
                         {% if user.is_authenticated %}
                         <div class="col-md-2">
-                            <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn {% if article.user_has_promoted %}btn-danger{% endif %} btn-promote pull-right" {% if article.user_has_promoted %}{% else %}data-toggle="tooltip" data-placement="top" title="Promote if you enjoyed this article"{% endif %}>
+                            <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn {% if article.user_has_promoted %}btn-warning{% endif %} btn-promote pull-right" {% if article.user_has_promoted %}{% else %}data-toggle="tooltip" data-placement="top" title="Promote if you enjoyed this article"{% endif %}>
                                 <i class="fal fa-thumbs-up fa-lg"></i> {{ article.promotions.count }}
                             </a>
                         </div>
@@ -93,10 +93,10 @@
                 var newLabel;
                 if (data.promoted){
                     updateText(this_, addPromotion, "Demote")
-                    this_.addClass("btn-danger")
+                    this_.addClass("btn-warning")
                 } else {
                     updateText(this_, removePromotion, "Promote")
-                    this_.removeClass("btn-danger")
+                    this_.removeClass("btn-warning")
                 }            
             }, error: function(error){
                 console.log(error)

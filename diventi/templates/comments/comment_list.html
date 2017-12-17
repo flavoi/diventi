@@ -7,17 +7,19 @@
             <div class="media-area">
                 {% get_comment_count for article as comment_count %}
 
-                <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                <ul class="nav nav-pills nav-pills-info" role="tablist">
                     <li class="active">
                         <a href="#list-1" role="tab" data-toggle="tab" aria-expanded="true">
                             Comment
                         </a>
                     </li>
-                    <li class="">
-                        <a href="#preview-1" role="tab" data-toggle="tab" aria-expanded="false">
-                            Preview
-                        </a>
-                    </li>                    
+                    {% if user.is_authenticated %}
+                        <li class="">
+                            <a href="#preview-1" role="tab" data-toggle="tab" aria-expanded="false">
+                                Preview
+                            </a>
+                        </li>
+                    {% endif %}            
                 </ul>
 
                 <div class="tab-content tab-space">
@@ -36,15 +38,16 @@
                                     {{ form.timestamp }}
                                     {{ form.security_hash }}
                                     <div class="media-footer">
-                                        <input class="btn btn-danger btn-wd pull-right" type="submit" value="Post" id="id_submit" />
+                                        <input class="btn btn-warning btn-wd pull-right" type="submit" value="Post" id="id_submit" />
                                     </div>
                                 </div>
                             </form>
                         {% else %}
-                            <p>Please <a href="{% url 'accounts:signin' %}" class="text-warning">Sing in</a> to leave a comment.</p>
+                            <p>Please <a href="{% url 'accounts:signin' %}" class="text-warning">sign in</a> to leave a comment.</p>
                         {% endif %}
                         </div>
                     </div>
+                    {% if user.is_authenticated %}
                     <div class="tab-pane" id="preview-1">
                         <h3 class="title text-center">Comment preview</h3>
                         <div class="media">
@@ -59,12 +62,13 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
 
                 <h3 class="title text-center">{{ comment_count }} Comments</h3>
                 <div class="row">
                         <div class="col-md-12">
-                            <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                            <ul class="nav nav-pills nav-pills-info" role="tablist">
                                 <!--
                                     color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
                                 -->

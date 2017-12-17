@@ -4,12 +4,23 @@
 
 {% block title %}Blog{% endblock title %}
 
+{% block pageheader %}
+<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url(http://demos.creative-tim.com/material-kit-pro/assets/img/bg10.jpg); transform: translate3d(0px, 0px, 0px);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h2 class="title">Our Latest Stories</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock pageheader %}
+
 {% block content %}
 <div class="section">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <h2 class="title">Latest Blogposts</h2>
                 <br />
                 {% if articles %}
                     {% for article in articles %}                    

@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
@@ -58,12 +60,13 @@ class PresentationSearchView(ListView):
     model = Presentation
     template_name = "landing/search_results.html"
     context_object_name = 'results'
-    paginate_by = 5
 
     def get_queryset(self):
         results = super(PresentationSearchView, self).get_queryset()
         query = self.request.GET.get('q') 
-        results = Article.search(self, query)
+        articles = Article.search(self, query)
+        products = Product.search(self, query)
+        results = chain(articles, products)
         return results
 
     def get_context_data(self, **kwargs):

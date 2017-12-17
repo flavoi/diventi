@@ -1,4 +1,8 @@
+from functools import reduce
+import operator
+
 from django.db import models
+from django.db.models import Q
 
 from diventi.core.models import Element, DiventiImageModel
 
@@ -40,6 +44,16 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    def search(self, query, *args, **kwargs):
+        results = Product.objects.published()
+        query_list = query.split()
+        results = results.filter(
+            reduce(operator.and_,
+                   (Q(title__icontains=q) for q in query_list)) |
+            reduce(operator.and_,
+                   (Q(description__icontains=q) for q in query_list))
+        )
+        return results
 
 class Event(Element):
     """ An element of the timeline that describes the incipit of the adventure."""

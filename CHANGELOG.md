@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added search field in the navbar
 - Added placeholder image if the user doesn't have a proper avatar
 - Added custom 404 error page
+- Added pageheader to blog list page
 
 ### Changed
 - Twicked positioning of the header content of the landing page

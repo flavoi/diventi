@@ -3,6 +3,7 @@ import operator
 
 from django.db import models
 from django.db.models import Q
+from django.urls import reverse
 
 from diventi.core.models import Element, DiventiImageModel
 
@@ -43,6 +44,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def class_name(self):
+        return self.__class__.__name__
+
+    def get_absolute_url(self):
+        return reverse('products:detail', args=[str(self.slug)])
 
     def search(self, query, *args, **kwargs):
         results = Product.objects.published()

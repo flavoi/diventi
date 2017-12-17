@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models import Q
 from django.conf import settings
 from django.utils import timezone
+from django.urls import reverse
 
 from ckeditor.fields import RichTextField
 
@@ -66,10 +67,10 @@ class Article(TimeStampedModel, PromotableModel):
         introduced by a nice heading picture.
     """
     title = models.CharField(max_length=60)
+    description = RichTextField(max_length=250)
     category = models.ForeignKey(Category)
     image = models.ImageField(blank=True, upload_to='blog/')
     caption = models.CharField(max_length=60, blank=True)
-    abstract = RichTextField(max_length=250)
     content = RichTextField()
     published = models.BooleanField(default=False)
     publication_date = models.DateTimeField(auto_now_add=True, null=True)
@@ -87,6 +88,9 @@ class Article(TimeStampedModel, PromotableModel):
         super(Article, self).__init__(*args, **kwargs)
         self.old_published = self.published
 
+    def get_absolute_url(self):
+        return reverse('blog:detail', args=[str(self.slug)])
+
     def search(self, query, *args, **kwargs):
         results = Article.objects.history()
         query_list = query.split()
@@ -94,9 +98,12 @@ class Article(TimeStampedModel, PromotableModel):
             reduce(operator.and_,
                    (Q(title__icontains=q) for q in query_list)) |
             reduce(operator.and_,
-                   (Q(abstract__icontains=q) for q in query_list))
+                   (Q(description__icontains=q) for q in query_list))
         )
         return results
+
+    def class_name(self):
+        return self.__class__.__name__
 
     def save(self, *args, **kwargs):
         if self.old_published != self.published and self.published:

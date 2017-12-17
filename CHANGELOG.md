@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Aligned form styles to the yellow theme
 - Changed form styles of change password from 'classic' to 'label-floating'
 - Unified styles among sign up, sign in and change password pages
+- Unified buttons color on blog list, blog detail and product pages
 
 ### Fixed
 - Replaced '-' with space on 'signed in/out/up' text occurrences

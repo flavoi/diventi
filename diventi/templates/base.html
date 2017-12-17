@@ -149,7 +149,7 @@
 
             </ul>            
 
-            <form class="navbar-form navbar-right" role="search">
+            <form class="navbar-form navbar-right" role="search" action="{% url 'landing:search' %}">
                 <div class="form-group form-search is-empty">
                     <input type="text" class="form-control" placeholder="Search" name="q" aria-label="Search" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
                     <span class="material-input"></span>

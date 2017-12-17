@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.views.generic import ListView
+
+
+from diventi.blog.models import Article
 
 
 class DiventiActionMixin:

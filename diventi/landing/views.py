@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
+from django.views.generic import ListView
 
 from .models import Presentation
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
+from diventi.blog.models import Article
 
 
 def landing(request):
@@ -36,6 +38,7 @@ def landing(request):
 
 
 class PresentationDetailView(DetailView):
+    """ Renders an instance of the landing page.. """
 
     model = Presentation
     context_object_name = 'presentation'
@@ -46,4 +49,24 @@ class PresentationDetailView(DetailView):
         context['staff'] = DiventiUser.objects.members()
         context['registration_form'] = DiventiUserInitForm()
         context['featured_product'] = Product.objects.featured()
+        return context
+
+
+class PresentationSearchView(ListView):
+    """ Search for every content in the project. """
+
+    model = Presentation
+    template_name = "landing/search_results.html"
+    context_object_name = 'results'
+    paginate_by = 5
+
+    def get_queryset(self):
+        results = super(PresentationSearchView, self).get_queryset()
+        query = self.request.GET.get('q') 
+        results = Article.search(self, query)
+        return results
+
+    def get_context_data(self, **kwargs):
+        context = super(PresentationSearchView, self).get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('q')
         return context

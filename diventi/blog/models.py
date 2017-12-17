@@ -1,4 +1,8 @@
+from functools import reduce
+import operator
+
 from django.db import models
+from django.db.models import Q
 from django.conf import settings
 from django.utils import timezone
 
@@ -82,6 +86,17 @@ class Article(TimeStampedModel, PromotableModel):
     def __init__(self, *args, **kwargs):
         super(Article, self).__init__(*args, **kwargs)
         self.old_published = self.published
+
+    def search(self, query, *args, **kwargs):
+        results = Article.objects.history()
+        query_list = query.split()
+        results = results.filter(
+            reduce(operator.and_,
+                   (Q(title__icontains=q) for q in query_list)) |
+            reduce(operator.and_,
+                   (Q(abstract__icontains=q) for q in query_list))
+        )
+        return results
 
     def save(self, *args, **kwargs):
         if self.old_published != self.published and self.published:

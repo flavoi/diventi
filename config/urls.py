@@ -22,9 +22,9 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^dashboard/', admin.site.urls),
+    url(r'^', include('diventi.landing.urls', namespace='landing')),
     url(r'^blog/', include('diventi.blog.urls', namespace='blog')),
     url(r'^accounts/', include('diventi.accounts.urls', namespace='accounts')),
-    url(r'^', include('diventi.landing.urls', namespace='landing')),
     url(r'^comments/default/', include('django_comments.urls')),
     url(r'^comments/', include('diventi.comments.urls', namespace='comments')),
     url(r'^products/', include('diventi.products.urls', namespace='products')),

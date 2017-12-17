@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}sign in{% endblock title %}
+{% block title %}Sign in{% endblock title %}
 
 {% block bodyclass %}login-page{% endblock bodyclass %}
 
@@ -28,14 +28,14 @@
                             <div class="card-content">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <i class="material-icons">email</i>
+                                        <i class="fal fa-envelope fa-lg"></i>
                                     </span>
                                     <input type="text" class="form-control" placeholder="Your Email" name="username" autofocus maxlength="254" required id="id_username">                                    
                                 </div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <i class="material-icons">lock_outline</i>
+                                        <i class="fal fa-key fa-lg"></i>
                                     </span>
                                     <input type="password" placeholder="Your Password" class="form-control" name="password" required id="id_password" />
                                 </div>
@@ -56,7 +56,9 @@
 
                             </div>
                             <div class="footer text-center">
-                                <input class="btn btn-warning btn-wd" type="submit" value="Get Started" />
+                                <button class="btn btn-warning btn-simple btn-wd btn-lg" type="submit">
+                                    Sign In <i class="fal fa-arrow-to-right fa-lg"></i>
+                                </button>
                                 <input type="hidden" name="next" value="{{ next }}" />
                             </div>
                         </form>

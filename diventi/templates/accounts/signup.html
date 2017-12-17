@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block extrahead %}
+
 <style type="text/css"> 
     @media screen and (max-height: 575px)
     { 
@@ -12,56 +13,69 @@
         } 
     } 
 </style> 
+
 {% endblock extrahead %}
 
 {% block title %}Sign up{% endblock title %}
 
-{% block bodyclass %}signup-page{% endblock bodyclass %}
+{% block bodyclass %}login-page{% endblock bodyclass %}
 
 {% block pageheader %}
-<div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
+    <div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="card card-signup">
-                        <div class="header header-info text-center">
-                            <h4 class="card-title">Sign up</h4>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form class="form" method="POST" action="{% url 'accounts:signup' %}">
-                                    {% csrf_token %}
-                                    <div class="card-content">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">face</i>
-                                            </span>
-                                            {{ form.first_name }}
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">email</i>
-                                            </span>
-                                            {{ form.email }}                                            
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">lock_outline</i>
-                                            </span>
-                                            {{ form.password1 }}                                            
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">lock_outline</i>
-                                            </span>
-                                            {{ form.password2 }}                                            
-                                        </div>
-                                        <div class="input-group">                                            
-                                            {{ form.captcha }}
-                                        </div>
+                        <form class="form" method="POST" action="{% url 'accounts:signup' %}">
+                        {% csrf_token %}
+                            <div class="header header-warning text-center">
+                                <h4 class="card-title">Sign up</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fal fa-user fa-lg fa-fw"></i>
+                                        </span>
+                                        {{ form.first_name }}
                                     </div>
-                                    {% if form.errors %}                                  
-                                    <div class="col-md-10 col-md-offset-1">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fal fa-envelope fa-lg fa-fw"></i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            {{ form.email }}
+                                        </div> 
+                                    </div>                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fal fa-lock-alt fa-lg fa-fw"></i>
+                                        </span>
+                                        {{ form.password1 }}                                            
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fal fa-lock-alt fa-lg fa-fw"></i>
+                                        </span>
+                                        {{ form.password2 }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 col-md-offset-2">
+                                    {{ form.captcha }}
+                                </div>
+
+                                {% if form.errors %}                                  
+                                    <div class="col-md-12">
                                         <div class="alert alert-danger">    
                                             <div class="alert-icon">
                                                 <i class="material-icons">error_outline</i>
@@ -75,14 +89,16 @@
                                                 {% endfor %}
                                             </b>
                                         </div>
-                                    </div>                                  
-                                    {% endif %}
-                                    <div class="footer text-center">                                        
-                                        <input class="btn btn-warning btn-wd" type="submit" value="Get Started" />
-                                    </div>                                    
-                                </form>
+                                    </div>
+                                {% endif %}
+
                             </div>
-                        </div>
+                            <div class="footer text-center">
+                                <button class="btn btn-warning btn-simple btn-wd btn-lg" type="submit">
+                                    Get Started <i class="fal fa-arrow-right fa-lg"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

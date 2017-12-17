@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Twicked positioning of the header content of the landing page
 - Aligned form styles to the yellow theme
+- Changed form styles of change password from 'classic' to 'label-floating'
 
 ### Fixed
 - Replaced '-' with space on 'signed in/out/up' text occurrences

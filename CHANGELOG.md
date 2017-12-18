@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced cover image for product chatpers
 - Added search field in the navbar
 - Added placeholder image if the user doesn't have a proper avatar
-- Added custom 404 error page
+- Added custom 404, 403 and 500 error pages
 - Added pageheader to blog list page
 - Added search result page that display the title, the description and the contentype for each result
 

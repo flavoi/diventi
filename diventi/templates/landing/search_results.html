@@ -2,30 +2,36 @@
 
 {% block title %}Search Results{% endblock title %}
 
+
+{% block bodyclass %}section-gray{% endblock bodyclass %}
+
 {% block main %}
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                {% for result in results %}
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-content">
-                            <h6 class="category text-info">
-                                {{ result.class_name }}
-                            </h6>
-                            <h4 class="card-title">
-                                <a href="{{ result.get_absolute_url }}">{{ result.title }}</a>
-                            </h4>
-                            <p class="card-description">
-                                {{ result.description|striptags }}
-                            </p>
-                        </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    {% for result in results %}
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h6 class="category text-info">
+                                        {{ result.class_name }}
+                                    </h6>
+                                    <h4 class="card-title">
+                                        <a href="{{ result.get_absolute_url }}">{{ result.title }}</a>
+                                    </h4>
+                                    <p class="card-description">
+                                        {{ result.description|striptags }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>                                
+                    {% endfor %}
+                    <div class="text-center">
+                        <h3>End of results <i class="fal fa-globe"></i></h3>
                     </div>
-                </div>            
-                {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock main %}

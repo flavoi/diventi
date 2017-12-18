@@ -57,7 +57,7 @@
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
-  <nav class="navbar navbar-warning navbar-transparent navbar-absolute">
+  <nav class="navbar {% block navbarclasses %}navbar-warning navbar-transparent navbar-absolute{% endblock navbarclasses %}">
 
     {% block messages %}
       {% if messages %}

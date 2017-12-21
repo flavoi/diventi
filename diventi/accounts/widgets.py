@@ -81,7 +81,7 @@ class DiventiAvatarChoiceField(GroupedModelChoiceField):
         return group
 
     def set_optgroup_label(self, optgroup):
-        optgroup_name = "Members avatar"
+        optgroup_name = "User avatars"
         if optgroup: # Staff_only = True
-            optgroup_name = "Staff avatar"
+            optgroup_name = "Staff avatars"
         return optgroup_name

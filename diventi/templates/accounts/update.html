@@ -19,7 +19,7 @@
 </style>
 {% endblock extrahead %}
 
-{% block title %}Avatars{% endblock title %}
+{% block title %}Profile{% endblock title %}
 
 {% block bodyclass %}profile-page{% endblock bodyclass %}
 
@@ -29,6 +29,7 @@
 {% endblock %}
 
 {% block content %}
+<!--
 <div class="profile-content">
     <div class="container">
         <div class="row">            
@@ -103,7 +104,7 @@
                                             </div>
                                           </div>
                                         </div>
-                                    </div><!--  end acordeon -->
+                                    </div>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -119,6 +120,114 @@
             </div>
         </div>
     </div>
+</div>
+-->
+
+<div class="profile-content">
+
+    <form method="post" action="{% url 'accounts:update' user.pk %}">
+        {{ form.errors }}
+        {% csrf_token %}
+        
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                   <div class="profile">
+                        <div class="avatar">
+                            <img src="{{ user.avatar.image }}" alt="Circle Image" class="img-circle img-responsive img-raised">
+                        </div>
+                        <div class="name">
+                            <h3 class="title">{{ user.first_name }}</h3>
+                            <h6>User</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2 follow">
+                   <button type="submit" class="btn btn-fab btn-warning" rel="tooltip" title="" data-original-title="Update details">
+                        <i class="fal fa-save"></i>
+                    <div class="ripple-container"></div></button>
+                </div>
+            </div>
+
+            <div class="description text-center">
+                <p>{{ user.bio }}</p>
+            </div>            
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="profile-tabs">
+                        <div class="nav-align-center">
+                            <ul class="nav nav-pills nav-pills-info" role="tablist">
+                                <li class="active">
+                                    <a href="#work" role="tab" data-toggle="tab">
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#connections" role="tab" data-toggle="tab">
+                                        Avatars
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane active work" id="work">
+                    <div class="row">
+                        <div class="col-md-7 col-md-offset-1">
+                            <h4 class="title">Your Collection</h4>
+                            <div class="row collections">
+                                <div class="col-md-6">
+                                    <div class="card card-background" style="background-image: url('https://i.pinimg.com/originals/6e/cd/71/6ecd71e69338540f0f3f04ba01750147.jpg')">
+                                        <a href="#"></a>
+                                        <div class="card-content">
+                                            <label class="label label-info">Coming Soon</label>
+                                            <a href="#">
+                                                <h2 class="card-title">Diventi First Product</h2>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1 stats">
+                            <h4 class="title">{{ user.email }}</h4>
+
+                            <div class="form-group is-empty">
+                                <label class="control-label">{{ form.role.label }}</label>      
+                                {{ form.role }}
+                                <span class="material-input"></span>
+                            </div>
+
+                            <br />
+                            <div class="form-group label-floating">
+                                <label class="control-label">{{ form.bio.label }}</label>      
+                                {{ form.bio }}
+                                <span class="material-input"></span>
+                            </div>
+                                                
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane connections" id="connections">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="card card-profile card-plain">                                
+                                {{ form.avatar }}
+                            </div>                                
+                        </div>
+                    </div>
+                </div>          
+
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock content %}
 

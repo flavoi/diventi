@@ -16,8 +16,7 @@ def landing(request):
         Renders the landing page with Diventi's main features and
         team members. 
     """
-    presentation = Presentation.objects.active()
-    staff = DiventiUser.objects.members()
+    presentation = Presentation.objects.active()    
     featured_product = Product.objects.featured()
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
@@ -32,7 +31,6 @@ def landing(request):
         'landing/landing.html',
         {    
             'presentation': presentation,
-            'staff': staff,
             'registration_form': registration_form,
             'featured_product': featured_product,
         },

@@ -42,7 +42,7 @@ class DiventiUserInitForm(forms.ModelForm):
         fields = ['first_name', 'email']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your name'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),            
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your email'}),            
         }
 
 

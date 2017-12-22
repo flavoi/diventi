@@ -19,7 +19,7 @@ class DiventiUserCreationForm(UserCreationForm):
         fields = ['first_name', 'email', 'password1', 'password2']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your name'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),            
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your email'}),            
         }
 
     def __init__(self, *args, **kwargs):

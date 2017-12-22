@@ -24,14 +24,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Unified buttons color on blog list, blog detail and product pages
 - Refreshed profile page with a new UI inspired by Material Kit
 
-### Fixed
+### Fixed
 - Replaced '-' with space on 'signed in/out/up' text occurrences
 - Fixed misplaced colors of sign up and sign in buttons
 - Fixed fire icon of hot articles
 - Adjusted articles right and left margins
 - Adjusted uppercase letters in some account forms
 
-### Removed
+### Removed
 - Removed attachment support from blogposts (any attachment should be a product)
 - Removed timeline assets and data
 

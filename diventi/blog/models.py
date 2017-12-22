@@ -109,15 +109,3 @@ class Article(TimeStampedModel, PromotableModel):
         if self.old_published != self.published and self.published:
             self.publication_date = timezone.now()
         super(Article, self).save(*args, **kwargs)
-
-
-class Attachment(models.Model):
-    """
-        Stores one or more files for a given article.
-    """
-    title = models.CharField(max_length=60)
-    file = models.FileField(upload_to='blog/attachments/')
-    article = models.ForeignKey(Article)
-
-    def __str__(self):
-        return self.title

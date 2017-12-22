@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased] → xxxx-xx-xx
+## [x.x.x] → 2017-12-22
 
 ### Added
 - Introduced cover image for product chatpers
@@ -30,6 +30,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed fire icon of hot articles
 - Adjusted articles right and left margins
 - Adjusted uppercase letters in some account forms
+
+### Removed
+- Removed attachment support from blogposts (any attachment should be a product)
+- Removed timeline assets and data
 
 ### Security
 - Fixed a problem that a user could expose to update other profiles

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Article, Category, Attachment
+from .models import Article, Category
 
 
 def make_published(modeladmin, request, queryset):

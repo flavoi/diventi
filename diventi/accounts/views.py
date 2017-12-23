@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
@@ -13,6 +14,7 @@ from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 from .models import DiventiUser, DiventiAvatar
 from .forms import DiventiUserCreationForm, DiventiUserUpdateForm
 from diventi.core.views import DiventiActionMixin
+from diventi.products.models import Product
 
 
 class DiventiLoginView(AnonymousRequiredMixin, LoginView):
@@ -79,7 +81,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
     form_class = DiventiUserUpdateForm
     model = DiventiUser
-    template_name = "accounts/update.html"
+    template_name = "accounts/user_base.html"
     success_msg = 'Profile updated!'
     fail_msg = 'Profile has not been updated.'
 
@@ -94,8 +96,15 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         kwargs = super(DiventiUserUpdateView, self).get_form_kwargs()
         if not self.user_passes_test():
             raise PermissionDenied("A user may update his own profile only.")
-        kwargs['user'] = self.request.user        
+        user = self.request.user
+        kwargs['user'] = user
         return kwargs
-    
+
+    def get_context_data(self, **kwargs):
+        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)
+        collection = Product.objects.all()
+        context['collection'] = collection
+        return context
+
 
 

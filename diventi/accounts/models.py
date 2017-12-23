@@ -2,11 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse_lazy
-
 from django.contrib.auth.models import BaseUserManager
 
-
 from diventi.core.models import DiventiImageModel
+from diventi.products.models import Product
 
 
 class DiventiUserManager(auth_models.BaseUserManager):
@@ -33,16 +32,13 @@ class DiventiUserManager(auth_models.BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
         return self._create_user(email, password, **extra_fields)
 
-    def members(self):
-        return DiventiUser.objects.filter(is_staff=True).filter(member=True)
-
 
 class DiventiAvatarQuerySet(models.QuerySet):
 
     # Fetch all users related to the avatar
     def users(self):
         avatar = self.diventiuser.all()
-        return avatar 
+        return avatar
 
 
 class DiventiAvatar(DiventiImageModel):    

@@ -41,6 +41,7 @@ class Product(models.Model):
     featured = models.BooleanField(default=False)
     cover = models.ImageField(blank=True, upload_to='products/')
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products')
+    buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection')
     published = models.BooleanField(default=False)
 
     objects = ProductQuerySet.as_manager()

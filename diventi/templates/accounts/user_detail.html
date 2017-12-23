@@ -1,0 +1,16 @@
+<div class="profile">
+    <div class="avatar">
+        <img src="{{ user.avatar.image }}" alt="Circle Image" class="img-circle img-responsive img-raised">
+    </div>
+    <div class="name">
+        <h3 class="title">{{ user.first_name }}</h3>
+        <h6 class="text-rose">
+        {% if user.is_staff %}                            
+            Creator
+        {% else %}
+            User
+        {% endif %}
+        </h6>
+        <h6 class="text-muted">{{ user.email }}</h6>            
+    </div>
+</div>

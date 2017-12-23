@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-2">
+        <div class="form-group is-empty">
+            <label class="control-label">{{ form.role.label }}</label>      
+            {{ form.role }}
+            <span class="material-input"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group is-empty">
+            <label class="control-label">{{ form.bio.label }}</label>      
+            {{ form.bio }}
+            <span class="material-input"></span>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <h4 class="panel-title">
+                    Avatars
+                    <i class="material-icons">keyboard_arrow_down</i>
+                    </h4>
+                </a>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                {{ form.avatar }}
+              </div>
+            </div>
+          </div>                            
+        </div>
+    </div>
+
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-3 col-md-offset-2">
+       <button type="submit" class="btn btn-warning">
+            Update details
+        </button>
+    </div>           
+</div>

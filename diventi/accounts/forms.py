@@ -73,6 +73,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
         widget = DiventiAvatarSelect(attrs = {
             'class': 'image-picker show-html'
         }),
+        required = False,
     )
 
     def __init__(self, *args, **kwargs):

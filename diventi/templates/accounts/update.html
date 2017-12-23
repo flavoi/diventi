@@ -105,23 +105,24 @@
 
                         <div class="col-md-8 col-md-offset-2">
                             <div class="panel-group" id="accordion">
-                              <div class="panel panel-border panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         <h4 class="panel-title">
                                         Avatars
                                         <i class="material-icons">keyboard_arrow_down</i>
                                         </h4>
                                     </a>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse in">
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                   <div class="panel-body">
                                     {{ form.avatar }}
                                   </div>
                                 </div>
-                              </div>
+                              </div>                            
                             </div>
                         </div>
+
 
                         <div class="clearfix"></div>
 

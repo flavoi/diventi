@@ -46,21 +46,17 @@
                         </div>
                         <div class="name">
                             <h3 class="title">{{ user.first_name }}</h3>
-                            <h6 class="text-info">
+                            <h6 class="text-rose">
                             {% if user.is_staff %}                            
                                 Creator
                             {% else %}
                                 User
                             {% endif %}
-                            </h6>                            
+                            </h6>
+                            <h6 class="text-muted">{{ user.email }}</h6>            
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-2 follow">
-                   <button type="submit" class="btn btn-fab btn-warning" rel="tooltip" title="" data-original-title="Update details">
-                        <i class="fal fa-save"></i>
-                    <div class="ripple-container"></div></button>
-                </div>
+                </div>                
             </div>
 
             <div class="description text-center">
@@ -79,7 +75,7 @@
                                 </li>
                                 <li>
                                     <a href="#connections" role="tab" data-toggle="tab">
-                                        Avatars
+                                        Collection
                                     </a>
                                 </li>
                             </ul>
@@ -92,7 +88,54 @@
             <div class="tab-content">
                 <div class="tab-pane active work" id="work">
                     <div class="row">
-                        <div class="col-md-7 col-md-offset-1">
+                        <div class="col-md-4 col-md-offset-2">
+                            <div class="form-group is-empty">
+                                <label class="control-label">{{ form.role.label }}</label>      
+                                {{ form.role }}
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group is-empty">
+                                <label class="control-label">{{ form.bio.label }}</label>      
+                                {{ form.bio }}
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="panel-group" id="accordion">
+                              <div class="panel panel-border panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <h4 class="panel-title">
+                                        Avatars
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                  <div class="panel-body">
+                                    {{ form.avatar }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-3 col-md-offset-2">
+                           <button type="submit" class="btn btn-warning">
+                                Update details
+                            </button>
+                        </div>           
+                    </div>
+                </div>
+
+                <div class="tab-pane connections" id="connections">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
                             <h4 class="title">Your Collection</h4>
                             <div class="row collections">
                                 <div class="col-md-6">
@@ -108,34 +151,7 @@
                                 </div>                                
                             </div>
                         </div>
-                        <div class="col-md-3 stats">
-                            <h4 class="title">{{ user.email }}</h4>
-
-                            <div class="form-group is-empty">
-                                <label class="control-label">{{ form.role.label }}</label>      
-                                {{ form.role }}
-                                <span class="material-input"></span>
-                            </div>
-
-                            <br />
-                            <div class="form-group label-floating">
-                                <label class="control-label">{{ form.bio.label }}</label>      
-                                {{ form.bio }}
-                                <span class="material-input"></span>
-                            </div>
-                                                
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane connections" id="connections">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <div class="card card-profile card-plain">                                
-                                {{ form.avatar }}
-                            </div>                                
-                        </div>
-                    </div>
+                    </div>                     
                 </div>          
 
             </div>

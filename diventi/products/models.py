@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.urls import reverse
 from django.conf import settings
 
-from diventi.core.models import Element, DiventiImageModel
+from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel
 
 
 class ProductQuerySet(models.QuerySet):
@@ -19,8 +19,7 @@ class ProductQuerySet(models.QuerySet):
     # Get the featured product that appears on the landing page 
     def featured(self):
         try:
-            featured_product = self.prefetch_related('events')
-            featured_product = featured_product.prefetch_related('chapters')
+            featured_product = self.prefetch_related('chapters')
             featured_product = featured_product.prefetch_related('characteristics')
             featured_product = featured_product.prefetch_related('authors')
             featured_product = featured_product.published().get(featured=True) 
@@ -32,8 +31,16 @@ class ProductQuerySet(models.QuerySet):
             raise Product.MultipleObjectsReturned(msg)        
         return featured_product
 
+    # Fetch the products authored or purchased by the user
+    def user_collection(self, user):
+        if user.is_staff: # User is a creator
+            products = self.filter(authors=user)
+        else:
+            products = self.filter(buyers=user)
+        return products
 
-class Product(models.Model):
+
+class Product(TimeStampedModel, PublishableModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)
@@ -41,8 +48,7 @@ class Product(models.Model):
     featured = models.BooleanField(default=False)
     cover = models.ImageField(blank=True, upload_to='products/')
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products')
-    buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection')
-    published = models.BooleanField(default=False)
+    buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True)
 
     objects = ProductQuerySet.as_manager()
 
@@ -65,14 +71,6 @@ class Product(models.Model):
                    (Q(description__icontains=q) for q in query_list))
         )
         return results
-
-class Event(Element):
-    """ An element of the timeline that describes the incipit of the adventure."""
-    product = models.ForeignKey(Product, related_name='events')
-    event_date = models.DateField(blank=True)
-
-    class Meta:
-        ordering = ['event_date']
 
 
 class Chapter(Element, DiventiImageModel):

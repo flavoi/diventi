@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Event, Chapter, Characteristic, ImagePreview
+from .models import Product, Chapter, Characteristic, ImagePreview
 
 
 def make_published(modeladmin, request, queryset):
@@ -11,12 +11,6 @@ make_published.short_description = "Mark selected products as published"
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(published=False)
 make_unpublished.short_description = "Mark selected products as hidden"
-
-
-class EventInline(admin.TabularInline):
-    model = Event
-    fields = ('title', 'icon', 'color', 'description', 'event_date')
-    extra = 0
 
 
 class ChapterInline(admin.TabularInline):
@@ -41,15 +35,20 @@ class ImagePreviewAdmin(admin.ModelAdmin):
     list_display = ('label', 'image_tag')
 
 
+class BuyersInline(admin.TabularInline):
+    model = Product.buyers.through
+
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'published', 'featured']    
+    list_display = ['title', 'featured', 'published', 'publication_date']    
     inlines = [
-        EventInline,
+        BuyersInline,
         ChapterInline,
         CharacteristicInline,
         ImagePreviewInline,
     ]
     prepopulated_fields = {"slug": ("title",)}
+    readonly_fields = ['created', 'modified','publication_date']
     actions = [make_published, make_unpublished]
 
 

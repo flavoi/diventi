@@ -14,7 +14,7 @@ make_unpublished.short_description = "Mark selected stories as hidden"
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'published', 'hot', 'publication_date']
+    list_display = ['title', 'category', 'hot', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     actions = [make_published, make_unpublished]

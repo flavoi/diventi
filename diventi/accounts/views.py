@@ -102,7 +102,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)
-        collection = Product.objects.all()
+        collection = Product.objects.user_collection(user=self.request.user)
         context['collection'] = collection
         return context
 

@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 from django.conf import settings
 from django.utils.html import mark_safe
@@ -25,6 +27,26 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class PublishableModel(models.Model):
+    """
+    An abstract base class model that updates the publication
+    date as soon as it becomes published.
+    """
+    published = models.BooleanField(default=False)
+    publication_date = models.DateTimeField(blank=True, null=True)
+
+    # Pubblication date is updated if published has been modified from False to True
+    def __init__(self, *args, **kwargs):
+        super(PublishableModel, self).__init__(*args, **kwargs)
+        self.old_published = self.published
+
+    def save(self, *args, **kwargs):
+        if self.old_published != self.published and self.published:
+            self.publication_date = timezone.now()
+        print(self.publication_date)
+        super(PublishableModel, self).save(*args, **kwargs)
 
 
 class PromotableModel(models.Model):

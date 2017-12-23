@@ -9,7 +9,7 @@ from django.urls import reverse
 
 from ckeditor.fields import RichTextField
 
-from diventi.core.models import TimeStampedModel, PromotableModel
+from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel
 
 
 class ArticleQuerySet(models.QuerySet):
@@ -61,7 +61,7 @@ class Category(models.Model):
     	verbose_name_plural = "categories"
 
 
-class Article(TimeStampedModel, PromotableModel):
+class Article(TimeStampedModel, PromotableModel, PublishableModel):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
@@ -71,9 +71,7 @@ class Article(TimeStampedModel, PromotableModel):
     category = models.ForeignKey(Category)
     image = models.ImageField(blank=True, upload_to='blog/')
     caption = models.CharField(max_length=60, blank=True)
-    content = RichTextField()
-    published = models.BooleanField(default=False)
-    publication_date = models.DateTimeField(auto_now_add=True, null=True)
+    content = RichTextField()    
     hot = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='articles')
@@ -82,11 +80,6 @@ class Article(TimeStampedModel, PromotableModel):
 
     def __str__(self):
         return self.title
-
-    # Pubblication date is updated if published has been modified from False to True
-    def __init__(self, *args, **kwargs):
-        super(Article, self).__init__(*args, **kwargs)
-        self.old_published = self.published
 
     def get_absolute_url(self):
         return reverse('blog:detail', args=[str(self.slug)])
@@ -104,8 +97,3 @@ class Article(TimeStampedModel, PromotableModel):
 
     def class_name(self):
         return self.__class__.__name__
-
-    def save(self, *args, **kwargs):
-        if self.old_published != self.published and self.published:
-            self.publication_date = timezone.now()
-        super(Article, self).save(*args, **kwargs)

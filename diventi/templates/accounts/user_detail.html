@@ -1,6 +1,12 @@
+{% load static %}
+
 <div class="profile">
     <div class="avatar">
-        <img src="{{ user.avatar.image }}" alt="Circle Image" class="img-circle img-responsive img-raised">
+        {% if user.avatar.image %}
+            <img src="{{ user.avatar.image }}" alt="User" class="img-circle img-responsive img-raised">
+        {% else %}
+            <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="img-circle img-responsive img-raised">
+        {% endif %}
     </div>
     <div class="name">
         <h3 class="title">{{ user.first_name }}</h3>

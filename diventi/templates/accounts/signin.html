@@ -4,16 +4,9 @@
 
 {% block bodyclass %}login-page{% endblock bodyclass %}
 
-{% block pageheader %}
+{% block messages %}{% endblock messages %}
 
-    {% if next %}
-        {% if user.is_authenticated %}
-        <p>Your account doesn't have access to this page. To proceed,
-        please sign in with an account that has access.</p>
-        {% else %}
-        <p>Please sign in to see this page.</p>
-        {% endif %}
-    {% endif %}
+{% block pageheader %}
 
     <div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
         <div class="container">

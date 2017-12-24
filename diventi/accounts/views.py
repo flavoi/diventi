@@ -94,7 +94,7 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
             user = authenticate(self.request, username=username, password=password)
             if user is not None:
                 messages.success(self.request, self.success_msg)
-                redirect(self.success_url)
+                return redirect(self.get_success_url())
             else:
                 messages.error(self.request, self.fail_msg)
         return super(DiventiUserCreationView, self).form_valid(form)

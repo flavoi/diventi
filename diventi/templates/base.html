@@ -188,7 +188,11 @@
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
-            {% include 'accounts/signin.html' %}
+            <div class="row">
+              <div class="col-md-12">
+                {% include 'accounts/signin.html' %}
+              </div>  
+            </div>
         </div>
     </div>
   </div>

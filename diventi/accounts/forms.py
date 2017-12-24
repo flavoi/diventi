@@ -8,11 +8,13 @@ from .widgets import DiventiAvatarSelect, DiventiAvatarChoiceField
 
 
 class DiventiUserCreationForm(UserCreationForm):
+    """
     captcha = ReCaptchaField(
         attrs={
             'theme' : 'light',
         }
     )
+    """
 
     class Meta:
         model = DiventiUser

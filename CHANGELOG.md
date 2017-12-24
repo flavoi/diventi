@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Set avatar as not required field in profile form.
 - Disabled promotion bottons for anonymous users
 
+### Fixed
+- Enabled placeholder 
+
 
 ## [0.6.0] → 2017-12-22
 

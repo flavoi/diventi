@@ -99,6 +99,7 @@
                   Blog
                 </a>
               </li>        
+
               {% if user.is_staff %}
                 <li>                    
                   <a href="{% url 'admin:index' %}">
@@ -135,14 +136,14 @@
                       <li>
                         <a href="{% url 'accounts:signout' %}">
                           <i class="fal fa-fw fa-lg fa-sign-out-alt"></i> Sign out
-                        </a>
+                        </a>                        
                       </li>
                   </ul>
                 </li>                
               {% else %}
-                <li>
-                  <a href="{% url 'accounts:signin' %}">
-                    <i class="fal fa-lg fa-fw fa-sign-in-alt"></i> Sign in
+                <li class="button-container">
+                  <a class="btn btn-round btn-default" data-toggle="modal" data-target="#loginModal">
+                      <i class="fal fa-sign-in-alt"></i> Sign in<div class="ripple-container"></div>
                   </a>
                 </li>
               {% endif %}  
@@ -184,6 +185,15 @@
     </div>
   </footer>
   {% endblock footer %}
+
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            {% include 'accounts/signin.html' %}
+        </div>
+    </div>
+  </div>
+
 </body>
 
 <!-- Core JS Files -->

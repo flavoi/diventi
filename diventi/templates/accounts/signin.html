@@ -1,13 +1,58 @@
-{% extends 'base.html' %}
+<div class="card card-signup card-plain">
+    <form method="post" action="{% url 'accounts:signin' %}">
+    {% csrf_token %}
+    
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+            <div class="header header-warning text-center">
+                <h4 class="card-title">Sign in</h4>            
+            </div>
+        </div>
 
-{% block title %}Sign in{% endblock title %}
+        <div class="modal-body">
+            <div class="card-content">
 
-{% block bodyclass %}login-page{% endblock bodyclass %}
+                {% if form.errors %}                                  
+                    <div class="col-md-11 col-md-offset-1">
+                        <div class="alert alert-danger">    
+                          <div class="alert-icon">
+                            <i class="material-icons">error_outline</i>
+                          </div>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                          </button>
+                          <b>Sign in has failed.</b>
+                        </div>
+                    </div>                                  
+                {% endif %}
 
-{% block messages %}{% endblock messages %}
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fal fa-envelope fa-lg"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Your email" name="username" autofocus maxlength="254" required id="id_username">                                    
+                </div>                
 
-{% block pageheader %}
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fal fa-key fa-lg"></i>
+                    </span>
+                    <input type="password" placeholder="Your password" class="form-control" name="password" required id="id_password" />
+                </div>
+            </div>
+        </div>
 
+        <div class="modal-footer text-center">        
+            <button class="btn btn-warning btn-simple btn-wd btn-lg" type="submit">
+                Sign In <i class="fal fa-arrow-right fa-lg"></i>
+            </button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+
+    </form>
+</div>
+
+<!--
     <div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
@@ -59,6 +104,4 @@
                 </div>
             </div>
         </div>
-{% endblock pageheader %}
-
-{% block main %}{% endblock main %}
+-->

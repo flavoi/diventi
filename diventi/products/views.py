@@ -12,7 +12,7 @@ class ProductDetailView(DetailView):
 
     # Returns only published products
     def get_queryset(self):
-        qs = super(ArticleDetailView, self).get_queryset()
+        qs = super(ProductDetailView, self).get_queryset()
         return qs.published()
 
 

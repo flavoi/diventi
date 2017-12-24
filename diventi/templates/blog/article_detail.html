@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}{{ article.title}}{% endblock title %}
 
 {% block bodyclass %}blog-post{% endblock bodyclass %}
@@ -42,6 +44,8 @@
                                 <a href="#">
                                     {% if article.author.avatar %}
                                         <img class="img" src="{{ article.author.avatar.image }}">
+                                    {% else %}
+                                        <img class="img" src="{% static 'material-kit/img/placeholder.jpg' %}">
                                     {% endif %}
                                 </a>
                             <div class="ripple-container"></div></div>

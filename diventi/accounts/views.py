@@ -19,8 +19,28 @@ from diventi.products.models import Product
 
 class DiventiLoginView(AnonymousRequiredMixin, LoginView):
 
-	template_name = "accounts/signin.html"
+    template_name = "accounts/signin.html"
+    success_msg = 'You have signed in!'
+    fail_msg = 'Your sign in has failed.'
+    fail_url = reverse_lazy('landing:home')
 
+    def get_success_url(self):
+        next_url = self.request.GET.get('next', None)
+        if next_url:            
+            return next_url
+        else:
+            super().get_success_url()
+
+    def form_valid(self, form):
+        messages.success(self.request, self.success_msg)        
+        return super(DiventiLoginView, self).form_valid(form)
+    
+    def form_invalid(self, form):
+        # This session variable must be managed by the fail_url view
+        self.request.session['show_login_form'] = 1
+        self.request.session['fail_login_msg'] = self.fail_msg        
+        return redirect(self.fail_url)
+        
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 
@@ -48,9 +68,8 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     form_class = DiventiUserCreationForm
     model = DiventiUser
     template_name = 'accounts/signup.html'
-    success_msg = 'You have signed up!'
-    success_url = reverse_lazy('accounts:signin')
-    fail_msg = 'Your sign-up has failed.'
+    success_msg = 'You have signed up!'    
+    fail_msg = 'Your sign up has failed.'
     fail_url = reverse_lazy('accounts:signup')
 
     def get_initial(self):
@@ -62,6 +81,10 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
             'first_name': initial_first_name,
         }
         return initial
+
+    def get_success_url(self):
+        self.request.session['show_login_form'] = 1
+        return reverse_lazy('landing:home')
 
     def form_valid(self, form):
         username = form.cleaned_data['email']

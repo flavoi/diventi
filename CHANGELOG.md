@@ -13,9 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Redesigned user profile layout
-- Set avatar as not required field in profile form.
+- Set avatar as not required field in profile form
 - Disabled promotion bottons for anonymous users
-- Integrated the sign in page into a modal.
+- Integrated the sign in page into a modal
 
 ### Fixed
 - Enabled placeholder

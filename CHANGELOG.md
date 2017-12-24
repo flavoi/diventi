@@ -8,10 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] → xxxx-xx-xx
 
+### Added
+- Introduced a collection page dedicated to the product that a user has purchased
+
 ### Changed
 - Redesigned user profile layout
 - Set avatar as not required field in profile form.
 - Disabled promotion bottons for anonymous users
+- Integrated the sign in page into a modal.
 
 ### Fixed
 - Enabled placeholder 

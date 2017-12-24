@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Integrated the sign in page into a modal.
 
 ### Fixed
-- Enabled placeholder 
+- Enabled placeholder
+- Fixed error page 500 title
 
 
 ## [0.6.0] → 2017-12-22

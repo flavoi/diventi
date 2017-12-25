@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Changed icon of featured product from light hand to solid fire
 
 ### Fixed
-- Fixed error page 500 title
+- Fixed 500 error page title
 
 
 ## [0.6.0] → 2017-12-22

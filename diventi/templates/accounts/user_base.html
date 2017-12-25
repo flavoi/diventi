@@ -80,27 +80,7 @@
 
                 <div class="tab-pane connections" id="collection">
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-2">
-                            <div class="row collections">
-                                {% if collection %}
-                                    {% for product in collection %}
-                                    <div class="col-md-12">
-                                        <div class="card card-background" {% if product.cover %}%style="background-image: url('{{ product.cover.url }}')"{% endif %}>
-                                            <a href="#"></a>
-                                            <div class="card-content">
-                                                <label class="label label-rose">{{ product.publication_date|naturalday }}</label>
-                                                <a href="#">
-                                                    <h2 class="card-title">{{ product.title }}</h2>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% empty %}
-                                        <h4>Your collection is empty</h4>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                        </div>
+                        {% include 'accounts/user_collection.html' %}
                     </div>                     
                 </div>          
 

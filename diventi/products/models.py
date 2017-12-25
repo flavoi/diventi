@@ -46,9 +46,10 @@ class Product(TimeStampedModel, PublishableModel):
     description = models.TextField(blank=True)
     slug = models.SlugField(unique=True)
     featured = models.BooleanField(default=False)
-    cover = models.ImageField(blank=True, upload_to='products/')
+    cover = models.ImageField(blank=True, upload_to='products/covers/')
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products')
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True)
+    file = models.FileField(upload_to='products/files/', blank=True)
 
     objects = ProductQuerySet.as_manager()
 

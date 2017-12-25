@@ -25,7 +25,8 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
-        context['form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
+        context['add_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
+        context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['bought'] = self.object.user_has_already_bought(self.request.user)
         return context
 
@@ -38,7 +39,7 @@ class ProductUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
     context_object_name = 'product'
 
 
-class UserCollectionUpdateView(ProductUpdateView):
+class AddToUserCollectionView(ProductUpdateView):
     """
         Adds a user to the buyers of a product.
     """
@@ -54,6 +55,27 @@ class UserCollectionUpdateView(ProductUpdateView):
             raise Http404(msg)
 
     def form_valid(self, form):
+        print("hey!")
         self.add_to_user_collection()
-        return super(UserCollectionUpdateView, self).form_valid(form)
+        return super(AddToUserCollectionView, self).form_valid(form)
+
+
+class DropFromUserCollectionView(ProductUpdateView):
+    """
+        Remove a user to the buyers of a product.
+    """
+    form_class = UserCollectionUpdateForm
+    success_msg = 'The product has been dropped from your collection!'
+    template_name = 'products/product_detail.html'
+
+    def drop_from_user_collection(self):
+        if self.object.user_has_already_bought(self.request.user):
+            return self.object.buyers.remove(self.request.user)
+        else:
+            msg = "The user hasn't got this product already."
+            raise Http404(msg)
+
+    def form_valid(self, form):
+        self.drop_from_user_collection()
+        return super(DropFromUserCollectionView, self).form_valid(form)
 

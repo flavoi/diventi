@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] → xxxx-xx-xx
 
 ### Added
-- Introduced a collection page dedicated to the product that a user has purchased
+- Introduced collection feature: a user may not add a product to his collection
 
 ### Changed
 - Redesigned user profile layout

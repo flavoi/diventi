@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated url conf for update views
 
 ### Fixed
-- Enabled placeholder
+- Enabled placeholder for user avatars
 - Fixed error page 500 title
 
 

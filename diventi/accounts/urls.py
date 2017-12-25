@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^signout/$', DiventiLogoutView.as_view(), name='signout'),
     url(r'^password-change/$', change_password, name='change_password'),
     url(r'^signup/$', DiventiUserCreationView.as_view(), name='signup'),
-    url(r'^update/(?P<pk>\d+)/$', DiventiUserUpdateView.as_view(), name='update'),
+    url(r'^(?P<pk>\d+)/update/$', DiventiUserUpdateView.as_view(), name='update'),
 ]

@@ -72,6 +72,10 @@ class Product(TimeStampedModel, PublishableModel):
         )
         return results
 
+    # Check if the user has added the product to its collections
+    def user_has_already_bought(self, user):
+        return user in self.buyers.all()
+
 
 class Chapter(Element, DiventiImageModel):
     """ A stand-alone chapter of an adventure."""

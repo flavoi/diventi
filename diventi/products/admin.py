@@ -35,14 +35,9 @@ class ImagePreviewAdmin(admin.ModelAdmin):
     list_display = ('label', 'image_tag')
 
 
-class BuyersInline(admin.TabularInline):
-    model = Product.buyers.through
-
-
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'featured', 'published', 'publication_date']    
     inlines = [
-        BuyersInline,
         ChapterInline,
         CharacteristicInline,
         ImagePreviewInline,

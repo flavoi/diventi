@@ -86,9 +86,20 @@
                         </div>
                     </div>                      
                     <div class="row text-right">
-                        <button type="button" class="btn btn-warning" data-toggle="popover" data-placement="bottom" title="" data-content="We will show you something special." data-container="body" data-original-title="Coming soon!" aria-describedby="popover721583">
-                        Get the PDF <i class="fal fa-download fa-lg"></i> 
-                        </button>
+                        <form action="{% url 'products:update' product.slug %}" method="POST">
+                            {% csrf_token %}
+                            {{ form }}
+                            {{ form.errors }}
+                             {% if bought %}
+                                <button type="submit" class="btn btn-success" disabled>
+                                    This product is in your collection
+                                </button>
+                             {% else %}
+                                <button type="submit" class="btn btn-warning">
+                                    Add to your collection
+                                </button>
+                            {% endif %}
+                        </form>
                     </div>                    
                 </div>
             </div>

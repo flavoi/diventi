@@ -93,30 +93,32 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-6 text-right">
-                    {% if bought %}
-                        <form action="{% url 'products:drop' product.slug %}" method="POST">
-                            {% csrf_token %}
-                            {{ drop_collection_form }}
-                            {{ drop_collection_form.errors }}
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fal fa-trash-alt fa-lg"></i>
-                            </button>
-                        </form>
-                    {% else %}
-                        <form action="{% url 'products:add' product.slug %}" method="POST">
-                            {% csrf_token %}
-                            {{ add_collection_form }}
-                            {{ add_collection_form.errors }}
-                            <button type="submit" class="btn btn-warning">
-                                <i class="fal fa-plus fa-lg"></i>
-                            </button>
-                        </form>
-                    {% endif %}
-                    
+            {% if user.is_authenticated %}
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6 text-right">
+                        {% if bought %}
+                            <form action="{% url 'products:drop' product.slug %}" method="POST">
+                                {% csrf_token %}
+                                {{ drop_collection_form }}
+                                {{ drop_collection_form.errors }}
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fal fa-trash-alt fa-lg"></i>
+                                </button>
+                            </form>
+                        {% else %}
+                            <form action="{% url 'products:add' product.slug %}" method="POST">
+                                {% csrf_token %}
+                                {{ add_collection_form }}
+                                {{ add_collection_form.errors }}
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fal fa-plus fa-lg"></i>
+                                </button>
+                            </form>
+                        {% endif %}
+                        
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
 
         <div class="related-products">

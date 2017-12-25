@@ -17,9 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Disabled promotion bottons for anonymous users
 - Integrated the sign in page into a modal
 - Updated url conf for update views
+- Enabled placeholder for user avatars
 
 ### Fixed
-- Enabled placeholder for user avatars
 - Fixed error page 500 title
 
 

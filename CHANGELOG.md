@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced collection feature: a user may not add a product to his collection
+- Introduced custom covers for user profile
 
 ### Changed
 - United user profile and collection in a single page for better anchors

@@ -6,22 +6,17 @@
         <div class="col-md-6">
             <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
                 <div class="card-content">
-                    <div class="col-md-12">
-                        <label class="label label-rose">{{ product.publication_date|naturalday }}</label>
-                        <h2 class="card-title">{{ product.title }}</h2>
-                    </div>
-                    
-                    <div class="col-md-12">
-                        <a href="{% url 'products:detail' product.slug %}" class="btn btn-round btn-info">
-                            <i class="fal fa-book fa-lg"></i>
+                    <h6 class="category text-info">{{ product.publication_date|naturalday }}</h6>
+                    <a href="{% url 'products:detail' product.slug %}">
+                        <h3 class="card-title">{{ product.title }}</h3>
+                    </a>
+                    <p class="card-description">{{ product.description }}</p>                    
+                    {% if product.file %}
+                        <a target="_blank" class="btn btn-warning btn-round" href="{{ product.file.url }}">
+                            <i class="fal fa-download fa-lg fa-fw"></i> Download
                         </a>
-                        {% if product.file %}
-                            <a target="_blank" class="btn btn-round btn-warning" href="{{ product.file.url }}">
-                                <i class="fal fa-download fa-lg"></i> Download
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
+                    {% endif %}
+                </div>                
             </div>
         </div>
         {% empty %}

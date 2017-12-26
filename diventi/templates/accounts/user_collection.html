@@ -1,25 +1,31 @@
 {% load humanize %}
 
-<div class="col-md-4 col-md-offset-2">
-    <div class="row collections">
-        {% if collection %}
-            {% for product in collection %}
-            <div class="col-md-12">
-                <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
-                    <div class="card-content">
+<div class="row collections">
+    {% if collection %}
+        {% for product in collection %}
+        <div class="col-md-6">
+            <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
+                <div class="card-content">
+                    <div class="col-md-12">
                         <label class="label label-rose">{{ product.publication_date|naturalday }}</label>
                         <h2 class="card-title">{{ product.title }}</h2>
+                    </div>
                     
-                    {% if product.file %}
-                        <a target=_blank class="btn btn-round btn-warning" href="{{ product.file.url }}">Download</a>
-                    {% else %}
-                    {% endif %}
+                    <div class="col-md-12">
+                        <a href="{% url 'products:detail' product.slug %}" class="btn btn-round btn-info">
+                            <i class="fal fa-book fa-lg"></i>
+                        </a>
+                        {% if product.file %}
+                            <a target="_blank" class="btn btn-round btn-warning" href="{{ product.file.url }}">
+                                <i class="fal fa-download fa-lg"></i> Download
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-            {% empty %}
-                <h4>Your collection is empty</h4>
-            {% endfor %}
-        {% endif %}
-    </div>
+        </div>
+        {% empty %}
+            <h4>Your collection is empty</h4>
+        {% endfor %}
+    {% endif %}
 </div>

@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced collection feature: a user may not add a product to his collection
 
 ### Changed
-- Redesigned user profile layout
+- United user profile and collection in a single page for better anchors
 - Set avatar as not required field in profile form
 - Disabled promotion bottons for anonymous users
 - Integrated the sign in page into a modal

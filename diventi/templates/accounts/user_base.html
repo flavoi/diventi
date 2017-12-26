@@ -51,39 +51,37 @@
             </div>            
 
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="profile-tabs">
-                        <div class="nav-align-center">
-                            <ul class="nav nav-pills nav-pills-info" role="tablist">
-                                <li class="active">
-                                    <a href="#profile" role="tab" data-toggle="tab">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#collection" role="tab" data-toggle="tab">
-                                        Collection
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="tab-content">
-                <div class="tab-pane active work" id="profile">
-                    {% include 'accounts/user_update.html' %}
-                </div>
-
-                <div class="tab-pane connections" id="collection">
+                <div class="col-md-8 col-md-offset-2">
                     <div class="row">
-                        {% include 'accounts/user_collection.html' %}
-                    </div>                     
-                </div>          
-
+                        <div class="col-md-4">
+                            <a name="yourprofile">
+                                <h4 class="title">Your profile</h4>
+                            </a>
+                        </div>
+                    </div>                    
+                        {% include 'accounts/user_update.html' %}
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <hr />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a name="yourcollection">
+                                <h4 class="title">Your collection</h4>
+                            </a>
+                        </div>
+                    </div>                    
+                    {% include 'accounts/user_collection.html' %}
+                </div>
+            </div>
+            
         </div>
     </form>
 </div>

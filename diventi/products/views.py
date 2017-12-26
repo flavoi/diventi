@@ -44,7 +44,7 @@ class AddToUserCollectionView(ProductUpdateView):
         Adds a user to the buyers of a product.
     """
     form_class = UserCollectionUpdateForm
-    success_msg = 'The product has been added to you collection!'
+    success_msg = 'This product has been added to you collection!'
     template_name = 'products/product_detail.html'
 
     def add_to_user_collection(self):
@@ -65,7 +65,7 @@ class DropFromUserCollectionView(ProductUpdateView):
         Remove a user to the buyers of a product.
     """
     form_class = UserCollectionUpdateForm
-    success_msg = 'The product has been dropped from your collection!'
+    success_msg = 'This product has been dropped from your collection!'
     template_name = 'products/product_detail.html'
 
     def drop_from_user_collection(self):

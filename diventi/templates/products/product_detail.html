@@ -46,11 +46,15 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6">
-                    <h2 class="title">
-                        {{ product.title }}
+                    <h2 class="title">                        
+                        {{ product.title }} 
+                        <br />
                         {% if bought %}
-                            <span class="label label-rose">
-                                <i class="fal fa-flag fa-lg"></i>&nbsp; In your collection</span>
+                            <a href="{% url 'accounts:update' user.id %}#yourcollection">
+                                <span class="label label-rose">
+                                    <i class="fal fa-flag fa-lg"></i>&nbsp; In your collection
+                                </span>
+                            </a>
                         {% endif %}
                     </h2> 
                     <div id="acordeon">
@@ -101,7 +105,7 @@
                                 {% csrf_token %}
                                 {{ drop_collection_form }}
                                 {{ drop_collection_form.errors }}
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-round btn-gray btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Remove this product from your collection.">
                                     <i class="fal fa-trash-alt fa-lg"></i>
                                 </button>
                             </form>
@@ -110,7 +114,7 @@
                                 {% csrf_token %}
                                 {{ add_collection_form }}
                                 {{ add_collection_form.errors }}
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-round btn-warning btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Add this product to your collection.">
                                     <i class="fal fa-plus fa-lg"></i>
                                 </button>
                             </form>

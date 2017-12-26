@@ -126,70 +126,74 @@
         </div>
 
         <div class="related-products">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                <h3 class="title text-center">Playable chapters</h3>
-                    <div class="row">
-                        {% for chapter in product.chapters.all %}
-                        <div class="col-sm-6 col-md-4">
-                            <div class="card card-product">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img class="img" src="{{ chapter.image }}">
-                                    </a>
-                                    <div class="colored-shadow" style="background-image: url({{ chapter.image }};); opacity: 1;"></div>
-                                    <div class="ripple-container"></div>
-                                </div>
-                                <div class="card-content">
-                                    <h6 class="category text-rose">Adventure</h6>
-                                    <h4 class="card-title">
-                                        {{ chapter.title|title }}
-                                    </h4>
-                                    <div class="card-description">
-                                        {{ chapter.description|striptags|capfirst }}
+            {% if product.chapters.all %}
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                    <h3 class="title text-center">Playable chapters</h3>
+                        <div class="row">
+                            {% for chapter in product.chapters.all %}
+                            <div class="col-sm-6 col-md-4">
+                                <div class="card card-product">
+                                    <div class="card-image">
+                                        <a href="#">
+                                            <img class="img" src="{{ chapter.image }}">
+                                        </a>
+                                        <div class="colored-shadow" style="background-image: url({{ chapter.image }};); opacity: 1;"></div>
+                                        <div class="ripple-container"></div>
                                     </div>
-                                    <div class="footer">
-                                        <div class="stats">
+                                    <div class="card-content">
+                                        <h6 class="category text-rose">Adventure</h6>
+                                        <h4 class="card-title">
+                                            {{ chapter.title|title }}
+                                        </h4>
+                                        <div class="card-description">
+                                            {{ chapter.description|striptags|capfirst }}
+                                        </div>
+                                        <div class="footer">
+                                            <div class="stats">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
         
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">         
-                <h3 class="title text-center">Content creators</h3>
-                <div class="team">
-                    <div class="row">                   
-                        {% for author in product.authors.all %}
-                            <div class="col-md-4">
-                                <div class="card card-profile card-plain">
-                                    <div class="card-avatar">
-                                        <a href="pablo">
-                                            {% if author.profilepic %}
-                                                <img class="img" src="{{ author.profilepic.url }}">
-                                            {% endif %}
-                                        </a>
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="card-title">{{ author.get_full_name}}</h4>
-                                        <h6 class="category text-rose">Creator</h6>
-                                        <p class="card-description">
-                                            {{ author.bio }}
-                                        </p>
+        {% if product.authors.all %}
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">         
+                    <h3 class="title text-center">Content creators</h3>
+                    <div class="team">
+                        <div class="row">                   
+                            {% for author in product.authors.all %}
+                                <div class="col-md-4">
+                                    <div class="card card-profile card-plain">
+                                        <div class="card-avatar">
+                                            <a href="pablo">
+                                                {% if author.profilepic %}
+                                                    <img class="img" src="{{ author.profilepic.url }}">
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="card-title">{{ author.get_full_name}}</h4>
+                                            <h6 class="category text-rose">Creator</h6>
+                                            <p class="card-description">
+                                                {{ author.bio }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
 
     </div>
 </div>    

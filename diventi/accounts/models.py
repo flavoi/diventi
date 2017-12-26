@@ -50,10 +50,20 @@ class DiventiAvatar(DiventiImageModel):
         verbose_name = 'Avatar'
         verbose_name_plural = 'Avatars'
 
+
+class DiventiCover(DiventiImageModel):
+
+    objects = DiventiAvatarQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = 'Cover'
+        verbose_name_plural = 'Covers'
+
         
 class DiventiUser(AbstractUser):    
     email = models.EmailField(unique=True)
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL)
+    cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL)
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/') #  Staff use only
     bio = models.TextField(blank=True)
     role = models.CharField(blank=True, max_length=70) # Favourite class

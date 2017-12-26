@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated url conf for update views
 - Enabled placeholder for user avatars
 - Changed icon of featured product from light hand to solid fire
+- Enclosed change password form in a modal
 
 ### Fixed
 - Fixed 500 error page title

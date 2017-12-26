@@ -2,13 +2,13 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import DiventiUser, DiventiAvatar
+from .models import DiventiUser, DiventiAvatar, DiventiCover
 
 
 class UserAdmin(auth_admin.UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'bio', 'avatar', 'profilepic', 'role')}),
+        ('Personal info', {'fields': ('first_name', 'bio', 'avatar', 'cover', 'profilepic', 'role')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
@@ -36,5 +36,9 @@ class UserAdmin(auth_admin.UserAdmin):
 class DiventiAvatarAdmin(admin.ModelAdmin):
     list_display= ( 'label', 'image_tag', 'staff_only')
 
+class DiventiCoverAdmin(admin.ModelAdmin):
+    list_display= ( 'label', 'image_tag')
+
 admin.site.register(DiventiUser, UserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)
+admin.site.register(DiventiCover, DiventiCoverAdmin)

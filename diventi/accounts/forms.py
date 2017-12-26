@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from captcha.fields import ReCaptchaField
 
-from .models import DiventiUser, DiventiAvatar
-from .widgets import DiventiAvatarSelect, DiventiAvatarChoiceField
+from .models import DiventiUser, DiventiAvatar, DiventiCover
+from .widgets import DiventiAvatarSelect, DiventiCoverSelect, DiventiAvatarChoiceField, DiventiCoverChoiceField
 
 
 class DiventiUserCreationForm(UserCreationForm):
@@ -51,7 +51,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
 
     class Meta:        
         model = DiventiUser
-        fields = ['avatar', 'bio', 'role']
+        fields = ['avatar', 'cover', 'bio', 'role']
         labels = {
             'bio': "What's your story?",
             'role': "What's your favourite class?",
@@ -67,7 +67,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
         avatar_queryset = DiventiAvatar.objects.all().order_by('-staff_only')
         if user and not user.is_staff:
             avatar_queryset = avatar_queryset.filter(staff_only=False)        
-        return avatar_queryset                    
+        return avatar_queryset
 
     avatar = DiventiAvatarChoiceField(
         queryset = DiventiAvatar.objects.none(),
@@ -77,7 +77,16 @@ class DiventiUserUpdateForm(forms.ModelForm):
         required = False,
     )
 
+    cover = DiventiCoverChoiceField(
+        queryset = DiventiCover.objects.none(),
+        widget = DiventiCoverSelect(attrs = {
+            'class': 'image-picker show-html'
+        }),
+        required = False,
+    )
+
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')        
         super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)        
-        self.fields['avatar'].queryset = self.get_avatar_queryset()        
+        self.fields['avatar'].queryset = self.get_avatar_queryset()
+        self.fields['cover'].queryset = DiventiCover.objects.all()    

@@ -124,7 +124,7 @@
                           {{ user.first_name }} &middot; {{ user.email }}
                       </li>
                       <li>
-                        <a href="{% url 'accounts:change_password' %}">
+                        <a href="#" data-toggle="modal" data-target="#changepasswordModal">  
                           <i class="fal fa-fw fa-lg fa-key"></i> Change Password
                         </a>
                       </li>
@@ -159,6 +159,7 @@
                     <div class="ripple-container"></div>
                 </button>
             </form>
+
         </div>
       </div>
     {% endblock navigation %}
@@ -185,14 +186,18 @@
   </footer>
   {% endblock footer %}
 
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-login">
+  <div class="modal fade in" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
         <div class="modal-content">
-            <div class="row">
-              <div class="col-md-12">
-                {% include 'accounts/signin.html' %}
-              </div>  
-            </div>
+            {% include 'accounts/signin.html' %}
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade in" id="changepasswordModal" tabindex="-1" role="dialog" aria-labelledby="changepasswordModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            {% include 'accounts/change_password.html' %}
         </div>
     </div>
   </div>

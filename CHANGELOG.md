@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enabled placeholder for user avatars
 - Changed icon of featured product from light hand to solid fire
 - Enclosed change password form in a modal
+- Hidden section titles if there is no content available in product page
 
 ### Fixed
 - Fixed 500 error page title

@@ -1,22 +1,31 @@
 {% load static %}
-
-<div class="profile">
-    <div class="avatar">
-        {% if user.avatar.image %}
-            <img src="{{ user.avatar.image }}" alt="User" class="img-circle img-responsive img-raised">
-        {% else %}
-            <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="img-circle img-responsive img-raised">
-        {% endif %}
-    </div>
-    <div class="name">
-        <h3 class="title">{{ user.first_name }}</h3>
-        <h6 class="text-rose">
-        {% if user.is_staff %}                            
-            Creator
-        {% else %}
-            User
-        {% endif %}
-        </h6>
-        <h6 class="text-muted">{{ user.email }}</h6>            
-    </div>
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-3">                                    
+        <div class="profile">
+            <div class="avatar">
+                {% if user.avatar.image %}
+                    <img src="{{ user.avatar.image }}" alt="User" class="img-circle img-responsive img-raised">
+                {% else %}
+                    <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="img-circle img-responsive img-raised">
+                {% endif %}
+            </div>
+            <div class="name">
+                <h3 class="title">{{ user.first_name }}</h3>
+                <h6 class="text-rose">
+                {% if user.is_staff %}                            
+                    Creator
+                {% else %}
+                    User
+                {% endif %}
+                </h6>                
+            </div>
+            <div class="text-center">
+                <h6 class="text-muted">{{ user.email }}</h6>
+            </div>
+        </div>
+    </div>                
 </div>
+
+<div class="description text-center">
+    <p>{{ user.bio }}</p>
+</div> 

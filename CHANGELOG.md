@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.6.1] → 2017-12-28
+## [0.6.2] → 2017-12-28
 
 ### Added
 - Introduced collections: a centralized space where a user can store any published products

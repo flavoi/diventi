@@ -18,9 +18,12 @@
                     {% endif %}
                 </div>                
             </div>
-        </div>
-        {% empty %}
-            <h4>Your collection is empty</h4>
+        </div>            
         {% endfor %}
+    {% else %}
+        <div class="col-md-6">
+            <h4>Your collection is empty <i class="fal fa-frown"></i></h4>
+        </div>
     {% endif %}
+
 </div>

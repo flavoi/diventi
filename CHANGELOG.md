@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased] → xxxx-xx-xx
 
 ### Added
-- Introduced collection feature: a user may not add a product to his collection
-- Introduced custom covers for user profile
+- Introduced collections: a centralized space where a user can store any published products
+- Introduced a new and redisegned user profile with new styles, custom avatars and covers 
 
 ### Changed
 - United user profile and collection in a single page for better anchors
@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed 500 error page title
+- Improved the mobile responsiveness of the account forms
+- 
 
 
 ## [0.6.0] → 2017-12-22

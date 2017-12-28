@@ -6,33 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased] → xxxx-xx-xx
+## [0.6.1] → 2017-12-28
 
 ### Added
 - Introduced collections: a centralized space where a user can store any published products
 - Introduced a new and redisegned user profile with new styles, custom avatars and covers 
-
-### Changed
-- United user profile and collection in a single page for better anchors
-- Set avatar as not required field in profile form
-- Disabled promotion bottons for anonymous users
-- Integrated the sign in page into a modal
-- Updated url conf for update views
-- Enabled placeholder for user avatars
-- Changed icon of featured product from light hand to solid fire
-- Enclosed change password form in a modal
-- Hidden section titles if there is no content available in product page
-
-### Fixed
-- Fixed 500 error page title
-- Improved the mobile responsiveness of the account forms
-- 
-
-
-## [0.6.0] → 2017-12-22
-
-### Added
-- Introduced cover image for product chatpers
 - Added search field in the navbar
 - Added placeholder image if the user doesn't have a proper avatar
 - Added custom 404, 403 and 500 error pages
@@ -46,6 +24,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Unified styles among sign up, sign in and change password pages
 - Unified buttons color on blog list, blog detail and product pages
 - Refreshed profile page with a new UI inspired by Material Kit
+- United user profile and collection in a single page for better anchors
+- Set avatar as not required field in profile form
+- Disabled promotion bottons for anonymous users
+- Integrated the sign in page into a modal
+- Updated url conf for update views
+- Enabled placeholder for user avatars
+- Changed icon of featured product from light hand to solid fire
+- Enclosed change password form in a modal
+- Hidden section titles if there is no content available in product page
 
 ### Fixed
 - Replaced '-' with space on 'signed in/out/up' text occurrences
@@ -53,6 +40,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed fire icon of hot articles
 - Adjusted articles right and left margins
 - Adjusted uppercase letters in some account forms
+- Fixed 500 error page title
+- Improved the mobile responsiveness of the account forms
 
 ### Removed
 - Removed attachment support from blogposts (any attachment should be a product)

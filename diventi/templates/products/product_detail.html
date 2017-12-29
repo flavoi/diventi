@@ -2,6 +2,13 @@
 
 {% block title %}{{ product.title }}{% endblock title %}
 
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% endblock extrahead %}
+
+
 {% block bodyclass %}product-page{% endblock bodyclass %}
 
 {% block pageheader %}
@@ -97,10 +104,15 @@
                     </div>
                 </div>
             </div>
-            {% if user.is_authenticated %}
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-6 text-right">
-                        {% if bought %}
+
+            <div class="row">
+                <div class="col-md-3 col-md-offset-6">
+                    {% load ratings %}            
+                    {% ratings product %}
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="col-md-3 text-right">
+                        {% if bought %}                            
                             <form action="{% url 'products:drop' product.slug %}" method="POST">
                                 {% csrf_token %}
                                 {{ drop_collection_form }}
@@ -119,10 +131,9 @@
                                 </button>
                             </form>
                         {% endif %}
-                        
                     </div>
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
 
         <div class="related-products">

@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^comments/', include('diventi.comments.urls', namespace='comments')),
     url(r'^products/', include('diventi.products.urls', namespace='products')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

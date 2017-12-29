@@ -4,11 +4,12 @@
 
 {% block extrahead %}
 {% load static %}
+{% load ratings %}
 <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 
 <style>
-    .star-ratings-rating-full, .star-ratings-rating-empty {
+    #{{ id }} .star-ratings-rating-full, #{{ id }} .star-ratings-rating-empty {
         background: url({% static 'star-ratings/images/stars.png' %}) no-repeat !important;
     }
 </style>
@@ -113,8 +114,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3 col-md-offset-6">
-                    {% load ratings %}            
+                <div class="col-md-3 col-md-offset-6">       
                     {% ratings product %}
                 </div>
                 {% if user.is_authenticated %}

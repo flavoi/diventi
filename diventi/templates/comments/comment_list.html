@@ -22,7 +22,7 @@
                 </ul>
             {% endif %}
 
-            <div class="tab-content tab-space">
+            <div class="tab-content">
                 <div class="tab-pane active" id="list-1">
                     <a name="comments"><h3 class="title text-center">Post your comment</h3></a>
                     <div class="media media-post">
@@ -69,40 +69,39 @@
 
             <h3 class="title text-center">{{ comment_count }} Comments</h3>
             <div class="row">
-                    <div class="col-md-12">
-                        <ul class="nav nav-pills nav-pills-info" role="tablist">
-                            <!--
-                                color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
-                            -->
-                            <li class="active">
-                                <a href="#best-1" role="tab" data-toggle="tab" aria-expanded="true">
-                                    Best
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="#date-1" role="tab" data-toggle="tab" aria-expanded="false">
-                                    Submit Date
-                                </a>
-                            </li>                                 
-                            <li class="pull-right">
-                                <a href="javascript:toggleDiv('myContent');">
-                                    Toggle All Comments
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="tab-content tab-space">
-                            <div class="tab-pane active" id="best-1">
-                                {% get_comment_list_by_promotions for object as comment_list %}
-                                {% include 'comments/comment_list_tab.html' %}
-                            </div>
-                            <div class="tab-pane" id="date-1">
-                                {% get_comment_list_by_date for object as comment_list %}
-                                {% include 'comments/comment_list_tab.html' %}
-                            </div>
+                <div class="col-md-12">
+                    <ul class="nav nav-pills nav-pills-info" role="tablist">
+                        <!--
+                            color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                        -->
+                        <li class="active">
+                            <a href="#best-1" role="tab" data-toggle="tab" aria-expanded="true">
+                                Best
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#date-1" role="tab" data-toggle="tab" aria-expanded="false">
+                                Submit Date
+                            </a>
+                        </li>                                 
+                        <li class="pull-right">
+                            <a href="javascript:toggleDiv('myContent');">
+                                Toggle All Comments
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content tab-space">
+                        <div class="tab-pane active" id="best-1">
+                            {% get_comment_list_by_promotions for object as comment_list %}
+                            {% include 'comments/comment_list_tab.html' %}
+                        </div>
+                        <div class="tab-pane" id="date-1">
+                            {% get_comment_list_by_date for object as comment_list %}
+                            {% include 'comments/comment_list_tab.html' %}
                         </div>
                     </div>
                 </div>
-            <hr />
+            </div>
         </div>
     </div>
 </div>

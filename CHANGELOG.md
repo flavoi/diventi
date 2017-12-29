@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a new and redisegned user profile with new styles, custom avatars and covers 
 - Introduced a 5 star rating system for any product 
 - Introduced a search engine across products and blog articles accessible from the navbar
-- Added placeholder image if the user doesn't have a proper avatar
 - Added custom 404, 403 and 500 error pages
 - Added pageheader to blog list page
 - Added search result page that display the title, the description and the contentype for each result
@@ -34,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Changed icon of featured product from light hand to solid fire
 - Enclosed change password form in a modal
 - Hidden section titles if there is no content available in product page
+- Enabled placeholder image if the user doesn't have a proper avatar
 
 ### Fixed
 - Replaced '-' with space on 'signed in/out/up' text occurrences

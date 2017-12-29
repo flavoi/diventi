@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="media-area">
-                {% get_comment_count for article as comment_count %}
+                {% get_comment_count for object as comment_count %}
 
                 <ul class="nav nav-pills nav-pills-info" role="tablist">
                     <li class="active">
@@ -24,10 +24,10 @@
 
                 <div class="tab-content tab-space">
                     <div class="tab-pane active" id="list-1">
-                         <h3 class="title text-center">Post your comment</h3>
+                        <a name="comments"><h3 class="title text-center">Post your comment</h3></a>
                         <div class="media media-post">
                         {% if user.is_authenticated %}
-                            {% get_comment_form for article as form %}
+                            {% get_comment_form for object as form %}
                             <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
                                 {% csrf_token %}
                                 <div class="media-body">
@@ -90,11 +90,11 @@
                             </ul>
                             <div class="tab-content tab-space">
                                 <div class="tab-pane active" id="best-1">
-                                    {% get_comment_list_by_promotions for article as comment_list %}
+                                    {% get_comment_list_by_promotions for object as comment_list %}
                                     {% include 'comments/comment_list_tab.html' %}
                                 </div>
                                 <div class="tab-pane" id="date-1">
-                                    {% get_comment_list_by_date for article as comment_list %}
+                                    {% get_comment_list_by_date for object as comment_list %}
                                     {% include 'comments/comment_list_tab.html' %}
                                 </div>
                             </div>

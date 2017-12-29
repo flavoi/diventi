@@ -176,7 +176,7 @@
         
         {% if product.authors.all %}
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">         
+                <div class="col-md-10 col-md-offset-1">       
                     <h3 class="title text-center">Content creators</h3>
                     <div class="team">
                         <div class="row">                   
@@ -209,4 +209,12 @@
     </div>
 </div>    
 
+<div class="section-white">
+    <div class="row">
+        <div class="col-md-12 text-left">
+            {% include "comments/comment_list.html" %}
+        </div>
+    </div>
+</div>
+        
 {% endblock main %}

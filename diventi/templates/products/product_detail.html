@@ -24,7 +24,7 @@
                     <div class="tab-content">
                         {% for imagepreview in product.imagepreviews.all %}
                         <div class="tab-pane {% if forloop.first %}active{% endif %}" id="product-page{{ imagepreview.id }}">
-                             <img src="{{ imagepreview.image }}"/>
+                             <img class="img-responsive" src="{{ imagepreview.image }}"/>
                         </div>
                         {% endfor %}
                     </div>
@@ -52,6 +52,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6">
+
                     <h2 class="title">                        
                         {{ product.title }} 
                         <br />
@@ -63,6 +64,7 @@
                             </a>
                         {% endif %}
                     </h2> 
+
                     <div id="acordeon">
                         <div class="panel-group" id="accordion">
                           <div class="panel panel-border panel-default">
@@ -101,37 +103,37 @@
                           </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3 col-md-offset-6">
-                    {% load ratings %}
-                    {% ratings product %}
-                </div>
-                {% if user.is_authenticated %}
-                    <div class="col-md-3 text-right">
-                        {% if bought %}                            
-                            <form action="{% url 'products:drop' product.slug %}" method="POST">
-                                {% csrf_token %}
-                                {{ drop_collection_form }}
-                                {{ drop_collection_form.errors }}
-                                <button type="submit" class="btn btn-round btn-gray btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Remove this product from your collection.">
-                                    <i class="fal fa-trash-alt fa-lg"></i>
-                                </button>
-                            </form>
-                        {% else %}
-                            <form action="{% url 'products:add' product.slug %}" method="POST">
-                                {% csrf_token %}
-                                {{ add_collection_form }}
-                                {{ add_collection_form.errors }}
-                                <button type="submit" class="btn btn-round btn-warning btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Add this product to your collection.">
-                                    <i class="fal fa-plus fa-lg"></i>
-                                </button>
-                            </form>
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% load ratings %}
+                            {% ratings product %}
+                        </div>                    
+                        {% if user.is_authenticated %}
+                            <div class="col-md-6 text-right">
+                                {% if bought %}                            
+                                    <form action="{% url 'products:drop' product.slug %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ drop_collection_form }}
+                                        {{ drop_collection_form.errors }}
+                                        <button type="submit" class="btn btn-round btn-gray btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Remove this product from your collection.">
+                                            <i class="fal fa-trash-alt fa-lg"></i>
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <form action="{% url 'products:add' product.slug %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ add_collection_form }}
+                                        {{ add_collection_form.errors }}
+                                        <button type="submit" class="btn btn-round btn-warning btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Add this product to your collection.">
+                                            <i class="fal fa-plus fa-lg"></i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
                         {% endif %}
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
 

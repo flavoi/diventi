@@ -3,19 +3,10 @@
 {% block title %}{{ product.title }}{% endblock title %}
 
 {% block extrahead %}
-{% load static %}
-{% load ratings %}
-<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
-
-<style>
-    #{{ id }} .star-ratings-rating-full, #{{ id }} .star-ratings-rating-empty {
-        background: url({% static 'star-ratings/images/stars.png' %}) no-repeat !important;
-    }
-</style>
-
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 {% endblock extrahead %}
-
 
 {% block bodyclass %}product-page{% endblock bodyclass %}
 
@@ -114,7 +105,8 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3 col-md-offset-6">       
+                <div class="col-md-3 col-md-offset-6">
+                    {% load ratings %}
                     {% ratings product %}
                 </div>
                 {% if user.is_authenticated %}

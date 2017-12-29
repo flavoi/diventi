@@ -6,11 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.6.2] → 2017-12-28
+## [0.6.3] → 2017-12-29
 
 ### Added
 - Introduced collections: a centralized space where a user can store any published products
 - Introduced a new and redisegned user profile with new styles, custom avatars and covers 
+- Introduced a 5 star rating system for any product 
 - Added search field in the navbar
 - Added placeholder image if the user doesn't have a proper avatar
 - Added custom 404, 403 and 500 error pages

@@ -4,22 +4,23 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="media-area">
+
             {% get_comment_count for object as comment_count %}
 
-            <ul class="nav nav-pills nav-pills-info" role="tablist">
-                <li class="active">
-                    <a href="#list-1" role="tab" data-toggle="tab" aria-expanded="true">
-                        Comment
-                    </a>
-                </li>
-                {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
+                <ul class="nav nav-pills nav-pills-info" role="tablist">
+                    <li class="active">
+                        <a href="#list-1" role="tab" data-toggle="tab" aria-expanded="true">
+                            Comment
+                        </a>
+                    </li>
                     <li class="">
                         <a href="#preview-1" role="tab" data-toggle="tab" aria-expanded="false">
                             Preview
                         </a>
                     </li>
-                {% endif %}            
-            </ul>
+                </ul>
+            {% endif %}
 
             <div class="tab-content tab-space">
                 <div class="tab-pane active" id="list-1">

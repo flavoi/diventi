@@ -52,12 +52,17 @@
         color: #ff9800;
     }
 
+    .navbar .navbar-warning {
+        background-color: #FFFFFF;
+        color: #555555;
+    }
+
   </style>
 </head>
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
-  <nav class="navbar {% block navbarclasses %}navbar-warning navbar-transparent navbar-absolute{% endblock navbarclasses %}">
+  <nav class="navbar {% block navbarclasses %}navbar-warning navbar-absolute navbar-transparent{% endblock navbarclasses %}">
 
     {% block messages %}
       {% if messages %}
@@ -87,7 +92,7 @@
               <span class="icon-bar"></span>
           </button>        
           <a href="{% url 'landing:home' %}" class="navbar-brand">
-            <span><img src="{% static 'brand/diventi-logo-transparent-white.png' %}" height="40" /></span>
+            <span><img src="{% static 'brand/diventi-mini-transparent-white.png' %}" height="40" /></span>
           </a>
         </div>
 

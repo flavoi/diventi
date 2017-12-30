@@ -23,7 +23,7 @@ class CommentPromoteToggleView(RedirectView):
             else:
                 comment.promotions.add(user)
                 messages.success(self.request, 'Comment has been promoted!')
-        next = 'blog:home'
+        next = 'landing:home'
         return reverse_lazy(next)
 
 

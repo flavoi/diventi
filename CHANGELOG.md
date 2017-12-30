@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [0.6.3] → 2017-12-29
+## [0.6.3] → 2017-12-30
 
 ### Added
 - Introduced collections: a centralized space where a user can store any published products
@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Adjusted uppercase letters in some account forms
 - Fixed 500 error page title
 - Improved the mobile responsiveness of the account forms
+- Enabled comment promotions and preview for any page that uses comments 
 
 ### Removed
 - Removed attachment support from blogposts (any attachment should be a product)

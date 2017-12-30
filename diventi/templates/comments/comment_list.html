@@ -1,5 +1,6 @@
 {% load comments %}
 {% load comment_extras %}
+{% include 'comments/comment_preview.html' %}
 
 <div class="text-center">
     {% get_comment_count for object as comment_count %}
@@ -54,7 +55,7 @@
     {% if user.is_authenticated %}
         <div class="tab-pane" id="preview-1">
             <h3 class="title text-center">Comment preview</h3>
-            <div class="media">
+            <div class="media text-left">
                 <a class="pull-left author" href="">
                     <div id="lp-avatar"></div>
                 </a>

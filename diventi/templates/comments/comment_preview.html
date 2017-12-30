@@ -1,3 +1,4 @@
+{% load static %}
 
 <!--  Mootolls Plugin for comment utilities   -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mootools/1.6.0/mootools-core-compat.js" type="text/javascript"></script>
@@ -22,7 +23,6 @@
             {% if user.avatar %}
             lpavatar.set('html','<div class="avatar"><img class="media-object" src="{{ user.avatar.image }}" /></div>');
             {% endif %}
-            
         };
         //comment...easy
         $$('#live-preview-form input, #live-preview-form textarea').addEvents({

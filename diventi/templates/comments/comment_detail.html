@@ -1,7 +1,7 @@
 {% load humanize %}
 {% load static %}
 
-<div {% if not node.get_previous_sibling %}{% else %}class="myContent" style="display: none;"{% endif %}>
+<div {% if node.is_root_node %}{% else %}class="myContent" style="display: none;"{% endif %}>
     <div class="media">
         <a class="pull-left" href="#">
             <div class="avatar">
@@ -15,12 +15,20 @@
         <div class="media-body text-left">
             <h4 class="media-heading">{{ node.user.first_name }} <small> {{ node.submit_date|naturaltime }}</small></h4>
             <h6 class="text-muted"></h6>
-            <p>{{ node.comment }}</p>                     
+            <p>{{ node.comment }}</p>               
             <div class="media-footer">
                 {% if user.is_authenticated %}
-                    <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if node.user_has_promoted %}btn-warning{% endif %} pull-right"><i class="fal fa-thumbs-up fa-lg"></i> 
+                    <a href="" class="btn btn-simple pull-right" rel="tooltip" title="" data-original-title="Reply to Comment">
+                        <i class="fal fa-reply fa-lg comment-icon"></i> Reply
+                    </a>
+                    <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if node.user_has_promoted %}btn-warning{% endif %} pull-right"><i class="fal fa-thumbs-up fa-lg comment-icon"></i> 
                         {{ node.promotions.count }}
                     </a>
+                    {% if not node.is_leaf_node %}
+                        <a href="" class="btn btn-simple pull-right" style="cursor: default;" rel="tooltip" title="" data-original-title="Number of replies">
+                            <i class="fal fa-comments fa-lg comment-icon"></i> {{ node.get_descendant_count }}
+                        </a>
+                    {% endif %}
                 {% endif %}
             </div>
             {% if not node.is_leaf_node %}

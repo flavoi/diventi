@@ -1,25 +1,32 @@
 {% load humanize %}
 {% load static %}
 
-<div class="media">
-    <a class="pull-left" href="#">
-        <div class="avatar">
-            {% if comment.user.avatar %}
-                <img class="media-object" src="{{ comment.user.avatar.image }}" />
-            {% else %}
-                <img class="media-object" src="{% static 'material-kit/img/placeholder.jpg' %}">
-            {% endif %}
-        </div>
-    </a>
-    <div class="media-body text-left">
-        <h4 class="media-heading">{{ comment.user.first_name }} <small> {{ comment.submit_date|naturaltime }}</small></h4>
-        <h6 class="text-muted"></h6>
-        <p>{{ comment.comment }}</p>                        
-        <div class="media-footer">
-            {% if user.is_authenticated %}
-                <a data-href="{% url 'comments:promote-toggle-api' comment.id %}" href="{% url 'comments:promote-toggle' comment.id %}" data-promotions="{{ comment.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if comment.user_has_promoted %}btn-warning{% endif %} pull-right"><i class="fal fa-thumbs-up fa-lg"></i> 
-                    {{ comment.promotions.count }}
-                </a>
+<div {% if not node.get_previous_sibling %}{% else %}class="myContent" style="display: none;"{% endif %}>
+    <div class="media">
+        <a class="pull-left" href="#">
+            <div class="avatar">
+                {% if node.user.avatar %}
+                    <img class="media-object" src="{{ node.user.avatar.image }}" />
+                {% else %}
+                    <img class="media-object" src="{% static 'material-kit/img/placeholder.jpg' %}">
+                {% endif %}
+            </div>
+        </a>
+        <div class="media-body text-left">
+            <h4 class="media-heading">{{ node.user.first_name }} <small> {{ node.submit_date|naturaltime }}</small></h4>
+            <h6 class="text-muted"></h6>
+            <p>{{ node.comment }}</p>                     
+            <div class="media-footer">
+                {% if user.is_authenticated %}
+                    <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" type="submit" class="btn btn-promote btn-simple {% if node.user_has_promoted %}btn-warning{% endif %} pull-right"><i class="fal fa-thumbs-up fa-lg"></i> 
+                        {{ node.promotions.count }}
+                    </a>
+                {% endif %}
+            </div>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
             {% endif %}
         </div>
     </div>

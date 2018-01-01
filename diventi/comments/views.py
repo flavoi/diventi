@@ -3,7 +3,6 @@ from django.views.generic import RedirectView
 from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
 
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions

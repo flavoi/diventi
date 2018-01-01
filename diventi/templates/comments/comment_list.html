@@ -1,5 +1,6 @@
 {% load comments %}
 {% load comment_extras %}
+
 {% include 'comments/comment_preview.html' %}
 
 <div class="text-center">
@@ -93,20 +94,36 @@
                 </a>
             </li>
         </ul>
+
+        {% load mptt_tags %}
         <div class="tab-content tab-space">
             <div class="tab-pane active" id="best-1">
-                {% get_comment_list_by_promotions for object as comment_list %}
-                {% include 'comments/comment_list_tab.html' %}
+                {% get_comment_list_by_promotions for object as comment_list_by_promotions %}
+                {% recursetree comment_list_by_promotions %}
+                    {% include "comments/comment_detail.html" %}
+                {% endrecursetree %}
             </div>
             <div class="tab-pane" id="date-1">
-                {% get_comment_list_by_date for object as comment_list %}
-                {% include 'comments/comment_list_tab.html' %}
+                {% get_comment_list_by_date for object as comment_list_by_date %}
+                {% recursetree comment_list_by_date %}
+                    {% include "comments/comment_detail.html" %}
+                {% endrecursetree %}
             </div>
         </div>
     </div>
 </div>
 
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous">
+</script>
+
 <script>
+    function toggleDiv(divId) {
+       $("."+divId).toggle();
+    }
+
     function updateText(btn, newCount, verb){
         btn.attr("data-promotions", newCount)
         icon = "<i class='fal fa-thumbs-up fa-lg'></i>"

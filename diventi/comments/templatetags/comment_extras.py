@@ -7,23 +7,6 @@ from django_comments.templatetags.comments import CommentListNode
 register = template.Library()
 
 
-class PaginatedListNote:
-    """ Activate pagination utilities for comment nodes. """
-    
-    def get_paginated_qs(self, context, qs, pages):
-        paginator = Paginator(qs, pages)
-        page = context['request'].GET.get('page')
-        try:
-            qs = paginator.page(page)
-        except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
-            qs = paginator.page(1)
-        except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
-            qs = paginator.page(paginator.num_pages)
-        return qs
-
-
 class DateOrderedCommentListNode(CommentListNode):
     """Insert a list of comments ordered by submit date into the context."""
 

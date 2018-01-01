@@ -1,5 +1,6 @@
 {% load humanize %}
 {% load static %}
+{% load comments %}
 
 <div {% if node.is_root_node %}{% else %}class="myContent" style="display: none;"{% endif %}>
     <div class="media">
@@ -29,6 +30,26 @@
                             <i class="fal fa-comments fa-lg comment-icon"></i> {{ node.get_descendant_count }}
                         </a>
                     {% endif %}
+
+                    {% get_comment_form for object as form %}
+                    <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
+                        {% csrf_token %}
+                        <div class="media-body">
+                            <textarea  style="padding: 10px;" name="comment" id="comment" class="form-control" placeholder="Write your comment." rows="3" required></textarea>
+                            {{ form.content_type }}
+                            <span style="display:none">{{ form.honeypot }}</span>
+                            {{ form.object_pk }}
+                            {{ form.timestamp }}
+                            {{ form.security_hash }}
+                            {% if node.id %}    
+                                <input type="hidden" name="parent" id="parent_id" value="{{ node.id }}" />
+                            {% endif %}
+                            <div class="media-footer">
+                                <input class="btn btn-warning btn-wd pull-right" type="submit" value="Post" id="id_submit" />
+                            </div>
+                        </div>
+                    </form>
+                
                 {% endif %}
             </div>
             {% if not node.is_leaf_node %}

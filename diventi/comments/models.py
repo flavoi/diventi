@@ -1,6 +1,6 @@
 from django.db import models
-from django_comments.abstracts import CommentAbstractModel
 
+from django_comments.abstracts import CommentAbstractModel
 from mptt.models import MPTTModel, TreeForeignKey
 
 from diventi.core.models import PromotableModel

@@ -3,31 +3,66 @@ from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django_comments.templatetags.comments import CommentListNode
+from mptt.utils import get_cached_trees
+from mptt.templatetags.mptt_tags import RecurseTreeNode
 
 register = template.Library()
 
 
-class DateOrderedCommentListNode(CommentListNode):
+class DiventiCommentListNode(CommentListNode):
+    """Fetches a list of comments customized for Diventi context."""
+
+    def get_context_value_from_queryset(self, context, qs):
+        return qs
+
+
+class DateOrderedRecurseTreeNode(RecurseTreeNode):
     """Insert a list of comments ordered by submit date into the context."""
 
-    def get_context_value_from_queryset(self, context, qs):
-        qs = qs.order_by('tree_id', 'level', '-submit_date')
-        return qs
+    def render(self, context):
+        queryset = self.queryset_var.resolve(context)
+        queryset = queryset.order_by('level', '-submit_date')
+        roots = get_cached_trees(queryset)
+        bits = [super(DateOrderedRecurseTreeNode, self)._render_node(context, node) for node in roots]
+        return ''.join(bits)
 
 
-class PromotionOrderedCommentListNode(CommentListNode):
+class PromotionOrderedRecurseTreeNode(RecurseTreeNode):
     """Insert a list of comments ordered by the number of promotions into the context."""
 
-    def get_context_value_from_queryset(self, context, qs):
-        qs = qs.annotate(promotions_count=Count('promotions'))
-        qs = qs.order_by('tree_id', 'level', '-promotions_count')
-        return qs
+    def render(self, context):
+        queryset = self.queryset_var.resolve(context)
+        queryset = queryset.annotate(promotions_count=Count('promotions'))
+        queryset = queryset.order_by('level', '-promotions_count')
+        roots = get_cached_trees(queryset)
+        bits = [super(PromotionOrderedRecurseTreeNode, self)._render_node(context, node) for node in roots]
+        return ''.join(bits)
 
 
 @register.tag
-def get_comment_list_by_date(parser, token):
-    return DateOrderedCommentListNode.handle_token(parser, token)
+def get_comment_list(parser, token):
+    return DiventiCommentListNode.handle_token(parser, token)
 
 @register.tag
-def get_comment_list_by_promotions(parser, token):
-    return PromotionOrderedCommentListNode.handle_token(parser, token)
+def dateorderedcursetree(parser, token):
+    bits = token.contents.split()
+    if len(bits) != 2:
+        raise template.TemplateSyntaxError(_('%s tag requires a queryset') % bits[0])
+
+    queryset_var = template.Variable(bits[1])
+    template_nodes = parser.parse(('endrecursetree',))
+    parser.delete_first_token()
+
+    return DateOrderedRecurseTreeNode(template_nodes, queryset_var)
+
+@register.tag
+def promotionorderedcursetree(parser, token):
+    bits = token.contents.split()
+    if len(bits) != 2:
+        raise template.TemplateSyntaxError(_('%s tag requires a queryset') % bits[0])
+
+    queryset_var = template.Variable(bits[1])
+    template_nodes = parser.parse(('endrecursetree',))
+    parser.delete_first_token()
+
+    return PromotionOrderedRecurseTreeNode(template_nodes, queryset_var)

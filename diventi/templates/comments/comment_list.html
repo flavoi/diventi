@@ -1,4 +1,5 @@
 {% load comments %}
+{% load mptt_tags %}
 {% load comment_extras %}
 
 {% include 'comments/comment_preview.html' %}
@@ -75,10 +76,8 @@
 <h3 class="title text-center">{{ comment_count }} Comments</h3>
 <div class="row">
     <div class="col-md-12">
+
         <ul class="nav nav-pills nav-pills-info" role="tablist">
-            <!--
-                color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
-            -->
             <li class="active">
                 <a href="#best-1" role="tab" data-toggle="tab" aria-expanded="true">
                     Best
@@ -98,21 +97,20 @@
             --> 
         </ul>
 
-        {% load mptt_tags %}
+        {% get_comment_list for object as comments %}
         <div class="tab-content tab-space">
             <div class="tab-pane active" id="best-1">
-                {% get_comment_list_by_promotions for object as comment_list_by_promotions %}
-                {% recursetree comment_list_by_promotions %}
+                {% promotionorderedcursetree comments %}
                     {% include "comments/comment_detail.html" %}
                 {% endrecursetree %}
             </div>
             <div class="tab-pane" id="date-1">
-                {% get_comment_list_by_date for object as comment_list_by_date %}
-                {% recursetree comment_list_by_date %}
+                {% dateorderedcursetree comments %}
                     {% include "comments/comment_detail.html" %}
                 {% endrecursetree %}
             </div>
         </div>
+
     </div>
 </div>
 

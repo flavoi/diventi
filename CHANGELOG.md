@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced collections: a centralized space where a user can store any published products
-- Introduced a new and redisegned user profile with new styles, custom avatars and covers 
+- Introduced a redisegned user profile with new styles, custom avatars and covers 
 - Introduced a 5 star rating system for any product 
 - Introduced a search engine across products and blog articles accessible from the navbar
 - Added custom 404, 403 and 500 error pages

@@ -25,9 +25,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a redisegned user profile with new styles, custom avatars and covers 
 - Introduced a 5 star rating system for any product 
 - Introduced a search engine across products and blog articles accessible from the navbar
+- Added search result page that display the title, the description and the contentype for each result
 - Added custom 404, 403 and 500 error pages
 - Added pageheader to blog list page
-- Added search result page that display the title, the description and the contentype for each result
 
 ### Changed
 - Twicked positioning of the header content of the landing page

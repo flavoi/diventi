@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-02 22:38+0100\n"
+"POT-Creation-Date: 2018-01-02 22:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,40 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\config\settings\base.py:146
+#: config/settings/base.py:146
 msgid "Italian"
 msgstr "Italiano"
 
-#: .\config\settings\base.py:147
+#: config/settings/base.py:147
 msgid "English"
 msgstr "Inglese"
 
-#: .\diventi\accounts\forms.py:23 .\diventi\accounts\forms.py:46
+#: diventi/accounts/forms.py:23 diventi/accounts/forms.py:46
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: .\diventi\accounts\forms.py:24 .\diventi\accounts\forms.py:47
+#: diventi/accounts/forms.py:24 diventi/accounts/forms.py:47
 msgid "Your email"
 msgstr "La tua email"
 
-#: .\diventi\accounts\forms.py:32
+#: diventi/accounts/forms.py:32
 msgid "Your password"
 msgstr "Digita la tua password"
 
-#: .\diventi\accounts\forms.py:36
+#: diventi/accounts/forms.py:36
 msgid "Repeat your password"
 msgstr "Ripeti la tua password"
 
-#: .\diventi\accounts\forms.py:57
+#: diventi/accounts/forms.py:57
 msgid "What's your story?"
 msgstr "Qual è la tua storia?"
 
-#: .\diventi\accounts\forms.py:58
+#: diventi/accounts/forms.py:58
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
-#: .\diventi\comments\templatetags\comment_extras.py:50
-#: .\diventi\comments\templatetags\comment_extras.py:62
+#: diventi/comments/templatetags/comment_extras.py:50
+#: diventi/comments/templatetags/comment_extras.py:62
 #, python-format
 msgid "%s tag requires a queryset"
 msgstr "il tag %s richiede una queryset"

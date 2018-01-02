@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-02 22:38+0100\n"
+"POT-Creation-Date: 2018-01-02 22:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\diventi\templates\accounts\change_password.html:68
+#: diventi/templates/accounts/change_password.html:68
 msgid "Confirm"
 msgstr ""
 
-#: .\diventi\templates\landing\landing.html:81
+#: diventi/templates/landing/landing.html:81
 #, python-format
 msgid "Hello %(user.first_name)s!"
 msgstr ""
 
-#: .\diventi\templates\landing\landing.html:82
+#: diventi/templates/landing/landing.html:82
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 
-#: .\diventi\templates\landing\landing.html:84
+#: diventi/templates/landing/landing.html:84
 msgid "View profile"
 msgstr ""
 
-#: .\diventi\templates\landing\landing.html:88
+#: diventi/templates/landing/landing.html:88
 msgid "Join our community"
 msgstr ""
 
-#: .\diventi\templates\landing\landing.html:89
+#: diventi/templates/landing/landing.html:89
 msgid "Sign up to know more and start exploring."
 msgstr ""
 
-#: .\diventi\templates\star_ratings\widget.html:34
+#: diventi/templates/star_ratings/widget.html:34
 msgid "Log in to rate"
 msgstr ""
 
-#: .\diventi\templates\star_ratings\widget.html:57
+#: diventi/templates/star_ratings/widget.html:57
 msgid "Average: "
 msgstr ""
 
-#: .\diventi\templates\star_ratings\widget.html:60
+#: diventi/templates/star_ratings/widget.html:60
 msgid "Rating Count: "
 msgstr ""
 
-#: .\diventi\templates\star_ratings\widget.html:63
+#: diventi/templates/star_ratings/widget.html:63
 msgid "You Rated: "
 msgstr ""
 
-#: .\diventi\templates\star_ratings\widget.html:63
+#: diventi/templates/star_ratings/widget.html:63
 msgid "Not rated"
 msgstr ""
 
-#: .\diventi\templates\star_ratings\widget.html:65
+#: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr ""

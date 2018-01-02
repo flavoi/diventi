@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced threaded comments: comments are now stored as a tree and can be nested. A user may reply to any comments in any page that includes them.
 
+### Changed
+- Changed to yellow the background color of the inverse navbar links
+
+### Removed
+- Removed page header from search results page 
+
 
 ## [0.6.4] → 2017-12-30
 

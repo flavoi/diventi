@@ -21,8 +21,8 @@ class DateOrderedRecurseTreeNode(RecurseTreeNode):
 
     def render(self, context):
         queryset = self.queryset_var.resolve(context)
-        queryset = queryset.order_by('level', '-submit_date')
         roots = get_cached_trees(queryset)
+        roots.sort(key=lambda node: node.submit_date, reverse=True)
         bits = [super(DateOrderedRecurseTreeNode, self)._render_node(context, node) for node in roots]
         return ''.join(bits)
 
@@ -32,9 +32,9 @@ class PromotionOrderedRecurseTreeNode(RecurseTreeNode):
 
     def render(self, context):
         queryset = self.queryset_var.resolve(context)
-        queryset = queryset.annotate(promotions_count=Count('promotions'))
-        queryset = queryset.order_by('level', '-promotions_count')
+        queryset = queryset.annotate(promotions_count=Count('promotions'))      
         roots = get_cached_trees(queryset)
+        roots.sort(key=lambda node: node.promotions_count, reverse=True)
         bits = [super(PromotionOrderedRecurseTreeNode, self)._render_node(context, node) for node in roots]
         return ''.join(bits)
 

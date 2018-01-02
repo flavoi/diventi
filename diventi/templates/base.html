@@ -1,3 +1,4 @@
+{% load i18n %}
 <!doctype html>
 <html lang="en">
 
@@ -86,7 +87,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true"><i class="fal fa-times"></i></span>
                 </button>
-                  <i class="fal fa-bullhorn fa-lg"></i> &middot; {{ message }}
+                  <i class="fal fa-bullhorn fa-lg"></i> &middot; {% trans message.message %}
               </div>
             </div>
           {% endfor %}
@@ -111,7 +112,16 @@
 
         <div class="collapse navbar-collapse">     
 
-          <ul class="nav navbar-nav navbar-right">              
+          <ul class="nav navbar-nav navbar-right">
+              <li>
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% get_language_info for LANGUAGE_CODE as lang %}
+                  <a>{{ lang.name_local }}</a>
+              </li>
+              <li>
+                {% include 'locale/translation_form.html' %}
+              </li>
+
               <li>
                 <a href="{% url 'blog:home' %}">
                   Blog
@@ -126,7 +136,7 @@
                 </li>
               {% endif %}
 
-              {% if user.is_authenticated %}                
+              {% if user.is_authenticated %}           
                 <li class="dropdown">
                   <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown">
                       <div class="profile-photo-small">

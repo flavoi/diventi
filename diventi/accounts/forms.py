@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import ugettext as _
 
 from captcha.fields import ReCaptchaField
 
@@ -19,8 +20,8 @@ class DiventiUserCreationForm(UserCreationForm):
         model = DiventiUser
         fields = ['first_name', 'email', 'password1', 'password2']
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your name'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your email'}),            
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),            
         }
 
     def __init__(self, *args, **kwargs):
@@ -28,11 +29,11 @@ class DiventiUserCreationForm(UserCreationForm):
         """ Somehow the widgets for the password fields must be managed in the constructor. """
         self.fields['password1'].widget = forms.PasswordInput(attrs={
             'class': 'form-control', 
-            'placeholder': 'Your password'
+            'placeholder': _('Your password')
             })
         self.fields['password2'].widget = forms.PasswordInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Repeat your password',
+            'placeholder': _('Repeat your password'),
             })
 
 
@@ -42,8 +43,8 @@ class DiventiUserInitForm(forms.ModelForm):
         model = DiventiUser
         fields = ['first_name', 'email']
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your name'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your email'}),            
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),            
         }
 
 
@@ -53,8 +54,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
         model = DiventiUser
         fields = ['avatar', 'cover', 'bio', 'role']
         labels = {
-            'bio': "What's your story?",
-            'role': "What's your favourite class?",
+            'bio': _("What's your story?"),
+            'role': _("What's your favourite class?"),
         }
         widgets = {
             'bio': forms.TextInput(attrs={'class': 'form-control',}),

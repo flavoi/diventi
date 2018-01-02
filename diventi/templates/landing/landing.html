@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block titleseparator %}{% endblock titleseparator %}
 {% block title %}{% endblock title %}
@@ -77,15 +78,15 @@
                 <div class="col-md-8 col-md-offset-2">
                     {% if user.is_authenticated %}
                     <div class="text-center">
-                        <h2 class="title">Hello {{ user.first_name }}!</h2>
-                        <h5 class="description">You have signed in. Feel free to explore or deep dive into your profile.</h5>
+                        <h2 class="title">{% blocktrans %}Hello {{ user.first_name }}!{% endblocktrans %}</h2>
+                        <h5 class="description">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</h5>
                         <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning">
-                            <i class="fal fa-user-circle fa-lg"></i> View profile
+                            <i class="fal fa-user-circle fa-lg"></i> {% trans "View profile" %}
                         </a>
                     </div>
                     {% else %}
-                        <h2 class="text-center title">Join our community</h2>
-                        <h4 class="text-center description">Sign up to know more and start exploring.</h4>
+                        <h2 class="text-center title">{% trans "Join our community" %}</h2>
+                        <h4 class="text-center description">{% trans "Sign up to know more and start exploring." %}</h4>
                         <form class="contact-form" method="POST">
                             {% csrf_token %}
                             {% for field in registration_form %}

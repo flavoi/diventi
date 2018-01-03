@@ -122,7 +122,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enabled rich text for page elements
 - Updated the description of the storyline section
 
-## Fixed
+### Fixed
 - Fixed a problem in accounts/widgets that caused an error while migrating the database
 
 
@@ -168,7 +168,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed icons from navbar
 
 
-## [0.1.0] → 2017-10-14
+## [0.1.0] → 2017-10-14
 
 ### Added
 - Introduced a landing page with the presentation of our product

@@ -10,7 +10,7 @@ This web application is inspired on the lazy dungeon master techniques by [Sly F
 ### Built With
 * [Django](https://www.djangoproject.com/) - The web framework;
 * [Bootstrap](http://getbootstrap.com) - The toolkit used for the visuals;
-* [Rpg-Awesome](https://nagoshiashumari.github.io/Rpg-Awesome/) - The rpg-themed icons.
+* [Fonta Awesome](https://fontawesome.com/) - The best icons on the internet.
 
 ### License
 This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.

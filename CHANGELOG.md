@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Changed to yellow the background color of the inverse navbar links
 
+### Fixed
+- Fixed some minor formatting errors on the changelog
+
 ### Removed
 - Removed page header from search results page 
 
@@ -100,7 +103,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that made the background image of blogposts disappear
 - Fixed a problem that made the landing page crush if no featured product were found
 
-### Removed
+### Removed
 - Removed timeline events from the landing app
 - Removed rpg-awesome icons fron the base template
 
@@ -125,7 +128,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.3.3] → 2017-10-29
 
-### Added
+### Added
 - Introduced profile page with avatar, bio and favourite class customization options
 - Introduced a dedicated profile picture for staff members
 - Introduced detailed profile cards into profile update page
@@ -141,7 +144,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that caused the avatar to be hidden in the landing page
 - Fixed a problem that caused the sign-up form to fail silently
 
-### Removed
+### Removed
 - Removed automatic login after user signup
 - Removed new relic monitoring
 
@@ -158,7 +161,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated README with LICENCE, versioning and incipit infos
 - Updated cover visuals in blogposts page
 
-### Fixed
+### Fixed
 - Fixed a problem that caused the avatar to be a requirement for comment post
 
 ### Removed

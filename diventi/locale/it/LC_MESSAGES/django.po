@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-03 15:35+0100\n"
+"POT-Creation-Date: 2018-01-03 22:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\config\settings\base.py:145
+#: .\config\settings\base.py:149
 msgid "Italian"
 msgstr "Italiano"
 
-#: .\config\settings\base.py:146
+#: .\config\settings\base.py:150
 msgid "English"
 msgstr "Inglese"
 
@@ -97,21 +97,20 @@ msgid "Hello"
 msgstr "Ciao"
 
 #: .\diventi\templates\landing\landing.html:82
-msgid ""
-"You have signed in. Feel free to explore or deep dive into your profile."
-msgstr ""
+msgid "You have signed in. Feel free to explore or deep dive into your profile."
+msgstr "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo profilo."
 
 #: .\diventi\templates\landing\landing.html:84
 msgid "View profile"
-msgstr ""
+msgstr "Visualizza profilo"
 
 #: .\diventi\templates\landing\landing.html:88
 msgid "Join our community"
-msgstr ""
+msgstr "Unisciti alla nostra community"
 
 #: .\diventi\templates\landing\landing.html:89
 msgid "Sign up to know more and start exploring."
-msgstr ""
+msgstr "Registrati per saperne di più e accedere ai contenuti."
 
 #: .\diventi\templates\star_ratings\widget.html:34
 msgid "Log in to rate"

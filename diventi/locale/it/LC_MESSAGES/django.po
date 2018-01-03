@@ -20,63 +20,63 @@ msgstr ""
 
 #: .\config\settings\base.py:145
 msgid "Italian"
-msgstr ""
+msgstr "Italiano"
 
 #: .\config\settings\base.py:146
 msgid "English"
-msgstr ""
+msgstr "Inglese"
 
 #: .\diventi\accounts\forms.py:23 .\diventi\accounts\forms.py:46
 msgid "Your name"
-msgstr ""
+msgstr "Il tuo nome"
 
 #: .\diventi\accounts\forms.py:24 .\diventi\accounts\forms.py:47
 msgid "Your email"
-msgstr ""
+msgstr "La tua email"
 
 #: .\diventi\accounts\forms.py:32
 msgid "Your password"
-msgstr ""
+msgstr "La tua password"
 
 #: .\diventi\accounts\forms.py:36
 msgid "Repeat your password"
-msgstr ""
+msgstr "Ripeti la tua nuova password"
 
 #: .\diventi\accounts\forms.py:57
 msgid "What's your story?"
-msgstr ""
+msgstr "Qual è la tua storia?"
 
 #: .\diventi\accounts\forms.py:58
 msgid "What's your favourite class?"
-msgstr ""
+msgstr "Qual è la tua classe preferita?"
 
 #: .\diventi\accounts\views.py:24
 msgid "You have signed in!"
-msgstr ""
+msgstr "Hai effettuato l'accesso!"
 
 #: .\diventi\accounts\views.py:25
 msgid "Your sign in has failed."
-msgstr ""
+msgstr "L'accesso non è andato a buon fine."
 
 #: .\diventi\accounts\views.py:58
 msgid "Your password was successfully updated!"
-msgstr ""
+msgstr "La tua password è stata aggiornata!"
 
 #: .\diventi\accounts\views.py:72
 msgid "You have signed up!"
-msgstr ""
+msgstr "La tua registrazione è andata a buon fine!"
 
 #: .\diventi\accounts\views.py:73
 msgid "Your sign up has failed."
-msgstr ""
+msgstr "La registrazione non è andata a buon fine."
 
 #: .\diventi\accounts\views.py:109
 msgid "Profile updated!"
-msgstr ""
+msgstr "Profilo aggiornato!"
 
 #: .\diventi\accounts\views.py:110
 msgid "Profile has not been updated."
-msgstr ""
+msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
 #: .\diventi\accounts\views.py:122
 msgid "A user may update his own profile only."

@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import ugettext_lazy as _
 
 
 def get_env_variable(var_name):
@@ -59,6 +60,10 @@ LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
+TRANSLATION_APPS = [
+    'modeltranslation',
+]
+
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -91,7 +96,7 @@ THIRD_PARTY_APPS = [
     'mptt',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = TRANSLATION_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 COMMENTS_APP = 'diventi.comments'
 
@@ -138,18 +143,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-from django.utils.translation import ugettext_lazy as _
+LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
   ('it', _('Italian')),
   ('en', _('English')),
 ]
 
-LOCALE_PATHS = (
-    BASE_DIR / 'locale',
-)
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 TIME_ZONE = 'Europe/Rome'
 

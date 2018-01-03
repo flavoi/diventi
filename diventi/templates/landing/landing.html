@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">                
-                <h1 class="title">{{ presentation.title }}</h1>
+                <h1 class="title">{{ presentation.title|title }}.</h1>
                 <h4>{{ presentation.abstract|safe }}</h4>
                 <br />
                 <div class="buttons">
@@ -78,7 +78,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     {% if user.is_authenticated %}
                     <div class="text-center">
-                        <h2 class="title">{% blocktrans %}Hello {{ user.first_name }}!{% endblocktrans %}</h2>
+                        <h2 class="title">{% trans "Hello" %} {{ user.first_name }}!</h2>
                         <h5 class="description">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</h5>
                         <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning">
                             <i class="fal fa-user-circle fa-lg"></i> {% trans "View profile" %}

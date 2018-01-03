@@ -1,6 +1,6 @@
 {% load i18n %}
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
   {% load static %}
@@ -117,9 +117,6 @@
                   {% get_current_language as LANGUAGE_CODE %}
                   {% get_language_info for LANGUAGE_CODE as lang %}
                   <a>{{ lang.name_local }}</a>
-              </li>
-              <li>
-                {% include 'locale/translation_form.html' %}
               </li>
 
               <li>

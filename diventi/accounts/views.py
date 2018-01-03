@@ -8,6 +8,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
+from django.utils.translation import ugettext as _
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
@@ -20,8 +21,8 @@ from diventi.products.models import Product
 class DiventiLoginView(AnonymousRequiredMixin, LoginView):
 
     template_name = "accounts/signin.html"
-    success_msg = 'You have signed in!'
-    fail_msg = 'Your sign in has failed.'
+    success_msg = _('You have signed in!')
+    fail_msg = _('Your sign in has failed.')
     fail_url = reverse_lazy('landing:home')
 
     def get_success_url(self):
@@ -54,7 +55,7 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
+            messages.success(request, _('Your password was successfully updated!'))
             return redirect('landing:home')
     else:
         form = PasswordChangeForm(request.user)
@@ -68,8 +69,8 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     form_class = DiventiUserCreationForm
     model = DiventiUser
     template_name = 'accounts/signup.html'
-    success_msg = 'You have signed up!'    
-    fail_msg = 'Your sign up has failed.'
+    success_msg = _('You have signed up!')    
+    fail_msg = _('Your sign up has failed.')
     fail_url = reverse_lazy('accounts:signup')
 
     def get_initial(self):
@@ -105,8 +106,8 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
     form_class = DiventiUserUpdateForm
     model = DiventiUser
     template_name = "accounts/user_base.html"
-    success_msg = 'Profile updated!'
-    fail_msg = 'Profile has not been updated.'
+    success_msg = _('Profile updated!')
+    fail_msg = _('Profile has not been updated.')
 
     def user_passes_test(self):
         """ A user may update his own profile only. """
@@ -118,7 +119,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         """ Inject form with additional keyword arguments. """
         kwargs = super(DiventiUserUpdateView, self).get_form_kwargs()
         if not self.user_passes_test():
-            raise PermissionDenied("A user may update his own profile only.")
+            raise PermissionDenied(_("A user may update his own profile only."))
         user = self.request.user
         kwargs['user'] = user
         return kwargs

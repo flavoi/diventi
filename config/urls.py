@@ -17,13 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 
 admin.autodiscover()
 
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^dashboard/', admin.site.urls),
-    url(r'^', include('diventi.landing.urls', namespace='landing')),
     url(r'^blog/', include('diventi.blog.urls', namespace='blog')),
     url(r'^accounts/', include('diventi.accounts.urls', namespace='accounts')),
     url(r'^comments/default/', include('django_comments.urls')),
@@ -31,4 +30,11 @@ urlpatterns = [
     url(r'^products/', include('diventi.products.urls', namespace='products')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
+    url(r'^dashboard/', admin.site.urls),
+    url(r'^', include('diventi.landing.urls', namespace='landing')),
+)

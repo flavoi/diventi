@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
@@ -25,12 +26,16 @@ class Presentation(models.Model):
     abstract = RichTextField(blank=True)
     description = RichTextField(blank=True)
     cover = models.ImageField(blank=True, upload_to='landing/')
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=False, verbose_name=_('active'))
 
     objects = PresentationManager()
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _('presentation')
+        verbose_name_plural = _('presentations')
 
 
 class Feature(Element):    

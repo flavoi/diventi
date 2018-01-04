@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 14:52+0100\n"
+"POT-Creation-Date: 2018-01-04 15:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,6 +87,22 @@ msgstr ""
 #, python-format
 msgid "%s tag requires a queryset"
 msgstr "il tag %s richiede una queryset"
+
+#: diventi/landing/apps.py:7
+msgid "landing"
+msgstr "pagina di destinazione"
+
+#: diventi/landing/models.py:29
+msgid "active"
+msgstr "attiva"
+
+#: diventi/landing/models.py:37
+msgid "presentation"
+msgstr "presentazione"
+
+#: diventi/landing/models.py:38
+msgid "presentations"
+msgstr "presentazioni"
 
 #: diventi/templates/accounts/change_password.html:68
 msgid "Confirm"

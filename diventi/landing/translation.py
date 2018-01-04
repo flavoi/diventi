@@ -5,4 +5,4 @@ from .models import Presentation
 
 @register(Presentation)
 class PresentationTranslationOptions(TranslationOptions):
-    fields = ('title', 'abstract', 'description')
+    fields = ('title', 'abstract', 'description',)

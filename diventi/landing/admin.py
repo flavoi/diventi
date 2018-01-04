@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from modeltranslation.admin import TranslationAdmin
+from diventi.core.admin import DiventiTranslationAdmin
 
 from .models import Presentation, Feature
 
@@ -11,7 +11,7 @@ class FeatureInline(admin.TabularInline):
     extra = 0
 
 
-class PresentationAdmin(TranslationAdmin):
+class PresentationAdmin(DiventiTranslationAdmin):
     list_display = ['pk', 'title', 'active']    
     inlines = [
         FeatureInline,

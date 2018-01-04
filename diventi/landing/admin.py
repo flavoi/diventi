@@ -2,17 +2,19 @@ from django.contrib import admin
 
 from diventi.core.admin import DiventiTranslationAdmin
 
+from modeltranslation.admin import TranslationTabularInline
+
 from .models import Presentation, Feature
 
 
-class FeatureInline(admin.TabularInline):
+class FeatureInline(TranslationTabularInline):
     model = Feature
-    fields = ('title', 'icon', 'color', 'description')
-    extra = 0
+    # fields = ('title', 'icon', 'color', 'description')
+    # extra = 0
 
 
 class PresentationAdmin(DiventiTranslationAdmin):
-    list_display = ['pk', 'title', 'active']    
+    list_display = ['title', 'active']    
     inlines = [
         FeatureInline,
     ]

@@ -1,6 +1,7 @@
-from django.utils import timezone
-
 from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
 from django.conf import settings
 from django.utils.html import mark_safe
 
@@ -8,12 +9,12 @@ from cuser.middleware import CuserMiddleware
 
 
 COLORS_CHOICES = (
-    ('info', 'Blue'),
-    ('primary', 'Rose'),
-    ('danger', 'Red'),
-    ('warning', 'Yellow'),
-    ('success', 'Green'),
-    ('default', 'Gray'),
+    ('info', _('Blue')),
+    ('primary', _('Rose')),
+    ('danger', _('Red')),
+    ('warning', _('Yellow')),
+    ('success', _('Green')),
+    ('default', _('Gray')),
 )
 
 

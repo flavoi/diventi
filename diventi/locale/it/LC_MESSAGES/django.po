@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-04 15:18+0100\n"
+"POT-Creation-Date: 2018-01-04 21:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,9 +88,43 @@ msgstr ""
 msgid "%s tag requires a queryset"
 msgstr "il tag %s richiede una queryset"
 
+#: diventi/core/models.py:12
+msgid "Blue"
+msgstr ""
+
+#: diventi/core/models.py:13
+msgid "Rose"
+msgstr ""
+
+#: diventi/core/models.py:14
+msgid "Red"
+msgstr ""
+
+#: diventi/core/models.py:15
+#, fuzzy
+#| msgid "Hello"
+msgid "Yellow"
+msgstr "Ciao"
+
+#: diventi/core/models.py:16
+msgid "Green"
+msgstr ""
+
+#: diventi/core/models.py:17
+msgid "Gray"
+msgstr ""
+
 #: diventi/landing/apps.py:7
 msgid "landing"
-msgstr "pagina di destinazione"
+msgstr "Pagina di destinazione"
+
+#: diventi/landing/models.py:16
+msgid "There is no active landing page."
+msgstr ""
+
+#: diventi/landing/models.py:19
+msgid "There must be only one landing page at a time. Please fix!"
+msgstr ""
 
 #: diventi/landing/models.py:29
 msgid "active"
@@ -124,6 +158,10 @@ msgstr "Gestisci profilo"
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
+#: diventi/templates/base.html:171
+msgid "Sign in"
+msgstr "Accedi"
+
 #: diventi/templates/base.html:179
 msgid "Search"
 msgstr "Cerca"
@@ -155,9 +193,13 @@ msgstr "Unisciti alla nostra community"
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
+#: diventi/templates/landing/landing.html:98
+msgid "Sign up"
+msgstr "Registrati"
+
 #: diventi/templates/star_ratings/widget.html:34
 msgid "Log in to rate"
-msgstr ""
+msgstr "Accedi per votare"
 
 #: diventi/templates/star_ratings/widget.html:57
 msgid "Average: "

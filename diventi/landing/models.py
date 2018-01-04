@@ -13,10 +13,10 @@ class PresentationManager(models.Manager):
             active_presentation = self.prefetch_related('features')
             active_presentation = active_presentation.get(active=True)
         except Presentation.DoesNotExist:
-            msg = "There is no active landing page."
+            msg = _("There is no active landing page.")
             raise Presentation.DoesNotExist(msg)
         except Presentation.MultipleObjectsReturned:
-            msg = "There must be only one landing page at a time. Please fix!"
+            msg = _("There must be only one landing page at a time. Please fix!")
             raise Presentation.MultipleObjectsReturned(msg)
         return active_presentation
 

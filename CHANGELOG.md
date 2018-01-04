@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   A user may reply to any comments in any page that includes them.
 - Introduced translations: the following components may be displayed in english or italian: 
   landing page features, messages, user profile and blog
+- Added a Vagrantfile to facilitate the development process across different computers
 
 ### Changed
 - Changed to yellow the background color of the inverse navbar links

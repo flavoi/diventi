@@ -81,7 +81,7 @@
                         <h2 class="title">{% trans "Hello" %} {{ user.first_name }}!</h2>
                         <h5 class="description">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</h5>
                         <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning">
-                            <i class="fal fa-user-circle fa-lg"></i> {% trans "View profile" %}
+                            <i class="fal fa-user-circle fa-lg"></i> {% trans "Manage profile" %}
                         </a>
                     </div>
                     {% else %}

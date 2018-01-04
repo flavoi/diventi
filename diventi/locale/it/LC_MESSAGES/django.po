@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-03 22:54+0100\n"
+"POT-Creation-Date: 2018-01-04 14:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,120 +18,156 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\config\settings\base.py:149
+#: config/settings/base.py:149
 msgid "Italian"
 msgstr "Italiano"
 
-#: .\config\settings\base.py:150
+#: config/settings/base.py:150
 msgid "English"
 msgstr "Inglese"
 
-#: .\diventi\accounts\forms.py:23 .\diventi\accounts\forms.py:46
+#: diventi/accounts/forms.py:23 diventi/accounts/forms.py:46
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: .\diventi\accounts\forms.py:24 .\diventi\accounts\forms.py:47
+#: diventi/accounts/forms.py:24 diventi/accounts/forms.py:47
 msgid "Your email"
 msgstr "La tua email"
 
-#: .\diventi\accounts\forms.py:32
+#: diventi/accounts/forms.py:32
 msgid "Your password"
 msgstr "La tua password"
 
-#: .\diventi\accounts\forms.py:36
+#: diventi/accounts/forms.py:36
 msgid "Repeat your password"
 msgstr "Ripeti la tua nuova password"
 
-#: .\diventi\accounts\forms.py:57
+#: diventi/accounts/forms.py:57
 msgid "What's your story?"
 msgstr "Qual è la tua storia?"
 
-#: .\diventi\accounts\forms.py:58
+#: diventi/accounts/forms.py:58
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
-#: .\diventi\accounts\views.py:24
+#: diventi/accounts/views.py:24
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: .\diventi\accounts\views.py:25
+#: diventi/accounts/views.py:25
 msgid "Your sign in has failed."
 msgstr "L'accesso non è andato a buon fine."
 
-#: .\diventi\accounts\views.py:58
+#: diventi/accounts/views.py:58
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: .\diventi\accounts\views.py:72
+#: diventi/accounts/views.py:72
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: .\diventi\accounts\views.py:73
+#: diventi/accounts/views.py:73
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: .\diventi\accounts\views.py:109
+#: diventi/accounts/views.py:109
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: .\diventi\accounts\views.py:110
+#: diventi/accounts/views.py:110
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: .\diventi\accounts\views.py:122
+#: diventi/accounts/views.py:122
 msgid "A user may update his own profile only."
 msgstr ""
 
-#: .\diventi\comments\templatetags\comment_extras.py:50
-#: .\diventi\comments\templatetags\comment_extras.py:62
+#: diventi/comments/templatetags/comment_extras.py:50
+#: diventi/comments/templatetags/comment_extras.py:62
 #, python-format
 msgid "%s tag requires a queryset"
-msgstr ""
+msgstr "il tag %s richiede una queryset"
 
-#: .\diventi\templates\accounts\change_password.html:68
+#: diventi/templates/accounts/change_password.html:68
 msgid "Confirm"
-msgstr ""
+msgstr "Conferma"
 
-#: .\diventi\templates\landing\landing.html:81
+#: diventi/templates/base.html:131
+msgid "Dashboard"
+msgstr "Cruscotto"
+
+#: diventi/templates/base.html:153
+msgid "Change Password"
+msgstr "Modifica password"
+
+#: diventi/templates/base.html:158 diventi/templates/landing/landing.html:84
+msgid "Manage profile"
+msgstr "Gestisci profilo"
+
+#: diventi/templates/base.html:163
+msgid "Sign out"
+msgstr "Annulla l'accesso"
+
+#: diventi/templates/base.html:179
+msgid "Search"
+msgstr "Cerca"
+
+#: diventi/templates/base.html:208
+msgid "Made with passion by Diventi's team"
+msgstr "Sviluppato con passione dal team Diventi"
+
+#: diventi/templates/landing/landing.html:81
 msgid "Hello"
 msgstr "Ciao"
 
-#: .\diventi\templates\landing\landing.html:82
-msgid "You have signed in. Feel free to explore or deep dive into your profile."
-msgstr "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo profilo."
+#: diventi/templates/landing/landing.html:82
+msgid ""
+"You have signed in. Feel free to explore or deep dive into your profile."
+msgstr ""
+"Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
+"profilo."
 
-#: .\diventi\templates\landing\landing.html:84
-msgid "View profile"
-msgstr "Visualizza profilo"
-
-#: .\diventi\templates\landing\landing.html:88
+#: diventi/templates/landing/landing.html:88
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: .\diventi\templates\landing\landing.html:89
+#: diventi/templates/landing/landing.html:89
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: .\diventi\templates\star_ratings\widget.html:34
+#: diventi/templates/star_ratings/widget.html:34
 msgid "Log in to rate"
 msgstr ""
 
-#: .\diventi\templates\star_ratings\widget.html:57
+#: diventi/templates/star_ratings/widget.html:57
 msgid "Average: "
-msgstr ""
+msgstr "Media: "
 
-#: .\diventi\templates\star_ratings\widget.html:60
+#: diventi/templates/star_ratings/widget.html:60
 msgid "Rating Count: "
-msgstr ""
+msgstr "Conteggio dei voti: "
 
-#: .\diventi\templates\star_ratings\widget.html:63
+#: diventi/templates/star_ratings/widget.html:63
 msgid "You Rated: "
-msgstr ""
+msgstr "Il tuo voto: "
 
-#: .\diventi\templates\star_ratings\widget.html:63
+#: diventi/templates/star_ratings/widget.html:63
 msgid "Not rated"
-msgstr ""
+msgstr "Nessun voto rilevato"
 
-#: .\diventi\templates\star_ratings\widget.html:65
+#: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
-msgstr ""
+msgstr "Effettua l'accesso per votare."
+
+#~ msgid "View profile"
+#~ msgstr "Visualizza profilo"
+
+#, fuzzy
+#~ msgid "profile"
+#~ msgstr "profilo"
+
+#~ msgid "manage"
+#~ msgstr "gestisci"
+
+#~ msgid "view"
+#~ msgstr "visualizza"

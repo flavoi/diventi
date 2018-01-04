@@ -128,7 +128,7 @@
               {% if user.is_staff %}
                 <li>                    
                   <a href="{% url 'admin:index' %}">
-                    Dashboard
+                    {% trans "Dashboard" %}
                   </a>
                 </li>
               {% endif %}
@@ -150,17 +150,17 @@
                       </li>
                       <li>
                         <a href="#" data-toggle="modal" data-target="#changepasswordModal">  
-                          <i class="fal fa-fw fa-lg fa-key"></i> Change Password
+                          <i class="fal fa-fw fa-lg fa-key"></i> {% trans "Change Password" %}
                         </a>
                       </li>
                       <li>                        
                         <a href="{% url 'accounts:update' user.pk %}">
-                          <i class="fal fa-fw fa-lg fa-id-card"></i> Manage profile
+                          <i class="fal fa-fw fa-lg fa-user-circle"></i> {% trans "Manage profile" %}
                         </a>
                       </li>
                       <li>
                         <a href="{% url 'accounts:signout' %}">
-                          <i class="fal fa-fw fa-lg fa-sign-out-alt"></i> Sign out
+                          <i class="fal fa-fw fa-lg fa-sign-out-alt"></i> {% trans "Sign out" %}
                         </a>                        
                       </li>
                   </ul>
@@ -176,7 +176,7 @@
 
             <form class="navbar-form navbar-right" role="search" action="{% url 'landing:search' %}">
                 <div class="form-group form-search is-empty">
-                    <input type="text" class="form-control" placeholder="Search" name="q" aria-label="Search" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
+                    <input type="text" class="form-control" placeholder="{% trans 'Search' %}" name="q" aria-label="{% trans 'Search' %}" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
                     <span class="material-input"></span>
                 <span class="material-input"></span></div>
                 <button type="submit" class="btn btn-white btn-round btn-simple btn-just-icon">
@@ -205,7 +205,7 @@
   <footer class="footer">
     <div class="container">
       <div class="copyright text-center">
-        &copy; {{ copy }}, Made with passion by Diventi's team.
+        &copy; {{ copy }}, {% trans "Made with passion by Diventi's team" %}.
       </div>
     </div>
   </footer>

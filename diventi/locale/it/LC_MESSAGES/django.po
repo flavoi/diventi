@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-05 15:27+0100\n"
+"POT-Creation-Date: 2018-01-05 18:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "^quadro/"
 
 #: config/urls.py:40
 msgid "^accounts/"
-msgstr "^utenze/"
+msgstr "^utenza/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -43,16 +43,17 @@ msgid "Your name"
 msgstr "Il tuo nome"
 
 #: diventi/accounts/forms.py:24 diventi/accounts/forms.py:47
+#: diventi/templates/accounts/signin.html:34
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:32
+#: diventi/accounts/forms.py:32 diventi/templates/accounts/signin.html:41
 msgid "Your password"
 msgstr "La tua password"
 
 #: diventi/accounts/forms.py:36
 msgid "Repeat your password"
-msgstr "Ripeti la tua nuova password"
+msgstr "Ripeti la tua password"
 
 #: diventi/accounts/forms.py:57
 msgid "What's your story?"
@@ -82,17 +83,17 @@ msgstr "riservato allo staff"
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:52
+#: diventi/accounts/models.py:52 diventi/templates/accounts/user_update.html:26
 msgid "Avatars"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:60
 msgid "Cover"
-msgstr "copertina"
+msgstr "Copertina"
 
-#: diventi/accounts/models.py:61
+#: diventi/accounts/models.py:61 diventi/templates/accounts/user_update.html:46
 msgid "Covers"
-msgstr "copertine"
+msgstr "Copertine"
 
 #: diventi/accounts/models.py:65
 msgid "email"
@@ -320,25 +321,111 @@ msgstr "^presentazione/(?P<pk>\\d+)/$"
 msgid "^search/$"
 msgstr "^cerca/$"
 
-#: diventi/templates/accounts/change_password.html:68
+#: diventi/templates/accounts/change_password.html:6
+msgid ""
+"Your account doesn't have access to this page. To proceed, please sign in "
+"with an account that has access"
+msgstr ""
+"La tua utenza non ha accesso a questa pagina. Per procedere occorre accedere "
+"la sito."
+
+#: diventi/templates/accounts/change_password.html:8
+msgid "Please sign in to see this page"
+msgstr "Effettua l'accesso per visualizzare questa pagina."
+
+#: diventi/templates/accounts/change_password.html:19
+#: diventi/templates/base.html:153
+msgid "Change Password"
+msgstr "Modifica password"
+
+#: diventi/templates/accounts/change_password.html:26
+msgid "Current password"
+msgstr "Password corrente"
+
+#: diventi/templates/accounts/change_password.html:39
+msgid "New password"
+msgstr "Nuova password"
+
+#: diventi/templates/accounts/change_password.html:52
+msgid "Confirm new password"
+msgstr "Conferma nuova password"
+
+#: diventi/templates/accounts/change_password.html:67
 msgid "Confirm"
 msgstr "Conferma"
+
+#: diventi/templates/accounts/signin.html:11
+msgid "Sign in with your Diventi account"
+msgstr "Effettua l'accesso con la tua utenza Diventi"
+
+#: diventi/templates/accounts/signin.html:48
+msgid "Sign In"
+msgstr "Accedi"
+
+#: diventi/templates/accounts/signin.html:52
+msgid "No account yet? Then"
+msgstr "Non hai ancora un'utenza? Allora"
+
+#: diventi/templates/accounts/signin.html:52
+msgid "sign up"
+msgstr "registrati"
+
+#: diventi/templates/accounts/signin.html:52
+msgid "first"
+msgstr "subito"
+
+#: diventi/templates/accounts/signout.html:18 diventi/templates/base.html:163
+msgid "Sign out"
+msgstr "Annulla l'accesso"
+
+#: diventi/templates/accounts/signout.html:18
+msgid "complete"
+msgstr "completato"
+
+#: diventi/templates/accounts/signout.html:20
+msgid "You can now leave the page or return"
+msgstr "Ora puoi lasciare la pagina oppure ritornare"
+
+#: diventi/templates/accounts/signout.html:21
+msgid "to the homepage"
+msgstr "alla pagina iniziale"
+
+#: diventi/templates/accounts/signup.html:33
+#: diventi/templates/landing/landing.html:98
+msgid "Sign up"
+msgstr "Registrati"
+
+#: diventi/templates/accounts/signup.html:99
+msgid "Get Started"
+msgstr "Iniziamo"
+
+#: diventi/templates/accounts/user_base.html:51
+msgid "Your profile"
+msgstr "Il tuo profilo"
+
+#: diventi/templates/accounts/user_base.html:70
+msgid "Your collection"
+msgstr "La tua collezione"
+
+#: diventi/templates/accounts/user_collection.html:17
+msgid "Download"
+msgstr "Scarica"
+
+#: diventi/templates/accounts/user_collection.html:26
+msgid "Your collection is empty"
+msgstr "La tua collezione è vuota"
+
+#: diventi/templates/accounts/user_update.html:64
+msgid "Update details"
+msgstr "Aggiorna dettagli"
 
 #: diventi/templates/base.html:131
 msgid "Dashboard"
 msgstr "Quadro"
 
-#: diventi/templates/base.html:153
-msgid "Change Password"
-msgstr "Modifica password"
-
 #: diventi/templates/base.html:158 diventi/templates/landing/landing.html:84
 msgid "Manage profile"
 msgstr "Gestisci profilo"
-
-#: diventi/templates/base.html:163
-msgid "Sign out"
-msgstr "Annulla l'accesso"
 
 #: diventi/templates/base.html:171
 msgid "Sign in"
@@ -361,8 +448,11 @@ msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:82
-msgid "You have signed in. Feel free to explore or deep dive into your profile."
-msgstr "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo profilo."
+msgid ""
+"You have signed in. Feel free to explore or deep dive into your profile."
+msgstr ""
+"Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
+"profilo."
 
 #: diventi/templates/landing/landing.html:88
 msgid "Join our community"
@@ -371,10 +461,6 @@ msgstr "Unisciti alla nostra community"
 #: diventi/templates/landing/landing.html:89
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
-
-#: diventi/templates/landing/landing.html:98
-msgid "Sign up"
-msgstr "Registrati"
 
 #: diventi/templates/star_ratings/widget.html:34
 msgid "Log in to rate"
@@ -399,12 +485,3 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
-
-#~ msgid "View profile"
-#~ msgstr "Visualizza profilo"
-
-#~ msgid "manage"
-#~ msgstr "gestisci"
-
-#~ msgid "view"
-#~ msgstr "visualizza"

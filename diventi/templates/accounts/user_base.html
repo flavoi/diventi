@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block extrahead %}
 
@@ -47,7 +48,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <a name="yourprofile">
-                                <h4 class="title">Your profile</h4>
+                                <h4 class="title">{% trans "Your profile" %}</h4>
                             </a>
                         </div>
                     </div>                    
@@ -66,7 +67,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <a name="yourcollection">
-                                <h4 class="title">Your collection</h4>
+                                <h4 class="title">{% trans "Your collection" %}</h4>
                             </a>
                         </div>
                     </div>                    

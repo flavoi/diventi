@@ -1,4 +1,5 @@
 {% load humanize %}
+{% load i18n %}
 
 <div class="row collections">
     {% if collection %}
@@ -13,7 +14,7 @@
                     <p class="card-description">{{ product.description }}</p>                    
                     {% if product.file %}
                         <a target="_blank" class="btn btn-warning" href="{{ product.file.url }}">
-                            <i class="fal fa-download fa-lg fa-fw"></i> Download
+                            <i class="fal fa-download fa-lg fa-fw"></i> {% trans "Download" %}
                         </a>
                     {% endif %}
                 </div>                
@@ -22,7 +23,7 @@
         {% endfor %}
     {% else %}
         <div class="col-md-6">
-            <h4>Your collection is empty <i class="fal fa-frown"></i></h4>
+            <h4>{% trans "Your collection is empty" %} <i class="fal fa-frown"></i></h4>
         </div>
     {% endif %}
 

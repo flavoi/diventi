@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <form method="post" action="{% url 'accounts:signin' %}?next={{ request.path }}">
     
     {% csrf_token %}
@@ -6,7 +8,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             <span aria-hidden="true"><i class="fal fa-times"></i></span>
         </button>
-        <h4 class="modal-title">Sign in with your Diventi account</h4> 
+        <h4 class="modal-title">{% trans "Sign in with your Diventi account" %}</h4> 
     </div>
 
     <div class="modal-body">         
@@ -29,25 +31,25 @@
             <span class="input-group-addon">
                 <i class="fal fa-envelope fa-lg"></i>
             </span>
-            <input type="text" class="form-control" placeholder="Your email" name="username" autofocus maxlength="254" required id="id_username">                                    
+            <input type="text" class="form-control" placeholder="{% trans 'Your email' %}" name="username" autofocus maxlength="254" required id="id_username">                                    
         </div>                
 
         <div class="input-group">
             <span class="input-group-addon">
                 <i class="fal fa-key fa-lg"></i>
             </span>
-            <input type="password" placeholder="Your password" class="form-control" name="password" required id="id_password" />
+            <input type="password" placeholder="{% trans 'Your password' %}" class="form-control" name="password" required id="id_password" />
         </div>
 
     </div>
 
     <div class="modal-footer text-center">
         <button class="btn btn-warning" type="submit">
-            Sign In <i class="fal fa-arrow-right fa-lg"></i>
+            {% trans "Sign In" %} <i class="fal fa-arrow-right fa-lg"></i>
         </button>
         <input type="hidden" name="next" value="{{ next }}" />
         <br /><br />
-        <p>No account yet? Then <a class="text-warning" href="{% url 'accounts:signup' %}">sign up</a> first!</p>
+        <p>{% trans "No account yet? Then" %} <a class="text-warning" href="{% url 'accounts:signup' %}">{% trans "sign up" %}</a> {% trans "first" %}!</p>
     </div>
 
 </form>

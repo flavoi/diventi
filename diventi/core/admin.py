@@ -1,9 +1,10 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 from modeltranslation.admin import TranslationAdmin
 
-admin.site.site_header = "Diventi's Dashboard"
-admin.site.site_title = "Diventi's Dashboard"
+admin.site.site_header = _("Diventi's Dashboard")
+admin.site.site_title = _("Diventi's Dashboard")
 
 
 class DiventiTranslationAdmin(TranslationAdmin):

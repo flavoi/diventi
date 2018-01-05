@@ -74,10 +74,10 @@ class Element(models.Model):
     An abstract base class model that represents a single piece of content of 
     any section.
     """
-    icon = models.CharField(max_length=30)
-    title = models.CharField(max_length=50)
-    description = models.TextField()
-    color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default')
+    icon = models.CharField(max_length=30, verbose_name=_('icon'))
+    title = models.CharField(max_length=50, verbose_name=_('title'))
+    description = models.TextField(verbose_name=_('description'))
+    color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default', verbose_name=_('color'))
 
     def __str__(self):
         return self.title

@@ -22,10 +22,10 @@ class PresentationManager(models.Manager):
 
 
 class Presentation(models.Model):
-    title = models.CharField(max_length=50)
-    abstract = RichTextField(blank=True)
-    description = RichTextField(blank=True)
-    cover = models.ImageField(blank=True, upload_to='landing/')
+    title = models.CharField(max_length=50, verbose_name=_('title'))
+    abstract = RichTextField(blank=True, verbose_name=_('abstract'))
+    description = RichTextField(blank=True, verbose_name=_('description'))
+    cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
 
     objects = PresentationManager()
@@ -40,3 +40,7 @@ class Presentation(models.Model):
 
 class Feature(Element):    
     profile = models.ForeignKey(Presentation, related_name='features')
+
+    class Meta:
+        verbose_name = _('feature')
+        verbose_name_plural = _('features')

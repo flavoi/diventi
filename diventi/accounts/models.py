@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import BaseUserManager
+from django.utils.translation import gettext_lazy as _
 
 from diventi.core.models import DiventiImageModel
 from diventi.products.models import Product
@@ -15,7 +16,7 @@ class DiventiUserManager(auth_models.BaseUserManager):
         Creates and saves a User with the given email and password.
         """
         if not email:
-            raise ValueError('The Email must be set')
+            raise ValueError(_('The email must be set'))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -27,9 +28,9 @@ class DiventiUserManager(auth_models.BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
         if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
+            raise ValueError(_('Superuser must have is_staff=True.'))
         if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
+            raise ValueError(_('Superuser must have is_superuser=True.'))
         return self._create_user(email, password, **extra_fields)
 
 
@@ -42,13 +43,13 @@ class DiventiAvatarQuerySet(models.QuerySet):
 
 
 class DiventiAvatar(DiventiImageModel):    
-    staff_only = models.BooleanField(default=False)
+    staff_only = models.BooleanField(default=False, verbose_name=_('staff_only'))
 
     objects = DiventiAvatarQuerySet.as_manager()
 
     class Meta:
-        verbose_name = 'Avatar'
-        verbose_name_plural = 'Avatars'
+        verbose_name = _('Avatar')
+        verbose_name_plural = _('Avatars')
 
 
 class DiventiCover(DiventiImageModel):
@@ -56,25 +57,25 @@ class DiventiCover(DiventiImageModel):
     objects = DiventiAvatarQuerySet.as_manager()
 
     class Meta:
-        verbose_name = 'Cover'
-        verbose_name_plural = 'Covers'
+        verbose_name = _('Cover')
+        verbose_name_plural = _('Covers')
 
         
 class DiventiUser(AbstractUser):    
-    email = models.EmailField(unique=True)
-    avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL)
-    cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL)
-    profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/') #  Staff use only
-    bio = models.TextField(blank=True)
-    role = models.CharField(blank=True, max_length=70) # Favourite class
+    email = models.EmailField(unique=True, verbose_name=_('email'))
+    avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
+    cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
+    profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) #  Staff use only
+    bio = models.TextField(blank=True, verbose_name=_('bio'))
+    role = models.CharField(blank=True, max_length=70, verbose_name=_('role')) # Favourite class
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = DiventiUserManager()
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
         ordering = ('id', )
 
     def get_absolute_url(self):

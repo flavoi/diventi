@@ -9,8 +9,8 @@ from .models import Presentation, Feature
 
 class FeatureInline(TranslationTabularInline):
     model = Feature
-    # fields = ('title', 'icon', 'color', 'description')
-    # extra = 0
+    fields = ('title', 'icon', 'color', 'description')
+    extra = 0
 
 
 class PresentationAdmin(DiventiTranslationAdmin):

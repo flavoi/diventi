@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
+from diventi.core.admin import DiventiTranslationAdmin
+
 from .models import DiventiUser, DiventiAvatar, DiventiCover
 
 
@@ -33,11 +35,11 @@ class UserAdmin(auth_admin.UserAdmin):
     ordering = ('email',)
     readonly_fields = ('last_login', 'date_joined',)
 
-class DiventiAvatarAdmin(admin.ModelAdmin):
-    list_display= ( 'label', 'image_tag', 'staff_only')
+class DiventiAvatarAdmin(DiventiTranslationAdmin):
+    list_display= ('label', 'image_tag', 'staff_only')
 
-class DiventiCoverAdmin(admin.ModelAdmin):
-    list_display= ( 'label', 'image_tag')
+class DiventiCoverAdmin(DiventiTranslationAdmin):
+    list_display= ('label', 'image_tag')
 
 admin.site.register(DiventiUser, UserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)

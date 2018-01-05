@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-05 11:22+0100\n"
+"POT-Creation-Date: 2018-01-05 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,9 +26,17 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/urls.py:39
+#: config/urls.py:38
 msgid "^dashboard/"
 msgstr "^quadro/"
+
+#: config/urls.py:40
+msgid "^accounts/"
+msgstr "^utenze/"
+
+#: diventi/accounts/apps.py:7
+msgid "Accounts"
+msgstr "Utenze"
 
 #: diventi/accounts/forms.py:23 diventi/accounts/forms.py:46
 msgid "Your name"
@@ -53,6 +61,90 @@ msgstr "Qual è la tua storia?"
 #: diventi/accounts/forms.py:58
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
+
+#: diventi/accounts/models.py:19
+msgid "The email must be set"
+msgstr "L'email deve essere valorizzata"
+
+#: diventi/accounts/models.py:31
+msgid "Superuser must have is_staff=True."
+msgstr "Un amministratore deve essere impostato come is_staff=True."
+
+#: diventi/accounts/models.py:33
+msgid "Superuser must have is_superuser=True."
+msgstr "Un amministratore deve essere impostato come is_superuser=True."
+
+#: diventi/accounts/models.py:46
+msgid "staff_only"
+msgstr "riservato allo staff"
+
+#: diventi/accounts/models.py:51
+msgid "Avatar"
+msgstr "Avatar"
+
+#: diventi/accounts/models.py:52
+msgid "Avatars"
+msgstr "Avatar"
+
+#: diventi/accounts/models.py:60
+msgid "Cover"
+msgstr "copertina"
+
+#: diventi/accounts/models.py:61
+msgid "Covers"
+msgstr "copertine"
+
+#: diventi/accounts/models.py:65
+msgid "email"
+msgstr "email"
+
+#: diventi/accounts/models.py:66
+msgid "avatar"
+msgstr "avatar"
+
+#: diventi/accounts/models.py:67 diventi/landing/models.py:28
+msgid "cover"
+msgstr "copertina"
+
+#: diventi/accounts/models.py:68
+msgid "profilepic"
+msgstr "foto profilo"
+
+#: diventi/accounts/models.py:69
+msgid "bio"
+msgstr "biografia"
+
+#: diventi/accounts/models.py:70
+msgid "role"
+msgstr "classe"
+
+#: diventi/accounts/models.py:77
+msgid "User"
+msgstr "Utente"
+
+#: diventi/accounts/models.py:78
+msgid "Users"
+msgstr "Utenti"
+
+#: diventi/accounts/urls.py:7
+msgid "^signin/$"
+msgstr "^accedi/$"
+
+#: diventi/accounts/urls.py:8
+msgid "^signout/$"
+msgstr "^annulla-accesso/$"
+
+#: diventi/accounts/urls.py:9
+msgid "^password-change/$"
+msgstr "^modifica-password/$"
+
+#: diventi/accounts/urls.py:10
+msgid "^signup/$"
+msgstr "^registrati/$"
+
+#: diventi/accounts/urls.py:11
+msgid "^(?P<pk>\\d+)/update/$"
+msgstr "^(?P<pk>\\d+)/aggiorna/$"
 
 #: diventi/accounts/views.py:24
 msgid "You have signed in!"
@@ -85,6 +177,18 @@ msgstr "L'aggiornamento del profilo non è andato a buon fine."
 #: diventi/accounts/views.py:122
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
+
+#: diventi/accounts/widgets.py:115
+msgid "User avatars"
+msgstr "Avatar utente"
+
+#: diventi/accounts/widgets.py:117
+msgid "Staff avatars"
+msgstr "Avatar riservati"
+
+#: diventi/accounts/widgets.py:130
+msgid "User covers"
+msgstr "Copertine utente"
 
 #: diventi/comments/templatetags/comment_extras.py:50
 #: diventi/comments/templatetags/comment_extras.py:62
@@ -120,6 +224,26 @@ msgstr "Verde"
 msgid "Gray"
 msgstr "Grigio"
 
+#: diventi/core/models.py:26
+msgid "created"
+msgstr "creato"
+
+#: diventi/core/models.py:27
+msgid "modified"
+msgstr "modificato"
+
+#: diventi/core/models.py:38
+msgid "published"
+msgstr "pubblicato"
+
+#: diventi/core/models.py:39
+msgid "publication_date"
+msgstr "data pubblicazione"
+
+#: diventi/core/models.py:58
+msgid "promotions"
+msgstr "promozioni"
+
 #: diventi/core/models.py:77
 msgid "icon"
 msgstr "icona"
@@ -136,6 +260,22 @@ msgstr "descrizione"
 msgid "color"
 msgstr "colore"
 
+#: diventi/core/models.py:93
+msgid "image"
+msgstr "immagine"
+
+#: diventi/core/models.py:94
+msgid "label"
+msgstr "etichetta"
+
+#: diventi/core/models.py:111
+msgid "No image"
+msgstr "Nessuna immagine"
+
+#: diventi/core/models.py:112
+msgid "Image"
+msgstr "Immagine"
+
 #: diventi/landing/apps.py:7
 msgid "landing"
 msgstr "Pagina di destinazione"
@@ -151,10 +291,6 @@ msgstr "Può esistere una sola pagina di destinazione per volta."
 #: diventi/landing/models.py:26
 msgid "abstract"
 msgstr "sommario"
-
-#: diventi/landing/models.py:28
-msgid "cover"
-msgstr "copertina"
 
 #: diventi/landing/models.py:29
 msgid "active"
@@ -175,6 +311,14 @@ msgstr "aspetto"
 #: diventi/landing/models.py:46
 msgid "features"
 msgstr "aspetti"
+
+#: diventi/landing/urls.py:8
+msgid "^presentation/(?P<pk>\\d+)/$"
+msgstr "^presentazione/(?P<pk>\\d+)/$"
+
+#: diventi/landing/urls.py:9
+msgid "^search/$"
+msgstr "^cerca/$"
 
 #: diventi/templates/accounts/change_password.html:68
 msgid "Confirm"
@@ -217,11 +361,8 @@ msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:82
-msgid ""
-"You have signed in. Feel free to explore or deep dive into your profile."
-msgstr ""
-"Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
-"profilo."
+msgid "You have signed in. Feel free to explore or deep dive into your profile."
+msgstr "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo profilo."
 
 #: diventi/templates/landing/landing.html:88
 msgid "Join our community"
@@ -261,10 +402,6 @@ msgstr "Effettua l'accesso per votare."
 
 #~ msgid "View profile"
 #~ msgstr "Visualizza profilo"
-
-#, fuzzy
-#~ msgid "profile"
-#~ msgstr "profilo"
 
 #~ msgid "manage"
 #~ msgstr "gestisci"

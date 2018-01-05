@@ -23,8 +23,8 @@ class TimeStampedModel(models.Model):
     An abstract base class model that provides self-updating
     ``created`` and ``modified`` field.
     """
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
+    modified = models.DateTimeField(auto_now=True, verbose_name=_('modified'))
 
     class Meta:
         abstract = True
@@ -35,8 +35,8 @@ class PublishableModel(models.Model):
     An abstract base class model that updates the publication
     date as soon as it becomes published.
     """
-    published = models.BooleanField(default=False)
-    publication_date = models.DateTimeField(blank=True, null=True)
+    published = models.BooleanField(default=False, verbose_name=_('published'))
+    publication_date = models.DateTimeField(blank=True, null=True, verbose_name=_('publication_date'))
 
     # Pubblication date is updated if published has been modified from False to True
     def __init__(self, *args, **kwargs):
@@ -55,7 +55,7 @@ class PromotableModel(models.Model):
     An abstract base class model that enables a promotion feature
     similar to a facebook like on any model.
     """
-    promotions = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    promotions = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, verbose_name=_('promotions'))
 
     def user_has_promoted(self):
         # Fetch the logged user thanks to a dedicated middleware
@@ -90,8 +90,8 @@ class DiventiImageModel(models.Model):
     """
     An abstract base class that manages models based on images uploaded on Imgur.
     """
-    image = models.URLField()
-    label = models.CharField(max_length=50, blank=True)
+    image = models.URLField(verbose_name=_('image'))
+    label = models.CharField(max_length=50, blank=True, verbose_name=_('label'))
     
     def image_thumbnail(self):
         # imgur legend
@@ -108,8 +108,8 @@ class DiventiImageModel(models.Model):
         if self.image:
             return mark_safe('<img src="{0}" />'.format(self.image_thumbnail()))
         else:
-            return u'(Nessuna immagine)'    
-    image_tag.short_description = 'Image'
+            return _('No image')    
+    image_tag.short_description = _('Image')
 
     class Meta:
         abstract = True

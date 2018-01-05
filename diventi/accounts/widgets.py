@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from .models import DiventiAvatar, DiventiCover
 
@@ -111,9 +112,9 @@ class DiventiAvatarChoiceField(GroupedModelChoiceField):
         return group
 
     def set_optgroup_label(self, optgroup):
-        optgroup_name = "User avatars"
+        optgroup_name = _("User avatars")
         if optgroup: # Staff_only = True
-            optgroup_name = "Staff avatars"
+            optgroup_name = _("Staff avatars")
         return optgroup_name
 
 
@@ -126,5 +127,5 @@ class DiventiCoverChoiceField(GroupedModelChoiceField):
         return group
 
     def set_optgroup_label(self, optgroup):
-        optgroup_name = "User covers"        
+        optgroup_name = _("User covers")        
         return optgroup_name

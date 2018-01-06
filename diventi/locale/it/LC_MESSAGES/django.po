@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-06 11:13+0100\n"
+"POT-Creation-Date: 2018-01-06 14:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,13 +30,17 @@ msgstr "Inglese"
 msgid "^dashboard/"
 msgstr "^quadro/"
 
-#: config/urls.py:39
+#: config/urls.py:38
 msgid "^accounts/"
 msgstr "^utenza/"
 
-#: config/urls.py:40
+#: config/urls.py:39
 msgid "^blog/"
 msgstr "^blog/"
+
+#: config/urls.py:40
+msgid "^products/"
+msgstr "^prodotti/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -108,6 +112,7 @@ msgid "avatar"
 msgstr "avatar"
 
 #: diventi/accounts/models.py:67 diventi/landing/models.py:28
+#: diventi/products/models.py:50
 msgid "cover"
 msgstr "copertina"
 
@@ -123,7 +128,7 @@ msgstr "biografia"
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:77
+#: diventi/accounts/models.py:77 diventi/templates/accounts/user_detail.html:20
 msgid "User"
 msgstr "Utente"
 
@@ -195,11 +200,11 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:9
+#: diventi/blog/admin.py:11
 msgid "Mark selected stories as published"
 msgstr "Pubblica le storie selezionate"
 
-#: diventi/blog/admin.py:14
+#: diventi/blog/admin.py:16
 msgid "Mark selected stories as hidden"
 msgstr "Nascondi le storie selezionate"
 
@@ -212,12 +217,12 @@ msgid "categories"
 msgstr "categorie"
 
 #: diventi/blog/models.py:70 diventi/core/models.py:78
-#: diventi/landing/models.py:25
+#: diventi/landing/models.py:25 diventi/products/models.py:46
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:71 diventi/core/models.py:79
-#: diventi/landing/models.py:27
+#: diventi/landing/models.py:27 diventi/products/models.py:47
 msgid "description"
 msgstr "descrizione"
 
@@ -241,7 +246,7 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "di tendenza"
 
-#: diventi/blog/models.py:77
+#: diventi/blog/models.py:77 diventi/products/models.py:48
 msgid "slug"
 msgstr "slug"
 
@@ -249,7 +254,15 @@ msgstr "slug"
 msgid "author"
 msgstr "autore"
 
-#: diventi/blog/urls.py:8
+#: diventi/blog/models.py:84
+msgid "article"
+msgstr "articolo"
+
+#: diventi/blog/models.py:85
+msgid "articles"
+msgstr "articoli"
+
+#: diventi/blog/urls.py:8 diventi/products/urls.py:7
 msgid "^(?P<slug>[-\\w]+)/$"
 msgstr "^(?P<slug>[-\\w]+)/$"
 
@@ -331,7 +344,7 @@ msgstr "etichetta"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:112
+#: diventi/core/models.py:112 diventi/products/models.py:101
 msgid "Image"
 msgstr "Immagine"
 
@@ -378,6 +391,75 @@ msgstr "^presentazione/(?P<pk>\\d+)/$"
 #: diventi/landing/urls.py:9
 msgid "^search/$"
 msgstr "^cerca/$"
+
+#: diventi/products/admin.py:12
+msgid "Mark selected products as published"
+msgstr "Pubblica i prodotti selezionati"
+
+#: diventi/products/admin.py:17
+msgid "Mark selected products as hidden"
+msgstr "Nascondi i prodotti selezionati"
+
+#: diventi/products/apps.py:7
+msgid "Products"
+msgstr "Prodotti"
+
+#: diventi/products/models.py:31
+msgid "Multiple featured products returned. Please fix!"
+msgstr "Trovati molteplici prodotti sponsorizzati. Sistemare!"
+
+#: diventi/products/models.py:49
+msgid "featured"
+msgstr "sponsorizzato"
+
+#: diventi/products/models.py:51
+msgid "authors"
+msgstr "autori"
+
+#: diventi/products/models.py:52
+msgid "buyers"
+msgstr "acquirenti"
+
+#: diventi/products/models.py:53
+msgid "file"
+msgstr "file"
+
+#: diventi/products/models.py:58 diventi/products/models.py:88
+#: diventi/products/models.py:93 diventi/products/models.py:98
+msgid "product"
+msgstr "prodotto"
+
+#: diventi/products/models.py:59
+msgid "products"
+msgstr "prodotti"
+
+#: diventi/products/models.py:102
+msgid "Images"
+msgstr "Immagini"
+
+#: diventi/products/urls.py:8
+msgid "^(?P<slug>[-\\w]+)/add/$"
+msgstr "^(?P<slug>[-\\w]+)/aggiungi/$"
+
+#: diventi/products/urls.py:9
+msgid "^(?P<slug>[-\\w]+)/remove/$"
+msgstr "^(?P<slug>[-\\w]+)/rimuovi/$"
+
+#: diventi/products/views.py:48
+msgid "This product has been added to you collection"
+msgstr "Questo prodotto è stato aggiunto alla tua collezione"
+
+#: diventi/products/views.py:55
+msgid "The user has this product already."
+msgstr "L'utente possiede già questo prodotto."
+
+#: diventi/products/views.py:69
+msgid "This product has been dropped from your collection"
+msgstr "Questo prodotto è stato rimosso dalla tua collezione"
+
+#: diventi/products/views.py:76
+msgid "The user hasn't got this product already."
+msgstr "L'utente non ha ancora questo prodotto."
 
 #: diventi/templates/accounts/change_password.html:6
 msgid ""
@@ -473,6 +555,11 @@ msgstr "Scarica"
 msgid "Your collection is empty"
 msgstr "La tua collezione è vuota"
 
+#: diventi/templates/accounts/user_detail.html:18
+#: diventi/templates/products/product_detail.html:198
+msgid "Creator"
+msgstr "Autore"
+
 #: diventi/templates/accounts/user_update.html:64
 msgid "Update details"
 msgstr "Aggiorna dettagli"
@@ -545,6 +632,30 @@ msgstr "Unisciti alla nostra community"
 #: diventi/templates/landing/landing.html:89
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
+
+#: diventi/templates/products/product_detail.html:64
+msgid "In your collection"
+msgstr "Nella tua collezione"
+
+#: diventi/templates/products/product_detail.html:76
+msgid "Description"
+msgstr "Descrizione"
+
+#: diventi/templates/products/product_detail.html:91
+msgid "Details and Care"
+msgstr "Dettagli e finiture"
+
+#: diventi/templates/products/product_detail.html:121
+msgid "Remove this product from your collection"
+msgstr "Rimuovi questo prodotto dalla tua collezione"
+
+#: diventi/templates/products/product_detail.html:130
+msgid "Add this product to your collection"
+msgstr "Aggiungi questo prodotto alla tua collezione"
+
+#: diventi/templates/products/product_detail.html:183
+msgid "Content creators"
+msgstr "Autori"
 
 #: diventi/templates/star_ratings/widget.html:34
 msgid "Log in to rate"

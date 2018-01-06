@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <div class="row">
     <div class="col-xs-6 col-xs-offset-3">                                    
         <div class="profile">
@@ -13,9 +15,9 @@
                 <h3 class="title">{{ user.first_name }}</h3>
                 <h6 class="text-rose">
                 {% if user.is_staff %}                            
-                    Creator
+                    {% trans "Creator" %}
                 {% else %}
-                    User
+                    {% trans "User" %}
                 {% endif %}
                 </h6>                
             </div>

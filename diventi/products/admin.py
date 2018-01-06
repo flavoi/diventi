@@ -1,41 +1,45 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+
+from diventi.core.admin import DiventiTranslationAdmin
+
+from modeltranslation.admin import TranslationTabularInline
 
 from .models import Product, Chapter, Characteristic, ImagePreview
 
-
 def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
-make_published.short_description = "Mark selected products as published"
+make_published.short_description = _("Mark selected products as published")
 
 
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(published=False)
-make_unpublished.short_description = "Mark selected products as hidden"
+make_unpublished.short_description = _("Mark selected products as hidden")
 
 
-class ChapterInline(admin.TabularInline):
+class ChapterInline(TranslationTabularInline):
     model = Chapter
     fields = ('title', 'description', 'image')
     extra = 0
 
 
-class CharacteristicInline(admin.TabularInline):
+class CharacteristicInline(TranslationTabularInline):
     model = Characteristic
     fields = ('title', 'description')
     extra = 0
 
 
-class ImagePreviewInline(admin.StackedInline):
+class ImagePreviewInline(TranslationTabularInline):
     model = ImagePreview
     fields = ( 'label', 'image')
     extra = 0
 
 
-class ImagePreviewAdmin(admin.ModelAdmin):
+class ImagePreviewAdmin(DiventiTranslationAdmin):
     list_display = ('label', 'image_tag')
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'featured', 'published', 'publication_date']    
     inlines = [
         ChapterInline,

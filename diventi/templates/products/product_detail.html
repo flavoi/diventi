@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+{% load static %} 
+
 {% block title %}{{ product.title }}{% endblock title %}
 
 {% block extrahead %}
-    {% load static %} 
     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
     <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 {% endblock extrahead %}
@@ -59,7 +61,7 @@
                         {% if bought %}
                             <a href="{% url 'accounts:update' user.id %}#yourcollection">
                                 <span class="label label-rose">
-                                    <i class="fal fa-flag fa-lg"></i>&nbsp; In your collection
+                                    <i class="fal fa-flag fa-lg"></i>&nbsp; {% trans "In your collection" %}
                                 </span>
                             </a>
                         {% endif %}
@@ -71,7 +73,7 @@
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     <h4 class="panel-title">
-                                    Description
+                                        {% trans "Description" %}
                                     <i class="material-icons">keyboard_arrow_down</i>
                                     </h4>
                                 </a>
@@ -86,8 +88,8 @@
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <a class="text-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
                                     <h4 class="panel-title">
-                                    Details and Care
-                                    <i class="material-icons">keyboard_arrow_down</i>
+                                        {% trans "Details and Care" %}
+                                        <i class="material-icons">keyboard_arrow_down</i>
                                     </h4>
                                 </a>
                             </div>
@@ -116,7 +118,7 @@
                                         {% csrf_token %}
                                         {{ drop_collection_form }}
                                         {{ drop_collection_form.errors }}
-                                        <button type="submit" class="btn btn-round btn-gray btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Remove this product from your collection.">
+                                        <button type="submit" class="btn btn-round btn-gray btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Remove this product from your collection' %}.">
                                             <i class="fal fa-trash-alt fa-lg"></i>
                                         </button>
                                     </form>
@@ -125,7 +127,7 @@
                                         {% csrf_token %}
                                         {{ add_collection_form }}
                                         {{ add_collection_form.errors }}
-                                        <button type="submit" class="btn btn-round btn-warning btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Add this product to your collection.">
+                                        <button type="submit" class="btn btn-round btn-warning btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Add this product to your collection' %}.">
                                             <i class="fal fa-plus fa-lg"></i>
                                         </button>
                                     </form>
@@ -178,7 +180,7 @@
         {% if product.authors.all %}
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">       
-                    <h3 class="title text-center">Content creators</h3>
+                    <h3 class="title text-center">{% trans "Content creators" %}</h3>
                     <div class="team">
                         <div class="row">                   
                             {% for author in product.authors.all %}
@@ -193,7 +195,7 @@
                                         </div>
                                         <div class="card-content">
                                             <h4 class="card-title">{{ author.get_full_name}}</h4>
-                                            <h6 class="category text-rose">Creator</h6>
+                                            <h6 class="category text-rose">{% trans "Creator" %}</h6>
                                             <p class="card-description">
                                                 {{ author.bio }}
                                             </p>

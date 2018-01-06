@@ -78,7 +78,12 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='articles', verbose_name=_('author'))
 
     objects = ArticleQuerySet.as_manager()
+    
 
+    class Meta:
+        verbose_name = _('article')
+        verbose_name_plural = _('articles')
+    
     def __str__(self):
         return self.title
 

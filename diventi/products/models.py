@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models import Q
 from django.urls import reverse
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel
 
@@ -27,7 +28,7 @@ class ProductQuerySet(models.QuerySet):
             # Fail silently, return nothing
             featured_product = self.none() 
         except Product.MultipleObjectsReturned:
-            msg = 'Multiple featured products returned. Please fix!'
+            msg = _('Multiple featured products returned. Please fix!')
             raise Product.MultipleObjectsReturned(msg)        
         return featured_product
 
@@ -42,16 +43,20 @@ class ProductQuerySet(models.QuerySet):
 
 class Product(TimeStampedModel, PublishableModel):
     """ An adventure or a module published by Diventi. """
-    title = models.CharField(max_length=50)
-    description = models.TextField(blank=True)
-    slug = models.SlugField(unique=True)
-    featured = models.BooleanField(default=False)
-    cover = models.ImageField(blank=True, upload_to='products/covers/')
-    authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products')
-    buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True)
-    file = models.FileField(upload_to='products/files/', blank=True)
+    title = models.CharField(max_length=50, verbose_name=_('title'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+    featured = models.BooleanField(default=False, verbose_name=_('featured'))
+    cover = models.ImageField(blank=True, upload_to='products/covers/', verbose_name=_('cover'))
+    authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
+    buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
+    file = models.FileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
 
     objects = ProductQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _('product')
+        verbose_name_plural = _('products')
 
     def __str__(self):
         return self.title
@@ -80,21 +85,21 @@ class Product(TimeStampedModel, PublishableModel):
 
 class Chapter(Element, DiventiImageModel):
     """ A stand-alone chapter of an adventure."""
-    product = models.ForeignKey(Product, related_name='chapters')     
+    product = models.ForeignKey(Product, related_name='chapters', verbose_name=_('product'))     
 
 
 class Characteristic(Element):
     """ A specific detail of a product."""
-    product = models.ForeignKey(Product, related_name='characteristics')
+    product = models.ForeignKey(Product, related_name='characteristics', verbose_name=_('product'))
 
 
 class ImagePreview(DiventiImageModel):    
     """A list of cool images of the product."""
-    product = models.ForeignKey(Product, related_name='imagepreviews')
+    product = models.ForeignKey(Product, related_name='imagepreviews', verbose_name=_('product'))
 
     class Meta:
-        verbose_name = 'Image'
-        verbose_name_plural = 'Images'
+        verbose_name = _('Image')
+        verbose_name_plural = _('Images')
 
 
 

@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.http import Http404
+from django.utils.translation import ugettext_lazy as _
 
 from diventi.core.views import DiventiActionMixin
 
@@ -44,14 +45,14 @@ class AddToUserCollectionView(ProductUpdateView):
         Adds a user to the buyers of a product.
     """
     form_class = UserCollectionUpdateForm
-    success_msg = 'This product has been added to you collection!'
+    success_msg = _('This product has been added to you collection')
     template_name = 'products/product_detail.html'
 
     def add_to_user_collection(self):
         if not self.object.user_has_already_bought(self.request.user):
             return self.object.buyers.add(self.request.user)
         else:
-            msg = 'The user has this product already.'
+            msg = _('The user has this product already.')
             raise Http404(msg)
 
     def form_valid(self, form):
@@ -65,14 +66,14 @@ class DropFromUserCollectionView(ProductUpdateView):
         Remove a user to the buyers of a product.
     """
     form_class = UserCollectionUpdateForm
-    success_msg = 'This product has been dropped from your collection!'
+    success_msg = _('This product has been dropped from your collection')
     template_name = 'products/product_detail.html'
 
     def drop_from_user_collection(self):
         if self.object.user_has_already_bought(self.request.user):
             return self.object.buyers.remove(self.request.user)
         else:
-            msg = "The user hasn't got this product already."
+            msg = _("The user hasn't got this product already.")
             raise Http404(msg)
 
     def form_valid(self, form):

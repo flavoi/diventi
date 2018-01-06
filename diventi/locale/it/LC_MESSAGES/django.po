@@ -36,7 +36,7 @@ msgstr "^utenza/"
 
 #: config/urls.py:40
 msgid "^blog/"
-msgstr ""
+msgstr "^blog/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -197,19 +197,19 @@ msgstr "Copertine utente"
 
 #: diventi/blog/admin.py:9
 msgid "Mark selected stories as published"
-msgstr ""
+msgstr "Pubblica le storie selezionate"
 
 #: diventi/blog/admin.py:14
 msgid "Mark selected stories as hidden"
-msgstr ""
+msgstr "Nascondi le storie selezionate"
 
 #: diventi/blog/apps.py:7
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: diventi/blog/models.py:62
 msgid "categories"
-msgstr ""
+msgstr "categorie"
 
 #: diventi/blog/models.py:70 diventi/core/models.py:78
 #: diventi/landing/models.py:25
@@ -223,47 +223,43 @@ msgstr "descrizione"
 
 #: diventi/blog/models.py:72
 msgid "category"
-msgstr ""
+msgstr "categoria"
 
 #: diventi/blog/models.py:73 diventi/core/models.py:93
 msgid "image"
 msgstr "immagine"
 
 #: diventi/blog/models.py:74
-#, fuzzy
-#| msgid "description"
 msgid "caption"
-msgstr "descrizione"
+msgstr "didascalia"
 
 #: diventi/blog/models.py:75
 msgid "content"
-msgstr ""
+msgstr "contenuto"
 
 #: diventi/blog/models.py:76
 msgid "hot"
-msgstr ""
+msgstr "di tendenza"
 
 #: diventi/blog/models.py:77
 msgid "slug"
-msgstr ""
+msgstr "slug"
 
 #: diventi/blog/models.py:78
 msgid "author"
-msgstr ""
+msgstr "autore"
 
 #: diventi/blog/urls.py:8
 msgid "^(?P<slug>[-\\w]+)/$"
-msgstr ""
+msgstr "^(?P<slug>[-\\w]+)/$"
 
 #: diventi/blog/urls.py:9
-#, fuzzy
-#| msgid "^(?P<pk>\\d+)/update/$"
 msgid "^(?P<slug>[-\\w]+)/promote/$"
-msgstr "^(?P<pk>\\d+)/aggiorna/$"
+msgstr "^(?P<slug>[-\\w]+)/promuovi/$"
 
 #: diventi/blog/urls.py:10
 msgid "^(?P<slug>[-\\w]+)/promote/api/$"
-msgstr ""
+msgstr "^(?P<slug>[-\\w]+)/promuovi/api/$"
 
 #: diventi/comments/templatetags/comment_extras.py:50
 #: diventi/comments/templatetags/comment_extras.py:62
@@ -503,29 +499,29 @@ msgstr "Sviluppato con passione dal team Diventi"
 
 #: diventi/templates/blog/article_list.html:13
 msgid "Our Latest Stories"
-msgstr ""
+msgstr "Le storie più recenti"
 
 #: diventi/templates/blog/article_list.html:42
 msgid "Hot"
-msgstr ""
+msgstr "Di tendenza"
 
 #: diventi/templates/blog/article_list.html:65
 msgid "There are no posts yet"
-msgstr ""
+msgstr "Nessun articolo è stato pubblicato"
 
 #: diventi/templates/blog/article_list.html:74
 #: diventi/templates/blog/article_list.html:76
 msgid "Previous"
-msgstr ""
+msgstr "Precedente"
 
 #: diventi/templates/blog/article_list.html:80
 msgid "current"
-msgstr ""
+msgstr "corrente"
 
 #: diventi/templates/blog/article_list.html:86
 #: diventi/templates/blog/article_list.html:88
 msgid "Next"
-msgstr ""
+msgstr "Successivo"
 
 #: diventi/templates/landing/landing.html:32
 msgid "Check it out"

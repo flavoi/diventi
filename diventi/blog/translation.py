@@ -10,4 +10,4 @@ class CategoryTranslationOptions(TranslationOptions):
 
 @register(Article)
 class ArticleTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'caption', 'content', 'hot', 'slug')
+    fields = ('title', 'description', 'caption', 'content', 'slug')

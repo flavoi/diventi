@@ -14,11 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced translations: the following components may be displayed in english or italian: 
     - [x] landing page
  	- [x] messages
-    - [ ] navigation
-    - [ ] user registration
-    - [ ] user profile
-    - [ ] blog
+    - [x] navigation
+    - [x] user registration
+    - [x] user profile
+    - [x] blog
     - [ ] product
+    - [ ] error pages
+    - [ ] comments
 - Added a Vagrantfile to facilitate the development process across different computers
 
 ### Changed

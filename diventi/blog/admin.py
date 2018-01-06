@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
+from diventi.core.admin import DiventiTranslationAdmin
+
 from .models import Article, Category
 
 
@@ -14,7 +16,7 @@ def make_unpublished(modeladmin, request, queryset):
 make_unpublished.short_description = _("Mark selected stories as hidden")
 
 
-class ArticleAdmin(admin.ModelAdmin):
+class ArticleAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'category', 'hot', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load humanize %}
+{% load i18n %}
 
 {% block title %}Blog{% endblock title %}
 
@@ -9,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
-                <h2 class="title">Our Latest Stories</h2>
+                <h2 class="title">{% trans "Our Latest Stories" %}</h2>
             </div>
         </div>
     </div>
@@ -38,7 +39,7 @@
                                     <h6 class="category">
                                         <span class="text-rose">
                                             {% if article.hot %}
-                                                <i class="fal fa-fire fa-lg"></i> Hot
+                                                <i class="fal fa-fire fa-lg"></i> {% trans "Hot" %}
                                             {% else %}
                                                 {{ article.category }}
                                             {% endif %}
@@ -61,7 +62,7 @@
                         </div>                        
                         {% empty %}
                         <div class="text-center">
-                            <h3>There are no posts yet <i class="fal fa-frown"></i></h3>
+                            <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
                         </div>
                     {% endfor %}
             </div> <!-- End grid column -->
@@ -70,21 +71,21 @@
             <br />
           <ul class="pagination" style="justify-content: center;">
             {% if page_obj.has_previous %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a></li>
             {% else %}
-              <li class="page-item disabled"><span class="page-link">Previous</span></li>
+              <li class="page-item disabled"><span class="page-link">{% trans "Previous" %}</span></li>
             {% endif %}
             {% for i in page_obj.paginator.page_range %}
               {% if page_obj.number == i %}
-                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">({% trans "current" %})</span></span></li>
               {% else %}
                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
               {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
-              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a></li>
             {% else %}
-              <li class="page-item disabled"><span class="page-link">Next</span></li>
+              <li class="page-item disabled"><span class="page-link">{% trans "Next" %}</span></li>
             {% endif %}
           </ul>
         {% endif %}

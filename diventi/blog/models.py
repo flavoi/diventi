@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
@@ -58,7 +59,7 @@ class Category(models.Model):
         return self.title
 
     class Meta:
-    	verbose_name_plural = "categories"
+    	verbose_name_plural = _("categories")
 
 
 class Article(TimeStampedModel, PromotableModel, PublishableModel):
@@ -66,15 +67,15 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel):
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
     """
-    title = models.CharField(max_length=60)
-    description = RichTextField(max_length=250)
-    category = models.ForeignKey(Category)
-    image = models.ImageField(blank=True, upload_to='blog/')
-    caption = models.CharField(max_length=60, blank=True)
-    content = RichTextField()    
-    hot = models.BooleanField(default=False)
-    slug = models.SlugField(unique=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='articles')
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    description = RichTextField(max_length=250, verbose_name=_('description'))
+    category = models.ForeignKey(Category, verbose_name=_('category'))
+    image = models.ImageField(blank=True, upload_to='blog/', verbose_name=_('image'))
+    caption = models.CharField(max_length=60, blank=True, verbose_name=_('caption'))
+    content = RichTextField(verbose_name=_('content'))
+    hot = models.BooleanField(default=False, verbose_name=_('hot'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='articles', verbose_name=_('author'))
 
     objects = ArticleQuerySet.as_manager()
 

@@ -1,16 +1,17 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 from .models import Article, Category
 
 
 def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
-make_published.short_description = "Mark selected stories as published"
+make_published.short_description = _("Mark selected stories as published")
 
 
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(published=False)
-make_unpublished.short_description = "Mark selected stories as hidden"
+make_unpublished.short_description = _("Mark selected stories as hidden")
 
 
 class ArticleAdmin(admin.ModelAdmin):

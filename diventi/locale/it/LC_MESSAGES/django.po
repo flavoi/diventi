@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-05 18:26+0100\n"
+"POT-Creation-Date: 2018-01-06 11:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,17 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/urls.py:38
+#: config/urls.py:37
 msgid "^dashboard/"
 msgstr "^quadro/"
 
-#: config/urls.py:40
+#: config/urls.py:39
 msgid "^accounts/"
 msgstr "^utenza/"
+
+#: config/urls.py:40
+msgid "^blog/"
+msgstr ""
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -191,6 +195,76 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
+#: diventi/blog/admin.py:9
+msgid "Mark selected stories as published"
+msgstr ""
+
+#: diventi/blog/admin.py:14
+msgid "Mark selected stories as hidden"
+msgstr ""
+
+#: diventi/blog/apps.py:7
+msgid "Blog"
+msgstr ""
+
+#: diventi/blog/models.py:62
+msgid "categories"
+msgstr ""
+
+#: diventi/blog/models.py:70 diventi/core/models.py:78
+#: diventi/landing/models.py:25
+msgid "title"
+msgstr "titolo"
+
+#: diventi/blog/models.py:71 diventi/core/models.py:79
+#: diventi/landing/models.py:27
+msgid "description"
+msgstr "descrizione"
+
+#: diventi/blog/models.py:72
+msgid "category"
+msgstr ""
+
+#: diventi/blog/models.py:73 diventi/core/models.py:93
+msgid "image"
+msgstr "immagine"
+
+#: diventi/blog/models.py:74
+#, fuzzy
+#| msgid "description"
+msgid "caption"
+msgstr "descrizione"
+
+#: diventi/blog/models.py:75
+msgid "content"
+msgstr ""
+
+#: diventi/blog/models.py:76
+msgid "hot"
+msgstr ""
+
+#: diventi/blog/models.py:77
+msgid "slug"
+msgstr ""
+
+#: diventi/blog/models.py:78
+msgid "author"
+msgstr ""
+
+#: diventi/blog/urls.py:8
+msgid "^(?P<slug>[-\\w]+)/$"
+msgstr ""
+
+#: diventi/blog/urls.py:9
+#, fuzzy
+#| msgid "^(?P<pk>\\d+)/update/$"
+msgid "^(?P<slug>[-\\w]+)/promote/$"
+msgstr "^(?P<pk>\\d+)/aggiorna/$"
+
+#: diventi/blog/urls.py:10
+msgid "^(?P<slug>[-\\w]+)/promote/api/$"
+msgstr ""
+
 #: diventi/comments/templatetags/comment_extras.py:50
 #: diventi/comments/templatetags/comment_extras.py:62
 #, python-format
@@ -249,21 +323,9 @@ msgstr "promozioni"
 msgid "icon"
 msgstr "icona"
 
-#: diventi/core/models.py:78 diventi/landing/models.py:25
-msgid "title"
-msgstr "titolo"
-
-#: diventi/core/models.py:79 diventi/landing/models.py:27
-msgid "description"
-msgstr "descrizione"
-
 #: diventi/core/models.py:80
 msgid "color"
 msgstr "colore"
-
-#: diventi/core/models.py:93
-msgid "image"
-msgstr "immagine"
 
 #: diventi/core/models.py:94
 msgid "label"
@@ -438,6 +500,32 @@ msgstr "Cerca"
 #: diventi/templates/base.html:208
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dal team Diventi"
+
+#: diventi/templates/blog/article_list.html:13
+msgid "Our Latest Stories"
+msgstr ""
+
+#: diventi/templates/blog/article_list.html:42
+msgid "Hot"
+msgstr ""
+
+#: diventi/templates/blog/article_list.html:65
+msgid "There are no posts yet"
+msgstr ""
+
+#: diventi/templates/blog/article_list.html:74
+#: diventi/templates/blog/article_list.html:76
+msgid "Previous"
+msgstr ""
+
+#: diventi/templates/blog/article_list.html:80
+msgid "current"
+msgstr ""
+
+#: diventi/templates/blog/article_list.html:86
+#: diventi/templates/blog/article_list.html:88
+msgid "Next"
+msgstr ""
 
 #: diventi/templates/landing/landing.html:32
 msgid "Check it out"

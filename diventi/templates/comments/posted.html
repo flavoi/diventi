@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block title %}Comment posted{% endblock title %}
 
 {% block bodyclass %}{% endblock bodyclass %}
@@ -12,9 +14,9 @@
                 <div class="card">
                     <div class="card-content">                        
                         <h4 class="card-title">
-                            Comment posted!
+                            {% trans "Comment posted" %}!
                         </h4>
-                        You can leave the page or go <b><a class="text-warning" href="{{ request.META.HTTP_REFERER }}#comments">back to the previous page.</a></b>
+                        {% trans "You can leave the page or go back" %} <b><a class="text-warning" href="{{ request.META.HTTP_REFERER }}#comments"> {% trans "to the previous page" %}.</a></b>
                     </div>
                 </div>
             </div>

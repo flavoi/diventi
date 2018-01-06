@@ -1,3 +1,5 @@
+default_app_config = 'diventi.comments.apps.CommentsConfig'
+
 def get_model():
     from diventi.comments.models import DiventiComment
     return DiventiComment

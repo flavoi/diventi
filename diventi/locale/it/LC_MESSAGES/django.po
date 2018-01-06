@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-06 14:25+0100\n"
+"POT-Creation-Date: 2018-01-06 15:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,21 +26,25 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/urls.py:37
+#: config/urls.py:36
 msgid "^dashboard/"
 msgstr "^quadro/"
 
-#: config/urls.py:38
+#: config/urls.py:37
 msgid "^accounts/"
 msgstr "^utenza/"
 
-#: config/urls.py:39
+#: config/urls.py:38
 msgid "^blog/"
 msgstr "^blog/"
 
-#: config/urls.py:40
+#: config/urls.py:39
 msgid "^products/"
 msgstr "^prodotti/"
+
+#: config/urls.py:40
+msgid "^comments/"
+msgstr "^commenti/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -274,11 +278,35 @@ msgstr "^(?P<slug>[-\\w]+)/promuovi/$"
 msgid "^(?P<slug>[-\\w]+)/promote/api/$"
 msgstr "^(?P<slug>[-\\w]+)/promuovi/api/$"
 
+#: diventi/comments/apps.py:7 diventi/comments/models.py:18
+msgid "comments"
+msgstr "commenti"
+
+#: diventi/comments/models.py:11
+msgid "parent"
+msgstr "nodo padre"
+
+#: diventi/comments/models.py:17
+msgid "comment"
+msgstr "commento"
+
 #: diventi/comments/templatetags/comment_extras.py:50
 #: diventi/comments/templatetags/comment_extras.py:62
 #, python-format
 msgid "%s tag requires a queryset"
 msgstr "il tag %s richiede una queryset"
+
+#: diventi/comments/urls.py:7
+msgid "^(?P<pk>\\d+)/promote/$"
+msgstr "^(?P<pk>\\d+)/promuovi/$"
+
+#: diventi/comments/urls.py:8
+msgid "^(?P<pk>\\d+)/promote/api/$"
+msgstr "^(?P<pk>[-\\w]+)/promuovi/api/$"
+
+#: diventi/comments/views.py:25
+msgid "Comment has been promoted!"
+msgstr "Il commento è stato promosso!"
 
 #: diventi/core/admin.py:6 diventi/core/admin.py:7
 msgid "Diventi's Dashboard"
@@ -609,6 +637,70 @@ msgstr "corrente"
 #: diventi/templates/blog/article_list.html:88
 msgid "Next"
 msgstr "Successivo"
+
+#: diventi/templates/comments/comment_detail.html:25
+msgid "Reply"
+msgstr "Rispondi"
+
+#: diventi/templates/comments/comment_detail.html:33
+msgid "Show replies"
+msgstr "Mostra le risposte"
+
+#: diventi/templates/comments/comment_detail.html:42
+msgid "Write your comment"
+msgstr "Scrivi il tuo commento"
+
+#: diventi/templates/comments/comment_list.html:20
+msgid "Comment"
+msgstr "Commento"
+
+#: diventi/templates/comments/comment_list.html:25
+msgid "Preview"
+msgstr "Anteprima"
+
+#: diventi/templates/comments/comment_list.html:33
+msgid "Post your comment"
+msgstr "Pubblica il tuo commento"
+
+#: diventi/templates/comments/comment_list.html:54
+msgid "Please sign in to leave a comment"
+msgstr "Effettua l'accesso per pubblicare un commento."
+
+#: diventi/templates/comments/comment_list.html:61
+msgid "Comment preview"
+msgstr "Anteprima"
+
+#: diventi/templates/comments/comment_list.html:77
+msgid "Comments"
+msgstr "Commenti"
+
+#: diventi/templates/comments/comment_list.html:84
+msgid "Best"
+msgstr "Migliori"
+
+#: diventi/templates/comments/comment_list.html:89
+msgid "Submit Date"
+msgstr "Data pubblicazione"
+
+#: diventi/templates/comments/comment_list.html:146
+msgid "Demote"
+msgstr "Degrada"
+
+#: diventi/templates/comments/comment_list.html:149
+msgid "Promote"
+msgstr "Promuovi"
+
+#: diventi/templates/comments/posted.html:17
+msgid "Comment posted"
+msgstr "Commento pubblicato"
+
+#: diventi/templates/comments/posted.html:19
+msgid "You can leave the page or go back"
+msgstr "Ora puoi lasciare la pagina oppure ritornare"
+
+#: diventi/templates/comments/posted.html:19
+msgid "to the previous page"
+msgstr "alla pagina precedente"
 
 #: diventi/templates/landing/landing.html:32
 msgid "Check it out"

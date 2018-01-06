@@ -25,7 +25,6 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^comments/default/', include('django_comments.urls')),
-    url(r'^comments/', include('diventi.comments.urls', namespace='comments')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 ] 
@@ -38,4 +37,5 @@ urlpatterns += i18n_patterns(
     url(_(r'^accounts/'), include('diventi.accounts.urls', namespace='accounts')),
     url(_(r'^blog/'), include('diventi.blog.urls', namespace='blog')),
     url(_(r'^products/'), include('diventi.products.urls', namespace='products')),
+    url(_(r'^comments/'), include('diventi.comments.urls', namespace='comments')),
 )

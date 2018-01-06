@@ -1,6 +1,7 @@
 {% load comments %}
 {% load mptt_tags %}
 {% load comment_extras %}
+{% load i18n %}
 
 {% include 'comments/comment_preview.html' %}
 
@@ -16,12 +17,12 @@
             <ul class="nav nav-pills nav-pills-info" role="tablist">
                 <li class="active">
                     <a href="#list-1" role="tab" data-toggle="tab" aria-expanded="true">
-                        Comment
+                        {% trans "Comment" %}
                     </a>
                 </li>
                 <li class="">
                     <a href="#preview-1" role="tab" data-toggle="tab" aria-expanded="false">
-                        Preview
+                        {% trans "Preview" %}
                     </a>
                 </li>
             </ul>
@@ -29,14 +30,14 @@
     </div>
 
     <div class="tab-pane active" id="list-1">
-        <a name="comments"><h3 class="title text-center">Post your comment</h3></a>
+        <a name="comments"><h3 class="title text-center">{% trans "Post your comment" %}</h3></a>
         <div class="media media-post">
         {% if user.is_authenticated %}
             {% get_comment_form for object as form %}
             <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
                 {% csrf_token %}
                 <div class="media-body">
-                    <textarea  style="padding: 10px;" name="comment" id="comment" class="form-control" placeholder="Write your comment." rows="3" required></textarea>
+                    <textarea  style="padding: 10px;" name="comment" id="comment" class="form-control" placeholder="{% trans 'Write your comment' %}." rows="3" required></textarea>
                     {{ form.content_type }}
                     <span style="display:none">{{ form.honeypot }}</span>
                     {{ form.object_pk }}
@@ -50,14 +51,14 @@
             </form>
         {% else %}
             <div class="text-center">
-                <p>Please sign in to leave a comment.</p>
+                <p>{% trans "Please sign in to leave a comment" %}.</p>
             </div>
         {% endif %}
         </div>
     </div>
     {% if user.is_authenticated %}
         <div class="tab-pane" id="preview-1">
-            <h3 class="title text-center">Comment preview</h3>
+            <h3 class="title text-center">{% trans "Comment preview" %}</h3>
             <div class="media text-left">
                 <a class="pull-left author" href="">
                     <div id="lp-avatar"></div>
@@ -73,19 +74,19 @@
     {% endif %}
 </div>
             
-<h3 class="title text-center">{{ comment_count }} Comments</h3>
+<h3 class="title text-center">{{ comment_count }} {% trans "Comments" %}</h3>
 <div class="row">
     <div class="col-md-12">
 
         <ul class="nav nav-pills nav-pills-info" role="tablist">
             <li class="active">
                 <a href="#best-1" role="tab" data-toggle="tab" aria-expanded="true">
-                    Best
+                    {% trans "Best" %}
                 </a>
             </li>
             <li class="">
                 <a href="#date-1" role="tab" data-toggle="tab" aria-expanded="false">
-                    Submit Date
+                    {% trans "Submit Date" %}
                 </a>
             </li>
             <!--                           
@@ -142,10 +143,10 @@
                 var newPromotions;
                 var newLabel;
                 if (data.promoted){
-                    updateText(this_, addPromotion, "Demote")
+                    updateText(this_, addPromotion, "{% trans 'Demote' %}")
                     this_.addClass("btn-warning")
                 } else {
-                    updateText(this_, removePromotion, "Promote")
+                    updateText(this_, removePromotion, "{% trans 'Promote' %}")
                     this_.removeClass("btn-warning")
                 }            
             }, error: function(error){

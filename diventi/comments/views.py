@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import RedirectView
 from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -21,7 +22,7 @@ class CommentPromoteToggleView(RedirectView):
                 comment.promotions.remove(user)                           
             else:
                 comment.promotions.add(user)
-                messages.success(self.request, 'Comment has been promoted!')
+                messages.success(self.request, _('Comment has been promoted!'))
         next = 'landing:home'
         return reverse_lazy(next)
 

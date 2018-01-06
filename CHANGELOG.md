@@ -18,9 +18,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - [x] user registration
     - [x] user profile
     - [x] blog
-    - [ ] product
-    - [ ] error pages
-    - [ ] comments
+    - [x] product
+    - [x] error pages
+    - [x] comments
+    - [ ] ratings
 - Added a Vagrantfile to facilitate the development process across different computers
 
 ### Changed

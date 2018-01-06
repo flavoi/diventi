@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-06 15:26+0100\n"
+"POT-Creation-Date: 2018-01-06 16:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,33 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:149
+#: config/settings/base.py:154
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:150
+#: config/settings/base.py:155
 msgid "English"
 msgstr "Inglese"
 
-#: config/urls.py:36
+#: config/urls.py:35
 msgid "^dashboard/"
 msgstr "^quadro/"
 
-#: config/urls.py:37
+#: config/urls.py:36
 msgid "^accounts/"
 msgstr "^utenza/"
 
-#: config/urls.py:38
+#: config/urls.py:37
 msgid "^blog/"
 msgstr "^blog/"
 
-#: config/urls.py:39
+#: config/urls.py:38
 msgid "^products/"
 msgstr "^prodotti/"
 
-#: config/urls.py:40
+#: config/urls.py:39
 msgid "^comments/"
 msgstr "^commenti/"
+
+#: config/urls.py:40
+msgid "^ratings/"
+msgstr "^recensioni/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -222,6 +226,7 @@ msgstr "categorie"
 
 #: diventi/blog/models.py:70 diventi/core/models.py:78
 #: diventi/landing/models.py:25 diventi/products/models.py:46
+#: diventi/ratings/models.py:8
 msgid "title"
 msgstr "titolo"
 
@@ -489,6 +494,14 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
+#: diventi/ratings/apps.py:7 diventi/ratings/models.py:12
+msgid "ratings"
+msgstr "recensioni"
+
+#: diventi/ratings/models.py:11
+msgid "rating"
+msgstr "recensione"
+
 #: diventi/templates/accounts/change_password.html:6
 msgid ""
 "Your account doesn't have access to this page. To proceed, please sign in "
@@ -647,6 +660,7 @@ msgid "Show replies"
 msgstr "Mostra le risposte"
 
 #: diventi/templates/comments/comment_detail.html:42
+#: diventi/templates/comments/comment_list.html:40
 msgid "Write your comment"
 msgstr "Scrivi il tuo commento"
 

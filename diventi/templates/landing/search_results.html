@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block title %}Search Results{% endblock title %}
 
 {% block bodyclass %}section-gray{% endblock bodyclass %}
@@ -31,7 +33,7 @@
                         </div>                                
                     {% endfor %}
                     <div class="text-center">
-                        <h3>End of results <i class="fal fa-globe"></i></h3>
+                        <h3>{% trans "End of results" %} <i class="fal fa-globe"></i></h3>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-06 16:03+0100\n"
+"POT-Creation-Date: 2018-01-07 12:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:154
+#: config/settings/base.py:149
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:155
+#: config/settings/base.py:150
 msgid "English"
 msgstr "Inglese"
 
@@ -226,7 +226,6 @@ msgstr "categorie"
 
 #: diventi/blog/models.py:70 diventi/core/models.py:78
 #: diventi/landing/models.py:25 diventi/products/models.py:46
-#: diventi/ratings/models.py:8
 msgid "title"
 msgstr "titolo"
 
@@ -494,14 +493,6 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
-#: diventi/ratings/apps.py:7 diventi/ratings/models.py:12
-msgid "ratings"
-msgstr "recensioni"
-
-#: diventi/ratings/models.py:11
-msgid "rating"
-msgstr "recensione"
-
 #: diventi/templates/accounts/change_password.html:6
 msgid ""
 "Your account doesn't have access to this page. To proceed, please sign in "
@@ -739,6 +730,10 @@ msgstr "Unisciti alla nostra community"
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
+#: diventi/templates/landing/search_results.html:36
+msgid "End of results"
+msgstr "Fine dei risultati"
+
 #: diventi/templates/products/product_detail.html:64
 msgid "In your collection"
 msgstr "Nella tua collezione"
@@ -786,3 +781,9 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "ratings"
+#~ msgstr "recensioni"
+
+#~ msgid "rating"
+#~ msgstr "recensione"

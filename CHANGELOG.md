@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Changed to yellow the background color of the inverse navbar links
 - Updated important links in the README
-- Updated 'manage profile' icon in the navbar
+- Updated icon styles in the navbar
 
 ### Fixed
 - Fixed minor formatting errors in the changelog

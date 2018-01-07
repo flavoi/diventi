@@ -5,6 +5,9 @@ diventi/staticfiles/*
 landing.json
 blog.json
 
+# Vagrat
+.vagrant/*
+
 # Python bytecode
 *.py[co]
 

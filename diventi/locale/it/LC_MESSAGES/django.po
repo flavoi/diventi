@@ -689,7 +689,7 @@ msgstr "Migliori"
 
 #: diventi/templates/comments/comment_list.html:89
 msgid "Submit Date"
-msgstr "Data pubblicazione"
+msgstr "Recenti"
 
 #: diventi/templates/comments/comment_list.html:146
 msgid "Demote"

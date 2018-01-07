@@ -614,7 +614,7 @@ msgstr "Cerca"
 
 #: diventi/templates/base.html:208
 msgid "Made with passion by Diventi's team"
-msgstr "Sviluppato con passione dal team Diventi"
+msgstr "Sviluppato con passione dagli autori Diventi"
 
 #: diventi/templates/blog/article_list.html:13
 msgid "Our Latest Stories"

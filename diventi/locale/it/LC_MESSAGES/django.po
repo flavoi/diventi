@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-07 12:59+0100\n"
+"POT-Creation-Date: 2018-01-07 15:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -666,6 +666,10 @@ msgstr "Anteprima"
 #: diventi/templates/comments/comment_list.html:33
 msgid "Post your comment"
 msgstr "Pubblica il tuo commento"
+
+#: diventi/templates/comments/comment_list.html:48
+msgid "Post"
+msgstr "Pubblica"
 
 #: diventi/templates/comments/comment_list.html:54
 msgid "Please sign in to leave a comment"

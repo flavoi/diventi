@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 from diventi.core.admin import DiventiTranslationAdmin
 
-from modeltranslation.admin import TranslationTabularInline
+from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
 from .models import Product, Chapter, Characteristic, ImagePreview
 
@@ -17,7 +17,7 @@ def make_unpublished(modeladmin, request, queryset):
 make_unpublished.short_description = _("Mark selected products as hidden")
 
 
-class ChapterInline(TranslationTabularInline):
+class ChapterInline(TranslationStackedInline):
     model = Chapter
     fields = ('title', 'description', 'image')
     extra = 0

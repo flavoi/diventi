@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-07 15:00+0100\n"
+"POT-Creation-Date: 2018-01-09 22:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,7 +376,7 @@ msgstr "etichetta"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:112 diventi/products/models.py:101
+#: diventi/core/models.py:112 diventi/products/models.py:108
 msgid "Image"
 msgstr "Immagine"
 
@@ -457,7 +457,7 @@ msgid "file"
 msgstr "file"
 
 #: diventi/products/models.py:58 diventi/products/models.py:88
-#: diventi/products/models.py:93 diventi/products/models.py:98
+#: diventi/products/models.py:97 diventi/products/models.py:105
 msgid "product"
 msgstr "prodotto"
 
@@ -465,7 +465,23 @@ msgstr "prodotto"
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:102
+#: diventi/products/models.py:91
+msgid "Chapter"
+msgstr "Capitolo"
+
+#: diventi/products/models.py:92
+msgid "Chapters"
+msgstr "Capitoli"
+
+#: diventi/products/models.py:100
+msgid "Characteristic"
+msgstr "Caratteristica"
+
+#: diventi/products/models.py:101
+msgid "Characteristics"
+msgstr "Caratteristiche"
+
+#: diventi/products/models.py:109
 msgid "Images"
 msgstr "Immagini"
 
@@ -642,15 +658,15 @@ msgstr "corrente"
 msgid "Next"
 msgstr "Successivo"
 
-#: diventi/templates/comments/comment_detail.html:25
-msgid "Reply"
-msgstr "Rispondi"
-
-#: diventi/templates/comments/comment_detail.html:33
+#: diventi/templates/comments/comment_detail.html:24
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/comments/comment_detail.html:42
+#: diventi/templates/comments/comment_detail.html:32
+msgid "Reply"
+msgstr "Rispondi"
+
+#: diventi/templates/comments/comment_detail.html:44
 #: diventi/templates/comments/comment_list.html:40
 msgid "Write your comment"
 msgstr "Scrivi il tuo commento"

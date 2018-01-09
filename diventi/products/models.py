@@ -87,11 +87,18 @@ class Chapter(Element, DiventiImageModel):
     """ A stand-alone chapter of an adventure."""
     product = models.ForeignKey(Product, related_name='chapters', verbose_name=_('product'))     
 
+    class Meta:
+        verbose_name = _('Chapter')
+        verbose_name_plural = _('Chapters')
+
 
 class Characteristic(Element):
     """ A specific detail of a product."""
     product = models.ForeignKey(Product, related_name='characteristics', verbose_name=_('product'))
 
+    class Meta:
+        verbose_name = _('Characteristic')
+        verbose_name_plural = _('Characteristics')
 
 class ImagePreview(DiventiImageModel):    
     """A list of cool images of the product."""

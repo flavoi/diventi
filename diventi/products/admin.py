@@ -23,13 +23,13 @@ class ChapterInline(TranslationStackedInline):
     extra = 0
 
 
-class CharacteristicInline(TranslationTabularInline):
+class CharacteristicInline(TranslationStackedInline):
     model = Characteristic
     fields = ('title', 'description')
     extra = 0
 
 
-class ImagePreviewInline(TranslationTabularInline):
+class ImagePreviewInline(TranslationStackedInline):
     model = ImagePreview
     fields = ( 'label', 'image')
     extra = 0

@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Changed to yellow the background color of the inverse navbar links
 - Updated important links in the README
 - Updated icon styles in the navbar
+- Enabled comments count in the blog list page
 
 ### Fixed
 - Fixed minor formatting errors in the changelog

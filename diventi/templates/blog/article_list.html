@@ -53,10 +53,16 @@
                                         {{ article.description|striptags }}                                        
                                     </p>
                                     <p class="author">
-                                        <span class="text-warning">                                    
-                                            <i class="fal fa-thumbs-up"></i> {{ article.promotions.count }}
-                                        </span> &middot; 
+                                        {% load comment_extras %}
+                                        {% load comments %}
+                                        <span class="text-gray">
+                                        {% get_comment_count for article as comment_count %}
+                                        <i class="fal fa-comments fa-fw"></i> {{ comment_count }} &middot; 
+                               
+                                            <i class="fal fa-thumbs-up fa-fw"></i> {{ article.promotions.count }}
+                                         &middot; 
                                         {{ article.publication_date|naturalday }}
+                                        </span>
                                     </p>                            
                                 </div>
                             </div>

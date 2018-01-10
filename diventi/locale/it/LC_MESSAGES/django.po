@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-09 22:52+0100\n"
+"POT-Creation-Date: 2018-01-10 22:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -632,29 +632,29 @@ msgstr "Cerca"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
-#: diventi/templates/blog/article_list.html:13
+#: diventi/templates/blog/article_list.html:14
 msgid "Our Latest Stories"
-msgstr "Le storie più recenti"
+msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:42
+#: diventi/templates/blog/article_list.html:43
 msgid "Hot"
 msgstr "Di tendenza"
 
-#: diventi/templates/blog/article_list.html:65
+#: diventi/templates/blog/article_list.html:66
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:74
-#: diventi/templates/blog/article_list.html:76
+#: diventi/templates/blog/article_list.html:75
+#: diventi/templates/blog/article_list.html:77
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:80
+#: diventi/templates/blog/article_list.html:81
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:86
-#: diventi/templates/blog/article_list.html:88
+#: diventi/templates/blog/article_list.html:87
+#: diventi/templates/blog/article_list.html:89
 msgid "Next"
 msgstr "Successivo"
 

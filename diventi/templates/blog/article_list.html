@@ -10,7 +10,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
-                <h2 class="title">{% trans "Our Latest Stories" %}</h2>
+                <h2 class="title">Diventi Blog</h2>
+                <h4>{% trans "Our Latest Stories" %}.</h4>
             </div>
         </div>
     </div>
@@ -46,7 +47,7 @@
                                         </span>
                                     </h6>                
                                     <h3 class="card-title">
-                                        <a href="{% url 'blog:detail' article.slug %}">{{ article.title|title }}</a>
+                                        <a href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
                                     </h3>
                                     <p class="card-description">
                                         {{ article.description|striptags }}                                        

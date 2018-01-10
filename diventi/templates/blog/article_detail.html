@@ -11,8 +11,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
-                    <h1 class="title">{{ article.title|title }}</h1>
-                    <h4>{{ article.description|striptags }}</h4>
+                    <h1 class="title">{{ article.title|capfirst }}</h1>
+                    <h4>{{ article.description|safe }}</h4>
                     <br />
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="text-center title">
                     <span class="label label-rose main-tag">{{ article.category }}</span>
-                    <h2 class="title">{{ article.title|title }}</h2>
+                    <h2 class="title">{{ article.title|capfirst }}</h2>
                 </div>
                 {{ article.content|safe }}
             </div>                    

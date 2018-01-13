@@ -1,0 +1,46 @@
+{% load static %}
+{% load i18n %}
+
+<nav class="navbar navbar-transparent navbar-absolute navbar-expand-lg {% block navbarclasses %}{% endblock navbarclasses %}">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-translate">
+            <a href="{% url 'landing:home' %}" class="navbar-brand">
+                <img src="{% static 'brand/diventi-logo-transparent-white.png' %}" height="40" />
+            </a>
+            <button type="button" class="ml-auto navbar-toggler" data-toggle="collapse" data-target="#navigation-example3">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navigation-example3">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_language_info for LANGUAGE_CODE as lang %}
+                    <a class="nav-link">
+                        {{ lang.name_local }}
+                        <div class="ripple-container"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#pablo" class="nav-link">
+                        About Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#pablo" class="nav-link">
+                        Products
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#pablo" class="nav-link">
+                        Contact Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -12,16 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced threaded comments: comments are now stored as a tree and can be nested. 
   A user may reply to any comments in any page that includes them.
 - Introduced translations: the following components may be displayed in english or italian: 
-    - [x] landing page
- 	- [x] messages
-    - [x] navigation
-    - [x] user registration
-    - [x] user profile
-    - [x] blog
-    - [x] product
-    - [x] error pages
-    - [x] comments
-    - [ ] ratings
+    - Website [x] Admin [x] landing page
+ 	- Website [x] Admin [x] messages
+    - Website [x] Admin [x] navigation
+    - Website [x] Admin [x] user registration
+    - Website [x] Admin [x] user profile
+    - Website [x] Admin [x] blog
+    - Website [x] Admin [x] product
+    - Website [x] Admin [x] error pages
+    - Website [x] Admin [x] comments
+    - Website [x] Admin [] ratings
 - Added a Vagrantfile to facilitate the development process across different computers
 
 ### Changed
@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated important links in the README
 - Updated icon styles in the navbar
 - Enabled comments count in the blog list page
+- Refactored version numbering for pre-releases
 
 ### Fixed
 - Fixed minor formatting errors in the changelog
@@ -37,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed page header from search results page 
 
 
-## [0.6.4] → 2017-12-30
+## [1.0.0-alpha.6] → 2017-12-30
 
 ### Added
 - Introduced collections: a centralized space where a user can store any published products
@@ -84,7 +85,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that a user could expose to update other profiles
 
 
-## [0.5.2] → 2017-12-09
+## [1.0.0-alpha.5] → 2017-12-09
 
 ### Added
 - Introduced a profile section on the landing page with a link to the blog page
@@ -121,7 +122,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed rpg-awesome icons fron the base template
 
 
-## [0.4.2] → 2017-11-08
+## [1.0.0-alpha.4] → 2017-11-08
 
 ### Added
 - Introduced avatar grouping to better distinguish those reserved to staff members
@@ -139,7 +140,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem in accounts/widgets that caused an error while migrating the database
 
 
-## [0.3.3] → 2017-10-29
+## [1.0.0-alpha.3] → 2017-10-29
 
 ### Added
 - Introduced profile page with avatar, bio and favourite class customization options
@@ -162,7 +163,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed new relic monitoring
 
 
-## [0.2.1] → 2017-10-20
+## [1.0.0-alpha.2] → 2017-10-20
 
 ### Added
 - Introduced section "comment preview" under the comment post form
@@ -181,7 +182,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed icons from navbar
 
 
-## [0.1.0] → 2017-10-14
+## [1.0.0-alpha.1] → 2017-10-14
 
 ### Added
 - Introduced a landing page with the presentation of our product

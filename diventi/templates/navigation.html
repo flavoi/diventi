@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 
-<nav class="navbar navbar-transparent navbar-absolute navbar-expand-lg {% block navbarclasses %}{% endblock navbarclasses %}">
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute {% block navbarclasses %}{% endblock navbarclasses %}">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-translate">
@@ -20,26 +20,55 @@
                 <li class="nav-item">
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_language_info for LANGUAGE_CODE as lang %}
-                    <a class="nav-link">
+                    <a class="nav-link disabled">
                         {{ lang.name_local }}
                         <div class="ripple-container"></div>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#pablo" class="nav-link">
-                        About Us
+                    <a href="{% url 'blog:home' %}" class="nav-link">
+                        Blog
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#pablo" class="nav-link">
-                        Products
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#pablo" class="nav-link">
-                        Contact Us
-                    </a>
-                </li>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}              
+                        <li class="nav-item"> 
+                            <a href="{% url 'admin:index' %}" class="nav-link">
+                                {% trans "Dashboard" %}
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="dropdown nav-item">
+                        <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-photo-small">
+                                {% if user.avatar.image %}                    
+                                    <img src="{{ user.avatar.image }}" alt="User" class="rounded-circle img-fluid">
+                                {% else %}
+                                    <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="rounded-circle img-fluid">
+                                {% endif %}
+                            </div>
+                            <div class="ripple-container"></div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <h6 class="dropdown-header">{{ user.first_name }} &middot; {{ user.email }}</h6>
+                            <a href="#" data-toggle="modal" data-target="#changepasswordModal" class="dropdown-item">  
+                                {% trans "Change Password" %}
+                            </a>
+                            <a href="{% url 'accounts:update' user.pk %}" class="dropdown-item">
+                                {% trans "Manage profile" %}
+                            </a>
+                            <a href="{% url 'accounts:signout' %}" class="dropdown-item">
+                                {% trans "Sign out" %}
+                            </a> 
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="#" data-toggle="modal" data-target="#loginModal" class="nav-link">
+                            {% trans "Sign in" %}
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

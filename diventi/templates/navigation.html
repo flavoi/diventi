@@ -2,6 +2,7 @@
 {% load i18n %}
 
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute {% block navbarclasses %}{% endblock navbarclasses %}">
+
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-translate">
@@ -20,10 +21,10 @@
             <ul class="navbar-nav ml-auto">
                 
                 <form class="form-inline ml-auto" action="{% url 'landing:search' %}">
-                    <div class="form-group has-warning bmd-form-group">
+                    <div class="form-group has-white bmd-form-group">
                         <input class="form-control" placeholder="{% trans 'Search' %}" name="q" aria-label="{% trans 'Search' %}" {% if 'search_query' %}value="{{ search_query }}"{% endif %} type="text">
                     </div>
-                    <button type="submit" class="btn btn-white btn-raised btn-fab btn-link btn-round">
+                    <button type="submit" class="btn btn-white btn-raised btn-fab btn-link">
                         <i class="fal fa-search fa-sm"></i>
                     </button>
                 </form>

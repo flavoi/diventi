@@ -18,10 +18,7 @@
 
   <!-- Core styles CSS -->
   <link href="{% static 'material-kit-v2/css/material-kit.css' %}" rel="stylesheet"/>
-  
-  <!-- Custom styles CSS 
-  <link href="{% static 'diventi-kit/css/diventi.css' %}" rel="stylesheet"/>-->
-  
+   
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}?v=3">
@@ -42,29 +39,23 @@
       background-color: #ff9800;
       box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(33, 33, 33, 0.4);
     }
-    
-  .has-warning .form-control::-moz-placeholder {
-      color: #fff;
-  }
-
-  .has-warning .form-control:-ms-input-placeholder {
-      color: #fff;
-  }
-
-  .has-warning .form-control::-webkit-input-placeholder {
-      color: #fff;
-  }
-  
-
   </style>
+    
 </head>
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
-  
+
   {% include 'navigation.html' %}
 
-  {% block pageheader %}
-    <div class="page-header header-filter" data-parallax="true">
+  <div class="fixed-top">
+    <div class="col-md-4 ml-auto mr-auto">
+      {% include 'messages.html' %}
+    </div>
+  </div>
+
+  {% block pageheader %} 
+    <div class="page-header header-filter" style="background-image: url('{% block pageheaderimage %}{% endblock pageheaderimage %}');">
+      {% block pageheadercontent %}{% endblock pageheadercontent %}
     </div>
   {% endblock pageheader %}
 
@@ -77,13 +68,13 @@
   {% endblock main %}
 
   {% block footer %}
-  <footer class="footer">
-    <div class="container">
-      <div class="copyright text-center">
-        &copy; {{ copy }}. {% trans "Made with passion by Diventi's team" %}.
+    <footer class="footer">
+      <div class="container">
+        <div class="copyright text-center">
+          &copy; {{ copy }}. {% trans "Made with passion by Diventi's team" %}.
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
   {% endblock footer %}
 
   <div class="modal fade in" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true" style="display: none;">
@@ -145,6 +136,11 @@
         $("#loginModal").modal("show");
     });
   {% endif %}
+
+  // Timeout for messages
+  $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+    $(".alert").slideUp(500);
+  });
 
 </script>
 

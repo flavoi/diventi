@@ -9,19 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED] → xxxx-xx-xx
 
 ### Added
-- Introduced threaded comments: comments are now stored as a tree and can be nested. 
-  A user may reply to any comments in any page that includes them.
-- Introduced translations: the following components may be displayed in english or italian: 
-    | App           | Website       | Admin |
-    | ------------- |:-------------:|:-----:|
-    | landing       | x             | x     |
-    | messages      | x             | x     |
-    | accounts      | x             | x     |
-    | blog          | x             | x     |
-    | products      | x             | x     |
-    | comments      | x             | x     |
-    | star_ratings  | x             |       |
-- Added a Vagrantfile to facilitate the development process across different computers
+- Introduced threaded comments: comments are now stored as a tree and can be nested.
+  A user may reply to any comments in any page that includes them
+- Introduced translations: both static or dynamic components may be displayed in english or italian
+- Introduced a Vagrantfile to facilitate the development process across different computers
 
 ### Changed
 - Changed to yellow the background color of the inverse navbar links

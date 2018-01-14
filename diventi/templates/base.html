@@ -19,8 +19,8 @@
   <!-- Core styles CSS -->
   <link href="{% static 'material-kit-v2/css/material-kit.css' %}" rel="stylesheet"/>
   
-  <!-- Custom styles CSS -->
-  <link href="{% static 'diventi-kit/css/diventi.css' %}" rel="stylesheet"/>
+  <!-- Custom styles CSS 
+  <link href="{% static 'diventi-kit/css/diventi.css' %}" rel="stylesheet"/>-->
   
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}?v=3">
@@ -32,6 +32,31 @@
 
   {% block extrahead %}{% endblock extrahead %}
 
+  <style>
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus,
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus,
+    .dropdown-menu a:active {
+      color: #FFFFFF;
+      background-color: #ff9800;
+      box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(33, 33, 33, 0.4);
+    }
+    
+  .has-warning .form-control::-moz-placeholder {
+      color: #fff;
+  }
+
+  .has-warning .form-control:-ms-input-placeholder {
+      color: #fff;
+  }
+
+  .has-warning .form-control::-webkit-input-placeholder {
+      color: #fff;
+  }
+  
+
+  </style>
 </head>
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">

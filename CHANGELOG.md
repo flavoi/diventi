@@ -12,16 +12,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced threaded comments: comments are now stored as a tree and can be nested. 
   A user may reply to any comments in any page that includes them.
 - Introduced translations: the following components may be displayed in english or italian: 
-    - Website [x] Admin [x] landing page
- 	- Website [x] Admin [x] messages
-    - Website [x] Admin [x] navigation
-    - Website [x] Admin [x] user registration
-    - Website [x] Admin [x] user profile
-    - Website [x] Admin [x] blog
-    - Website [x] Admin [x] product
-    - Website [x] Admin [x] error pages
-    - Website [x] Admin [x] comments
-    - Website [x] Admin [] ratings
+    | App           | Website       | Admin |
+    | ------------- |:-------------:|:-----:|
+    | landing       | x             | x     |
+    | messages      | x             | x     |
+    | accounts      | x             | x     |
+    | blog          | x             | x     |
+    | products      | x             | x     |
+    | comments      | x             | x     |
+    | star_ratings  | x             |       |
 - Added a Vagrantfile to facilitate the development process across different computers
 
 ### Changed

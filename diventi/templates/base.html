@@ -44,8 +44,10 @@
 </head>
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
-
-  {% include 'navigation.html' %}
+  
+  <nav class="navbar navbar-expand-lg navbar-absolute {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}">
+    {% include 'navigation.html' %}
+  </nav>
 
   <div class="fixed-top">
     <div class="col-md-4 ml-auto mr-auto">
@@ -68,6 +70,7 @@
   {% endblock main %}
 
   {% block footer %}
+  <div class="fixed-bottom">
     <footer class="footer">
       <div class="container">
         <div class="copyright text-center">
@@ -75,6 +78,7 @@
         </div>
       </div>
     </footer>
+  </div>
   {% endblock footer %}
 
   <div class="modal fade in" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true" style="display: none;">

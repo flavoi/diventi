@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from ckeditor.fields import RichTextField
-
 from diventi.core.models import Element
 
 
@@ -23,8 +21,8 @@ class PresentationManager(models.Manager):
 
 class Presentation(models.Model):
     title = models.CharField(max_length=50, verbose_name=_('title'))
-    abstract = RichTextField(blank=True, verbose_name=_('abstract'))
-    description = RichTextField(blank=True, verbose_name=_('description'))
+    abstract = models.TextField(blank=True, verbose_name=_('abstract'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
     cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
 

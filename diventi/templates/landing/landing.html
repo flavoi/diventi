@@ -8,89 +8,80 @@
 {% block bodyclass %}landing-page{% endblock bodyclass %}
 
 {% block pageheader %}
-    <div class="page-header header-filter" {% if presentation.cover %}style="background-image: url('{{ presentation.cover.url }}');"{% endif %}>
-
+<div class="page-header header-filter" data-parallax="true" {% if presentation.cover %}style="background-image: url('{{ presentation.cover.url }}');"{% endif %}>
     <div class="container">
         <div class="row">
             <div class="col-md-6">                
                 <h1 class="title">{{ presentation.title|title }}.</h1>
-                <h4>{{ presentation.abstract|safe }}</h4>
-                <br />
-                <div class="buttons">
-                    {% if featured_product %}
-                        <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
-                            <i class="fas fa-hand-point-right fa-lg"></i> {% trans "Check it out" %}
-                        </a>
-                    {% endif %}
-                </div>
+                <h4>{{ presentation.abstract|striptags }}</h4>
+                <br>
+                {% if featured_product %}
+                    <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
+                        <i class="fas fa-hand-point-right fa-lg"></i> {% trans "Check it out" %}
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
-
 </div>
 {% endblock pageheader %}
 
 {% block content %}
+
     <div class="section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="card-image">
-                        <img class="img img-responsive" src="{% static 'brand/diventi-logo.png' %}" />
-                        <div class="ripple-container"></div>
-                    </div>
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                  <img class="card-img" src="{% static 'brand/diventi-logo.png' %}" alt="Diventi">
                 </div>
-                <div class="col-md-8 col-md-offset-2">
-                    <h5 class="description">{{ presentation.description|safe }}</h5>
-                </div>                
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                {% for feature in presentation.features.all %}
-                    <div class="col-md-4">
-                        <div class="feature-info">
-                            <div class="icon icon-{{ feature.color }}">
-                                <i class="fal fa-{{ feature.icon }} fa-5x"></i>
-                            </div>
-                            <h4 class="info-title">{{ feature.title|title }}</h4>
-                            <p>{{ feature.description|safe }}</p>
+                <h5 class="description">{{ presentation.description|striptags }}</h5>
+            </div>                
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            {% for feature in presentation.features.all %}
+                <div class="col-md-4">
+                    <div class="feature-info">
+                        <div class="icon icon-{{ feature.color }}">
+                            <i class="fal fa-{{ feature.icon }} fa-5x"></i>
                         </div>
+                        <h4 class="info-title">{{ feature.title|title }}</h4>
+                        <p>{{ feature.description|safe }}</p>
                     </div>
-                {% endfor %}
                 </div>
+            {% endfor %}
             </div>
         </div>
     </div>
 
     <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    {% if user.is_authenticated %}
-                    <div class="text-center">
-                        <h2 class="title">{% trans "Hello" %} {{ user.first_name }}!</h2>
-                        <h5 class="description">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</h5>
-                        <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning">
-                            <i class="fal fa-user-circle fa-lg"></i> {% trans "Manage profile" %}
-                        </a>
-                    </div>
-                    {% else %}
-                        <h2 class="text-center title">{% trans "Join our community" %}</h2>
-                        <h4 class="text-center description">{% trans "Sign up to know more and start exploring." %}</h4>
-                        <form class="contact-form" method="POST">
-                            {% csrf_token %}
-                            {% for field in registration_form %}
-                                <div class="col-md-6">
-                                {{ field }}
-                                </div>
-                            {% endfor %}
-                            <div class="col-md-4 col-md-offset-4 text-center">
-                                <input type="submit" class="btn btn-warning btn-raised" value="{% trans 'Sign up' %}">
-                            </div>
-                        </form>                        
-                    {% endif %}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {% if user.is_authenticated %}
+                <div class="text-center">
+                    <h2 class="title">{% trans "Hello" %} {{ user.first_name }}!</h2>
+                    <h5 class="description">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</h5>
+                    <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning">
+                        <i class="fal fa-user-circle fa-lg"></i> {% trans "Manage profile" %}
+                    </a>
                 </div>
+                {% else %}
+                    <h2 class="text-center title">{% trans "Join our community" %}</h2>
+                    <h4 class="text-center description">{% trans "Sign up to know more and start exploring." %}</h4>
+                    <form class="contact-form" method="POST">
+                        {% csrf_token %}
+                        {% for field in registration_form %}
+                            <div class="col-md-6">
+                            {{ field }}
+                            </div>
+                        {% endfor %}
+                        <div class="col-md-4 col-md-offset-4 text-center">
+                            <input type="submit" class="btn btn-warning btn-raised" value="{% trans 'Sign up' %}">
+                        </div>
+                    </form>                        
+                {% endif %}
             </div>
         </div>
     </div>
+
 {% endblock content %}

@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced threaded comments: comments are now stored as a tree and can be nested.
-  A user may reply to any comments in any page that includes them
 - Introduced translations: both static or dynamic components may be displayed in english or italian
 - Introduced a Vagrantfile to facilitate the development process across different computers
 
@@ -25,7 +24,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed minor formatting errors in the changelog
 
 ### Removed
-- Removed page header from search results page 
+- Removed page header from search results page
+- Removed rich text from landing model fields
 
 
 ## [1.0.0-alpha.6] → 2017-12-30

@@ -10,7 +10,8 @@
     <div class="page-header header-filter" style="background-image: {% if article.image %} url('{{ article.image.url }}');{% endif %}">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <span class="badge badge-rose">{{ article.category }}</span>
                     <h1 class="title">{{ article.title|capfirst }}</h1>
                     <h4>{{ article.description|safe }}</h4>
                     <br />
@@ -22,21 +23,17 @@
 
 {% block content %}
 <div class="container">
-    <div class="section section-text" style="margin-top:25px;"">
+    <div class="section section-text">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="text-center title">
-                    <span class="label label-rose main-tag">{{ article.category }}</span>
-                    <h2 class="title">{{ article.title|capfirst }}</h2>
-                </div>
+            <div class="col-md-8 ml-auto mr-auto">
                 {{ article.content|safe }}
             </div>                    
         </div>
     </div>
     <div class="section section-blog-info">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <hr />
+            <div class="col-md-8 ml-auto mr-auto">
+                <hr>
                 <div class="card card-profile card-plain">
                     <div class="row">
                         <div class="col-md-2">
@@ -48,7 +45,7 @@
                                         <img class="img" src="{% static 'material-kit/img/placeholder.jpg' %}">
                                     {% endif %}
                                 </a>
-                            <div class="ripple-container"></div></div>
+                            </div>
                         </div>
                         <div class="col-md-8">
                             <h4 class="card-title">{{ article.author.get_full_name }}</h4>
@@ -68,7 +65,7 @@
     </div>
     <div class="section section-comments">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 ml-auto mr-auto">
                 {% include "comments/comment_list.html" %}
             </div>
         </div>

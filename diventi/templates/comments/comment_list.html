@@ -26,31 +26,33 @@
     </div>
 
     <div class="tab-pane active" id="list-1">
-        <a name="comments"><h3 class="title text-center">{% trans "Post your comment" %}</h3></a>
-        <div class="media media-post">
+        <a name="comments">
+            <h3 class="title text-center">{% trans "Post your comment" %}</h3>
+        </a>
         {% if user.is_authenticated %}
-            {% get_comment_form for object as form %}
-            <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
-                {% csrf_token %}
-                <div class="media-body">
-                    <textarea  style="padding: 10px;" name="comment" id="comment" class="form-control" placeholder="{% trans 'Write your comment' %}." rows="3" required></textarea>
-                    {{ form.content_type }}
-                    <span style="display:none">{{ form.honeypot }}</span>
-                    {{ form.object_pk }}
-                    {{ form.timestamp }}
-                    {{ form.security_hash }}
-                    {{ form.parent }}
-                    <div class="media-footer">
-                        <input class="btn btn-warning btn-wd pull-right" type="submit" value="{% trans 'Post' %}" id="id_submit" />
+            <div class="media media-post">            
+                {% get_comment_form for object as form %}
+                <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
+                    {% csrf_token %}
+                    <div class="media-body">
+                        <textarea  style="padding: 10px;" name="comment" id="comment" class="form-control" placeholder="{% trans 'Write your comment' %}." rows="3" required></textarea>
+                        {{ form.content_type }}
+                        <span style="display:none">{{ form.honeypot }}</span>
+                        {{ form.object_pk }}
+                        {{ form.timestamp }}
+                        {{ form.security_hash }}
+                        {{ form.parent }}
+                        <div class="media-footer">
+                            <input class="btn btn-warning btn-wd pull-right" type="submit" value="{% trans 'Post' %}" id="id_submit" />
+                        </div>
                     </div>
-                </div>
-            </form>
-        {% else %}
-            <div class="text-center">
-                <p>{% trans "Please sign in to leave a comment" %}.</p>
+                </form>
             </div>
+        {% else %}
+            <h4 class="text-center">
+                {% trans "Please sign in to leave a comment" %}
+            </h4>
         {% endif %}
-        </div>
     </div>
     {% if user.is_authenticated %}
         <div class="tab-pane" id="preview-1">
@@ -85,13 +87,6 @@
                     {% trans "Submit Date" %}
                 </a>
             </li>
-            <!--                           
-            <li class="pull-right">
-                <a href="javascript:toggleDiv('parent');">
-                    Toggle Comments
-                </a>
-            </li>
-            --> 
         </ul>
 
         {% get_comment_list for object as comments %}

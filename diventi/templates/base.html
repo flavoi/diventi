@@ -40,7 +40,13 @@
       box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(33, 33, 33, 0.4);
     }
   </style>
-    
+  
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous">
+  </script>
+
 </head>
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
@@ -70,7 +76,6 @@
   {% endblock main %}
 
   {% block footer %}
-  <div class="fixed-bottom">
     <footer class="footer">
       <div class="container">
         <div class="copyright text-center">
@@ -78,7 +83,6 @@
         </div>
       </div>
     </footer>
-  </div>
   {% endblock footer %}
 
   <div class="modal fade in" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true" style="display: none;">

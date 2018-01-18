@@ -2,107 +2,65 @@
 {% load mptt_tags %}
 {% load comment_extras %}
 {% load i18n %}
-
 {% include 'comments/comment_preview.html' %}
 
-<div class="tab-content tab-space">
-        
-    <div class="media-area">
-        {% get_comment_count for object as comment_count %}
-        {% if user.is_authenticated %}
-            <ul class="nav nav-pills nav-pills-info" role="tablist">
-                <li class="active">
-                    <a href="#list-1" role="tab" data-toggle="tab" aria-expanded="true">
-                        {% trans "Comment" %}
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#preview-1" role="tab" data-toggle="tab" aria-expanded="false">
-                        {% trans "Preview" %}
-                    </a>
-                </li>
-            </ul>
-        {% endif %}
-    </div>
 
-    <div class="tab-pane active" id="list-1">
-        <a name="comments">
-            <h3 class="title text-center">{% trans "Post your comment" %}</h3>
-        </a>
-        {% if user.is_authenticated %}
-            <div class="media media-post">            
-                {% get_comment_form for object as form %}
-                <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
-                    {% csrf_token %}
-                    <div class="media-body">
-                        <textarea  style="padding: 10px;" name="comment" id="comment" class="form-control" placeholder="{% trans 'Write your comment' %}." rows="3" required></textarea>
-                        {{ form.content_type }}
-                        <span style="display:none">{{ form.honeypot }}</span>
-                        {{ form.object_pk }}
-                        {{ form.timestamp }}
-                        {{ form.security_hash }}
-                        {{ form.parent }}
-                        <div class="media-footer">
-                            <input class="btn btn-warning btn-wd pull-right" type="submit" value="{% trans 'Post' %}" id="id_submit" />
-                        </div>
+<h3 class="title text-center">{% trans "Post your comment" %}</h3>
+
+{% if user.is_authenticated %}
+    {% get_comment_form for object as form %}
+    <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
+        {% csrf_token %}
+        <div class="media media-post">
+            <div class="media-body">
+                <div class="form-group label-floating bmd-form-group">
+                    <div class="form-group has-warning">
+                        <textarea placeholder="{% trans 'Write your comment' %}" class="form-control" rows="5"  name="comment" required></textarea>
                     </div>
-                </form>
-            </div>
-        {% else %}
-            <h4 class="text-center">
-                {% trans "Please sign in to leave a comment" %}
-            </h4>
-        {% endif %}
-    </div>
-    {% if user.is_authenticated %}
-        <div class="tab-pane" id="preview-1">
-            <h3 class="title text-center">{% trans "Comment preview" %}</h3>
-            <div class="media text-left">
-                <a class="pull-left author" href="">
-                    <div id="lp-avatar"></div>
-                </a>
-                <div class="media-body">
-                    <div id="live-preview-display" class="lp-block">                            
-                        <div id="lp-name"></div>
-                        <div id="lp-comment"></div>
-                    </div>
+                    {{ form.content_type }}
+                    {{ form.object_pk }}
+                    {{ form.timestamp }}
+                    {{ form.security_hash }}
+                    {{ form.parent }}
+                </div>
+                <div class="media-footer">
+                    <input class="btn btn-warning btn-wd float-right" type="submit" value="{% trans 'Post' %}" />
                 </div>
             </div>
         </div>
-    {% endif %}
-</div>
-            
-<h3 class="title text-center">{{ comment_count }} {% trans "Comments" %}</h3>
-<div class="row">
-    <div class="col-md-12">
+    </form>
+{% else %}
+    <h4 class="text-center">
+        {% trans "Please sign in to leave a comment" %}
+    </h4>
+{% endif %}
 
-        <ul class="nav nav-pills nav-pills-info" role="tablist">
-            <li class="active">
-                <a href="#best-1" role="tab" data-toggle="tab" aria-expanded="true">
-                    {% trans "Best" %}
-                </a>
-            </li>
-            <li class="">
-                <a href="#date-1" role="tab" data-toggle="tab" aria-expanded="false">
-                    {% trans "Submit Date" %}
-                </a>
-            </li>
-        </ul>
+{% get_comment_count for object as comment_count %}
+{% get_comment_list for object as comments %}
 
-        {% get_comment_list for object as comments %}
-        <div class="tab-content tab-space">
-            <div class="tab-pane active" id="best-1">
-                {% promotionorderedcursetree comments %}
-                    {% include "comments/comment_detail.html" %}
-                {% endrecursetree %}
-            </div>
-            <div class="tab-pane" id="date-1">
-                {% dateorderedcursetree comments %}
-                    {% include "comments/comment_detail.html" %}
-                {% endrecursetree %}
-            </div>
+<div class="media-area">
+    <h3 class="title text-center">{{ comment_count }} {% trans "Comments" %}</h3>
+
+    <ul class="nav nav-pills nav-pills-info">
+        <li class="nav-item">
+            <a class="nav-link active" href="#pill1" data-toggle="tab">{% trans "Best" %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#pill2" data-toggle="tab">{% trans "Recent" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content tab-space">
+        <div class="tab-pane active" id="pill1">
+            {% promotionorderedcursetree comments %}
+                {% include "comments/comment_detail.html" %}
+            {% endrecursetree %}
         </div>
-
+        <div class="tab-pane" id="pill2">
+            {% dateorderedcursetree comments %}
+                {% include "comments/comment_detail.html" %}
+            {% endrecursetree %}
+        </div>
     </div>
 </div>
 

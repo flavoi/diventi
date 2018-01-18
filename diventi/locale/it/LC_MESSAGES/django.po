@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-10 22:34+0100\n"
+"POT-Creation-Date: 2018-01-18 22:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,7 +119,7 @@ msgstr "email"
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:67 diventi/landing/models.py:28
+#: diventi/accounts/models.py:67 diventi/landing/models.py:26
 #: diventi/products/models.py:50
 msgid "cover"
 msgstr "copertina"
@@ -225,12 +225,12 @@ msgid "categories"
 msgstr "categorie"
 
 #: diventi/blog/models.py:70 diventi/core/models.py:78
-#: diventi/landing/models.py:25 diventi/products/models.py:46
+#: diventi/landing/models.py:23 diventi/products/models.py:46
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:71 diventi/core/models.py:79
-#: diventi/landing/models.py:27 diventi/products/models.py:47
+#: diventi/landing/models.py:25 diventi/products/models.py:47
 msgid "description"
 msgstr "descrizione"
 
@@ -384,35 +384,35 @@ msgstr "Immagine"
 msgid "landing"
 msgstr "Pagina di destinazione"
 
-#: diventi/landing/models.py:16
+#: diventi/landing/models.py:14
 msgid "There is no active landing page."
 msgstr "Non risulta attiva alcuna pagina di destinazione"
 
-#: diventi/landing/models.py:19
+#: diventi/landing/models.py:17
 msgid "There must be only one landing page at a time. Please fix!"
 msgstr "Può esistere una sola pagina di destinazione per volta."
 
-#: diventi/landing/models.py:26
+#: diventi/landing/models.py:24
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:29
+#: diventi/landing/models.py:27
 msgid "active"
 msgstr "attiva"
 
-#: diventi/landing/models.py:37
+#: diventi/landing/models.py:35
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:38
+#: diventi/landing/models.py:36
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:45
+#: diventi/landing/models.py:43
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:46
+#: diventi/landing/models.py:44
 msgid "features"
 msgstr "aspetti"
 
@@ -522,7 +522,7 @@ msgid "Please sign in to see this page"
 msgstr "Effettua l'accesso per visualizzare questa pagina."
 
 #: diventi/templates/accounts/change_password.html:19
-#: diventi/templates/base.html:153
+#: diventi/templates/navigation.html:63
 msgid "Change Password"
 msgstr "Modifica password"
 
@@ -562,7 +562,8 @@ msgstr "registrati"
 msgid "first"
 msgstr "subito"
 
-#: diventi/templates/accounts/signout.html:18 diventi/templates/base.html:163
+#: diventi/templates/accounts/signout.html:18
+#: diventi/templates/navigation.html:69
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
@@ -579,7 +580,7 @@ msgid "to the homepage"
 msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:33
-#: diventi/templates/landing/landing.html:98
+#: diventi/templates/landing/landing.html:84
 msgid "Sign up"
 msgstr "Registrati"
 
@@ -612,23 +613,7 @@ msgstr "Autore"
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 
-#: diventi/templates/base.html:131
-msgid "Dashboard"
-msgstr "Quadro"
-
-#: diventi/templates/base.html:158 diventi/templates/landing/landing.html:84
-msgid "Manage profile"
-msgstr "Gestisci profilo"
-
-#: diventi/templates/base.html:171
-msgid "Sign in"
-msgstr "Accedi"
-
-#: diventi/templates/base.html:179
-msgid "Search"
-msgstr "Cerca"
-
-#: diventi/templates/base.html:208
+#: diventi/templates/base.html:84
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -636,82 +621,70 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "Our Latest Stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:43
+#: diventi/templates/blog/article_list.html:40
 msgid "Hot"
 msgstr "Di tendenza"
 
-#: diventi/templates/blog/article_list.html:66
+#: diventi/templates/blog/article_list.html:65
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:75
-#: diventi/templates/blog/article_list.html:77
+#: diventi/templates/blog/article_list.html:76
+#: diventi/templates/blog/article_list.html:78
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:81
+#: diventi/templates/blog/article_list.html:82
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:87
-#: diventi/templates/blog/article_list.html:89
+#: diventi/templates/blog/article_list.html:88
+#: diventi/templates/blog/article_list.html:90
 msgid "Next"
 msgstr "Successivo"
 
-#: diventi/templates/comments/comment_detail.html:24
+#: diventi/templates/comments/comment_detail.html:23
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/comments/comment_detail.html:32
+#: diventi/templates/comments/comment_detail.html:31
 msgid "Reply"
 msgstr "Rispondi"
 
-#: diventi/templates/comments/comment_detail.html:44
-#: diventi/templates/comments/comment_list.html:40
+#: diventi/templates/comments/comment_detail.html:43
+#: diventi/templates/comments/comment_list.html:18
 msgid "Write your comment"
 msgstr "Scrivi il tuo commento"
 
-#: diventi/templates/comments/comment_list.html:20
-msgid "Comment"
-msgstr "Commento"
-
-#: diventi/templates/comments/comment_list.html:25
-msgid "Preview"
-msgstr "Anteprima"
-
-#: diventi/templates/comments/comment_list.html:33
+#: diventi/templates/comments/comment_list.html:8
 msgid "Post your comment"
 msgstr "Pubblica il tuo commento"
 
-#: diventi/templates/comments/comment_list.html:48
+#: diventi/templates/comments/comment_list.html:27
 msgid "Post"
 msgstr "Pubblica"
 
-#: diventi/templates/comments/comment_list.html:54
+#: diventi/templates/comments/comment_list.html:34
 msgid "Please sign in to leave a comment"
 msgstr "Effettua l'accesso per pubblicare un commento."
 
-#: diventi/templates/comments/comment_list.html:61
-msgid "Comment preview"
-msgstr "Anteprima"
-
-#: diventi/templates/comments/comment_list.html:77
+#: diventi/templates/comments/comment_list.html:42
 msgid "Comments"
 msgstr "Commenti"
 
-#: diventi/templates/comments/comment_list.html:84
+#: diventi/templates/comments/comment_list.html:46
 msgid "Best"
 msgstr "Migliori"
 
-#: diventi/templates/comments/comment_list.html:89
-msgid "Submit Date"
+#: diventi/templates/comments/comment_list.html:49
+msgid "Recent"
 msgstr "Recenti"
 
-#: diventi/templates/comments/comment_list.html:146
+#: diventi/templates/comments/comment_list.html:95
 msgid "Demote"
 msgstr "Degrada"
 
-#: diventi/templates/comments/comment_list.html:149
+#: diventi/templates/comments/comment_list.html:98
 msgid "Promote"
 msgstr "Promuovi"
 
@@ -727,32 +700,49 @@ msgstr "Ora puoi lasciare la pagina oppure ritornare"
 msgid "to the previous page"
 msgstr "alla pagina precedente"
 
-#: diventi/templates/landing/landing.html:32
+#: diventi/templates/landing/landing.html:21
 msgid "Check it out"
 msgstr "Dai un'occhiata"
 
-#: diventi/templates/landing/landing.html:81
+#: diventi/templates/landing/landing.html:62
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing.html:82
+#: diventi/templates/landing/landing.html:63
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:88
+#: diventi/templates/landing/landing.html:65
+#: diventi/templates/navigation.html:66
+msgid "Manage profile"
+msgstr "Gestisci profilo"
+
+#: diventi/templates/landing/landing.html:69
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing.html:89
+#: diventi/templates/landing/landing.html:70
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/search_results.html:36
+#: diventi/templates/landing/search_results.html:32
 msgid "End of results"
 msgstr "Fine dei risultati"
+
+#: diventi/templates/navigation.html:22
+msgid "Search"
+msgstr "Cerca"
+
+#: diventi/templates/navigation.html:45
+msgid "Dashboard"
+msgstr "Quadro"
+
+#: diventi/templates/navigation.html:76
+msgid "Sign in"
+msgstr "Accedi"
 
 #: diventi/templates/products/product_detail.html:64
 msgid "In your collection"
@@ -801,6 +791,21 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "page"
+#~ msgstr "pagina"
+
+#~ msgid "Comment"
+#~ msgstr "Commento"
+
+#~ msgid "Preview"
+#~ msgstr "Anteprima"
+
+#~ msgid "Comment preview"
+#~ msgstr "Anteprima"
+
+#~ msgid "Submit Date"
+#~ msgstr "Recenti"
 
 #~ msgid "ratings"
 #~ msgstr "recensioni"

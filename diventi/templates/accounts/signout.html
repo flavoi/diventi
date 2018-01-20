@@ -1,31 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'base_infos.html' %}
+
 {% load i18n %}
+{% load static %}
 
 {% block title %}Sign out{% endblock title %}
 
-{% block bodyclass %}login-page{% endblock bodyclass %}
-
-{% block navigation %}{% endblock navigation %}
-
-{% block pageheader %}
-<div class="page-header header-filter" style="background-image: url(''); background-size: cover; background-position: top center;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                <div class="card">
-                    <div class="card-content">                        
-                        <h4 class="card-title">
-                            {% trans "Sign out" %} {% trans "complete" %}!
-                        </h4>
-                        {% blocktrans %}You can now leave the page or return{% endblocktrans %} 
-                        <b><a class="text-warning" href="{% url 'landing:home' %}">{% trans "to the homepage" %}.</a></b>
-                    </div>
-                </div>
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container">
+            <div class="navbar-translate">
+                <a href="{% url 'landing:home' %}" class="navbar-brand">
+                    <img src="{% static 'brand/diventi-logo-transparent-white.png' %}" height="40" />
+                </a>
             </div>
         </div>
-    </div>
-</div>
-{% endblock pageheader %}
+    </nav>
+{% endblock navbar %}
 
-{% block main %}{% endblock main %}
+{% block info_title %}
+    {% trans "Sign out completed" %}!
+{% endblock info_title %}
+
+{% block info_content %}
+    {% blocktrans %}You can now leave the page or return{% endblocktrans %} 
+    <b><a class="text-warning" href="{% url 'landing:home' %}">{% trans "to the homepage" %}.</a></b>
+{% endblock info_content %}
 

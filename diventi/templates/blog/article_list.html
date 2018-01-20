@@ -36,8 +36,11 @@
                                 </div>
                                 <div class="col-md-8">                                            
                                     <h6 class="card-category text-info">
-                                        {{ article.category }} 
-                                        {% if article.hot %}<i class="fal fa-fire fa-lg"></i> {% trans "Hot" %}{% endif %}
+                                        {% if article.hot %} 
+                                            <span class="text-danger"> <i class="fal fa-fire fa-lg"></i> {% trans "Hot" %}</span>
+                                        {% else %}
+                                            {{ article.category }}
+                                        {% endif %}
                                     </h6>
                                     <h3 class="card-title">
                                         <a href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
@@ -49,10 +52,7 @@
                                         {% load comment_extras %}
                                         {% load comments %}
                                         <span class="text-gray">
-                                        {% get_comment_count for article as comment_count %}
-                                        <i class="fal fa-comments fa-fw"></i> {{ comment_count }} &middot; 
-                               
-                                            <i class="fal fa-thumbs-up fa-fw"></i> {{ article.promotions.count }}
+                                        by <strong>{{ article.author.get_full_name }}</strong>
                                          &middot; 
                                         {{ article.publication_date|naturalday }}
                                         </span>

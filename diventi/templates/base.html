@@ -53,9 +53,11 @@
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
-  <nav class="navbar navbar-expand-lg navbar-absolute {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}">
+  {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-absolute {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}">
     {% include 'navigation.html' %}
-  </nav>
+    </nav>
+  {% endblock navbar %}
 
   <div class="fixed-top">
     <div class="col-md-4 ml-auto mr-auto">

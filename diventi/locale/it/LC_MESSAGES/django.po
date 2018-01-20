@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-18 22:40+0100\n"
+"POT-Creation-Date: 2018-01-20 16:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -562,20 +562,15 @@ msgstr "registrati"
 msgid "first"
 msgstr "subito"
 
-#: diventi/templates/accounts/signout.html:18
-#: diventi/templates/navigation.html:69
-msgid "Sign out"
-msgstr "Annulla l'accesso"
+#: diventi/templates/accounts/signout.html:8
+msgid "Sign out completed"
+msgstr "Accesso annullato"
 
-#: diventi/templates/accounts/signout.html:18
-msgid "complete"
-msgstr "completato"
-
-#: diventi/templates/accounts/signout.html:20
+#: diventi/templates/accounts/signout.html:12
 msgid "You can now leave the page or return"
 msgstr "Ora puoi lasciare la pagina oppure ritornare"
 
-#: diventi/templates/accounts/signout.html:21
+#: diventi/templates/accounts/signout.html:13
 msgid "to the homepage"
 msgstr "alla pagina iniziale"
 
@@ -652,51 +647,51 @@ msgid "Reply"
 msgstr "Rispondi"
 
 #: diventi/templates/comments/comment_detail.html:43
-#: diventi/templates/comments/comment_list.html:18
+#: diventi/templates/comments/comment_list.html:20
 msgid "Write your comment"
 msgstr "Scrivi il tuo commento"
 
-#: diventi/templates/comments/comment_list.html:8
+#: diventi/templates/comments/comment_list.html:9
 msgid "Post your comment"
 msgstr "Pubblica il tuo commento"
 
-#: diventi/templates/comments/comment_list.html:27
+#: diventi/templates/comments/comment_list.html:29
 msgid "Post"
 msgstr "Pubblica"
 
-#: diventi/templates/comments/comment_list.html:34
+#: diventi/templates/comments/comment_list.html:36
 msgid "Please sign in to leave a comment"
 msgstr "Effettua l'accesso per pubblicare un commento."
 
-#: diventi/templates/comments/comment_list.html:42
+#: diventi/templates/comments/comment_list.html:44
 msgid "Comments"
 msgstr "Commenti"
 
-#: diventi/templates/comments/comment_list.html:46
+#: diventi/templates/comments/comment_list.html:48
 msgid "Best"
 msgstr "Migliori"
 
-#: diventi/templates/comments/comment_list.html:49
+#: diventi/templates/comments/comment_list.html:51
 msgid "Recent"
 msgstr "Recenti"
 
-#: diventi/templates/comments/comment_list.html:95
+#: diventi/templates/comments/comment_list.html:97
 msgid "Demote"
 msgstr "Degrada"
 
-#: diventi/templates/comments/comment_list.html:98
+#: diventi/templates/comments/comment_list.html:100
 msgid "Promote"
 msgstr "Promuovi"
 
-#: diventi/templates/comments/posted.html:17
+#: diventi/templates/comments/posted.html:8
 msgid "Comment posted"
 msgstr "Commento pubblicato"
 
-#: diventi/templates/comments/posted.html:19
+#: diventi/templates/comments/posted.html:12
 msgid "You can leave the page or go back"
 msgstr "Ora puoi lasciare la pagina oppure ritornare"
 
-#: diventi/templates/comments/posted.html:19
+#: diventi/templates/comments/posted.html:12
 msgid "to the previous page"
 msgstr "alla pagina precedente"
 
@@ -739,6 +734,10 @@ msgstr "Cerca"
 #: diventi/templates/navigation.html:45
 msgid "Dashboard"
 msgstr "Quadro"
+
+#: diventi/templates/navigation.html:69
+msgid "Sign out"
+msgstr "Annulla l'accesso"
 
 #: diventi/templates/navigation.html:76
 msgid "Sign in"
@@ -791,6 +790,9 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "complete"
+#~ msgstr "completato"
 
 #~ msgid "page"
 #~ msgstr "pagina"

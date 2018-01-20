@@ -5,7 +5,9 @@
 {% include 'comments/comment_preview.html' %}
 
 
-<h3 class="title text-center">{% trans "Post your comment" %}</h3>
+<h3 class="title text-center">
+    <a name="comments">{% trans "Post your comment" %}</a>
+</h3>
 
 {% if user.is_authenticated %}
     {% get_comment_form for object as form %}

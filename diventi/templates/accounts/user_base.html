@@ -26,10 +26,9 @@
 
 {% block bodyclass %}profile-page{% endblock bodyclass %}
 
-{% block pageheader %}
-<div class="page-header header-filter" {% if user.cover %}style="background-image: url('{{ user.cover.image }}');"{% endif %}>
-</div>
-{% endblock %}
+{% block pageheaderimage %}
+    {% if user.cover %}{{ user.cover.image }}{% endif %}
+{% endblock pageheaderimage %}
 
 {% block content %}
 
@@ -44,7 +43,7 @@
             {% include 'accounts/user_detail.html' %}           
 
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-6 ml-auto mr-auto">
                     <div class="row">
                         <div class="col-md-4">
                             <a name="yourprofile">

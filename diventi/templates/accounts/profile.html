@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block extrahead %}
+
+<link href="{% static 'image-picker/css/image-picker.css' %}" rel="stylesheet"/>
+<style>
+    .form-group {
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .group_title {
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #AAAAAA;
+        font-weight: 400;
+    }
+</style>
+{% endblock extrahead %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block bodyclass %}profile-page{% endblock bodyclass %}
+
+{% block pageheaderimage %}{% if user.cover %}{{ user.cover.image }}{% endif %}{% endblock pageheaderimage %}
+
+{% block maincontainer %}
+    <div class="profile-content">
+        <div class="container">
+
+            {% include 'accounts/user_detail.html' %}
+
+            <div class="description text-center">
+                <p>An artist of considerable range, Chet Faker &#x2014; the name taken by Melbourne-raised, Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+            </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                            <ul class="nav nav-pills nav-pills-icons nav-pills-info justify-content-center" role="tablist">
+                                <!--
+                                    color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                                -->
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#work" role="tab" data-toggle="tab">
+                                        <i class="fal fa-shopping-bag  fa-3x"></i><br />{% trans "Collection" %}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#connections" role="tab" data-toggle="tab">
+                                        <i class="fal fa-address-card fa-3x"></i><br />{% trans "Customization" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content tab-space">
+                    <div class="tab-pane active work" id="work">
+                        <div class="row">
+                            <div class="col-md-10 mr-auto ml-auto">
+                                {% include 'accounts/user_collection.html' %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane connections" id="connections">
+                        <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <form method="post" action="{% url 'accounts:update' user.pk %}">
+                                    {{ form.errors }}
+                                    {% csrf_token %}
+                                    {% include 'accounts/user_update.html' %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock maincontainer %}
+
+{% block extrascript %}
+<script src="{% static 'image-picker/js/image-picker.min.js' %}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(".image-picker").imagepicker()
+</script>
+{% endblock extrascript %}

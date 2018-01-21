@@ -12,10 +12,7 @@
 
 {% block bodyclass %}product-page{% endblock bodyclass %}
 
-{% block pageheader %}
-<div class="page-header header-filter" {% if product.cover %}style="background-image: url('{{ product.cover.url }}');"{% endif %}">
-</div>
-{% endblock pageheader %}
+{% block pageheaderimage %}{% if product.cover %}{{ product.cover.url }}{% endif %}{% endblock pageheaderimage %}
 
 {% block main %}
 <div class="section section-gray">
@@ -55,56 +52,67 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
 
-                    <h2 class="title">                        
-                        {{ product.title }} 
-                        <br />
-                        {% if bought %}
-                            <a href="{% url 'accounts:update' user.id %}#yourcollection">
-                                <span class="label label-rose">
-                                    <i class="fal fa-flag fa-lg"></i>&nbsp; {% trans "In your collection" %}
-                                </span>
-                            </a>
-                        {% endif %}
-                    </h2> 
+                    <h2 class="title">{{ product.title }}</h2> 
 
-                    <div id="acordeon">
-                        <div class="panel-group" id="accordion">
-                          <div class="panel panel-border panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <h4 class="panel-title">
-                                        {% trans "Description" %}
-                                    <i class="material-icons">keyboard_arrow_down</i>
-                                    </h4>
-                                </a>
+                    {% if bought %}
+                        <a class="badge badge-info" href="{% url 'accounts:update' user.id %}#yourcollection">
+                            <i class="fal fa-flag fa-lg"></i>&nbsp; {% trans "In your collection" %}
+                        </a>
+                    {% endif %}
+
+                    <div id="accordion" role="tablist">
+                            <div class="card card-collapse">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                            Description
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                    <div class="card-body">
+                                        <p>Eres' daring 'Grigri Fortune' swimsuit has the fit and coverage of a bikini in a one-piece silhouette. This fuchsia style is crafted from the label's sculpting peau douce fabric and has flattering cutouts through the torso and back. Wear yours with mirrored sunglasses on vacation.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                <p>{{ product.description }}</p>
-                              </div>
+                            <div class="card card-collapse">
+                                <div class="card-header" role="tab" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Designer Information
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        An infusion of West Coast cool and New York attitude, Rebecca Minkoff is synonymous with It girl style. Minkoff burst on the fashion scene with her best-selling 'Morning After Bag' and later expanded her offering with the Rebecca Minkoff Collection - a range of luxe city staples with a "downtown romantic" theme.
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="panel panel-border panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <a class="text-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
-                                    <h4 class="panel-title">
-                                        {% trans "Details and Care" %}
-                                        <i class="material-icons">keyboard_arrow_down</i>
-                                    </h4>
-                                </a>
+                            <div class="card card-collapse">
+                                <div class="card-header" role="tab" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Details and Care
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>Storm and midnight-blue stretch cotton-blend</li>
+                                            <li>Notch lapels, functioning buttoned cuffs, two front flap pockets, single vent, internal pocket</li>
+                                            <li>Two button fastening</li>
+                                            <li>84% cotton, 14% nylon, 2% elastane</li>
+                                            <li>Dry clean</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="collapseThree" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                <ul>
-                                    {% for characteristic in product.characteristics.all %}
-                                     <li>{{ characteristic.description|striptags|capfirst }}</li>
-                                    {% endfor %}
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
                         </div>
-                    </div>
                 
                     <div class="row">
                         <div class="col-md-6 pick-size">
@@ -142,8 +150,8 @@
         <div class="related-products">
             {% if product.chapters.all %}
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                    <h3 class="title text-center">Playable chapters</h3>
+                    <div class="col-md-10 mr-auto ml-auto">
+                        <h3 class="title text-center">Playable chapters</h3>
                         <div class="row">
                             {% for chapter in product.chapters.all %}
                             <div class="col-sm-6 col-md-4">
@@ -179,7 +187,7 @@
         
         {% if product.authors.all %}
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">       
+                <div class="col-md-10 ml-auto mr-auto">       
                     <h3 class="title text-center">{% trans "Content creators" %}</h3>
                     <div class="team">
                         <div class="row">                   
@@ -208,14 +216,13 @@
                 </div>
             </div>
         {% endif %}
-
     </div>
 </div>    
 
-<div class="section section-comments">
-    <div class="container">
+<div class="container">
+    <div class="section section-comments">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 ml-auto mr-auto">
                 {% include "comments/comment_list.html" %}
             </div>
         </div>

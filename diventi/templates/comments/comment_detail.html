@@ -15,8 +15,8 @@
             </div>
         </a>
         <div class="media-body">
-            <h4 class="media-heading">{{ node.user.first_name }} <small> {{ node.submit_date|naturaltime }}</small></h4>
-            <p>{{ node.comment }}</p>               
+            <h4 class="media-heading text-left">{{ node.user.first_name }} <small> {{ node.submit_date|naturaltime }}</small></h4>
+            <p class="text-left">{{ node.comment }}</p>               
             <div class="media-footer">
                 
                 {% if not node.is_leaf_node %}

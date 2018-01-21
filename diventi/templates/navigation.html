@@ -27,7 +27,7 @@
             <li class="nav-item">
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_language_info for LANGUAGE_CODE as lang %}
-                <a class="nav-link disabled">
+                <a class="nav-link disabled text-info">
                     {{ lang.name_local }}
                     <div class="ripple-container"></div>
                 </a>
@@ -39,7 +39,7 @@
             </li>
             {% if user.is_authenticated %}
                 {% if user.is_staff %}              
-                    <li class="nav-item"> 
+                    <li class="nav-item text-danger"> 
                         <a href="{% url 'admin:index' %}" class="nav-link">
                             {% trans "Dashboard" %}
                         </a>

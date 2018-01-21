@@ -41,6 +41,20 @@ class ProductQuerySet(models.QuerySet):
         return products
 
 
+class Category(models.Model):
+    """
+        Defines the main argument of any product.
+    """
+    title = models.CharField(max_length=60, unique=True)
+    default = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = _("categories")
+
+
 class Product(TimeStampedModel, PublishableModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50, verbose_name=_('title'))
@@ -51,7 +65,7 @@ class Product(TimeStampedModel, PublishableModel):
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = models.FileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
-
+    category = models.ForeignKey(Category, null=True, blank=True, verbose_name=_('category'))
     objects = ProductQuerySet.as_manager()
 
     class Meta:

@@ -1,11 +1,16 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Product, Chapter, Characteristic, ImagePreview
+from .models import Product, Chapter, Characteristic, ImagePreview, Category
+
+
+@register(Category)
+class ProductTranslationOptions(TranslationOptions):
+    fields = ('title',)
 
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'slug')
+    fields = ('title', 'description', 'slug',)
 
 
 @register(Chapter)

@@ -6,8 +6,11 @@
         {% for product in collection %}
         <div class="col-md-6">
             <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
-                <div class="card-content">
-                    <span class="label label-rose">{{ product.publication_date|naturalday }}</span>
+                <div class="card-body">
+                    {% if product.category.default %}
+                    {% else %}
+                        <label class="badge badge-rose">{{ product.category }}</label>
+                    {% endif %}
                     <a href="{% url 'products:detail' product.slug %}">
                         <h3 class="card-title">{{ product.title }}</h3>
                     </a>
@@ -26,5 +29,4 @@
             <h4>{% trans "Your collection is empty" %} <i class="fal fa-frown"></i></h4>
         </div>
     {% endif %}
-
 </div>

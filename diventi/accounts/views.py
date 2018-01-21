@@ -105,7 +105,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
     form_class = DiventiUserUpdateForm
     model = DiventiUser
-    template_name = "accounts/user_base.html"
+    template_name = "accounts/profile.html"
     success_msg = _('Profile updated!')
     fail_msg = _('Profile has not been updated.')
 

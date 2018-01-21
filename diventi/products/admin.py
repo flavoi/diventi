@@ -5,7 +5,7 @@ from diventi.core.admin import DiventiTranslationAdmin
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from .models import Product, Chapter, Characteristic, ImagePreview
+from .models import Product, Chapter, Characteristic, ImagePreview, Category
 
 def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
@@ -51,5 +51,10 @@ class ProductAdmin(DiventiTranslationAdmin):
     actions = [make_published, make_unpublished]
 
 
+class CategoryAdmin(DiventiTranslationAdmin):
+    list_display = ('title', 'default')
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ImagePreview, ImagePreviewAdmin)
+admin.site.register(Category, CategoryAdmin)

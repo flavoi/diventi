@@ -2,14 +2,10 @@
 {% load i18n %}
 
 <div class="row">
-    <div class="col-xs-6 col-xs-offset-3">                                    
+    <div class="col-md-6 ml-auto mr-auto">                                 
         <div class="profile">
             <div class="avatar">
-                {% if user.avatar.image %}
-                    <img src="{{ user.avatar.image }}" alt="User" class="img-circle img-responsive img-raised">
-                {% else %}
-                    <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="img-circle img-responsive img-raised">
-                {% endif %}
+                <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
             </div>
             <div class="name">
                 <h3 class="title">{{ user.first_name }}</h3>
@@ -20,14 +16,11 @@
                     {% trans "User" %}
                 {% endif %}
                 </h6>                
-            </div>
-            <div class="text-center">
                 <h6 class="text-muted">{{ user.email }}</h6>
             </div>
         </div>
-    </div>                
+    </div>
 </div>
-
 <div class="description text-center">
-    <p>{{ user.bio }}</p>
+    <p>{{ user.bio|striptags }}</p>
 </div> 

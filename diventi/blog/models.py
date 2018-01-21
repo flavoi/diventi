@@ -102,4 +102,4 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel):
         return results
 
     def class_name(self):
-        return self.__class__.__name__
+        return _('article')

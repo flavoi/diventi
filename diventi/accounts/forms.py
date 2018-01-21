@@ -58,8 +58,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
             'role': _("What's your favourite class?"),
         }
         widgets = {
-            'bio': forms.TextInput(attrs={'class': 'form-control',}),
-            'role': forms.TextInput(attrs={'class': 'form-control',}),
+            'bio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Something about yourself')}),
+            'role': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your favourite class')}),
         }
 
     def get_avatar_queryset(self):

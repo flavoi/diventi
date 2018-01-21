@@ -1,68 +1,59 @@
 {% load i18n %}
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group is-empty">
-            <label class="control-label">{{ form.role.label }}</label>      
+
+    <div class="col-md-6 ml-auto">
+        <div class="form-group bmd-form-group has-warning">
             {{ form.role }}
-            <span class="material-input"></span>
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group is-empty">
-            <label class="control-label">{{ form.bio.label }}</label>      
+    <div class="col-md-6 mr-auto">
+        <div class="form-group bmd-form-group has-warning">
             {{ form.bio }}
-            <span class="material-input"></span>
         </div>
     </div>
 
     <div class="col-md-12">
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <h4 class="panel-title">
-                    {% trans "Avatars" %}
-                    <i class="material-icons">keyboard_arrow_down</i>
-                    </h4>
-                </a>
+        <div id="accordion" role="tablist">
+            <div class="card card-collapse">
+                <div class="card-header" role="tab" id="headingOne">
+                  <h5 class="mb-0">
+                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      {% trans "Avatars" %}
+                      <i class="material-icons">keyboard_arrow_down</i>
+                    </a>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        {{ form.avatar }}
+                    </div>
+                </div>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                {{ form.avatar }}
-              </div>
+            <div class="card card-collapse">
+                <div class="card-header" role="tab" id="headingTwo">
+                  <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      {% trans "Covers" %}
+                      <i class="material-icons">keyboard_arrow_down</i>
+                    </a>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        {{ form.cover }}
+                    </div>
+                </div>
             </div>
-          </div>                            
         </div>
     </div>
 
-    <div class="col-md-12">
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <h4 class="panel-title">
-                    {% trans "Covers" %}
-                    <i class="material-icons">keyboard_arrow_down</i>
-                    </h4>
-                </a>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-              <div class="panel-body">
-                {{ form.cover }}
-              </div>
-            </div>
-          </div>                            
-        </div>
-    </div>
-
-    <div class="clearfix"></div>
-
-    <div class="col-md-3">
-       <button type="submit" class="btn btn-warning">
-            {% trans "Update details" %}
-        </button>
-    </div>
+<div class="col-md-3" style="padding-top: 20px;">
+   <button type="submit" class="btn btn-warning">
+        {% trans "Update details" %}
+    </button>
+</div>
 
 </div>

@@ -39,7 +39,7 @@ class DiventiLoginView(AnonymousRequiredMixin, LoginView):
     def form_invalid(self, form):
         # This session variable must be managed by the fail_url view
         self.request.session['show_login_form'] = 1
-        self.request.session['fail_login_msg'] = self.fail_msg        
+        self.request.session['fail_login_msg'] = str(self.fail_msg)        
         return redirect(self.fail_url)
         
 

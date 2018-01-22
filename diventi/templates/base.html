@@ -97,8 +97,8 @@
     </footer>
   {% endblock footer %}
 
-  <div class="modal fade in" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-login" role="document">
         <div class="modal-content">
             {% include 'accounts/signin.html' %}
         </div>
@@ -158,8 +158,8 @@
   {% endif %}
 
   // Timeout for messages
-  $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-    $(".alert").slideUp(500);
+  $(".basealert").fadeTo(2000, 500).slideUp(500, function(){
+    $(".basealert").slideUp(500);
   });
 
 </script>

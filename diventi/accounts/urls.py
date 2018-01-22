@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext as _
 
 from .views import DiventiLoginView, DiventiLogoutView, change_password, DiventiUserCreationView, DiventiUserUpdateView
 

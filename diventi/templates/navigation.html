@@ -39,7 +39,7 @@
             </li>
             {% if user.is_authenticated %}
                 {% if user.is_staff %}              
-                    <li class="nav-item text-danger"> 
+                    <li class="nav-item text-info"> 
                         <a href="{% url 'admin:index' %}" class="nav-link">
                             {% trans "Dashboard" %}
                         </a>

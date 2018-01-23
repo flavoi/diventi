@@ -58,9 +58,6 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">{{ user.first_name }} &middot; {{ user.email }}</h6>
-                        <a href="#" data-toggle="modal" data-target="#changepasswordModal" class="dropdown-item">  
-                            {% trans "Change Password" %}
-                        </a>
                         <a href="{% url 'accounts:update' user.pk %}" class="dropdown-item">
                             {% trans "Manage profile" %}
                         </a>
@@ -73,7 +70,7 @@
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#loginModal" class="nav-link">
                         {% trans "Sign in" %}
-                    </a>
+                    </a> 
                 </li>
             {% endif %}
         </ul>

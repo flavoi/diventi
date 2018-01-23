@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated icon styles in the navbar
 - Enabled comments count in the blog list page
 - Refactored version numbering for pre-releases
+- Integrated change password form into profile page
 
 ### Fixed
 - Fixed minor formatting errors in the changelog

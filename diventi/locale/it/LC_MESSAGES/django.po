@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-22 22:37+0100\n"
+"POT-Creation-Date: 2018-01-23 08:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,10 +59,11 @@ msgid "Your name"
 msgstr "Il tuo nome"
 
 #: diventi/accounts/forms.py:24 diventi/accounts/forms.py:47
+#: diventi/templates/accounts/signin.html:38
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:32
+#: diventi/accounts/forms.py:32 diventi/templates/accounts/signin.html:46
 msgid "Your password"
 msgstr "La tua password"
 
@@ -106,7 +107,7 @@ msgstr "Avatar"
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:61 diventi/templates/accounts/user_update.html:41
+#: diventi/accounts/models.py:61 diventi/templates/accounts/user_update.html:40
 msgid "Covers"
 msgstr "Copertine"
 
@@ -509,36 +510,26 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
-#: diventi/templates/accounts/change_password.html:6
-msgid ""
-"Your account doesn't have access to this page. To proceed, please sign in "
-"with an account that has access"
-msgstr ""
-"La tua utenza non ha accesso a questa pagina. Per procedere occorre accedere "
-"la sito."
-
-#: diventi/templates/accounts/change_password.html:8
-msgid "Please sign in to see this page"
-msgstr "Effettua l'accesso per visualizzare questa pagina."
-
-#: diventi/templates/accounts/change_password.html:19
-#: diventi/templates/navigation.html:62
-msgid "Change Password"
+#: diventi/templates/accounts/change_password.html:3
+#, fuzzy
+#| msgid "Change Password"
+msgid "Change password"
 msgstr "Modifica password"
 
-#: diventi/templates/accounts/change_password.html:26
+#: diventi/templates/accounts/change_password.html:5
 msgid "Current password"
 msgstr "Password corrente"
 
-#: diventi/templates/accounts/change_password.html:39
+#: diventi/templates/accounts/change_password.html:14
 msgid "New password"
 msgstr "Nuova password"
 
-#: diventi/templates/accounts/change_password.html:52
+#: diventi/templates/accounts/change_password.html:23
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/change_password.html:67
+#: diventi/templates/accounts/change_password.html:32
+#: diventi/templates/accounts/signin.html:58
 msgid "Confirm"
 msgstr "Conferma"
 
@@ -550,13 +541,26 @@ msgstr "La tua collezione"
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/signin.html:9
-msgid "Sign in with your Diventi account"
-msgstr "Effettua l'accesso con la tua utenza Diventi"
+#: diventi/templates/accounts/profile.html:42
+msgid "Credentials"
+msgstr "Credenziali"
 
-#: diventi/templates/accounts/signin.html:56
-msgid "Sign In"
+#: diventi/templates/accounts/signin.html:9
+#: diventi/templates/navigation.html:72
+msgid "Sign in"
 msgstr "Accedi"
+
+#: diventi/templates/accounts/signin.html:53
+msgid "No account yet? Then"
+msgstr "Non hai ancora un'utenza? Allora"
+
+#: diventi/templates/accounts/signin.html:53
+msgid "sign up"
+msgstr "registrati"
+
+#: diventi/templates/accounts/signin.html:53
+msgid "first"
+msgstr "subito"
 
 #: diventi/templates/accounts/signout.html:21
 msgid "Sign out completed"
@@ -592,7 +596,7 @@ msgstr "La tua collezione è vuota"
 msgid "Creator"
 msgstr "Autore"
 
-#: diventi/templates/accounts/user_update.html:57
+#: diventi/templates/accounts/user_update.html:56
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 
@@ -699,7 +703,7 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:65
-#: diventi/templates/navigation.html:65
+#: diventi/templates/navigation.html:62
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -723,13 +727,9 @@ msgstr "Cerca"
 msgid "Dashboard"
 msgstr "Quadro"
 
-#: diventi/templates/navigation.html:68
+#: diventi/templates/navigation.html:65
 msgid "Sign out"
 msgstr "Annulla l'accesso"
-
-#: diventi/templates/navigation.html:75
-msgid "Sign in"
-msgstr "Accedi"
 
 #: diventi/templates/products/product_detail.html:62
 msgid "Description"
@@ -775,20 +775,27 @@ msgstr "Nessun voto rilevato"
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
 
+#~ msgid ""
+#~ "Your account doesn't have access to this page. To proceed, please sign in "
+#~ "with an account that has access"
+#~ msgstr ""
+#~ "La tua utenza non ha accesso a questa pagina. Per procedere occorre "
+#~ "accedere la sito."
+
+#~ msgid "Please sign in to see this page"
+#~ msgstr "Effettua l'accesso per visualizzare questa pagina."
+
+#~ msgid "Sign in with your Diventi account"
+#~ msgstr "Effettua l'accesso con la tua utenza Diventi"
+
+#~ msgid "Sign In"
+#~ msgstr "Accedi"
+
 #~ msgid "Something about yourself"
 #~ msgstr "Qualcosa su di te"
 
 #~ msgid "Your favourite class"
 #~ msgstr "La tua classe preferita"
-
-#~ msgid "No account yet? Then"
-#~ msgstr "Non hai ancora un'utenza? Allora"
-
-#~ msgid "sign up"
-#~ msgstr "registrati"
-
-#~ msgid "first"
-#~ msgstr "subito"
 
 #~ msgid "Details and Care"
 #~ msgstr "Dettagli e finiture"
@@ -813,9 +820,6 @@ msgstr "Effettua l'accesso per votare."
 
 #~ msgid "Submit Date"
 #~ msgstr "Recenti"
-
-#~ msgid "ratings"
-#~ msgstr "recensioni"
 
 #~ msgid "rating"
 #~ msgstr "recensione"

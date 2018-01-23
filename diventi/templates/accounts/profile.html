@@ -29,10 +29,17 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#connections" role="tab" data-toggle="tab">
+                                <a class="nav-link" href="#customization" role="tab" data-toggle="tab">
                                     <i class="fal fa-address-card fa-2x"></i>
                                     <br>
                                     {% trans "Customization" %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#settings" role="tab" data-toggle="tab">
+                                    <i class="fal fa-user-circle fa-2x"></i>
+                                    <br>
+                                    {% trans "Credentials" %}
                                 </a>
                             </li>
                         </ul>
@@ -47,13 +54,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane connections" id="connections">
+                <div class="tab-pane connections" id="customization">
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
                             <form method="post" action="{% url 'accounts:update' user.pk %}">
                                 {{ form.errors }}
                                 {% csrf_token %}
                                 {% include 'accounts/user_update.html' %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="settings">
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <form method="POST" action="{% url 'accounts:change_password' %}?next={{ request.path }}">
+                                {{ form.errors }}
+                                {% csrf_token %}
+                                {% include 'accounts/change_password.html' %}
                             </form>
                         </div>
                     </div>

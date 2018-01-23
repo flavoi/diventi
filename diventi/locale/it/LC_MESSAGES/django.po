@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-23 21:30+0100\n"
+"POT-Creation-Date: 2018-01-23 22:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -478,7 +478,7 @@ msgid "Characteristic"
 msgstr "Caratteristica"
 
 #: diventi/products/models.py:115
-#: diventi/templates/products/product_detail.html:78
+#: diventi/templates/products/product_detail.html:79
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
@@ -593,9 +593,13 @@ msgid "Your collection is empty"
 msgstr "La tua collezione è vuota"
 
 #: diventi/templates/accounts/user_detail.html:14
-#: diventi/templates/products/product_detail.html:189
+#: diventi/templates/products/product_detail.html:190
 msgid "Creator"
 msgstr "Autore"
+
+#: diventi/templates/accounts/user_detail.html:26
+msgid "Favourite class"
+msgstr "Classe preferita"
 
 #: diventi/templates/accounts/user_update.html:56
 msgid "Update details"
@@ -732,23 +736,23 @@ msgstr "Quadro"
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
-#: diventi/templates/products/product_detail.html:62
+#: diventi/templates/products/product_detail.html:63
 msgid "Description"
 msgstr "Descrizione"
 
-#: diventi/templates/products/product_detail.html:105
+#: diventi/templates/products/product_detail.html:106
 msgid "In your collection"
 msgstr "Nella tua collezione"
 
-#: diventi/templates/products/product_detail.html:111
+#: diventi/templates/products/product_detail.html:112
 msgid "Remove this product from your collection"
 msgstr "Rimuovi questo prodotto dalla tua collezione"
 
-#: diventi/templates/products/product_detail.html:120
+#: diventi/templates/products/product_detail.html:121
 msgid "Add this product to your collection"
 msgstr "Aggiungi questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:174
+#: diventi/templates/products/product_detail.html:175
 msgid "Content creators"
 msgstr "Autori"
 
@@ -794,9 +798,6 @@ msgstr "Effettua l'accesso per votare."
 
 #~ msgid "Something about yourself"
 #~ msgstr "Qualcosa su di te"
-
-#~ msgid "Your favourite class"
-#~ msgstr "La tua classe preferita"
 
 #~ msgid "Details and Care"
 #~ msgstr "Dettagli e finiture"

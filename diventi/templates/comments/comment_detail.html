@@ -31,7 +31,7 @@
                         <i class="fal fa-reply fa-lg comment-icon"></i> {% trans "Reply" %}
                     </a>
 
-                    <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" type="submit" class="btn btn-promote btn-link {% if node.user_has_promoted %}btn-warning{% endif %} float-right">
+                    <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" type="submit" class="btn btn-promote btn-link {% if node.user_has_promoted %}btn-warning{% endif %} float-right" class="btn btn-link float-right">
                         <i class="fal fa-thumbs-up fa-lg comment-icon"></i> {{ node.promotions.count }}
                     </a>
 

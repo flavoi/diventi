@@ -59,7 +59,13 @@
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
-  
+  {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-absolute {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}">
+    {% include 'navigation.html' %}
+    </nav>
+  {% endblock navbar %}
+
+  {% include 'messages.html' %}
 
   {% block pageheader %} 
     <div class="page-header header-filter" data-parallax="false" style="background-image: url('{% block pageheaderimage %}{% endblock pageheaderimage %}');">

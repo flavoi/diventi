@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 <!doctype html>
 <html>
 
@@ -10,8 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <title>Diventi {% block titleseparator %}&middot;{% endblock titleseparator %} {% block title %}{% endblock title %}</title>
-
-  {% load static %}
+  
   <!-- Fonts and icons -->
   <link type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" />
   <script defer src="{% static 'fontawesome/js/fontawesome-all.js' %}"></script>
@@ -59,17 +59,7 @@
 
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   
-  {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-absolute {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}">
-    {% include 'navigation.html' %}
-    </nav>
-  {% endblock navbar %}
-
-  <div class="fixed-top">
-    <div class="col-md-4 ml-auto mr-auto">
-      {% include 'messages.html' %}
-    </div>
-  </div>
+  
 
   {% block pageheader %} 
     <div class="page-header header-filter" data-parallax="false" style="background-image: url('{% block pageheaderimage %}{% endblock pageheaderimage %}');">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-23 08:35+0100\n"
+"POT-Creation-Date: 2018-01-23 21:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,11 +59,11 @@ msgid "Your name"
 msgstr "Il tuo nome"
 
 #: diventi/accounts/forms.py:24 diventi/accounts/forms.py:47
-#: diventi/templates/accounts/signin.html:38
+#: diventi/templates/accounts/signin.html:34
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:32 diventi/templates/accounts/signin.html:46
+#: diventi/accounts/forms.py:32 diventi/templates/accounts/signin.html:42
 msgid "Your password"
 msgstr "La tua password"
 
@@ -529,7 +529,7 @@ msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
 #: diventi/templates/accounts/change_password.html:32
-#: diventi/templates/accounts/signin.html:58
+#: diventi/templates/accounts/signin.html:54
 msgid "Confirm"
 msgstr "Conferma"
 
@@ -550,15 +550,15 @@ msgstr "Credenziali"
 msgid "Sign in"
 msgstr "Accedi"
 
-#: diventi/templates/accounts/signin.html:53
+#: diventi/templates/accounts/signin.html:49
 msgid "No account yet? Then"
 msgstr "Non hai ancora un'utenza? Allora"
 
-#: diventi/templates/accounts/signin.html:53
+#: diventi/templates/accounts/signin.html:49
 msgid "sign up"
 msgstr "registrati"
 
-#: diventi/templates/accounts/signin.html:53
+#: diventi/templates/accounts/signin.html:49
 msgid "first"
 msgstr "subito"
 
@@ -574,12 +574,13 @@ msgstr "Ora puoi lasciare la pagina oppure ritornare"
 msgid "to the homepage"
 msgstr "alla pagina iniziale"
 
-#: diventi/templates/accounts/signup.html:33
+#: diventi/templates/accounts/signup.html:20
+#: diventi/templates/accounts/signup.html:30
 #: diventi/templates/landing/landing.html:84
 msgid "Sign up"
 msgstr "Registrati"
 
-#: diventi/templates/accounts/signup.html:100
+#: diventi/templates/accounts/signup.html:92
 msgid "Get Started"
 msgstr "Iniziamo"
 

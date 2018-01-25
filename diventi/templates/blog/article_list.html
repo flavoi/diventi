@@ -51,10 +51,15 @@
                                     <p class="author">
                                         {% load comment_extras %}
                                         {% load comments %}
+                                        {% get_comment_count for article as comment_count %}
                                         <span class="text-gray">
                                         by <strong>{{ article.author.get_full_name }}</strong>
-                                         &middot; 
+                                        &middot; 
                                         {{ article.publication_date|naturalday }}
+                                        &middot;
+                                        <i class="fal fa-comments"></i> {{ comment_count }}
+                                        &middot;
+                                        <i class="fal fa-thumbs-up"></i> {{ article.promotions.count }}
                                         </span>
                                     </p>                            
                                 </div>

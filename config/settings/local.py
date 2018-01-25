@@ -24,7 +24,7 @@ DATABASES = {
 CACHE_TIMEOUT = 30
 
 ALLOWED_HOSTS = [
-    '127.0.0.1', 
+    '192.168.1.5', 
     'localhost',
 ]
 

@@ -25,7 +25,8 @@ def get_env_variable(var_name):
         error_msg = 'Set the {} environment variable'.format(var_name)
         raise ImproperlyConfigured(error_msg)
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent / 'diventi'
+PROJ_ROOT = Path(__file__).resolve().parent.parent.parent 
+BASE_DIR = PROJ_ROOT / 'diventi'
 
 TEMPLATES = [
     {

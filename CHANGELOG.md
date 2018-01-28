@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced translations: both static or dynamic components may be displayed in english or italian
 - Introduced a Vagrantfile to facilitate the development process across different computers
 - Introduced sharethis buttons for articles and products
+- Added support for sqlite database
 
 ### Changed
 - Changed to yellow the background color of the inverse navbar links

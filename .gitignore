@@ -2,9 +2,8 @@
 diventi/media/*
 diventi/static/*
 diventi/staticfiles/*
-landing.json
-blog.json
 latest.dump
+diventi.sqlite
 
 # Vagrat
 .vagrant/*

@@ -154,7 +154,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [
-    str(os.path.join(BASE_DIR, 'locale')),
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
 TIME_ZONE = 'Europe/Rome'

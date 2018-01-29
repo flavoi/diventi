@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from .base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!

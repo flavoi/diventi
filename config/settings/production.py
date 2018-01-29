@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import dj_database_url, os
 
 from .base import *

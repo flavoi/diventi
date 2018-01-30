@@ -12,13 +12,9 @@ DEBUG = True
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "diventi",
-        "USER": "flavio",
-        "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': PROJ_ROOT / 'diventi.sqlite',
     }
 }
 

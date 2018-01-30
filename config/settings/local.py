@@ -2,6 +2,8 @@
 
 from .base import *
 
+import os
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 't##w+fo_&i#r89bj%_o4kq*m3e2i(02d7fp)yg!&&go^ie&=7o'
 
@@ -14,7 +16,7 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': PROJ_ROOT / 'diventi.sqlite',
+        'NAME': os.path.join(PROJ_ROOT, 'diventi.sqlite'),
     }
 }
 

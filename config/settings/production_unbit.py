@@ -3,11 +3,12 @@
 
 from .production import *
 
+import os
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': PROJ_ROOT / 'diventi.sqlite',
+        'NAME': os.path.join(PROJ_ROOT, 'diventi.sqlite'),
     }
 }
 

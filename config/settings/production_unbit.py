@@ -9,3 +9,8 @@ DATABASES = {
         'NAME': PROJ_ROOT / 'diventi.sqlite',
     }
 }
+
+ALLOWED_HOSTS = [
+    'playdiventi.it', 
+    'localhost',
+]

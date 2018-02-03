@@ -76,7 +76,7 @@ class Product(TimeStampedModel, PublishableModel):
         return self.title
 
     def class_name(self):
-        return self.__class__.__name__
+        return _('product')
 
     def get_absolute_url(self):
         return reverse('products:detail', args=[str(self.slug)])

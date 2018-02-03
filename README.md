@@ -2,6 +2,8 @@
 
 [![Latest release](https://img.shields.io/github/release/flavoi/diventi/all.svg)](https://github.com/flavoi/diventi/releases/tag/unreleased)
 
+![Diventi](https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo.png)
+
 More than a set of homebrew elements, Diventi is a style of play that embraces fun, encourages role playing and help game masters to better prepare their fantastic adventures.
 
 ### Resources

@@ -1,4 +1,4 @@
-<img src="https://s3.amazonaws.com/diventi-assets/static/brand/diventi-mini.png" width="129" align="right" />
+<img src="https://s3.amazonaws.com/diventi-assets/static/brand/diventi-mini-github.png" width="129" align="right" />
 
 ## Diventi, a modern fantasy game
 

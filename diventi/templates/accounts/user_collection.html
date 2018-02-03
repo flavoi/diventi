@@ -7,8 +7,9 @@
         <div class="col-md-6">
             <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
                 <div class="card-body">
+                    {{ product.category.default }}
                     {% if product.category.default %}
-                        {{ product.category.default }}
+
                     {% else %}
                         <label class="badge badge-rose">{{ product.category }}</label>
                     {% endif %}

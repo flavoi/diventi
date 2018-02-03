@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [UNRELEASED] → xxxx-xx-xx
+## [1.0.0-alpha.7] → 2018-02-03
 
 ### Added
 - Introduced threaded comments: comments are now stored as a tree and can be nested.
@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a Vagrantfile to facilitate the development process across different computers
 - Introduced sharethis buttons for articles and products
 - Added support for sqlite database
+- Added uwsgi files for the deployment
 
 ### Changed
 - Changed to yellow the background color of the inverse navbar links
@@ -25,6 +26,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed minor formatting errors in the changelog
+- Fixed layout errors in the base template
+- Fixed content cards for product section
+- Fixed spacing issues between labels and content cards
 
 ### Removed
 - Removed page header from search results page

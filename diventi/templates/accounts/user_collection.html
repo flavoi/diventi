@@ -1,28 +1,28 @@
 {% load humanize %}
 {% load i18n %}
 
-<div class="row collections">
+<div class="row">
     {% if collection %}
         {% for product in collection %}
-        <div class="col-md-6">
-            <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
-                <div class="card-body">
-                    {% if product.category.default %}
-                    {% else %}
-                        <label class="badge badge-rose">{{ product.category }}</label>
-                    {% endif %}
-                    <a href="{% url 'products:detail' product.slug %}">
-                        <h3 class="card-title">{{ product.title }}</h3>
-                    </a>
-                    <p class="card-description">{{ product.description }}</p>                    
-                    {% if product.file %}
-                        <a target="_blank" class="btn btn-warning" href="{{ product.file.url }}">
-                            <i class="fal fa-download fa-lg fa-fw"></i> {% trans "Download" %}
+            <div class="col-md-6">
+                <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
+                    <div class="card-body">
+                        {% if product.category.default %}
+                        {% else %}
+                            <label class="badge badge-rose">{{ product.category }}</label>
+                        {% endif %}
+                        <a href="{% url 'products:detail' product.slug %}">
+                            <h3 class="card-title">{{ product.title }}</h3>
                         </a>
-                    {% endif %}
-                </div>                
-            </div>
-        </div>            
+                        <p class="card-description">{{ product.description }}</p>                    
+                        {% if product.file %}
+                            <a target="_blank" class="btn btn-warning btn-round" href="{{ product.file.url }}">
+                                <i class="fal fa-download fa-lg fa-fw"></i> {% trans "Download" %}
+                            </a>
+                        {% endif %}
+                    </div>                
+                </div>
+            </div>            
         {% endfor %}
     {% else %}
         <div class="col-md-12 text-center">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-03 11:25+0100\n"
+"POT-Creation-Date: 2018-02-03 11:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -456,8 +456,9 @@ msgstr "acquirenti"
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:72 diventi/products/models.py:102
-#: diventi/products/models.py:111 diventi/products/models.py:119
+#: diventi/products/models.py:72 diventi/products/models.py:79
+#: diventi/products/models.py:102 diventi/products/models.py:111
+#: diventi/products/models.py:119
 msgid "product"
 msgstr "prodotto"
 
@@ -720,7 +721,7 @@ msgstr "Unisciti alla nostra community"
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/search_results.html:32
+#: diventi/templates/landing/search_results.html:36
 msgid "End of results"
 msgstr "Fine dei risultati"
 
@@ -751,6 +752,10 @@ msgstr "Rimuovi questo prodotto dalla tua collezione"
 #: diventi/templates/products/product_detail.html:123
 msgid "Add this product to your collection"
 msgstr "Aggiungi questo prodotto alla tua collezione"
+
+#: diventi/templates/products/product_detail.html:140
+msgid "Contents"
+msgstr "Contenuti"
 
 #: diventi/templates/products/product_detail.html:152
 msgid "Adventure"

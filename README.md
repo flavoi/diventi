@@ -1,8 +1,6 @@
-## Diventi, a modern fantasy game.
+## Diventi, a modern fantasy game. ![Diventi](https://s3.amazonaws.com/diventi-assets/static/brand/diventi-mini-github.jpg)
 
 [![Latest release](https://img.shields.io/github/release/flavoi/diventi/all.svg)](https://github.com/flavoi/diventi/releases/tag/1.0.0-alpha.7)
-
-![Diventi](https://i.imgur.com/PuRvGoVs.png)
 
 More than a set of homebrew elements, Diventi is a style of play that embraces fun, encourages role playing and help game masters to better prepare their fantastic adventures.
 

@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel
+from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category
 
 
 class ProductQuerySet(models.QuerySet):
@@ -41,18 +41,13 @@ class ProductQuerySet(models.QuerySet):
         return products
 
 
-class Category(models.Model):
+class ProductCategory(Category):
     """
-        Defines the main argument of any product.
+        Defines the type of a product.
     """
-    title = models.CharField(max_length=60, unique=True)
-    default = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.title
-
     class Meta:
-        verbose_name_plural = _("categories")
+        verbose_name = _('Product category')
+        verbose_name_plural = _('Product categories')
 
 
 class Product(TimeStampedModel, PublishableModel):
@@ -65,7 +60,7 @@ class Product(TimeStampedModel, PublishableModel):
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = models.FileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
-    category = models.ForeignKey(Category, null=True, blank=True, verbose_name=_('category'))
+    category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'))
     objects = ProductQuerySet.as_manager()
 
     class Meta:
@@ -97,9 +92,19 @@ class Product(TimeStampedModel, PublishableModel):
         return user in self.buyers.all()
 
 
+class ChapterCategory(Category):
+    """
+        Defines the type of a chapter.
+    """
+    class Meta:
+        verbose_name = _('Chapter category')
+        verbose_name_plural = _('Chapter categories')
+
+
 class Chapter(Element, DiventiImageModel):
     """ A stand-alone chapter of an adventure."""
     product = models.ForeignKey(Product, related_name='chapters', verbose_name=_('product'))     
+    category = models.ForeignKey(ChapterCategory, null=True, blank=True, verbose_name=_('category'))
 
     class Meta:
         verbose_name = _('Chapter')

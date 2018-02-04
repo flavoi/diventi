@@ -86,6 +86,21 @@ class Element(models.Model):
         abstract = True
 
 
+class Category(models.Model):
+    """
+    An abstract base class model that defines a specific type of an object.
+    """
+    title = models.CharField(max_length=60, unique=True)
+    default = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = _("categories")
+        abstract = True
+
+
 class DiventiImageModel(models.Model):
     """
     An abstract base class that manages models based on images uploaded on Imgur.

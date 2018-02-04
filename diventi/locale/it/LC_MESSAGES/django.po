@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-03 11:37+0100\n"
+"POT-Creation-Date: 2018-02-04 18:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,7 +120,7 @@ msgid "avatar"
 msgstr "avatar"
 
 #: diventi/accounts/models.py:67 diventi/landing/models.py:26
-#: diventi/products/models.py:64
+#: diventi/products/models.py:59
 msgid "cover"
 msgstr "copertina"
 
@@ -220,25 +220,26 @@ msgstr "Nascondi le storie selezionate"
 msgid "Blog"
 msgstr "Blog"
 
-#: diventi/blog/models.py:62 diventi/products/models.py:55
+#: diventi/blog/models.py:62 diventi/core/models.py:100
 msgid "categories"
 msgstr "categorie"
 
 #: diventi/blog/models.py:70 diventi/core/models.py:78
-#: diventi/landing/models.py:23 diventi/products/models.py:60
+#: diventi/landing/models.py:23 diventi/products/models.py:55
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:71 diventi/core/models.py:79
-#: diventi/landing/models.py:25 diventi/products/models.py:61
+#: diventi/landing/models.py:25 diventi/products/models.py:56
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:72 diventi/products/models.py:68
+#: diventi/blog/models.py:72 diventi/products/models.py:63
+#: diventi/products/models.py:107
 msgid "category"
-msgstr "categoria"
+msgstr "tipo"
 
-#: diventi/blog/models.py:73 diventi/core/models.py:93
+#: diventi/blog/models.py:73 diventi/core/models.py:108
 msgid "image"
 msgstr "immagine"
 
@@ -254,7 +255,7 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "di tendenza"
 
-#: diventi/blog/models.py:77 diventi/products/models.py:62
+#: diventi/blog/models.py:77 diventi/products/models.py:57
 msgid "slug"
 msgstr "slug"
 
@@ -368,15 +369,15 @@ msgstr "icona"
 msgid "color"
 msgstr "colore"
 
-#: diventi/core/models.py:94
+#: diventi/core/models.py:109
 msgid "label"
 msgstr "etichetta"
 
-#: diventi/core/models.py:111
+#: diventi/core/models.py:126
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:112 diventi/products/models.py:122
+#: diventi/core/models.py:127 diventi/products/models.py:127
 msgid "Image"
 msgstr "Immagine"
 
@@ -440,50 +441,66 @@ msgstr "Prodotti"
 msgid "Multiple featured products returned. Please fix!"
 msgstr "Trovati molteplici prodotti sponsorizzati. Sistemare!"
 
-#: diventi/products/models.py:63
+#: diventi/products/models.py:49
+msgid "Product category"
+msgstr "Tipo Prodotto"
+
+#: diventi/products/models.py:50
+msgid "Product categories"
+msgstr "Tipi Prodotto"
+
+#: diventi/products/models.py:58
 msgid "featured"
 msgstr "sponsorizzato"
 
-#: diventi/products/models.py:65
+#: diventi/products/models.py:60
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:66
+#: diventi/products/models.py:61
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:67
+#: diventi/products/models.py:62
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:72 diventi/products/models.py:79
-#: diventi/products/models.py:102 diventi/products/models.py:111
-#: diventi/products/models.py:119
+#: diventi/products/models.py:67 diventi/products/models.py:74
+#: diventi/products/models.py:106 diventi/products/models.py:116
+#: diventi/products/models.py:124
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/products/models.py:73
+#: diventi/products/models.py:68
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:105
+#: diventi/products/models.py:100
+msgid "Chapter category"
+msgstr "Tipo Capitolo"
+
+#: diventi/products/models.py:101
+msgid "Chapter categories"
+msgstr "Tipi Capitolo"
+
+#: diventi/products/models.py:110
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:106
+#: diventi/products/models.py:111
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:114
+#: diventi/products/models.py:119
 msgid "Characteristic"
 msgstr "Caratteristica"
 
-#: diventi/products/models.py:115
+#: diventi/products/models.py:120
 #: diventi/templates/products/product_detail.html:81
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/products/models.py:123
+#: diventi/products/models.py:128
 msgid "Images"
 msgstr "Immagini"
 
@@ -512,8 +529,6 @@ msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
 #: diventi/templates/accounts/change_password.html:3
-#, fuzzy
-#| msgid "Change Password"
 msgid "Change password"
 msgstr "Modifica password"
 
@@ -788,6 +803,12 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "Product types"
+#~ msgstr "Tipi Prodotto"
+
+#~ msgid "Chapter types"
+#~ msgstr "Tipi Capitolo"
 
 #~ msgid ""
 #~ "Your account doesn't have access to this page. To proceed, please sign in "

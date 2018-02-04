@@ -68,7 +68,7 @@ class BlogCover(DiventiImageModel):
         Stores cover images for the blog page.
     """
 
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=False, verbose_name=_('active'))
 
     objects = BlogCoverQuerySet.as_manager()
 

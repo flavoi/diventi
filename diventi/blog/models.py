@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
-from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel
+from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel, Category, DiventiImageModel
 
 
 class ArticleQuerySet(models.QuerySet):
@@ -44,22 +44,44 @@ class ArticleQuerySet(models.QuerySet):
     def current(self):
         try:
             article = self.get_hottest_article()
-        except ObjectDoesNotExist:
+        except Article.DoesNotExist:
             article = self.published().latest('publication_date')
         return article
 
 
-class Category(models.Model):
+class BlogCoverQuerySet(models.QuerySet):
+
+    # Get the active cover or returns nothing
+    def active(self):
+        try:
+            cover = BlogCover.objects.get(active=True)
+        except BlogCover.DoesNotExist:
+            cover = BlogCover.objects.none()
+        except BlogCover.MultipleObjectsReturned:
+            msg = _("There must be only one blog cover at a time. Please fix!")
+            raise BlogCover.MultipleObjectsReturned(msg)
+        return cover
+
+
+class BlogCover(DiventiImageModel):
+    """
+        Stores cover images for the blog page.
+    """
+
+    active = models.BooleanField(default=False)
+
+    objects = BlogCoverQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _('Blog Cover')
+        verbose_name_plural = _('Blog Covers')
+
+
+class ArticleCategory(Category):
     """
         Defines the main argument of any article.
     """
-    title = models.CharField(max_length=60, unique=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-    	verbose_name_plural = _("categories")
+    pass
 
 
 class Article(TimeStampedModel, PromotableModel, PublishableModel):
@@ -69,7 +91,7 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel):
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
     description = RichTextField(max_length=250, verbose_name=_('description'))
-    category = models.ForeignKey(Category, verbose_name=_('category'))
+    category = models.ForeignKey(ArticleCategory, verbose_name=_('category'))
     image = models.ImageField(blank=True, upload_to='blog/', verbose_name=_('image'))
     caption = models.CharField(max_length=60, blank=True, verbose_name=_('caption'))
     content = RichTextField(verbose_name=_('content'))

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced dedicated categories for products and products' chapters
+- Introduced dynamic cover image for the blog page
 
 ### Changed
 - Updated readme with custom Diventi logo

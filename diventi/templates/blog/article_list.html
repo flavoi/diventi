@@ -6,7 +6,7 @@
 {% block title %}Blog{% endblock title %}
 
 {% block pageheader %}
-<div class="page-header header-filter header-small" style="background-image: url('https://i.imgur.com/Ua1J9Oe.jpg'); transform: translate3d(0px, 0px, 0px);">
+<div class="page-header header-filter header-small" {% if blogcover %}style="background-image: url('{{ blogcover.image }}'); transform: translate3d(0px, 0px, 0px);"{% endif %}>
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">

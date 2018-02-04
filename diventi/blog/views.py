@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 
-from .models import Article, Category
+from .models import Article, BlogCover
 
 
 class ArticlesListView(ListView):
@@ -18,6 +18,11 @@ class ArticlesListView(ListView):
 
     def get_queryset(self):
         return Article.objects.history().promotions()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticlesListView, self).get_context_data(*args, **kwargs)
+        context['blogcover'] = BlogCover.objects.active()
+        return context
 
 
 class ArticleDetailView(DetailView):

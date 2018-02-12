@@ -33,6 +33,10 @@ class BlogCoverAdmin(DiventiTranslationAdmin):
     actions = [deactivate]
 
 
+class CategoryAdmin(DiventiTranslationAdmin):
+    list_display = ('title',)
+
+
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(ArticleCategory)
+admin.site.register(ArticleCategory, CategoryAdmin)
 admin.site.register(BlogCover, BlogCoverAdmin)

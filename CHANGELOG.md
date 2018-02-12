@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [UNRELEASED] → 2018-xx-xx
+## [1.0.0-beta.1] → 2018-02-12
 
 ### Added
 - Introduced dedicated categories for products and products' chapters
@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Updated readme with custom Diventi logo
+- Updated article category admin styles
+
+## Removed
+- Removed sharethis buttons
 
 
 ## [1.0.0-alpha.7] → 2018-02-03

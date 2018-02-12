@@ -1,5 +1,7 @@
 from modeltranslation.translator import register, TranslationOptions
 
+from diventi.core.admin import DiventiTranslationAdmin
+
 from .models import ArticleCategory, Article, BlogCover
 
 

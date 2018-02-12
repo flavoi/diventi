@@ -90,7 +90,7 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel):
         introduced by a nice heading picture.
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
-    description = RichTextField(max_length=250, verbose_name=_('description'))
+    description = models.TextField(max_length=250, verbose_name=_('description'))
     category = models.ForeignKey(ArticleCategory, verbose_name=_('category'))
     image = models.ImageField(blank=True, upload_to='blog/', verbose_name=_('image'))
     caption = models.CharField(max_length=60, blank=True, verbose_name=_('caption'))

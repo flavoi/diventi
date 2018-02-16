@@ -25,27 +25,19 @@
                 </button>
             </form>
             <li class="nav-item">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% get_language_info for LANGUAGE_CODE as lang %}
-                <a class="nav-link disabled">
-                    {{ lang.name_local }}
-                    <div class="ripple-container"></div>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a href="{% url 'blog:home' %}" class="nav-link">
                     Blog
                 </a>
             </li>
             {% if user.is_authenticated %}
                 {% if user.is_staff %}              
-                    <li class="nav-item text-info"> 
+                    <li class="nav-item"> 
                         <a href="{% url 'admin:index' %}" class="nav-link">
                             {% trans "Dashboard" %}
                         </a>
                     </li>
                 {% endif %}
-                <li class="nav-item text-success">
+                <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#feedbackModal" class="nav-link">
                         {% trans "Feedback" %}
                     </a>

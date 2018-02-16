@@ -10,5 +10,5 @@ class FeedbackCreationForm(forms.ModelForm):
         model = Feedback
         fields = ['description']        
         widgets = {            
-            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': _('description')}),            
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': _('Tell us what you think!')}),            
         }

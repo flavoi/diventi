@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced dedicated categories for products and products' chapters
 - Introduced dynamic cover image for the blog page
-[] Introduced feedback form in the navbar
+- (wip) Introduced feedback form in the navbar
 
 ### Changed
 - Updated readme with custom Diventi logo

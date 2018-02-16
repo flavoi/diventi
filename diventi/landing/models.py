@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
+
+from cuser.middleware import CuserMiddleware
 
 from diventi.core.models import Element
 
@@ -18,6 +21,18 @@ class PresentationManager(models.Manager):
             raise Presentation.MultipleObjectsReturned(msg)
         return active_presentation
 
+
+class Feedback(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=CuserMiddleware.get_user(), verbose_name=_('user')) 
+    description = models.TextField()
+
+    def __str__(self):
+        return self.pk
+
+    class Meta:
+        verbose_name = _('feedback')
+        verbose_name_plural = _('feedback')
+        
 
 class Presentation(models.Model):
     title = models.CharField(max_length=50, verbose_name=_('title'))

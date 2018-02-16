@@ -69,7 +69,7 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     form_class = DiventiUserCreationForm
     model = DiventiUser
     template_name = 'accounts/signup.html'
-    success_msg = _('You have signed up!')    
+    success_msg = _('You have signed up!')
     fail_msg = _('Your sign up has failed.')
     fail_url = reverse_lazy('accounts:signup')
 

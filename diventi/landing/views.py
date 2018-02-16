@@ -3,8 +3,10 @@ from itertools import chain
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
+from django.views.generic.edit import CreateView
+from django.utils.translation import ugettext_lazy as _
 
-from .models import Presentation
+from .models import Presentation, Feedback
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
@@ -79,3 +81,13 @@ class PresentationSearchView(ListView):
         context = super(PresentationSearchView, self).get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('q')
         return context
+
+
+class FeedbackCreationView(CreateView):
+    """ Insert a new feedback linked to the user """
+    model = Feedback
+    success_msg = _('You feedback has been sent!')
+
+    def form_valid(self, form):
+        messages.success(self.request, self.success_msg)        
+        return super(FeedbackCreationView, self).form_valid(form)

@@ -1,4 +1,5 @@
 {% load i18n %}
+
 <form method="post" action="{% url 'landing:feedback' %}">
 {% csrf_token %}
     <div class="card card-signup card-plain">
@@ -9,8 +10,9 @@
             </div>
         </div>
         <div class="modal-body">
-            <div class="card-body">
-                {{ form }}
+            <div class="card-body">            
+                {{ form.description }}
+            </div>
         </div>
         <div class="modal-footer justify-content-center">
             <button type="submit" class="btn btn-warning btn-link btn-wd btn-lg">

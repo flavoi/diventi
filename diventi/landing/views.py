@@ -5,8 +5,11 @@ from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
+from django.core.urlresolvers import reverse_lazy
 
 from .models import Presentation, Feedback
+from .forms import FeedbackCreationForm
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
@@ -20,6 +23,7 @@ def landing(request):
     """
     presentation = Presentation.objects.active()    
     featured_product = Product.objects.featured()
+    feedback_form = FeedbackCreationForm()
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
         if registration_form.is_valid():
@@ -34,6 +38,7 @@ def landing(request):
         'presentation': presentation,
         'registration_form': registration_form,
         'featured_product': featured_product,
+        'form': feedback_form,
     }
 
     # This session variable enables and error message in the login modal.
@@ -85,9 +90,14 @@ class PresentationSearchView(ListView):
 
 class FeedbackCreationView(CreateView):
     """ Insert a new feedback linked to the user """
+
+    form_class = FeedbackCreationForm
     model = Feedback
+    template_name = 'landing/feedback.html'
     success_msg = _('You feedback has been sent!')
+    success_url = reverse_lazy('landing:home')
 
     def form_valid(self, form):
         messages.success(self.request, self.success_msg)        
         return super(FeedbackCreationView, self).form_valid(form)
+

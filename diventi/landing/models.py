@@ -23,11 +23,15 @@ class PresentationManager(models.Manager):
 
 
 class Feedback(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=CuserMiddleware.get_user(), verbose_name=_('user')) 
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
     description = models.TextField()
 
     def __str__(self):
-        return self.pk
+        return str(self.pk)
+
+    def save(self, *args, **kwargs):
+        self.user = CuserMiddleware.get_user()
+        super(Feedback, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('feedback')

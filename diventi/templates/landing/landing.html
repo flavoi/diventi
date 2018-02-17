@@ -29,11 +29,13 @@
 {% block maincontainer %}
 
     <div class="section text-center">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <img class="rounded img-fluid" src="{% static 'brand/diventi-logo.png' %}" alt="Diventi">
-                <h5 class="description">{{ presentation.description|striptags }}</h5>
-            </div>                
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <img class="rounded img-fluid" src="{% static 'brand/diventi-logo.png' %}" alt="Diventi">
+                    <h5 class="description">{{ presentation.description|striptags }}</h5>
+                </div>                
+            </div>
         </div>
     </div>
 
@@ -58,37 +60,39 @@
     </div>
 
     <div class="section section-contacts">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                {% if user.is_authenticated %}
-                    <div class="text-center">
-                        <h2 class="title">{% trans "Hello" %} {{ user.first_name }}!</h2>
-                        <h5 class="description">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</h5>
-                        <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning btn-round">
-                            <i class="fal fa-user-circle fa-lg"></i> {% trans "Manage profile" %}
-                        </a>
-                    </div>
-                {% else %}
-                    <h2 class="text-center title">{% trans "Join our community" %}</h2>
-                    <h4 class="text-center description">{% trans "Sign up to know more and start exploring." %}</h4>
-                    <form class="contact-form" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            {% for field in registration_form %}
-                                <div class="col-md-6">
-                                    <div class="form-group has-warning">
-                                        {{ field }}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    {% if user.is_authenticated %}
+                        <div class="text-center">
+                            <h2 class="title">{% trans "Hello" %} {{ user.first_name }}!</h2>
+                            <h5 class="description">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</h5>
+                            <a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning btn-round">
+                                <i class="fal fa-user-circle fa-lg"></i> {% trans "Manage profile" %}
+                            </a>
+                        </div>
+                    {% else %}
+                        <h2 class="text-center title">{% trans "Join our community" %}</h2>
+                        <h4 class="text-center description">{% trans "Sign up to know more and start exploring." %}</h4>
+                        <form class="contact-form" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                {% for field in registration_form %}
+                                    <div class="col-md-6">
+                                        <div class="form-group has-warning">
+                                            {{ field }}
+                                        </div>
                                     </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 ml-auto mr-auto text-center">
-                                <input type="submit" class="btn btn-warning btn-raised" value="{% trans 'Sign up' %}">
+                                {% endfor %}
                             </div>
-                        </div>
-                    </form>                        
-                {% endif %}
+                            <div class="row">
+                                <div class="col-md-4 ml-auto mr-auto text-center">
+                                    <input type="submit" class="btn btn-warning btn-raised" value="{% trans 'Sign up' %}">
+                                </div>
+                            </div>
+                        </form>                        
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ from django.conf import settings
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import Element
+from diventi.core.models import Element, DiventiImageModel
 
 
 class PresentationManager(models.Manager):
@@ -47,12 +47,24 @@ class Feedback(models.Model):
         verbose_name_plural = _('feedback')
         
 
+class FeaturesCover(DiventiImageModel):
+    """
+        Stores cover images for the features section.
+    """
+
+    class Meta:
+        verbose_name = _('Features Cover')
+        verbose_name_plural = _('Features Covers')
+
+
 class Presentation(models.Model):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
+    features_cover = models.ForeignKey(FeaturesCover, null=True, blank=True, verbose_name=_('features cover'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
+    
 
     objects = PresentationManager()
 

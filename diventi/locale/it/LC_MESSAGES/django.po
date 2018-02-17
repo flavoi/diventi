@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 17:08+0100\n"
+"POT-Creation-Date: 2018-02-17 21:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:152
+#: config/settings/base.py:153
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:153
+#: config/settings/base.py:154
 msgid "English"
 msgstr "Inglese"
 
@@ -119,7 +119,7 @@ msgstr "email"
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:67 diventi/landing/models.py:45
+#: diventi/accounts/models.py:67 diventi/landing/models.py:81
 #: diventi/products/models.py:59
 msgid "cover"
 msgstr "copertina"
@@ -228,7 +228,8 @@ msgstr "Blog"
 msgid "There must be only one blog cover at a time. Please fix!"
 msgstr "Può esistere una sola copertina per volta."
 
-#: diventi/blog/models.py:71 diventi/landing/models.py:46
+#: diventi/blog/models.py:71 diventi/landing/models.py:68
+#: diventi/landing/models.py:83
 msgid "active"
 msgstr "attiva"
 
@@ -241,12 +242,12 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:92 diventi/core/models.py:78
-#: diventi/landing/models.py:42 diventi/products/models.py:55
+#: diventi/landing/models.py:78 diventi/products/models.py:55
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:93 diventi/core/models.py:79
-#: diventi/landing/models.py:44 diventi/products/models.py:56
+#: diventi/landing/models.py:80 diventi/products/models.py:56
 msgid "description"
 msgstr "descrizione"
 
@@ -417,31 +418,47 @@ msgstr "Non risulta attiva alcuna pagina di destinazione"
 msgid "There must be only one landing page at a time. Please fix!"
 msgstr "Può esistere una sola pagina di destinazione per volta."
 
-#: diventi/landing/models.py:26
+#: diventi/landing/models.py:33
 msgid "user"
 msgstr ""
 
-#: diventi/landing/models.py:37 diventi/landing/models.py:38
+#: diventi/landing/models.py:46 diventi/landing/models.py:47
 msgid "feedback"
 msgstr "feedback"
 
-#: diventi/landing/models.py:43
+#: diventi/landing/models.py:59
+msgid "There must be only one cover at a time. Please fix!"
+msgstr "Può esistere una sola copertina per volta."
+
+#: diventi/landing/models.py:73
+msgid "Features Cover"
+msgstr "Copertina degli Aspetti"
+
+#: diventi/landing/models.py:74
+msgid "Features Covers"
+msgstr "Copertine degli Aspetti"
+
+#: diventi/landing/models.py:79
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:54
+#: diventi/landing/models.py:82
+msgid "features cover"
+msgstr "copertina degli aspetti"
+
+#: diventi/landing/models.py:92
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:55
+#: diventi/landing/models.py:93
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:62
+#: diventi/landing/models.py:100
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:63
+#: diventi/landing/models.py:101
 msgid "features"
 msgstr "aspetti"
 
@@ -457,7 +474,7 @@ msgstr "^cerca/$"
 msgid "^feedback/$"
 msgstr ""
 
-#: diventi/landing/views.py:97
+#: diventi/landing/views.py:95
 msgid "You feedback has been sent!"
 msgstr "Il tuo feedback è stato inviato!"
 
@@ -628,7 +645,7 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:30
-#: diventi/templates/landing/landing.html:82
+#: diventi/templates/landing/landing.html:87
 msgid "Sign up"
 msgstr "Registrati"
 
@@ -761,27 +778,27 @@ msgstr "Invia"
 msgid "Check it out"
 msgstr "Dai un'occhiata"
 
-#: diventi/templates/landing/landing.html:60
+#: diventi/templates/landing/landing.html:65
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing.html:61
+#: diventi/templates/landing/landing.html:66
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:63
+#: diventi/templates/landing/landing.html:68
 #: diventi/templates/navigation.html:59
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
-#: diventi/templates/landing/landing.html:67
+#: diventi/templates/landing/landing.html:72
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing.html:68
+#: diventi/templates/landing/landing.html:73
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 

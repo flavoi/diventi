@@ -26,20 +26,20 @@
             </form>
             <li class="nav-item">
                 <a href="{% url 'blog:home' %}" class="nav-link">
-                    Blog
+                    <i class="fal fa-align-center fa-lg fa-fw"></i> Blog
                 </a>
             </li>
             {% if user.is_authenticated %}
                 {% if user.is_staff %}              
                     <li class="nav-item"> 
                         <a href="{% url 'admin:index' %}" class="nav-link">
-                            {% trans "Dashboard" %}
+                            <i class="fal fa-cog fa-lg fa-fw"></i> {% trans "Dashboard" %}
                         </a>
                     </li>
                 {% endif %}
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#feedbackModal" class="nav-link">
-                        {% trans "Feedback" %}
+                        <i class="fal fa-comment-alt fa-lg fa-fw"></i> {% trans "Feedback" %}
                     </a>
                 </li>
                 <li class="dropdown nav-item">

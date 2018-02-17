@@ -23,7 +23,6 @@ def landing(request):
     """
     presentation = Presentation.objects.active()    
     featured_product = Product.objects.featured()
-    feedback_form = FeedbackCreationForm()
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
         if registration_form.is_valid():
@@ -38,7 +37,6 @@ def landing(request):
         'presentation': presentation,
         'registration_form': registration_form,
         'featured_product': featured_product,
-        'form': feedback_form,
     }
 
     # This session variable enables and error message in the login modal.
@@ -95,9 +93,15 @@ class FeedbackCreationView(CreateView):
     model = Feedback
     template_name = 'landing/feedback.html'
     success_msg = _('You feedback has been sent!')
-    success_url = reverse_lazy('landing:home')
 
     def form_valid(self, form):
-        messages.success(self.request, self.success_msg)        
+        messages.success(self.request, self.success_msg)
         return super(FeedbackCreationView, self).form_valid(form)
+
+    def get_success_url(self):
+        next_url = self.request.GET.get('next', None)
+        if next_url:            
+            return next_url
+        else:
+            super().get_success_url()
 

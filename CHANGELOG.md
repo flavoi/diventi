@@ -6,16 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta.1] → 2018-02-12
+## [1.0.0-beta.1] → 2018-02-xx
 
 ### Added
 - Introduced dedicated categories for products and products' chapters
 - Introduced dynamic cover image for the blog page
-- (wip) Introduced feedback form in the navbar
+- Introduced feedback form in the navbar
 
 ### Changed
 - Updated readme with custom Diventi logo
 - Updated article category admin styles
+- Updated navbar icons with fontawesome 5 styles
 
 ## Removed
 - Removed sharethis buttons

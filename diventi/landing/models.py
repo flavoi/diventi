@@ -22,9 +22,18 @@ class PresentationManager(models.Manager):
         return active_presentation
 
 
+class FeedbackManager(models.Manager):
+
+    def usercount(self):
+        feedbacks = self.filter(user=CuserMiddleware.get_user()).count()
+        return feedbacks
+
+
 class Feedback(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
     description = models.TextField()
+
+    objects = FeedbackManager()
 
     def __str__(self):
         return str(self.pk)

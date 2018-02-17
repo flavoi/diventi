@@ -42,6 +42,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'diventi.core.context.footer',
+                'diventi.landing.context.feedback_form',
             ],
         },
     },

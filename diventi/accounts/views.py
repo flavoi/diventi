@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
@@ -9,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
+from django.http import HttpResponse
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
@@ -56,12 +59,25 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, _('Your password was successfully updated!'))
-            return redirect('landing:home')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'accounts/change_password.html', {
+    return render(request, 'accounts/user.html', {
         'form': form,
     })
+
+
+@login_required
+def change_password_ajax(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            message = _('Your password was successfully updated!')
+        else:
+            message = _('Cambio password fallito!')
+    message = str(message) # Force a string to prepare the json dump
+    return HttpResponse(json.dumps(message), content_type='application/json')
 
 
 class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
@@ -105,7 +121,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
     form_class = DiventiUserUpdateForm
     model = DiventiUser
-    template_name = "accounts/profile.html"
+    template_name = "accounts/user.html"
     success_msg = _('Profile updated!')
     fail_msg = _('Profile has not been updated.')
 

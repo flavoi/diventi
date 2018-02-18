@@ -24,8 +24,12 @@ class PresentationManager(models.Manager):
 
 class FeedbackManager(models.Manager):
 
-    def usercount(self):
-        feedbacks = self.filter(user=CuserMiddleware.get_user()).count()
+    def usercount(self):        
+        current_user = CuserMiddleware.get_user()
+        feedbacks = 0
+        if not current_user.is_anonymous: 
+            feedbacks = self.filter(user=current_user)
+            feedbacks = feedbacks.count()
         return feedbacks
 
 

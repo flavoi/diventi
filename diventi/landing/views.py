@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Presentation, Feedback
 from .forms import FeedbackCreationForm
@@ -86,7 +87,7 @@ class PresentationSearchView(ListView):
         return context
 
 
-class FeedbackCreationView(CreateView):
+class FeedbackCreationView(LoginRequiredMixin, CreateView):
     """ Insert a new feedback linked to the user """
 
     form_class = FeedbackCreationForm

@@ -116,6 +116,9 @@
         data: frmPW.serialize(),
         success: function(resp) {
           $("#respp").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + resp ['message'] + '</div>').show();
+          if (resp['message_type'] === 'success') {
+            frmPW[0].reset();
+          }
         },
         error: function() {
           $("#respp").html('<strong><p class="text-danger">Error!</p></strong>').show().fadeOut(3000);

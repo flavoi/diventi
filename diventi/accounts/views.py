@@ -77,14 +77,12 @@ def change_password_ajax(request):
             message_type = 'success'
         else:
             message = form.errors
-            print(message)
             message_type = 'danger'
     data = json.dumps ({
         'message': str(message),
         'message_type': message_type,
     })
     return HttpResponse(data, content_type='application/json')
-
 
 class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 

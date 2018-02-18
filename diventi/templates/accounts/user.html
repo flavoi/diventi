@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block extrahead %}
+    <link href="{% static 'image-picker/css/image-picker.css' %}" rel="stylesheet"/>
+{% endblock extrahead %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block bodyclass %}profile-page{% endblock bodyclass %}
+
+{% block pageheaderimage %}{% if user.cover %}{{ user.cover.image }}{% endif %}{% endblock pageheaderimage %}
+
+{% block maincontainer %}
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">                                 
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
+                        </div>
+                        <div class="name">
+                            <h3 class="title">{{ user.first_name }}</h3>
+                            <h6 class="text-rose">
+                            {% if user.is_staff %}                            
+                                {% trans "Creator" %}
+                            {% else %}
+                                {% trans "User" %}
+                            {% endif %}
+                            </h6>                
+                            <h6 class="text-muted">{{ user.email }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description text-center">
+                <p>{{ user.bio|striptags }}</p>
+                <p>{% trans "Favourite class" %}: {{ user.role|striptags|capfirst }}</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile-tabs">
+                        <ul class="nav nav-pills nav-pills-icons nav-pills-info justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#work" role="tab" data-toggle="tab">
+                                    <i class="fal fa-shopping-bag fa-2x"></i>
+                                    <br>
+                                    {% trans "Collection" %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customization" role="tab" data-toggle="tab">
+                                    <i class="fal fa-address-card fa-2x"></i>
+                                    <br>
+                                    {% trans "Customization" %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#credentials" role="tab" data-toggle="tab">
+                                    <i class="fal fa-user-circle fa-2x"></i>
+                                    <br>
+                                    {% trans "Credentials" %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content tab-space">
+                <div class="tab-pane active work" id="work">
+                    <div class="row">
+                        <div class="col-md-10 mr-auto ml-auto">
+                            {% include 'accounts/user_collection.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane connections" id="customization">
+                    <div class="row">
+                        <div class="col-md-10 ml-auto mr-auto">
+                            <form method="post" action="{% url 'accounts:update' user.pk %}">
+                                {% csrf_token %}
+                                {% include 'accounts/user_customization.html' %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="credentials">
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <form method="POST" action="{% url 'accounts:change_password_ajax' %}" id="frmChangePW">
+                                {% csrf_token %}
+                                {% include 'accounts/user_credentials.html' %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock maincontainer %}
+
+{% block extrascript %}
+<script src="{% static 'image-picker/js/image-picker.min.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(".image-picker").imagepicker()
+</script>
+<script type="text/javascript">
+    var frmPW = $('#frmChangePW');
+    frmPW.submit(function() {
+      $.ajax({
+        type: frmPW.attr('method'),
+        url: frmPW.attr('action'),
+        data: frmPW.serialize(),
+        success: function(resp) {
+          $("#respp").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + resp ['message'] + '</div>').show();
+        },
+        error: function() {
+          $("#respp").html('<strong><p class="text-danger">Error!</p></strong>').show().fadeOut(3000);
+        }
+      });
+      return false;
+    });
+</script>
+{% endblock extrascript %}

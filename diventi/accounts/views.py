@@ -74,10 +74,16 @@ def change_password_ajax(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             message = _('Your password was successfully updated!')
+            message_type = 'success'
         else:
-            message = _('Cambio password fallito!')
-    message = str(message) # Force a string to prepare the json dump
-    return HttpResponse(json.dumps(message), content_type='application/json')
+            message = form.errors
+            print(message)
+            message_type = 'danger'
+    data = json.dumps ({
+        'message': str(message),
+        'message_type': message_type,
+    })
+    return HttpResponse(data, content_type='application/json')
 
 
 class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 21:33+0100\n"
+"POT-Creation-Date: 2018-02-18 17:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,7 +99,8 @@ msgstr "riservato allo staff"
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:52 diventi/templates/accounts/user_update.html:25
+#: diventi/accounts/models.py:52
+#: diventi/templates/accounts/user_customization.html:25
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -107,7 +108,8 @@ msgstr "Avatar"
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:61 diventi/templates/accounts/user_update.html:40
+#: diventi/accounts/models.py:61
+#: diventi/templates/accounts/user_customization.html:40
 msgid "Covers"
 msgstr "Copertine"
 
@@ -119,7 +121,7 @@ msgstr "email"
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:67 diventi/landing/models.py:81
+#: diventi/accounts/models.py:67 diventi/landing/models.py:68
 #: diventi/products/models.py:59
 msgid "cover"
 msgstr "copertina"
@@ -136,7 +138,7 @@ msgstr "biografia"
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:77 diventi/templates/accounts/user_detail.html:16
+#: diventi/accounts/models.py:77 diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
@@ -157,42 +159,52 @@ msgid "^password-change/$"
 msgstr "^modifica-password/$"
 
 #: diventi/accounts/urls.py:10
+#, fuzzy
+#| msgid "^password-change/$"
+msgid "^password-change/ajax/$"
+msgstr "^modifica-password/$"
+
+#: diventi/accounts/urls.py:11
 msgid "^signup/$"
 msgstr "^registrati/$"
 
-#: diventi/accounts/urls.py:11
+#: diventi/accounts/urls.py:12
 msgid "^(?P<pk>\\d+)/update/$"
 msgstr "^(?P<pk>\\d+)/aggiorna/$"
 
-#: diventi/accounts/views.py:24
+#: diventi/accounts/views.py:27
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:25
+#: diventi/accounts/views.py:28
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:58
+#: diventi/accounts/views.py:61 diventi/accounts/views.py:76
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:72
+#: diventi/accounts/views.py:78
+msgid "An error has occured!"
+msgstr "Si è verificato un errore!"
+
+#: diventi/accounts/views.py:88
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:73
+#: diventi/accounts/views.py:89
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:109
+#: diventi/accounts/views.py:125
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:110
+#: diventi/accounts/views.py:126
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:122
+#: diventi/accounts/views.py:138
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
@@ -228,8 +240,7 @@ msgstr "Blog"
 msgid "There must be only one blog cover at a time. Please fix!"
 msgstr "Può esistere una sola copertina per volta."
 
-#: diventi/blog/models.py:71 diventi/landing/models.py:68
-#: diventi/landing/models.py:83
+#: diventi/blog/models.py:71 diventi/landing/models.py:70
 msgid "active"
 msgstr "attiva"
 
@@ -242,12 +253,12 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:92 diventi/core/models.py:78
-#: diventi/landing/models.py:78 diventi/products/models.py:55
+#: diventi/landing/models.py:65 diventi/products/models.py:55
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:93 diventi/core/models.py:79
-#: diventi/landing/models.py:80 diventi/products/models.py:56
+#: diventi/landing/models.py:67 diventi/products/models.py:56
 msgid "description"
 msgstr "descrizione"
 
@@ -418,47 +429,43 @@ msgstr "Non risulta attiva alcuna pagina di destinazione"
 msgid "There must be only one landing page at a time. Please fix!"
 msgstr "Può esistere una sola pagina di destinazione per volta."
 
-#: diventi/landing/models.py:33
+#: diventi/landing/models.py:37
 msgid "user"
 msgstr ""
 
-#: diventi/landing/models.py:46 diventi/landing/models.py:47
+#: diventi/landing/models.py:50 diventi/landing/models.py:51
 msgid "feedback"
 msgstr "feedback"
 
-#: diventi/landing/models.py:59
-msgid "There must be only one cover at a time. Please fix!"
-msgstr "Può esistere una sola copertina per volta."
-
-#: diventi/landing/models.py:73
+#: diventi/landing/models.py:60
 msgid "Features Cover"
 msgstr "Copertina degli Aspetti"
 
-#: diventi/landing/models.py:74
+#: diventi/landing/models.py:61
 msgid "Features Covers"
 msgstr "Copertine degli Aspetti"
 
-#: diventi/landing/models.py:79
+#: diventi/landing/models.py:66
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:82
+#: diventi/landing/models.py:69
 msgid "features cover"
 msgstr "copertina degli aspetti"
 
-#: diventi/landing/models.py:92
+#: diventi/landing/models.py:79
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:93
+#: diventi/landing/models.py:80
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:100
+#: diventi/landing/models.py:87
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:101
+#: diventi/landing/models.py:88
 msgid "features"
 msgstr "aspetti"
 
@@ -474,7 +481,7 @@ msgstr "^cerca/$"
 msgid "^feedback/$"
 msgstr ""
 
-#: diventi/landing/views.py:95
+#: diventi/landing/views.py:96
 msgid "You feedback has been sent!"
 msgstr "Il tuo feedback è stato inviato!"
 
@@ -581,39 +588,6 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
-#: diventi/templates/accounts/change_password.html:3
-msgid "Change password"
-msgstr "Modifica password"
-
-#: diventi/templates/accounts/change_password.html:5
-msgid "Current password"
-msgstr "Password corrente"
-
-#: diventi/templates/accounts/change_password.html:14
-msgid "New password"
-msgstr "Nuova password"
-
-#: diventi/templates/accounts/change_password.html:23
-msgid "Confirm new password"
-msgstr "Conferma nuova password"
-
-#: diventi/templates/accounts/change_password.html:32
-#: diventi/templates/accounts/signin.html:56
-msgid "Confirm"
-msgstr "Conferma"
-
-#: diventi/templates/accounts/profile.html:28
-msgid "Collection"
-msgstr "La tua collezione"
-
-#: diventi/templates/accounts/profile.html:35
-msgid "Customization"
-msgstr "Personalizzazioni"
-
-#: diventi/templates/accounts/profile.html:42
-msgid "Credentials"
-msgstr "Credenziali"
-
 #: diventi/templates/accounts/signin.html:11
 #: diventi/templates/navigation.html:69
 msgid "Sign in"
@@ -631,6 +605,11 @@ msgstr "registrati"
 msgid "first"
 msgstr "subito"
 
+#: diventi/templates/accounts/signin.html:56
+#: diventi/templates/accounts/user_credentials.html:32
+msgid "Confirm"
+msgstr "Conferma"
+
 #: diventi/templates/accounts/signout.html:21
 msgid "Sign out completed"
 msgstr "Accesso annullato"
@@ -645,13 +624,34 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:30
-#: diventi/templates/landing/landing.html:87
+#: diventi/templates/landing/landing.html:90
 msgid "Sign up"
 msgstr "Registrati"
 
 #: diventi/templates/accounts/signup.html:92
 msgid "Get Started"
 msgstr "Iniziamo"
+
+#: diventi/templates/accounts/user.html:29
+#: diventi/templates/products/product_detail.html:186
+msgid "Creator"
+msgstr "Autore"
+
+#: diventi/templates/accounts/user.html:41
+msgid "Favourite class"
+msgstr "Classe preferita"
+
+#: diventi/templates/accounts/user.html:51
+msgid "Collection"
+msgstr "La tua collezione"
+
+#: diventi/templates/accounts/user.html:58
+msgid "Customization"
+msgstr "Personalizzazioni"
+
+#: diventi/templates/accounts/user.html:65
+msgid "Credentials"
+msgstr "Credenziali"
 
 #: diventi/templates/accounts/user_collection.html:20
 msgid "Download"
@@ -661,16 +661,23 @@ msgstr "Scarica"
 msgid "Your collection is empty"
 msgstr "La tua collezione è vuota"
 
-#: diventi/templates/accounts/user_detail.html:14
-#: diventi/templates/products/product_detail.html:186
-msgid "Creator"
-msgstr "Autore"
+#: diventi/templates/accounts/user_credentials.html:3
+msgid "Change password"
+msgstr "Modifica password"
 
-#: diventi/templates/accounts/user_detail.html:26
-msgid "Favourite class"
-msgstr "Classe preferita"
+#: diventi/templates/accounts/user_credentials.html:5
+msgid "Current password"
+msgstr "Password corrente"
 
-#: diventi/templates/accounts/user_update.html:56
+#: diventi/templates/accounts/user_credentials.html:14
+msgid "New password"
+msgstr "Nuova password"
+
+#: diventi/templates/accounts/user_credentials.html:23
+msgid "Confirm new password"
+msgstr "Conferma nuova password"
+
+#: diventi/templates/accounts/user_customization.html:56
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 
@@ -778,27 +785,27 @@ msgstr "Invia"
 msgid "Check it out"
 msgstr "Dai un'occhiata"
 
-#: diventi/templates/landing/landing.html:65
+#: diventi/templates/landing/landing.html:68
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing.html:66
+#: diventi/templates/landing/landing.html:69
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:68
+#: diventi/templates/landing/landing.html:71
 #: diventi/templates/navigation.html:59
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
-#: diventi/templates/landing/landing.html:72
+#: diventi/templates/landing/landing.html:75
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing.html:73
+#: diventi/templates/landing/landing.html:76
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
@@ -865,6 +872,9 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "There must be only one cover at a time. Please fix!"
+#~ msgstr "Può esistere una sola copertina per volta."
 
 #~ msgid "Adventure"
 #~ msgstr "Avventura"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 17:51+0100\n"
+"POT-Creation-Date: 2018-02-18 21:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -184,27 +184,23 @@ msgstr "Accesso fallito."
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:78
-msgid "An error has occured!"
-msgstr "Si è verificato un errore!"
-
-#: diventi/accounts/views.py:88
+#: diventi/accounts/views.py:94
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:89
+#: diventi/accounts/views.py:95
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:125
+#: diventi/accounts/views.py:131
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:126
+#: diventi/accounts/views.py:132
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:138
+#: diventi/accounts/views.py:144
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
@@ -606,7 +602,7 @@ msgid "first"
 msgstr "subito"
 
 #: diventi/templates/accounts/signin.html:56
-#: diventi/templates/accounts/user_credentials.html:32
+#: diventi/templates/accounts/user_credentials.html:33
 msgid "Confirm"
 msgstr "Conferma"
 
@@ -631,6 +627,10 @@ msgstr "Registrati"
 #: diventi/templates/accounts/signup.html:92
 msgid "Get Started"
 msgstr "Iniziamo"
+
+#: diventi/templates/accounts/user.html:10
+msgid "Profile"
+msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
 #: diventi/templates/products/product_detail.html:186
@@ -665,15 +665,15 @@ msgstr "La tua collezione è vuota"
 msgid "Change password"
 msgstr "Modifica password"
 
-#: diventi/templates/accounts/user_credentials.html:5
+#: diventi/templates/accounts/user_credentials.html:6
 msgid "Current password"
 msgstr "Password corrente"
 
-#: diventi/templates/accounts/user_credentials.html:14
+#: diventi/templates/accounts/user_credentials.html:15
 msgid "New password"
 msgstr "Nuova password"
 
-#: diventi/templates/accounts/user_credentials.html:23
+#: diventi/templates/accounts/user_credentials.html:24
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
@@ -872,6 +872,9 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "An error has occured!"
+#~ msgstr "Si è verificato un errore!"
 
 #~ msgid "There must be only one cover at a time. Please fix!"
 #~ msgstr "Può esistere una sola copertina per volta."

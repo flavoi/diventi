@@ -89,6 +89,7 @@ def change_password_ajax(request):
     })
     return HttpResponse(data, content_type='application/json')
 
+
 class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 
     form_class = DiventiUserCreationForm
@@ -156,4 +157,8 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         return context
 
 
+class DiventiUserDetailView(DetailView):
+
+    model = DiventiUser
+    template_name = "accounts/detail.html"
 

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ user.get_full_name }}{% endblock title %}
+
+{% block bodyclass %}profile-page{% endblock bodyclass %}
+
+{% block pageheaderimage %}{% if user.cover %}{{ user.cover.image }}{% endif %}{% endblock pageheaderimage %}
+
+{% block maincontainer %}
+    <div class="profile-content">
+        <div class="container">
+            
+            <div class="row">
+                 <div class="col-md-6 ml-auto mr-auto">                                 
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
+                        </div>
+                        <div class="name">
+                            <h3 class="title">{{ user.first_name }}</h3>
+                            <h6 class="text-rose">
+                            {% if user.is_staff %}                            
+                                {% trans "Creator" %}
+                            {% else %}
+                                {% trans "User" %}
+                            {% endif %}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description text-center">
+                <p>{{ user.bio }}</p>
+            </div>
+
+            <div class="tab-content tab-space"></div>
+
+        </div>
+    </div>
+{% endblock %}

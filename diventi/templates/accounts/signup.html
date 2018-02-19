@@ -39,7 +39,7 @@
                                     </button>
                                     <b>
                                         {% for field, error in form.errors.items %}
-                                            {{ field }}: {{ error|striptags }}
+                                            {{ field }}: {{ error|striptags }} <br>
                                         {% endfor %}
                                     </b>
                                 </div>

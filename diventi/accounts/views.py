@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
@@ -67,7 +68,10 @@ def change_password(request):
 
 
 @login_required
+@csrf_protect
 def change_password_ajax(request):
+    message = ''
+    error_message = ''
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -75,11 +79,12 @@ def change_password_ajax(request):
             update_session_auth_hash(request, user)  # Important!
             message = _('Your password was successfully updated!')
             message_type = 'success'
-        else:
-            message = form.errors
+        else:            
+            error_message = {str(form.fields[field].label): error for field, error in form.errors.items()}
             message_type = 'danger'
     data = json.dumps ({
         'message': str(message),
+        'error_message': error_message,
         'message_type': message_type,
     })
     return HttpResponse(data, content_type='application/json')

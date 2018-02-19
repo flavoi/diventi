@@ -114,10 +114,18 @@
         type: frmPW.attr('method'),
         url: frmPW.attr('action'),
         data: frmPW.serialize(),
-        success: function(resp) {
-          $("#respp").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + resp ['message'] + '</div>').show();
+        success: function(resp) {          
           if (resp['message_type'] === 'success') {
+            $("#respp").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + resp ['message'] + '</div>').show();
             frmPW[0].reset();
+          }
+          else {
+            for (var key in resp.error_message) {
+                // Get error message
+                error = resp.error_message[key];
+                console.log(field, error)
+                $("#respp").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + key + ': ' + error + '</div>').show();
+            }
           }
         },
         error: function() {

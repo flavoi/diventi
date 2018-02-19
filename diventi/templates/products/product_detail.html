@@ -175,14 +175,14 @@
                                 <div class="col-md-4">
                                     <div class="card card-profile card-plain">
                                         <div class="card-avatar">
-                                            <a href="pablo">
+                                            <a href="{{ author.get_absolute_url }}">
                                                 {% if author.profilepic %}
                                                     <img class="img" src="{{ author.profilepic.url }}">
                                                 {% endif %}
                                             </a>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="card-title">{{ author.get_full_name}}</h4>
+                                            <h4 class="card-title"><a href="{{ author.get_absolute_url }}">{{ author.get_full_name}}</a></h4>
                                             <h6 class="category text-rose">{% trans "Creator" %}</h6>
                                             <p class="card-description">
                                                 {{ author.bio }}

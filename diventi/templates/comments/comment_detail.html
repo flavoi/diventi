@@ -7,15 +7,17 @@
     <div class="media">
         <a class="float-left" href="#">
             <div class="avatar">
-                {% if node.user.avatar %}
-                    <img class="media-object" src="{{ node.user.avatar.image }}" />
-                {% else %}
-                    <img class="media-object" src="{% static 'material-kit/img/placeholder.jpg' %}">
-                {% endif %}
+                <a href="{{ node.user.get_absolute_url }}">
+                    {% if node.user.avatar %}
+                        <img class="media-object" src="{{ node.user.avatar.image }}" />
+                    {% else %}
+                        <img class="media-object" src="{% static 'material-kit/img/placeholder.jpg' %}">
+                    {% endif %}
+                </a>
             </div>
         </a>
         <div class="media-body">
-            <h4 class="media-heading text-left">{{ node.user.first_name }} <small> {{ node.submit_date|naturaltime }}</small></h4>
+            <h4 class="media-heading text-left"><a href="{{ node.user.get_absolute_url }}">{{ node.user.first_name }} <small> {{ node.submit_date|naturaltime }}</small></a></h4>
             <p class="text-left">{{ node.comment }}</p>               
             <div class="media-footer">
                 

@@ -53,7 +53,7 @@
                                         {% load comments %}
                                         {% get_comment_count for article as comment_count %}
                                         <span class="text-gray">
-                                        by <strong>{{ article.author.get_full_name }}</strong>
+                                        by <a href="{{ article.author.get_absolute_url }}"><strong>{{ article.author.get_full_name }}</strong></a>
                                         &middot; 
                                         {{ article.publication_date|naturalday }}
                                         &middot;

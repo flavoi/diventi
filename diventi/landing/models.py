@@ -51,14 +51,22 @@ class Feedback(models.Model):
         verbose_name_plural = _('feedback')
         
 
-class FeaturesCover(DiventiImageModel):
+class PresentationCover(DiventiImageModel):
     """
         Stores cover images for the features section.
     """
+    DESCRIPTION = 'DES'
+    FEATURES = 'FEA'
+    SECTION_CHOICES = (
+        (DESCRIPTION, 'description'),
+        (FEATURES, 'features'), 
+    )
+    section = models.CharField(choices=SECTION_CHOICES, default=DESCRIPTION, max_length=3, verbose_name=_('section'))
+    active = models.BooleanField(default=False, verbose_name=_('active'))
 
     class Meta:
-        verbose_name = _('Features Cover')
-        verbose_name_plural = _('Features Covers')
+        verbose_name = _('Presentation Cover')
+        verbose_name_plural = _('Presentation Covers')
 
 
 class Presentation(models.Model):
@@ -66,7 +74,7 @@ class Presentation(models.Model):
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
-    features_cover = models.ForeignKey(FeaturesCover, null=True, blank=True, verbose_name=_('features cover'))
+    presentation_covers = models.ForeignKey(PresentationCover, null=True, blank=True, verbose_name=_('presentation cover'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
     
 

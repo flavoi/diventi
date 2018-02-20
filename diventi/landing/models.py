@@ -62,7 +62,6 @@ class PresentationCover(DiventiImageModel):
         (FEATURES, 'features'), 
     )
     section = models.CharField(choices=SECTION_CHOICES, default=DESCRIPTION, max_length=3, verbose_name=_('section'))
-    active = models.BooleanField(default=False, verbose_name=_('active'))
 
     class Meta:
         verbose_name = _('Presentation Cover')
@@ -74,7 +73,7 @@ class Presentation(models.Model):
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
-    presentation_covers = models.ForeignKey(PresentationCover, null=True, blank=True, verbose_name=_('presentation cover'))
+    presentation_covers = models.ManyToManyField(PresentationCover, blank=True, verbose_name=_('presentation covers'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
     
 

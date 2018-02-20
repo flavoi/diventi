@@ -14,7 +14,7 @@ class FeatureInline(TranslationStackedInline):
 
 
 class PresentationCoverAdmin(DiventiTranslationAdmin):
-    list_display= ('label', 'image_tag', 'active')
+    list_display= ('label', 'image_tag')
 
 
 class PresentationAdmin(DiventiTranslationAdmin):

@@ -75,10 +75,13 @@ class PresentationSearchView(ListView):
 
     def get_queryset(self):
         results = super(PresentationSearchView, self).get_queryset()
-        query = self.request.GET.get('q') 
-        articles = Article.search(self, query)
-        products = Product.search(self, query)
-        results = chain(articles, products)
+        query = self.request.GET.get('q')
+        if query:
+            articles = Article.search(self, query)
+            products = Product.search(self, query)
+            results = chain(articles, products)
+        else:
+            results = None
         return results
 
     def get_context_data(self, **kwargs):

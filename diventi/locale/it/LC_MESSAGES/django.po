@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 21:24+0100\n"
+"POT-Creation-Date: 2018-02-24 17:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,7 +121,7 @@ msgstr "email"
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:67 diventi/landing/models.py:68
+#: diventi/accounts/models.py:67 diventi/landing/models.py:58
 #: diventi/products/models.py:59
 msgid "cover"
 msgstr "copertina"
@@ -138,7 +138,8 @@ msgstr "biografia"
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:77 diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:77 diventi/templates/accounts/detail.html:28
+#: diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
@@ -159,48 +160,50 @@ msgid "^password-change/$"
 msgstr "^modifica-password/$"
 
 #: diventi/accounts/urls.py:10
-#, fuzzy
-#| msgid "^password-change/$"
 msgid "^password-change/ajax/$"
-msgstr "^modifica-password/$"
+msgstr "^modifica-password/ajax/$"
 
 #: diventi/accounts/urls.py:11
 msgid "^signup/$"
 msgstr "^registrati/$"
 
 #: diventi/accounts/urls.py:12
+msgid "^(?P<pk>\\d+)/$"
+msgstr "^(?P<pk>\\d+)/$"
+
+#: diventi/accounts/urls.py:13
 msgid "^(?P<pk>\\d+)/update/$"
 msgstr "^(?P<pk>\\d+)/aggiorna/$"
 
-#: diventi/accounts/views.py:27
+#: diventi/accounts/views.py:28
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:28
+#: diventi/accounts/views.py:29
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:61 diventi/accounts/views.py:76
+#: diventi/accounts/views.py:62 diventi/accounts/views.py:80
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:94
+#: diventi/accounts/views.py:98
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:95
+#: diventi/accounts/views.py:99
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:131
+#: diventi/accounts/views.py:135
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:132
+#: diventi/accounts/views.py:136
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:144
+#: diventi/accounts/views.py:148
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
@@ -236,7 +239,7 @@ msgstr "Blog"
 msgid "There must be only one blog cover at a time. Please fix!"
 msgstr "Può esistere una sola copertina per volta."
 
-#: diventi/blog/models.py:71 diventi/landing/models.py:70
+#: diventi/blog/models.py:71 diventi/landing/models.py:59
 msgid "active"
 msgstr "attiva"
 
@@ -249,12 +252,12 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:92 diventi/core/models.py:78
-#: diventi/landing/models.py:65 diventi/products/models.py:55
+#: diventi/landing/models.py:55 diventi/products/models.py:55
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:93 diventi/core/models.py:79
-#: diventi/landing/models.py:67 diventi/products/models.py:56
+#: diventi/landing/models.py:57 diventi/products/models.py:56
 msgid "description"
 msgstr "descrizione"
 
@@ -433,37 +436,37 @@ msgstr ""
 msgid "feedback"
 msgstr "feedback"
 
-#: diventi/landing/models.py:60
-msgid "Features Cover"
-msgstr "Copertina degli Aspetti"
-
-#: diventi/landing/models.py:61
-msgid "Features Covers"
-msgstr "Copertine degli Aspetti"
-
-#: diventi/landing/models.py:66
+#: diventi/landing/models.py:56
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:69
-msgid "features cover"
-msgstr "copertina degli aspetti"
-
-#: diventi/landing/models.py:79
+#: diventi/landing/models.py:68 diventi/landing/models.py:93
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:80
+#: diventi/landing/models.py:69
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:87
+#: diventi/landing/models.py:76
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:88
+#: diventi/landing/models.py:77
 msgid "features"
 msgstr "aspetti"
+
+#: diventi/landing/models.py:92
+msgid "section"
+msgstr "sezione"
+
+#: diventi/landing/models.py:96
+msgid "Presentation Cover"
+msgstr "Sfondo della presentazione"
+
+#: diventi/landing/models.py:97
+msgid "Presentation Covers"
+msgstr "Sfondi della presentazione"
 
 #: diventi/landing/urls.py:8
 msgid "^presentation/(?P<pk>\\d+)/$"
@@ -477,7 +480,7 @@ msgstr "^cerca/$"
 msgid "^feedback/$"
 msgstr ""
 
-#: diventi/landing/views.py:96
+#: diventi/landing/views.py:99
 msgid "You feedback has been sent!"
 msgstr "Il tuo feedback è stato inviato!"
 
@@ -584,6 +587,12 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
+#: diventi/templates/accounts/detail.html:26
+#: diventi/templates/accounts/user.html:29
+#: diventi/templates/products/product_detail.html:186
+msgid "Creator"
+msgstr "Autore"
+
 #: diventi/templates/accounts/signin.html:11
 #: diventi/templates/navigation.html:69
 msgid "Sign in"
@@ -631,11 +640,6 @@ msgstr "Iniziamo"
 #: diventi/templates/accounts/user.html:10
 msgid "Profile"
 msgstr "Profilo"
-
-#: diventi/templates/accounts/user.html:29
-#: diventi/templates/products/product_detail.html:186
-msgid "Creator"
-msgstr "Autore"
 
 #: diventi/templates/accounts/user.html:41
 msgid "Favourite class"
@@ -711,15 +715,15 @@ msgstr "corrente"
 msgid "Next"
 msgstr "Successivo"
 
-#: diventi/templates/comments/comment_detail.html:23
+#: diventi/templates/comments/comment_detail.html:25
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/comments/comment_detail.html:31
+#: diventi/templates/comments/comment_detail.html:33
 msgid "Reply"
 msgstr "Rispondi"
 
-#: diventi/templates/comments/comment_detail.html:43
+#: diventi/templates/comments/comment_detail.html:45
 #: diventi/templates/comments/comment_list.html:20
 msgid "Write your comment"
 msgstr "Scrivi il tuo commento"
@@ -872,6 +876,15 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "Features Cover"
+#~ msgstr "Copertina degli Aspetti"
+
+#~ msgid "Features Covers"
+#~ msgstr "Copertine degli Aspetti"
+
+#~ msgid "features cover"
+#~ msgstr "copertina degli aspetti"
 
 #~ msgid "An error has occured!"
 #~ msgstr "Si è verificato un errore!"

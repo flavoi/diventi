@@ -49,23 +49,6 @@ class Feedback(models.Model):
     class Meta:
         verbose_name = _('feedback')
         verbose_name_plural = _('feedback')
-        
-
-class PresentationCover(DiventiImageModel):
-    """
-        Stores cover images for the features section.
-    """
-    DESCRIPTION = 'DES'
-    FEATURES = 'FEA'
-    SECTION_CHOICES = (
-        (DESCRIPTION, 'description'),
-        (FEATURES, 'features'), 
-    )
-    section = models.CharField(choices=SECTION_CHOICES, default=DESCRIPTION, max_length=3, verbose_name=_('section'))
-
-    class Meta:
-        verbose_name = _('Presentation Cover')
-        verbose_name_plural = _('Presentation Covers')
 
 
 class Presentation(models.Model):
@@ -73,7 +56,6 @@ class Presentation(models.Model):
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
-    presentation_covers = models.ManyToManyField(PresentationCover, blank=True, verbose_name=_('presentation covers'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
     
 
@@ -93,3 +75,4 @@ class Feature(Element):
     class Meta:
         verbose_name = _('feature')
         verbose_name_plural = _('features')
+

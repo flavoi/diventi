@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Presentation, Feature, PresentationCover
+from .models import Presentation, Feature
 
 
 @register(Presentation)
@@ -11,8 +11,3 @@ class PresentationTranslationOptions(TranslationOptions):
 @register(Feature)
 class FeatureTranslationOptions(TranslationOptions):
     fields = ('title', 'description',)
-
-
-@register(PresentationCover)
-class BlogCoverTranslationOptions(TranslationOptions):
-    fields = ('label',)

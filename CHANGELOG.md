@@ -21,8 +21,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated navbar icons with fontawesome 5 styles
 - Updated default button styles from square to round
 
-## Removed
+### Removed
 - Removed sharethis buttons
+
+### Fixed
+- Fixed a problem that caused error 500 after pressing the search button with no inputs
 
 
 ## [1.0.0-alpha.7] → 2018-02-03

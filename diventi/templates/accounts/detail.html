@@ -1,44 +1,39 @@
-{% extends 'base.html' %}
+{% extends 'accounts/user.html' %}
 
-{% load static %}
 {% load i18n %}
 
 {% block title %}{{ object.get_full_name }}{% endblock title %}
 
-{% block bodyclass %}profile-page{% endblock bodyclass %}
+{% block email %}{% endblock email %}
 
-{% block pageheaderimage %}{% if object.cover %}{{ object.cover.image }}{% endif %}{% endblock pageheaderimage %}
+{% block description %}
+<div class="description text-center">
+    
+</div>
 
-{% block maincontainer %}
-    <div class="profile-content">
-        <div class="container">
-            
-            <div class="row">
-                 <div class="col-md-6 ml-auto mr-auto">                                 
-                    <div class="profile">
-                        <div class="avatar">
-                            <img src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
-                        </div>
-                        <div class="name">
-                            <h3 class="title">{{ object.first_name }}</h3>
-                            <h6 class="text-rose">
-                            {% if object.is_staff %}                            
-                                {% trans "Creator" %}
-                            {% else %}
-                                {% trans "User" %}
-                            {% endif %}
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="description text-center">
-                <p>{{ object.bio }}</p>
-            </div>
-
-            <div class="tab-content tab-space"></div>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 ml-auto mr-auto ">
+            {% include 'accounts/user_collection.html' %}
+        </div>
+        <div class="col-md-2 mr-auto ml-auto">
+            {% if user.bio %}
+                <h4 class="title">Bio</h4>
+                <p>{{ user.bio|striptags }}</p>
+                <hr>
+            {% endif %}
+            {% if user.role %}
+                <h4 class="title">{% trans "Favourite class" %}</h4>
+                <p>{{ user.role|striptags|capfirst }}</p>
+                <hr>
+            {% endif %}
+            <h4 class="title">{% trans "Achievements" %}</h4>       
+            <span class="badge badge-info">Betatester</span>
         </div>
     </div>
-{% endblock %}
+</div>
+{% endblock description %}
+
+{% block tabs %}
+<div class="tab-content tab-space"></div>
+{% endblock tabs %}

@@ -30,16 +30,18 @@
                             {% else %}
                                 {% trans "User" %}
                             {% endif %}
-                            </h6>                
-                            <h6 class="text-muted">{{ user.email }}</h6>
+                            </h6>
+                            {% block email %}
+                                <h6 class="text-muted">{{ user.email }}</h6>
+                            {% endblock email %}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="description text-center">
-                <p>{{ user.bio|striptags }}</p>
-                <p>{% trans "Favourite class" %}: {{ user.role|striptags|capfirst }}</p>
-            </div>
+
+            {% block description %}{% endblock description %}
+
+            {% block tabs %}
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto">
                     <div class="profile-tabs">
@@ -98,6 +100,8 @@
                     </div>
                 </div>
             </div>
+            {% endblock tabs %}
+
         </div>
     </div>
 {% endblock maincontainer %}

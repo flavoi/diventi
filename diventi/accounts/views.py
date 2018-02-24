@@ -162,3 +162,9 @@ class DiventiUserDetailView(DetailView):
     model = DiventiUser
     template_name = "accounts/detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
+        collection = Product.objects.user_collection(user=self.request.user)
+        context['collection'] = collection
+        return context
+

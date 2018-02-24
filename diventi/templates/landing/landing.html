@@ -46,7 +46,7 @@
                     {% for feature in presentation.features.all %}
                     <div class="col-sm-4">
                         <div class="info">
-                            <div class="icon">
+                            <div class="icon icon-{{ feature.color }}">
                                 <i class="fal fa-{{ feature.icon }} fa-5x"></i>
                             </div>
                             <h4 class="info-title">{{ feature.title|title }}</h4>

@@ -16,7 +16,7 @@ from django.views.decorators.csrf import csrf_protect
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
-from .models import DiventiUser, DiventiAvatar
+from .models import DiventiUser, DiventiAvatar, Achievement
 from .forms import DiventiUserCreationForm, DiventiUserUpdateForm
 from diventi.core.views import DiventiActionMixin
 from diventi.products.models import Product
@@ -164,6 +164,8 @@ class DiventiUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
+        achievements = self.object.achievement_set.all()
+        context['achievements'] = achievements
         collection = Product.objects.user_collection(user=self.object)
         context['collection'] = collection
         return context

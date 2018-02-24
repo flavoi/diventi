@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
-from diventi.core.models import DiventiImageModel
+from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
 
 
@@ -94,3 +94,10 @@ class DiventiUser(AbstractUser):
     def __str__(self):
         return u'{0} ({1})'.format(self.get_full_name(), self.email)
 
+
+class Achievement(Element):
+    users = models.ManyToManyField(DiventiUser)
+
+    class Meta:
+        verbose_name = _('Achievement')
+        verbose_name_plural = _('Achievements')

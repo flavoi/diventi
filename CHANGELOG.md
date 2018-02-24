@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0-beta.1] → 2018-02-19
 
 ### Added
-- Introduced dedicated categories for products and products' chapters
+- Introduced dedicated categories for products and product chapters
 - Introduced dynamic cover image for the blog page
 - Introduced feedback form in the navbar
 - Introduced dynamic image backgrounds for the landing page sections 
@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed a problem that caused error 500 after pressing the search button with no inputs
+- Fixed anchor links between product and profile pages
+- Fixed translation typos in the profile page
 
 
 ## [1.0.0-alpha.7] → 2018-02-03

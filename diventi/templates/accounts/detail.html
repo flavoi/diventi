@@ -27,9 +27,11 @@
                 <p>{{ user.role|striptags|capfirst }}</p>
                 <hr>
             {% endif %}
-            <h4 class="title">{% trans "Achievements" %}</h4>
-            {% for a in achievements %}
-                <span class="badge badge-{{ a.color }}" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ a.description }}"><i class="fal fa-{{ a.icon }} fa-fw"></i> {{ a.title }}</span>                
+            {% if achievements %}
+                <h4 class="title">{% trans "Achievements" %}</h4>
+                {% for a in achievements %}
+                    <span class="badge badge-{{ a.color }}" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ a.description }}"><i class="fal fa-{{ a.icon }} fa-fw"></i> {{ a.title }}</span>                
+                {% endfor %}
             {% endfor %}
         </div>
     </div>

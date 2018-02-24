@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-24 17:50+0100\n"
+"POT-Creation-Date: 2018-02-24 18:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,8 +138,7 @@ msgstr "biografia"
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:77 diventi/templates/accounts/detail.html:28
-#: diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:77 diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
@@ -440,7 +439,7 @@ msgstr "feedback"
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:68 diventi/landing/models.py:93
+#: diventi/landing/models.py:68
 msgid "presentation"
 msgstr "presentazione"
 
@@ -455,18 +454,6 @@ msgstr "aspetto"
 #: diventi/landing/models.py:77
 msgid "features"
 msgstr "aspetti"
-
-#: diventi/landing/models.py:92
-msgid "section"
-msgstr "sezione"
-
-#: diventi/landing/models.py:96
-msgid "Presentation Cover"
-msgstr "Sfondo della presentazione"
-
-#: diventi/landing/models.py:97
-msgid "Presentation Covers"
-msgstr "Sfondi della presentazione"
 
 #: diventi/landing/urls.py:8
 msgid "^presentation/(?P<pk>\\d+)/$"
@@ -588,10 +575,12 @@ msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
 #: diventi/templates/accounts/detail.html:26
-#: diventi/templates/accounts/user.html:29
-#: diventi/templates/products/product_detail.html:186
-msgid "Creator"
-msgstr "Autore"
+msgid "Favourite class"
+msgstr "Classe preferita"
+
+#: diventi/templates/accounts/detail.html:30
+msgid "Achievements"
+msgstr "Riconoscimenti"
 
 #: diventi/templates/accounts/signin.html:11
 #: diventi/templates/navigation.html:69
@@ -641,19 +630,36 @@ msgstr "Iniziamo"
 msgid "Profile"
 msgstr "Profilo"
 
-#: diventi/templates/accounts/user.html:41
-msgid "Favourite class"
-msgstr "Classe preferita"
+#: diventi/templates/accounts/user.html:29
+#: diventi/templates/products/product_detail.html:186
+msgid "Creator"
+msgstr "Autore"
 
-#: diventi/templates/accounts/user.html:51
+#: diventi/templates/accounts/user.html:50
+#: diventi/templates/accounts/user.html:75
+#: diventi/templates/products/product_detail.html:107
+msgid "collection"
+msgstr "collezione"
+
+#: diventi/templates/accounts/user.html:53
 msgid "Collection"
 msgstr "La tua collezione"
 
-#: diventi/templates/accounts/user.html:58
+#: diventi/templates/accounts/user.html:57
+#: diventi/templates/accounts/user.html:82
+msgid "customization"
+msgstr "personalizzazioni"
+
+#: diventi/templates/accounts/user.html:60
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:65
+#: diventi/templates/accounts/user.html:64
+#: diventi/templates/accounts/user.html:92
+msgid "credentials"
+msgstr "credenziali"
+
+#: diventi/templates/accounts/user.html:67
 msgid "Credentials"
 msgstr "Credenziali"
 
@@ -662,8 +668,8 @@ msgid "Download"
 msgstr "Scarica"
 
 #: diventi/templates/accounts/user_collection.html:29
-msgid "Your collection is empty"
-msgstr "La tua collezione è vuota"
+msgid "No collection found"
+msgstr "Nessuna collezione trovata"
 
 #: diventi/templates/accounts/user_credentials.html:3
 msgid "Change password"
@@ -876,6 +882,18 @@ msgstr "Nessun voto rilevato"
 #: diventi/templates/star_ratings/widget.html:65
 msgid "Please sign in to rate."
 msgstr "Effettua l'accesso per votare."
+
+#~ msgid "section"
+#~ msgstr "sezione"
+
+#~ msgid "Presentation Cover"
+#~ msgstr "Sfondo della presentazione"
+
+#~ msgid "Presentation Covers"
+#~ msgstr "Sfondi della presentazione"
+
+#~ msgid "Your collection is empty"
+#~ msgstr "La tua collezione è vuota"
 
 #~ msgid "Features Cover"
 #~ msgstr "Copertina degli Aspetti"

@@ -164,7 +164,7 @@ class DiventiUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
-        collection = Product.objects.user_collection(user=self.request.user)
+        collection = Product.objects.user_collection(user=self.object)
         context['collection'] = collection
         return context
 

@@ -47,21 +47,21 @@
                     <div class="profile-tabs">
                         <ul class="nav nav-pills nav-pills-icons nav-pills-info justify-content-center" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#work" role="tab" data-toggle="tab">
+                                <a class="nav-link active" href="#{% trans 'collection' %}" role="tab" data-toggle="tab">
                                     <i class="fal fa-shopping-bag fa-2x"></i>
                                     <br>
                                     {% trans "Collection" %}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#customization" role="tab" data-toggle="tab">
+                                <a class="nav-link" href="#{% trans 'customization' %}" role="tab" data-toggle="tab">
                                     <i class="fal fa-address-card fa-2x"></i>
                                     <br>
                                     {% trans "Customization" %}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#credentials" role="tab" data-toggle="tab">
+                                <a class="nav-link" href="#{% trans 'credentials' %}" role="tab" data-toggle="tab">
                                     <i class="fal fa-user-circle fa-2x"></i>
                                     <br>
                                     {% trans "Credentials" %}
@@ -72,14 +72,14 @@
                 </div>
             </div>
             <div class="tab-content tab-space">
-                <div class="tab-pane active work" id="work">
+                <div class="tab-pane active work" id="{% trans 'collection' %}" >
                     <div class="row">
                         <div class="col-md-10 mr-auto ml-auto">
                             {% include 'accounts/user_collection.html' %}
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane connections" id="customization">
+                <div class="tab-pane connections" id="{% trans 'customization' %}">
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
                             <form method="post" action="{% url 'accounts:update' user.pk %}">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="credentials">
+                <div class="tab-pane" id="{% trans 'credentials' %}">
                     <div class="row">
                         <div class="col-md-6 ml-auto mr-auto">
                             <form method="POST" action="{% url 'accounts:change_password_ajax' %}" id="frmChangePW">

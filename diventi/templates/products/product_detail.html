@@ -104,7 +104,7 @@
                             <div class="col-md-6 text-right pick-size">
                                 {% if bought %}
                                 <form action="{% url 'products:drop' product.slug %}" method="POST">
-                                    <a class="btn btn-warning btn-fab btn-round btn-tooltip" href="{% url 'accounts:update' user.id %}#yourcollection" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans "In your collection" %}.">
+                                    <a class="btn btn-warning btn-fab btn-round btn-tooltip" href="{% url 'accounts:update' user.id %}#{% trans 'collection' %}" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans "In your collection" %}.">
                                         <i class="fal fa-shopping-bag"></i>
                                     </a>                                
                                     {% csrf_token %}

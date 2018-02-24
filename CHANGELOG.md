@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced feedback form in the navbar
 - Introduced dynamic image backgrounds for the landing page sections 
 - Introduced public rad-only profile page for every user
+- Introduced user achievements in the profile page
 
 ### Changed
 - Updated readme with custom Diventi logo

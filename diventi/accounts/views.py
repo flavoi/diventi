@@ -18,6 +18,7 @@ from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
 from .models import DiventiUser, DiventiAvatar, Achievement
 from .forms import DiventiUserCreationForm, DiventiUserUpdateForm
+from .utils import get_user_data
 from diventi.core.views import DiventiActionMixin
 from diventi.products.models import Product
 
@@ -151,9 +152,8 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)
-        collection = Product.objects.user_collection(user=self.request.user)
-        context['collection'] = collection
+        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)        
+        context = get_user_data(context, self.request.user)
         return context
 
 
@@ -164,9 +164,6 @@ class DiventiUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
-        achievements = self.object.achievement_set.all()
-        context['achievements'] = achievements
-        collection = Product.objects.user_collection(user=self.object)
-        context['collection'] = collection
+        context = get_user_data(context, self.object)
         return context
 

@@ -647,7 +647,7 @@ msgstr "collezione"
 
 #: diventi/templates/accounts/user.html:53
 msgid "Collection"
-msgstr "La tua collezione"
+msgstr "Collezione"
 
 #: diventi/templates/accounts/user.html:57
 #: diventi/templates/accounts/user.html:82

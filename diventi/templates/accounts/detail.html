@@ -18,14 +18,14 @@
             {% include 'accounts/user_collection.html' %}
         </div>
         <div class="col-md-2 mr-auto ml-auto">
-            {% if user.bio %}
+            {% if object.bio %}
                 <h4 class="title">Bio</h4>
-                <p>{{ user.bio|striptags }}</p>
+                <p>{{ object.bio|striptags }}</p>
                 <hr>
             {% endif %}
-            {% if user.role %}
+            {% if object.role %}
                 <h4 class="title">{% trans "Favourite class" %}</h4>
-                <p>{{ user.role|striptags|capfirst }}</p>
+                <p>{{ object.role|striptags|capfirst }}</p>
                 <hr>
             {% endif %}
             {% include 'accounts/user_achievements.html' %}

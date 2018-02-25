@@ -11,7 +11,7 @@
 
 {% block bodyclass %}profile-page{% endblock bodyclass %}
 
-{% block pageheaderimage %}{% if user.cover %}{{ user.cover.image }}{% endif %}{% endblock pageheaderimage %}
+{% block pageheaderimage %}{% if object.cover %}{{ object.cover.image }}{% endif %}{% endblock pageheaderimage %}
 
 {% block maincontainer %}
     <div class="profile-content">
@@ -20,19 +20,19 @@
                 <div class="col-md-6 ml-auto mr-auto">                                 
                     <div class="profile">
                         <div class="avatar">
-                            <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
+                            <img src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
                         </div>
                         <div class="name">
-                            <h3 class="title">{{ user.first_name }}</h3>
+                            <h3 class="title">{{ object.first_name }}</h3>
                             <h6 class="text-rose">
-                            {% if user.is_staff %}                            
+                            {% if object.is_staff %}                            
                                 {% trans "Creator" %}
                             {% else %}
                                 {% trans "User" %}
                             {% endif %}
                             </h6>
                             {% block email %}
-                                <h6 class="text-muted">{{ user.email }}</h6>                            
+                                <h6 class="text-muted">{{ object.email }}</h6>                            
                                 {% include 'accounts/user_achievements.html' %}
                             {% endblock email %}
                         </div>
@@ -83,7 +83,7 @@
                 <div class="tab-pane connections" id="{% trans 'customization' %}">
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
-                            <form method="post" action="{% url 'accounts:update' user.pk %}">
+                            <form method="post" action="{% url 'accounts:update' object.pk %}">
                                 {% csrf_token %}
                                 {% include 'accounts/user_customization.html' %}
                             </form>

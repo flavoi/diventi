@@ -32,7 +32,7 @@ msgstr "^quadro/"
 
 #: config/urls.py:36
 msgid "^accounts/"
-msgstr "^utenza/"
+msgstr "^profili/"
 
 #: config/urls.py:37
 msgid "^blog/"
@@ -52,7 +52,7 @@ msgstr "^recensioni/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
-msgstr "Utenze"
+msgstr "Profili"
 
 #: diventi/accounts/forms.py:23 diventi/accounts/forms.py:46
 msgid "Your name"
@@ -593,7 +593,7 @@ msgstr "Accedi"
 
 #: diventi/templates/accounts/signin.html:51
 msgid "No account yet? Then"
-msgstr "Non hai ancora un'utenza? Allora"
+msgstr "Non hai ancora un profilo? Allora"
 
 #: diventi/templates/accounts/signin.html:51
 msgid "sign up"
@@ -927,14 +927,14 @@ msgstr "Effettua l'accesso per votare."
 #~ "Your account doesn't have access to this page. To proceed, please sign in "
 #~ "with an account that has access"
 #~ msgstr ""
-#~ "La tua utenza non ha accesso a questa pagina. Per procedere occorre "
-#~ "accedere la sito."
+#~ "Il tuo profilo non ha accesso a questa pagina. Per procedere occorre "
+#~ "riaccedere con la corretta autorizzazione."
 
 #~ msgid "Please sign in to see this page"
 #~ msgstr "Effettua l'accesso per visualizzare questa pagina."
 
 #~ msgid "Sign in with your Diventi account"
-#~ msgstr "Effettua l'accesso con la tua utenza Diventi"
+#~ msgstr "Effettua l'accesso con il tuo profilo Diventi"
 
 #~ msgid "Sign In"
 #~ msgstr "Accedi"

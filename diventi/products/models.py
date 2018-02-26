@@ -50,13 +50,12 @@ class ProductCategory(Category):
         verbose_name_plural = _('Product categories')
 
 
-class Product(TimeStampedModel, PublishableModel):
+class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    featured = models.BooleanField(default=False, verbose_name=_('featured'))
-    cover = models.ImageField(blank=True, upload_to='products/covers/', verbose_name=_('cover'))
+    featured = models.BooleanField(default=False, verbose_name=_('featured'))    
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = models.FileField(upload_to='products/files/', blank=True, verbose_name=_('file'))

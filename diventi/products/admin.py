@@ -40,7 +40,7 @@ class ImagePreviewAdmin(DiventiTranslationAdmin):
 
 
 class ProductAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'featured', 'published', 'publication_date']    
+    list_display = ['title', 'featured', 'image_tag', 'published', 'publication_date']    
     inlines = [
         ChapterInline,
         CharacteristicInline,

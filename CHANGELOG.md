@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated article category admin styles
 - Updated navbar icons with fontawesome 5 styles
 - Updated default button styles from square to round
-- Changed image host from S3 to imgur for article covers
+- Changed image host from S3 to imgur for article and product covers
 - Integrated timestamps within the feedback model
 - Updated articles layout for mobile devices
 

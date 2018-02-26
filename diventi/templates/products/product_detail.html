@@ -12,7 +12,7 @@
 
 {% block bodyclass %}product-page{% endblock bodyclass %}
 
-{% block pageheaderimage %}{% if product.cover %}{{ product.cover.url }}{% endif %}{% endblock pageheaderimage %}
+{% block pageheaderimage %}{% if product.image %}{{ product.image }}{% endif %}{% endblock pageheaderimage %}
 
 {% block main %}
 <div class="section section-gray">
@@ -124,6 +124,13 @@
                                         </button>
                                     </form>
                                 {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="col-md-12 pick-size">
+                            <h4>
+                                {% trans 'To add this product in your collection you have to' %} <a href="#" data-toggle="modal" data-target="#loginModal" class="text-warning">
+                                {% trans "sign in" %}</a>.
+                            </h4>
                             </div>
                         {% endif %}
                     </div>

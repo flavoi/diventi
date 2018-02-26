@@ -12,7 +12,7 @@ class ArticleCategoryTranslationOptions(TranslationOptions):
 
 @register(Article)
 class ArticleTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'caption', 'content', 'slug')
+    fields = ('title', 'description', 'label', 'content', 'slug')
 
 
 @register(BlogCover)

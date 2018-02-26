@@ -21,7 +21,7 @@ class PresentationAdmin(DiventiTranslationAdmin):
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user',]
+    list_display = ['id', 'user', 'created', 'modified']
 
 
 admin.site.register(Presentation, PresentationAdmin)

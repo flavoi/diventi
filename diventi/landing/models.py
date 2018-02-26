@@ -4,7 +4,7 @@ from django.conf import settings
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import Element, DiventiImageModel
+from diventi.core.models import Element, DiventiImageModel, TimeStampedModel
 
 
 class PresentationManager(models.Manager):
@@ -33,7 +33,7 @@ class FeedbackManager(models.Manager):
         return feedbacks
 
 
-class Feedback(models.Model):
+class Feedback(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
     description = models.TextField()
 

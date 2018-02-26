@@ -7,10 +7,10 @@
 {% block bodyclass %}blog-post{% endblock bodyclass %}
 
 {% block pageheader %}
-    <div class="page-header header-filter" style="background-image: {% if article.image %} url('{{ article.image.url }}');{% endif %}">
+    <div class="page-header header-filter" style="background-image: {% if article.image %} url('{{ article.image }}');{% endif %}">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 ml-auto mr-auto text-center">
+                <div class="col-lg-8 col-md-12 ml-auto mr-auto text-center">
                     <span class="badge badge-rose">{{ article.category }}</span>
                     <h1 class="title">{{ article.title|capfirst }}</h1>
                     <h4>{{ article.description|safe }}</h4>
@@ -25,14 +25,14 @@
 <div class="container">
     <div class="section section-text">
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
+            <div class="col-lg-8 col-md-12 ml-auto mr-auto">
                 {{ article.content|safe }}
             </div>                    
         </div>
     </div>
     <div class="section section-blog-info">
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
+            <div class="col-lg-8 col-md-12 ml-auto mr-auto">
                 <hr>
                 <div class="card card-profile card-plain">
                     <div class="row">
@@ -65,7 +65,7 @@
     </div>
     <div class="section section-comments">
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
+            <div class="col-lg-8 col-md-12 ml-auto mr-auto">
                 {% include "comments/comment_list.html" %}
             </div>
         </div>

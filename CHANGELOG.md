@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta.1] → 2018-02-19
+## [1.0.0-beta.1] → 2018-02-xx
 
 ### Added
 - Introduced dedicated categories for products and product chapters
@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated article category admin styles
 - Updated navbar icons with fontawesome 5 styles
 - Updated default button styles from square to round
+- Changed image host from S3 to imgur for article covers
+- Integrated timestamps within the feedback model
+- Updated articles layout for mobile devices
 
 ### Removed
 - Removed sharethis buttons

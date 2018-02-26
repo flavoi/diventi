@@ -17,6 +17,10 @@
         background-position: -{{ icon_width|add:icon_width }}px 0;
     }
     {% endif %}
+
+    .statistics {
+        font-size: 14px;
+    }
 </style>
 <div id="{{ id }}" class="star-ratings" data-max-rating="{{ star_count }}" data-avg-rating="{{ rating.average }}">
     {% block rating_stars %}
@@ -54,15 +58,16 @@
     {% endblock %}
     {% block rating_detail %}
     {% block rating_average %}
-    <div class="star-ratings-rating-average">{% trans 'Average: ' %} <span class='star-ratings-rating-value'>{{ rating.average|floatformat:"-2" }}</span></div>
+        <div class="star-ratings-rating-average statistics">{% trans 'Average: ' %} <span class='star-ratings-rating-value'>{{ rating.average|floatformat:"-2" }}</span></div>
     {% endblock rating_average %}
     {% block rating_count %}
-    <div class="star-ratings-rating-count">{% trans 'Rating Count: ' %} <span class='star-ratings-rating-value'>{{ rating.count }}</span></div>
+        <div class="star-ratings-rating-count statistics">{% trans 'Rating Count: ' %} <span class='star-ratings-rating-value'>{{ rating.count }}</span></div>
     {% endblock rating_count %}
     {% block rating_user %}
-    <div class="star-ratings-rating-user">{% trans 'You Rated: ' %} <span class='star-ratings-rating-value'>{% if user_rating %}{{ user_rating.score }}{% else %}{% trans 'Not rated' %}{% endif %}</span></div>
-    {% if not user.is_authenticated and not anonymous_ratings and not read_only %}{% endif %}
-    {% endblock rating_user %}
-    <div class="star-ratings-errors"></div>
+        <div class="star-ratings-rating-user statistics">{% trans 'You Rated: ' %} <span class='star-ratings-rating-value'>{% if user_rating %}{{ user_rating.score }}{% else %}{% trans 'not rated' %}{% endif %}</span></div>
+        {% if not user.is_authenticated and not anonymous_ratings and not read_only %}{% endif %}
+        {% endblock rating_user %}
+        <div class="star-ratings-errors statistics"></div>
     {% endblock rating_detail %}
+    </p>
 </div>

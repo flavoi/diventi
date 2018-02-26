@@ -127,10 +127,10 @@
                             </div>
                         {% else %}
                             <div class="col-md-12 pick-size">
-                            <h4>
-                                {% trans 'To add this product in your collection you have to' %} <a href="#" data-toggle="modal" data-target="#loginModal" class="text-warning">
-                                {% trans "sign in" %}</a>.
-                            </h4>
+                            <p>
+                                <a href="#" data-toggle="modal" data-target="#loginModal" class="text-warning">
+                                <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
+                            </p>
                             </div>
                         {% endif %}
                     </div>

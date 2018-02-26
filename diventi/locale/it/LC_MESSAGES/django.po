@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-24 19:14+0100\n"
+"POT-Creation-Date: 2018-02-26 13:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,7 +122,6 @@ msgid "avatar"
 msgstr "avatar"
 
 #: diventi/accounts/models.py:67 diventi/landing/models.py:58
-#: diventi/products/models.py:59
 msgid "cover"
 msgstr "copertina"
 
@@ -150,7 +149,8 @@ msgstr "Utenti"
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:103 diventi/templates/accounts/detail.html:30
+#: diventi/accounts/models.py:103
+#: diventi/templates/accounts/user_achievements.html:4
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
@@ -182,35 +182,35 @@ msgstr "^(?P<pk>\\d+)/$"
 msgid "^(?P<pk>\\d+)/update/$"
 msgstr "^(?P<pk>\\d+)/aggiorna/$"
 
-#: diventi/accounts/views.py:28
+#: diventi/accounts/views.py:29
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:29
+#: diventi/accounts/views.py:30
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:62 diventi/accounts/views.py:80
+#: diventi/accounts/views.py:63 diventi/accounts/views.py:81
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:98
+#: diventi/accounts/views.py:99
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:99
+#: diventi/accounts/views.py:100
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:135
+#: diventi/accounts/views.py:136
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:136
+#: diventi/accounts/views.py:137
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:148
+#: diventi/accounts/views.py:149
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
@@ -268,40 +268,32 @@ msgstr "titolo"
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:94 diventi/products/models.py:63
-#: diventi/products/models.py:107
+#: diventi/blog/models.py:94 diventi/products/models.py:62
+#: diventi/products/models.py:106
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:95 diventi/core/models.py:108
-msgid "image"
-msgstr "immagine"
-
-#: diventi/blog/models.py:96
-msgid "caption"
-msgstr "didascalia"
-
-#: diventi/blog/models.py:97
+#: diventi/blog/models.py:95
 msgid "content"
 msgstr "contenuto"
 
-#: diventi/blog/models.py:98
+#: diventi/blog/models.py:96
 msgid "hot"
 msgstr "di tendenza"
 
-#: diventi/blog/models.py:99 diventi/products/models.py:57
+#: diventi/blog/models.py:97 diventi/products/models.py:57
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:100
+#: diventi/blog/models.py:98
 msgid "author"
 msgstr "autore"
 
-#: diventi/blog/models.py:106 diventi/blog/models.py:127
+#: diventi/blog/models.py:104 diventi/blog/models.py:125
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:107
+#: diventi/blog/models.py:105
 msgid "articles"
 msgstr "articoli"
 
@@ -407,6 +399,10 @@ msgstr "colore"
 msgid "categories"
 msgstr "categorie"
 
+#: diventi/core/models.py:108
+msgid "image"
+msgstr "immagine"
+
 #: diventi/core/models.py:109
 msgid "label"
 msgstr "etichetta"
@@ -415,7 +411,7 @@ msgstr "etichetta"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:127 diventi/products/models.py:127
+#: diventi/core/models.py:127 diventi/products/models.py:126
 msgid "Image"
 msgstr "Immagine"
 
@@ -507,54 +503,54 @@ msgstr "Tipi Prodotto"
 msgid "featured"
 msgstr "sponsorizzato"
 
-#: diventi/products/models.py:60
+#: diventi/products/models.py:59
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:61
+#: diventi/products/models.py:60
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:62
+#: diventi/products/models.py:61
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:67 diventi/products/models.py:74
-#: diventi/products/models.py:106 diventi/products/models.py:116
-#: diventi/products/models.py:124
+#: diventi/products/models.py:66 diventi/products/models.py:73
+#: diventi/products/models.py:105 diventi/products/models.py:115
+#: diventi/products/models.py:123
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/products/models.py:68
+#: diventi/products/models.py:67
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:100
+#: diventi/products/models.py:99
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:101
+#: diventi/products/models.py:100
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:110
+#: diventi/products/models.py:109
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:111
+#: diventi/products/models.py:110
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:119
+#: diventi/products/models.py:118
 msgid "Characteristic"
 msgstr "Caratteristica"
 
-#: diventi/products/models.py:120
+#: diventi/products/models.py:119
 #: diventi/templates/products/product_detail.html:80
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/products/models.py:128
+#: diventi/products/models.py:127
 msgid "Images"
 msgstr "Immagini"
 
@@ -582,7 +578,12 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
-#: diventi/templates/accounts/detail.html:26
+#: diventi/templates/accounts/detail.html:17
+#: diventi/templates/accounts/user.html:54
+msgid "Collection"
+msgstr "Collezione"
+
+#: diventi/templates/accounts/detail.html:27
 msgid "Favourite class"
 msgstr "Classe preferita"
 
@@ -635,35 +636,31 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
-#: diventi/templates/products/product_detail.html:186
+#: diventi/templates/products/product_detail.html:193
 msgid "Creator"
 msgstr "Autore"
 
-#: diventi/templates/accounts/user.html:50
-#: diventi/templates/accounts/user.html:75
+#: diventi/templates/accounts/user.html:51
+#: diventi/templates/accounts/user.html:76
 #: diventi/templates/products/product_detail.html:107
 msgid "collection"
 msgstr "collezione"
 
-#: diventi/templates/accounts/user.html:53
-msgid "Collection"
-msgstr "Collezione"
-
-#: diventi/templates/accounts/user.html:57
-#: diventi/templates/accounts/user.html:82
+#: diventi/templates/accounts/user.html:58
+#: diventi/templates/accounts/user.html:83
 msgid "customization"
 msgstr "personalizzazioni"
 
-#: diventi/templates/accounts/user.html:60
+#: diventi/templates/accounts/user.html:61
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:64
-#: diventi/templates/accounts/user.html:92
+#: diventi/templates/accounts/user.html:65
+#: diventi/templates/accounts/user.html:93
 msgid "credentials"
 msgstr "credenziali"
 
-#: diventi/templates/accounts/user.html:67
+#: diventi/templates/accounts/user.html:68
 msgid "Credentials"
 msgstr "Credenziali"
 
@@ -855,37 +852,43 @@ msgstr "Rimuovi questo prodotto dalla tua collezione"
 msgid "Add this product to your collection"
 msgstr "Aggiungi questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:139
+#: diventi/templates/products/product_detail.html:132
+msgid "to add this product in your collection"
+msgstr "per aggiungere questo prodotto alla tua collezione"
+
+#: diventi/templates/products/product_detail.html:146
 msgid "Contents"
 msgstr "Contenuti"
 
-#: diventi/templates/products/product_detail.html:171
+#: diventi/templates/products/product_detail.html:178
 msgid "Content creators"
 msgstr "Autori"
 
-#: diventi/templates/star_ratings/widget.html:34
+#: diventi/templates/star_ratings/widget.html:38
 msgid "Log in to rate"
 msgstr "Accedi per votare"
 
-#: diventi/templates/star_ratings/widget.html:57
+#: diventi/templates/star_ratings/widget.html:61
 msgid "Average: "
 msgstr "Media: "
 
-#: diventi/templates/star_ratings/widget.html:60
+#: diventi/templates/star_ratings/widget.html:64
 msgid "Rating Count: "
 msgstr "Conteggio dei voti: "
 
-#: diventi/templates/star_ratings/widget.html:63
+#: diventi/templates/star_ratings/widget.html:67
 msgid "You Rated: "
 msgstr "Il tuo voto: "
 
-#: diventi/templates/star_ratings/widget.html:63
-msgid "Not rated"
-msgstr "Nessun voto rilevato"
+#: diventi/templates/star_ratings/widget.html:67
+msgid "not rated"
+msgstr "nessun voto rilevato"
 
-#: diventi/templates/star_ratings/widget.html:65
-msgid "Please sign in to rate."
-msgstr "Effettua l'accesso per votare."
+#~ msgid "caption"
+#~ msgstr "didascalia"
+
+#~ msgid "Please sign in to rate."
+#~ msgstr "Effettua l'accesso per votare."
 
 #~ msgid "section"
 #~ msgstr "sezione"

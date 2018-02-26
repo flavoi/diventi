@@ -44,8 +44,14 @@ class DiventiCoverAdmin(DiventiTranslationAdmin):
     list_display = ('label', 'image_tag')
 
 
+class DiventiUserInline(admin.TabularInline):
+    model = Achievement.users.through
+
 class AchievementAdmin(admin.ModelAdmin):
     list_display = ('title', 'description')
+    inlines = [
+        DiventiUserInline,
+    ]
 
 admin.site.register(DiventiUser, UserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)

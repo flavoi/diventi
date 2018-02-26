@@ -33,6 +33,11 @@ class DiventiUserManager(auth_models.BaseUserManager):
             raise ValueError(_('Superuser must have is_superuser=True.'))
         return self._create_user(email, password, **extra_fields)
 
+    # Fetch all the achievements related to the user
+    def achievements(self):
+        user = self.prefetch_related('achievements')
+        return user
+
 
 class DiventiAvatarQuerySet(models.QuerySet):
 
@@ -60,6 +65,13 @@ class DiventiCover(DiventiImageModel):
         verbose_name = _('Cover')
         verbose_name_plural = _('Covers')
 
+
+class Achievement(Element):
+
+    class Meta:
+        verbose_name = _('Achievement')
+        verbose_name_plural = _('Achievements')
+
         
 class DiventiUser(AbstractUser):    
     email = models.EmailField(unique=True, verbose_name=_('email'))
@@ -68,6 +80,7 @@ class DiventiUser(AbstractUser):
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) #  Staff use only
     bio = models.TextField(blank=True, verbose_name=_('bio'))
     role = models.CharField(blank=True, max_length=70, verbose_name=_('role')) # Favourite class
+    achievements = models.ManyToManyField(Achievement, related_name='users')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -93,11 +106,3 @@ class DiventiUser(AbstractUser):
 
     def __str__(self):
         return u'{0} ({1})'.format(self.get_full_name(), self.email)
-
-
-class Achievement(Element):
-    users = models.ManyToManyField(DiventiUser)
-
-    class Meta:
-        verbose_name = _('Achievement')
-        verbose_name_plural = _('Achievements')

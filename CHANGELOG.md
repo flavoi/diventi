@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta.1] → 2018-02-xx
+## [1.0.0-beta.1] → 2018-02-26
 
 ### Added
 - Introduced dedicated categories for products and product chapters
@@ -30,9 +30,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed a problem that caused error 500 after pressing the search button with no inputs
-- Fixed anchor links between product and profile pages
-- Fixed translation typos in the profile page
-
+- Fixed the anchor links between product and profile pages
+- Fixed some translation typos in the profile page
+- Fixed a formatting error in user collection page
 
 ## [1.0.0-alpha.7] → 2018-02-03
 

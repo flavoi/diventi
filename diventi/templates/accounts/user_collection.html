@@ -5,7 +5,7 @@
     {% if collection %}
         {% for product in collection %}
             <div class="col-md-6">
-                <div class="card card-background" {% if product.cover %}style="background-image: url('{{ product.cover.url }}')"{% endif %}>
+                <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}')"{% endif %}>
                     <div class="card-body">
                         {% if product.category.default %}
                         {% else %}

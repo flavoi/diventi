@@ -17,7 +17,17 @@
             </div>
         </a>
         <div class="media-body">
-            <h4 class="media-heading text-left"><a href="{{ node.user.get_absolute_url }}">{{ node.user.first_name }} {% for a in node.user.achievements.all %}<span class="text-{{ a.color }}" data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>{{ a.title }}</h6>{{ a.description }}"><i class="fal fa-sm fa-{{ a.icon }} fa-fw"></i></span>{% endfor %}<small> &middot; {{ node.submit_date|naturaltime }}</small></a></h4>
+            <h4 class="media-heading text-left">
+                <a href="{{ node.user.get_absolute_url }}">
+                    {{ node.user.first_name }} 
+                    {% for a in node.user.achievements.all %}
+                        <span class="text-{{ a.color }}" data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>{{ a.title }}</h6>{{ a.description }}">
+                            <i class="fas fa-lg fa-{{ a.icon }}" data-fa-transform="shrink-10 up-.5" data-fa-mask="fas fa-bookmark"></i>
+                        </span>
+                    {% endfor %}
+                    <small> &middot; {{ node.submit_date|naturaltime }}</small>
+                </a>
+            </h4>
             <p class="text-left">{{ node.comment }}</p>               
             <div class="media-footer">
                 

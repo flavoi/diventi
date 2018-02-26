@@ -279,7 +279,7 @@ msgstr "contenuto"
 
 #: diventi/blog/models.py:96
 msgid "hot"
-msgstr "di tendenza"
+msgstr "hot"
 
 #: diventi/blog/models.py:97 diventi/products/models.py:57
 msgid "slug"
@@ -702,7 +702,7 @@ msgstr "Le nostre ultime storie"
 
 #: diventi/templates/blog/article_list.html:40
 msgid "Hot"
-msgstr "Di tendenza"
+msgstr "Hot"
 
 #: diventi/templates/blog/article_list.html:70
 msgid "There are no posts yet"

@@ -47,7 +47,7 @@ class DiventiCoverAdmin(DiventiTranslationAdmin):
 class DiventiUserInline(admin.TabularInline):
     model = Achievement.users.through
 
-class AchievementAdmin(admin.ModelAdmin):
+class AchievementAdmin(DiventiTranslationAdmin):
     list_display = ('title', 'description')
     inlines = [
         DiventiUserInline,

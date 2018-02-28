@@ -33,7 +33,7 @@
                                 {% for imagepreview in product.imagepreviews.all %}
                                 <li class="nbs-flexisel-item">
                                     <a href="#product-page{{ imagepreview.id }}" role="tab" data-toggle="tab" aria-expanded="false">
-                                        <img src="{{ imagepreview.image }}"/>
+                                        <img style="width:100%" src="{{ imagepreview.image }}"/>
                                     </a>
                                 </li>
                                 {% endfor %}

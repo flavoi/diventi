@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed the anchor links between product and profile pages
 - Fixed some translation typos in the profile page
 - Fixed a formatting error in user collection page
+- Fixed a problem that cut the product image when displayed in small screens
 
 ## [1.0.0-alpha.7] → 2018-02-03
 

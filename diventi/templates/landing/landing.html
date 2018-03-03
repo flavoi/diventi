@@ -18,7 +18,7 @@
                 <br>
                 {% if featured_product %}
                     <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
-                        <i class="fas fa-hand-point-right fa-lg"></i> {% trans "Check it out" %}
+                        {% trans "Find out more" %}
                     </a>
                 {% endif %}
             </div>

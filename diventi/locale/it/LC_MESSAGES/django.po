@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-26 13:05+0100\n"
+"POT-Creation-Date: 2018-03-03 17:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,68 +91,68 @@ msgstr "Un amministratore deve essere impostato come is_staff=True."
 msgid "Superuser must have is_superuser=True."
 msgstr "Un amministratore deve essere impostato come is_superuser=True."
 
-#: diventi/accounts/models.py:46
+#: diventi/accounts/models.py:51
 msgid "staff_only"
 msgstr "riservato allo staff"
 
-#: diventi/accounts/models.py:51
+#: diventi/accounts/models.py:56
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:52
+#: diventi/accounts/models.py:57
 #: diventi/templates/accounts/user_customization.html:25
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:60
+#: diventi/accounts/models.py:65
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:61
+#: diventi/accounts/models.py:66
 #: diventi/templates/accounts/user_customization.html:40
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:65
-msgid "email"
-msgstr "email"
-
-#: diventi/accounts/models.py:66
-msgid "avatar"
-msgstr "avatar"
-
-#: diventi/accounts/models.py:67 diventi/landing/models.py:58
-msgid "cover"
-msgstr "copertina"
-
-#: diventi/accounts/models.py:68
-msgid "profilepic"
-msgstr "foto profilo"
-
-#: diventi/accounts/models.py:69
-msgid "bio"
-msgstr "biografia"
-
-#: diventi/accounts/models.py:70
-msgid "role"
-msgstr "classe"
-
-#: diventi/accounts/models.py:77 diventi/templates/accounts/user.html:31
-msgid "User"
-msgstr "Utente"
-
-#: diventi/accounts/models.py:78
-msgid "Users"
-msgstr "Utenti"
-
-#: diventi/accounts/models.py:102
+#: diventi/accounts/models.py:72
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:103
+#: diventi/accounts/models.py:73
 #: diventi/templates/accounts/user_achievements.html:4
 msgid "Achievements"
 msgstr "Riconoscimenti"
+
+#: diventi/accounts/models.py:77
+msgid "email"
+msgstr "email"
+
+#: diventi/accounts/models.py:78
+msgid "avatar"
+msgstr "avatar"
+
+#: diventi/accounts/models.py:79 diventi/landing/models.py:58
+msgid "cover"
+msgstr "copertina"
+
+#: diventi/accounts/models.py:80
+msgid "profilepic"
+msgstr "foto profilo"
+
+#: diventi/accounts/models.py:81
+msgid "bio"
+msgstr "biografia"
+
+#: diventi/accounts/models.py:82
+msgid "role"
+msgstr "classe"
+
+#: diventi/accounts/models.py:90 diventi/templates/accounts/user.html:31
+msgid "User"
+msgstr "Utente"
+
+#: diventi/accounts/models.py:91
+msgid "Users"
+msgstr "Utenti"
 
 #: diventi/accounts/urls.py:7
 msgid "^signin/$"
@@ -589,6 +589,7 @@ msgstr "Classe preferita"
 
 #: diventi/templates/accounts/signin.html:11
 #: diventi/templates/navigation.html:69
+#: diventi/templates/products/product_detail.html:132
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -700,70 +701,62 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "Our Latest Stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:40
+#: diventi/templates/blog/article_list.html:43
 msgid "Hot"
 msgstr "Hot"
 
-#: diventi/templates/blog/article_list.html:70
+#: diventi/templates/blog/article_list.html:72
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:81
 #: diventi/templates/blog/article_list.html:83
+#: diventi/templates/blog/article_list.html:85
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:87
+#: diventi/templates/blog/article_list.html:89
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:93
 #: diventi/templates/blog/article_list.html:95
+#: diventi/templates/blog/article_list.html:97
 msgid "Next"
 msgstr "Successivo"
 
-#: diventi/templates/comments/comment_detail.html:25
-msgid "Show replies"
-msgstr "Mostra le risposte"
-
-#: diventi/templates/comments/comment_detail.html:33
-msgid "Reply"
-msgstr "Rispondi"
-
-#: diventi/templates/comments/comment_detail.html:45
-#: diventi/templates/comments/comment_list.html:20
-msgid "Write your comment"
-msgstr "Scrivi il tuo commento"
-
-#: diventi/templates/comments/comment_list.html:9
+#: diventi/templates/comments/comments.html:9
 msgid "Post your comment"
 msgstr "Pubblica il tuo commento"
 
-#: diventi/templates/comments/comment_list.html:29
+#: diventi/templates/comments/comments.html:20
+#: diventi/templates/comments/tree.html:55
+msgid "Write your comment"
+msgstr "Scrivi il tuo commento"
+
+#: diventi/templates/comments/comments.html:29
 msgid "Post"
 msgstr "Pubblica"
 
-#: diventi/templates/comments/comment_list.html:36
+#: diventi/templates/comments/comments.html:36
 msgid "Please sign in to leave a comment"
 msgstr "Effettua l'accesso per pubblicare un commento."
 
-#: diventi/templates/comments/comment_list.html:45
+#: diventi/templates/comments/comments.html:45
 msgid "Comments"
 msgstr "Commenti"
 
-#: diventi/templates/comments/comment_list.html:49
+#: diventi/templates/comments/comments.html:49
 msgid "Best"
 msgstr "Migliori"
 
-#: diventi/templates/comments/comment_list.html:52
+#: diventi/templates/comments/comments.html:52
 msgid "Recent"
 msgstr "Recenti"
 
-#: diventi/templates/comments/comment_list.html:98
+#: diventi/templates/comments/comments.html:98
 msgid "Demote"
 msgstr "Degrada"
 
-#: diventi/templates/comments/comment_list.html:101
+#: diventi/templates/comments/comments.html:101
 msgid "Promote"
 msgstr "Promuovi"
 
@@ -779,6 +772,14 @@ msgstr "Ora puoi lasciare la pagina oppure ritornare"
 msgid "to the previous page"
 msgstr "alla pagina precedente"
 
+#: diventi/templates/comments/tree.html:35
+msgid "Show replies"
+msgstr "Mostra le risposte"
+
+#: diventi/templates/comments/tree.html:43
+msgid "Reply"
+msgstr "Rispondi"
+
 #: diventi/templates/landing/feedback.html:6
 #: diventi/templates/navigation.html:42
 msgid "Feedback"
@@ -793,8 +794,8 @@ msgid "Send"
 msgstr "Invia"
 
 #: diventi/templates/landing/landing.html:21
-msgid "Check it out"
-msgstr "Dai un'occhiata"
+msgid "Find out more"
+msgstr "Scopri di più"
 
 #: diventi/templates/landing/landing.html:68
 msgid "Hello"
@@ -883,6 +884,9 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Check it out"
+#~ msgstr "Dai un'occhiata"
 
 #~ msgid "caption"
 #~ msgstr "didascalia"

@@ -17,7 +17,7 @@
                 <h4>{{ presentation.abstract|striptags }}</h4>
                 <br>
                 {% if featured_product %}
-                    <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
+                    <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-success btn-raised btn-lg">
                         {% trans "Find out more" %}
                     </a>
                 {% endif %}

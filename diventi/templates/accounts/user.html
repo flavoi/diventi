@@ -31,16 +31,16 @@
                                 {% trans "User" %}
                             {% endif %}
                             </h6>
-                            {% block email %}
+                            {% block userdata %}
                                 <h6 class="text-muted">{{ object.email }}</h6>                            
                                 {% include 'accounts/user_achievements.html' %}
-                            {% endblock email %}
+                            {% endblock userdata %}
                         </div>
                     </div>
                 </div>
             </div>
 
-            {% block description %}{% endblock description %}
+            {% block usercontent %}{% endblock usercontent %}
 
             {% block tabs %}
             <div class="row">

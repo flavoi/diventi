@@ -4,35 +4,30 @@
 
 {% block title %}{{ object.get_full_name }}{% endblock title %}
 
-{% block email %}{% endblock email %}
+{% block email %}
+    {% include 'accounts/user_achievements.html' %}
+{% endblock email %}
 
-{% block description %}
+{% block userdata %}
 <div class="description text-center">
-    
+    <p>{{ object.bio|striptags }}</p>
+    {% include 'accounts/user_achievements.html' %}
 </div>
 
+{% endblock userdata %}
+
+{% block usercontent %}
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-7 ml-auto mr-auto ">
+    <div class="row text-center">
+        <div class="col-md-10 ml-auto mr-auto">
             <h4 class="title">{% trans "Collection" %}</h4>
             {% include 'accounts/user_collection.html' %}
         </div>
-        <div class="col-md-2 mr-auto ml-auto">
-            {% if object.bio %}
-                <h4 class="title">Bio</h4>
-                <p>{{ object.bio|striptags }}</p>
-                <hr>
-            {% endif %}
-            {% if object.role %}
-                <h4 class="title">{% trans "Favourite class" %}</h4>
-                <p>{{ object.role|striptags|capfirst }}</p>
-                <hr>
-            {% endif %}
-            {% include 'accounts/user_achievements.html' %}
-        </div>
     </div>
 </div>
-{% endblock description %}
+{% endblock usercontent %}
+
 
 {% block tabs %}
 <div class="tab-content tab-space"></div>

@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from .fields import ProtectedFileField
+
 from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category
 
 
@@ -58,7 +60,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     featured = models.BooleanField(default=False, verbose_name=_('featured'))    
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
-    file = models.FileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
+    file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
     category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'))
     objects = ProductQuerySet.as_manager()
 
@@ -86,7 +88,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         )
         return results
 
-    # Check if the user has added the product to its collections
+    # Return True if the user has added the product to his collections
     def user_has_already_bought(self, user):
         return user in self.buyers.all()
 

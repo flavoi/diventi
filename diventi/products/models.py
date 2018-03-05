@@ -92,6 +92,10 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     def user_has_already_bought(self, user):
         return user in self.buyers.all()
 
+    # Return True if the user has authored this collection
+    def user_has_authored(self, user):
+        return user in self.authors.all()
+
 
 class ChapterCategory(Category):
     """

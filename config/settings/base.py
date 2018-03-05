@@ -98,6 +98,7 @@ THIRD_PARTY_APPS = [
     'captcha',
     'star_ratings',
     'mptt',
+    'boto',
 ]
 
 INSTALLED_APPS = TRANSLATION_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS

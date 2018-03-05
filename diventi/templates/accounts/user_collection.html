@@ -16,7 +16,7 @@
                         </a>
                         <p class="card-description">{{ product.description }}</p>                    
                         {% if product.file %}
-                            <a target="_blank" class="btn btn-warning btn-round" href="{{ product.file.url }}">
+                            <a target="_blank" class="btn btn-warning btn-round" href="{% url 'products:secretfile' product.id %}">
                                 <i class="fal fa-download fa-lg fa-fw"></i> {% trans "Download" %}
                             </a>
                         {% endif %}

@@ -7,10 +7,7 @@
             <div class="col-md-6">
                 <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}')"{% endif %}>
                     <div class="card-body">
-                        {% if product.category.default %}
-                        {% else %}
-                            <label class="badge badge-rose">{{ product.category }}</label>
-                        {% endif %}
+                        <label class="badge badge-rose">{{ product.category__title }}</label>                
                         <a href="{% url 'products:detail' product.slug %}">
                             <h3 class="card-title">{{ product.title }}</h3>
                         </a>

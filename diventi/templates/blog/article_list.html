@@ -2,6 +2,7 @@
 
 {% load humanize %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}Blog{% endblock title %}
 
@@ -34,16 +35,10 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                                <div class="col-md-8">                                            
-                                    <h6 class="card-category text-info">
-                                        {{ article.category }}
-                                        {% if article.hot %} 
-                                            <span class="fa-layers fa-2x fa-fw text-danger">
-                                                <i class="fas fa-certificate"></i>
-                                                <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11.5 rotate--30" style="font-weight:900">{% trans 'Hot' %}</span>
-                                            </span>
-                                        {% endif %}
-                                    </h6>
+                                <div class="col-md-8">    
+                                    {% if article.hot %}
+                                    <h6 class="card-category text-danger">{% trans "featured" %}</h6>                                    
+                                    {% endif %}                                        
                                     <h3 class="card-title">
                                         <a href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
                                     </h3>
@@ -53,15 +48,17 @@
                                     <p class="author">
                                         {% load comment_extras %}
                                         {% load comments %}
-                                        {% get_comment_count for article as comment_count %}
-                                        <span class="text-gray">
-                                        by <a href="{{ article.author.get_absolute_url }}"><strong>{{ article.author.get_full_name }}</strong></a>
-                                        &middot; 
-                                        {{ article.publication_date|naturalday }}
-                                        &middot;
-                                        <i class="fal fa-comments"></i> {{ comment_count }}
-                                        &middot;
-                                        <i class="fal fa-thumbs-up"></i> {{ article.promotions.count }}
+                                        {% get_comment_count for article as comment_count %}                                        
+                                        <span class="text-gray">          
+                                            <a href="{{ article.author.get_absolute_url }}">
+                                                <strong>
+                                                    <i class="fal fa-user-circle fa-lg"></i> {{ article.author.get_full_name }}
+                                                </strong>
+                                            </a>
+                                            <br>
+                                            {{ article.publication_date|naturalday }}
+                                            &middot;                                        
+                                            <i class="fal fa-thumbs-up"></i> {{ article.promotions.count }}
                                         </span>
                                     </p>                            
                                 </div>

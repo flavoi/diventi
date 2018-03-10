@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Integrated timestamps within the feedback model
 - Updated articles layout for mobile devices
 - Reformulated main button in the landing page
+- Redesigned list of blog cards
 
 ### Removed
 - Removed sharethis buttons

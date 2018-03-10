@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-03 17:01+0100\n"
+"POT-Creation-Date: 2018-03-10 13:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:153
+#: config/settings/base.py:154
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:154
+#: config/settings/base.py:155
 msgid "English"
 msgstr "Inglese"
 
@@ -259,17 +259,17 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:92 diventi/core/models.py:78
-#: diventi/landing/models.py:55 diventi/products/models.py:55
+#: diventi/landing/models.py:55 diventi/products/models.py:57
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:93 diventi/core/models.py:79
-#: diventi/landing/models.py:57 diventi/products/models.py:56
+#: diventi/landing/models.py:57 diventi/products/models.py:58
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:94 diventi/products/models.py:62
-#: diventi/products/models.py:106
+#: diventi/blog/models.py:94 diventi/products/models.py:64
+#: diventi/products/models.py:112
 msgid "category"
 msgstr "tipo"
 
@@ -281,7 +281,7 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:97 diventi/products/models.py:57
+#: diventi/blog/models.py:97 diventi/products/models.py:59
 msgid "slug"
 msgstr "slug"
 
@@ -411,7 +411,7 @@ msgstr "etichetta"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:127 diventi/products/models.py:126
+#: diventi/core/models.py:127 diventi/products/models.py:132
 msgid "Image"
 msgstr "Immagine"
 
@@ -487,70 +487,70 @@ msgstr "Nascondi i prodotti selezionati"
 msgid "Products"
 msgstr "Prodotti"
 
-#: diventi/products/models.py:31
+#: diventi/products/models.py:33
 msgid "Multiple featured products returned. Please fix!"
 msgstr "Trovati molteplici prodotti sponsorizzati. Sistemare!"
 
-#: diventi/products/models.py:49
+#: diventi/products/models.py:51
 msgid "Product category"
 msgstr "Tipo Prodotto"
 
-#: diventi/products/models.py:50
+#: diventi/products/models.py:52
 msgid "Product categories"
 msgstr "Tipi Prodotto"
 
-#: diventi/products/models.py:58
+#: diventi/products/models.py:60 diventi/templates/blog/article_list.html:40
 msgid "featured"
-msgstr "sponsorizzato"
+msgstr "in primo piano"
 
-#: diventi/products/models.py:59
+#: diventi/products/models.py:61
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:60
+#: diventi/products/models.py:62
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:61
+#: diventi/products/models.py:63
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:66 diventi/products/models.py:73
-#: diventi/products/models.py:105 diventi/products/models.py:115
-#: diventi/products/models.py:123
+#: diventi/products/models.py:68 diventi/products/models.py:75
+#: diventi/products/models.py:111 diventi/products/models.py:121
+#: diventi/products/models.py:129
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/products/models.py:67
+#: diventi/products/models.py:69
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:99
+#: diventi/products/models.py:105
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:100
+#: diventi/products/models.py:106
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:109
+#: diventi/products/models.py:115
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:110
+#: diventi/products/models.py:116
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:118
+#: diventi/products/models.py:124
 msgid "Characteristic"
 msgstr "Caratteristica"
 
-#: diventi/products/models.py:119
+#: diventi/products/models.py:125
 #: diventi/templates/products/product_detail.html:80
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/products/models.py:127
+#: diventi/products/models.py:133
 msgid "Images"
 msgstr "Immagini"
 
@@ -562,30 +562,26 @@ msgstr "^(?P<slug>[-\\w]+)/aggiungi/$"
 msgid "^(?P<slug>[-\\w]+)/remove/$"
 msgstr "^(?P<slug>[-\\w]+)/rimuovi/$"
 
-#: diventi/products/views.py:48
+#: diventi/products/views.py:53
 msgid "This product has been added to you collection"
 msgstr "Questo prodotto è stato aggiunto alla tua collezione"
 
-#: diventi/products/views.py:55
+#: diventi/products/views.py:60
 msgid "The user has this product already."
 msgstr "L'utente possiede già questo prodotto."
 
-#: diventi/products/views.py:69
+#: diventi/products/views.py:73
 msgid "This product has been dropped from your collection"
 msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 
-#: diventi/products/views.py:76
+#: diventi/products/views.py:80
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
-#: diventi/templates/accounts/detail.html:17
+#: diventi/templates/accounts/detail.html:24
 #: diventi/templates/accounts/user.html:54
 msgid "Collection"
 msgstr "Collezione"
-
-#: diventi/templates/accounts/detail.html:27
-msgid "Favourite class"
-msgstr "Classe preferita"
 
 #: diventi/templates/accounts/signin.html:11
 #: diventi/templates/navigation.html:69
@@ -665,11 +661,11 @@ msgstr "credenziali"
 msgid "Credentials"
 msgstr "Credenziali"
 
-#: diventi/templates/accounts/user_collection.html:20
+#: diventi/templates/accounts/user_collection.html:17
 msgid "Download"
 msgstr "Scarica"
 
-#: diventi/templates/accounts/user_collection.html:29
+#: diventi/templates/accounts/user_collection.html:26
 msgid "No collection found"
 msgstr "Nessuna collezione trovata"
 
@@ -697,29 +693,25 @@ msgstr "Aggiorna dettagli"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
-#: diventi/templates/blog/article_list.html:14
+#: diventi/templates/blog/article_list.html:15
 msgid "Our Latest Stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:43
-msgid "Hot"
-msgstr "Hot"
-
-#: diventi/templates/blog/article_list.html:72
+#: diventi/templates/blog/article_list.html:69
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:83
-#: diventi/templates/blog/article_list.html:85
+#: diventi/templates/blog/article_list.html:80
+#: diventi/templates/blog/article_list.html:82
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:89
+#: diventi/templates/blog/article_list.html:86
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:95
-#: diventi/templates/blog/article_list.html:97
+#: diventi/templates/blog/article_list.html:92
+#: diventi/templates/blog/article_list.html:94
 msgid "Next"
 msgstr "Successivo"
 
@@ -884,94 +876,3 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
-
-#~ msgid "Check it out"
-#~ msgstr "Dai un'occhiata"
-
-#~ msgid "caption"
-#~ msgstr "didascalia"
-
-#~ msgid "Please sign in to rate."
-#~ msgstr "Effettua l'accesso per votare."
-
-#~ msgid "section"
-#~ msgstr "sezione"
-
-#~ msgid "Presentation Cover"
-#~ msgstr "Sfondo della presentazione"
-
-#~ msgid "Presentation Covers"
-#~ msgstr "Sfondi della presentazione"
-
-#~ msgid "Your collection is empty"
-#~ msgstr "La tua collezione è vuota"
-
-#~ msgid "Features Cover"
-#~ msgstr "Copertina degli Aspetti"
-
-#~ msgid "Features Covers"
-#~ msgstr "Copertine degli Aspetti"
-
-#~ msgid "features cover"
-#~ msgstr "copertina degli aspetti"
-
-#~ msgid "An error has occured!"
-#~ msgstr "Si è verificato un errore!"
-
-#~ msgid "There must be only one cover at a time. Please fix!"
-#~ msgstr "Può esistere una sola copertina per volta."
-
-#~ msgid "Adventure"
-#~ msgstr "Avventura"
-
-#~ msgid "Product types"
-#~ msgstr "Tipi Prodotto"
-
-#~ msgid "Chapter types"
-#~ msgstr "Tipi Capitolo"
-
-#~ msgid ""
-#~ "Your account doesn't have access to this page. To proceed, please sign in "
-#~ "with an account that has access"
-#~ msgstr ""
-#~ "Il tuo profilo non ha accesso a questa pagina. Per procedere occorre "
-#~ "riaccedere con la corretta autorizzazione."
-
-#~ msgid "Please sign in to see this page"
-#~ msgstr "Effettua l'accesso per visualizzare questa pagina."
-
-#~ msgid "Sign in with your Diventi account"
-#~ msgstr "Effettua l'accesso con il tuo profilo Diventi"
-
-#~ msgid "Sign In"
-#~ msgstr "Accedi"
-
-#~ msgid "Something about yourself"
-#~ msgstr "Qualcosa su di te"
-
-#~ msgid "Details and Care"
-#~ msgstr "Dettagli e finiture"
-
-#~ msgid "Your profile"
-#~ msgstr "Il tuo profilo"
-
-#~ msgid "complete"
-#~ msgstr "completato"
-
-#~ msgid "page"
-#~ msgstr "pagina"
-
-#~ msgid "Comment"
-#~ msgstr "Commento"
-
-#~ msgid "Preview"
-#~ msgstr "Anteprima"
-
-#~ msgid "Comment preview"
-#~ msgstr "Anteprima"
-
-#~ msgid "Submit Date"
-#~ msgstr "Recenti"
-
-#~ msgid "rating"
-#~ msgstr "recensione"

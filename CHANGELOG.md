@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta.1] → 2018-02-xx
+## [1.0.0-beta.1] → 2018-02-10
 
 ### Added
 - Introduced dedicated categories for products and product chapters
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Redesigned list of blog cards
 - Redesigned product chapter section
 
-### Removed
+### Removed
 - Removed sharethis buttons
 
 ### Fixed

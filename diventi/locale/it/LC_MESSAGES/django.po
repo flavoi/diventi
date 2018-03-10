@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-10 13:23+0100\n"
+"POT-Creation-Date: 2018-03-10 15:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -499,7 +499,7 @@ msgstr "Tipo Prodotto"
 msgid "Product categories"
 msgstr "Tipi Prodotto"
 
-#: diventi/products/models.py:60 diventi/templates/blog/article_list.html:40
+#: diventi/products/models.py:60
 msgid "featured"
 msgstr "in primo piano"
 
@@ -697,21 +697,25 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "Our Latest Stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:69
+#: diventi/templates/blog/article_list.html:38
+msgid "read article"
+msgstr "leggi articolo"
+
+#: diventi/templates/blog/article_list.html:45
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:80
-#: diventi/templates/blog/article_list.html:82
+#: diventi/templates/blog/article_list.html:56
+#: diventi/templates/blog/article_list.html:58
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:86
+#: diventi/templates/blog/article_list.html:62
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:92
-#: diventi/templates/blog/article_list.html:94
+#: diventi/templates/blog/article_list.html:68
+#: diventi/templates/blog/article_list.html:70
 msgid "Next"
 msgstr "Successivo"
 

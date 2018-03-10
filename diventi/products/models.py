@@ -109,7 +109,7 @@ class ChapterCategory(Category):
 class Chapter(Element, DiventiImageModel):
     """ A stand-alone chapter of an adventure."""
     product = models.ForeignKey(Product, related_name='chapters', verbose_name=_('product'))     
-    category = models.ForeignKey(ChapterCategory, null=True, blank=True, verbose_name=_('category'))
+    category = models.ForeignKey(ChapterCategory, verbose_name=_('category'))
 
     class Meta:
         verbose_name = _('Chapter')

@@ -139,36 +139,22 @@
             </div>
         </div>
 
-        <div class="related-products">
+        <div class="features text-center">
             {% if product.chapters.all %}
-                <div class="row">
-                    <div class="col-md-10 mr-auto ml-auto">
-                        <h3 class="title text-center">{% trans "Contents" %}</h3>
-                        <div class="row">
-                            {% for chapter in product.chapters.all %}
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="card card-product">
-                                        <div class="card-header card-header-image">
-                                            <a href="#">
-                                                <img class="img" src="{{ chapter.image }}">
-                                            </a>
-                                            <div class="colored-shadow" style="background-image: url({{ chapter.image }};); opacity: 1;"></div>
-                                        </div>
-                                        <div class="card-body">
-                                            <h6 class="card-category text-rose">{{ chapter.category }}</h6>
-                                            <h4 class="card-title">
-                                                {{ chapter.title|title }}
-                                            </h4>
-                                            <div class="card-description">
-                                                {{ chapter.description|striptags|capfirst }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
+            <div class="row">
+                {% for chapter in product.chapters.all %}
+                <div class="col-md-4">
+                    <div class="info">
+                        <div class="icon icon-warning">
+                            <i class="fal fa-4x fa-gift"></i>
                         </div>
+                        <h4 class="info-title">{{ chapter.title|capfirst }}</h4>
+                        <h6 class="card-category text-rose">{{ chapter.category }}</h6>
+                        <p>{{ chapter.description|striptags|capfirst }}</p>
                     </div>
                 </div>
+                {% endfor %}
+            </div>
             {% endif %}
         </div>
         

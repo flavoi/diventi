@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated articles layout for mobile devices
 - Reformulated main button in the landing page
 - Redesigned list of blog cards
+- Redesigned product chapter section
 
 ### Removed
 - Removed sharethis buttons

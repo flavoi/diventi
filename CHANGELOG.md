@@ -38,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a formatting error in user collection page
 - Fixed a problem that cut the product image when displayed in small screens
 - Adjusted width of product comments
-- Deactivated pageheader parallax to prevent html errors.
+- Deactivated pageheader parallax to prevent html errors
 
 ### Security
 - Removed collection urls from the public user page

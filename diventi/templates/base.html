@@ -46,6 +46,11 @@
     .card-collapse .card-header a[aria-expanded="true"] {
         color: #ff9800;
     }
+
+    .honeypot {
+      display: none;
+    }
+
   </style>
   
   {% block jquery %}
@@ -71,7 +76,7 @@
   {% include 'messages.html' %}
 
   {% block pageheader %} 
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% block pageheaderimage %}{% endblock pageheaderimage %}');">
+    <div class="page-header header-filter" data-parallax="false" style="background-image: url('{% block pageheaderimage %}{% endblock pageheaderimage %}');">
       {% block pageheadercontent %}{% endblock pageheadercontent %}
     </div>
   {% endblock pageheader %}

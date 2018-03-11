@@ -53,17 +53,20 @@
                         <div class="media-body">
                             <div class="form-group has-warning">
                                 <textarea style="padding: 10px;" name="comment" id="comment-{{ node.id }}" class="form-control" placeholder="{% trans 'Write your comment' %}." rows="3" required></textarea>
-                            </div>
-                            {{ form.content_type }}
-                            <span style="display:none">{{ form.honeypot }}</span>
-                            {{ form.object_pk }}
-                            {{ form.timestamp }}
-                            {{ form.security_hash }}
+                            </div>                                                        
+
+                            <input type="hidden" name="content_type" value="{{ form.content_type.value }}" id="id_content_type-{{ node.id }}" />
+                            <input type="text" name="honeypot" class="form-control honeypot" id="id_honeypot-{{ node.id }}" />
+                            <input type="hidden" name="object_pk" value="{{ form.object_pk.value }}" id="id_object_pk-{{ node.id }}" />
+                            <input type="hidden" name="timestamp" value="{{ form.timestamp.value }}" id="id_timestamp-{{ node.id }}" />
+                            <input type="hidden" name="security_hash" value="{{ form.security_hash.value }}" id="id_security_hash-{{ node.id }}" />
+                                
                             {% if node.id %}    
                                 <input type="hidden" name="parent" value="{{ node.id }}" />
                             {% endif %}
+
                             <div class="media-footer">
-                                <input class="btn btn-warning btn-wd float-right" type="submit" value="Post" id="id_submit" />
+                                <input class="btn btn-warning btn-wd float-right" type="submit" value="Post" id="id_submit-{{ node.id }}" />
                             </div>
                         </div>
                     </form>

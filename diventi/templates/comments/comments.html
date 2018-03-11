@@ -4,7 +4,6 @@
 {% load i18n %}
 {% include 'comments/preview.html' %}
 
-
 <h3 class="title text-center">
     <a name="comments">{% trans "Post your comment" %}</a>
 </h3>
@@ -23,6 +22,7 @@
                     {{ form.object_pk }}
                     {{ form.timestamp }}
                     {{ form.security_hash }}
+                    {{ form.honeypot }}
                     {{ form.parent }}
                 </div>
                 <div class="media-footer">

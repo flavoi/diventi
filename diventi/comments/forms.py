@@ -7,6 +7,7 @@ from .models import DiventiComment
 
 class DiventiCommentForm(CommentForm):
     parent = forms.ModelChoiceField(queryset=DiventiComment.objects.all(), required=False, widget=forms.HiddenInput)
+    honeypot = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control honeypot',}))
 
     def get_comment_model(self):
         # Use our custom comment model instead of the built-in one.

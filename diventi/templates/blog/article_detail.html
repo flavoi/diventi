@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block title %}{{ article.title}}{% endblock title %}
 
@@ -14,6 +15,7 @@
                     <h1 class="title">{{ article.title|capfirst }}</h1>
                     <h4>{{ article.description|safe }}</h4>
                     <br />
+                    <h6>{% trans "credits" %}: {{ article.label }}</h6>
                 </div>
             </div>
         </div>

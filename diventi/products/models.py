@@ -61,7 +61,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
-    category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'))
+    category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default')
     objects = ProductQuerySet.as_manager()
 
     class Meta:

@@ -5,7 +5,7 @@
 {% include 'comments/preview.html' %}
 
 <h3 class="title text-center">
-    <a name="comments">{% trans "Post your comment" %}</a>
+    <a name="comments">{% trans "Take part in the discussion" %}</a>
 </h3>
 
 {% if user.is_authenticated %}
@@ -56,12 +56,12 @@
     <div class="tab-content tab-space">
         <div class="tab-pane active" id="pill1">
             {% promotionorderedcursetree comments %}
-                {% include "comments/tree.html" %}
+                {% include "comments/tree.html" with comment_order="best" %}
             {% endrecursetree %}
         </div>
         <div class="tab-pane" id="pill2">
             {% dateorderedcursetree comments %}
-                {% include "comments/tree.html" %}
+                {% include "comments/tree.html" with comment_order="recent" %}
             {% endrecursetree %}
         </div>
     </div>

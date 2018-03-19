@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-11 11:28+0100\n"
+"POT-Creation-Date: 2018-03-19 09:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -689,7 +689,7 @@ msgstr "Conferma nuova password"
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 
-#: diventi/templates/base.html:93
+#: diventi/templates/base.html:98
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -723,12 +723,12 @@ msgstr "corrente"
 msgid "Next"
 msgstr "Successivo"
 
-#: diventi/templates/comments/comments.html:9
-msgid "Post your comment"
-msgstr "Pubblica il tuo commento"
+#: diventi/templates/comments/comments.html:8
+msgid "Take part in the discussion"
+msgstr "Partecipa alla discussione"
 
-#: diventi/templates/comments/comments.html:20
-#: diventi/templates/comments/tree.html:55
+#: diventi/templates/comments/comments.html:19
+#: diventi/templates/comments/tree.html:51
 msgid "Write your comment"
 msgstr "Scrivi il tuo commento"
 
@@ -775,10 +775,6 @@ msgstr "alla pagina precedente"
 #: diventi/templates/comments/tree.html:35
 msgid "Show replies"
 msgstr "Mostra le risposte"
-
-#: diventi/templates/comments/tree.html:43
-msgid "Reply"
-msgstr "Rispondi"
 
 #: diventi/templates/landing/feedback.html:6
 #: diventi/templates/navigation.html:42
@@ -880,6 +876,12 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Post your comment"
+#~ msgstr "Pubblica il tuo commento"
+
+#~ msgid "Reply"
+#~ msgstr "Rispondi"
 
 #~ msgid "Contents"
 #~ msgstr "Contenuti"

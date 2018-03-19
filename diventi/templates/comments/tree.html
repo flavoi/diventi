@@ -40,38 +40,39 @@
                 {% if user.is_authenticated %}
                 
                     <a href="javascript:toggleDiv('{{ node.id }}-reply-form');" class="btn btn-link float-right">
-                        <i class="fal fa-reply fa-lg comment-icon"></i> {% trans "Reply" %}
-                    </a>
-
-                    <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" class="btn btn-link btn-promote float-right {% if node.user_has_promoted %}btn-warning{% endif %}">
-                        <i class="fal fa-thumbs-up fa-lg comment-icon"></i> {{ node.promotions.count }}
-                    </a>
+                        <i class="fal fa-reply fa-lg comment-icon"></i>
+                    </a>                    
 
                     {% get_comment_form for object as form %}
                     <form class="{{ node.id }}-reply-form" action="{% comment_form_target %}" method="POST" style="display: none;">
                         {% csrf_token %}
                         <div class="media-body">
                             <div class="form-group has-warning">
-                                <textarea style="padding: 10px;" name="comment" id="comment-{{ node.id }}" class="form-control" placeholder="{% trans 'Write your comment' %}." rows="3" required></textarea>
+                                <textarea style="padding: 10px;" name="comment" id="comment-{{ node.id }}-{{ comment_order }}" class="form-control" placeholder="{% trans 'Write your comment' %}." rows="3" required></textarea>
                             </div>                                                        
 
-                            <input type="hidden" name="content_type" value="{{ form.content_type.value }}" id="id_content_type-{{ node.id }}" />
-                            <input type="text" name="honeypot" class="form-control honeypot" id="id_honeypot-{{ node.id }}" />
-                            <input type="hidden" name="object_pk" value="{{ form.object_pk.value }}" id="id_object_pk-{{ node.id }}" />
-                            <input type="hidden" name="timestamp" value="{{ form.timestamp.value }}" id="id_timestamp-{{ node.id }}" />
-                            <input type="hidden" name="security_hash" value="{{ form.security_hash.value }}" id="id_security_hash-{{ node.id }}" />
+                            <input type="hidden" name="content_type" value="{{ form.content_type.value }}" id="id_content_type-{{ node.id }}-{{ comment_order }}" />
+                            <input type="text" name="honeypot" class="form-control honeypot" id="id_honeypot-{{ node.id }}-{{ comment_order }}" />
+                            <input type="hidden" name="object_pk" value="{{ form.object_pk.value }}" id="id_object_pk-{{ node.id }}-{{ comment_order }}" />
+                            <input type="hidden" name="timestamp" value="{{ form.timestamp.value }}" id="id_timestamp-{{ node.id }}-{{ comment_order }}" />
+                            <input type="hidden" name="security_hash" value="{{ form.security_hash.value }}" id="id_security_hash-{{ node.id }}-{{ comment_order }}" />
                                 
                             {% if node.id %}    
                                 <input type="hidden" name="parent" value="{{ node.id }}" />
                             {% endif %}
 
                             <div class="media-footer">
-                                <input class="btn btn-warning btn-wd float-right" type="submit" value="Post" id="id_submit-{{ node.id }}" />
+                                <input class="btn btn-warning btn-wd float-right" type="submit" value="Post" id="id_submit-{{ node.id }}-{{ comment_order }}" />
                             </div>
                         </div>
                     </form>
                 
                 {% endif %}
+
+                <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" class="btn btn-link btn-promote float-right {% if node.user_has_promoted %}btn-warning{% endif %} {% if not user.is_authenticated %}disabled{% endif %}">
+                        <i class="fal fa-thumbs-up fa-lg comment-icon"></i> {{ node.promotions.count }}
+                </a>
+
             </div>
             {% if not node.is_leaf_node %}
                 <ul class="children">

@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta.1] → 2018-02-10
+## [1.0.0-beta.1] → 2018-02-19
 
 ### Added
 - Introduced dedicated categories for products and product chapters
@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Removed sharethis buttons
+- Removed label from reply button in the comment section
 
 ### Fixed
 - Fixed a problem that caused error 500 after pressing the search button with no inputs
@@ -39,6 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a problem that cut the product image when displayed in small screens
 - Adjusted width of product comments
 - Deactivated pageheader parallax to prevent html errors
+- Fixed DOM errors caused by duplicates ids in the comment section
 
 ### Security
 - Removed collection urls from the public user page

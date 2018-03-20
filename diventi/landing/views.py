@@ -79,7 +79,8 @@ class PresentationSearchView(ListView):
         if query:
             articles = Article.search(self, query)
             products = Product.search(self, query)
-            results = chain(articles, products)
+            users = DiventiUser.search(self, query)
+            results = chain(articles, products, users)
         else:
             results = None
         return results

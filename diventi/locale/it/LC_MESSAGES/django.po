@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-19 09:16+0100\n"
+"POT-Creation-Date: 2018-03-20 23:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,80 +79,84 @@ msgstr "Qual è la tua storia?"
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
-#: diventi/accounts/models.py:19
+#: diventi/accounts/models.py:23
 msgid "The email must be set"
 msgstr "L'email deve essere valorizzata"
 
-#: diventi/accounts/models.py:31
+#: diventi/accounts/models.py:35
 msgid "Superuser must have is_staff=True."
 msgstr "Un amministratore deve essere impostato come is_staff=True."
 
-#: diventi/accounts/models.py:33
+#: diventi/accounts/models.py:37
 msgid "Superuser must have is_superuser=True."
 msgstr "Un amministratore deve essere impostato come is_superuser=True."
 
-#: diventi/accounts/models.py:51
+#: diventi/accounts/models.py:55
 msgid "staff_only"
 msgstr "riservato allo staff"
 
-#: diventi/accounts/models.py:56
+#: diventi/accounts/models.py:60
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:57
+#: diventi/accounts/models.py:61
 #: diventi/templates/accounts/user_customization.html:25
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:65
+#: diventi/accounts/models.py:69
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:66
+#: diventi/accounts/models.py:70
 #: diventi/templates/accounts/user_customization.html:40
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:72
+#: diventi/accounts/models.py:76
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:73
+#: diventi/accounts/models.py:77
 #: diventi/templates/accounts/user_achievements.html:4
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:77
+#: diventi/accounts/models.py:81
 msgid "email"
 msgstr "email"
 
-#: diventi/accounts/models.py:78
+#: diventi/accounts/models.py:82
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:79 diventi/landing/models.py:58
+#: diventi/accounts/models.py:83 diventi/landing/models.py:58
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:80
+#: diventi/accounts/models.py:84
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:81
+#: diventi/accounts/models.py:85
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:82
+#: diventi/accounts/models.py:86
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:90 diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:95 diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:91
+#: diventi/accounts/models.py:96
 msgid "Users"
 msgstr "Utenti"
+
+#: diventi/accounts/models.py:113
+msgid "account"
+msgstr "profilo"
 
 #: diventi/accounts/urls.py:7
 msgid "^signin/$"
@@ -433,7 +437,7 @@ msgstr "Può esistere una sola pagina di destinazione per volta."
 
 #: diventi/landing/models.py:37
 msgid "user"
-msgstr ""
+msgstr "utente"
 
 #: diventi/landing/models.py:50 diventi/landing/models.py:51
 msgid "feedback"
@@ -471,7 +475,7 @@ msgstr "^cerca/$"
 msgid "^feedback/$"
 msgstr ""
 
-#: diventi/landing/views.py:99
+#: diventi/landing/views.py:100
 msgid "You feedback has been sent!"
 msgstr "Il tuo feedback è stato inviato!"
 
@@ -701,25 +705,25 @@ msgstr "illustrazione di"
 msgid "Our Latest Stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:38
+#: diventi/templates/blog/article_list.html:36
 msgid "read article"
 msgstr "leggi articolo"
 
-#: diventi/templates/blog/article_list.html:45
+#: diventi/templates/blog/article_list.html:43
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:56
-#: diventi/templates/blog/article_list.html:58
+#: diventi/templates/blog/article_list.html:53
+#: diventi/templates/blog/article_list.html:55
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:62
+#: diventi/templates/blog/article_list.html:59
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:68
-#: diventi/templates/blog/article_list.html:70
+#: diventi/templates/blog/article_list.html:65
+#: diventi/templates/blog/article_list.html:67
 msgid "Next"
 msgstr "Successivo"
 

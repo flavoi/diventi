@@ -1,4 +1,8 @@
+from functools import reduce
+import operator
+
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse_lazy
@@ -86,6 +90,7 @@ class DiventiUser(AbstractUser):
     REQUIRED_FIELDS = []
     objects = DiventiUserManager()
 
+
     class Meta:
         verbose_name = _('User')
         verbose_name_plural = _('Users')
@@ -103,6 +108,31 @@ class DiventiUser(AbstractUser):
     def clean(self):
         # Set the first part of the email as username
         self.username = self.email
+
+    def class_name(self):
+        return _('account')
+
+    def search(self, query, *args, **kwargs):
+        results = DiventiUser.objects.all()
+        query_list = query.split()
+        queryset = results.filter(
+            reduce(operator.and_,
+                   (Q(first_name__icontains=q) for q in query_list)) |
+            reduce(operator.and_,
+                   (Q(role__icontains=q) for q in query_list)) |
+            reduce(operator.and_,
+                   (Q(bio__icontains=q) for q in query_list))
+        )
+        results = []
+        for user in queryset:
+            row = {
+                'class_name': user.class_name(),
+                'title': user.first_name,
+                'description': user.bio,
+                'get_absolute_url': user.get_absolute_url()
+            }
+            results.append(row)
+        return results
 
     def __str__(self):
         return u'{0} ({1})'.format(self.get_full_name(), self.email)

@@ -23,29 +23,26 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 ml-auto mr-auto">
-                <br>
-                    {% for article in articles %}                    
-                        <div class="{% if article.hot %}col-md-12{% else %}col-md-6{% endif %}">
-                            <div class="card card-raised card-background" style="background-image: url({{ article.image }})">
-                                <div class="card-body">
-                                    <h6 class="card-category text-info">{{ article.category }}</h6>
-                                    <h3 class="card-title">{{ article.title|capfirst }}</h3>
-                                    <p class="card-description">
-                                        {{ article.description|striptags }}
-                                    </p>
-                                    <a href="{% url 'blog:detail' article.slug %}" class="btn btn-warning btn-round">
-                                        <i class="fal fa-align-left fa-fw fa-lg"></i> {% trans "read article" %}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>                     
-                        {% empty %}
-                        <div class="text-center">
-                            <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
+            {% for article in articles %}                    
+                <div class="{% if article.hot %}col-md-12{% else %}col-md-6{% endif %}">
+                    <div class="card card-raised card-background" style="background-image: url({{ article.image }})">
+                        <div class="card-body">
+                            <h6 class="card-category text-info">{{ article.category }}</h6>
+                            <h3 class="card-title">{{ article.title|capfirst }}</h3>
+                            <p class="card-description">
+                                {{ article.description|striptags }}
+                            </p>
+                            <a href="{% url 'blog:detail' article.slug %}" class="btn btn-warning btn-round">
+                                <i class="fal fa-align-left fa-fw fa-lg"></i> {% trans "read article" %}
+                            </a>
                         </div>
-                    {% endfor %}
-            </div> <!-- End grid column -->
+                    </div>
+                </div>    
+                {% empty %}
+                <div class="text-center">
+                    <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
+                </div>
+            {% endfor %}
         </div> <!-- End row -->
         {% if is_paginated %}
             <br>

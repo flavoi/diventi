@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [UNRELEASED] → 2018-xx-xx
+
+### Added
+- Introduced users as searchable items
+
+### Changed
+
+### Fixed
+- Fixed a problem that rendered a wrong width in the blog list page
+
+
 ## [1.0.0-beta.1] → 2018-02-19
 
 ### Added

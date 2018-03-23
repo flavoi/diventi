@@ -6,12 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [UNRELEASED] → 2018-xx-xx
+## [1.0.0-beta.2] → 2018-xx-xx
 
 ### Added
 - Introduced users as searchable items
 
 ### Changed
+- Updated material kit pro assets to v2.0.3 with no demo dependances
+- Updated navbar background to dark and always fixed to the top
+
+### Removed
+- Removed logo image from the navbar
 
 ### Fixed
 - Fixed a problem that rendered a wrong width in the blog list page

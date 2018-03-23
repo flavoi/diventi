@@ -17,8 +17,7 @@
   <script defer src="{% static 'fontawesome/js/fontawesome-all.js' %}"></script>
 
   <!-- Core styles CSS -->
-  <link href="{% static 'material-kit-v2/css/material-kit.css' %}" rel="stylesheet"/>
-  <link href="{% static 'material-kit-v2/assets-for-demo/demo.css' %}" rel="stylesheet" />
+  <link href="{% static 'material-kit-v203/css/material-kit.css' %}" rel="stylesheet"/>
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}?v=3">
@@ -67,8 +66,8 @@
 {% block body %}
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
 
-  {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-absolute {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}">
+  {% block navbar %}<!--navbar-absolute-->
+    <nav class="navbar navbar-expand-lg navbar-color-on-scroll fixed-top bg-dark {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}" color-on-scroll="100">
     {% include 'navigation.html' %}
     </nav>
   {% endblock navbar %}

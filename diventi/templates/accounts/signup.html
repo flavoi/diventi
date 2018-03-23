@@ -19,6 +19,8 @@
 
 {% block title %}{% trans 'Sign up' %}{% endblock title %}
 
+{% block navbarclasses %}bg-dark{% endblock navbarclasses %}
+
 {% block bodyclass %}signup-page{% endblock bodyclass %}
 
 {% block pageheader %}
@@ -52,33 +54,41 @@
                                     {% csrf_token %}
                                         <div class="form-group">
                                             <div class="input-group has-warning">
-                                                <span class="input-group-addon">
-                                                    <i class="fal fa-user fa-lg fa-fw"></i>
-                                                </span>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fal fa-user fa-lg fa-fw"></i>
+                                                    </span>
+                                                </div>
                                                 {{ form.first_name }}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group has-warning">
-                                                <span class="input-group-addon">
-                                                    <i class="fal fa-envelope fa-lg fa-fw"></i>
-                                                </span>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fal fa-envelope fa-lg fa-fw"></i>
+                                                    </span>
+                                                </div>
                                                 {{ form.email }}                                        
                                             </div> 
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group has-warning">
-                                                <span class="input-group-addon">
-                                                    <i class="fal fa-lock-alt fa-lg fa-fw"></i>
-                                                </span>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fal fa-lock-alt fa-lg fa-fw"></i>
+                                                    </span>
+                                                </div>
                                                 {{ form.password1 }}                                            
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group has-warning">
-                                                <span class="input-group-addon">
-                                                    <i class="fal fa-lock-alt fa-lg fa-fw"></i>
-                                                </span>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fal fa-lock-alt fa-lg fa-fw"></i>
+                                                    </span>
+                                                </div>
                                                 {{ form.password2 }}
                                             </div>
                                         </div>
@@ -101,7 +111,12 @@
                 </div>
             </div>
         </div>
+
+        {% include 'footer.html' %}
+
     </div>
 {% endblock pageheader %}
 
 {% block main %}{% endblock main %}
+
+{% block footer %}{% endblock footer %}

@@ -91,13 +91,7 @@
   {% endblock main %}
 
   {% block footer %}
-    <footer class="footer">
-      <div class="container">
-        <div class="copyright text-center">
-          &copy; {{ copy }}. {% trans "Made with passion by Diventi's team" %}.
-        </div>
-      </div>
-    </footer>
+    {% include 'footer.html' %}
   {% endblock footer %}
 
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">

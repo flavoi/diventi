@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fixed a problem that rendered a wrong width in the blog list page
 - Fixed footer positioning in the sign up page 
+- Fixed a minor layout problem of the login modal title
 
 
 ## [1.0.0-beta.1] → 2018-02-19

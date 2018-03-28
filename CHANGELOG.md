@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced users as searchable items
 - Introduced parallax effect in the landing, blog and product pages
+- Introduced acme utils for https support
 
 ### Changed
 - Updated material kit pro assets to v2.0.3 with no demo dependances

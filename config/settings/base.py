@@ -60,6 +60,10 @@ DEBUG = None
 
 ALLOWED_HOSTS = []
 
+# ACME urls for https
+ACME_CHALLENGE_URL_SLUG = get_env_variable('ACME_CHALLENGE_URL_SLUG')
+ACME_CHALLENGE_TEMPLATE_CONTENT = get_env_variable('ACME_CHALLENGE_TEMPLATE_CONTENT')
+
 LOGIN_REDIRECT_URL = '/'
 
 # Application definition
@@ -99,6 +103,7 @@ THIRD_PARTY_APPS = [
     'star_ratings',
     'mptt',
     'boto',
+    'acme_challenge',
 ]
 
 INSTALLED_APPS = TRANSLATION_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS

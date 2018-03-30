@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^comments/default/', include('django_comments.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^.well-known/acme-challenge/', include('acme_challenge.urls')),
+    url(r'^\.well-known/', include('letsencrypt.urls')),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

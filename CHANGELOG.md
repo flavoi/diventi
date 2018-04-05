@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Updated material kit pro assets to v2.0.3 with no demo dependances
 - Updated navbar background to dark and always fixed to the top
+- Updated the feedbackplash message with the username
 
 ### Removed
 - Removed logo image from the navbar

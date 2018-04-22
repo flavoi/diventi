@@ -10,6 +10,9 @@ SECRET_KEY = get_env_variable('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# Forse https
+SECURE_SSL_REDIRECT = True
+
 # Host static and media on Amazon S3 support
 # http://aws.amazon.com/
 

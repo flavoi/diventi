@@ -10,7 +10,7 @@ class ProductTranslationOptions(TranslationOptions):
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'slug',)
+    fields = ('title', 'description', 'file', 'slug',)
 
 
 @register(ChapterCategory)

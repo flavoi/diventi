@@ -14,8 +14,6 @@
                 <div class="col-md-8 ml-auto mr-auto text-center">
                     <h1 class="title">{{ article.title|capfirst }}</h1>
                     <h4>{{ article.description|safe }}</h4>
-                    <br />
-                    <h6>{% trans "credits" %}: {{ article.label }}</h6>
                 </div>
             </div>
         </div>
@@ -28,7 +26,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-12 ml-auto mr-auto">
                 {{ article.content|safe }}
-            </div>                    
+                <p>[{% trans "Photo credit" %} {{ article.label|title }}]</p>
         </div>
     </div>
     <div class="section section-blog-info">

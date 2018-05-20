@@ -43,6 +43,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'diventi.core.context.footer',
                 'diventi.landing.context.feedback_form',
+                'diventi.accounts.context.user_preferred_language',
             ],
         },
     },
@@ -115,7 +116,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'cuser.middleware.CuserMiddleware',
+    'cuser.middleware.CuserMiddleware', 
 ]
 
 ROOT_URLCONF = 'config.urls'

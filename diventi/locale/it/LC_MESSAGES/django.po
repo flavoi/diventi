@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-13 17:55+0200\n"
+"POT-Creation-Date: 2018-05-20 12:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,82 +79,86 @@ msgstr "Qual è la tua storia?"
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
-#: diventi/accounts/models.py:23
+#: diventi/accounts/models.py:24
 msgid "The email must be set"
 msgstr "L'email deve essere valorizzata"
 
-#: diventi/accounts/models.py:35
+#: diventi/accounts/models.py:36
 msgid "Superuser must have is_staff=True."
 msgstr "Un amministratore deve essere impostato come is_staff=True."
 
-#: diventi/accounts/models.py:37
+#: diventi/accounts/models.py:38
 msgid "Superuser must have is_superuser=True."
 msgstr "Un amministratore deve essere impostato come is_superuser=True."
 
-#: diventi/accounts/models.py:55
+#: diventi/accounts/models.py:56
 msgid "staff_only"
 msgstr "riservato allo staff"
 
-#: diventi/accounts/models.py:60
+#: diventi/accounts/models.py:61
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:61
+#: diventi/accounts/models.py:62
 #: diventi/templates/accounts/user_customization.html:25
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:69
+#: diventi/accounts/models.py:70
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:70
+#: diventi/accounts/models.py:71
 #: diventi/templates/accounts/user_customization.html:40
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:76
+#: diventi/accounts/models.py:77
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:77
+#: diventi/accounts/models.py:78
 #: diventi/templates/accounts/user_achievements.html:4
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:81
+#: diventi/accounts/models.py:82
 msgid "email"
 msgstr "email"
 
-#: diventi/accounts/models.py:82
+#: diventi/accounts/models.py:83
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:83 diventi/landing/models.py:58
+#: diventi/accounts/models.py:84 diventi/landing/models.py:58
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:84
+#: diventi/accounts/models.py:85
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:85
+#: diventi/accounts/models.py:86
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:86
+#: diventi/accounts/models.py:87
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:95 diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:89
+msgid "language"
+msgstr "lingua"
+
+#: diventi/accounts/models.py:97 diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:96
+#: diventi/accounts/models.py:98
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:113
+#: diventi/accounts/models.py:115
 msgid "account"
 msgstr "profilo"
 
@@ -693,7 +697,7 @@ msgstr "Conferma nuova password"
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 
-#: diventi/templates/blog/article_detail.html:30
+#: diventi/templates/blog/article_detail.html:29
 msgid "Photo credit"
 msgstr "Illustrazione di"
 

@@ -1,9 +1,10 @@
 """
-    Custom context processors for the core landing.
+    Custom context processors for the landing app.
     This script contains a persistent feedback form in every template.
 """
 
 from django.core.urlresolvers import reverse
+from django.utils import translation
 
 from .models import Feedback
 from .forms import FeedbackCreationForm

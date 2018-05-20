@@ -8,6 +8,7 @@ from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import BaseUserManager
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
 
 from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
@@ -79,6 +80,7 @@ class Achievement(Element):
         
 class DiventiUser(AbstractUser):    
     email = models.EmailField(unique=True, verbose_name=_('email'))
+    language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
     cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) #  Staff use only

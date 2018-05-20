@@ -18,10 +18,11 @@ class DiventiUserCreationForm(UserCreationForm):
 
     class Meta:
         model = DiventiUser
-        fields = ['first_name', 'email', 'password1', 'password2']
+        fields = ['first_name', 'email', 'password1', 'password2', 'language']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),            
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),
+            'language': forms.Select(attrs={'class': 'form-control',})         
         }
 
     def __init__(self, *args, **kwargs):
@@ -52,7 +53,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
 
     class Meta:        
         model = DiventiUser
-        fields = ['avatar', 'cover', 'bio', 'role']
+        fields = ['avatar', 'cover', 'bio', 'role', 'language']
         labels = {
             'bio': _("What's your story?"),
             'role': _("What's your favourite class?"),
@@ -60,6 +61,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
         widgets = {
             'bio': forms.TextInput(attrs={'class': 'form-control',}),
             'role': forms.TextInput(attrs={'class': 'form-control',}),
+            'language': forms.Select(attrs={'class': 'form-control',})
         }
 
     def get_avatar_queryset(self):

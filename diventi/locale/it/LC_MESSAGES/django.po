@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-21 20:01+0200\n"
+"POT-Creation-Date: 2018-05-21 22:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,36 +54,36 @@ msgstr "^recensioni/"
 msgid "Accounts"
 msgstr "Profili"
 
-#: diventi/accounts/forms.py:23 diventi/accounts/forms.py:48
+#: diventi/accounts/forms.py:11
+msgid "Yes, I'm interested."
+msgstr "Si, mi interessa."
+
+#: diventi/accounts/forms.py:11
+msgid "No, don't send me emails."
+msgstr "No, non inviarmi email."
+
+#: diventi/accounts/forms.py:26 diventi/accounts/forms.py:51
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:24 diventi/accounts/forms.py:49
+#: diventi/accounts/forms.py:27 diventi/accounts/forms.py:52
 #: diventi/templates/accounts/signin.html:38
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:34 diventi/templates/accounts/signin.html:48
+#: diventi/accounts/forms.py:37 diventi/templates/accounts/signin.html:48
 msgid "Your password"
 msgstr "La tua password"
 
-#: diventi/accounts/forms.py:38
+#: diventi/accounts/forms.py:41
 msgid "Repeat your password"
 msgstr "Ripeti la tua password"
 
-#: diventi/accounts/forms.py:57
-msgid "Yes, I'm interested."
-msgstr "Si, mi interessa."
-
-#: diventi/accounts/forms.py:57
-msgid "No, don't send me emails."
-msgstr "No, non inviarmi email."
-
-#: diventi/accounts/forms.py:62
+#: diventi/accounts/forms.py:63
 msgid "What's your story?"
 msgstr "Qual è la tua storia?"
 
-#: diventi/accounts/forms.py:63
+#: diventi/accounts/forms.py:64
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
@@ -162,7 +162,7 @@ msgstr "biografia"
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:98 diventi/templates/accounts/user.html:39
+#: diventi/accounts/models.py:98 diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
@@ -599,7 +599,7 @@ msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
 #: diventi/templates/accounts/detail.html:24
-#: diventi/templates/accounts/user.html:62
+#: diventi/templates/accounts/user.html:54
 msgid "Collection"
 msgstr "Collezione"
 
@@ -644,40 +644,48 @@ msgstr "alla pagina iniziale"
 msgid "Sign up"
 msgstr "Registrati"
 
-#: diventi/templates/accounts/signup.html:114
+#: diventi/templates/accounts/signup.html:110
+#: diventi/templates/accounts/user_customization.html:29
+msgid ""
+"We send an average of 2 emails each month, covering faq and new content."
+msgstr ""
+"Inviamo una media di 2 email al mese, rispondendo a domande e promuovendo "
+"nuovi contenuti."
+
+#: diventi/templates/accounts/signup.html:133
 msgid "Get Started"
 msgstr "Iniziamo"
 
-#: diventi/templates/accounts/user.html:18
+#: diventi/templates/accounts/user.html:10
 msgid "Profile"
 msgstr "Profilo"
 
-#: diventi/templates/accounts/user.html:37
+#: diventi/templates/accounts/user.html:29
 #: diventi/templates/products/product_detail.html:179
 msgid "Creator"
 msgstr "Autore"
 
-#: diventi/templates/accounts/user.html:59
-#: diventi/templates/accounts/user.html:84
+#: diventi/templates/accounts/user.html:51
+#: diventi/templates/accounts/user.html:76
 #: diventi/templates/products/product_detail.html:107
 msgid "collection"
 msgstr "collezione"
 
-#: diventi/templates/accounts/user.html:66
-#: diventi/templates/accounts/user.html:91
+#: diventi/templates/accounts/user.html:58
+#: diventi/templates/accounts/user.html:83
 msgid "customization"
 msgstr "personalizzazioni"
 
-#: diventi/templates/accounts/user.html:69
+#: diventi/templates/accounts/user.html:61
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:73
-#: diventi/templates/accounts/user.html:101
+#: diventi/templates/accounts/user.html:65
+#: diventi/templates/accounts/user.html:93
 msgid "credentials"
 msgstr "credenziali"
 
-#: diventi/templates/accounts/user.html:76
+#: diventi/templates/accounts/user.html:68
 msgid "Credentials"
 msgstr "Credenziali"
 
@@ -704,11 +712,6 @@ msgstr "Nuova password"
 #: diventi/templates/accounts/user_credentials.html:24
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
-
-#: diventi/templates/accounts/user_customization.html:29
-msgid ""
-"We send an average of 2 emails each month, covering faq and new content."
-msgstr "Inviamo una media di 2 email al mese, rispondendo a domande e promuovendo nuovi contenuti."
 
 #: diventi/templates/accounts/user_customization.html:84
 msgid "Update details"
@@ -902,11 +905,11 @@ msgstr "Il tuo voto: "
 msgid "not rated"
 msgstr "nessun voto rilevato"
 
+#~ msgid "Contact us"
+#~ msgstr "Contattaci"
+
 #~ msgid "Post your comment"
 #~ msgstr "Pubblica il tuo commento"
 
 #~ msgid "Reply"
 #~ msgstr "Rispondi"
-
-#~ msgid "Contents"
-#~ msgstr "Contenuti"

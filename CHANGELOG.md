@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] → 2018-xx-xx
 
+
+### Added
+- Introduced a customization field that lets the user control his favourite language
+- Introduced a customization field that lets the user control the email flow from the authors
+
 ### Changed
 - Enabled localization for product files
 - Enabled dev folder for development media files

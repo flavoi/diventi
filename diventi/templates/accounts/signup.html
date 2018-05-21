@@ -92,7 +92,6 @@
                                                 {{ form.password2 }}
                                             </div>
                                         </div>
-
                                         <div class="form-group bmd-form-group">
                                             <div class="input-group has-warning">
                                                 <div class="input-group-prepend">
@@ -104,8 +103,28 @@
                                             </div> 
                                         </div>
 
-                                        <div class="form-check">
-                                            <label class="form-check-label">
+                                        <br> 
+
+                                        <div class="form-group col-md-8 mr-auto ml-auto">
+                                            <p class="text-center">{{ form.has_agreed_gdpr.label }}
+                                                <span class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}">
+                                                    <i class="fal fa-info-circle"></i>
+                                                </span>
+                                            </p>
+                                            {% for choice in form.has_agreed_gdpr %}  
+                                                <div class="form-check form-check-radio form-check-inline">                                        
+                                                    <label class="form-check-label">
+                                                        {{ choice.choice_label }}
+                                                        {{ choice.tag }}
+                                                        <span class="circle">
+                                                            <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="form-group col-md-8 mr-auto ml-auto text-center">
+                                            <label>
                                                 {{ form.captcha }}
                                             </label>
                                         </div>
@@ -114,7 +133,6 @@
                                                 {% trans "Get Started" %} <i class="fal fa-arrow-right fa-lg"></i>
                                             </button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>

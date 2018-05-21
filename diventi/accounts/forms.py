@@ -8,6 +8,9 @@ from .models import DiventiUser, DiventiAvatar, DiventiCover
 from .widgets import DiventiAvatarSelect, DiventiCoverSelect, DiventiAvatarChoiceField, DiventiCoverChoiceField
 
 
+BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me emails.")))
+
+
 class DiventiUserCreationForm(UserCreationForm):
     
     captcha = ReCaptchaField(
@@ -23,7 +26,7 @@ class DiventiUserCreationForm(UserCreationForm):
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),
             'language': forms.Select(attrs={'class': 'form-control',}),
-            'has_agreed_gdpr': forms.RadioSelect(attrs={'class': 'form-control',}),
+            'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -52,9 +55,7 @@ class DiventiUserInitForm(forms.ModelForm):
 
 class DiventiUserUpdateForm(forms.ModelForm):     
 
-    class Meta:
-        
-        BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me emails.")))
+    class Meta:       
 
         model = DiventiUser
         fields = ['avatar', 'cover', 'bio', 'role', 'language', 'has_agreed_gdpr']

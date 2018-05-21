@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 12:07+0200\n"
+"POT-Creation-Date: 2018-05-21 20:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:155
+#: config/settings/base.py:156
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:156
+#: config/settings/base.py:157
 msgid "English"
 msgstr "Inglese"
 
@@ -54,28 +54,36 @@ msgstr "^recensioni/"
 msgid "Accounts"
 msgstr "Profili"
 
-#: diventi/accounts/forms.py:23 diventi/accounts/forms.py:46
+#: diventi/accounts/forms.py:23 diventi/accounts/forms.py:48
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:24 diventi/accounts/forms.py:47
+#: diventi/accounts/forms.py:24 diventi/accounts/forms.py:49
 #: diventi/templates/accounts/signin.html:38
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:32 diventi/templates/accounts/signin.html:48
+#: diventi/accounts/forms.py:34 diventi/templates/accounts/signin.html:48
 msgid "Your password"
 msgstr "La tua password"
 
-#: diventi/accounts/forms.py:36
+#: diventi/accounts/forms.py:38
 msgid "Repeat your password"
 msgstr "Ripeti la tua password"
 
 #: diventi/accounts/forms.py:57
+msgid "Yes, I'm interested."
+msgstr "Si, mi interessa."
+
+#: diventi/accounts/forms.py:57
+msgid "No, don't send me emails."
+msgstr "No, non inviarmi email."
+
+#: diventi/accounts/forms.py:62
 msgid "What's your story?"
 msgstr "Qual è la tua storia?"
 
-#: diventi/accounts/forms.py:58
+#: diventi/accounts/forms.py:63
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
@@ -100,7 +108,7 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:62
-#: diventi/templates/accounts/user_customization.html:25
+#: diventi/templates/accounts/user_customization.html:53
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -109,7 +117,7 @@ msgid "Cover"
 msgstr "Copertina"
 
 #: diventi/accounts/models.py:71
-#: diventi/templates/accounts/user_customization.html:40
+#: diventi/templates/accounts/user_customization.html:68
 msgid "Covers"
 msgstr "Copertine"
 
@@ -127,38 +135,42 @@ msgid "email"
 msgstr "email"
 
 #: diventi/accounts/models.py:83
-msgid "avatar"
-msgstr "avatar"
-
-#: diventi/accounts/models.py:84 diventi/landing/models.py:58
-msgid "cover"
-msgstr "copertina"
-
-#: diventi/accounts/models.py:85
-msgid "profilepic"
-msgstr "foto profilo"
-
-#: diventi/accounts/models.py:86
-msgid "bio"
-msgstr "biografia"
-
-#: diventi/accounts/models.py:87
-msgid "role"
-msgstr "classe"
-
-#: diventi/accounts/models.py:89
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:97 diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:84
+msgid "can we send you confidential emails?"
+msgstr "possiamo inviarti email riservate agli iscritti?"
+
+#: diventi/accounts/models.py:85
+msgid "avatar"
+msgstr "avatar"
+
+#: diventi/accounts/models.py:86 diventi/landing/models.py:58
+msgid "cover"
+msgstr "copertina"
+
+#: diventi/accounts/models.py:87
+msgid "profilepic"
+msgstr "foto profilo"
+
+#: diventi/accounts/models.py:88
+msgid "bio"
+msgstr "biografia"
+
+#: diventi/accounts/models.py:89
+msgid "role"
+msgstr "classe"
+
+#: diventi/accounts/models.py:98 diventi/templates/accounts/user.html:39
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:98
+#: diventi/accounts/models.py:99
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:115
+#: diventi/accounts/models.py:116
 msgid "account"
 msgstr "profilo"
 
@@ -587,7 +599,7 @@ msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
 #: diventi/templates/accounts/detail.html:24
-#: diventi/templates/accounts/user.html:54
+#: diventi/templates/accounts/user.html:62
 msgid "Collection"
 msgstr "Collezione"
 
@@ -632,40 +644,40 @@ msgstr "alla pagina iniziale"
 msgid "Sign up"
 msgstr "Registrati"
 
-#: diventi/templates/accounts/signup.html:102
+#: diventi/templates/accounts/signup.html:114
 msgid "Get Started"
 msgstr "Iniziamo"
 
-#: diventi/templates/accounts/user.html:10
+#: diventi/templates/accounts/user.html:18
 msgid "Profile"
 msgstr "Profilo"
 
-#: diventi/templates/accounts/user.html:29
+#: diventi/templates/accounts/user.html:37
 #: diventi/templates/products/product_detail.html:179
 msgid "Creator"
 msgstr "Autore"
 
-#: diventi/templates/accounts/user.html:51
-#: diventi/templates/accounts/user.html:76
+#: diventi/templates/accounts/user.html:59
+#: diventi/templates/accounts/user.html:84
 #: diventi/templates/products/product_detail.html:107
 msgid "collection"
 msgstr "collezione"
 
-#: diventi/templates/accounts/user.html:58
-#: diventi/templates/accounts/user.html:83
+#: diventi/templates/accounts/user.html:66
+#: diventi/templates/accounts/user.html:91
 msgid "customization"
 msgstr "personalizzazioni"
 
-#: diventi/templates/accounts/user.html:61
+#: diventi/templates/accounts/user.html:69
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:65
-#: diventi/templates/accounts/user.html:93
+#: diventi/templates/accounts/user.html:73
+#: diventi/templates/accounts/user.html:101
 msgid "credentials"
 msgstr "credenziali"
 
-#: diventi/templates/accounts/user.html:68
+#: diventi/templates/accounts/user.html:76
 msgid "Credentials"
 msgstr "Credenziali"
 
@@ -693,7 +705,12 @@ msgstr "Nuova password"
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/user_customization.html:56
+#: diventi/templates/accounts/user_customization.html:29
+msgid ""
+"We send an average of 2 emails each month, covering faq and new content."
+msgstr "Inviamo una media di 2 email al mese, rispondendo a domande e promuovendo nuovi contenuti."
+
+#: diventi/templates/accounts/user_customization.html:84
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 

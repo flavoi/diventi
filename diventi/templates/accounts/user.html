@@ -5,6 +5,14 @@
 
 {% block extrahead %}
     <link href="{% static 'image-picker/css/image-picker.css' %}" rel="stylesheet"/>
+    <style type="text/css">
+        .form-check .form-check-input:checked ~ .circle {
+            border-color: #ff9800;
+        }
+        .form-check .form-check-label .circle .check {
+            background-color: #ff9800;
+        }
+    </style>
 {% endblock extrahead %}
 
 {% block title %}{% trans "Profile" %}{% endblock title %}

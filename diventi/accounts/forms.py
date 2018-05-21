@@ -18,11 +18,12 @@ class DiventiUserCreationForm(UserCreationForm):
 
     class Meta:
         model = DiventiUser
-        fields = ['first_name', 'email', 'password1', 'password2', 'language']
+        fields = ['first_name', 'email', 'password1', 'password2', 'language', 'has_agreed_gdpr']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),
-            'language': forms.Select(attrs={'class': 'form-control',})         
+            'language': forms.Select(attrs={'class': 'form-control',}),
+            'has_agreed_gdpr': forms.RadioSelect(attrs={'class': 'form-control',}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -49,11 +50,14 @@ class DiventiUserInitForm(forms.ModelForm):
         }
 
 
-class DiventiUserUpdateForm(forms.ModelForm):  
+class DiventiUserUpdateForm(forms.ModelForm):     
 
-    class Meta:        
+    class Meta:
+        
+        BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me emails.")))
+
         model = DiventiUser
-        fields = ['avatar', 'cover', 'bio', 'role', 'language']
+        fields = ['avatar', 'cover', 'bio', 'role', 'language', 'has_agreed_gdpr']
         labels = {
             'bio': _("What's your story?"),
             'role': _("What's your favourite class?"),
@@ -61,7 +65,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
         widgets = {
             'bio': forms.TextInput(attrs={'class': 'form-control',}),
             'role': forms.TextInput(attrs={'class': 'form-control',}),
-            'language': forms.Select(attrs={'class': 'form-control',})
+            'language': forms.Select(attrs={'class': 'form-control',}),
+            'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),
         }
 
     def get_avatar_queryset(self):

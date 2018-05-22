@@ -1,0 +1,72 @@
+{% load i18n %}
+
+<p class="text-center lead">
+    {% blocktrans %}
+        This part is very important.
+    {% endblocktrans %}
+</p>
+
+<hr>
+
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <label for="id_has_agreed_gdpr">{{ form.has_agreed_gdpr.label }}</label>
+        <span class="text-gray" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}">
+            <i class="fal fa-info-circle"></i>
+        </span>     
+        </button>
+        {% for choice in form.has_agreed_gdpr %}
+            <div class="form-check">
+                <label class="form-check-label">
+                    {{ choice.choice_label }}
+                    {{ choice.tag }}
+                    <span class="circle">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="col-md-3">
+       <button type="submit" class="btn btn-warning btn-round">
+            {% trans "Update profile" %}
+        </button>
+    </div>
+</div>
+
+<hr>
+
+<p>
+    {% blocktrans %}
+        Do you wish to delete your account? This action is irreversible.
+    {% endblocktrans %}
+</p>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+    {% trans "Delete" %}
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalTitle">{% trans "Delete account" %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -68,6 +68,13 @@
                                     {% trans "Credentials" %}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#{% trans 'privacy' %}" role="tab" data-toggle="tab">
+                                    <i class="fal fa-user-secret fa-2x"></i>
+                                    <br>
+                                    {% trans "Privacy" %}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -96,6 +103,16 @@
                             <form method="POST" action="{% url 'accounts:change_password_ajax' %}" id="frmChangePW">
                                 {% csrf_token %}
                                 {% include 'accounts/user_credentials.html' %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="{% trans 'privacy' %}">
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <form method="POST" action="{% url 'accounts:update' object.pk %}">
+                                {% csrf_token %}
+                                {% include 'accounts/user_privacy.html' %}
                             </form>
                         </div>
                     </div>

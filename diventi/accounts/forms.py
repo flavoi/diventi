@@ -64,7 +64,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
             'role': _("What's your favourite class?"),
         }
         widgets = {
-            'bio': forms.TextInput(attrs={'class': 'form-control',}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows':4,}),
             'role': forms.TextInput(attrs={'class': 'form-control',}),
             'language': forms.Select(attrs={'class': 'form-control',}),
             'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),

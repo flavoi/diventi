@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
 
 from captcha.fields import ReCaptchaField
+from cuser.middleware import CuserMiddleware
 
 from .models import DiventiUser, DiventiAvatar, DiventiCover
 from .widgets import DiventiAvatarSelect, DiventiCoverSelect, DiventiAvatarChoiceField, DiventiCoverChoiceField
@@ -21,10 +22,13 @@ class DiventiUserCreationForm(UserCreationForm):
 
     class Meta:
         model = DiventiUser
-        fields = ['first_name', 'email', 'password1', 'password2', 'language', 'has_agreed_gdpr']
+        fields = ['first_name', 'username', 'password1', 'password2', 'language', 'has_agreed_gdpr']
+        labels = {
+            'has_agreed_gdpr': _('Can we send you emails?'), 
+        }
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),
+            'username': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),
             'language': forms.Select(attrs={'class': 'form-control',}),
             'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),
         }
@@ -46,10 +50,10 @@ class DiventiUserInitForm(forms.ModelForm):
 
     class Meta:
         model = DiventiUser
-        fields = ['first_name', 'email']
+        fields = ['first_name', 'username']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),            
+            'username': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),            
         }
 
 
@@ -62,6 +66,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
         labels = {
             'bio': _("What's your story?"),
             'role': _("What's your favourite class?"),
+            'has_agreed_gdpr': _("Can we send you emails?"),
         }
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control', 'rows':4,}),
@@ -72,7 +77,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
 
     def get_avatar_queryset(self):
         """ Fetch special avatars if the user is an admin."""
-        user = self.user
+        user = CuserMiddleware.get_user()
         avatar_queryset = DiventiAvatar.objects.all().order_by('-staff_only')
         if user and not user.is_staff:
             avatar_queryset = avatar_queryset.filter(staff_only=False)        
@@ -95,7 +100,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
     )
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')        
+        user = CuserMiddleware.get_user()
         super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)        
         self.fields['avatar'].queryset = self.get_avatar_queryset()
         self.fields['cover'].queryset = DiventiCover.objects.all()    

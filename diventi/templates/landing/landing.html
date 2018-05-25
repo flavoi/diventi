@@ -72,15 +72,21 @@
                             </a>
                         </div>
                     {% else %}
-                        <h2 class="text-center title">{% trans "Join our community" %}</h2>
+                        <h2 class="text-center title"><a name="signup">{% trans "Join our community" %}</a></h2>
                         <h4 class="text-center description">{% trans "Sign up to know more and start exploring." %}</h4>
                         <form class="contact-form" method="POST">
                             {% csrf_token %}
-                            <div class="row">
+                            <div class="row">                                
+
                                 {% for field in registration_form %}
                                     <div class="col-md-6">
                                         <div class="form-group has-warning">
                                             {{ field }}
+                                            {% if form.field.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ form.field.errors|striptags }}
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 {% endfor %}

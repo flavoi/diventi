@@ -2,8 +2,6 @@ from django.db.models.fields.files import FileField, FieldFile
 from django.http import HttpResponse
 from django.core.files.storage import get_storage_class
 
-from cuser.middleware import CuserMiddleware
-
 
 class ProtectedFileField(FileField):
 

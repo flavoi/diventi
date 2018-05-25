@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
@@ -166,3 +166,10 @@ class DiventiUserDetailView(DetailView):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
         context = get_user_data(context, self.object, self.request.user)
         return context
+
+
+class DiventiUserDeleteView(LoginRequiredMixin, DiventiActionMixin, DeleteView):
+
+    model = DiventiUser
+    success_url = reverse_lazy('landing:home')
+    success_msg = _('Your profile has been deleted.')

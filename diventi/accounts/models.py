@@ -3,7 +3,7 @@ import operator
 
 from django.db import models
 from django.db.models import Q
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import BaseUserManager
@@ -14,29 +14,7 @@ from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
 
 
-class DiventiUserManager(auth_models.BaseUserManager):
-
-    def _create_user(self, email, password, **extra_fields):
-        """
-        Creates and saves a User with the given email and password.
-        """
-        if not email:
-            raise ValueError(_('The email must be set'))
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.set_password(password)
-        user.save()
-        return user
-
-    def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError(_('Superuser must have is_staff=True.'))
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError(_('Superuser must have is_superuser=True.'))
-        return self._create_user(email, password, **extra_fields)
+class DiventiUserManager(UserManager):
 
     # Fetch all the achievements related to the user
     def achievements(self):
@@ -79,9 +57,9 @@ class Achievement(Element):
 
         
 class DiventiUser(AbstractUser): 
-    email = models.EmailField(unique=True, verbose_name=_('email'))
-    language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
-    has_agreed_gdpr = models.BooleanField(blank=True, verbose_name=_('can we send you confidential emails?'))
+    username = models.EmailField(unique=True, verbose_name=_('email'))
+    language = models.CharField(blank=True,  max_length=2, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
+    has_agreed_gdpr = models.NullBooleanField(blank=True, null=True, verbose_name=_('has agreed to gdpr'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
     cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) #  Staff use only
@@ -89,9 +67,10 @@ class DiventiUser(AbstractUser):
     role = models.CharField(blank=True, max_length=70, verbose_name=_('role')) # Favourite class
     achievements = models.ManyToManyField(Achievement, related_name='users')
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
-    objects = DiventiUserManager()
+
+    # objects = DiventiUserManager()
 
 
     class Meta:
@@ -107,10 +86,6 @@ class DiventiUser(AbstractUser):
 
     def get_full_name(self):
         return u'{0} {1}'.format(self.first_name, self.last_name)
-
-    def clean(self):
-        # Set the first part of the email as username
-        self.username = self.email
 
     def class_name(self):
         return _('account')
@@ -138,4 +113,4 @@ class DiventiUser(AbstractUser):
         return results
 
     def __str__(self):
-        return u'{0} ({1})'.format(self.get_full_name(), self.email)
+        return u'{0} ({1})'.format(self.get_full_name(), self.username)

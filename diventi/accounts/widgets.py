@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import DiventiAvatar, DiventiCover
 
+
 class DiventiAvatarSelect(forms.Select):    
     
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):

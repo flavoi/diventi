@@ -1,6 +1,6 @@
 from itertools import chain
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, resolve_url
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -22,15 +22,20 @@ def landing(request):
         Renders the landing page with Diventi's main features and
         team members. 
     """
-    presentation = Presentation.objects.active()    
-    featured_product = Product.objects.featured()
+    presentation = Presentation.objects.active()
+    featured_product = Product.objects.featured()    
+    registration_form = DiventiUserInitForm()
+
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
         if registration_form.is_valid():
             # Save the user inputs and pass them to the sign up page
             request.session['initial_email'] = registration_form['email'].value()
-            request.session['initial_first_name'] = registration_form['first_name'].value()
-            return redirect('accounts:signup')
+            request.session['initial_first_name'] = registration_form['first_name'].value()            
+        else:
+            messages.info(request, _('Please double check your email.'))
+            request.session.flush()
+        return redirect('accounts:signup')
     else:
         registration_form = DiventiUserInitForm()
 
@@ -43,7 +48,7 @@ def landing(request):
     # This session variable enables and error message in the login modal.
     if request.session.get('show_login_form', None):
         context['show_login_form'] = 1
-        del request.session['show_login_form']     
+        del request.session['show_login_form']
     if request.session.get('fail_login_msg', None):
         context['fail_login_msg'] = request.session.get('fail_login_msg')
         del request.session['fail_login_msg']

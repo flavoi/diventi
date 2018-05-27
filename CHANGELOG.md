@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enabled dev folder for development media files
 - Moved articles label to the bottom of the content section
 
+### Fixed
+- Fixed a problem that caused user forms to fail badly
+
 
 ## [1.0.0-beta.2] → 2018-03-30
 

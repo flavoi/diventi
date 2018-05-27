@@ -38,5 +38,5 @@ urlpatterns += i18n_patterns(
     url(_(r'^blog/'), include('diventi.blog.urls', namespace='blog')),
     url(_(r'^products/'), include('diventi.products.urls', namespace='products')),
     url(_(r'^comments/'), include('diventi.comments.urls', namespace='comments')),
-    url(_(r'^ratings/'), include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings',)),
 )

@@ -168,10 +168,11 @@
             frmPW[0].reset();
           }
           else {
+            console.log(resp.error_message)
             for (var key in resp.error_message) {
                 // Get error message
                 error = resp.error_message[key];
-                console.log(field, error)
+                console.log(key, error)
                 $("#respp").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + key + ': ' + error + '</div>').show();
             }
           }

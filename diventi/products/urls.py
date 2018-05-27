@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 from .views import ProductDetailView, AddToUserCollectionView, DropFromUserCollectionView, SecretFileView
 
+app_name = 'products'
+
 urlpatterns = [
     url(_(r'^(?P<slug>[-\w]+)/$'), ProductDetailView.as_view(), name='detail'),
     url(_(r'^(?P<slug>[-\w]+)/add/$'), AddToUserCollectionView.as_view(), name='add'),

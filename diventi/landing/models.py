@@ -34,7 +34,7 @@ class FeedbackManager(models.Manager):
 
 
 class Feedback(TimeStampedModel):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, verbose_name=_('user'), on_delete=models.SET_NULL)
     description = models.TextField()
 
     objects = FeedbackManager()
@@ -70,7 +70,7 @@ class Presentation(models.Model):
 
 
 class Feature(Element):    
-    profile = models.ForeignKey(Presentation, related_name='features')
+    profile = models.ForeignKey(Presentation, null=True, related_name='features', on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('feature')

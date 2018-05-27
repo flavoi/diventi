@@ -8,7 +8,7 @@ from diventi.core.models import PromotableModel
 
 
 class DiventiComment(MPTTModel, CommentAbstractModel, PromotableModel):
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', verbose_name=_('parent'))
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', verbose_name=_('parent'), on_delete=models.SET_NULL)
 
     class MPTTMeta:
         order_insertion_by = ['submit_date']

@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 from .views import landing, PresentationDetailView, PresentationSearchView, FeedbackCreationView
 
+app_name = 'landing'
+
 urlpatterns = [
     url(r'^$', landing, name='home'),
     url(_(r'^presentation/(?P<pk>\d+)/$'), PresentationDetailView.as_view(), name='presentation'),

@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Presentation, Feedback
@@ -30,7 +30,7 @@ def landing(request):
         registration_form = DiventiUserInitForm(request.POST)
         if registration_form.is_valid():
             # Save the user inputs and pass them to the sign up page
-            request.session['initial_email'] = registration_form['email'].value()
+            request.session['initial_username'] = registration_form['username'].value()
             request.session['initial_first_name'] = registration_form['first_name'].value()            
         else:
             messages.info(request, _('Please double check your email.'))

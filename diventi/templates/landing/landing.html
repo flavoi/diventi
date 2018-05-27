@@ -76,8 +76,7 @@
                         <h4 class="text-center description">{% trans "Sign up to know more and start exploring." %}</h4>
                         <form class="contact-form" method="POST">
                             {% csrf_token %}
-                            <div class="row">                                
-
+                            <div class="row">
                                 {% for field in registration_form %}
                                     <div class="col-md-6">
                                         <div class="form-group has-warning">

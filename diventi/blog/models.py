@@ -91,11 +91,11 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
     description = models.TextField(max_length=250, verbose_name=_('description'))
-    category = models.ForeignKey(ArticleCategory, verbose_name=_('category'))    
+    category = models.ForeignKey(ArticleCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)    
     content = RichTextField(verbose_name=_('content'))
     hot = models.BooleanField(default=False, verbose_name=_('hot'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='articles', verbose_name=_('author'))
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='articles', verbose_name=_('author'), on_delete=models.SET_NULL)
 
     objects = ArticleQuerySet.as_manager()
     

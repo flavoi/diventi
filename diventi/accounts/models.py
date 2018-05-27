@@ -5,7 +5,7 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.contrib.auth import models as auth_models
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth.models import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings

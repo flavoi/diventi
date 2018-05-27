@@ -61,7 +61,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
-    category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default')
+    category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default', on_delete=models.SET_NULL)
     objects = ProductQuerySet.as_manager()
 
     class Meta:
@@ -108,8 +108,8 @@ class ChapterCategory(Category):
 
 class Chapter(Element, DiventiImageModel):
     """ A stand-alone chapter of an adventure."""
-    product = models.ForeignKey(Product, related_name='chapters', verbose_name=_('product'))     
-    category = models.ForeignKey(ChapterCategory, verbose_name=_('category'))
+    product = models.ForeignKey(Product, null=True, related_name='chapters', verbose_name=_('product'), on_delete=models.SET_NULL)     
+    category = models.ForeignKey(ChapterCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('Chapter')
@@ -118,7 +118,7 @@ class Chapter(Element, DiventiImageModel):
 
 class Characteristic(Element):
     """ A specific detail of a product."""
-    product = models.ForeignKey(Product, related_name='characteristics', verbose_name=_('product'))
+    product = models.ForeignKey(Product, null=True, related_name='characteristics', verbose_name=_('product'), on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('Characteristic')
@@ -126,7 +126,7 @@ class Characteristic(Element):
 
 class ImagePreview(DiventiImageModel):    
     """A list of cool images of the product."""
-    product = models.ForeignKey(Product, related_name='imagepreviews', verbose_name=_('product'))
+    product = models.ForeignKey(Product, null=True, related_name='imagepreviews', verbose_name=_('product'), on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('Image')

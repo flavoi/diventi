@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
@@ -53,21 +53,6 @@ class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 	template_name = "accounts/signout.html"
 
 
-@login_required(redirect_field_name='accounts:signin')
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, _('Your password was successfully updated!'))
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'accounts/user.html', {
-        'form': form,
-    })
-
-
 @login_required
 @csrf_protect
 def change_password_ajax(request):
@@ -80,7 +65,7 @@ def change_password_ajax(request):
             update_session_auth_hash(request, user)  # Important!
             message = _('Your password was successfully updated!')
             message_type = 'success'
-        else:            
+        else:  
             error_message = {str(form.fields[field].label): error for field, error in form.errors.items()}
             message_type = 'danger'
     data = json.dumps ({
@@ -98,34 +83,36 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     template_name = 'accounts/signup.html'
     success_msg = _('You have signed up!')
     fail_msg = _('Your sign up has failed.')
-    fail_url = reverse_lazy('accounts:signup')
+    success_url = reverse_lazy('landing:home')
 
     def get_initial(self):
         # Retrieve initial data from user inputs on the landing page
-        initial_email = self.request.session.get('initial_email', None)
+        initial_username = self.request.session.get('initial_username', None)
         initial_first_name = self.request.session.get('initial_first_name', None)
         initial = {
-            'email': initial_email,
+            'username': initial_username,
             'first_name': initial_first_name,
         }
         return initial
 
-    def get_success_url(self):
-        self.request.session['show_login_form'] = 1
-        return reverse_lazy('landing:home')
-
     def form_valid(self, form):
-        username = form.cleaned_data['email']
+        username = form.cleaned_data['username']
         password = form.cleaned_data['password1']
         if username and password:
             form.save()
             user = authenticate(self.request, username=username, password=password)
             if user is not None:
                 messages.success(self.request, self.success_msg)
-                return redirect(self.get_success_url())
+                self.request.session['show_login_form'] = 1
+                return redirect(self.success_url)
             else:
                 messages.error(self.request, self.fail_msg)
         return super(DiventiUserCreationView, self).form_valid(form)
+
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super(DiventiUserCreationView, self).form_invalid(form)
 
 
 class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
@@ -147,8 +134,6 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         kwargs = super(DiventiUserUpdateView, self).get_form_kwargs()
         if not self.user_passes_test():
             raise PermissionDenied(_("A user may update his own profile only."))
-        user = self.request.user
-        kwargs['user'] = user
         return kwargs
 
     def get_context_data(self, **kwargs):

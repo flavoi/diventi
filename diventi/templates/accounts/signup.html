@@ -69,7 +69,7 @@
                                                         <i class="fal fa-envelope fa-lg fa-fw"></i>
                                                     </span>
                                                 </div>
-                                                {{ form.email }}
+                                                {{ form.username }}
                                             </div> 
                                         </div>
                                         <div class="form-group">
@@ -112,7 +112,7 @@
                                                 </span>
                                             </p>
                                             {% for choice in form.has_agreed_gdpr %}  
-                                                <div class="form-check form-check-radio form-check-inline">                                        
+                                                <div class="form-check form-check-radio form-check-inline">
                                                     <label class="form-check-label">
                                                         {{ choice.choice_label }}
                                                         {{ choice.tag }}

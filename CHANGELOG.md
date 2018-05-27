@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced a customization field that lets the user control his favourite language
 - Introduced a customization field that lets the user control the email flow from the authors
+- Upgraded the development framework from django 1.11 to django 2.0
 
 ### Changed
 - Enabled localization for product files

@@ -17,7 +17,7 @@ class CommentPromoteToggleView(RedirectView):
         comment_id = self.kwargs.get('pk') 
         comment = get_object_or_404(DiventiComment, pk=comment_id)
         user = self.request.user
-        if user.is_authenticated():
+        if user.is_authenticated:
             if user in comment.promotions.all():
                 comment.promotions.remove(user)                           
             else:
@@ -37,7 +37,7 @@ class CommentPromoteToggleAPIView(APIView):
         user = self.request.user
         updated = False
         promoted = False
-        if user.is_authenticated():
+        if user.is_authenticated:
             if user in comment.promotions.all():
                 comment.promotions.remove(user)
                 promoted = False

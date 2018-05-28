@@ -30,7 +30,7 @@ def landing(request):
         registration_form = DiventiUserInitForm(request.POST)
         if registration_form.is_valid():
             # Save the user inputs and pass them to the sign up page
-            request.session['initial_username'] = registration_form['username'].value()
+            request.session['initial_email'] = registration_form['email'].value()
             request.session['initial_first_name'] = registration_form['first_name'].value()            
         else:
             messages.info(request, _('Please double check your email.'))

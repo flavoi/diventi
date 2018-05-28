@@ -21,6 +21,7 @@ from .forms import DiventiUserCreationForm, DiventiUserUpdateForm
 from .utils import get_user_data
 from diventi.core.views import DiventiActionMixin
 from diventi.products.models import Product
+from diventi.comments.models import DiventiComment
 
 
 class DiventiLoginView(AnonymousRequiredMixin, LoginView):
@@ -111,36 +112,35 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     template_name = 'accounts/signup.html'
     success_msg = _('You have signed up!')
     fail_msg = _('Your sign up has failed.')
-    success_url = reverse_lazy('landing:home')
+    fail_url = reverse_lazy('accounts:signup')
 
     def get_initial(self):
-        # Retrieve initial data from user inputs on the landing page
-        initial_username = self.request.session.get('initial_username', None)
+        # Retrieve initial data from user inputs on the landing page
+        initial_email = self.request.session.get('initial_email', None)
         initial_first_name = self.request.session.get('initial_first_name', None)
         initial = {
-            'username': initial_username,
+            'email': initial_email,
             'first_name': initial_first_name,
         }
         return initial
 
+    def get_success_url(self):
+        self.request.session['show_login_form'] = 1
+        return reverse_lazy('landing:home')
+
     def form_valid(self, form):
-        username = form.cleaned_data['username']
+        email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
-        if username and password:
+        if email and password:
             form.save()
-            user = authenticate(self.request, username=username, password=password)
+            user = authenticate(self.request, username=email, password=password)
             if user is not None:
                 messages.success(self.request, self.success_msg)
-                self.request.session['show_login_form'] = 1
-                return redirect(self.success_url)
+                return redirect(self.get_success_url())
             else:
+
                 messages.error(self.request, self.fail_msg)
         return super(DiventiUserCreationView, self).form_valid(form)
-
-
-    def form_invalid(self, form):
-        print(form.errors)
-        return super(DiventiUserCreationView, self).form_invalid(form)
 
 
 class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
@@ -186,3 +186,15 @@ class DiventiUserDeleteView(LoginRequiredMixin, DiventiActionMixin, DeleteView):
     model = DiventiUser
     success_url = reverse_lazy('landing:home')
     success_msg = _('Your profile has been deleted.')
+
+    def post(self, *args, **kwargs):
+        """ Delete user related objects upon user deletion. """
+        comments = DiventiComment.objects.filter(user=self.request.user)
+        if comments:
+            comments.update(is_removed=True)
+        return super(DiventiUserDeleteView, self).post(*args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(self.request, self.success_msg)
+        return super(DiventiUserDeleteView, self).get_success_url()
+    

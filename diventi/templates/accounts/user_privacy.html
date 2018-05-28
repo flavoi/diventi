@@ -2,20 +2,14 @@
 
 <div id="respprivacy"></div>
 
-<p class="text-center lead">
-    {% blocktrans %}
-        This part is very important.
-    {% endblocktrans %}
+<p>
+    {% blocktrans %}"Privacy is the ability of an individual or group to seclude themselves, or information about themselves, and thereby express themselves selectively."{% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}We don't sell your data to others. Feel free to tell us what we can use, you can always change your mind later.{% endblocktrans %}
 </p>
 
 <hr>
-
-<div class="form-row">
-    <div class="form-group has-warning col-md-12">
-        <label for="id_bio" class="text-gray">{{ form.username.label }}</label>
-        {{ form.username }}
-    </div>
-</div>
 
 <div class="form-row">
     <div class="form-group col-md-12">
@@ -48,15 +42,13 @@
 
 <hr>
 
-<p>
-    {% blocktrans %}
-        Do you wish to delete your account? This action is irreversible.
-    {% endblocktrans %}
+<p class="text-gray">
+    {% blocktrans %}Do you wish to delete your account? There is no going back. Please be certain.{% endblocktrans %}
 </p>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-    {% trans "Delete" %}
+<button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#deleteModal">
+    {% trans "Delete your account" %}
 </button>
 
 

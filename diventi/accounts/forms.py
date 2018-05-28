@@ -15,21 +15,21 @@ BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me 
 
 class DiventiUserCreationForm(UserCreationForm):
     
-    captcha = ReCaptchaField(
-        attrs={
-            'theme' : 'light',
-        }
-    )
+    #captcha = ReCaptchaField(
+    #    attrs={
+    #        'theme' : 'light',
+    #    }
+    #)
 
     class Meta:
         model = DiventiUser
-        fields = ['first_name', 'username', 'password1', 'password2', 'language', 'has_agreed_gdpr']
+        fields = ['first_name', 'email', 'password1', 'password2', 'language', 'has_agreed_gdpr']
         labels = {
             'has_agreed_gdpr': _('Can we send you emails?'), 
         }
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
-            'username': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')}),
             'language': forms.Select(attrs={'class': 'form-control',}),
             'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),
         }
@@ -52,7 +52,7 @@ class DiventiUserInitForm(forms.Form):
         max_length = 30, 
         widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Your name')}),
     )
-    username = forms.EmailField(
+    email = forms.EmailField(
         max_length=30, 
         widget = forms.EmailInput(attrs={'class': 'form-control', 'placeholder': _('Your email')})
     )

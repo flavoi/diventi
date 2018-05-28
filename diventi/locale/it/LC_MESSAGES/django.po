@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-21 22:30+0200\n"
+"POT-Creation-Date: 2018-05-28 15:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,44 +46,44 @@ msgstr "^prodotti/"
 msgid "^comments/"
 msgstr "^commenti/"
 
-#: config/urls.py:41
-msgid "^ratings/"
-msgstr "^recensioni/"
-
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
 msgstr "Profili"
 
-#: diventi/accounts/forms.py:11
+#: diventi/accounts/forms.py:13
 msgid "Yes, I'm interested."
 msgstr "Si, mi interessa."
 
-#: diventi/accounts/forms.py:11
+#: diventi/accounts/forms.py:13
 msgid "No, don't send me emails."
 msgstr "No, non inviarmi email."
 
-#: diventi/accounts/forms.py:26 diventi/accounts/forms.py:51
+#: diventi/accounts/forms.py:28 diventi/accounts/forms.py:69
+msgid "Can we send you emails?"
+msgstr "Possiamo inviarti email?"
+
+#: diventi/accounts/forms.py:31 diventi/accounts/forms.py:53
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:27 diventi/accounts/forms.py:52
+#: diventi/accounts/forms.py:32 diventi/accounts/forms.py:57
 #: diventi/templates/accounts/signin.html:38
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:37 diventi/templates/accounts/signin.html:48
+#: diventi/accounts/forms.py:42 diventi/templates/accounts/signin.html:48
 msgid "Your password"
 msgstr "La tua password"
 
-#: diventi/accounts/forms.py:41
+#: diventi/accounts/forms.py:46
 msgid "Repeat your password"
 msgstr "Ripeti la tua password"
 
-#: diventi/accounts/forms.py:63
+#: diventi/accounts/forms.py:67
 msgid "What's your story?"
 msgstr "Qual è la tua storia?"
 
-#: diventi/accounts/forms.py:64
+#: diventi/accounts/forms.py:68
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
@@ -108,7 +108,7 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:62
-#: diventi/templates/accounts/user_customization.html:53
+#: diventi/templates/accounts/user_customization.html:28
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -117,7 +117,7 @@ msgid "Cover"
 msgstr "Copertina"
 
 #: diventi/accounts/models.py:71
-#: diventi/templates/accounts/user_customization.html:68
+#: diventi/templates/accounts/user_customization.html:43
 msgid "Covers"
 msgstr "Copertine"
 
@@ -170,37 +170,41 @@ msgstr "Utente"
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:116
+#: diventi/accounts/models.py:112
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/urls.py:7
+#: diventi/accounts/urls.py:9
 msgid "^signin/$"
 msgstr "^accedi/$"
 
-#: diventi/accounts/urls.py:8
+#: diventi/accounts/urls.py:10
 msgid "^signout/$"
 msgstr "^annulla-accesso/$"
 
-#: diventi/accounts/urls.py:9
-msgid "^password-change/$"
-msgstr "^modifica-password/$"
-
-#: diventi/accounts/urls.py:10
+#: diventi/accounts/urls.py:11
 msgid "^password-change/ajax/$"
 msgstr "^modifica-password/ajax/$"
 
-#: diventi/accounts/urls.py:11
+#: diventi/accounts/urls.py:12
 msgid "^signup/$"
 msgstr "^registrati/$"
 
-#: diventi/accounts/urls.py:12
+#: diventi/accounts/urls.py:13
 msgid "^(?P<pk>\\d+)/$"
 msgstr "^(?P<pk>\\d+)/$"
 
-#: diventi/accounts/urls.py:13
+#: diventi/accounts/urls.py:14
 msgid "^(?P<pk>\\d+)/update/$"
 msgstr "^(?P<pk>\\d+)/aggiorna/$"
+
+#: diventi/accounts/urls.py:15
+msgid "^privacy-change/ajax/$"
+msgstr "^modifica-privacy/ajax/$"
+
+#: diventi/accounts/urls.py:16
+msgid "^(?P<pk>\\d+)/delete/$"
+msgstr "^(?P<pk>\\d+)/cancella/$"
 
 #: diventi/accounts/views.py:29
 msgid "You have signed in!"
@@ -210,39 +214,47 @@ msgstr "Hai effettuato l'accesso!"
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:63 diventi/accounts/views.py:81
+#: diventi/accounts/views.py:69
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:99
+#: diventi/accounts/views.py:94
+msgid "Your privacy was successfully updated!"
+msgstr "La tua privacy è stata aggiornata!"
+
+#: diventi/accounts/views.py:112
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:100
+#: diventi/accounts/views.py:113
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:136
+#: diventi/accounts/views.py:150
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:137
+#: diventi/accounts/views.py:151
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:149
+#: diventi/accounts/views.py:163
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/widgets.py:115
+#: diventi/accounts/views.py:187
+msgid "Your profile has been deleted."
+msgstr "Il tuo profilo è stato cancellato."
+
+#: diventi/accounts/widgets.py:116
 msgid "User avatars"
 msgstr "Avatar utente"
 
-#: diventi/accounts/widgets.py:117
+#: diventi/accounts/widgets.py:118
 msgid "Staff avatars"
 msgstr "Avatar riservati"
 
-#: diventi/accounts/widgets.py:130
+#: diventi/accounts/widgets.py:131
 msgid "User covers"
 msgstr "Copertine utente"
 
@@ -317,15 +329,15 @@ msgstr "articolo"
 msgid "articles"
 msgstr "articoli"
 
-#: diventi/blog/urls.py:8 diventi/products/urls.py:7
+#: diventi/blog/urls.py:10 diventi/products/urls.py:9
 msgid "^(?P<slug>[-\\w]+)/$"
 msgstr "^(?P<slug>[-\\w]+)/$"
 
-#: diventi/blog/urls.py:9
+#: diventi/blog/urls.py:11
 msgid "^(?P<slug>[-\\w]+)/promote/$"
 msgstr "^(?P<slug>[-\\w]+)/promuovi/$"
 
-#: diventi/blog/urls.py:10
+#: diventi/blog/urls.py:12
 msgid "^(?P<slug>[-\\w]+)/promote/api/$"
 msgstr "^(?P<slug>[-\\w]+)/promuovi/api/$"
 
@@ -347,11 +359,11 @@ msgstr "commento"
 msgid "%s tag requires a queryset"
 msgstr "il tag %s richiede una queryset"
 
-#: diventi/comments/urls.py:7
+#: diventi/comments/urls.py:9
 msgid "^(?P<pk>\\d+)/promote/$"
 msgstr "^(?P<pk>\\d+)/promuovi/$"
 
-#: diventi/comments/urls.py:8
+#: diventi/comments/urls.py:10
 msgid "^(?P<pk>\\d+)/promote/api/$"
 msgstr "^(?P<pk>[-\\w]+)/promuovi/api/$"
 
@@ -479,19 +491,23 @@ msgstr "aspetto"
 msgid "features"
 msgstr "aspetti"
 
-#: diventi/landing/urls.py:8
+#: diventi/landing/urls.py:10
 msgid "^presentation/(?P<pk>\\d+)/$"
 msgstr "^presentazione/(?P<pk>\\d+)/$"
 
-#: diventi/landing/urls.py:9
+#: diventi/landing/urls.py:11
 msgid "^search/$"
 msgstr "^cerca/$"
 
-#: diventi/landing/urls.py:10
+#: diventi/landing/urls.py:12
 msgid "^feedback/$"
 msgstr ""
 
-#: diventi/landing/views.py:100
+#: diventi/landing/views.py:36
+msgid "Please double check your email."
+msgstr ""
+
+#: diventi/landing/views.py:105
 msgid "You feedback has been sent!"
 msgstr "Il tuo feedback è stato inviato!"
 
@@ -574,11 +590,11 @@ msgstr "Caratteristiche"
 msgid "Images"
 msgstr "Immagini"
 
-#: diventi/products/urls.py:8
+#: diventi/products/urls.py:10
 msgid "^(?P<slug>[-\\w]+)/add/$"
 msgstr "^(?P<slug>[-\\w]+)/aggiungi/$"
 
-#: diventi/products/urls.py:9
+#: diventi/products/urls.py:11
 msgid "^(?P<slug>[-\\w]+)/remove/$"
 msgstr "^(?P<slug>[-\\w]+)/rimuovi/$"
 
@@ -622,6 +638,7 @@ msgid "first"
 msgstr "subito"
 
 #: diventi/templates/accounts/signin.html:60
+#: diventi/templates/accounts/user.html:147
 #: diventi/templates/accounts/user_credentials.html:33
 msgid "Confirm"
 msgstr "Conferma"
@@ -640,12 +657,12 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:32
-#: diventi/templates/landing/landing.html:90
+#: diventi/templates/landing/landing.html:95
 msgid "Sign up"
 msgstr "Registrati"
 
 #: diventi/templates/accounts/signup.html:110
-#: diventi/templates/accounts/user_customization.html:29
+#: diventi/templates/accounts/user_privacy.html:17
 msgid ""
 "We send an average of 2 emails each month, covering faq and new content."
 msgstr ""
@@ -666,13 +683,13 @@ msgid "Creator"
 msgstr "Autore"
 
 #: diventi/templates/accounts/user.html:51
-#: diventi/templates/accounts/user.html:76
+#: diventi/templates/accounts/user.html:83
 #: diventi/templates/products/product_detail.html:107
 msgid "collection"
 msgstr "collezione"
 
 #: diventi/templates/accounts/user.html:58
-#: diventi/templates/accounts/user.html:83
+#: diventi/templates/accounts/user.html:90
 msgid "customization"
 msgstr "personalizzazioni"
 
@@ -681,13 +698,47 @@ msgid "Customization"
 msgstr "Personalizzazioni"
 
 #: diventi/templates/accounts/user.html:65
-#: diventi/templates/accounts/user.html:93
+#: diventi/templates/accounts/user.html:100
 msgid "credentials"
 msgstr "credenziali"
 
 #: diventi/templates/accounts/user.html:68
 msgid "Credentials"
 msgstr "Credenziali"
+
+#: diventi/templates/accounts/user.html:72
+#: diventi/templates/accounts/user.html:110
+msgid "privacy"
+msgstr ""
+
+#: diventi/templates/accounts/user.html:75
+msgid "Privacy"
+msgstr ""
+
+#: diventi/templates/accounts/user.html:135
+#: diventi/templates/accounts/user_privacy.html:51
+msgid "Delete your account"
+msgstr "Cancella la tua utenza"
+
+#: diventi/templates/accounts/user.html:141
+msgid ""
+"We will immediately delete all of your data, along with all of your "
+"comments, feedbacks and upvotes."
+msgstr ""
+"Cancelleremo immediatamente tutti i tuoi dati, i commenti e le iterazioni "
+"che hai registrato."
+
+#: diventi/templates/accounts/user.html:143
+msgid ""
+"You will no longer be contacted and your username will be available to "
+"anyone on Diventi."
+msgstr ""
+"Non ti contatteremo più e il tuo nome utente tornerà disponibile per altri "
+"in Diventi."
+
+#: diventi/templates/accounts/user.html:146
+msgid "Rollback"
+msgstr "Annulla"
 
 #: diventi/templates/accounts/user_collection.html:17
 msgid "Download"
@@ -713,9 +764,35 @@ msgstr "Nuova password"
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/user_customization.html:84
+#: diventi/templates/accounts/user_customization.html:61
 msgid "Update details"
 msgstr "Aggiorna dettagli"
+
+#: diventi/templates/accounts/user_privacy.html:6
+msgid ""
+"\"Privacy is the ability of an individual or group to seclude themselves, or "
+"information about themselves, and thereby express themselves selectively.\""
+msgstr ""
+"\"La privacy è il diritto della persona di controllare che le informazioni "
+"che la riguardano vengano trattate o guardate da altri solo in caso di "
+"necessità.\""
+
+#: diventi/templates/accounts/user_privacy.html:9
+msgid ""
+"We don't sell your data to others. Feel free to tell us what we can use, you "
+"can always change your mind later."
+msgstr ""
+"Noi non vendiamo i tuoi dati a terzi. Facci sapere se possiamo utilizzarli, potrai sempre cambiare idea in un secondo momento."
+
+#: diventi/templates/accounts/user_privacy.html:38
+msgid "Update profile"
+msgstr "Aggiorna profilo"
+
+#: diventi/templates/accounts/user_privacy.html:46
+msgid ""
+"Do you wish to delete your account? There is no going back. Please be "
+"certain."
+msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 
 #: diventi/templates/blog/article_detail.html:29
 msgid "Photo credit"
@@ -904,6 +981,12 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "^ratings/"
+#~ msgstr "^recensioni/"
+
+#~ msgid "^password-change/$"
+#~ msgstr "^modifica-password/$"
 
 #~ msgid "Contact us"
 #~ msgstr "Contattaci"

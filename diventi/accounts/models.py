@@ -14,9 +14,31 @@ from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
 
 
-class DiventiUserManager(UserManager):
+class DiventiUserManager(BaseUserManager):
 
-    # Fetch all the achievements related to the user
+    def _create_user(self, email, password, **extra_fields):
+        """
+        Creates and saves a User with the given email and password.
+        """
+        if not email:
+            raise ValueError(_('The email must be set'))
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError(_('Superuser must have is_staff=True.'))
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError(_('Superuser must have is_superuser=True.'))
+        return self._create_user(email, password, **extra_fields)
+
+    # Fetch all the achievements related to the user
     def achievements(self):
         user = self.prefetch_related('achievements')
         return user
@@ -57,20 +79,19 @@ class Achievement(Element):
 
         
 class DiventiUser(AbstractUser): 
-    username = models.EmailField(unique=True, verbose_name=_('email'))
-    language = models.CharField(blank=True,  max_length=2, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
-    has_agreed_gdpr = models.NullBooleanField(blank=True, null=True, verbose_name=_('has agreed to gdpr'))
+    email = models.EmailField(unique=True, verbose_name=_('email'))
+    language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
+    has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('can we send you confidential emails?'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
     cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) #  Staff use only
     bio = models.TextField(blank=True, verbose_name=_('bio'))
-    role = models.CharField(blank=True, max_length=70, verbose_name=_('role')) # Favourite class
+    role = models.CharField(blank=True, max_length=70, verbose_name=_('role')) # Favourite class
     achievements = models.ManyToManyField(Achievement, related_name='users')
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-    # objects = DiventiUserManager()
+    objects = DiventiUserManager()
 
 
     class Meta:
@@ -89,6 +110,10 @@ class DiventiUser(AbstractUser):
 
     def class_name(self):
         return _('account')
+
+    def clean(self):
+        # Set the email as username
+        self.username = self.email
 
     def search(self, query, *args, **kwargs):
         results = DiventiUser.objects.all()

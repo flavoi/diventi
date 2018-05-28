@@ -15,11 +15,11 @@ BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me 
 
 class DiventiUserCreationForm(UserCreationForm):
     
-    #captcha = ReCaptchaField(
-    #    attrs={
-    #        'theme' : 'light',
-    #    }
-    #)
+    captcha = ReCaptchaField(
+        attrs={
+            'theme' : 'light',
+        }
+    )
 
     class Meta:
         model = DiventiUser
@@ -58,21 +58,19 @@ class DiventiUserInitForm(forms.Form):
     )
 
 
-class DiventiUserUpdateForm(forms.ModelForm):     
+class DiventiUserUpdateForm(forms.ModelForm):
 
     class Meta:       
         model = DiventiUser
-        fields = ['avatar', 'cover', 'bio', 'role', 'language', 'has_agreed_gdpr']
+        fields = ['avatar', 'cover', 'bio', 'role', 'language']
         labels = {
             'bio': _("What's your story?"),
             'role': _("What's your favourite class?"),
-            'has_agreed_gdpr': _("Can we send you emails?"),
         }
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control', 'rows':4,}),
             'role': forms.TextInput(attrs={'class': 'form-control',}),
             'language': forms.Select(attrs={'class': 'form-control',}),
-            'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),
         }
 
     def get_avatar_queryset():
@@ -98,3 +96,16 @@ class DiventiUserUpdateForm(forms.ModelForm):
         }),
         required = False,
     )
+
+
+class DiventiUserPrivacyChangeForm(forms.ModelForm):
+
+    class Meta:       
+        model = DiventiUser
+        fields = ['has_agreed_gdpr']
+        labels = {
+            'has_agreed_gdpr': _("Can we send you emails?"),
+        }
+        widgets = {
+            'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),
+        }

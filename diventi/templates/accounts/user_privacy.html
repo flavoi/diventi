@@ -13,12 +13,12 @@
 
 <div class="form-row">
     <div class="form-group col-md-12">
-        <label for="id_has_agreed_gdpr">{{ form.has_agreed_gdpr.label }}</label>
+        <label for="id_has_agreed_gdpr">{{ privacy_form.has_agreed_gdpr.label }}</label>
         <span class="text-gray" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}">
             <i class="fal fa-info-circle"></i>
         </span>     
         </button>
-        {% for choice in form.has_agreed_gdpr %}
+        {% for choice in privacy_form.has_agreed_gdpr %}
             <div class="form-check">
                 <label class="form-check-label">
                     {{ choice.choice_label }}

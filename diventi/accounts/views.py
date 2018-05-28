@@ -17,7 +17,7 @@ from django.views.decorators.csrf import csrf_protect
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
 from .models import DiventiUser, DiventiAvatar, Achievement
-from .forms import DiventiUserCreationForm, DiventiUserUpdateForm
+from .forms import DiventiUserCreationForm, DiventiUserUpdateForm, DiventiUserPrivacyChangeForm
 from .utils import get_user_data
 from diventi.core.views import DiventiActionMixin
 from diventi.products.models import Product
@@ -89,7 +89,7 @@ def change_privacy_ajax(request):
     message = ''
     error_message = ''
     if request.method == 'POST':
-        form = DiventiUserUpdateForm(request.POST, instance=request.user)
+        form = DiventiUserPrivacyChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             message = _('Your privacy was successfully updated!')
@@ -167,6 +167,8 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)        
         context = get_user_data(context, self.request.user)
+        privacy_form = DiventiUserPrivacyChangeForm(instance=self.request.user)
+        context['privacy_form'] = privacy_form
         return context
 
 

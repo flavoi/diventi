@@ -15,11 +15,11 @@ BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me 
 
 class DiventiUserCreationForm(UserCreationForm):
     
-    # captcha = ReCaptchaField(
-    #     attrs={
-    #         'theme' : 'light',
-    #     }
-    # )
+    captcha = ReCaptchaField(
+        attrs={
+            'theme' : 'light',
+        }
+    )
 
     class Meta:
         model = DiventiUser
@@ -61,7 +61,6 @@ class DiventiUserInitForm(forms.Form):
 class DiventiUserUpdateForm(forms.ModelForm):     
 
     class Meta:       
-
         model = DiventiUser
         fields = ['avatar', 'cover', 'bio', 'role', 'language', 'has_agreed_gdpr']
         labels = {

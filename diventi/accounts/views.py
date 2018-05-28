@@ -56,6 +56,9 @@ class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 @login_required
 @csrf_protect
 def change_password_ajax(request):
+    """
+        Updates the user's password and returns the response as ajax.
+    """
     message = ''
     error_message = ''
     if request.method == 'POST':
@@ -74,6 +77,31 @@ def change_password_ajax(request):
         'message_type': message_type,
     })
     return HttpResponse(data, content_type='application/json')
+
+
+@login_required
+@csrf_protect
+def change_privacy_ajax(request):
+    """
+        Updates user's privacy fields and returns the response as ajax.
+    """
+    message = ''
+    error_message = ''
+    if request.method == 'POST':
+        form = DiventiUserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            message = _('Your privacy was successfully updated!')
+            message_type = 'success'
+        else:
+            error_message = {str(form.fields[field].label): error for field, error in form.errors.items()}
+            message_type = 'danger'
+    data = json.dumps ({
+        'message': str(message),
+        'error_message': error_message,
+        'message_type': message_type,
+    })
+    return HttpResponse(data, content_type='application/json')    
 
 
 class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):

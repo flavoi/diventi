@@ -1,5 +1,7 @@
 {% load i18n %}
 
+<div id="respprivacy"></div>
+
 <p class="text-center lead">
     {% blocktrans %}
         This part is very important.
@@ -7,6 +9,13 @@
 </p>
 
 <hr>
+
+<div class="form-row">
+    <div class="form-group has-warning col-md-12">
+        <label for="id_bio" class="text-gray">{{ form.username.label }}</label>
+        {{ form.username }}
+    </div>
+</div>
 
 <div class="form-row">
     <div class="form-group col-md-12">

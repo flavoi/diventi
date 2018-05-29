@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.utils.translation import ugettext_lazy as _
 
-from .views import DiventiLoginView, DiventiLogoutView, change_password_ajax, change_privacy_ajax, DiventiUserCreationView, DiventiUserUpdateView, DiventiUserDetailView, DiventiUserDeleteView
+from .views import DiventiLoginView, DiventiLogoutView, change_password_ajax, change_privacy_ajax, DiventiUserCreationView, DiventiUserUpdateView, DiventiUserDetailView, DiventiUserDeleteView, EmailPageView
 
 app_name = 'accounts'
 
@@ -14,4 +14,5 @@ urlpatterns = [
     url(_(r'^(?P<pk>\d+)/update/$'), DiventiUserUpdateView.as_view(), name='update'),
     url(_(r'^privacy-change/ajax/$'), change_privacy_ajax, name='change_privacy_ajax'),
     url(_(r'^(?P<pk>\d+)/delete/$'), DiventiUserDeleteView.as_view(), name='delete'),
+    url(_(r'^emails/$'), EmailPageView.as_view(), name='emails'),
 ]

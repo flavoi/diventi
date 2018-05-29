@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
@@ -19,7 +20,7 @@ from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 from .models import DiventiUser, DiventiAvatar, Achievement
 from .forms import DiventiUserCreationForm, DiventiUserUpdateForm, DiventiUserPrivacyChangeForm
 from .utils import get_user_data
-from diventi.core.views import DiventiActionMixin
+from diventi.core.views import DiventiActionMixin, StaffRequiredMixin
 from diventi.products.models import Product
 from diventi.comments.models import DiventiComment
 
@@ -199,4 +200,17 @@ class DiventiUserDeleteView(LoginRequiredMixin, DiventiActionMixin, DeleteView):
     def get_success_url(self):
         messages.success(self.request, self.success_msg)
         return super(DiventiUserDeleteView, self).get_success_url()
+
+
+class EmailPageView(StaffRequiredMixin, TemplateView):
+
+    template_name = "emails.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        users = DiventiUser.objects.all()
+        users = users.filter(is_active=True)
+        users = users.filter(has_agreed_gdpr=True)
+        context['users'] = users
+        return context
     

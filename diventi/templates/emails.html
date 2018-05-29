@@ -1,0 +1,13 @@
+{% extends 'base_infos.html' %}
+{% load i18n %}
+
+{% block title %}Emails{% endblock title %}
+
+{% block info_title %}{% trans "Subscribers' emails" %}{% endblock info_title %}
+
+
+{% block info_content %}
+    {% for user in users %}
+        {{ user.email }}<br>
+    {% endfor%}
+{% endblock info_content %}

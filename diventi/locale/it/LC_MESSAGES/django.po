@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 15:43+0200\n"
+"POT-Creation-Date: 2018-05-29 19:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgstr "Si, mi interessa."
 msgid "No, don't send me emails."
 msgstr "No, non inviarmi email."
 
-#: diventi/accounts/forms.py:28 diventi/accounts/forms.py:69
+#: diventi/accounts/forms.py:28 diventi/accounts/forms.py:107
 msgid "Can we send you emails?"
 msgstr "Possiamo inviarti email?"
 
@@ -206,43 +206,49 @@ msgstr "^modifica-privacy/ajax/$"
 msgid "^(?P<pk>\\d+)/delete/$"
 msgstr "^(?P<pk>\\d+)/cancella/$"
 
-#: diventi/accounts/views.py:29
+#: diventi/accounts/urls.py:17
+#, fuzzy
+#| msgid "email"
+msgid "^emails/$"
+msgstr "email"
+
+#: diventi/accounts/views.py:31
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:30
+#: diventi/accounts/views.py:32
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:69
+#: diventi/accounts/views.py:71
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:94
+#: diventi/accounts/views.py:96
 msgid "Your privacy was successfully updated!"
 msgstr "La tua privacy è stata aggiornata!"
 
-#: diventi/accounts/views.py:112
+#: diventi/accounts/views.py:114
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:113
+#: diventi/accounts/views.py:115
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:150
+#: diventi/accounts/views.py:152
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:151
+#: diventi/accounts/views.py:153
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:163
+#: diventi/accounts/views.py:165
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:187
+#: diventi/accounts/views.py:191
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
@@ -341,15 +347,15 @@ msgstr "^(?P<slug>[-\\w]+)/promuovi/$"
 msgid "^(?P<slug>[-\\w]+)/promote/api/$"
 msgstr "^(?P<slug>[-\\w]+)/promuovi/api/$"
 
-#: diventi/comments/apps.py:7 diventi/comments/models.py:18
+#: diventi/comments/apps.py:7 diventi/comments/models.py:19
 msgid "comments"
 msgstr "commenti"
 
-#: diventi/comments/models.py:11
+#: diventi/comments/models.py:12
 msgid "parent"
 msgstr "nodo padre"
 
-#: diventi/comments/models.py:17
+#: diventi/comments/models.py:18
 msgid "comment"
 msgstr "commento"
 
@@ -782,7 +788,8 @@ msgid ""
 "We don't sell your data to others. Feel free to tell us what we can use, you "
 "can always change your mind later."
 msgstr ""
-"Noi non vendiamo i tuoi dati a terzi. Facci sapere se possiamo utilizzarli, potrai sempre cambiare idea in un secondo momento."
+"Noi non vendiamo i tuoi dati a terzi. Facci sapere se possiamo utilizzarli, "
+"potrai sempre cambiare idea in un secondo momento."
 
 #: diventi/templates/accounts/user_privacy.html:38
 msgid "Update profile"
@@ -876,6 +883,10 @@ msgstr "alla pagina precedente"
 #: diventi/templates/comments/tree.html:35
 msgid "Show replies"
 msgstr "Mostra le risposte"
+
+#: diventi/templates/emails.html:6
+msgid "Subscribers' emails"
+msgstr "Email degli iscritti"
 
 #: diventi/templates/footer.html:6
 msgid "Made with passion by Diventi's team"

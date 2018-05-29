@@ -8,7 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] → 2018-xx-xx
 
-
 ### Added
 - Upgraded the development framework from django 1.11 to django 2.0
 - Introduced a customization field that lets the user control his favourite language

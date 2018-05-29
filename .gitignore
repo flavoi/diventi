@@ -5,8 +5,9 @@ diventi/staticfiles/*
 latest.dump
 diventi.sqlite
 
-# Vagrat
+# Vagrant
 .vagrant/*
+Varantfile
 
 # Python bytecode
 *.py[co]

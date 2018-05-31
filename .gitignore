@@ -7,7 +7,7 @@ diventi.sqlite
 
 # Vagrant
 .vagrant/*
-Varantfile
+Vagrantfile
 
 # Python bytecode
 *.py[co]

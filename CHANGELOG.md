@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed a problem that caused user forms to fail badly
+- Fixed a problem that made the sign-in form to freeze at the blog page
 
 
 ## [1.0.0-beta.2] → 2018-03-30

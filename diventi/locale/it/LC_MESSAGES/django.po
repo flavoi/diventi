@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-29 19:15+0200\n"
+"POT-Creation-Date: 2018-06-07 08:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -207,10 +207,8 @@ msgid "^(?P<pk>\\d+)/delete/$"
 msgstr "^(?P<pk>\\d+)/cancella/$"
 
 #: diventi/accounts/urls.py:17
-#, fuzzy
-#| msgid "email"
-msgid "^emails/$"
-msgstr "email"
+msgid "^subscribers/$"
+msgstr "^iscritti/$"
 
 #: diventi/accounts/views.py:31
 msgid "You have signed in!"
@@ -679,6 +677,11 @@ msgstr ""
 msgid "Get Started"
 msgstr "Iniziamo"
 
+#: diventi/templates/accounts/subscribers.html:4
+#: diventi/templates/accounts/subscribers.html:6
+msgid "Subscribers"
+msgstr "Iscritti"
+
 #: diventi/templates/accounts/user.html:10
 msgid "Profile"
 msgstr "Profilo"
@@ -883,10 +886,6 @@ msgstr "alla pagina precedente"
 #: diventi/templates/comments/tree.html:35
 msgid "Show replies"
 msgstr "Mostra le risposte"
-
-#: diventi/templates/emails.html:6
-msgid "Subscribers' emails"
-msgstr "Email degli iscritti"
 
 #: diventi/templates/footer.html:6
 msgid "Made with passion by Diventi's team"

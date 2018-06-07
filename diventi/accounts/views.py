@@ -204,7 +204,7 @@ class DiventiUserDeleteView(LoginRequiredMixin, DiventiActionMixin, DeleteView):
 
 class EmailPageView(StaffRequiredMixin, TemplateView):
 
-    template_name = "emails.html"
+    template_name = "accounts/subscribers.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

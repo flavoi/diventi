@@ -14,5 +14,5 @@ urlpatterns = [
     url(_(r'^(?P<pk>\d+)/update/$'), DiventiUserUpdateView.as_view(), name='update'),
     url(_(r'^privacy-change/ajax/$'), change_privacy_ajax, name='change_privacy_ajax'),
     url(_(r'^(?P<pk>\d+)/delete/$'), DiventiUserDeleteView.as_view(), name='delete'),
-    url(_(r'^emails/$'), EmailPageView.as_view(), name='emails'),
+    url(_(r'^subscribers/$'), EmailPageView.as_view(), name='subscribers'),
 ]

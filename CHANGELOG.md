@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enabled dev folder for development media files
 - Moved articles label to the bottom of the content section
 - Enabled asyncronous response to the privacy user form
+- Updated fontawesome origin from aws to cdn
 
 ### Fixed
 - Fixed a problem that caused user forms to fail badly

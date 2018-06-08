@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-08 07:52+0200\n"
+"POT-Creation-Date: 2018-06-08 08:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -624,8 +624,8 @@ msgid "Collection"
 msgstr "Collezione"
 
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:78
-#: diventi/templates/products/product_detail.html:132
+#: diventi/templates/navigation.html:73
+#: diventi/templates/products/product_detail.html:141
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -688,13 +688,13 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
-#: diventi/templates/products/product_detail.html:179
+#: diventi/templates/products/product_detail.html:188
 msgid "Creator"
 msgstr "Autore"
 
 #: diventi/templates/accounts/user.html:51
 #: diventi/templates/accounts/user.html:83
-#: diventi/templates/products/product_detail.html:107
+#: diventi/templates/products/product_detail.html:112
 msgid "collection"
 msgstr "collezione"
 
@@ -893,7 +893,6 @@ msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
 #: diventi/templates/landing/feedback.html:6
-#: diventi/templates/navigation.html:51
 msgid "Feedback"
 msgstr ""
 
@@ -921,7 +920,7 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:71
-#: diventi/templates/navigation.html:68
+#: diventi/templates/navigation.html:63
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -949,7 +948,7 @@ msgstr ""
 msgid "Control panel"
 msgstr "Pannello di controllo"
 
-#: diventi/templates/navigation.html:71
+#: diventi/templates/navigation.html:66
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
@@ -957,23 +956,27 @@ msgstr "Annulla l'accesso"
 msgid "Description"
 msgstr "Descrizione"
 
-#: diventi/templates/products/product_detail.html:107
+#: diventi/templates/products/product_detail.html:108
+msgid "Leave a private feedback"
+msgstr "Lascia un feedback privato"
+
+#: diventi/templates/products/product_detail.html:113
 msgid "In your collection"
 msgstr "Nella tua collezione"
 
-#: diventi/templates/products/product_detail.html:113
+#: diventi/templates/products/product_detail.html:121
 msgid "Remove this product from your collection"
 msgstr "Rimuovi questo prodotto dalla tua collezione"
 
-#: diventi/templates/products/product_detail.html:122
+#: diventi/templates/products/product_detail.html:131
 msgid "Add this product to your collection"
 msgstr "Aggiungi questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:132
+#: diventi/templates/products/product_detail.html:141
 msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:164
+#: diventi/templates/products/product_detail.html:173
 msgid "Content creators"
 msgstr "Autori"
 

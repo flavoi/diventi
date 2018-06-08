@@ -31,11 +31,20 @@
             </li>
             {% if user.is_authenticated %}
                 {% if user.is_staff %}              
-                    <li class="nav-item"> 
-                        <a href="{% url 'admin:index' %}" class="nav-link">
-                            <i class="fal fa-cog fa-lg fa-fw"></i> {% trans "Dashboard" %}
-                        </a>
-                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="StaffDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fal fa-toolbox fa-lg fa-fw"></i> {% trans "Staff" %}
+                        </a>                        
+                        <div class="dropdown-menu" aria-labelledby="StaffDropdown">
+                            <a href="{% url 'admin:index' %}" class="dropdown-item">
+                                {% trans "Control panel" %}
+                            </a>
+                            <a href="{% url 'accounts:subscribers' %}" class="dropdown-item">
+                                {% trans "Subscribers" %}
+                            </a>
+                        </div>
+                    </li> 
+                    
                 {% endif %}
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#feedbackModal" class="nav-link">

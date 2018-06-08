@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-07 08:33+0200\n"
+"POT-Creation-Date: 2018-06-08 07:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,8 +376,8 @@ msgid "Comment has been promoted!"
 msgstr "Il commento è stato promosso!"
 
 #: diventi/core/admin.py:6 diventi/core/admin.py:7
-msgid "Diventi's Dashboard"
-msgstr "Diventi: Quadro"
+msgid "Diventi Control Panel"
+msgstr "Diventi: pannello di controllo"
 
 #: diventi/core/models.py:12
 msgid "Blue"
@@ -624,7 +624,7 @@ msgid "Collection"
 msgstr "Collezione"
 
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:69
+#: diventi/templates/navigation.html:78
 #: diventi/templates/products/product_detail.html:132
 msgid "Sign in"
 msgstr "Accedi"
@@ -679,6 +679,7 @@ msgstr "Iniziamo"
 
 #: diventi/templates/accounts/subscribers.html:4
 #: diventi/templates/accounts/subscribers.html:6
+#: diventi/templates/navigation.html:43
 msgid "Subscribers"
 msgstr "Iscritti"
 
@@ -892,7 +893,7 @@ msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
 #: diventi/templates/landing/feedback.html:6
-#: diventi/templates/navigation.html:42
+#: diventi/templates/navigation.html:51
 msgid "Feedback"
 msgstr ""
 
@@ -920,7 +921,7 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:71
-#: diventi/templates/navigation.html:59
+#: diventi/templates/navigation.html:68
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -941,10 +942,14 @@ msgid "Search"
 msgstr "Cerca"
 
 #: diventi/templates/navigation.html:36
-msgid "Dashboard"
-msgstr "Quadro"
+msgid "Staff"
+msgstr ""
 
-#: diventi/templates/navigation.html:62
+#: diventi/templates/navigation.html:40
+msgid "Control panel"
+msgstr "Pannello di controllo"
+
+#: diventi/templates/navigation.html:71
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
@@ -991,6 +996,12 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Diventi's Dashboard"
+#~ msgstr "Diventi: Quadro"
+
+#~ msgid "Dashboard"
+#~ msgstr "Quadro"
 
 #~ msgid "^ratings/"
 #~ msgstr "^recensioni/"

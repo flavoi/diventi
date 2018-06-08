@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Upgraded the development framework from django 1.11 to django 2.0
 - Introduced a customization field that lets the user control his favourite language
 - Introduced a privacy section that lets the user control and delete its own data
-- Introduced a staff-only page that collects subscribers emails
+- Introduced a staff only page that returns all subscribers emails
 
 ### Changed
 - Enabled localization for product files

@@ -3,8 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 from modeltranslation.admin import TranslationAdmin
 
-admin.site.site_header = _("Diventi's Dashboard")
-admin.site.site_title = _("Diventi's Dashboard")
+admin.site.site_header = _("Diventi Control Panel")
+admin.site.site_title = _("Diventi Control Panel")
 
 
 class DiventiTranslationAdmin(TranslationAdmin):

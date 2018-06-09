@@ -33,7 +33,7 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
     url(r'^', include('diventi.landing.urls', namespace='landing')),
-    url(_(r'^dashboard/'), admin.site.urls),
+    url(_(r'^control-panel/'), admin.site.urls),
     url(_(r'^accounts/'), include('diventi.accounts.urls', namespace='accounts')),
     url(_(r'^blog/'), include('diventi.blog.urls', namespace='blog')),
     url(_(r'^products/'), include('diventi.products.urls', namespace='products')),

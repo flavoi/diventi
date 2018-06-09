@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-08 08:22+0200\n"
+"POT-Creation-Date: 2018-06-09 15:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,8 +27,8 @@ msgid "English"
 msgstr "Inglese"
 
 #: config/urls.py:36
-msgid "^dashboard/"
-msgstr "^quadro/"
+msgid "^control-panel/"
+msgstr "^pannello-di-controllo/"
 
 #: config/urls.py:37
 msgid "^accounts/"
@@ -624,7 +624,7 @@ msgid "Collection"
 msgstr "Collezione"
 
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:73
+#: diventi/templates/navigation.html:72
 #: diventi/templates/products/product_detail.html:141
 msgid "Sign in"
 msgstr "Accedi"
@@ -920,7 +920,7 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:71
-#: diventi/templates/navigation.html:63
+#: diventi/templates/navigation.html:62
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -948,7 +948,7 @@ msgstr ""
 msgid "Control panel"
 msgstr "Pannello di controllo"
 
-#: diventi/templates/navigation.html:66
+#: diventi/templates/navigation.html:65
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
@@ -961,8 +961,8 @@ msgid "Leave a private feedback"
 msgstr "Lascia un feedback privato"
 
 #: diventi/templates/products/product_detail.html:113
-msgid "In your collection"
-msgstr "Nella tua collezione"
+msgid "View this product in your collection"
+msgstr "Visualizza questo prodotto nella tua collezione"
 
 #: diventi/templates/products/product_detail.html:121
 msgid "Remove this product from your collection"
@@ -999,6 +999,12 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "^dashboard/"
+#~ msgstr "^quadro/"
+
+#~ msgid "In your collection"
+#~ msgstr "Nella tua collezione"
 
 #~ msgid "Diventi's Dashboard"
 #~ msgstr "Diventi: Quadro"

@@ -9,6 +9,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import (
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView
+)
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
@@ -213,4 +219,28 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
         users = users.filter(has_agreed_gdpr=True)
         context['users'] = users
         return context
+
+
+class DiventiPasswordResetView(PasswordResetView):
+    
+    template_name = 'accounts/password_reset_form.html'
+    email_template_name = 'accounts/password_reset_email.html'
+    success_url = reverse_lazy('accounts:password_reset_done')
+
+
+class DiventiPasswordResetDoneView(PasswordResetDoneView):
+
+    template_name = 'accounts/password_reset_done.html'
+
+
+class DiventiPasswordResetConfirmView(PasswordResetConfirmView):
+
+    template_name='accounts/password_reset_confirm.html'
+    success_url = reverse_lazy('accounts:password_reset_complete')
+
+
+class DiventiPasswordResetCompleteView(PasswordResetCompleteView):
+
+    template_name='accounts/password_reset_complete.html'
+
     

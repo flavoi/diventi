@@ -53,3 +53,6 @@ MEDIAFILES_LOCATION = 'dev/media'
 MEDIA_ROOT = '/%s/' % MEDIAFILES_LOCATION
 DEFAULT_FILE_STORAGE = 'diventi.core.storages.MediaStorage'
 MEDIA_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+
+# Email backend for testing and development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

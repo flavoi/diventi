@@ -1,11 +1,12 @@
+{% load i18n %}
 {% extends 'base_info.html' %}
 
 {% block title %}403{% endblock title %}
 
 {% block pageheader_title %}
-    Error 403: Access Denied
+    {% trans "Error 403: Access Denied" %}
 {% endblock pageheader_title %}
 
 {% block pageheader_content %}
-    The requested resource requires an authentication.
+    {% trans "The requested resource requires an authentication." %}
 {% endblock pageheader_content %}

@@ -1,12 +1,13 @@
+{% load i18n %}
 {% extends 'base_info.html' %}
 
 {% block title %}500{% endblock title %}
 
 {% block pageheader_title %}
-    Error 500: Webservice currently unavailable
+    {% trans "Error 500: Webservice currently unavailable" %}
 {% endblock pageheader_title %}
 
 {% block pageheader_content %}
-    An unexpected condition was encountered. <br />
-    Our service team has been dispatched to bring it back online.
+    {% trans "An unexpected condition was encountered." %} <br />
+    {% trans "Our service team has been dispatched to bring it back online." %}
 {% endblock pageheader_content %}

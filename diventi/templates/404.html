@@ -1,11 +1,12 @@
+{% load i18n %}
 {% extends 'base_info.html' %}
 
 {% block title %}404{% endblock title %}
 
 {% block pageheader_title %}
-    Error 404: Resource not found
+    {% trans "Error 404: Resource not found" %}
 {% endblock pageheader_title %}
 
 {% block pageheader_content %}
-    The requested resource could not be found but may be available again in the future.
+    {% trans "The requested resource could not be found but may be available again in the future." %}
 {% endblock pageheader_content %}

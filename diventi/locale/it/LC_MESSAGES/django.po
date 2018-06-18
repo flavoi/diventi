@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-09 15:08+0200\n"
+"POT-Creation-Date: 2018-06-18 15:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,7 @@ msgid "Your name"
 msgstr "Il tuo nome"
 
 #: diventi/accounts/forms.py:32 diventi/accounts/forms.py:57
+#: diventi/templates/accounts/password_reset_form.html:50
 #: diventi/templates/accounts/signin.html:38
 msgid "Your email"
 msgstr "La tua email"
@@ -139,8 +140,8 @@ msgid "language"
 msgstr "lingua"
 
 #: diventi/accounts/models.py:84
-msgid "can we send you confidential emails?"
-msgstr "possiamo inviarti email riservate agli iscritti?"
+msgid "subscriber status"
+msgstr "privilegi di iscritto"
 
 #: diventi/accounts/models.py:85
 msgid "avatar"
@@ -174,79 +175,99 @@ msgstr "Utenti"
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/urls.py:9
+#: diventi/accounts/urls.py:23
 msgid "^signin/$"
 msgstr "^accedi/$"
 
-#: diventi/accounts/urls.py:10
+#: diventi/accounts/urls.py:24
 msgid "^signout/$"
 msgstr "^annulla-accesso/$"
 
-#: diventi/accounts/urls.py:11
+#: diventi/accounts/urls.py:25
 msgid "^password-change/ajax/$"
 msgstr "^modifica-password/ajax/$"
 
-#: diventi/accounts/urls.py:12
+#: diventi/accounts/urls.py:26
 msgid "^signup/$"
 msgstr "^registrati/$"
 
-#: diventi/accounts/urls.py:13
+#: diventi/accounts/urls.py:27
 msgid "^(?P<pk>\\d+)/$"
 msgstr "^(?P<pk>\\d+)/$"
 
-#: diventi/accounts/urls.py:14
+#: diventi/accounts/urls.py:28
 msgid "^(?P<pk>\\d+)/update/$"
 msgstr "^(?P<pk>\\d+)/aggiorna/$"
 
-#: diventi/accounts/urls.py:15
+#: diventi/accounts/urls.py:29
 msgid "^privacy-change/ajax/$"
 msgstr "^modifica-privacy/ajax/$"
 
-#: diventi/accounts/urls.py:16
+#: diventi/accounts/urls.py:30
 msgid "^(?P<pk>\\d+)/delete/$"
 msgstr "^(?P<pk>\\d+)/cancella/$"
 
-#: diventi/accounts/urls.py:17
+#: diventi/accounts/urls.py:31
 msgid "^subscribers/$"
 msgstr "^iscritti/$"
 
-#: diventi/accounts/views.py:31
+#: diventi/accounts/urls.py:32
+msgid "^password-reset/$"
+msgstr "^password-reset/$"
+
+#: diventi/accounts/urls.py:33
+msgid "^password-reset/done/$"
+msgstr "^password-reset/completato/$"
+
+#: diventi/accounts/urls.py:34
+msgid ""
+"^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
+"{1,20})/$"
+msgstr ""
+"^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
+"{1,20})/$"
+
+#: diventi/accounts/urls.py:35
+msgid "^reset/done/$"
+msgstr "^reset/completato/$"
+
+#: diventi/accounts/views.py:37
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:32
+#: diventi/accounts/views.py:38
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:71
+#: diventi/accounts/views.py:77
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:96
+#: diventi/accounts/views.py:102
 msgid "Your privacy was successfully updated!"
 msgstr "La tua privacy è stata aggiornata!"
 
-#: diventi/accounts/views.py:114
+#: diventi/accounts/views.py:120
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:115
+#: diventi/accounts/views.py:121
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:152
+#: diventi/accounts/views.py:158
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:153
+#: diventi/accounts/views.py:159
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:165
+#: diventi/accounts/views.py:171
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:191
+#: diventi/accounts/views.py:197
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
@@ -505,11 +526,11 @@ msgstr "^cerca/$"
 
 #: diventi/landing/urls.py:12
 msgid "^feedback/$"
-msgstr ""
+msgstr "^feedback/$"
 
 #: diventi/landing/views.py:36
 msgid "Please double check your email."
-msgstr ""
+msgstr "Per favore controlla la tua email."
 
 #: diventi/landing/views.py:105
 msgid "You feedback has been sent!"
@@ -618,16 +639,144 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
+#: diventi/templates/403.html:7
+msgid "Error 403: Access Denied"
+msgstr "Errore 403: Accesso Negato"
+
+#: diventi/templates/403.html:11
+msgid "The requested resource requires an authentication."
+msgstr "La risorsa richiesta richiede autenticazione."
+
+#: diventi/templates/404.html:7
+msgid "Error 404: Resource not found"
+msgstr "Errore 404: Risorsa non trovata"
+
+#: diventi/templates/404.html:11
+msgid ""
+"The requested resource could not be found but may be available again in the "
+"future."
+msgstr ""
+"La risorsa richiesta non è stata trovata ma potrebbe tornare disponibile in "
+"futuro."
+
+#: diventi/templates/500.html:7
+msgid "Error 500: Webservice currently unavailable"
+msgstr "Errore 500: Webservice attualmente non disponibile"
+
+#: diventi/templates/500.html:11
+msgid "An unexpected condition was encountered."
+msgstr "Si è verificata una condizione inaspettata."
+
+#: diventi/templates/500.html:12
+msgid "Our service team has been dispatched to bring it back online."
+msgstr ""
+"Il nostro team di assistenza è stato attivato per ripristinare il sistema."
+
 #: diventi/templates/accounts/detail.html:24
 #: diventi/templates/accounts/user.html:54
 msgid "Collection"
 msgstr "Collezione"
 
+#: diventi/templates/accounts/password_reset_complete.html:4
+#: diventi/templates/accounts/password_reset_done.html:4
+msgid "Password reset"
+msgstr "Reset password"
+
+#: diventi/templates/accounts/password_reset_complete.html:9
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
+
+#: diventi/templates/accounts/password_reset_complete.html:12
 #: diventi/templates/accounts/signin.html:11
 #: diventi/templates/navigation.html:72
 #: diventi/templates/products/product_detail.html:141
 msgid "Sign in"
 msgstr "Accedi"
+
+#: diventi/templates/accounts/password_reset_confirm.html:38
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Per favore riporta la tua nuova password due volte cosicché possiamo "
+"verificarne la correttezza."
+
+#: diventi/templates/accounts/password_reset_confirm.html:49
+msgid "New password:"
+msgstr "Nuova password:"
+
+#: diventi/templates/accounts/password_reset_confirm.html:59
+msgid "Confirm password:"
+msgstr "Conferma nuova password:"
+
+#: diventi/templates/accounts/password_reset_confirm.html:64
+msgid "Change my password"
+msgstr "Modifica la mia password"
+
+#: diventi/templates/accounts/password_reset_confirm.html:73
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"Il link al reset password non è valido, probabilmente è già stato usato. Per "
+"favore richiedi un nuovo reset password."
+
+#: diventi/templates/accounts/password_reset_done.html:9
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+"Ti abbiamo spedito una email con le istruzioni sulla tua nuova password. "
+"Dovresti riceverla a breve."
+
+#: diventi/templates/accounts/password_reset_done.html:10
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"Se non ricevi alcuna email, per favore assicurati di aver digitato "
+"correttamente la tua email e di aver verificato la cartella spam."
+
+#: diventi/templates/accounts/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"Stai ricevendo questa email perché hai richiesto un reset password per il "
+"tuo profilo %(site_name)s."
+
+#: diventi/templates/accounts/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr "Per favore accedi alla seguente pagina e digita la tua nuova password:"
+
+#: diventi/templates/accounts/password_reset_email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr "Il tuo nome utente, nel caso tu te lo fossi dimenticato:"
+
+#: diventi/templates/accounts/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr "Grazie per aver navigato con noi!"
+
+#: diventi/templates/accounts/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "Il team %(site_name)s"
+
+#: diventi/templates/accounts/password_reset_form.html:39
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+"Hai dimenticato la password? Digita la tua email qui sotto, ti invieremo le "
+"istruzioni per crearne una nuova."
+
+#: diventi/templates/accounts/password_reset_form.html:55
+#: diventi/templates/accounts/signin.html:61
+#: diventi/templates/accounts/user.html:147
+#: diventi/templates/accounts/user_credentials.html:33
+msgid "Confirm"
+msgstr "Conferma"
 
 #: diventi/templates/accounts/signin.html:55
 msgid "No account yet? Then"
@@ -641,21 +790,23 @@ msgstr "registrati"
 msgid "first"
 msgstr "subito"
 
-#: diventi/templates/accounts/signin.html:60
-#: diventi/templates/accounts/user.html:147
-#: diventi/templates/accounts/user_credentials.html:33
-msgid "Confirm"
-msgstr "Conferma"
+#: diventi/templates/accounts/signin.html:56
+msgid "Lost your password? Then"
+msgstr "Hai perso la tua password? Allora"
 
-#: diventi/templates/accounts/signout.html:21
+#: diventi/templates/accounts/signin.html:56
+msgid "request a reset here"
+msgstr "richiedi un reset qui"
+
+#: diventi/templates/accounts/signout.html:20
 msgid "Sign out completed"
 msgstr "Accesso annullato"
 
-#: diventi/templates/accounts/signout.html:25
+#: diventi/templates/accounts/signout.html:24
 msgid "You can now leave the page or return"
 msgstr "Ora puoi lasciare la pagina oppure ritornare"
 
-#: diventi/templates/accounts/signout.html:26
+#: diventi/templates/accounts/signout.html:25
 msgid "to the homepage"
 msgstr "alla pagina iniziale"
 
@@ -673,7 +824,7 @@ msgstr ""
 "Inviamo una media di 2 email al mese, rispondendo a domande e promuovendo "
 "nuovi contenuti."
 
-#: diventi/templates/accounts/signup.html:133
+#: diventi/templates/accounts/signup.html:135
 msgid "Get Started"
 msgstr "Iniziamo"
 
@@ -719,11 +870,11 @@ msgstr "Credenziali"
 #: diventi/templates/accounts/user.html:72
 #: diventi/templates/accounts/user.html:110
 msgid "privacy"
-msgstr ""
+msgstr "privacy"
 
 #: diventi/templates/accounts/user.html:75
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 #: diventi/templates/accounts/user.html:135
 #: diventi/templates/accounts/user_privacy.html:51
@@ -894,7 +1045,7 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 
 #: diventi/templates/landing/feedback.html:6
 msgid "Feedback"
-msgstr ""
+msgstr "Feedback"
 
 #: diventi/templates/landing/feedback.html:22
 msgid "feedback count"
@@ -942,7 +1093,7 @@ msgstr "Cerca"
 
 #: diventi/templates/navigation.html:36
 msgid "Staff"
-msgstr ""
+msgstr "Staff"
 
 #: diventi/templates/navigation.html:40
 msgid "Control panel"
@@ -1000,6 +1151,18 @@ msgstr "Il tuo voto: "
 msgid "not rated"
 msgstr "nessun voto rilevato"
 
+#~ msgid "reset it now"
+#~ msgstr "resettala ora"
+
+#~ msgid "The playdiventi.it team"
+#~ msgstr "Il team playdiventi.it"
+
+#~ msgid "La tua email"
+#~ msgstr "La tua email"
+
+#~ msgid "can we send you confidential emails?"
+#~ msgstr "possiamo inviarti email riservate agli iscritti?"
+
 #~ msgid "^dashboard/"
 #~ msgstr "^quadro/"
 
@@ -1014,9 +1177,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "^ratings/"
 #~ msgstr "^recensioni/"
-
-#~ msgid "^password-change/$"
-#~ msgstr "^modifica-password/$"
 
 #~ msgid "Contact us"
 #~ msgstr "Contattaci"

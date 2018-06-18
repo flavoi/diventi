@@ -29,8 +29,8 @@ urlpatterns = [
     url(_(r'^privacy-change/ajax/$'), change_privacy_ajax, name='change_privacy_ajax'),
     url(_(r'^(?P<pk>\d+)/delete/$'), DiventiUserDeleteView.as_view(), name='delete'),
     url(_(r'^subscribers/$'), EmailPageView.as_view(), name='subscribers'),
-    url(r'^password-reset/$', DiventiPasswordResetView.as_view(), name='password_reset'),
-    url(r'^password-reset/done/$', DiventiPasswordResetDoneView.as_view(), name='password_reset_done'),
-    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', DiventiPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    url(r'^reset/done/$', DiventiPasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    url(_(r'^password-reset/$'), DiventiPasswordResetView.as_view(), name='password_reset'),
+    url(_(r'^password-reset/done/$'), DiventiPasswordResetDoneView.as_view(), name='password_reset_done'),
+    url(_(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'), DiventiPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    url(_(r'^reset/done/$'), DiventiPasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]

@@ -81,7 +81,7 @@ class Achievement(Element):
 class DiventiUser(AbstractUser): 
     email = models.EmailField(unique=True, verbose_name=_('email'))
     language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
-    has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('can we send you confidential emails?'))
+    has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('subscriber status'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
     cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
     profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) #  Staff use only

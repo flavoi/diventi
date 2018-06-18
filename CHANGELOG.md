@@ -12,7 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Upgraded the development framework from django 1.11 to django 2.0
 - Introduced a customization field that lets the user control his favourite language
 - Introduced a privacy section that lets the user control and delete its own data
-- Introduced a staff only page that returns all subscribers emails
+- Introduced a staff-only page that returns all subscribers emails
+- Introduced a password reset option in the login modal
 
 ### Changed
 - Enabled localization for product files
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Moved the feedback button from the navbar to the product page
 - Updated fontawesome host from aws to cdn
 - Updated error pages 403, 404 and 500 with translations and cleaner layout
+- Updated admin list display for users data 
 
 ### Fixed
 - Fixed a problem that caused user forms to fail badly

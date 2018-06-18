@@ -29,7 +29,7 @@ class DiventiUserAdmin(UserAdmin):
     form = auth_admin.UserChangeForm
     add_form = auth_admin.UserCreationForm
     change_password_form = auth_admin.AdminPasswordChangeForm
-    list_display = ('email', 'first_name', 'language', 'has_agreed_gdpr', 'is_superuser')
+    list_display = ('email', 'first_name', 'last_login', 'date_joined', 'language', 'has_agreed_gdpr', 'is_superuser')
     list_filter = ('role', 'is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('first_name', 'last_name', 'email')
     ordering = ('email',)

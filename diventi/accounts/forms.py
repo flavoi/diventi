@@ -14,7 +14,7 @@ BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me 
 
 
 class DiventiUserCreationForm(UserCreationForm):
-    
+
     captcha = ReCaptchaField(
         attrs={
             'theme' : 'light',

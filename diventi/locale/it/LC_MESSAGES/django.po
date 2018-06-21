@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-18 15:39+0200\n"
+"POT-Creation-Date: 2018-06-21 08:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -682,11 +682,11 @@ msgstr "Collezione"
 msgid "Password reset"
 msgstr "Reset password"
 
-#: diventi/templates/accounts/password_reset_complete.html:9
+#: diventi/templates/accounts/password_reset_complete.html:12
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 
-#: diventi/templates/accounts/password_reset_complete.html:12
+#: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:11
 #: diventi/templates/navigation.html:72
 #: diventi/templates/products/product_detail.html:141
@@ -771,6 +771,10 @@ msgstr ""
 "Hai dimenticato la password? Digita la tua email qui sotto, ti invieremo le "
 "istruzioni per crearne una nuova."
 
+#: diventi/templates/accounts/password_reset_form.html:54
+msgid "Sending"
+msgstr "Invio"
+
 #: diventi/templates/accounts/password_reset_form.html:55
 #: diventi/templates/accounts/signin.html:61
 #: diventi/templates/accounts/user.html:147
@@ -829,7 +833,7 @@ msgid "Get Started"
 msgstr "Iniziamo"
 
 #: diventi/templates/accounts/subscribers.html:4
-#: diventi/templates/accounts/subscribers.html:6
+#: diventi/templates/accounts/subscribers.html:7
 #: diventi/templates/navigation.html:43
 msgid "Subscribers"
 msgstr "Iscritti"

@@ -82,14 +82,14 @@
             <div class="tab-content tab-space">
                 <div class="tab-pane active work" id="{% trans 'collection' %}" >
                     <div class="row">
-                        <div class="col-md-10 mr-auto ml-auto">
+                        <div class="col-sm-12 col-md-12 col-lg-10 mr-auto ml-auto">
                             {% include 'accounts/user_collection.html' %}
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane connections" id="{% trans 'customization' %}">
                     <div class="row">
-                        <div class="col-md-10 ml-auto mr-auto">
+                        <div class="col-sm-12 col-md-12 col-lg-10 ml-auto mr-auto">
                             <form method="post" action="{% url 'accounts:update' object.pk %}">
                                 {% csrf_token %}
                                 {% include 'accounts/user_customization.html' %}
@@ -99,7 +99,7 @@
                 </div>
                 <div class="tab-pane" id="{% trans 'credentials' %}">
                     <div class="row">
-                        <div class="col-md-6 ml-auto mr-auto">
+                        <div class="col-sm-12 col-md-10 col-lg-6 ml-auto mr-auto">
                             <form method="POST" action="{% url 'accounts:change_password_ajax' %}" id="frmChangePW">
                                 {% csrf_token %}
                                 {% include 'accounts/user_credentials.html' %}
@@ -109,7 +109,7 @@
                 </div>
                 <div class="tab-pane" id="{% trans 'privacy' %}">
                     <div class="row">
-                        <div class="col-md-6 ml-auto mr-auto">
+                        <div class="col-sm-12 col-md-10 col-lg-6 ml-auto mr-auto">
                             <form method="POST" action="{% url 'accounts:change_privacy_ajax' %}" id="frmChangePrivacy">
                                 {% csrf_token %}
                                 {% include 'accounts/user_privacy.html' %}

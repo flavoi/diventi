@@ -1,12 +1,14 @@
-{% extends 'base_infos.html' %}
+{% extends 'base_info.html' %}
 {% load i18n %}
 
 {% block title %}{% trans "Subscribers" %}{% endblock title %}
 
-{% block info_title %}{% trans "Subscribers" %}{% endblock info_title %}
+{% block pageheader_title %}
+    {% trans "Subscribers" %}
+{% endblock pageheader_title %}
 
-{% block info_content %}
+{% block pageheader_content %}
     {% for user in users %}
         {{ user.email }}<br>
     {% endfor%}
-{% endblock info_content %}
+{% endblock pageheader_content %}

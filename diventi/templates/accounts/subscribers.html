@@ -13,7 +13,7 @@
     {% for ugroups in users_groups %}
     {% get_language_info for ugroups.language as lang %}
     <a class="btn btn-warning" href="mailto:{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
-        {% blocktrans %}Contact {{ lang.code }} subscribers{% endblocktrans %} <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
+        {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
     </a> &nbsp;
     {% endfor %}
 

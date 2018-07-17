@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 22:52+0200\n"
+"POT-Creation-Date: 2018-07-17 22:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -840,8 +840,8 @@ msgstr "Iscritti"
 
 #: diventi/templates/accounts/subscribers.html:16
 #, python-format
-msgid "Contact %(lang.code)s subscribers"
-msgstr "Contatta gli iscritti %(lang.code)s"
+msgid "Contact %(lang_code)s subscribers"
+msgstr "Contatta gli iscritti %(lang_code)s"
 
 #: diventi/templates/accounts/user.html:10
 msgid "Profile"

@@ -14,6 +14,19 @@ from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
 
 
+class DiventiUserQuerySet(models.QuerySet):
+    
+    def has_agreed_gdpr(self):
+        users = self.filter(is_active=True)
+        users = self.filter(has_agreed_gdpr=True)
+        return users
+
+    # Fetch all the achievements related to the user
+    def achievements(self):
+        user = self.prefetch_related('achievements')
+        return user
+
+
 class DiventiUserManager(BaseUserManager):
 
     def _create_user(self, email, password, **extra_fields):
@@ -38,11 +51,15 @@ class DiventiUserManager(BaseUserManager):
             raise ValueError(_('Superuser must have is_superuser=True.'))
         return self._create_user(email, password, **extra_fields)
 
-    # Fetch all the achievements related to the user
-    def achievements(self):
-        user = self.prefetch_related('achievements')
-        return user
+    def get_queryset(self):
+        return DiventiUserQuerySet(self.model, using=self._db)
 
+    def has_agreed_gdpr(self):
+        return self.get_queryset().has_agreed_gdpr()
+
+    def achievements(self):
+        return self.get_queryset().achievements()
+        
 
 class DiventiAvatarQuerySet(models.QuerySet):
 

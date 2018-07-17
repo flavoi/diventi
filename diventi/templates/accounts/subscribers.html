@@ -1,5 +1,6 @@
 {% extends 'base_info.html' %}
 {% load i18n %}
+{% load accounts_extras %}
 
 {% block title %}{% trans "Subscribers" %}{% endblock title %}
 
@@ -8,7 +9,12 @@
 {% endblock pageheader_title %}
 
 {% block pageheader_content %}
-    {% for user in users %}
-        {{ user.email }}<br>
-    {% endfor%}
+
+    {% for ugroups in users_groups %}
+    {% get_language_info for ugroups.language as lang %}
+    <a class="btn btn-warning" href="mailto:{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
+        Contact {{ lang.code }} subscribers <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
+    </a> &nbsp;
+    {% endfor %}
+
 {% endblock pageheader_content %}

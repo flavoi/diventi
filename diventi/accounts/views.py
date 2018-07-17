@@ -20,6 +20,7 @@ from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
+from django.db.models import Count, Sum
 
 from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
 
@@ -214,10 +215,15 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        users = DiventiUser.objects.all()
-        users = users.filter(is_active=True)
-        users = users.filter(has_agreed_gdpr=True)
-        context['users'] = users
+        users = DiventiUser.objects.all()        
+        users = users.has_agreed_gdpr()
+        users_groups = users.values('language').annotate(total=Count('email')).order_by('language')
+        users_lan = {}
+        for ugroup in users_groups:
+            lan = ugroup['language']
+            users_lan[lan] = users.filter(language=lan)
+        context['users_groups'] = users_groups
+        context['users_lan'] = users_lan
         return context
 
 

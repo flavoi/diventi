@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a privacy section that lets the user control and delete its own data
 - Introduced a staff-only page that returns all subscribers emails
 - Introduced a password reset option in the login modal
+- Introduced shortcut links to send emails to subscribers
 
 ### Changed
 - Enabled localization for product files

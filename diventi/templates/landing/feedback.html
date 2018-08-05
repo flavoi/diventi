@@ -11,7 +11,9 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-md-12">
-                Ciao {{ user.first_name }}, grazie fin da subito per la tua disponibilità. Diventi nasce come piccolo-grande sogno a cui teniamo molto.
+                {% blocktrans with user_name=user.first_name %}
+                    Hi {{ user_name }}, we thank you for your time. Please feel free to leave a feedback, this text won't be published.
+                {% endblocktrans %}
                 <div class="form-group has-warning"> 
                     {{ feedback_form.description }}
                 </div>

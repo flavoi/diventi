@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 22:55+0200\n"
+"POT-Creation-Date: 2018-08-05 17:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,90 +88,90 @@ msgstr "Qual è la tua storia?"
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
-#: diventi/accounts/models.py:37
+#: diventi/accounts/models.py:44
 msgid "The email must be set"
 msgstr "L'email deve essere valorizzata"
 
-#: diventi/accounts/models.py:49
+#: diventi/accounts/models.py:56
 msgid "Superuser must have is_staff=True."
 msgstr "Un amministratore deve essere impostato come is_staff=True."
 
-#: diventi/accounts/models.py:51
+#: diventi/accounts/models.py:58
 msgid "Superuser must have is_superuser=True."
 msgstr "Un amministratore deve essere impostato come is_superuser=True."
 
-#: diventi/accounts/models.py:73
+#: diventi/accounts/models.py:83
 msgid "staff_only"
 msgstr "riservato allo staff"
 
-#: diventi/accounts/models.py:78
+#: diventi/accounts/models.py:88
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:79
+#: diventi/accounts/models.py:89
 #: diventi/templates/accounts/user_customization.html:28
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:87
+#: diventi/accounts/models.py:97
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:88
+#: diventi/accounts/models.py:98
 #: diventi/templates/accounts/user_customization.html:43
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:94
+#: diventi/accounts/models.py:104
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:95
+#: diventi/accounts/models.py:105
 #: diventi/templates/accounts/user_achievements.html:4
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:99
+#: diventi/accounts/models.py:109
 msgid "email"
 msgstr "email"
 
-#: diventi/accounts/models.py:100
+#: diventi/accounts/models.py:110
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:101
+#: diventi/accounts/models.py:111
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:102
+#: diventi/accounts/models.py:112
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:103 diventi/landing/models.py:58
+#: diventi/accounts/models.py:113 diventi/landing/models.py:58
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:104
+#: diventi/accounts/models.py:114
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:105
+#: diventi/accounts/models.py:115
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:106
+#: diventi/accounts/models.py:116
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:115 diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:125 diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:116
+#: diventi/accounts/models.py:126
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:129
+#: diventi/accounts/models.py:139
 msgid "account"
 msgstr "profilo"
 
@@ -303,7 +303,7 @@ msgstr "Blog"
 msgid "There must be only one blog cover at a time. Please fix!"
 msgstr "Può esistere una sola copertina per volta."
 
-#: diventi/blog/models.py:71 diventi/landing/models.py:59
+#: diventi/blog/models.py:71 diventi/landing/models.py:60
 msgid "active"
 msgstr "attiva"
 
@@ -500,19 +500,23 @@ msgstr "feedback"
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:68
+#: diventi/landing/models.py:59 diventi/templates/landing/about.html:5
+msgid "about"
+msgstr ""
+
+#: diventi/landing/models.py:69
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:69
+#: diventi/landing/models.py:70
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:76
+#: diventi/landing/models.py:77
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:77
+#: diventi/landing/models.py:78
 msgid "features"
 msgstr "aspetti"
 
@@ -527,6 +531,12 @@ msgstr "^cerca/$"
 #: diventi/landing/urls.py:12
 msgid "^feedback/$"
 msgstr "^feedback/$"
+
+#: diventi/landing/urls.py:13
+#, fuzzy
+#| msgid "^signout/$"
+msgid "^about/$"
+msgstr "^annulla-accesso/$"
 
 #: diventi/landing/views.py:36
 msgid "Please double check your email."
@@ -848,6 +858,7 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
+#: diventi/templates/landing/about.html:43
 #: diventi/templates/products/product_detail.html:188
 msgid "Creator"
 msgstr "Autore"
@@ -1052,15 +1063,32 @@ msgstr "Mostra le risposte"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
+#: diventi/templates/landing/about.html:11
+msgid "About Us"
+msgstr ""
+
+#: diventi/templates/landing/about.html:12
+msgid "We, our group, our way of being: Diventi."
+msgstr ""
+
 #: diventi/templates/landing/feedback.html:6
 msgid "Feedback"
 msgstr "Feedback"
 
-#: diventi/templates/landing/feedback.html:22
+#: diventi/templates/landing/feedback.html:14
+#, python-format
+msgid ""
+"\n"
+"                    Hi %(user_name)s, we thank you for your time. Please "
+"feel free to tell us what you think, this feedback won't be published.\n"
+"                "
+msgstr ""
+
+#: diventi/templates/landing/feedback.html:24
 msgid "feedback count"
 msgstr "feedback inviati"
 
-#: diventi/templates/landing/feedback.html:24
+#: diventi/templates/landing/feedback.html:26
 msgid "Send"
 msgstr "Invia"
 

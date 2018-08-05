@@ -2,7 +2,7 @@ from itertools import chain
 
 from django.shortcuts import render, redirect, resolve_url
 from django.views.generic.detail import DetailView
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
@@ -115,3 +115,15 @@ class FeedbackCreationView(LoginRequiredMixin, CreateView):
         else:
             super().get_success_url()
 
+
+class AboutView(TemplateView):
+    """ Displays the about page. """
+    template_name = 'landing/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        authors = DiventiUser.objects.authors()
+        presentation = Presentation.objects.active()
+        context['presentation'] = presentation
+        context['authors'] = authors
+        return context

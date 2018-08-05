@@ -16,6 +16,7 @@ from diventi.products.models import Product
 
 class DiventiUserQuerySet(models.QuerySet):
     
+    # Fetch all users that agreed to GDPR
     def has_agreed_gdpr(self):
         users = self.filter(is_active=True)
         users = self.filter(has_agreed_gdpr=True)
@@ -25,6 +26,12 @@ class DiventiUserQuerySet(models.QuerySet):
     def achievements(self):
         user = self.prefetch_related('achievements')
         return user
+
+    # Fetch all users that made at least a product
+    def authors(self):
+        products = Product.objects.all()
+        users = self.filter(products__in=products)
+        return users
 
 
 class DiventiUserManager(BaseUserManager):
@@ -59,6 +66,9 @@ class DiventiUserManager(BaseUserManager):
 
     def achievements(self):
         return self.get_queryset().achievements()
+
+    def authors(self):
+        return self.get_queryset().authors()
         
 
 class DiventiAvatarQuerySet(models.QuerySet):

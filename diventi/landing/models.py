@@ -56,6 +56,7 @@ class Presentation(models.Model):
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
+    about = models.TextField(blank=True, verbose_name=_('about'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
     
 

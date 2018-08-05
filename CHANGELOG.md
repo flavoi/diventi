@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated fontawesome host from aws to cdn
 - Updated error pages 403, 404 and 500 with translations and cleaner layout
 - Updated admin list display for users data 
+- Enabled translation for users bio
 
 ### Fixed
 - Fixed a problem that caused user forms to fail badly

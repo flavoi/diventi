@@ -7,7 +7,7 @@ from diventi.core.admin import DiventiTranslationAdmin
 from .models import DiventiUser, DiventiAvatar, DiventiCover, Achievement
 
 
-class DiventiUserAdmin(UserAdmin):
+class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'language', 'has_agreed_gdpr', 'bio', 'avatar', 'cover', 'profilepic', 'role')}),

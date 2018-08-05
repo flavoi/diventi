@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a staff-only page that returns all subscribers emails
 - Introduced a password reset option in the login modal
 - Introduced shortcut links to send emails to subscribers
+- Introduced the about page with the summary of our project
 
 ### Changed
 - Enabled localization for product files

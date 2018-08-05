@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'about' %}{% endblock title %}
+
+{% block pageheadercontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h1 class="title">{% trans "About Us" %}</h1>
+                <h4>{% trans "We, our group, our way of being: Diventi." %}</h4>
+            </div>
+        </div>
+    </div>
+{% endblock pageheadercontent %}
+
+{% block maincontainer %}
+<div class="container">
+    <div class="section section-text">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 ml-auto mr-auto">         
+                <h5 class="description"> 
+                    {{ presentation.about }}
+                </h5>
+            </div>
+        </div>
+    </div>    
+
+     <div class="row">
+        {% for author in authors %}
+            <div class="col-md-4">
+                <div class="card card-profile card-plain">
+                    <div class="card-avatar">
+                        <a href="{{ author.get_absolute_url }}">
+                            {% if author.profilepic %}
+                                <img class="img" src="{{ author.profilepic.url }}">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title"><a href="{{ author.get_absolute_url }}">{{ author.get_full_name}}</a></h4>
+                        <h6 class="category text-rose">{% trans "Creator" %}</h6>
+                        <p class="card-description">
+                            {{ author.bio }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock maincontainer %}

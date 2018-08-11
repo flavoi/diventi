@@ -12,7 +12,7 @@ def get_user_data(context, user, loggeduser=None):
     context['achievements'] = achievements
     collection = Product.objects.user_collection(user=user)
     PUBLIC_FIELDS = [
-        'id', 'title', 'slug', 'category__title', 'description', 'image', 'file',
+        'id', 'title', 'slug', 'category__title', 'description', 'image', 'file', 'available', 'courtesy_message', 'created', 'modified'
     ]
     if loggeduser and loggeduser != user:
         PUBLIC_FIELDS.remove('file')

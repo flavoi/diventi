@@ -2,14 +2,16 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans 'about' %}{% endblock title %}
+{% block title %}{% trans 'About' %}{% endblock title %}
+
+{% block pageheaderimage %}{% if presentation.cover %}{{ presentation.cover.url }}{% endif %}{% endblock pageheaderimage %}
 
 {% block pageheadercontent %}
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
                 <h1 class="title">{% trans "About Us" %}</h1>
-                <h4>{% trans "We, our group, our way of being: Diventi." %}</h4>
+                <h4>{% trans "Be brave and roll the dice." %}</h4>
             </div>
         </div>
     </div>

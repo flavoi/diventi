@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-05 17:53+0200\n"
+"POT-Creation-Date: 2018-08-11 17:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -326,7 +326,7 @@ msgid "description"
 msgstr "descrizione"
 
 #: diventi/blog/models.py:94 diventi/products/models.py:64
-#: diventi/products/models.py:112
+#: diventi/products/models.py:115
 msgid "category"
 msgstr "tipo"
 
@@ -468,7 +468,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:127 diventi/products/models.py:132
+#: diventi/core/models.py:127 diventi/products/models.py:135
 msgid "Image"
 msgstr "Immagine"
 
@@ -500,9 +500,9 @@ msgstr "feedback"
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:59 diventi/templates/landing/about.html:5
+#: diventi/landing/models.py:59
 msgid "about"
-msgstr ""
+msgstr "su di noi"
 
 #: diventi/landing/models.py:69
 msgid "presentation"
@@ -533,10 +533,8 @@ msgid "^feedback/$"
 msgstr "^feedback/$"
 
 #: diventi/landing/urls.py:13
-#, fuzzy
-#| msgid "^signout/$"
 msgid "^about/$"
-msgstr "^annulla-accesso/$"
+msgstr "^su-di-noi/$"
 
 #: diventi/landing/views.py:36
 msgid "Please double check your email."
@@ -586,42 +584,50 @@ msgstr "acquirenti"
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:68 diventi/products/models.py:75
-#: diventi/products/models.py:111 diventi/products/models.py:121
-#: diventi/products/models.py:129
+#: diventi/products/models.py:65
+msgid "available"
+msgstr "disponibile"
+
+#: diventi/products/models.py:66
+msgid "courtesy message"
+msgstr "messaggio di cortesia"
+
+#: diventi/products/models.py:71 diventi/products/models.py:78
+#: diventi/products/models.py:114 diventi/products/models.py:124
+#: diventi/products/models.py:132
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/products/models.py:69
+#: diventi/products/models.py:72
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:105
+#: diventi/products/models.py:108
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:106
+#: diventi/products/models.py:109
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:115
+#: diventi/products/models.py:118
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:116
+#: diventi/products/models.py:119
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:124
+#: diventi/products/models.py:127
 msgid "Characteristic"
 msgstr "Caratteristica"
 
-#: diventi/products/models.py:125
-#: diventi/templates/products/product_detail.html:80
+#: diventi/products/models.py:128
+#: diventi/templates/products/product_detail.html:87
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/products/models.py:133
+#: diventi/products/models.py:136
 msgid "Images"
 msgstr "Immagini"
 
@@ -698,8 +704,8 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:72
-#: diventi/templates/products/product_detail.html:141
+#: diventi/templates/navigation.html:77
+#: diventi/templates/products/product_detail.html:148
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -844,7 +850,7 @@ msgstr "Iniziamo"
 
 #: diventi/templates/accounts/subscribers.html:5
 #: diventi/templates/accounts/subscribers.html:8
-#: diventi/templates/navigation.html:43
+#: diventi/templates/navigation.html:48
 msgid "Subscribers"
 msgstr "Iscritti"
 
@@ -858,14 +864,14 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
-#: diventi/templates/landing/about.html:43
-#: diventi/templates/products/product_detail.html:188
+#: diventi/templates/landing/about.html:45
+#: diventi/templates/products/product_detail.html:195
 msgid "Creator"
 msgstr "Autore"
 
 #: diventi/templates/accounts/user.html:51
 #: diventi/templates/accounts/user.html:83
-#: diventi/templates/products/product_detail.html:112
+#: diventi/templates/products/product_detail.html:119
 msgid "collection"
 msgstr "collezione"
 
@@ -921,11 +927,20 @@ msgstr ""
 msgid "Rollback"
 msgstr "Annulla"
 
-#: diventi/templates/accounts/user_collection.html:17
+#: diventi/templates/accounts/user_collection.html:11
+#: diventi/templates/products/product_detail.html:57
+msgid "under maintenance"
+msgstr "in manutenzione"
+
+#: diventi/templates/accounts/user_collection.html:14
+msgid "Last update date"
+msgstr "Data ultimo aggiornamento"
+
+#: diventi/templates/accounts/user_collection.html:22
 msgid "Download"
 msgstr "Scarica"
 
-#: diventi/templates/accounts/user_collection.html:26
+#: diventi/templates/accounts/user_collection.html:31
 msgid "No collection found"
 msgstr "Nessuna collezione trovata"
 
@@ -1063,13 +1078,17 @@ msgstr "Mostra le risposte"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
-#: diventi/templates/landing/about.html:11
-msgid "About Us"
-msgstr ""
+#: diventi/templates/landing/about.html:5 diventi/templates/navigation.html:34
+msgid "About"
+msgstr "Su di noi"
 
-#: diventi/templates/landing/about.html:12
-msgid "We, our group, our way of being: Diventi."
-msgstr ""
+#: diventi/templates/landing/about.html:13
+msgid "About Us"
+msgstr "Su di noi"
+
+#: diventi/templates/landing/about.html:14
+msgid "Be brave and roll the dice."
+msgstr "Sii forte e lancia i dadi."
 
 #: diventi/templates/landing/feedback.html:6
 msgid "Feedback"
@@ -1080,7 +1099,7 @@ msgstr "Feedback"
 msgid ""
 "\n"
 "                    Hi %(user_name)s, we thank you for your time. Please "
-"feel free to tell us what you think, this feedback won't be published.\n"
+"feel free to leave a feedback, this text won't be published.\n"
 "                "
 msgstr ""
 
@@ -1108,7 +1127,7 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:71
-#: diventi/templates/navigation.html:62
+#: diventi/templates/navigation.html:67
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1128,43 +1147,47 @@ msgstr "Fine dei risultati"
 msgid "Search"
 msgstr "Cerca"
 
-#: diventi/templates/navigation.html:36
+#: diventi/templates/navigation.html:41
 msgid "Staff"
 msgstr "Staff"
 
-#: diventi/templates/navigation.html:40
+#: diventi/templates/navigation.html:45
 msgid "Control panel"
 msgstr "Pannello di controllo"
 
-#: diventi/templates/navigation.html:65
+#: diventi/templates/navigation.html:70
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
-#: diventi/templates/products/product_detail.html:63
+#: diventi/templates/products/product_detail.html:61
+msgid "Last updated"
+msgstr ""
+
+#: diventi/templates/products/product_detail.html:70
 msgid "Description"
 msgstr "Descrizione"
 
-#: diventi/templates/products/product_detail.html:108
+#: diventi/templates/products/product_detail.html:115
 msgid "Leave a private feedback"
 msgstr "Lascia un feedback privato"
 
-#: diventi/templates/products/product_detail.html:113
+#: diventi/templates/products/product_detail.html:120
 msgid "View this product in your collection"
 msgstr "Visualizza questo prodotto nella tua collezione"
 
-#: diventi/templates/products/product_detail.html:121
+#: diventi/templates/products/product_detail.html:128
 msgid "Remove this product from your collection"
 msgstr "Rimuovi questo prodotto dalla tua collezione"
 
-#: diventi/templates/products/product_detail.html:131
+#: diventi/templates/products/product_detail.html:138
 msgid "Add this product to your collection"
 msgstr "Aggiungi questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:141
+#: diventi/templates/products/product_detail.html:148
 msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:173
+#: diventi/templates/products/product_detail.html:180
 msgid "Content creators"
 msgstr "Autori"
 

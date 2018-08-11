@@ -107,7 +107,7 @@ class SecretFileView(RedirectView):
         product = get_object_or_404(Product, pk=kwargs['pk'])
         u = request.user
 
-        if product.user_has_already_bought(u) or product.user_has_authored(u):
+        if (product.user_has_already_bought(u) or product.user_has_authored(u)) and product.available:
             if product.file:
                 filepath = settings.MEDIA_ROOT + product.file.name
                 url = self.get_redirect_url(filepath=filepath)

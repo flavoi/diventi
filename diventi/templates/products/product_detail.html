@@ -52,7 +52,14 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
 
-                    <h2 class="title">{{ product.title }}</h2> 
+                    <h2 class="title">{{ product.title }}</h2>                     
+                        {% if product.available == False %}
+                            <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {% trans 'under maintenance' %}
+                            </span>
+                        {% else %}
+                            <label class="badge badge-rose"><i class="fal fa-lg fa-file fa-fw"></i>{{ product.category.title }}</label>
+                            <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last updated' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
+                        {% endif %}               
 
                     <div id="accordion" role="tablist">
 
@@ -99,16 +106,16 @@
                         <div class="col-md-6 pick-size">
                             {% load ratings %}
                             {% ratings product %}
-                        </div>                    
+                        </div>
                         {% if user.is_authenticated %}
-                            <div class="col-md-6 text-right pick-size">
+                            <div class="col-md-6 text-right pick-size">                                
                                 {% if bought %}
-                                <form action="{% url 'products:drop' product.slug %}" method="POST">                                    
-                                        <a class="btn btn-info btn-fab btn-round btn-tooltip" data-toggle="modal" data-target="#feedbackModal" href="">
-                                            <span data-toggle="tooltip" data-placement="bottom" data-container="body" href="" data-original-title="{% trans "Leave a private feedback" %}.">
-                                                <i class="fal fa-comment"></i>
-                                            </span>
-                                        </a>                                    
+                                <form action="{% url 'products:drop' product.slug %}" method="POST">                                   
+                                    <a class="btn btn-info btn-fab btn-round btn-tooltip" data-toggle="modal" data-target="#feedbackModal" href="">
+                                        <span data-toggle="tooltip" data-placement="bottom" data-container="body" href="" data-original-title="{% trans "Leave a private feedback" %}.">
+                                            <i class="fal fa-comment"></i>
+                                        </span>
+                                    </a>                                    
                                     <a class="btn btn-warning btn-fab btn-round btn-tooltip" href="{% url 'accounts:update' user.id %}#{% trans 'collection' %}">
                                         <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans "View this product in your collection" %}.">
                                             <i class="fal fa-shopping-bag"></i>
@@ -130,7 +137,7 @@
                                         {{ add_collection_form.errors }}
                                         <button type="submit" class="btn btn-fab btn-round btn-warning btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Add this product to your collection' %}.">
                                             <i class="fal fa-plus"></i>
-                                        </button>
+                                        </button>                                        
                                     </form>                                    
                                 {% endif %}                                
                             </div>
@@ -139,7 +146,7 @@
                             <p>
                                 <a href="#" data-toggle="modal" data-target="#loginModal" class="text-warning">
                                 <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
-                            </p>
+                            </p>                            
                             </div>
                         {% endif %}
                     </div>

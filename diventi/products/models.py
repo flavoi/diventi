@@ -62,6 +62,9 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
     category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default', on_delete=models.SET_NULL)
+    available = models.BooleanField(default=False, verbose_name=_('available')) # Disable the access to the file
+    courtesy_message = models.TextField(blank=True, verbose_name=_('courtesy message')) # Explains why the product is under maintenance
+
     objects = ProductQuerySet.as_manager()
 
     class Meta:

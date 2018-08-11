@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced a password reset option in the login modal
 - Introduced shortcut links to send emails to subscribers
 - Introduced the about page with the summary of our project
+- Introduced maintenance mode for published products
 
 ### Changed
 - Enabled localization for product files

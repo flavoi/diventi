@@ -10,7 +10,7 @@
                         {% if product.available == None %}
                             <label class="badge badge-pill badge-danger"> {% trans 'under maintenance' %}</label>
                         {% else %}
-                            <label class="badge badge-rose"><i class="fal fa-lg fa-file fa-fw"></i>{{ product.category__title }}</label>
+                            <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category__title }}</label>
                             <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
                         {% endif %}            
                         <a href="{% url 'products:detail' product.slug %}">

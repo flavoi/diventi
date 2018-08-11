@@ -57,7 +57,7 @@
                             <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {% trans 'under maintenance' %}
                             </span>
                         {% else %}
-                            <label class="badge badge-rose"><i class="fal fa-lg fa-file fa-fw"></i>{{ product.category.title }}</label>
+                            <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category.title }}</label>
                             <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last updated' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
                         {% endif %}               
 
@@ -111,7 +111,7 @@
                             <div class="col-md-6 text-right pick-size">                                
                                 {% if bought %}
                                 <form action="{% url 'products:drop' product.slug %}" method="POST">                                   
-                                    <a class="btn btn-info btn-fab btn-round btn-tooltip" data-toggle="modal" data-target="#feedbackModal" href="">
+                                    <a class="btn btn-warning btn-fab btn-round btn-tooltip" data-toggle="modal" data-target="#feedbackModal" href="">
                                         <span data-toggle="tooltip" data-placement="bottom" data-container="body" href="" data-original-title="{% trans "Leave a private feedback" %}.">
                                             <i class="fal fa-comment"></i>
                                         </span>

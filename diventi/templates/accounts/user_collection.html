@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}')"{% endif %}>
                     <div class="card-body">
-                        {% if product.available == None %}
+                        {% if product.available == False %}
                             <label class="badge badge-pill badge-danger"> {% trans 'under maintenance' %}</label>
                         {% else %}
                             <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category__title }}</label>
@@ -18,7 +18,7 @@
                         </a>
                         <p class="card-description">{{ product.description }}</p>                    
                         {% if product.file %}
-                            <a target="_blank" class="btn btn-warning btn-round {% if product.available == None %}disabled{% endif %}" href="{% url 'products:secretfile' product.id %}">
+                            <a target="_blank" class="btn btn-warning btn-round {% if product.available == False %}disabled{% endif %}" href="{% url 'products:secretfile' product.id %}">
                                 <i class="fal fa-download fa-lg fa-fw"></i> {% trans "Download" %}
                             </a>                            
                         {% endif %}

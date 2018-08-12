@@ -4,6 +4,7 @@ diventi/static/*
 diventi/staticfiles/*
 latest.dump
 diventi.sqlite
+secrets.json
 
 # Vagrant
 .vagrant/*

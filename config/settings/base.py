@@ -13,22 +13,26 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 from pathlib import Path
-import os, sys
+import os, sys, json
 
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import ugettext_lazy as _
 
 
-def get_env_variable(var_name):
-    """Get the environment variable or return exception."""
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = 'Set the {} environment variable'.format(var_name)
-        raise ImproperlyConfigured(error_msg)
-
 PROJ_ROOT = Path(__file__).resolve().parent.parent.parent 
 BASE_DIR = PROJ_ROOT / 'diventi'
+
+# JSON-based secrets module
+with open(BASE_DIR / 'secrets.json', 'r') as f:
+    secrets = json.load(f)
+
+def get_env_variable(var_name):
+    """Get the secret variable or return explicit exception."""
+    try:
+        return secrets[var_name]
+    except KeyError:
+        error_msg = "Set the {0} enviroment variable".format(settings)
+        raise ImproperlyConfigured(error_msg)
 
 TEMPLATES = [
     {

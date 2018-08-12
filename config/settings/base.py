@@ -23,7 +23,7 @@ PROJ_ROOT = Path(__file__).resolve().parent.parent.parent
 BASE_DIR = PROJ_ROOT / 'diventi'
 
 # JSON-based secrets module
-with open(BASE_DIR / 'secrets.json', 'r') as f:
+with open(PROJ_ROOT / 'secrets.json', 'r') as f:
     secrets = json.load(f)
 
 def get_env_variable(var_name):

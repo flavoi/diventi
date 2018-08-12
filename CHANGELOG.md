@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enabled asyncronous response to the privacy user form
 - Moved articles label to the bottom of the content section
 - Moved the feedback button from the navbar to the product page
+- Moved secret vars into a secret file in project root 
 - Updated fontawesome host from aws to cdn
 - Updated error pages 403, 404 and 500 with translations and cleaner layout
 - Updated admin list display for users data 

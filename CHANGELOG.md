@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0-beta.3] → 2018-06-xx
 
 ### Added
-- Upgraded the development framework from django 1.11 to django 2.0
 - Introduced a customization field that lets the user control his favourite language
 - Introduced a privacy section that lets the user control and delete its own data
 - Introduced a staff-only page that returns all subscribers emails
@@ -17,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced shortcut links to send emails to subscribers
 - Introduced the about page with the summary of our project
 - Introduced maintenance mode for published products
+- Upgraded the development framework to django 2.1
+- Upgraded the icons to fontawesome 5.2
 
 ### Changed
 - Enabled localization for product files

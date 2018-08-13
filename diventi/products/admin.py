@@ -19,13 +19,13 @@ make_unpublished.short_description = _("Mark selected products as hidden")
 
 class ChapterInline(TranslationStackedInline):
     model = Chapter
-    fields = ('title', 'description', 'category')
+    fields = ('title', 'description', 'category', 'icon')
     extra = 0
 
 
 class CharacteristicInline(TranslationStackedInline):
     model = Characteristic
-    fields = ('title', 'description')
+    fields = ('title', 'description',)
     extra = 0
 
 

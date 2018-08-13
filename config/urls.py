@@ -19,11 +19,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
+from django.views.i18n import JavaScriptCatalog
 
 admin.autodiscover()
 
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'jsi18n/', JavaScriptCatalog.as_view(domain="django"), name='javascript-catalog'),
     url(r'^comments/default/', include('django_comments.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^\.well-known/', include('letsencrypt.urls')),

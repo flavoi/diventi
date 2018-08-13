@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-13 08:20+0200\n"
+"POT-Creation-Date: 2018-08-13 16:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,23 +26,23 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/urls.py:36
+#: config/urls.py:38
 msgid "^control-panel/"
 msgstr "^pannello-di-controllo/"
 
-#: config/urls.py:37
+#: config/urls.py:39
 msgid "^accounts/"
 msgstr "^profili/"
 
-#: config/urls.py:38
+#: config/urls.py:40
 msgid "^blog/"
 msgstr "^blog/"
 
-#: config/urls.py:39
+#: config/urls.py:41
 msgid "^products/"
 msgstr "^prodotti/"
 
-#: config/urls.py:40
+#: config/urls.py:42
 msgid "^comments/"
 msgstr "^commenti/"
 
@@ -691,7 +691,7 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:24
-#: diventi/templates/accounts/user.html:54
+#: diventi/templates/accounts/user.html:53
 msgid "Collection"
 msgstr "Collezione"
 
@@ -795,7 +795,7 @@ msgstr "Invio"
 
 #: diventi/templates/accounts/password_reset_form.html:55
 #: diventi/templates/accounts/signin.html:61
-#: diventi/templates/accounts/user.html:147
+#: diventi/templates/accounts/user.html:143
 #: diventi/templates/accounts/user_credentials.html:33
 msgid "Confirm"
 msgstr "Conferma"
@@ -850,13 +850,13 @@ msgstr ""
 msgid "Get Started"
 msgstr "Iniziamo"
 
-#: diventi/templates/accounts/subscribers.html:5
-#: diventi/templates/accounts/subscribers.html:8
+#: diventi/templates/accounts/subscribers.html:6
+#: diventi/templates/accounts/subscribers.html:9
 #: diventi/templates/navigation.html:48
 msgid "Subscribers"
 msgstr "Iscritti"
 
-#: diventi/templates/accounts/subscribers.html:16
+#: diventi/templates/accounts/subscribers.html:17
 #, python-format
 msgid "Contact %(lang_code)s subscribers"
 msgstr "Contatta gli iscritti %(lang_code)s"
@@ -872,44 +872,44 @@ msgid "Creator"
 msgstr "Autore"
 
 #: diventi/templates/accounts/user.html:51
-#: diventi/templates/accounts/user.html:83
+#: diventi/templates/accounts/user.html:79
 #: diventi/templates/products/product_detail.html:119
 msgid "collection"
 msgstr "collezione"
 
-#: diventi/templates/accounts/user.html:58
-#: diventi/templates/accounts/user.html:90
+#: diventi/templates/accounts/user.html:57
+#: diventi/templates/accounts/user.html:86
 msgid "customization"
 msgstr "personalizzazioni"
 
-#: diventi/templates/accounts/user.html:61
+#: diventi/templates/accounts/user.html:59
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:65
-#: diventi/templates/accounts/user.html:100
+#: diventi/templates/accounts/user.html:63
+#: diventi/templates/accounts/user.html:96
 msgid "credentials"
 msgstr "credenziali"
 
-#: diventi/templates/accounts/user.html:68
+#: diventi/templates/accounts/user.html:65
 msgid "Credentials"
 msgstr "Credenziali"
 
-#: diventi/templates/accounts/user.html:72
-#: diventi/templates/accounts/user.html:110
+#: diventi/templates/accounts/user.html:69
+#: diventi/templates/accounts/user.html:106
 msgid "privacy"
 msgstr "privacy"
 
-#: diventi/templates/accounts/user.html:75
+#: diventi/templates/accounts/user.html:71
 msgid "Privacy"
 msgstr "Privacy"
 
-#: diventi/templates/accounts/user.html:135
+#: diventi/templates/accounts/user.html:131
 #: diventi/templates/accounts/user_privacy.html:51
 msgid "Delete your account"
 msgstr "Cancella la tua utenza"
 
-#: diventi/templates/accounts/user.html:141
+#: diventi/templates/accounts/user.html:137
 msgid ""
 "We will immediately delete all of your data, along with all of your "
 "comments, feedbacks and upvotes."
@@ -917,7 +917,7 @@ msgstr ""
 "Cancelleremo immediatamente tutti i tuoi dati, i commenti e le iterazioni "
 "che hai registrato."
 
-#: diventi/templates/accounts/user.html:143
+#: diventi/templates/accounts/user.html:139
 msgid ""
 "You will no longer be contacted and your username will be available to "
 "anyone on Diventi."
@@ -925,7 +925,7 @@ msgstr ""
 "Non ti contatteremo più e il tuo nome utente tornerà disponibile per altri "
 "in Diventi."
 
-#: diventi/templates/accounts/user.html:146
+#: diventi/templates/accounts/user.html:142
 msgid "Rollback"
 msgstr "Annulla"
 
@@ -1093,7 +1093,9 @@ msgstr "Su di noi"
 msgid ""
 "Meet the amazing team behind this project and find out more about how we "
 "work."
-msgstr "Incontra la fantastica squadra che sta dietro questo progetto e scopri di più su come lavoriamo."
+msgstr ""
+"Incontra la fantastica squadra che sta dietro questo progetto e scopri di "
+"più su come lavoriamo."
 
 #: diventi/templates/landing/feedback.html:6
 msgid "Feedback"
@@ -1212,41 +1214,10 @@ msgstr "Il tuo voto: "
 msgid "not rated"
 msgstr "nessun voto rilevato"
 
-#~ msgid "Be brave and roll the dice."
-#~ msgstr "Sii forte e lancia i dadi."
+#: diventi/templates/accounts/subscribers.html:30
+msgid "The email addresses have been copied to clipboard."
+msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#~ msgid "reset it now"
-#~ msgstr "resettala ora"
-
-#~ msgid "The playdiventi.it team"
-#~ msgstr "Il team playdiventi.it"
-
-#~ msgid "La tua email"
-#~ msgstr "La tua email"
-
-#~ msgid "can we send you confidential emails?"
-#~ msgstr "possiamo inviarti email riservate agli iscritti?"
-
-#~ msgid "^dashboard/"
-#~ msgstr "^quadro/"
-
-#~ msgid "In your collection"
-#~ msgstr "Nella tua collezione"
-
-#~ msgid "Diventi's Dashboard"
-#~ msgstr "Diventi: Quadro"
-
-#~ msgid "Dashboard"
-#~ msgstr "Quadro"
-
-#~ msgid "^ratings/"
-#~ msgstr "^recensioni/"
-
-#~ msgid "Contact us"
-#~ msgstr "Contattaci"
-
-#~ msgid "Post your comment"
-#~ msgstr "Pubblica il tuo commento"
-
-#~ msgid "Reply"
-#~ msgstr "Rispondi"
+#: diventi/templates/accounts/subscribers.html:35
+msgid "Something went wrong with the copy."
+msgstr "La copia degli indirizzi email è fallita."

@@ -1,6 +1,7 @@
 {% extends 'base_info.html' %}
 {% load i18n %}
 {% load accounts_extras %}
+{% load static %}
 
 {% block title %}{% trans "Subscribers" %}{% endblock title %}
 
@@ -11,10 +12,27 @@
 {% block pageheader_content %}
 
     {% for ugroups in users_groups %}
-    {% get_language_info for ugroups.language as lang %}
-    <a class="btn btn-warning" href="mailto:{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
-        {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
-    </a> &nbsp;
+        {% get_language_info for ugroups.language as lang %}
+        <button class="btn btn-warning" data-clipboard-text="{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
+            {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
+        </button> &nbsp;
     {% endfor %}
 
 {% endblock pageheader_content %}
+
+{% block extrascript %}
+    <script type="text/javascript" src="{% static 'clipboard/clipboard.min.js' %}"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script>
+        var clipboard = new ClipboardJS('.btn');
+        clipboard.on('success', function(e) {
+            console.log(e);
+            alert(gettext('The email addresses have been copied to clipboard.'))
+        });
+
+        clipboard.on('error', function(e) {
+            console.log(e);
+            alert(gettext('Something went wrong with the copy.'))
+        });
+    </script>
+{% endblock extrascript %}

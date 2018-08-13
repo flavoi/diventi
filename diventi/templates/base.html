@@ -90,7 +90,7 @@
   {% include 'messages.html' %}
 
   {% block pageheader %} 
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% block pageheaderimage %}{% endblock pageheaderimage %}');">
+    <div class="page-header header-filter {% block pageheaderextraclass %}{% endblock pageheaderextraclass %}" data-parallax="true" style="background-image: url('{% block pageheaderimage %}{% endblock pageheaderimage %}');">
       {% block pageheadercontent %}{% endblock pageheadercontent %}
     </div>
   {% endblock pageheader %}

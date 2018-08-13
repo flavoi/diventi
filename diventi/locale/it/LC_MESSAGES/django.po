@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-11 17:17+0200\n"
+"POT-Creation-Date: 2018-08-13 08:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:156
+#: config/settings/base.py:160
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:157
+#: config/settings/base.py:161
 msgid "English"
 msgstr "Inglese"
 
@@ -147,7 +147,7 @@ msgstr "privilegi di iscritto"
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:113 diventi/landing/models.py:58
+#: diventi/accounts/models.py:113 diventi/landing/models.py:59
 msgid "cover"
 msgstr "copertina"
 
@@ -316,12 +316,14 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:92 diventi/core/models.py:78
-#: diventi/landing/models.py:55 diventi/products/models.py:57
+#: diventi/landing/models.py:56 diventi/landing/models.py:74
+#: diventi/products/models.py:57
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:93 diventi/core/models.py:79
-#: diventi/landing/models.py:57 diventi/products/models.py:58
+#: diventi/landing/models.py:58 diventi/landing/models.py:75
+#: diventi/products/models.py:58
 msgid "description"
 msgstr "descrizione"
 
@@ -480,43 +482,43 @@ msgstr "Pagina di destinazione"
 msgid "Tell us what you think!"
 msgstr "Dicci che ne pensi!"
 
-#: diventi/landing/models.py:17
+#: diventi/landing/models.py:18
 msgid "There is no active landing page."
 msgstr "Non risulta attiva alcuna pagina di destinazione"
 
-#: diventi/landing/models.py:20
+#: diventi/landing/models.py:21
 msgid "There must be only one landing page at a time. Please fix!"
 msgstr "Può esistere una sola pagina di destinazione per volta."
 
-#: diventi/landing/models.py:37
+#: diventi/landing/models.py:38
 msgid "user"
 msgstr "utente"
 
-#: diventi/landing/models.py:50 diventi/landing/models.py:51
+#: diventi/landing/models.py:51 diventi/landing/models.py:52
 msgid "feedback"
 msgstr "feedback"
 
-#: diventi/landing/models.py:56
+#: diventi/landing/models.py:57
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:59
-msgid "about"
-msgstr "su di noi"
-
-#: diventi/landing/models.py:69
+#: diventi/landing/models.py:68
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:70
+#: diventi/landing/models.py:69
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:77
+#: diventi/landing/models.py:81 diventi/landing/models.py:82
+msgid "about"
+msgstr "su di noi"
+
+#: diventi/landing/models.py:89
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:78
+#: diventi/landing/models.py:90
 msgid "features"
 msgstr "aspetti"
 
@@ -864,7 +866,7 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
-#: diventi/templates/landing/about.html:45
+#: diventi/templates/landing/about.html:48
 #: diventi/templates/products/product_detail.html:195
 msgid "Creator"
 msgstr "Autore"
@@ -933,6 +935,7 @@ msgid "under maintenance"
 msgstr "in manutenzione"
 
 #: diventi/templates/accounts/user_collection.html:14
+#: diventi/templates/products/product_detail.html:61
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
@@ -1082,13 +1085,15 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "About"
 msgstr "Su di noi"
 
-#: diventi/templates/landing/about.html:13
+#: diventi/templates/landing/about.html:15
 msgid "About Us"
 msgstr "Su di noi"
 
-#: diventi/templates/landing/about.html:14
-msgid "Be brave and roll the dice."
-msgstr "Sii forte e lancia i dadi."
+#: diventi/templates/landing/about.html:16
+msgid ""
+"Meet the amazing team behind this project and find out more about how we "
+"work."
+msgstr "Incontra la fantastica squadra che sta dietro questo progetto e scopri di più su come lavoriamo."
 
 #: diventi/templates/landing/feedback.html:6
 msgid "Feedback"
@@ -1159,10 +1164,6 @@ msgstr "Pannello di controllo"
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
-#: diventi/templates/products/product_detail.html:61
-msgid "Last updated"
-msgstr ""
-
 #: diventi/templates/products/product_detail.html:70
 msgid "Description"
 msgstr "Descrizione"
@@ -1210,6 +1211,9 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Be brave and roll the dice."
+#~ msgstr "Sii forte e lancia i dadi."
 
 #~ msgid "reset it now"
 #~ msgstr "resettala ora"

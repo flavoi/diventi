@@ -51,6 +51,11 @@ TEMPLATES = [
             ],
         },
     },
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [],
+        'APP_DIRS': True,
+    },
 ]
 
 
@@ -91,6 +96,7 @@ LOCAL_APPS = [
     'diventi.landing',
     'diventi.comments',
     'diventi.products',
+    'diventi.homebrew',
 ]
 
 THIRD_PARTY_APPS = [
@@ -105,6 +111,7 @@ THIRD_PARTY_APPS = [
     'mptt',
     'boto',
     'letsencrypt',
+    'django_tex',
 ]
 
 INSTALLED_APPS = TRANSLATION_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS

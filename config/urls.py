@@ -41,4 +41,5 @@ urlpatterns += i18n_patterns(
     url(_(r'^products/'), include('diventi.products.urls', namespace='products')),
     url(_(r'^comments/'), include('diventi.comments.urls', namespace='comments')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings',)),
+    url(r'^homebrew/', include('diventi.homebrew.urls', namespace='homebrew',)),
 )

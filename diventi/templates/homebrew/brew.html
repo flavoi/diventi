@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Brew' %}{% endblock title %}
+
+{% block extrahead %}
+    {% include 'homebrew/style.html' %}
+{% endblock extrahead %}
+
+{% block bodyclass %}section-gray{% endblock bodyclass %}
+
+{% block navbarclasses %}bg-dark{% endblock navbarclasses %}
+
+{% block pageheader %}{% endblock pageheader %}
+
+{% block main %}
+<div class="section section-gray">
+    <div class="container">
+       
+        <div class="row">
+            <div class="col-10 ml-auto mr-auto">
+                <div class="card card-blog bg-transparent">
+                    <div class="card-body">
+                        <div class="phb" id="p1" data-reactid="37">
+                          <style>
+                             .phb#p1{ text-align:center; }
+                             .phb#p1:after{ display:none; }
+                          </style>
+                             <img src="https://i.imgur.com/UDhF1DQ.jpg" style="position:absolute;top:0px;left:-500px;">
+                             <img src="https://i.imgur.com/zOy0Frp.png" style="position:absolute;left:320px;top:10px;width:20%">
+                             <img src="https://i.imgur.com/78yZqXm.png" style="position:absolute;top:70px;left:-10px;width:816px">
+                             <img src="https://i.imgur.com/GLWFiuH.png" style="position:absolute;top:150px;left:85px;width:80%">
+                             <img src="https://i.imgur.com/tSviJ8P.png" style="position:absolute;bottom:180px;left:0px;width:50%">
+                            <span style="position:absolute; left: 50%; transform: translateX(-50%) translateY(-50%);bottom:80px;color:white;font-size:18px;text-align:left;">
+                             Davide Duranti, Flavio Marcato, Jacopo Arca
+                             </span>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card card-blog bg-transparent">
+                    <div class="card-body">
+                        <div class="phb" id="p3" data-reactid="39" style="color: #222;">
+                            <!-- Cool background image -->
+                            <p><img src="https://i.imgur.com/5Tr70pb.gif" style="position:absolute; top:650px; left:0px; width:816px"></p>
+                            <!-- Full page stain -->
+                            <p><img src="https://i.imgur.com/sKQMREa.png" style="position:absolute; top:0px; left:00px; width:816px"></p>
+                            <h1 id="introduction">Introduction</h1>
+                            <p>Before we begin, let us clearify: this book is not a player’s or a game master’s handbook, and it is not a list of rules and tables for a new role playing game. Diventi is the result of a collaborative effort between players and game masters like you, all together to design a style of play that is agile but rich of facets, structured but flexible, that does not limit itself with heavy mechanics but wants to provide a well defined interface of useful tools for the creation of cool stories. In this book we will define some concepts like “The Three Rings of Storytelling” and “Suspended Modernity”, all of which will offer a food for thought to game masters and players alike. This book can be your toolbox for game mastering, but it is important to test it out as much as possible with any role playing game. The playtest phase is critical for both novice players that dubbles on rpgs for the first time and for the veterans that know the many tricks of the trade. We are confident that Diventi is suitable for everyone: from powerplayers to the lovers of interpretation, from the enthusiasts of the grid to the purists of storytelling; to anyone who have fun with board games, to who spent his childood hunting goblins and treasures inside taverns and dungeons made of paper. We designed all the contents in Diventi: First Contact both for veteran game masters that are confident already with role playing games like D&amp;D, Starfinder, Savage Worlds and for novices that for the first time engage this fantastic hobby. We hope the following sections will give better insights for your reading, depending on your level of experience.</p>
+                            <p>To veteran game masters we prepared a long list of tools that we know will improve drastically the foundation of your adventures and the level of commitment of your group of players. You will be able to pick your favourite mechanics from your game system of choice and the style of play that you prefer. Take what you like from this book: all the contents are modular and interchangeable, so you won’t have problems to experience with any componets as you’ll see fit.</p>
+                            <pre><code>
+                        </code></pre>
+                            <p>Playing Diventi without a specific system is possible, but discouraged. You don’t need to be an expert, but we advise you to read anything regarding this hobby before dabbling further. We offer you a set of guidelines that are not built to be complete, but can enable you to play a full session with your friends. The style of play that we advise is heavily narrative and it doesn’t need anything else than your imagination.</p>
+                            <p><br>
+                                <strong>Game master</strong></p>
+                            <ul>
+                                <li>Before the session invest some time to adventure preparation. For this specific page we designed a well rounded system, just continue reading!</li>
+                                <li>During the session manage the action like a turn-based game and give a fair time to every player at your table.</li>
+                                <li>The catch of the game is to provide player’s character occasions to shine and contribute to the story. We at Diventi call this concept “situation”.</li>
+                                <li>When the player’s character will face up a situation be open to different solutions to solve it.</li>
+                                <li>Be generous and grant your players the benefit of the doubt.</li>
+                            </ul>
+                            <p><br>
+                                <strong>Players</strong></p>
+                            <ul>
+                                <li>At your turn, describe what your character intends to do.</li>
+                                <li>Remember to levarage the location at your advantage, your only limit is your imagination!</li>
+                                <li>Don’t dive too deep with specific distances. Focus on the intent of your character.</li>
+                                <li>Describe the action of your character in relation of the story that your game master has initiated.</li>
+                                <li>Sometimes it’s ok to go off the grid, experiencing crazy ideas is fun!</li>
+                            </ul>
+                            <div class="pageNumber auto">
+                                <p></p>
+                            </div>
+                            <p></p>
+                            <p></p>
+                            <div class="footnote">HOW TO PLAY
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+
+                   
+-->
+{% endblock main %}

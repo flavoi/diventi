@@ -81,7 +81,7 @@
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
 
   {% block navbar %}<!--navbar-absolute-->
-    <nav class="navbar navbar-expand-lg navbar-color-on-scroll fixed-top bg-dark {% block navbarclasses %}navbar-transparent{% endblock navbarclasses %}" color-on-scroll="100">
+    <nav class="navbar navbar-expand-lg fixed-top {% block navbarclasses %}navbar-color-on-scroll bg-dark navbar-transparent{% endblock navbarclasses %}" color-on-scroll="100">
     {% include 'navigation.html' %}
     </nav>
   {% endblock navbar %}

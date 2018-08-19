@@ -25,6 +25,14 @@ class ArticleAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'category', 'image_tag', 'hot', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('published', 'hot')
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'category', 'image', 'publication_date', 'content', 'author', 'slug'),
+        }),
+    )
     actions = [make_published, make_unpublished]
 
 

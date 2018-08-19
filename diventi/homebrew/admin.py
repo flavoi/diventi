@@ -11,6 +11,7 @@ class SectionInline(TranslationStackedInline):
     model = Section
     fields = ('order_id', 'title', 'content', 'section_type')
     extra = 0
+    ordering = ["order_id"]
 
 
 class WatermarkInline(TranslationStackedInline):

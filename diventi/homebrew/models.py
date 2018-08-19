@@ -32,6 +32,8 @@ class Section(TimeStampedModel):
     title = models.CharField(max_length=60, verbose_name=_('title'))
     content = models.TextField(verbose_name=_('content'))
     SECTION_TYPES = [
+        (_('section'), 'section'),
+        (_('subsection'), 'subsection'),
         (_('commentbox'), 'commentbox'),
         (_('quotebox'), 'quotebox'),
     ]
@@ -46,6 +48,16 @@ class Section(TimeStampedModel):
             return getattr(Section, self.section_type)(self)
         else:
             return self.__str__()
+
+    def section(self):
+        return """
+            \\subsection{%s}
+                %s""" % (self.title, self.content)
+    
+    def subsection(self):
+        return """
+            \\subsubsection{%s}
+                %s""" % (self.title, self.content)
 
     def commentbox(self):
         return """

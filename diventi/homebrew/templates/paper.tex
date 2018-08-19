@@ -21,6 +21,16 @@
 {% if sections %}
     {% for section in sections %}
         {{ section|stringformat('r') }}
+        {% if section.table.pk %}
+            \begin{dndtable}[cX]
+            {% for row in section.table.rows.all() %}
+                {% if loop.index == 1 %}
+                    \textbf{ {{- section.table.get_dice_display() -}} } & \textbf{ {{- section.table.title -}} } \\
+                {% endif %}
+                {{ row.pk }} & {{ row.description }} \\
+            {% endfor %}
+            \end{dndtable}
+        {% endif %}
     {% endfor %}
 {% else %}
     \par No sessions. 

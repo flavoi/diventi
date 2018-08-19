@@ -23,6 +23,34 @@ class Paper(TimeStampedModel):
         return reverse('homebrew:detail', args=[str(self.slug)])
 
 
+class DiceTable(models.Model):
+    """
+        A dice table has two columns: the first is an automatic value of the dice, 
+        the second is a free description.
+    """
+    DICES = [
+        ('20', 'd20'),
+        ('12', 'd12'),
+        ('10', 'd10'),
+        ('8', 'd8'),
+        ('6', 'd6'),
+        ('4', 'd4'),
+    ]
+    dice = models.CharField(max_length=3, choices=DICES, verbose_name=_('dice'))
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+
+    def __str__(self):
+        return self.title
+
+
+class DiceTableRow(models.Model):
+    description = models.CharField(max_length=60, verbose_name=_('description'))
+    dicetable = models.ForeignKey(DiceTable, on_delete=models.CASCADE, related_name=_('rows'))
+
+    def __str__(self):
+        return self.description
+
+
 class Section(TimeStampedModel):
     """
         Each section type needs a function that renders the content of the paper
@@ -32,13 +60,27 @@ class Section(TimeStampedModel):
     title = models.CharField(max_length=60, verbose_name=_('title'))
     content = models.TextField(verbose_name=_('content'))
     SECTION_TYPES = [
-        (_('section'), 'section'),
-        (_('subsection'), 'subsection'),
-        (_('commentbox'), 'commentbox'),
-        (_('quotebox'), 'quotebox'),
+        ('section', _('section')),
+        ('subsection', _('subsection')),
+        ('commentbox', _('commentbox')),
+        ('quotebox', _('quotebox')),
+        ('paperbox', _('paperbox')),
+        ('dicetable', _('dicetable'))
     ]
-    section_type = models.CharField(max_length=30, blank=True, choices=SECTION_TYPES, verbose_name=_('section_type'))    
-    paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name='sections')
+    section_type = models.CharField(max_length=30, blank=True, choices=SECTION_TYPES, verbose_name=_('section type'))
+    THEMES = [
+        ('PhbLightGreen', _('light green')),
+        ('PhbLightCyan', _('light chan')),
+        ('PhbMauve', _('muave')), 
+        ('PhbTan', _('tan')),
+        ('DmgLavender', _('lavender')),
+        ('DmgCoral', _('coral')),
+        ('DmgSlateGray', _('slate gray')), 
+        ('DmgLilac', _('lilac')),
+    ]
+    theme = models.CharField(max_length=30, blank=True, choices=THEMES, verbose_name=_('theme')) 
+    paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
+    table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'))
 
     def __str__(self):
         return self.content
@@ -61,15 +103,25 @@ class Section(TimeStampedModel):
 
     def commentbox(self):
         return """
-            \\begin{commentbox}{%s}
+            \\begin{commentbox}{%s}[%s]
                 %s
-            \\end{commentbox}""" % (self.title, self.content)
+            \\end{commentbox}""" % (self.title, self.theme, self.content)
 
     def quotebox(self):
         return """
-            \\begin{quotebox}
+            \\begin{quotebox}[%s]
                 %s
-            \\end{quotebox}""" % (self.content)
+            \\end{quotebox}""" % (self.theme, self.content)
+
+    def paperbox(self):
+        return """
+            \\begin{paperbox}{%s}[%s]
+                %s
+            \\end{paperbox}""" % (self.title, self.theme, self.content)
+
+    def dicetable(self):
+        return """
+            \\header{%s}""" % self.__str__() # The header of the table
 
 
 class Watermark(TimeStampedModel):

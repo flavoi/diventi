@@ -2,7 +2,7 @@ from modeltranslation.translator import register, TranslationOptions
 
 from diventi.core.admin import DiventiTranslationAdmin
 
-from .models import Paper, Section, Watermark
+from .models import Paper, Section, Watermark, DiceTable, DiceTableRow
 
 
 @register(Paper)
@@ -18,3 +18,13 @@ class SectionTranslationOptions(TranslationOptions):
 @register(Watermark)
 class WatermarkTranslationOptions(TranslationOptions):
     fields = ('title',)
+
+
+@register(DiceTable)
+class WatermarkTranslationOptions(TranslationOptions):
+    fields = ('title',)
+
+
+@register(DiceTableRow)
+class WatermarkTranslationOptions(TranslationOptions):
+    fields = ('description',)

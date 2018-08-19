@@ -34,6 +34,7 @@ idna==2.7
 Jinja2==2.10
 jmespath==0.9.3
 josepy==1.1.0
+latexmk.py==0.4
 MarkupSafe==1.0
 mock==2.0.0
 olefile==0.45.1

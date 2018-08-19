@@ -59,3 +59,20 @@ class Section(TimeStampedModel):
                 %s
             \\end{quotebox}""" % (self.content)
 
+
+class Watermark(TimeStampedModel):
+    """
+        Any page can be customized with cool backgrounds thanks to one or more
+        watermarks.
+    """
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    pages = models.CharField(max_length=10, verbose_name=_('pages'))
+    scale = models.PositiveIntegerField(default=1)
+    xpos = models.IntegerField()
+    ypos = models.IntegerField()
+    figurename = models.CharField(max_length=60, verbose_name=_('figure name'))
+    paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name='watermarks')
+
+    def __str__(self):
+        return self.title
+

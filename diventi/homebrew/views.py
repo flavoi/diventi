@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django_tex.views import render_to_pdf
 
-from .models import Paper, Section
+from .models import Paper, Section, Watermark
 from .utils import brew_to_pdf
 
 
@@ -18,6 +18,7 @@ class PaperDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(PaperDetailView, self).get_context_data(*args, **kwargs)
         context['sections'] = Section.objects.filter(paper=self.object)
+        context['watermarks'] = Watermark.objects.filter(paper=self.object)
         return context
 
     def get(self, request, slug):

@@ -10,6 +10,12 @@
 
 \lstset{ basicstyle=\ttfamily, language=[LaTeX]{TeX}, }
 
+{% if watermarks %}
+    {% for w in watermarks %}
+        \newwatermark[pages={{ w.pages }},scale={{ w.scale }},xpos={{ w.xpos }},ypos={{ w.ypos }}]{\includegraphics{ {{- w.figurename -}} }}
+    {% endfor %}
+{% endif %}
+
 \begin{document}
 
 {{ paper }}

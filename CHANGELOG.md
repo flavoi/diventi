@@ -11,9 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced homebrew: a module that renders fantastic documents with a latex engine
 
-### Changed
+### Changed
 - Enabled additional fieldsets for blog admin
- 
+
 
 ## [1.0.0-beta.3] → 2018-06-13
 

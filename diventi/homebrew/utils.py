@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 from django_tex.engine import engine
 
+import time
 
 DEFAULT_INTERPRETER = 'lualatex'
 
@@ -17,13 +18,14 @@ class TexError(Exception):
 def run_tex(source):
     with tempfile.TemporaryDirectory() as tempdir:
         latex_interpreter = getattr(settings, 'LATEX_INTERPRETER', DEFAULT_INTERPRETER)
-        latex_command = [latex_interpreter, '-output-directory', tempdir]
-        for i in range(1, 3):
+        for i in range(2):
+            latex_command = [latex_interpreter, '-output-directory', tempdir]
             process = Popen(latex_command, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             process.communicate(source.encode('utf-8'))
-        if process.returncode == 1:
-            raise TexError(source)
-        filepath = os.path.join(tempdir, 'texput.pdf')
+            if process.returncode == 1:
+                raise TexError(source)
+            filepath = os.path.join(tempdir, 'texput.pdf')
+            print(filepath)
         with open(filepath, 'rb') as pdf_file:
             pdf = pdf_file.read()
     return pdf

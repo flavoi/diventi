@@ -1,0 +1,25 @@
+\documentclass[letterpaper,10pt,twoside,twocolumn,openany]{book}
+
+\usepackage[english]{babel}
+\usepackage{hang}
+\usepackage{lipsum}
+\usepackage{listings}
+
+\usepackage[bg=none]{dnd}
+\usepackage[printwatermark]{xwatermark}
+
+\lstset{ basicstyle=\ttfamily, language=[LaTeX]{TeX}, }
+
+\begin{document}
+
+{{ paper }}
+
+{% if sections %}
+    {% for section in sections %}
+        {{ section|stringformat('r') }}
+    {% endfor %}
+{% else %}
+    \par No sessions. 
+{% endif %}
+
+\end{document}

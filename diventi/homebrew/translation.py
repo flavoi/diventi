@@ -2,9 +2,14 @@ from modeltranslation.translator import register, TranslationOptions
 
 from diventi.core.admin import DiventiTranslationAdmin
 
-from .models import Brew
+from .models import Paper, Section
 
 
-@register(Brew)
-class BrewTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'content', 'slug')
+@register(Paper)
+class PaperTranslationOptions(TranslationOptions):
+    fields = ('title', 'description', 'slug')
+
+
+@register(Section)
+class SectionTranslationOptions(TranslationOptions):
+    fields = ('title', 'content')

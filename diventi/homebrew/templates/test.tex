@@ -1,24 +1,28 @@
 \documentclass[letterpaper,10pt,twoside,twocolumn,openany]{book}
 
 \usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
 \usepackage{hang}
 \usepackage{lipsum}
 \usepackage{listings}
 
-\usepackage{dnd}
+\usepackage[bg=none]{dnd}
+\usepackage[printwatermark]{xwatermark}
 
 \lstset{ basicstyle=\ttfamily, language=[LaTeX]{TeX}, }
+
+\newwatermark[pages=1,scale=1,xpos=0,ypos=-100]{\includegraphics{placeholder.png}}
+\newwatermark[pages=1,scale=1,xpos=0,ypos=30]{\includegraphics{sKQMREa.png}}
 
 \begin{document}
 
 \chapter{Chapter 1: The Dark \LaTeX}
 
 \section{Main Section}
+
 \lipsum[2]
 
 \begin{quotebox}
-    As you approach this template you get a sense that the blood and tears of many generations went into its making. A warm feeling welcomes you as you type your first words.
+    This is a quote.
 \end{quotebox}
 
 \subsection{Fun with boxes}
@@ -31,11 +35,10 @@
 \subtitlesection{Weapon, +1, +2, or +3}
 {Weapon (any), uncommon (+1), rare (+2), or very rare (+3)}
 
-\lipsum[3]
+\newpage
 
-\begin{paperbox}[float=!t]{Behold, the Paperbox!}
-  The \lstinline!paperbox! is used as a sidebar. It does not break over columns and is best used with a figure environment to float it to one corner of the page where the surrounding text can then flow around it.
-\end{paperbox}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
 
 \header{Nice table}
 \begin{dndtable}
@@ -44,6 +47,8 @@
     Some value  & Some value \\
     Some value  & Some value
 \end{dndtable}
+
+\newpage
 
 \begin{monsterbox}{Monster Foo}
   \begin{hangingpar}

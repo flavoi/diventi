@@ -20,6 +20,9 @@
 
 {% if sections %}
     {% for section in sections %}
+        {% if section.new_page %}
+            \newpage
+        {% endif %}
         {{ section|stringformat('r') }}
         {% if section.table.pk %}
             \begin{dndtable}[cX]

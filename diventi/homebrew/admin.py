@@ -9,7 +9,7 @@ from .models import Paper, Section, Watermark, DiceTable, DiceTableRow
 
 class SectionInline(TranslationStackedInline):
     model = Section
-    fields = ('order_id', 'title', 'content', 'theme', 'table', 'section_type')
+    fields = ('order_id', 'title', 'content', 'theme', 'table', 'section_type', 'new_page')
     extra = 0
     ordering = ["order_id"]
 

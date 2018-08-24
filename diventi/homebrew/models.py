@@ -81,6 +81,7 @@ class Section(TimeStampedModel):
     theme = models.CharField(max_length=30, blank=True, choices=THEMES, verbose_name=_('theme')) 
     paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
     table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'))
+    new_page = models.BooleanField(default=False, verbose_name=_('new page'))
 
     def __str__(self):
         return self.content

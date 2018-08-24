@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 
 ### Added
-- Introduced homebrew: a module that renders fantastic documents with a latex engine
+-Introduced paper: an experiental app to write papers
 
 ### Changed
 - Enabled additional fieldsets for blog admin

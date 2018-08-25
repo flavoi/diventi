@@ -44,7 +44,7 @@ class DiceTable(models.Model):
 
 
 class DiceTableRow(models.Model):
-    description = models.CharField(max_length=60, verbose_name=_('description'))
+    description = models.TextField(verbose_name=_('description'))
     dicetable = models.ForeignKey(DiceTable, on_delete=models.CASCADE, related_name=_('rows'))
 
     def __str__(self):

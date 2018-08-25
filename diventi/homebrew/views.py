@@ -21,7 +21,7 @@ class PaperDetailView(LoginRequiredMixin, DetailView):
         sections = sections.select_related('table')
         sections = sections.prefetch_related('table__rows')
         context['sections'] = sections
-        context['watermarks'] = Watermark.objects.filter(paper=self.object)
+        context['watermarks'] = Watermark.objects.filter(paper=self.object).order_by('pages')
         return context
 
     def get(self, request, slug):

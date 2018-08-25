@@ -18,8 +18,20 @@
 
 \begin{document}
 
+\pagenumbering{arabic}
+
 {% if sections %}
     {% for section in sections %}
+        {% if section.title_page %}
+            \pagenumbering{gobble}
+            \clearpage
+            \thispagestyle{empty}
+            \phantom{abc}
+            \clearpage
+        {% endif %}    
+        {% if loop.first %}
+            \section{ {{- paper.title -}} }
+        {% endif %}
         {% if section.new_page %}
             \newpage
         {% endif %}

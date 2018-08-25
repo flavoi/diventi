@@ -65,7 +65,7 @@ class Section(TimeStampedModel):
         ('commentbox', _('commentbox')),
         ('quotebox', _('quotebox')),
         ('paperbox', _('paperbox')),
-        ('dicetable', _('dicetable'))
+        ('dicetable', _('dicetable')),
     ]
     section_type = models.CharField(max_length=30, blank=True, choices=SECTION_TYPES, verbose_name=_('section type'))
     THEMES = [
@@ -82,15 +82,22 @@ class Section(TimeStampedModel):
     paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
     table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'))
     new_page = models.BooleanField(default=False, verbose_name=_('new page'))
+    title_page = models.BooleanField(default=False, verbose_name=_('title page'))
 
     def __str__(self):
-        return self.content
+        return self.title
 
     def __repr__ (self):
         if self.section_type:
             return getattr(Section, self.section_type)(self)
+        elif self.title_page:
+            return ""
         else:
             return self.__str__()
+
+    def titlepage(self):
+        return """
+            \\phantom{Invisible text}"""
 
     def section(self):
         return """
@@ -132,7 +139,7 @@ class Watermark(TimeStampedModel):
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
     pages = models.CharField(max_length=10, verbose_name=_('pages'))
-    scale = models.PositiveIntegerField(default=1)
+    scale = models.FloatField(default=1)
     xpos = models.IntegerField()
     ypos = models.IntegerField()
     figurename = models.CharField(max_length=60, verbose_name=_('figure name'))

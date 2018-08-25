@@ -5,11 +5,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django_tex.views import render_to_pdf
 
+from diventi.core.views import StaffRequiredMixin
+
 from .models import Paper, Section, Watermark
 from .utils import brew_to_pdf
 
 
-class PaperDetailView(LoginRequiredMixin, DetailView):
+class PaperDetailView(StaffRequiredMixin, DetailView):
 
     model = Paper
     context_object_name = 'paper'

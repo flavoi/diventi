@@ -46,6 +46,14 @@
             {% endfor %}
             \end{dndtable}
         {% endif %}
+        {% if section._list.pk %}
+            \subsubsection*{ {{- section._list.title -}} }
+            \begin{itemize}
+            {% for item in section._list.items.all() %}                
+                \item{ {{- item -}} }
+            {% endfor %}
+            \end{itemize}
+        {% endif %}
     {% endfor %}
 {% else %}
     \par No sessions. 

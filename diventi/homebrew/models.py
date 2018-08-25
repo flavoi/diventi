@@ -52,6 +52,24 @@ class DiceTableRow(models.Model):
         return self.description
 
 
+class Itemize(models.Model):
+    """
+        An itemize object is a list of unordered items.
+    """
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+
+    def __str__(self):
+        return self.title
+
+
+class ItemizeItem(models.Model):
+    description = models.TextField(verbose_name=_('description'))
+    itemize = models.ForeignKey(Itemize, on_delete=models.CASCADE, related_name='items')
+
+    def __str__(self):
+        return self.description
+
+
 class Section(TimeStampedModel):
     """
         Each section type needs a function that renders the content of the paper
@@ -63,10 +81,11 @@ class Section(TimeStampedModel):
     SECTION_TYPES = [
         ('section', _('section')),
         ('subsection', _('subsection')),
+        ('paragraph', _('paragraph')),
         ('commentbox', _('commentbox')),
         ('quotebox', _('quotebox')),
         ('paperbox', _('paperbox')),
-        ('dicetable', _('dicetable')),
+        ('dicetable', _('dicetable')),        
     ]
     section_type = models.CharField(max_length=30, blank=True, choices=SECTION_TYPES, verbose_name=_('section type'))
     THEMES = [
@@ -81,7 +100,8 @@ class Section(TimeStampedModel):
     ]
     theme = models.CharField(max_length=30, blank=True, choices=THEMES, verbose_name=_('theme')) 
     paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
-    table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'))
+    table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('table'))
+    _list = models.OneToOneField(Itemize, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('list'))
     new_page = models.BooleanField(default=False, verbose_name=_('new page'))
     title_page = models.BooleanField(default=False, verbose_name=_('title page'))
 
@@ -110,6 +130,11 @@ class Section(TimeStampedModel):
             \\subsubsection{%s}
                 %s""" % (self.title, self.content)
 
+    def paragraph(self):
+        return """
+            \\textit{%s}
+                %s""" % (self.title, self.content)        
+
     def commentbox(self):
         return """
             \\begin{commentbox}{%s}[%s]
@@ -131,6 +156,10 @@ class Section(TimeStampedModel):
     def dicetable(self):
         return """
             \\header{%s}""" % self.__str__() # The header of the table
+
+    def itemize(self):
+        return """
+            \\textit{%s}""" % self.__str__() # The header of the table
 
 
 class Watermark(TimeStampedModel):

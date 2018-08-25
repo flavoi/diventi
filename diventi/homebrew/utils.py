@@ -1,4 +1,4 @@
-import os, tempfile
+import os, tempfile, time, logging
 from subprocess import Popen, PIPE
 
 from django.conf import settings
@@ -6,10 +6,10 @@ from django.http import HttpResponse
 
 from django_tex.engine import engine
 
-import time
 
 DEFAULT_INTERPRETER = 'lualatex'
 
+logger = logging.getLogger(__name__)
 
 class TexError(Exception):
     pass
@@ -23,6 +23,7 @@ def run_tex(source):
             process = Popen(latex_command, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             process.communicate(source.encode('utf-8'))
             if process.returncode == 1:
+                logger.error(source)
                 raise TexError(source)
             filepath = os.path.join(tempdir, 'texput.pdf')
             print(filepath)

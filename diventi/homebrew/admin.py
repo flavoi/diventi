@@ -33,7 +33,7 @@ class PaperAdmin(DiventiTranslationAdmin):
 
 class DiceTableRowInline(TranslationStackedInline):
     model = DiceTableRow
-    fields = ('description',)
+    fields = ('face', 'description')
     extra = 0
 
 

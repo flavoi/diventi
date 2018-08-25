@@ -42,7 +42,7 @@
                 {% if loop.index == 1 %}
                     \textbf{ {{- section.table.get_dice_display() -}} } & \textbf{ {{- section.table.title|title -}} } \\
                 {% endif %}
-                {{ row.pk }} & {{ row.description }} \\
+                {{ row.face }} & {{ row.description }} \\
             {% endfor %}
             \end{dndtable}
         {% endif %}

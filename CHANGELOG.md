@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 
 ### Added
--Introduced paper: an experiental app to write papers
+- Introduced homebrew: an experiental app to write papers
 
 ### Changed
 - Enabled additional fieldsets for blog admin

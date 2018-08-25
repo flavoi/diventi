@@ -25,7 +25,7 @@
         {% endif %}
         {{ section|stringformat('r') }}
         {% if section.table.pk %}
-            \begin{dndtable}[cX]
+            \begin{dndtable}[cX][{{- section.theme -}}]
             {% for row in section.table.rows.all() %}
                 {% if loop.index == 1 %}
                     \textbf{ {{- section.table.get_dice_display() -}} } & \textbf{ {{- section.table.title -}} } \\

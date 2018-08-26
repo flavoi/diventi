@@ -178,7 +178,7 @@ class Section(TimeStampedModel):
 
     def subsubsection(self):
         return """
-            \\header{%s}
+            \\header{%s} \\newline
                 %s""" % (self.title, self.content)
 
     def paragraph(self):

@@ -20,8 +20,8 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(PaperDetailView, self).get_context_data(*args, **kwargs)
         sections = Section.objects.filter(paper=self.object).order_by('order_id')
-        sections = sections.select_related('table')
-        sections = sections.prefetch_related('table__rows')
+        sections = sections.tables()
+        sections = sections.lists()
         context['sections'] = sections
         context['watermarks'] = Watermark.objects.filter(paper=self.object).order_by('pages')
         return context

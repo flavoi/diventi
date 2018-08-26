@@ -5,6 +5,21 @@ from django.urls import reverse
 from diventi.core.models import TimeStampedModel, PublishableModel, DiventiImageModel
 
 
+class SectionQuerySet(models.QuerySet):
+
+    # Select every dicetable related to the section
+    def tables(self):
+        section = self.select_related('table')
+        section = sections.prefetch_related('table__rows')
+        return section
+
+    # Select every list rilated to the section
+    def lists(self):
+        section = self.select_related('_list')
+        section = section.prefetch_related('_list__items')
+        return section
+
+
 class Paper(TimeStampedModel):
     """
         A Paper is a document written in latex that contains fantastic adventures.
@@ -104,6 +119,8 @@ class Section(TimeStampedModel):
     _list = models.OneToOneField(Itemize, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('list'))
     new_page = models.BooleanField(default=False, verbose_name=_('new page'))
     title_page = models.BooleanField(default=False, verbose_name=_('title page'))
+
+    objects = SectionQuerySet.as_manager()
 
     def __str__(self):
         return self.title

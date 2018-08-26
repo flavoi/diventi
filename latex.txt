@@ -1,0 +1,41 @@
+wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
+tlmgr install babel-english
+tlmgr install hang
+tlmgr install lipsum
+tlmgr install listings
+tlmgr install xcolor
+tlmgr install colortbl
+tlmgr install enumitem
+tlmgr install keycommand
+tlmgr install etex-pkg
+tlmgr install microtype
+tlmgr install ms
+tlmgr install tcolorbox
+tlmgr install pgf
+tlmgr install environ
+tlmgr install trimspaces
+tlmgr install psnfss
+tlmgr install fancyhdr
+tlmgr install fp
+tlmgr install xstring
+tlmgr install tocloft
+tlmgr install titlesec
+tlmgr install bookman
+tlmgr install courier
+tlmgr install dvips
+tlmgr install opensans
+tlmgr install xwatermark
+tlmgr install catoptions
+tlmgr install ltxkeys
+tlmgr install paratype
+tlmgr install memoir
+tlmgr install ifetex
+
+Creare albero utente: 
+tlmgr init-usertree
+
+Verificare percorso:
+kpsewhich -var-value TEXMFHOME
+
+Posizionare pacchetti in:
+$TEXMFHOME/tex/latex/<nome pacchetto> 

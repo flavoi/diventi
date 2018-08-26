@@ -4,10 +4,13 @@
 \usepackage{hang}
 \usepackage{lipsum}
 \usepackage{listings}
-
 \usepackage[bg=none]{dnd}
 \usepackage[printwatermark]{xwatermark}
 
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\newcommand\YUGE{\fontsize{40}{60}\selectfont}
+\definecolor{Amber}{rgb}{1.0, 0.49, 0.0}
 \lstset{ basicstyle=\ttfamily, language=[LaTeX]{TeX}, }
 
 {% if watermarks %}
@@ -23,16 +26,20 @@
 {% if sections %}
     {% for section in sections %}
         {% if section.title_page %}
-            \pagenumbering{gobble}
-            \clearpage
-            \thispagestyle{empty}
-            \phantom{abc}
-            \clearpage
-            \pagenumbering{arabic}
-        {% endif %}    
-        {% if loop.first %}
-            \section{ {{- paper.title -}} }
-        {% endif %}
+            \begin{titlepage} % Suppresses headers and footers on the title page
+                \raggedleft % Right align everything
+                \vspace*{1.5cm}
+                \textbf{\textcolor{Amber}{\YUGE Diventi}}\\[\baselineskip]                
+                {\textcolor{DmgSlateGray}{\YUGE{ {{- section.title|title -}} }}}\\[\baselineskip]                
+                {\Huge \textit{\textcolor{DmgSlateGray}{ {{- section.content|capfirst -}} }}}                
+                \vfill                 
+                \vspace*{3\baselineskip}
+            \end{titlepage}
+        {% else %}
+            {% if loop.first %}
+                \section{ {{- paper.title -}} }
+            {% endif %}
+        {% endif %}            
         {% if section.new_page %}
             \newpage
         {% endif %}

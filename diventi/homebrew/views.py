@@ -22,6 +22,7 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
         sections = Section.objects.filter(paper=self.object).order_by('order_id')
         sections = sections.tables()
         sections = sections.lists()
+        sections = sections.characters()
         context['sections'] = sections
         context['watermarks'] = Watermark.objects.filter(paper=self.object).order_by('pages')
         return context

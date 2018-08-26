@@ -28,6 +28,7 @@
             \thispagestyle{empty}
             \phantom{abc}
             \clearpage
+            \pagenumbering{arabic}
         {% endif %}    
         {% if loop.first %}
             \section{ {{- paper.title -}} }
@@ -53,6 +54,21 @@
                 \item{ {{- item -}} }
             {% endfor %}
             \end{itemize}
+        {% endif %}
+        {% if section.character.pk %}
+            \begin{monsterbox}{ {{- section.character.title|title -}} }
+                \begin{hangingpar}
+                    \textit{ {{- section.character.description|capfirst -}} }
+                \end{hangingpar}
+                \vspace{5pt}
+                \hrule
+                \vspace{6pt}
+                {% for item in section.character.items.all() %}
+                    \begin{monsteraction}[{{- item.title|capfirst -}}]
+                        \hspace*{0.05cm}{{- item.description|capfirst -}}
+                    \end{monsteraction}
+                {% endfor %}
+            \end{monsterbox}
         {% endif %}
     {% endfor %}
 {% else %}

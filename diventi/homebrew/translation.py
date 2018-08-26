@@ -2,7 +2,7 @@ from modeltranslation.translator import register, TranslationOptions
 
 from diventi.core.admin import DiventiTranslationAdmin
 
-from .models import Paper, Section, Watermark, DiceTable, DiceTableRow, Itemize, ItemizeItem
+from .models import Paper, Section, Watermark, DiceTable, DiceTableRow, Itemize, ItemizeItem, CharacterBlock, CharacterItem
 
 
 @register(Paper)
@@ -21,20 +21,30 @@ class WatermarkTranslationOptions(TranslationOptions):
 
 
 @register(DiceTable)
-class WatermarkTranslationOptions(TranslationOptions):
+class DiceTableTranslationOptions(TranslationOptions):
     fields = ('title',)
 
 
 @register(DiceTableRow)
-class WatermarkTranslationOptions(TranslationOptions):
+class DiceTableRowTranslationOptions(TranslationOptions):
     fields = ('description',)
 
 
 @register(Itemize)
-class WatermarkTranslationOptions(TranslationOptions):
+class ItemizeTranslationOptions(TranslationOptions):
     fields = ('title',)
 
 
 @register(ItemizeItem)
-class WatermarkTranslationOptions(TranslationOptions):
+class ItemizeItemTranslationOptions(TranslationOptions):
     fields = ('description',)
+
+
+@register(CharacterBlock)
+class CharacterBlockTranslationOptions(TranslationOptions):
+    fields = ('title', 'description')
+
+
+@register(CharacterItem)
+class CharacterItemTranslationOptions(TranslationOptions):
+    fields = ('title', 'description')

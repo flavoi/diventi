@@ -10,13 +10,19 @@ class SectionQuerySet(models.QuerySet):
     # Select every dicetable related to the section
     def tables(self):
         section = self.select_related('table')
-        section = sections.prefetch_related('table__rows')
+        section = section.prefetch_related('table__rows')
         return section
 
-    # Select every list rilated to the section
+    # Select every list related to the section
     def lists(self):
         section = self.select_related('_list')
         section = section.prefetch_related('_list__items')
+        return section
+
+    # Select every item related to a character
+    def characters(self):
+        section = self.select_related('character')
+        section = section.prefetch_related('character__items')
         return section
 
 
@@ -85,6 +91,26 @@ class ItemizeItem(models.Model):
         return self.description
 
 
+class CharacterBlock(models.Model):
+    """
+        A special block that enunciates the characteristics of a character.
+    """
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    description = models.TextField(verbose_name=_('description'))
+
+    def __str__(self):
+        return self.title
+
+
+class CharacterItem(models.Model):
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    description = models.TextField(verbose_name=_('description'))
+    characterblock = models.ForeignKey(CharacterBlock, on_delete=models.CASCADE, related_name='items')
+
+    def __str__(self):
+        return self.title
+
+
 class Section(TimeStampedModel):
     """
         Each section type needs a function that renders the content of the paper
@@ -100,7 +126,8 @@ class Section(TimeStampedModel):
         ('commentbox', _('commentbox')),
         ('quotebox', _('quotebox')),
         ('paperbox', _('paperbox')),
-        ('dicetable', _('dicetable')),        
+        ('header', _('header')),
+        ('phantom', _('phantom')),  
     ]
     section_type = models.CharField(max_length=30, blank=True, choices=SECTION_TYPES, verbose_name=_('section type'))
     THEMES = [
@@ -117,6 +144,7 @@ class Section(TimeStampedModel):
     paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
     table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('table'))
     _list = models.OneToOneField(Itemize, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('list'))
+    character = models.OneToOneField(CharacterBlock, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('character'))
     new_page = models.BooleanField(default=False, verbose_name=_('new page'))
     title_page = models.BooleanField(default=False, verbose_name=_('title page'))
 
@@ -133,7 +161,7 @@ class Section(TimeStampedModel):
         else:
             return self.__str__()
 
-    def titlepage(self):
+    def phantom(self):
         return """
             \\phantom{Invisible text}"""
 
@@ -170,13 +198,9 @@ class Section(TimeStampedModel):
                 %s
             \\end{paperbox}""" % (self.title, self.theme, self.content)
 
-    def dicetable(self):
+    def header(self):
         return """
-            \\header{%s}""" % self.__str__() # The header of the table
-
-    def itemize(self):
-        return """
-            \\textit{%s}""" % self.__str__() # The header of the table
+            \\header{%s}""" % self.__str__() # The header of an object
 
 
 class Watermark(TimeStampedModel):

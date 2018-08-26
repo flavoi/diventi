@@ -30,3 +30,8 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
         return brew_to_pdf(self.template_name, context, filename='test.pdf')
+
+
+class HomebrewHome(StaffRequiredMixin, TemplateView):
+
+    template_name = 'homebrew/home.html'

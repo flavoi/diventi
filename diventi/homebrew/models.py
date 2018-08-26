@@ -118,7 +118,7 @@ class Section(TimeStampedModel):
     """
     order_id = models.PositiveIntegerField(unique=True, verbose_name=_('order_id')) # This affects the display order of every piece of content
     title = models.CharField(max_length=60, verbose_name=_('title'))
-    content = models.TextField(verbose_name=_('content'))
+    content = models.TextField(blank=True, verbose_name=_('content'))
     SECTION_TYPES = [
         ('section', _('section')),
         ('subsection', _('subsection')),

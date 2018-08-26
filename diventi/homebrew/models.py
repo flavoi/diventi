@@ -183,8 +183,7 @@ class Section(TimeStampedModel):
 
     def paragraph(self):
         return """
-            \\textit{%s}
-                %s""" % (self.title, self.content)        
+                %s""" % self.content        
 
     def commentbox(self):
         return """

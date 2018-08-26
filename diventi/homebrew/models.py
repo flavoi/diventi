@@ -122,6 +122,7 @@ class Section(TimeStampedModel):
     SECTION_TYPES = [
         ('section', _('section')),
         ('subsection', _('subsection')),
+        ('subsubsection', _('subsubsection')),
         ('paragraph', _('paragraph')),
         ('commentbox', _('commentbox')),
         ('quotebox', _('quotebox')),
@@ -173,6 +174,11 @@ class Section(TimeStampedModel):
     def subsection(self):
         return """
             \\subsubsection{%s}
+                %s""" % (self.title, self.content)
+
+    def subsubsection(self):
+        return """
+            \\header{%s}
                 %s""" % (self.title, self.content)
 
     def paragraph(self):

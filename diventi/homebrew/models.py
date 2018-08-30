@@ -128,20 +128,28 @@ class Section(TimeStampedModel):
         ('quotebox', _('quotebox')),
         ('paperbox', _('paperbox')),
         ('header', _('header')),
-        ('phantom', _('phantom')),  
+        ('phantom', _('phantom')),
+        ('illustration', _('illustration')),
     ]
     section_type = models.CharField(max_length=30, blank=True, choices=SECTION_TYPES, verbose_name=_('section type'))
     THEMES = [
-        ('PhbLightGreen', _('light green')),
-        ('PhbLightCyan', _('light chan')),
-        ('PhbMauve', _('muave')), 
-        ('PhbTan', _('tan')),
-        ('DmgLavender', _('lavender')),
-        ('DmgCoral', _('coral')),
-        ('DmgSlateGray', _('slate gray')), 
-        ('DmgLilac', _('lilac')),
+        ('PhbLightCyan', _('green')), 
+        ('PhbTan', _('yellow')),
+        ('DmgCoral', _('orange')),
+        ('DmgSlateGray', _('gray')), 
     ]
-    theme = models.CharField(max_length=30, blank=True, choices=THEMES, verbose_name=_('theme')) 
+    theme = models.CharField(max_length=30, blank=True, choices=THEMES, verbose_name=_('theme'))
+    PICTURES = [
+        ('parassite', _('parassite')),
+        ('parassite_lineart', _('parassite (lineart)')),
+        ('dama_electra', _('dama electra')),
+        ('dama_electra_lineart', _('dama electra (lineart)')),
+        ('xarieth', _('xarieth')),
+        ('xarieth_lineart', _('xarieth (lineart)')),
+        ('tiara', _('tiara')),
+        ('tiara_lineart', _('tiara (lineart)')),
+    ]
+    _illustration = models.CharField(max_length=30, blank=True, choices=PICTURES, verbose_name=_('illustration'))
     paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
     table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('table'))
     _list = models.OneToOneField(Itemize, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('list'))
@@ -205,6 +213,12 @@ class Section(TimeStampedModel):
     def header(self):
         return """
             \\header{%s}""" % self.__str__() # The header of an object
+
+    def illustration(self):
+        return """
+            \\begin{figure}[h]
+                \\includegraphics[width=\\linewidth]{%s}
+            \\end{figure}""" % self._illustration
 
 
 class Watermark(TimeStampedModel):

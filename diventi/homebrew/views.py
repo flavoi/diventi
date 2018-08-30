@@ -33,11 +33,6 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
         return render_to_pdf(self.template_name, context, filename='test.pdf')
 
 
-class HomebrewHome(StaffRequiredMixin, TemplateView):
-
-    template_name = 'homebrew/home.html'
-
-
 class PaperDetailTexView(PaperDetailView):
 
     def get(self, request, slug):

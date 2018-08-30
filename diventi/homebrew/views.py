@@ -8,7 +8,7 @@ from django_tex.views import render_to_pdf
 from diventi.core.views import StaffRequiredMixin
 
 from .models import Paper, Section, Watermark
-from .utils import brew_to_pdf
+from .utils import render_to_pdf, render_to_tex
 
 
 class PaperDetailView(StaffRequiredMixin, DetailView):
@@ -30,9 +30,17 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
     def get(self, request, slug):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
-        return brew_to_pdf(self.template_name, context, filename='test.pdf')
+        return render_to_pdf(self.template_name, context, filename='test.pdf')
 
 
 class HomebrewHome(StaffRequiredMixin, TemplateView):
 
     template_name = 'homebrew/home.html'
+
+
+class PaperDetailTexView(PaperDetailView):
+
+    def get(self, request, slug):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return render_to_tex(request, self.template_name, context)

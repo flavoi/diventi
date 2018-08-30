@@ -51,6 +51,10 @@ class PDFResponse(HttpResponse):
         self.write(content)
 
 
-def brew_to_pdf(template_name, context, filename=None):
+def render_to_pdf(template_name, context, filename=None):
     pdf = compile_template_to_pdf(template_name, context)
     return PDFResponse(pdf, filename=filename)
+
+def render_to_tex(request, template_name, context):
+    tex = render_template_with_context(template_name, context)
+    raise TexError(tex)

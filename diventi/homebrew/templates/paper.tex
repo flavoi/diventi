@@ -13,6 +13,9 @@
 \definecolor{Amber}{rgb}{1.0, 0.49, 0.0}
 \lstset{ basicstyle=\ttfamily, language=[LaTeX]{TeX}, }
 
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{0}
+
 {% if watermarks %}
     {% for w in watermarks %}
         \newwatermark[pages={{ w.pages }},scale={{ w.scale }},xpos={{ w.xpos }},ypos={{ w.ypos }}]{\includegraphics{ {{- w.figurename -}} }}
@@ -35,14 +38,25 @@
                 \vfill                 
                 \vspace*{3\baselineskip}
             \end{titlepage}
-        {% else %}
-            {% if loop.first %}
-                \section{ {{- paper.title -}} }
-            {% endif %}
-        {% endif %}            
+        {% endif %}
+        {% if loop.first %}
+            \pagenumbering{gobble}        
+            \setcounter{page}{2}
+            \renewcommand{\contentsname}{}
+            \section*{Indice}
+            \begingroup\let\clearpage\relax
+            \hypersetup{hidelinks}
+            \tableofcontents
+            \endgroup
+            \clearpage
+            \pagenumbering{arabic}
+            \setcounter{page}{3}
+            \chapter*{ {{- paper.title -}} }
+            \addcontentsline{toc}{chapter}{ {{- paper.title -}} }
+        {% endif %}             
         {% if section.new_page %}
             \newpage
-        {% endif %}
+        {% endif %}       
         {{ section|stringformat('r') }}
         {% if section.table.pk %}
             \begin{dndtable}[cX][{{- section.theme -}}]

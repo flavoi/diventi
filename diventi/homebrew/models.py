@@ -163,8 +163,7 @@ class Section(TimeStampedModel):
             return self.__str__()
 
     def phantom(self):
-        return """
-            \\phantom{Invisible text}"""
+        return ""
 
     def section(self):
         return """

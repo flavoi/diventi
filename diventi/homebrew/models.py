@@ -36,6 +36,7 @@ class Paper(TimeStampedModel):
 
     class Meta:
         verbose_name = _('paper')
+        verbose_name_plural = _('papers')
     
     def __str__(self):
         return self.title
@@ -63,6 +64,10 @@ class DiceTable(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = _('dice table')
+        verbose_name_plural = _('dice tables')
+
 
 class DiceTableRow(models.Model):
     description = models.TextField(verbose_name=_('description'))
@@ -71,6 +76,10 @@ class DiceTableRow(models.Model):
 
     def __str__(self):
         return self.description
+
+    class Meta:
+        verbose_name = _('dice table row')
+        verbose_name_plural = _('dice table rows')
 
 
 class Itemize(models.Model):
@@ -82,6 +91,10 @@ class Itemize(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = _('list')
+        verbose_name_plural = _('lists')
+
 
 class ItemizeItem(models.Model):
     description = models.TextField(verbose_name=_('description'))
@@ -89,6 +102,10 @@ class ItemizeItem(models.Model):
 
     def __str__(self):
         return self.description
+
+    class Meta:
+        verbose_name = _('list item')
+        verbose_name_plural = _('list items')
 
 
 class CharacterBlock(models.Model):
@@ -101,6 +118,10 @@ class CharacterBlock(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = _('character block')
+        verbose_name_plural = _('character blocks')
+
 
 class CharacterItem(models.Model):
     title = models.CharField(max_length=60, verbose_name=_('title'))
@@ -109,6 +130,10 @@ class CharacterItem(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _('character item')
+        verbose_name_plural = _('character items')
 
 
 class Section(TimeStampedModel):
@@ -220,6 +245,11 @@ class Section(TimeStampedModel):
                 \\includegraphics[width=\\linewidth]{%s}
             \\end{figure}""" % self._illustration
 
+    class Meta:
+        verbose_name = _('section')
+        verbose_name_plural = _('sections')
+
+
 
 class Watermark(TimeStampedModel):
     """
@@ -236,4 +266,8 @@ class Watermark(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _('watermark')
+        verbose_name_plural = _('watermarks')
 

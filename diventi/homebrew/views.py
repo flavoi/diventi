@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.translation import gettext as _
 
 from django_tex.views import render_to_pdf
 
@@ -23,6 +24,12 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
         sections = sections.tables()
         sections = sections.lists()
         sections = sections.characters()
+        context['contents'] = _('contents')
+        babel = self.request.LANGUAGE_CODE
+        if babel == 'it':
+            context['babel'] = 'italian'
+        else:
+            context['babel'] = 'english'
         context['sections'] = sections
         context['watermarks'] = Watermark.objects.filter(paper=self.object).order_by('pages')
         return context

@@ -62,9 +62,9 @@
             \begin{dndtable}[cX][{{- section.theme -}}]
             {% for row in section.table.rows.all() %}
                 {% if loop.index == 1 %}
-                    \textbf{ {{- section.table.get_dice_display() -}} } & \textbf{ {{- section.table.title|title -}} } \\
+                    \textbf{ {{- section.table.get_dice_display() -}} } & \textbf{ {{- section.table.title|capfirst -}} } \\
                 {% endif %}
-                {{ row.face }} & {{ row.description }} \\
+                {{ row.face }} & {{ row.description|capfirst }} \\
             {% endfor %}
             \end{dndtable}
         {% endif %}
@@ -77,7 +77,7 @@
             \end{itemize}
         {% endif %}
         {% if section.character.pk %}
-            \begin{monsterbox}{ \normalsize{ {{- section.character.title|title -}} }}
+            \begin{monsterbox}{ \normalsize{ {{- section.character.title|capfirst -}} }}
                 \begin{hangingpar}
                     \textit{ {{- section.character.description|capfirst -}} }
                 \end{hangingpar}

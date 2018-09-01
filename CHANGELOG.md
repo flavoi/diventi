@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Enabled additional fieldsets for blog admin
-- Updated subscribers template with buttons related to all users, gruped by language
+- Updated user report with buttons related to all users, gruped by language
 
 
 ## [1.0.0-beta.3] → 2018-06-13

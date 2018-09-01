@@ -30,6 +30,7 @@ tlmgr install ltxkeys
 tlmgr install paratype
 tlmgr install memoir
 tlmgr install ifetex
+tlmgr install graphbox
 
 Creare albero utente: 
 tlmgr init-usertree

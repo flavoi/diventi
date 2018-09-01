@@ -4,6 +4,7 @@
 \usepackage{hang}
 \usepackage{lipsum}
 \usepackage{listings}
+\usepackage{lipsum}
 \usepackage[bg=none]{dnd}
 \usepackage[printwatermark]{xwatermark}
 
@@ -21,6 +22,22 @@
         \newwatermark[pages={{ w.pages }},scale={{ w.scale }},xpos={{ w.xpos }},ypos={{ w.ypos }}]{\includegraphics{ {{- w.figurename -}} }}
     {% endfor %}
 {% endif %}
+
+\usepackage{graphbox}
+
+\fancypagestyle{diventi}{
+  \fancyhf{}
+  \fancyfoot[C]{\includegraphics[align=c, height=0.8cm]{diventi_pc_logo}}
+  \fancyfoot[RO, LE] {\thepage}
+  \fancyfoot[LO, RE] {\emph{playdiventi.it}}
+  \renewcommand{\footrulewidth}{0.2pt}
+}
+
+\fancypagestyle{contents}{
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyhf{}
+}
 
 \begin{document}
 
@@ -40,6 +57,7 @@
             \end{titlepage}
         {% endif %}
         {% if loop.first %}
+            \pagestyle{contents}
             \pagenumbering{gobble}        
             \setcounter{page}{2}
             \renewcommand{\contentsname}{}
@@ -49,6 +67,7 @@
             \tableofcontents
             \endgroup
             \clearpage
+            \pagestyle{diventi}
             \pagenumbering{arabic}
             \setcounter{page}{3}
             \chapter*{ {{- paper.title -}} }

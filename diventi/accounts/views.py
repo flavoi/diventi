@@ -215,15 +215,24 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        users = DiventiUser.objects.all()        
-        users = users.has_agreed_gdpr()
-        users_groups = users.values('language').annotate(total=Count('email')).order_by('language')
+        users = DiventiUser.objects.all()                
+        users_groups = users.emails()
+        subscribers = users.has_agreed_gdpr()
+        subscribers_groups = subscribers.emails()
         users_lan = {}
         for ugroup in users_groups:
             lan = ugroup['language']
             users_lan[lan] = users.filter(language=lan)
+        subscribers_lan = {}
+        for sgroup in subscribers_groups:
+            lan = sgroup['language']
+            subscribers_lan[lan] = subscribers.filter(language=lan)
         context['users_groups'] = users_groups
         context['users_lan'] = users_lan
+        context['subscribers_groups'] = subscribers_groups
+        context['subscribers_lan'] = subscribers_lan
+        context['msg_success'] = _('The email addresses have been copied to clipboard.')
+        context['msg_failure'] = _('Something went wrong with the copy.')
         return context
 
 

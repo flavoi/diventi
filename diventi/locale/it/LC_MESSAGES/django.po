@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-31 17:19+0200\n"
+"POT-Creation-Date: 2018-09-01 15:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,90 +92,90 @@ msgstr "Qual è la tua storia?"
 msgid "What's your favourite class?"
 msgstr "Qual è la tua classe preferita?"
 
-#: diventi/accounts/models.py:44
+#: diventi/accounts/models.py:48
 msgid "The email must be set"
 msgstr "L'email deve essere valorizzata"
 
-#: diventi/accounts/models.py:56
+#: diventi/accounts/models.py:60
 msgid "Superuser must have is_staff=True."
 msgstr "Un amministratore deve essere impostato come is_staff=True."
 
-#: diventi/accounts/models.py:58
+#: diventi/accounts/models.py:62
 msgid "Superuser must have is_superuser=True."
 msgstr "Un amministratore deve essere impostato come is_superuser=True."
 
-#: diventi/accounts/models.py:83
+#: diventi/accounts/models.py:90
 msgid "staff_only"
 msgstr "riservato allo staff"
 
-#: diventi/accounts/models.py:88
+#: diventi/accounts/models.py:95
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:89
+#: diventi/accounts/models.py:96
 #: diventi/templates/accounts/user_customization.html:28
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:97
+#: diventi/accounts/models.py:104
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:98
+#: diventi/accounts/models.py:105
 #: diventi/templates/accounts/user_customization.html:43
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:104
+#: diventi/accounts/models.py:111
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:105
+#: diventi/accounts/models.py:112
 #: diventi/templates/accounts/user_achievements.html:4
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:109
+#: diventi/accounts/models.py:116
 msgid "email"
 msgstr "email"
 
-#: diventi/accounts/models.py:110
+#: diventi/accounts/models.py:117
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:111
+#: diventi/accounts/models.py:118
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:112
+#: diventi/accounts/models.py:119
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:113 diventi/landing/models.py:59
+#: diventi/accounts/models.py:120 diventi/landing/models.py:59
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:114
+#: diventi/accounts/models.py:121
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:115
+#: diventi/accounts/models.py:122
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:116
+#: diventi/accounts/models.py:123
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:125 diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:132 diventi/templates/accounts/user.html:31
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:126
+#: diventi/accounts/models.py:133
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:139
+#: diventi/accounts/models.py:146
 msgid "account"
 msgstr "profilo"
 
@@ -274,6 +274,14 @@ msgstr "Un utente piò modificare solo il suo profilo."
 #: diventi/accounts/views.py:198
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
+
+#: diventi/accounts/views.py:235
+msgid "The email addresses have been copied to clipboard."
+msgstr "Gli indirizzi email sono stati copiati con successo."
+
+#: diventi/accounts/views.py:236
+msgid "Something went wrong with the copy."
+msgstr "La copia degli indirizzi email è fallita."
 
 #: diventi/accounts/widgets.py:116
 msgid "User avatars"
@@ -1082,7 +1090,11 @@ msgstr "Iniziamo"
 msgid "Subscribers"
 msgstr "Iscritti"
 
-#: diventi/templates/accounts/subscribers.html:17
+#: diventi/templates/accounts/subscribers.html:20
+msgid "Contact %(lang_code)s users"
+msgstr "Contatta tutti gli utenti %(lang_code)s"
+
+#: diventi/templates/accounts/subscribers.html:32
 #, python-format
 msgid "Contact %(lang_code)s subscribers"
 msgstr "Contatta gli iscritti %(lang_code)s"
@@ -1446,9 +1458,3 @@ msgstr "nessun voto rilevato"
 #~| msgid "Italian"
 #~ msgid "tan"
 #~ msgstr "Italiano"
-
-#~ msgid "The email addresses have been copied to clipboard."
-#~ msgstr "Gli indirizzi email sono stati copiati con successo."
-
-#~ msgid "Something went wrong with the copy."
-#~ msgstr "La copia degli indirizzi email è fallita."

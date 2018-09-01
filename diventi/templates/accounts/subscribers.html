@@ -10,13 +10,30 @@
 {% endblock pageheader_title %}
 
 {% block pageheader_content %}
+    
+    
+    <div class="row">
+            {% for ugroups in users_groups %}
+            <div class="col-6">
+                {% get_language_info for ugroups.language as lang %}
+                <button class="btn btn-warning btn-block" data-clipboard-text="{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
+                    {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} users{% endblocktrans %} <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
+                </button> &nbsp;
+            </div>
+            {% endfor %}            
+    </div>
+    
 
-    {% for ugroups in users_groups %}
-        {% get_language_info for ugroups.language as lang %}
-        <button class="btn btn-warning" data-clipboard-text="{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
-            {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
-        </button> &nbsp;
-    {% endfor %}
+    <div class="row">
+        {% for sgroups in subscribers_groups %}
+            <div class="col-6">
+                {% get_language_info for sgroups.language as lang %}
+                <button class="btn btn-warning btn-block" data-clipboard-text="{% for user in subscribers_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
+                    {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} <span class="badge badge-pill badge-info">{{ sgroups.total }}</span>
+                </button> &nbsp;
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock pageheader_content %}
 
@@ -27,12 +44,12 @@
         var clipboard = new ClipboardJS('.btn');
         clipboard.on('success', function(e) {
             console.log(e);
-            alert(gettext('The email addresses have been copied to clipboard.'))
+            alert('{{ msg_success }}')
         });
 
         clipboard.on('error', function(e) {
             console.log(e);
-            alert(gettext('Something went wrong with the copy.'))
+            alert('{{ msg_failure }}')
         });
     </script>
 {% endblock extrascript %}

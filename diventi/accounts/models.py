@@ -2,7 +2,7 @@ from functools import reduce
 import operator
 
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Count, Sum
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.contrib.auth import models as auth_models
 from django.urls import reverse_lazy
@@ -32,6 +32,10 @@ class DiventiUserQuerySet(models.QuerySet):
         products = Product.objects.all()
         users = self.filter(products__in=products)
         return users
+
+    # Returns the emails of a group of users
+    def emails(self):
+        return self.values('language').annotate(total=Count('email')).order_by('language')
 
 
 class DiventiUserManager(BaseUserManager):
@@ -69,6 +73,9 @@ class DiventiUserManager(BaseUserManager):
 
     def authors(self):
         return self.get_queryset().authors()
+
+    def emails(self):
+        return self.get_queryset().emails()
         
 
 class DiventiAvatarQuerySet(models.QuerySet):

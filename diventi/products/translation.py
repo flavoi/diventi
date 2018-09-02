@@ -30,4 +30,4 @@ class CharacteristicTranslationOptions(TranslationOptions):
 
 @register(ImagePreview)
 class ImagePreviewTranslationOptions(TranslationOptions):
-    fields = ('label',)
+    fields = ('label', 'image') # A preview can cointain text that has to be translated

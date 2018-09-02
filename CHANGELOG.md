@@ -10,10 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced homebrew: an experiental app to write papers
+- Upgraded the icons to fontawesome 5.3
 
 ### Changed
 - Enabled additional fieldsets for blog admin
 - Updated user report with buttons related to all users, gruped by language
+- Updated styles of product carousel
+
+### Fixed
 
 
 ## [1.0.0-beta.3] → 2018-06-13

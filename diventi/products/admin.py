@@ -46,8 +46,16 @@ class ProductAdmin(DiventiTranslationAdmin):
         CharacteristicInline,
         ImagePreviewInline,
     ]
-    prepopulated_fields = {"slug": ("title",)}
+    #prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('published', 'available', 'featured')
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'image', 'description', 'category', 'file', 'authors', 'buyers', 'courtesy_message', 'slug'),
+        }),
+    )
     actions = [make_published, make_unpublished]
 
 

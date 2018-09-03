@@ -30,7 +30,7 @@ class ArticleAdmin(DiventiTranslationAdmin):
             'fields': ('published', 'hot')
         }),
         (_('Editing'), {
-            'fields': ('title', 'category', 'image', 'publication_date', 'content', 'author', 'slug'),
+            'fields': ('title', 'category', 'image', 'publication_date', 'content', 'label', 'author', 'slug'),
         }),
     )
     actions = [make_published, make_unpublished]

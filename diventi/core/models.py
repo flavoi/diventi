@@ -142,7 +142,7 @@ class DiventiCoverQuerySet(models.QuerySet):
         except self.model.DoesNotExist:
             cover = self.model.objects.none()
         except self.model.MultipleObjectsReturned:
-            msg = _("There must be only one cover at a time. Please fix!")
+            msg = _("There must be only one object at a time. Please fix!")
             raise self.model.MultipleObjectsReturned(msg)
         return cover
 

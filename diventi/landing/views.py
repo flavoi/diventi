@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Presentation, Feedback
+from .models import Presentation, Feedback, AboutCover
 from .forms import FeedbackCreationForm
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
@@ -124,6 +124,8 @@ class AboutView(TemplateView):
         context = super(AboutView, self).get_context_data(**kwargs)
         authors = DiventiUser.objects.authors()
         presentation = Presentation.objects.active()
+        cover = AboutCover.objects.active()
         context['presentation'] = presentation
         context['authors'] = authors
+        context['cover'] = cover
         return context

@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from diventi.core.admin import DiventiTranslationAdmin
+from diventi.core.admin import DiventiTranslationAdmin, deactivate
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from .models import Presentation, Feature, Feedback, About
+from .models import Presentation, Feature, Feedback, About, AboutCover
 
 
 class AboutInline(TranslationStackedInline):
@@ -31,5 +31,12 @@ class FeedbackAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'created', 'modified']
 
 
+
+class AboutCoverAdmin(DiventiTranslationAdmin):
+    list_display= ('label', 'image_tag', 'active')
+    actions = [deactivate]
+    
+
 admin.site.register(Presentation, PresentationAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
+admin.site.register(AboutCover, AboutCoverAdmin)

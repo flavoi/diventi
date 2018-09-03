@@ -4,7 +4,7 @@ from django.conf import settings
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel
+from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, DiventiCoverModel
 
 
 class PresentationManager(models.Manager):
@@ -88,3 +88,10 @@ class Feature(Element):
     class Meta:
         verbose_name = _('feature')
         verbose_name_plural = _('features')
+
+
+class AboutCover(DiventiCoverModel):
+
+    class Meta:
+        verbose_name = _('About Cover')
+        verbose_name_plural = _('About Covers')

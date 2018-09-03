@@ -132,3 +132,38 @@ class DiventiImageModel(models.Model):
     def __str__(self):
         return u'{0}'.format(self.label)
 
+
+class DiventiCoverQuerySet(models.QuerySet):
+
+    # Get the active cover or returns nothing
+    def active(self):
+        try:
+            cover = self.model.objects.get(active=True)
+        except self.model.DoesNotExist:
+            cover = self.model.objects.none()
+        except self.model.MultipleObjectsReturned:
+            msg = _("There must be only one cover at a time. Please fix!")
+            raise self.model.MultipleObjectsReturned(msg)
+        return cover
+
+
+class DiventiCoverManager(models.Manager):
+
+    def get_queryset(self):
+        return DiventiCoverQuerySet(self.model, using=self._db)
+
+    def active(self):
+        return self.get_queryset().active()
+
+
+class DiventiCoverModel(DiventiImageModel):
+    """
+        Stores cover images for the blog page.
+    """
+
+    active = models.BooleanField(default=False, verbose_name=_('active'))
+
+    objects = DiventiCoverManager()
+
+    class Meta:
+        abstract = True

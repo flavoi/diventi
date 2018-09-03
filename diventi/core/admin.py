@@ -7,6 +7,21 @@ admin.site.site_header = _("Diventi Control Panel")
 admin.site.site_title = _("Diventi Control Panel")
 
 
+def make_published(modeladmin, request, queryset):
+    queryset.update(published=True)
+make_published.short_description = _("Mark selected items as published")
+
+
+def make_unpublished(modeladmin, request, queryset):
+    queryset.update(published=False)
+make_unpublished.short_description = _("Mark selected items as hidden")
+
+
+def deactivate(modeladmin, request, queryset):
+    queryset.update(active=False)
+deactivate.short_description = _("Mark selected items for deactivation")
+
+
 class DiventiTranslationAdmin(TranslationAdmin):
 
     class Media:
@@ -18,3 +33,4 @@ class DiventiTranslationAdmin(TranslationAdmin):
         css = {
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
+

@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
-from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel, Category, DiventiImageModel
+from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel, Category, DiventiImageModel, DiventiCoverModel
 
 
 class ArticleQuerySet(models.QuerySet):
@@ -49,29 +49,10 @@ class ArticleQuerySet(models.QuerySet):
         return article
 
 
-class BlogCoverQuerySet(models.QuerySet):
-
-    # Get the active cover or returns nothing
-    def active(self):
-        try:
-            cover = BlogCover.objects.get(active=True)
-        except BlogCover.DoesNotExist:
-            cover = BlogCover.objects.none()
-        except BlogCover.MultipleObjectsReturned:
-            msg = _("There must be only one blog cover at a time. Please fix!")
-            raise BlogCover.MultipleObjectsReturned(msg)
-        return cover
-
-
-class BlogCover(DiventiImageModel):
+class BlogCover(DiventiCoverModel):
     """
         Stores cover images for the blog page.
     """
-
-    active = models.BooleanField(default=False, verbose_name=_('active'))
-
-    objects = BlogCoverQuerySet.as_manager()
-
     class Meta:
         verbose_name = _('Blog Cover')
         verbose_name_plural = _('Blog Covers')

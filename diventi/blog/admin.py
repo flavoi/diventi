@@ -1,24 +1,9 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from diventi.core.admin import DiventiTranslationAdmin
+from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished, deactivate
 
 from .models import Article, ArticleCategory, BlogCover
-
-
-def make_published(modeladmin, request, queryset):
-    queryset.update(published=True)
-make_published.short_description = _("Mark selected stories as published")
-
-
-def make_unpublished(modeladmin, request, queryset):
-    queryset.update(published=False)
-make_unpublished.short_description = _("Mark selected stories as hidden")
-
-
-def deactivate(modeladmin, request, queryset):
-    queryset.update(active=False)
-deactivate.short_description = _("Mark selected covers for deactivation")
 
 
 class ArticleAdmin(DiventiTranslationAdmin):

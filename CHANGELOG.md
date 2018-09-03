@@ -14,10 +14,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Enabled additional fieldsets for blog admin
+- Enabled dynamic cover support for about page
 - Updated user report with buttons related to all users, gruped by language
 - Updated styles of product carousel
 
 ### Fixed
+- Fixed an hidden label in the blog admin page
 
 
 ## [1.0.0-beta.3] → 2018-06-13

@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
+from cuser.middleware import CuserMiddleware
 
 from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel, Category, DiventiImageModel, DiventiCoverModel
 
@@ -17,7 +18,11 @@ class ArticleQuerySet(models.QuerySet):
     
     # Get all the published articles 
     def published(self):
-        articles = self.filter(published=True)
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            articles = self
+        else:
+            articles = self.filter(published=True)
         return articles
 
     # Get the list of published articles from the most recent to the least 

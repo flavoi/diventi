@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-03 15:42+0200\n"
+"POT-Creation-Date: 2018-09-22 18:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,15 +307,15 @@ msgstr "Montaggio"
 msgid "Blog"
 msgstr "Blog"
 
-#: diventi/blog/models.py:57
+#: diventi/blog/models.py:62
 msgid "Blog Cover"
 msgstr "Copertina del blog"
 
-#: diventi/blog/models.py:58
+#: diventi/blog/models.py:63
 msgid "Blog Covers"
 msgstr "Copertine del blog"
 
-#: diventi/blog/models.py:73 diventi/core/models.py:78
+#: diventi/blog/models.py:78 diventi/core/models.py:78
 #: diventi/homebrew/models.py:33 diventi/homebrew/models.py:62
 #: diventi/homebrew/models.py:89 diventi/homebrew/models.py:115
 #: diventi/homebrew/models.py:127 diventi/homebrew/models.py:145
@@ -324,7 +324,7 @@ msgstr "Copertine del blog"
 msgid "title"
 msgstr "titolo"
 
-#: diventi/blog/models.py:74 diventi/core/models.py:79
+#: diventi/blog/models.py:79 diventi/core/models.py:79
 #: diventi/homebrew/models.py:34 diventi/homebrew/models.py:73
 #: diventi/homebrew/models.py:100 diventi/homebrew/models.py:116
 #: diventi/homebrew/models.py:128 diventi/landing/models.py:58
@@ -332,33 +332,33 @@ msgstr "titolo"
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:75 diventi/products/models.py:64
+#: diventi/blog/models.py:80 diventi/products/models.py:64
 #: diventi/products/models.py:115
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:76 diventi/homebrew/models.py:146
+#: diventi/blog/models.py:81 diventi/homebrew/models.py:146
 msgid "content"
 msgstr "contenuto"
 
-#: diventi/blog/models.py:77
+#: diventi/blog/models.py:82
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:78 diventi/homebrew/models.py:35
+#: diventi/blog/models.py:83 diventi/homebrew/models.py:35
 #: diventi/products/models.py:59
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:79
+#: diventi/blog/models.py:84
 msgid "author"
 msgstr "autore"
 
-#: diventi/blog/models.py:85 diventi/blog/models.py:106
+#: diventi/blog/models.py:90 diventi/blog/models.py:111
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:86
+#: diventi/blog/models.py:91
 msgid "articles"
 msgstr "articoli"
 
@@ -1247,29 +1247,31 @@ msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 msgid "Photo"
 msgstr "Foto"
 
-#: diventi/templates/blog/article_list.html:15
-msgid "Our Latest Stories"
+#: diventi/templates/blog/article_list.html:30
+msgid "Our latest stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:36
-msgid "read article"
-msgstr "leggi articolo"
+#: diventi/templates/blog/article_list.html:31
+msgid ""
+"Welcome to Diventi blog. You've reached the front page for news on "
+"roleplaying, collaborative storytelling and Diventi related announcements"
+msgstr "Benvenuti nel blog Diventi. Avete raggiunto la prima pagina per notizie su giochi di ruolo, narrazione collaborativa e annunci relativi a Diventi."
 
-#: diventi/templates/blog/article_list.html:43
+#: diventi/templates/blog/article_list.html:57
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:53
-#: diventi/templates/blog/article_list.html:55
+#: diventi/templates/blog/article_list.html:67
+#: diventi/templates/blog/article_list.html:69
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:59
+#: diventi/templates/blog/article_list.html:73
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:65
-#: diventi/templates/blog/article_list.html:67
+#: diventi/templates/blog/article_list.html:79
+#: diventi/templates/blog/article_list.html:81
 msgid "Next"
 msgstr "Successivo"
 
@@ -1464,6 +1466,9 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "read article"
+#~ msgstr "leggi articolo"
 
 #~ msgid "Photo credit"
 #~ msgstr "Illustrazione di"

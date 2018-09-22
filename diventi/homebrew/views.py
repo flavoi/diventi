@@ -16,7 +16,7 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
 
     model = Paper
     context_object_name = 'paper'
-    template_name = 'paper.tex'
+    
 
     def get_context_data(self, *args, **kwargs):
         context = super(PaperDetailView, self).get_context_data(*args, **kwargs)
@@ -37,7 +37,17 @@ class PaperDetailView(StaffRequiredMixin, DetailView):
     def get(self, request, slug):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
-        return render_to_pdf(self.template_name, context, filename='test.pdf')
+        return render_to_pdf(self.get_template_name(), context, filename='test.pdf')
+
+    def get_template_name(self):
+        """
+        Return the template that has been configured for this paper. 
+        """
+        if self.object.template is None:
+            raise ImproperlyConfigured(
+                _("This paper requires a template.'"))
+        else:
+            return self.object.template
 
 
 class PaperDetailTexView(PaperDetailView):

@@ -32,6 +32,11 @@ class Paper(TimeStampedModel):
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
     description = models.TextField(max_length=250, verbose_name=_('description'))
+    TEMPLATES = [
+        ('diventi_book_a4.tex', 'libro diventi - formato A4'),
+        ('diventi_book_a5.tex', 'libro diventi - formato A5'),
+    ]
+    template = models.CharField(max_length=60, choices=TEMPLATES, verbose_name=_('template'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
 
     class Meta:
@@ -176,9 +181,9 @@ class Section(TimeStampedModel):
     ]
     _illustration = models.CharField(max_length=30, blank=True, choices=PICTURES, verbose_name=_('illustration'))
     paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
-    table = models.OneToOneField(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('table'))
-    _list = models.OneToOneField(Itemize, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('list'))
-    character = models.OneToOneField(CharacterBlock, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('character'))
+    table = models.ForeignKey(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('table'))
+    _list = models.ForeignKey(Itemize, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('list'))
+    character = models.ForeignKey(CharacterBlock, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('character'))
     new_page = models.BooleanField(default=False, verbose_name=_('new page'))
     title_page = models.BooleanField(default=False, verbose_name=_('title page'))
 

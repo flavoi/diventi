@@ -7,6 +7,7 @@
 {% block title %}Blog{% endblock title %}
 
 {% block pageheader %}
+<!--
 <div class="page-header header-filter header-small" data-parallax="true" {% if blogcover %}style="background-image: url('{{ blogcover.image }}'); transform: translate3d(0px, 0px, 0px);"{% endif %}>
     <div class="container">
         <div class="row">
@@ -17,59 +18,72 @@
         </div>
     </div>
 </div>
+-->
 {% endblock pageheader %}
 
-{% block content %}
-<div class="section">
-    <div class="container">
-        <div class="row">
-            {% for article in articles %}                    
-                <div class="{% if article.hot %}col-md-12{% else %}col-md-6{% endif %}">
-                    <div class="card card-raised card-background" style="background-image: url({{ article.image }})">
-                        <div class="card-body">
-                            <h6 class="card-category text-info">{{ article.category }}</h6>
-                            <h3 class="card-title">{{ article.title|capfirst }}</h3>
-                            <p class="card-description">
-                                {{ article.description|striptags }}
-                            </p>
-                            <a href="{% url 'blog:detail' article.slug %}" class="btn btn-warning btn-round">
-                                <i class="fal fa-align-left fa-fw fa-lg"></i> {% trans "read article" %}
-                            </a>
-                        </div>
+{% block navbarclasses %}bg-dark{% endblock navbarclasses %}
+
+{% block main %}
+<div class="container">
+    <div class="row" style="padding-top:95px;">
+        <div class="col-8 ml-auto mr-auto text-center">
+            <h2>Le nostre ultime storie</h2>
+            <h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </h4>
+            </div>
+    </div>
+    <div class="row">
+        {% for article in articles %}           
+            <div class="{% if article.hot %}col-md-8{% else %}col-md-4{% endif %}">                
+                <div class="card card-plain card-blog">
+                    <div class="card-header card-header-image">
+                        <a href="{% url 'blog:detail' article.slug %}">
+                            <img class="img img-raised" src="{{ article.image }}">
+                        </a>
+                        <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/material-kit-pro/assets/img/examples/card-blog4.jpg&quot;); opacity: 1;"></div>
                     </div>
-                </div>    
-                {% empty %}
-                <div class="text-center">
-                    <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
-                </div>
-            {% endfor %}
-        </div> <!-- End row -->
-        {% if is_paginated %}
-            <br>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="pagination pagination-warning" style="justify-content: center;">
-                    {% if page_obj.has_previous %}
-                      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a></li>
-                    {% else %}
-                      <li class="page-item disabled"><span class="page-link">{% trans "Previous" %}</span></li>
-                    {% endif %}
-                    {% for i in page_obj.paginator.page_range %}
-                      {% if page_obj.number == i %}
-                        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">({% trans "current" %})</span></span></li>
-                      {% else %}
-                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                      {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a></li>
-                    {% else %}
-                      <li class="page-item disabled"><span class="page-link">{% trans "Next" %}</span></li>
-                    {% endif %}
-                    </ul>
+                    <div class="card-body">
+                        <h6 class="card-category text-info">{{ article.category }}</h6>
+                        <h4 class="card-title">
+                            <a href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
+                        </h4>
+                        <p class="card-description">
+                            {{ article.content|striptags|safe|truncatechars:200 }}
+                        </p>
+                    </div>
                 </div>
             </div>
-        {% endif %}
-    </div> <!-- End container -->
-</div> <!-- End section -->
-{% endblock content %}
+            {% empty %}
+            <div class="text-center">
+                <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
+            </div>
+        {% endfor %}
+
+            {% if is_paginated %}
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination pagination-warning" style="justify-content: center;">
+                        {% if page_obj.has_previous %}
+                          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">{% trans "Previous" %}</span></li>
+                        {% endif %}
+                        {% for i in page_obj.paginator.page_range %}
+                          {% if page_obj.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">({% trans "current" %})</span></span></li>
+                          {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a></li>
+                        {% else %}
+                          <li class="page-item disabled"><span class="page-link">{% trans "Next" %}</span></li>
+                        {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+    </div>
+</div> <!-- End container -->
+{% endblock main %}

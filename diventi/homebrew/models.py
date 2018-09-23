@@ -49,6 +49,32 @@ class Paper(TimeStampedModel):
     def get_absolute_url(self):
         return reverse('homebrew:detail', args=[str(self.slug)])
 
+    def duplicate(self):
+        kwargs = {}
+        for field in self._meta.fields:
+            kwargs[field.name] = getattr(self, field.name)
+            # or self.__dict__[field.name]
+        kwargs.pop('id')
+        for k in list(kwargs):
+            if k.startswith('slug'):
+                kwargs.pop(k)
+        new_instance = self.__class__(**kwargs)
+        new_instance.title = new_instance.title + "_c"
+        new_instance.save()
+        # now you have id for the new instance so you can
+        # create related models in similar fashion
+        fkeys_qs = self.sections.all()
+        new_fkeys = []
+        for fkey in fkeys_qs:
+            fkey_kwargs = {}
+            for field in fkey._meta.fields:
+                fkey_kwargs[field.name] = getattr(fkey, field.name)
+            fkey_kwargs.pop('id')
+            fkey_kwargs['paper'] = new_instance
+            new_fkeys.append(fkeys_qs.model(**fkey_kwargs))
+        fkeys_qs.model.objects.bulk_create(new_fkeys)
+        return new_instance
+
 
 class DiceTable(models.Model):
     """
@@ -146,7 +172,7 @@ class Section(TimeStampedModel):
         Each section type needs a function that renders the content of the paper
         in latex. If blank the Brew will display the title as plain string.
     """
-    order_id = models.PositiveIntegerField(unique=True, verbose_name=_('order_id')) # This affects the display order of every piece of content
+    order_id = models.PositiveIntegerField(verbose_name=_('order_id')) # This affects the display order of every piece of content
     title = models.CharField(max_length=60, verbose_name=_('title'))
     content = models.TextField(blank=True, verbose_name=_('content'))
     SECTION_TYPES = [
@@ -253,6 +279,7 @@ class Section(TimeStampedModel):
     class Meta:
         verbose_name = _('section')
         verbose_name_plural = _('sections')
+        unique_together = ('id', 'order_id',)
 
 
 

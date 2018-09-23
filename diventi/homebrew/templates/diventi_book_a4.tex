@@ -1,0 +1,118 @@
+\documentclass[letterpaper,9pt,twoside,twocolumn,openany]{book}
+
+\usepackage[english]{babel}
+\usepackage{hang}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage[bg=none]{dnd}
+\usepackage[printwatermark]{xwatermark}
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\newcommand\YUGE{\fontsize{40}{60}\selectfont}
+\definecolor{Amber}{rgb}{1.0, 0.49, 0.0}
+\lstset{ basicstyle=\ttfamily, language=[LaTeX]{TeX}, }
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{0}
+
+{% if watermarks %}
+    {% for w in watermarks %}
+        \newwatermark[pages={{ w.pages }},scale={{ w.scale }},xpos={{ w.xpos }},ypos={{ w.ypos }}]{\includegraphics{ {{- w.figurename -}} }}
+    {% endfor %}
+{% endif %}
+
+\usepackage{graphbox}
+
+\fancypagestyle{diventi}{
+  \fancyhf{}
+  \fancyfoot[C]{\includegraphics[align=c, height=0.8cm]{diventi_pc_logo}}
+  \fancyfoot[RO, LE] {\thepage}
+  \fancyfoot[LO, RE] {\emph{playdiventi.it}}
+  \renewcommand{\footrulewidth}{0.2pt}
+}
+
+\fancypagestyle{contents}{
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyhf{}
+}
+
+\begin{document}
+
+\pagenumbering{arabic}
+
+{% if sections %}
+    {% for section in sections %}
+        {% if section.title_page %}
+            \begin{titlepage} % Suppresses headers and footers on the title page
+                \raggedleft % Right align everything
+                \vspace*{1.5cm}
+                \textbf{\textcolor{Amber}{\YUGE Diventi}}\\[\baselineskip]                
+                {\textcolor{DmgSlateGray}{\YUGE{ {{- section.title|title -}} }}}\\[\baselineskip]                
+                {\Huge \textit{\textcolor{DmgSlateGray}{ {{- section.content|capfirst -}} }}}                
+                \vfill                 
+                \vspace*{3\baselineskip}
+            \end{titlepage}
+        {% endif %}
+        {% if loop.first %}
+            \pagestyle{contents}
+            \pagenumbering{gobble}        
+            \setcounter{page}{2}
+            \renewcommand{\contentsname}{}
+            \section*{ {{- contents|capfirst -}} }
+            \begingroup\let\clearpage\relax
+            \hypersetup{hidelinks}
+            \tableofcontents
+            \endgroup
+            \clearpage
+            \pagestyle{diventi}
+            \pagenumbering{arabic}
+            \setcounter{page}{3}
+            \chapter*{ {{- paper.title -}} }
+            \addcontentsline{toc}{chapter}{ {{- paper.title -}} }
+        {% endif %}             
+        {% if section.new_page %}
+            \newpage
+        {% endif %}       
+        {{ section|stringformat('r') }}
+        {% if section.table.pk %}
+            \begin{dndtable}[cX][{{- section.theme -}}]
+            {% for row in section.table.rows.all() %}
+                {% if loop.index == 1 %}
+                    \textbf{ {{- section.table.get_dice_display() -}} } & \textbf{ {{- section.table.title|capfirst -}} } \\
+                {% endif %}
+                {{ row.face }} & {{ row.description|capfirst }} \\
+            {% endfor %}
+            \end{dndtable}
+        {% endif %}
+        {% if section._list.pk %}
+            \header{ {{- section._list.title -}} }
+            \begin{itemize}
+            {% for item in section._list.items.all() %}                
+                \item{ {{- item -}} }
+            {% endfor %}
+            \end{itemize}
+        {% endif %}
+        {% if section.character.pk %}
+            \begin{monsterbox}{ \normalsize{ {{- section.character.title|capfirst -}} }}
+                \begin{hangingpar}
+                    \textit{ {{- section.character.description|capfirst -}} }
+                \end{hangingpar}
+                \vspace{5pt}
+                \hrule
+                \vspace{6pt}
+                {% for item in section.character.items.all() %}
+                    \begin{monsteraction}[{{- item.title|capfirst -}}]
+                        \hspace*{0.05cm}{{- item.description|capfirst -}}
+                    \end{monsteraction}
+                {% endfor %}
+            \end{monsterbox}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    \par No sessions. 
+{% endif %}
+
+\end{document}

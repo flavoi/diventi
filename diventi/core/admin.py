@@ -22,6 +22,12 @@ def deactivate(modeladmin, request, queryset):
 deactivate.short_description = _("Mark selected items for deactivation")
 
 
+def duplicate(modeladmin, request, queryset):
+    for model in queryset:
+        model.duplicate()
+duplicate.short_description = _("Duplicate selected items")
+
+
 class DiventiTranslationAdmin(TranslationAdmin):
 
     class Media:

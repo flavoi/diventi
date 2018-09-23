@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 from modeltranslation.admin import TranslationStackedInline
-from diventi.core.admin import DiventiTranslationAdmin
+from diventi.core.admin import DiventiTranslationAdmin, duplicate
 
 from .models import Paper, Section, Watermark, DiceTable, DiceTableRow, Itemize, ItemizeItem, CharacterBlock, CharacterItem
 
@@ -29,6 +29,7 @@ class PaperAdmin(DiventiTranslationAdmin):
         SectionInline,
         WatermarkInline,
     ]
+    actions = [duplicate,]
 
 
 class DiceTableRowInline(TranslationStackedInline):

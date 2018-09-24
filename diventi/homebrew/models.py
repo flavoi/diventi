@@ -63,16 +63,20 @@ class Paper(TimeStampedModel):
         new_instance.save()
         # now you have id for the new instance so you can
         # create related models in similar fashion
-        fkeys_qs = self.sections.all()
-        new_fkeys = []
-        for fkey in fkeys_qs:
-            fkey_kwargs = {}
-            for field in fkey._meta.fields:
-                fkey_kwargs[field.name] = getattr(fkey, field.name)
-            fkey_kwargs.pop('id')
-            fkey_kwargs['paper'] = new_instance
-            new_fkeys.append(fkeys_qs.model(**fkey_kwargs))
-        fkeys_qs.model.objects.bulk_create(new_fkeys)
+        fkeys_qs_list = [
+            self.sections.all(),
+            self.watermarks.all(),
+        ]
+        for fkeys_qs in fkeys_qs_list:        
+            new_fkeys = []
+            for fkey in fkeys_qs:
+                fkey_kwargs = {}
+                for field in fkey._meta.fields:
+                    fkey_kwargs[field.name] = getattr(fkey, field.name)
+                fkey_kwargs.pop('id')
+                fkey_kwargs['paper'] = new_instance
+                new_fkeys.append(fkeys_qs.model(**fkey_kwargs))
+            fkeys_qs.model.objects.bulk_create(new_fkeys)
         return new_instance
 
 

@@ -31,6 +31,10 @@ tlmgr install paratype
 tlmgr install memoir
 tlmgr install ifetex
 tlmgr install graphbox
+--v
+tlmgr install antt       
+tlmgr install symbol
+tlmgr install fourier
 
 Creare albero utente: 
 tlmgr init-usertree

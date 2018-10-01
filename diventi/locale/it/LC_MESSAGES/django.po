@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-23 13:14+0200\n"
+"POT-Creation-Date: 2018-10-01 08:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,18 +316,18 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:78 diventi/core/models.py:78
-#: diventi/homebrew/models.py:33 diventi/homebrew/models.py:93
-#: diventi/homebrew/models.py:120 diventi/homebrew/models.py:146
-#: diventi/homebrew/models.py:158 diventi/homebrew/models.py:176
-#: diventi/homebrew/models.py:291 diventi/landing/models.py:56
+#: diventi/homebrew/models.py:33 diventi/homebrew/models.py:97
+#: diventi/homebrew/models.py:124 diventi/homebrew/models.py:150
+#: diventi/homebrew/models.py:162 diventi/homebrew/models.py:180
+#: diventi/homebrew/models.py:295 diventi/landing/models.py:56
 #: diventi/landing/models.py:74 diventi/products/models.py:57
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:79
-#: diventi/homebrew/models.py:34 diventi/homebrew/models.py:104
-#: diventi/homebrew/models.py:131 diventi/homebrew/models.py:147
-#: diventi/homebrew/models.py:159 diventi/landing/models.py:58
+#: diventi/homebrew/models.py:34 diventi/homebrew/models.py:108
+#: diventi/homebrew/models.py:135 diventi/homebrew/models.py:151
+#: diventi/homebrew/models.py:163 diventi/landing/models.py:58
 #: diventi/landing/models.py:75 diventi/products/models.py:58
 msgid "description"
 msgstr "descrizione"
@@ -337,7 +337,7 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/homebrew/models.py:177
+#: diventi/blog/models.py:81 diventi/homebrew/models.py:181
 msgid "content"
 msgstr "contenuto"
 
@@ -520,195 +520,195 @@ msgstr "documento"
 msgid "papers"
 msgstr "documenti"
 
-#: diventi/homebrew/models.py:92
+#: diventi/homebrew/models.py:96
 msgid "dice"
 msgstr "dado"
 
-#: diventi/homebrew/models.py:99
+#: diventi/homebrew/models.py:103
 msgid "dice table"
 msgstr "tabella dado"
 
-#: diventi/homebrew/models.py:100
+#: diventi/homebrew/models.py:104
 msgid "dice tables"
 msgstr "tabelle dado"
 
-#: diventi/homebrew/models.py:105
+#: diventi/homebrew/models.py:109
 msgid "face"
 msgstr "faccia"
 
-#: diventi/homebrew/models.py:112
+#: diventi/homebrew/models.py:116
 msgid "dice table row"
 msgstr "riga di tabella dado"
 
-#: diventi/homebrew/models.py:113
+#: diventi/homebrew/models.py:117
 msgid "dice table rows"
 msgstr "righe di tabella dado"
 
-#: diventi/homebrew/models.py:126 diventi/homebrew/models.py:211
+#: diventi/homebrew/models.py:130 diventi/homebrew/models.py:215
 msgid "list"
 msgstr "lista"
 
-#: diventi/homebrew/models.py:127
+#: diventi/homebrew/models.py:131
 msgid "lists"
 msgstr "liste"
 
-#: diventi/homebrew/models.py:138
+#: diventi/homebrew/models.py:142
 msgid "list item"
 msgstr "elemento della lista"
 
-#: diventi/homebrew/models.py:139
+#: diventi/homebrew/models.py:143
 msgid "list items"
 msgstr "elementi della lista"
 
-#: diventi/homebrew/models.py:153
+#: diventi/homebrew/models.py:157
 msgid "character block"
 msgstr "casella personaggio"
 
-#: diventi/homebrew/models.py:154
+#: diventi/homebrew/models.py:158
 msgid "character blocks"
 msgstr "caselle personaggio"
 
-#: diventi/homebrew/models.py:166
+#: diventi/homebrew/models.py:170
 msgid "character item"
 msgstr "elemento del personaggio"
 
-#: diventi/homebrew/models.py:167
+#: diventi/homebrew/models.py:171
 msgid "character items"
 msgstr "elementi del personaggio"
 
-#: diventi/homebrew/models.py:175
+#: diventi/homebrew/models.py:179
 msgid "order_id"
 msgstr "id_ordinamento"
 
-#: diventi/homebrew/models.py:179 diventi/homebrew/models.py:280
+#: diventi/homebrew/models.py:183 diventi/homebrew/models.py:284
 msgid "section"
 msgstr "sezione"
 
-#: diventi/homebrew/models.py:180
+#: diventi/homebrew/models.py:184
 msgid "subsection"
 msgstr "sottosezione"
 
-#: diventi/homebrew/models.py:181
+#: diventi/homebrew/models.py:185
 msgid "subsubsection"
 msgstr "sotto-sottosezione"
 
-#: diventi/homebrew/models.py:182
+#: diventi/homebrew/models.py:186
 msgid "paragraph"
 msgstr "paragrafo"
 
-#: diventi/homebrew/models.py:183
+#: diventi/homebrew/models.py:187
 msgid "commentbox"
 msgstr "casella commento"
 
-#: diventi/homebrew/models.py:184
+#: diventi/homebrew/models.py:188
 msgid "quotebox"
 msgstr "casella citazione"
 
-#: diventi/homebrew/models.py:185
+#: diventi/homebrew/models.py:189
 msgid "paperbox"
 msgstr "casella evidenziata"
 
-#: diventi/homebrew/models.py:186
+#: diventi/homebrew/models.py:190
 msgid "header"
 msgstr "testatina"
 
-#: diventi/homebrew/models.py:187
+#: diventi/homebrew/models.py:191
 msgid "phantom"
 msgstr "fittizio"
 
-#: diventi/homebrew/models.py:188 diventi/homebrew/models.py:208
+#: diventi/homebrew/models.py:192 diventi/homebrew/models.py:212
 msgid "illustration"
 msgstr "illustrazione"
 
-#: diventi/homebrew/models.py:190
+#: diventi/homebrew/models.py:194
 msgid "section type"
 msgstr "tipo sezione"
 
-#: diventi/homebrew/models.py:192
+#: diventi/homebrew/models.py:196
 msgid "green"
 msgstr "verde"
 
-#: diventi/homebrew/models.py:193
+#: diventi/homebrew/models.py:197
 msgid "yellow"
 msgstr "giallo"
 
-#: diventi/homebrew/models.py:194
+#: diventi/homebrew/models.py:198
 msgid "orange"
 msgstr "arancione"
 
-#: diventi/homebrew/models.py:195
+#: diventi/homebrew/models.py:199
 msgid "gray"
 msgstr "grigio"
 
-#: diventi/homebrew/models.py:197
+#: diventi/homebrew/models.py:201
 msgid "theme"
 msgstr "tema"
 
-#: diventi/homebrew/models.py:199
+#: diventi/homebrew/models.py:203
 msgid "parassite"
 msgstr "parassita"
 
-#: diventi/homebrew/models.py:200
+#: diventi/homebrew/models.py:204
 msgid "parassite (lineart)"
 msgstr "parassita (tratto)"
 
-#: diventi/homebrew/models.py:201
+#: diventi/homebrew/models.py:205
 msgid "dama electra"
 msgstr "dama electra"
 
-#: diventi/homebrew/models.py:202
+#: diventi/homebrew/models.py:206
 msgid "dama electra (lineart)"
 msgstr "dama electra (tratto)"
 
-#: diventi/homebrew/models.py:203
+#: diventi/homebrew/models.py:207
 msgid "xarieth"
 msgstr "xarieth"
 
-#: diventi/homebrew/models.py:204
+#: diventi/homebrew/models.py:208
 msgid "xarieth (lineart)"
 msgstr "xarieth (tratto)"
 
-#: diventi/homebrew/models.py:205
+#: diventi/homebrew/models.py:209
 msgid "tiara"
 msgstr "tiara"
 
-#: diventi/homebrew/models.py:206
+#: diventi/homebrew/models.py:210
 msgid "tiara (lineart)"
 msgstr "tiara (tratto)"
 
-#: diventi/homebrew/models.py:209 diventi/homebrew/models.py:281
+#: diventi/homebrew/models.py:213 diventi/homebrew/models.py:285
 msgid "sections"
 msgstr "sezioni"
 
-#: diventi/homebrew/models.py:210
+#: diventi/homebrew/models.py:214
 msgid "table"
 msgstr "tabella"
 
-#: diventi/homebrew/models.py:212
+#: diventi/homebrew/models.py:216
 msgid "character"
 msgstr "personaggio"
 
-#: diventi/homebrew/models.py:213
+#: diventi/homebrew/models.py:217
 msgid "new page"
 msgstr "nuova pagina"
 
-#: diventi/homebrew/models.py:214
+#: diventi/homebrew/models.py:218
 msgid "title page"
 msgstr "titolo"
 
-#: diventi/homebrew/models.py:292
+#: diventi/homebrew/models.py:296
 msgid "pages"
 msgstr "pagine"
 
-#: diventi/homebrew/models.py:296
+#: diventi/homebrew/models.py:300
 msgid "figure name"
 msgstr "nome della figura"
 
-#: diventi/homebrew/models.py:303
+#: diventi/homebrew/models.py:307
 msgid "watermark"
 msgstr "filigrana"
 
-#: diventi/homebrew/models.py:304
+#: diventi/homebrew/models.py:308
 msgid "watermarks"
 msgstr "filigrane"
 
@@ -1257,17 +1257,17 @@ msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 msgid "Photo"
 msgstr "Foto"
 
-#: diventi/templates/blog/article_list.html:16
+#: diventi/templates/blog/article_list.html:18
 #, fuzzy
 #| msgid "Our latest stories"
 msgid "Our Latest Stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:30
+#: diventi/templates/blog/article_list.html:28
 msgid "Our latest stories"
 msgstr "Le nostre ultime storie"
 
-#: diventi/templates/blog/article_list.html:31
+#: diventi/templates/blog/article_list.html:29
 msgid ""
 "Welcome to Diventi blog. You've reached the front page for news on "
 "roleplaying, collaborative storytelling and Diventi related announcements"
@@ -1275,21 +1275,25 @@ msgstr ""
 "Benvenuti nel blog Diventi. Avete raggiunto la prima pagina per notizie su "
 "giochi di ruolo, narrazione collaborativa e annunci relativi a Diventi"
 
-#: diventi/templates/blog/article_list.html:57
+#: diventi/templates/blog/article_list.html:55
+msgid "read article"
+msgstr "leggi articolo"
+
+#: diventi/templates/blog/article_list.html:86
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:67
-#: diventi/templates/blog/article_list.html:69
+#: diventi/templates/blog/article_list.html:96
+#: diventi/templates/blog/article_list.html:98
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:73
+#: diventi/templates/blog/article_list.html:102
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:79
-#: diventi/templates/blog/article_list.html:81
+#: diventi/templates/blog/article_list.html:108
+#: diventi/templates/blog/article_list.html:110
 msgid "Next"
 msgstr "Successivo"
 
@@ -1484,9 +1488,6 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
-
-#~ msgid "read article"
-#~ msgstr "leggi articolo"
 
 #~ msgid "Photo credit"
 #~ msgstr "Illustrazione di"

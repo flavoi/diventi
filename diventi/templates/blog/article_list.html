@@ -6,57 +6,48 @@
 
 {% block title %}Blog{% endblock title %}
 
+{% block bodyclass %}blog-posts sidebar-collapse{% endblock bodyclass %}
+
 {% block pageheader %}
-<!--
-<div class="page-header header-filter header-small" data-parallax="true" {% if blogcover %}style="background-image: url('{{ blogcover.image }}'); transform: translate3d(0px, 0px, 0px);"{% endif %}>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-center">
-                <h2 class="title">Diventi Blog</h2>
-                <h4>{% trans "Our Latest Stories" %}.</h4>
+    <div class="page-header header-filter header-small" data-parallax="true" {% if blogcover %}style="background-image: url('{{ blogcover.image }}');"{% endif %}>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">{% trans "Our latest stories" %}</h2>
+                    <h4>{% trans "Welcome to Diventi blog. You've reached the front page for news on roleplaying, collaborative storytelling and Diventi related announcements" %}. </h4>
+                </div>
             </div>
         </div>
     </div>
-</div>
--->
 {% endblock pageheader %}
 
-{% block navbarclasses %}bg-dark{% endblock navbarclasses %}
-
-{% block main %}
-<div class="container">
-    <div class="row" style="padding-top:95px;">
-        <div class="col-8 ml-auto mr-auto text-center">
-            <h2>{% trans "Our latest stories" %}</h2>
-            <h4>{% trans "Welcome to Diventi blog. You've reached the front page for news on roleplaying, collaborative storytelling and Diventi related announcements" %}. </h4>
-            </div>
-    </div>
+{% block maincontainer %}
+<div class="section">
     <div class="row">
-        {% for article in articles %}           
-            <div class="{% if article.hot %}col-md-8{% else %}col-md-4{% endif %}">                
+        <div class="col-md-8 ml-auto mr-auto">
+            {% for article in articles %}
                 <div class="card card-plain card-blog">
                     <div class="card-header card-header-image">
                         <a href="{% url 'blog:detail' article.slug %}">
                             <img class="img img-raised" src="{{ article.image }}">
                         </a>
-                        <div class="colored-shadow" style="background-image: url(&quot;https://demos.creative-tim.com/material-kit-pro/assets/img/examples/card-blog4.jpg&quot;); opacity: 1;"></div>
-                    </div>
+                    <div class="colored-shadow colored-shadow-big" style="background-image: url(&quot;https://demos.creative-tim.com/material-kit-pro/assets/img/bg5.jpg&quot;); opacity: 1;"></div></div>
                     <div class="card-body">
                         <h6 class="card-category text-info">{{ article.category }}</h6>
-                        <h4 class="card-title">
+                        <h3 class="card-title">
                             <a href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
-                        </h4>
-                        <p class="card-description">
+                        </h3>
+                        <h5 class="card-description">
                             {{ article.content|striptags|safe|truncatechars:200 }}
-                        </p>
+                        </h5>
+                        <a href="{% url 'blog:detail' article.slug %}" class="btn btn-primary btn-warning btn-round">{% trans "read article" %}</a>
                     </div>
                 </div>
-            </div>
-            {% empty %}
-            <div class="text-center">
-                <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
-            </div>
-        {% endfor %}
+                {% empty %}
+                <div class="text-center">
+                    <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
+                </div>
+            {% endfor %}
 
             {% if is_paginated %}
                 <br>
@@ -84,6 +75,8 @@
                     </div>
                 </div>
             {% endif %}
+            
+        </div>
     </div>
-</div> <!-- End container -->
-{% endblock main %}
+</div>
+{% endblock maincontainer %}

@@ -33,7 +33,9 @@
                         </a>
                     <div class="colored-shadow colored-shadow-big" style="background-image: url(&quot;https://demos.creative-tim.com/material-kit-pro/assets/img/bg5.jpg&quot;); opacity: 1;"></div></div>
                     <div class="card-body">
-                        <h6 class="card-category text-info">{{ article.category }}</h6>
+                        <h6 class="card-category {% if article.hot %}text-danger{% else %}text-info{% endif %}">
+                            {% if article.hot %}<i class="fal fa-fire fa-lg"></i>{% endif %} {{ article.category }} 
+                        </h6>
                         <h3 class="card-title">
                             <a href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
                         </h3>
@@ -75,7 +77,7 @@
                     </div>
                 </div>
             {% endif %}
-            
+
         </div>
     </div>
 </div>

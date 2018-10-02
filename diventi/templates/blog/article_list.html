@@ -21,17 +21,19 @@
     </div>
 {% endblock pageheader %}
 
-{% block maincontainer %}
+{% block content %}
 <div class="section">
+
     <div class="row">
-        <div class="col-md-8 col-sm-10 ml-auto mr-auto">
+        <div class="col-md-10 ml-auto mr-auto">
+
             {% for article in articles %}
-                <div class="card card-plain card-blog">
+                <div class="card card-plain {% if forloop.first %}{% else %}card-blog{% endif %}">
                     <div class="card-header card-header-image">
                         <a href="{% url 'blog:detail' article.slug %}">
                             <img class="img img-raised" src="{{ article.image }}">
                         </a>
-                    <div class="colored-shadow colored-shadow-big" style="background-image: url(&quot;https://demos.creative-tim.com/material-kit-pro/assets/img/bg5.jpg&quot;); opacity: 1;"></div></div>
+                    <div class="colored-shadow colored-shadow-big"; opacity: 1;"></div></div>
                     <div class="card-body">
                         <h6 class="card-category {% if article.hot %}text-danger{% else %}text-info{% endif %}">
                             {% if article.hot %}<i class="fal fa-fire fa-lg"></i>{% endif %} {{ article.category }} 
@@ -77,8 +79,7 @@
                     </div>
                 </div>
             {% endif %}
-
         </div>
     </div>
 </div>
-{% endblock maincontainer %}
+{% endblock content %}

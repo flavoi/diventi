@@ -4,12 +4,12 @@ from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TranslationStackedInline
 from diventi.core.admin import DiventiTranslationAdmin, duplicate
 
-from .models import Paper, Section, Watermark, DiceTable, DiceTableRow, Itemize, ItemizeItem, CharacterBlock, CharacterItem
+from .models import Paper, Section, Watermark, DiceTable, DiceTableRow, Itemize, ItemizeItem, CharacterBlock, CharacterItem, Card
 
 
 class SectionInline(TranslationStackedInline):
     model = Section
-    fields = ('order_id', 'title', 'content', 'theme', 'table', '_list', 'character', '_illustration', 'section_type', 'new_page', 'title_page')
+    fields = ('order_id', 'title', 'content', 'theme', 'table', '_list', 'character', '_card', '_illustration', 'section_type', 'new_page', 'title_page')
     extra = 0
     ordering = ["order_id"]
 
@@ -76,3 +76,4 @@ admin.site.register(Paper, PaperAdmin)
 admin.site.register(DiceTable, DiceTableAdmin)
 admin.site.register(Itemize, ItemizeAdmin)
 admin.site.register(CharacterBlock, CharacterBlockAdmin)
+admin.site.register(Card)

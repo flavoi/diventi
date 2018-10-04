@@ -25,6 +25,11 @@ class SectionQuerySet(models.QuerySet):
         section = section.prefetch_related('character__items')
         return section
 
+    # Select every card related to the section
+    def cards(self):
+        section = self.select_related('card')
+        return section
+
 
 class Paper(TimeStampedModel):
     """
@@ -33,8 +38,9 @@ class Paper(TimeStampedModel):
     title = models.CharField(max_length=60, verbose_name=_('title'))
     description = models.TextField(max_length=250, verbose_name=_('description'))
     TEMPLATES = [
-        ('diventi_book_a4.tex', 'libro diventi - formato A4'),
-        ('diventi_book_a5.tex', 'libro diventi - formato A5'),
+        ('diventi_book_a4.tex', _('diventi book - A4')),
+        ('diventi_book_a5.tex', _('diventi book - A5')),
+        ('diventi_card_a4.tex', _('diventi card - A4')),
     ]
     template = models.CharField(max_length=60, choices=TEMPLATES, verbose_name=_('template'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
@@ -171,6 +177,21 @@ class CharacterItem(models.Model):
         verbose_name_plural = _('character items')
 
 
+class Card(models.Model):
+    _id = models.PositiveIntegerField()
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    flavortext = models.TextField(blank=True, verbose_name=_('flavortext'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
+    cost = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('card')
+        verbose_name_plural = _('cards')
+
+
 class Section(TimeStampedModel):
     """
         Each section type needs a function that renders the content of the paper
@@ -190,6 +211,7 @@ class Section(TimeStampedModel):
         ('header', _('header')),
         ('phantom', _('phantom')),
         ('illustration', _('illustration')),
+        ('card', _('card')),
     ]
     section_type = models.CharField(max_length=30, blank=True, choices=SECTION_TYPES, verbose_name=_('section type'))
     THEMES = [
@@ -200,6 +222,7 @@ class Section(TimeStampedModel):
     ]
     theme = models.CharField(max_length=30, blank=True, choices=THEMES, verbose_name=_('theme'))
     PICTURES = [
+        ('placeholder', _('placeholder')),
         ('parassite', _('parassite')),
         ('parassite_lineart', _('parassite (lineart)')),
         ('dama_electra', _('dama electra')),
@@ -208,12 +231,22 @@ class Section(TimeStampedModel):
         ('xarieth_lineart', _('xarieth (lineart)')),
         ('tiara', _('tiara')),
         ('tiara_lineart', _('tiara (lineart)')),
+        ('armeria', _('armory')),
+        ('cristallo1', _('crystal1')),
+        ('cristallo2', _('crystal2')),
+        ('cristallo3', _('crystal3')),
+        ('entrata', _('entrance')),
+        ('nucleo', _('core')),
+        ('portale', _('portal')),
+        ('silos', _('silos')),
+        ('trono', _('throne')),
     ]
     _illustration = models.CharField(max_length=30, blank=True, choices=PICTURES, verbose_name=_('illustration'))
     paper = models.ForeignKey(Paper, null=True, on_delete=models.SET_NULL, related_name=_('sections'))
     table = models.ForeignKey(DiceTable, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('table'))
     _list = models.ForeignKey(Itemize, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('list'))
     character = models.ForeignKey(CharacterBlock, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('character'))
+    _card = models.ForeignKey(Card, null=True, blank=True, on_delete=models.SET_NULL, related_name=('section'), verbose_name=_('card'))
     new_page = models.BooleanField(default=False, verbose_name=_('new page'))
     title_page = models.BooleanField(default=False, verbose_name=_('title page'))
 
@@ -279,6 +312,18 @@ class Section(TimeStampedModel):
             \\begin{figure}[h]
                 \\includegraphics[width=\\linewidth]{%s}
             \\end{figure}""" % self._illustration
+
+    def card(self):
+        return """
+            \\frontcard[
+                \\renewcommand{\\cardtitle}{%s} 
+                \\renewcommand{\\flavortext}{%s}
+                \\renewcommand{\\cardcontent}{%s}
+                \\renewcommand{\\cardimg}{%s}
+                \\renewcommand{\\cardid}{%s}
+                \\renewcommand{\\cost}{\\small %s Ip}
+            ]
+        """ % (self._card.title, self._card.flavortext, self._card.description, self._illustration, self._card._id, self._card.cost)
 
     class Meta:
         verbose_name = _('section')

@@ -1,0 +1,153 @@
+\documentclass[a4paper]{article}
+\usepackage{diventi}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usetikzlibrary{patterns, shadows, positioning}
+\usepackage{pifont}
+\usepackage{fourier-orns}
+\usepackage[hmargin=1mm,vmargin=5mm]{geometry}
+
+\definecolor{titlebg}{rgb}{30, 30 , 30}
+
+\newcommand{\icon}{\includegraphics[width=0.5cm]{img/diventi_logo_bianco}}
+\newcommand{\cardtype}{GiocaPadova}
+\newcommand{\cardtitle}{}
+\newcommand{\cost}{\small 1 Ip}
+\newcommand{\flavortext}{}
+\newcommand{\cardcontent}{}
+\newcommand{\cardid}{1}
+\newcommand{\cardimg}{img/placeholder}
+
+\pgfmathsetmacro{\cardwidth}{6pt}
+\pgfmathsetmacro{\cardheight}{9pt}
+\pgfmathsetmacro{\imagewidth}{\cardwidth*.9}
+\pgfmathsetmacro{\imageheight}{0.75*\cardheight}
+\pgfmathsetmacro{\stripwidth}{0.7pt}
+\pgfmathsetmacro{\strippadding}{0.2pt}
+\pgfmathsetmacro{\textpadding}{0.1pt}
+\pgfmathsetmacro{\titley}{\cardheight-\strippadding-1.5*\textpadding-0.5*\stripwidth}
+
+{% raw %}
+
+\def\shapeCard{(0,0) rectangle (\cardwidth, \cardheight)}
+\def\shapeLeftStripLong{(\strippadding,-0.2) rectangle 
+    (\strippadding+\stripwidth,\cardheight-\strippadding-\strippadding-1)}
+\def\shapeLeftStripShort{(\strippadding,\cardheight-\strippadding-1) rectangle 
+    (\strippadding+\stripwidth,\cardheight+0.2)}
+\def\shapeRightStripShort{(\cardwidth-\stripwidth-\strippadding,
+    \cardheight-\strippadding-1) rectangle (\cardwidth-\strippadding,   
+    \cardheight+0.2)}
+\def\shapeTitleArea{(2*\strippadding+\stripwidth,\cardheight-\strippadding) 
+    rectangle (\cardwidth-2*\strippadding-\stripwidth,\cardheight-2*\stripwidth)}
+\def\shapeContentArea{(2*\strippadding+\stripwidth,0.5*\cardheight) rectangle 
+    (\cardwidth+0.2,-0.2)}
+
+\tikzset{
+    cardcorners/.style={rounded corners=0.25cm},
+    cardimage/.style={path picture={
+         \node[below=-1.5mm] at (0.5*\cardwidth,\cardheight) {
+             \includegraphics[width=\imagewidth cm]{#1}};}},
+    strips/.style={red!100, rounded corners=0.1cm, 
+         drop shadow={opacity=1,color=black}},
+    strip font/.style={font=\LARGE, text=white}
+}
+
+\newcommand{\cardbackground}[1]{
+    \draw[cardcorners, cardimage=#1] \shapeCard;}
+
+\newcommand{\frontcard}[1][]{#1
+\begin{tikzpicture}
+
+     \draw[lightgray,cardcorners] \shapeCard;
+     \clip[cardcorners] \shapeCard;
+
+     \cardbackground{\cardimg}        
+
+     \fill[strips] \shapeLeftStripLong node[rotate = 90, above left, strip font] 
+         {\uppercase{\cardtype}};
+
+        \fill[strips] \shapeLeftStripShort node[rotate=0, above, yshift=-8.5, 
+            strip font] at (0.5*\strippadding+0.5*\stripwidth, \titley)
+                {\uppercase{ \icon }};
+         \fill[strips] \shapeRightStripShort node[rotate=0, above, yshift=-8.5,
+             strip font] 
+             at  (\cardwidth - 0.5*\stripwidth - 1.5*\strippadding, \titley) 
+             {\uppercase{ \cost }};
+
+     \fill[color = black, opacity = .75, rounded corners=0.1cm] 
+         \shapeTitleArea node[text width=3.75cm, font=\normalsize, 
+         text=white, align=center] at (0.5*\cardwidth,\titley) 
+         {\uppercase{\cardtitle}};
+
+     \node[below right, font=\itshape\scriptsize,
+     text width=(\cardwidth-2*\strippadding-\stripwidth-2*\textpadding-0.3)*1cm] 
+     at (2*\strippadding+\stripwidth+\textpadding,0.5*\cardheight-\textpadding) 
+     {\flavortext};
+
+     \draw[ultra thin, <->] (25*\strippadding+\stripwidth+\textpadding, 3.5) --
+         (2*\strippadding+\stripwidth+\textpadding, 3.5);     
+
+     \node[below right, font=\normalsize,
+     text width=(\cardwidth-2*\strippadding-\stripwidth-2*\textpadding-0.3)*1cm] 
+     at (2*\strippadding+\stripwidth+\textpadding,3.5) 
+     {\vspace{0.05cm}{ \cardcontent }};                      
+
+     \draw[ultra thin, <->] (25*\strippadding+\stripwidth+\textpadding, 0.4) -- 
+         (2*\strippadding+\stripwidth+\textpadding, 0.4);     
+
+     \node[above right, font=\tiny, align=right,
+     text width=(\cardwidth-2*\strippadding-\stripwidth-2*\textpadding-0.3)*1cm] 
+     at (2*\strippadding+\stripwidth+\textpadding, 0.05) 
+     { \cardid };               
+\end{tikzpicture}}
+
+\newcommand{\backcard}[1][]{#1
+\begin{tikzpicture}
+
+    \draw[lightgray,cardcorners] \shapeCard;
+    \clip[cardcorners] \shapeCard;
+
+     \fill[color = black, opacity = .75, rounded corners=0.1cm] 
+         \shapeTitleArea node[text width=3.75cm, font=\normalsize, 
+         text=white, align=center] at (0.5*\cardwidth,\titley) 
+         {\uppercase{\cardtitle}};
+
+     \node[below right, font=\normalsize,
+     text width=(\cardwidth-2*\strippadding-\stripwidth-2*\textpadding-0.3)*1cm] 
+     at (2*\strippadding+\stripwidth+\textpadding,3.5) 
+     {\vspace{0.05cm}{ \cardcontent }};                      
+
+\end{tikzpicture}}
+
+{% endraw %}
+
+\begin{document}
+
+\begin{tabular}{ccc}
+
+{% if sections %}
+    {% for section in sections %}
+        {% if section.new_page %}
+            \newpage
+        {% endif %}       
+        {{ section|stringformat('r') }}
+    {% endfor %}
+{% endif %}
+
+\end{tabular}
+
+\begin{tabular}{ccc}
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] &
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] &
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] \\
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] &
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] &
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] \\
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] &
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] &
+\backcard[\renewcommand{\cardtitle}{ {{- paper.title -}} }] 
+\end{tabular}
+
+
+\end{document}

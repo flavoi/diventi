@@ -1,5 +1,5 @@
 import os, tempfile, time, logging
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, check_output, STDOUT
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -7,9 +7,10 @@ from django.http import HttpResponse
 from django_tex.engine import engine
 
 
-DEFAULT_INTERPRETER = 'lualatex'
+DEFAULT_INTERPRETER = 'pdflatex'
 
 logger = logging.getLogger(__name__)
+
 
 class TexError(Exception):
     pass
@@ -19,12 +20,13 @@ def run_tex(source):
     with tempfile.TemporaryDirectory() as tempdir:
         latex_interpreter = getattr(settings, 'LATEX_INTERPRETER', DEFAULT_INTERPRETER)
         for i in range(2):
-            latex_command = [latex_interpreter, '-output-directory', tempdir]
+            latex_command = [latex_interpreter, '-output-directory', tempdir]    
             process = Popen(latex_command, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-            process.communicate(source.encode('utf-8'))
+            # process.communicate(source.encode('utf-8'))
+            output = process.communicate(source.encode('utf-8'))[0]
             if process.returncode == 1:
-                logger.error(source)
-                raise TexError(source)
+                 logger.error(output)
+                 raise TexError(source)
             filepath = os.path.join(tempdir, 'texput.pdf')
             print(filepath)
         with open(filepath, 'rb') as pdf_file:

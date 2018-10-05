@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django_tex.engine import engine
 
 
-DEFAULT_INTERPRETER = 'pdflatex'
+DEFAULT_INTERPRETER = 'lualatex'
 
 logger = logging.getLogger(__name__)
 

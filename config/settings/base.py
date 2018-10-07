@@ -97,6 +97,7 @@ LOCAL_APPS = [
     'diventi.comments',
     'diventi.products',
     'diventi.homebrew',
+    'diventi.feedbacks',
 ]
 
 THIRD_PARTY_APPS = [

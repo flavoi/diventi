@@ -16,7 +16,7 @@ from diventi.core.models import TimeStampedModel, PromotableModel, PublishableMo
 
 class ArticleQuerySet(models.QuerySet):
     
-    # Get all the published articles 
+    # Get the list of published articles 
     def published(self):
         user = CuserMiddleware.get_user()
         if user.is_superuser:

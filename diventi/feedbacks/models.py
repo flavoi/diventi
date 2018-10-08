@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import mark_safe
+from django.urls import reverse
+
+from cuser.middleware import CuserMiddleware
 
 from diventi.core.models import TimeStampedModel, PublishableModel
 from diventi.accounts.models import DiventiUser
@@ -13,6 +16,23 @@ class Question(models.Model):
         return self.question
 
 
+class SurveyQuerySet(models.QuerySet):
+    
+    # Get the list of published surveys
+    def published(self):
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            surveys = self
+        else:
+            surveys = self.filter(published=True)
+        return surveys
+
+    # Get the list of published surveys from the most recent to the least 
+    def history(self):
+        surveys = self.published().order_by('-publication_date')
+        return surveys
+
+
 class Survey(TimeStampedModel, PublishableModel):
     """
         A collection of questions and answers centered around a specifi title.
@@ -20,6 +40,9 @@ class Survey(TimeStampedModel, PublishableModel):
     title = models.CharField(max_length=60, verbose_name=_('title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     questions = models.ManyToManyField(Question)
+
+    objects = SurveyQuerySet.as_manager()
+
 
     class Meta:
         verbose_name = _('survey')
@@ -29,10 +52,11 @@ class Survey(TimeStampedModel, PublishableModel):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('', args=[str(self.slug)])
+        return reverse('feedbacks:detail', args=[str(self.slug)])
 
     def get_questions(self):
         return mark_safe("<br>".join([s.question for s in self.questions.all()]))
+    get_questions.short_description = _('Questions')
 
 
 class Answer(models.Model):

@@ -36,7 +36,7 @@ class SurveyAdmin(DiventiTranslationAdmin):
         }),
     )
     actions = [make_published, make_unpublished]
-    inlines = []    
+    inlines = []
 
 
 admin.site.register(Survey, SurveyAdmin)

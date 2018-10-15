@@ -90,7 +90,7 @@ logger = getLogger('django.request')
 
 
 class SecretFileView(RedirectView):
-    """ Returns a temparary link if the user has added the product to his collection """
+    """ Returns a temporary url if the user has added the product to his collection """
     permanent = False
 
     def get_redirect_url(self, **kwargs):

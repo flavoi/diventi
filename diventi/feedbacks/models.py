@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import TimeStampedModel, PublishableModel
+from diventi.core.models import TimeStampedModel, PublishableModel, DiventiCoverModel, DiventiImageModel
 from diventi.accounts.models import DiventiUser
 
 
@@ -32,12 +32,23 @@ class SurveyQuerySet(models.QuerySet):
         surveys = self.published().order_by('-publication_date')
         return surveys
 
+    # Fetch all questions related to a survey
+    def questions(self):
+        survey = self.prefetch_related('questions')
+        return survey
 
-class Survey(TimeStampedModel, PublishableModel):
+    # Fetch all answers related to a survey
+    def answers(self):
+        survey = self.prefetch_related('answers')
+        return survey        
+
+
+class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
     """
         A collection of questions and answers centered around a specifi title.
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     questions = models.ManyToManyField(Question)
 
@@ -52,19 +63,33 @@ class Survey(TimeStampedModel, PublishableModel):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('feedbacks:detail', args=[str(self.slug)])
+        return reverse('feedbacks:answers', args=[str(self.slug)])
 
     def get_questions(self):
         return mark_safe("<br>".join([s.question for s in self.questions.all()]))
     get_questions.short_description = _('Questions')
 
 
+class SurveyCover(DiventiCoverModel):
+    """
+        Stores cover images for the survey page.
+    """
+    class Meta:
+        verbose_name = _('Survey Cover')
+        verbose_name_plural = _('Survey Covers')
+
+
 class Answer(models.Model):
-    author = models.OneToOneField(DiventiUser, on_delete=models.SET_NULL, blank=True, null=True)
+    author = models.ForeignKey(DiventiUser, on_delete=models.SET_NULL, blank=True, null=True)
     author_name = models.CharField(max_length=60, verbose_name=_('author name'))
-    question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
-    survey = models.OneToOneField(Survey, on_delete=models.SET_NULL, null=True)
+    question = models.ForeignKey(Question, related_name='answers', on_delete=models.SET_NULL, null=True)
+    survey = models.ForeignKey(Survey, related_name='answers', on_delete=models.SET_NULL, null=True)
     content = models.TextField()
+
+    class Meta:
+        verbose_name = _('answer')
+        verbose_name_plural = _('answers')
+        unique_together = ('author_name', 'author', 'question', 'survey')
 
     def __str__(self):
         return self.author_name

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Answers' %}{% endblock title %}
+
+{% block bodyclass %}signup-page sidebar-collapse{% endblock bodyclass %}
+
+{% block pageheader %}
+<div class="page-header header-filter" style="background-image: url('{{ survey.image }}'); background-size: cover; background-position: top center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+                <div class="card card-signup">
+                    <h2 class="card-title text-center">{{ survey.title }}</h2>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for answer in answers %}
+                            <div class="col-md-6">
+                                <div class="info info-horizontal">
+                                    <div class="icon icon-rose">
+                                        <i class="fal fa-map-marker-question"></i>
+                                    </div>
+                                    <div class="description">
+                                        <h4 class="info-title">{{ answer.question }}</h4>
+                                        <p class="description">
+                                            {{ answer.content }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                                {% empty %}
+                                {% trans 'You have yet to answer this survey.' %}
+                            {% endfor %}                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+
+
+
+{% endblock pageheader %}
+
+{% block main %}{% endblock main %}
+
+{% block footer %}{% endblock footer %}

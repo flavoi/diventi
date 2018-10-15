@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ survey.title}}{% endblock title %}
+
+{% block pageheaderextraclass %}header-small{% endblock pageheaderextraclass %}
+{% block pageheaderimage %}{{ survey.image }}{% endblock pageheaderimage %}
+
+{% block pageheadercontent %}
+<div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title">{{ survey.title }}</h2>
+                <h4 class="description">{{ survey.description }}</h4>                                     
+            </div>
+        </div>
+    </div>
+{% endblock pageheadercontent %}
+
+{% block content %}    
+    <div class="card card-plain">
+        <form method="post">
+        <div class="card-body">
+            <h3 class="card-title">{% trans 'Survey' %}</h3>
+            <div class="row">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                {{ formset.non_form_errors }}
+                {% for question, formset in combined %} 
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="form-group has-warning label-floating is-empty bmd-form-group">
+                            <label class="bmd-label-floating">{{ question }}</label>
+                            {% for form in formset %}
+                                {{ form }}
+                            {% endfor %}
+                            <span class="material-input"></span>
+                        </div>
+                    </div>   
+                {% endfor %}                                     
+            </div>
+            <div class="card-footer justify-content-between">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="" required> I'm not a robot
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-warning btn-round pull-right">{% trans 'send survey' %}</button>
+            </div>
+        </div>
+        </form>
+    </div>
+{% endblock content %}

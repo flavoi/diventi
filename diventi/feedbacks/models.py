@@ -9,8 +9,29 @@ from diventi.core.models import TimeStampedModel, PublishableModel, DiventiCover
 from diventi.accounts.models import DiventiUser
 
 
+class QuestionGroup(models.Model):
+    title = models.CharField(max_length=200, verbose_name=_('title'))
+    description = models.TextField(verbose_name=_('description'))
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('question group')
+        verbose_name_plural = _('question groups')
+
+    def get_questions(self):
+        return mark_safe("<br>".join([s.question for s in self.questions.all()]))
+    get_questions.short_description = _('Questions')
+
+
 class Question(models.Model):
     question = models.CharField(max_length=200, verbose_name=_('question'))
+    group = models.ForeignKey(QuestionGroup, related_name='questions', on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('question')
+        verbose_name_plural = _('questions')
 
     def __str__(self):
         return self.question
@@ -43,17 +64,16 @@ class SurveyQuerySet(models.QuerySet):
         return survey        
 
 
-class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
+class Survey(TimeStampedModel, PublishableModel):
     """
         A collection of questions and answers centered around a specifi title.
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    questions = models.ManyToManyField(Question)
+    question_groups = models.ManyToManyField(QuestionGroup)
 
     objects = SurveyQuerySet.as_manager()
-
 
     class Meta:
         verbose_name = _('survey')
@@ -65,9 +85,9 @@ class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
     def get_absolute_url(self):
         return reverse('feedbacks:answers', args=[str(self.slug)])
 
-    def get_questions(self):
-        return mark_safe("<br>".join([s.question for s in self.questions.all()]))
-    get_questions.short_description = _('Questions')
+    def get_question_groups(self):
+        return mark_safe("<br>".join([s.__str__() for s in self.question_groups.all()]))
+    get_question_groups.short_description = _('Question Groups')
 
 
 class SurveyCover(DiventiCoverModel):

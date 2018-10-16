@@ -31,7 +31,11 @@
                                 </div>
                             </div>
                                 {% empty %}
-                                {% trans 'You have yet to answer this survey.' %}
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="text-center">
+                                    <h5>{% trans 'You have yet to answer this survey.' %}</h5>
+                                </div>
+                            </div>
                             {% endfor %}                          
                         </div>
                     </div>

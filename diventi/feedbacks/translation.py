@@ -1,16 +1,21 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Survey, Question, Answer, SurveyCover
+from .models import Survey, Question, Answer, SurveyCover, QuestionGroup
 
 
 @register(Survey)
 class SurveyTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'label', 'slug')
+    fields = ('title', 'description', 'slug')
 
 
 @register(Question)
 class QuestionTranslationOptions(TranslationOptions):
     fields = ('question', )
+
+
+@register(QuestionGroup)
+class QuestionGroupTranslationOptions(TranslationOptions):
+    fields = ('title', 'description')
 
 
 @register(Answer)

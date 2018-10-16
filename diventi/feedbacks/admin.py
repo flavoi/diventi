@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TranslationStackedInline
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished, deactivate
-from .models import Survey, Question, Answer, SurveyCover
+from .models import Survey, Question, Answer, SurveyCover, QuestionGroup
 
 
 class AnswerAdmin(DiventiTranslationAdmin):
@@ -18,12 +18,19 @@ class AnswerAdmin(DiventiTranslationAdmin):
         return form
 
 
-class QuestionAdmin(DiventiTranslationAdmin):
+class QuestionInline(TranslationStackedInline):
     model = Question
+    fields = ('question', )
+    extra = 1
+
+
+class QuestionGroupAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'get_questions']
+    inlines = [QuestionInline]
 
 
 class SurveyAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'get_questions', 'published', 'publication_date']
+    list_display = ['title', 'get_question_groups', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (
@@ -31,7 +38,7 @@ class SurveyAdmin(DiventiTranslationAdmin):
             'fields': ('published',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'image', 'description', 'questions', 'slug', 'publication_date'),
+            'fields': ('title', 'description', 'question_groups', 'slug', 'publication_date'),
         }),
     )
     actions = [make_published, make_unpublished]
@@ -45,5 +52,5 @@ class SurveyCoverAdmin(DiventiTranslationAdmin):
 
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Answer, AnswerAdmin)
-admin.site.register(Question, QuestionAdmin)
+admin.site.register(QuestionGroup, QuestionGroupAdmin)
 admin.site.register(SurveyCover, SurveyCoverAdmin)

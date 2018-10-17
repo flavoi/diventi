@@ -10,13 +10,13 @@
 
 {% block pageheadercontent %}
 <div class="container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-center">
-                <h2 class="title">{{ survey.title }}</h2>
-                <h4 class="description">{{ survey.description }}</h4>                                     
-            </div>
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+            <h2 class="title">{{ survey.title }}</h2>
+            <h4 class="description">{{ survey.description }}</h4>                                     
         </div>
     </div>
+</div>
 {% endblock pageheadercontent %}
 
 {% block content %}    
@@ -28,17 +28,21 @@
                 {% csrf_token %}
                 {{ formset.management_form }}
                 {{ formset.non_form_errors }}
-                {% for question, formset in combined %} 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="form-group has-warning label-floating is-empty bmd-form-group">
-                            <label class="bmd-label-floating">{{ question }}</label>
-                            {% for form in formset %}
-                                {{ form }}
-                            {% endfor %}
-                            <span class="material-input"></span>
-                        </div>
-                    </div>   
-                {% endfor %}                                     
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    {% for question, formset in combined %}                    
+                        {% ifchanged question.group %}                            
+                            <h3 class="mt-6">{{ question.group }}</h3>
+                            <p class="description">{{ question.group.description }}</p>
+                        {% endifchanged %}
+                            <div class="form-group has-warning label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating">{{ question }}</label>
+                                {% for form in formset %}
+                                    {{ form }}
+                                {% endfor %}
+                                <span class="material-input"></span>
+                            </div>      
+                    {% endfor %}
+                </div>
             </div>
             <div class="card-footer justify-content-between">
                 <div class="form-check">

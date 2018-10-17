@@ -37,6 +37,7 @@ class AnswerListView(ListView):
         survey = Survey.objects.published().get(slug=slug)
         qs = qs.filter(survey=survey)
         qs = qs.filter(author=user)
+        qs = qs.select_related('question__group')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -51,8 +52,9 @@ class AnswerListView(ListView):
 def survey_questions(request, slug):
     survey = Survey.objects.published().get(slug=slug)
     surveycover = SurveyCover.objects.active()
-    questions = survey.questions.all()
-    question_data = [{'question': question, 'survey': survey} for question in questions]
+    question_groups = survey.question_groups.all()
+    questions = Question.objects.filter(group__in=(question_groups))
+    question_data = [{'group':question.group, 'question': question, 'survey': survey} for question in questions]
     
     DiventiAnswerFormSet = formset_factory(AnswerForm, max_num=1)
     formset = DiventiAnswerFormSet(request.POST or None, initial=question_data)

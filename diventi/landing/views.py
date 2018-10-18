@@ -9,8 +9,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Presentation, Feedback, AboutCover
-from .forms import FeedbackCreationForm
+from .models import Presentation, AboutCover
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
@@ -94,26 +93,6 @@ class PresentationSearchView(ListView):
         context = super(PresentationSearchView, self).get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('q')
         return context
-
-
-class FeedbackCreationView(LoginRequiredMixin, CreateView):
-    """ Insert a new feedback linked to the user """
-
-    form_class = FeedbackCreationForm
-    model = Feedback
-    template_name = 'landing/feedback.html'
-    success_msg = _('You feedback has been sent!')
-
-    def form_valid(self, form):
-        messages.success(self.request, self.success_msg)
-        return super(FeedbackCreationView, self).form_valid(form)
-
-    def get_success_url(self):
-        next_url = self.request.GET.get('next', None)
-        if next_url:            
-            return next_url
-        else:
-            super().get_success_url()
 
 
 class AboutView(TemplateView):

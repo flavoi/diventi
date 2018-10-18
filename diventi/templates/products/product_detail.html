@@ -105,12 +105,7 @@
                         {% if user.is_authenticated %}
                             <div class="col-md-6 text-right pick-size">                                
                                 {% if bought %}
-                                <form action="{% url 'products:drop' product.slug %}" method="POST">                                   
-                                    <a class="btn btn-warning btn-fab btn-round btn-tooltip" data-toggle="modal" data-target="#feedbackModal" href="">
-                                        <span data-toggle="tooltip" data-placement="bottom" data-container="body" href="" data-original-title="{% trans "Leave a private feedback" %}.">
-                                            <i class="fal fa-comment"></i>
-                                        </span>
-                                    </a>                                    
+                                <form action="{% url 'products:drop' product.slug %}" method="POST">                                                                      
                                     <a class="btn btn-warning btn-fab btn-round btn-tooltip" href="{% url 'accounts:update' user.id %}#{% trans 'collection' %}">
                                         <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans "View this product in your collection" %}.">
                                             <i class="fal fa-shopping-bag"></i>

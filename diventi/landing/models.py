@@ -23,35 +23,6 @@ class PresentationManager(models.Manager):
         return active_presentation
 
 
-class FeedbackManager(models.Manager):
-
-    def usercount(self):        
-        current_user = CuserMiddleware.get_user()
-        feedbacks = 0
-        if not current_user.is_anonymous: 
-            feedbacks = self.filter(user=current_user)
-            feedbacks = feedbacks.count()
-        return feedbacks
-
-
-class Feedback(TimeStampedModel):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, verbose_name=_('user'), on_delete=models.SET_NULL)
-    description = models.TextField()
-
-    objects = FeedbackManager()
-
-    def __str__(self):
-        return str(self.pk)
-
-    def save(self, *args, **kwargs):
-        self.user = CuserMiddleware.get_user()
-        super(Feedback, self).save(*args, **kwargs)
-
-    class Meta:
-        verbose_name = _('feedback')
-        verbose_name_plural = _('feedback')
-
-
 class Presentation(models.Model):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))

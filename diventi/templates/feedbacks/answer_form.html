@@ -28,30 +28,42 @@
                 {% csrf_token %}
                 {{ formset.management_form }}
                 {{ formset.non_form_errors }}
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    {% for question, formset in combined %}                    
-                        {% ifchanged question.group %}                            
-                            <h3 class="mt-6">{{ question.group }}</h3>
-                            <p class="description">{{ question.group.description }}</p>
-                        {% endifchanged %}
+                    
+                {% for column in q_columns %}
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        {% for combination in column %}
+                            {% if combination.0 %}                                
+                                <h3 class="mt-6">{{ combination.1.group }}</h3>
+                                <p class="description">{{ combination.1.group.description }}</p>
+                            {% endif %}                                
                             <div class="form-group has-warning label-floating is-empty bmd-form-group">
-                                <label class="bmd-label-floating">{{ question }}</label>
-                                {% for form in formset %}
+                                <label class="bmd-label-floating">{{ combination.1 }}</label>
+                                {% for form in combination.2 %}
                                     {{ form }}
                                 {% endfor %}
                                 <span class="material-input"></span>
-                            </div>      
-                    {% endfor %}
-                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                {% for question, formset in combined %}                    
+                    {% ifchanged question.group %}                            
+                        <h3 class="mt-6">{{ question.group }}</h3>
+                        <p class="description">{{ question.group.description }}</p>
+                    {% endifchanged %}
+                        <div class="form-group has-warning label-floating is-empty bmd-form-group">
+                            <label class="bmd-label-floating">{{ question }}</label>
+                            {% for form in formset %}
+                                {{ form }}
+                            {% endfor %}
+                            <span class="material-input"></span>
+                        </div>      
+                {% endfor %}
             </div>
+
             <div class="card-footer justify-content-between">
                 <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="" required> I'm not a robot
-                        <span class="form-check-sign">
-                            <span class="check"></span>
-                        </span>
-                    </label>
                 </div>
                 <button type="submit" class="btn btn-warning btn-round pull-right">{% trans 'send survey' %}</button>
             </div>

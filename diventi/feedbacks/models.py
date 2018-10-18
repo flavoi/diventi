@@ -71,7 +71,7 @@ class Survey(TimeStampedModel, PublishableModel):
     title = models.CharField(max_length=60, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    question_groups = models.ManyToManyField(QuestionGroup)
+    question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys')
 
     objects = SurveyQuerySet.as_manager()
 

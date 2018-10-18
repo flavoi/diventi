@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from diventi.core.views import DiventiActionMixin
 
-from .models import Survey, Answer, Question, SurveyCover
+from .models import Survey, Answer, Question, SurveyCover, QuestionGroup
 from .forms import AnswerForm
 
 from cuser.middleware import CuserMiddleware
@@ -53,7 +53,7 @@ def survey_questions(request, slug):
     survey = Survey.objects.published().get(slug=slug)
     surveycover = SurveyCover.objects.active()
     question_groups = survey.question_groups.all()
-    questions = Question.objects.filter(group__in=(question_groups))
+    questions = Question.objects.filter(group__in=(question_groups)).order_by('group')
     question_data = [{'group':question.group, 'question': question, 'survey': survey} for question in questions]
     
     DiventiAnswerFormSet = formset_factory(AnswerForm, max_num=1)
@@ -73,11 +73,36 @@ def survey_questions(request, slug):
 
     combined = zip(questions, formset.forms)
 
+    # Distribute questions and forms into columns
+    question_groups = QuestionGroup.objects.filter(surveys=survey)
+    NCOLUMNS = question_groups.count()
+    i = -1
+    q_columns = []
+    for k in range(0, NCOLUMNS):
+        q_columns.append([])
+
+    question_group = None
+    for question, formset in combined:
+        if question.group != question_group:
+            question_group = question.group
+            question_group_toggle = 1
+        else:
+            question_group_toggle = 0
+
+        if i != NCOLUMNS-1:
+            if i == -1 or question_group_toggle:
+                i+=1
+            
+        question_formset_combination = (question_group_toggle, question, formset)
+        q_columns[i].append(question_formset_combination)
+        
+
     template_name = 'feedbacks/answer_form.html'
     context = {
         'survey': survey,
         'surveycover': surveycover,
         'formset': formset,
         'combined': combined,
+        'q_columns': q_columns,
     }
     return render(request, template_name, context)    

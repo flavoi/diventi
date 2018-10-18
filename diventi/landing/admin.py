@@ -20,7 +20,7 @@ class FeatureInline(TranslationStackedInline):
 
 
 class PresentationAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'active']    
+    list_display = ['title', 'image_tag', 'active']    
     inlines = [        
         AboutInline,
         FeatureInline,

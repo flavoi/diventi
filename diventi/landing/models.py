@@ -23,7 +23,7 @@ class PresentationManager(models.Manager):
         return active_presentation
 
 
-class Presentation(models.Model):
+class Presentation(DiventiCoverModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))

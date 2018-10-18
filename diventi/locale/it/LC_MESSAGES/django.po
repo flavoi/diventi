@@ -1465,15 +1465,15 @@ msgstr "Mostra le risposte"
 
 #: diventi/templates/feedbacks/answer_form.html:26
 msgid "Survey"
-msgstr ""
+msgstr "Sondaggio"
 
 #: diventi/templates/feedbacks/answer_form.html:68
 msgid "send survey"
-msgstr ""
+msgstr "invia sondaggio"
 
 #: diventi/templates/feedbacks/answer_list.html:6
 msgid "Answers"
-msgstr ""
+msgstr "Risposte"
 
 #: diventi/templates/feedbacks/answer_list.html:36
 msgid "You have yet to answer this survey."

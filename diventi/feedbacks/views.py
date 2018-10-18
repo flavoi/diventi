@@ -44,14 +44,16 @@ class AnswerListView(ListView):
         context = super(AnswerListView, self).get_context_data(**kwargs)
         slug = self.kwargs.get('slug', None)
         survey = Survey.objects.published().get(slug=slug)
-        context['survey'] = survey        
+        cover = SurveyCover.objects.active()
+        context['survey'] = survey
+        context['cover'] = cover
         return context
 
 
 @login_required
 def survey_questions(request, slug):
     survey = Survey.objects.published().get(slug=slug)
-    surveycover = SurveyCover.objects.active()
+    cover = SurveyCover.objects.active()
     question_groups = survey.question_groups.all()
     questions = Question.objects.filter(group__in=(question_groups)).order_by('group')
     question_data = [{'group':question.group, 'question': question, 'survey': survey} for question in questions]
@@ -100,7 +102,7 @@ def survey_questions(request, slug):
     template_name = 'feedbacks/answer_form.html'
     context = {
         'survey': survey,
-        'surveycover': surveycover,
+        'cover': cover,
         'formset': formset,
         'combined': combined,
         'q_columns': q_columns,

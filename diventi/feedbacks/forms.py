@@ -13,6 +13,3 @@ class AnswerForm(forms.ModelForm):
             'question': forms.HiddenInput,
             'content': forms.Textarea(attrs={'class':'form-control'}),
         }
-        labels = {
-            'content': "your answer",
-        }

@@ -68,43 +68,17 @@ def survey_questions(request, slug):
                 instance.author = request.user
                 instance.save()
         messages.success(request, _('Your survey has been saved!'))                
-    
+    else:
+        messages.warning(request, _('Please, double check your answers below.'))
+
     user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
     if user_has_answered:
-        return redirect(reverse('feedbacks:answers', args=[slug,]))
-
-    combined = zip(questions, formset.forms)
-
-    # Distribute questions and forms into columns
-    question_groups = QuestionGroup.objects.filter(surveys=survey)
-    NCOLUMNS = question_groups.count()
-    i = -1
-    q_columns = []
-    for k in range(0, NCOLUMNS):
-        q_columns.append([])
-
-    question_group = None
-    for question, formset in combined:
-        if question.group != question_group:
-            question_group = question.group
-            question_group_toggle = 1
-        else:
-            question_group_toggle = 0
-
-        if i != NCOLUMNS-1:
-            if i == -1 or question_group_toggle:
-                i+=1
-            
-        question_formset_combination = (question_group_toggle, question, formset)
-        q_columns[i].append(question_formset_combination)
-        
+        return redirect(reverse('feedbacks:answers', args=[slug,]))      
 
     template_name = 'feedbacks/answer_form.html'
     context = {
         'survey': survey,
         'cover': cover,
         'formset': formset,
-        'combined': combined,
-        'q_columns': q_columns,
     }
     return render(request, template_name, context)    

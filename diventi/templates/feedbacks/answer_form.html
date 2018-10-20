@@ -24,29 +24,39 @@
         <form method="post">
         <div class="card-body">
             <h3 class="card-title">{% trans 'Survey' %}</h3>
+
             <div class="row">
                 {% csrf_token %}
                 {{ formset.management_form }}
-                {{ formset.non_form_errors }}
-                    
-                {% for column in q_columns %}
+                {% for form in formset %}
+                    {% ifchanged form.group.value %}
+                    <div class="col-12">
+                        <h3>{{ form.group.value.title }}</h3>
+                        <p class="description">{{ form.group.value.description }}</p>
+                    </div>
+                    {% endifchanged %}
                     <div class="col-sm-12 col-md-6 col-lg-4">
-                        {% for combination in column %}
-                            {% if combination.0 %}                                
-                                <h3 class="mt-6">{{ combination.1.group }}</h3>
-                                <p class="description">{{ combination.1.group.description }}</p>
+                        <div class="form-group abel-floating {% if form.content.errors %}has-danger{% else %}has-warning{% endif %}">
+                            <span>{{ form.content.label }}</span>
+                            {{ form.content }}
+                            {% if form.content.errors %}
+                                <span class="form-text text-danger">
+                                    {% for error in form.content.errors %}
+                                        {{ error|escape }}
+                                    {% endfor %}
+                                </span>
                             {% endif %}
-                            <div class="form-group has-warning">
-                                <span>{{ combination.1 }}</span>
-                                {% for form in combination.2 %}
-                                    {{ form }}
-                                {% endfor %}
-                                <span class="material-input"></span>
-                            </div>
-                        {% endfor %}
+                        </div>
                     </div>
                 {% endfor %}
+            </div>
 
+            <div class="row">
+                {% if formset.non_form_errors %}
+                    {% for error in formset.non_form_errors %}
+                        {{ error|escape }}
+                    {% endfor %}
+                {% endif %}
             </div>
 
             <div class="card-footer justify-content-between">

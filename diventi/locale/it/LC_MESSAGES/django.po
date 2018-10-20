@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-18 20:24+0200\n"
+"POT-Creation-Date: 2018-10-20 15:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -574,9 +574,13 @@ msgstr "^(?P<slug>[-\\w]+)/domande/$"
 msgid "^(?P<slug>[-\\w]+)/answers/$"
 msgstr "^(?P<slug>[-\\w]+)/risposte/$"
 
-#: diventi/feedbacks/views.py:68
+#: diventi/feedbacks/views.py:77
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
+
+#: diventi/feedbacks/views.py:79
+msgid "Please, double check your answers below."
+msgstr "Per favore controlla le tue risposte qui sotto."
 
 #: diventi/homebrew/apps.py:7
 msgid "Homebrew"
@@ -1467,7 +1471,7 @@ msgstr "Mostra le risposte"
 msgid "Survey"
 msgstr "Sondaggio"
 
-#: diventi/templates/feedbacks/answer_form.html:68
+#: diventi/templates/feedbacks/answer_form.html:71
 msgid "send survey"
 msgstr "invia sondaggio"
 
@@ -1475,7 +1479,7 @@ msgstr "invia sondaggio"
 msgid "Answers"
 msgstr "Risposte"
 
-#: diventi/templates/feedbacks/answer_list.html:36
+#: diventi/templates/feedbacks/answer_list.html:37
 msgid "You have yet to answer this survey."
 msgstr "Devi ancora rispondere a questo sondaggio."
 

@@ -4,15 +4,15 @@ from .models import Answer
 
 
 class AnswerForm(forms.ModelForm):
-    group = forms.CharField(max_length=100)
+    group_title = forms.CharField()
+    group_description = forms.CharField()
 
     class Meta:
         model = Answer
-        fields = ('survey', 'question', 'content', 'group')        
+        fields = ('survey', 'question', 'content',)        
         widgets = {
-            'survey': forms.HiddenInput,
-            'question': forms.HiddenInput,
-            'group': forms.HiddenInput,
+            'survey': forms.HiddenInput(),
+            'question': forms.HiddenInput(),            
             'content': forms.Textarea(attrs={'class':'form-control'},),
         }
 
@@ -21,5 +21,8 @@ class AnswerForm(forms.ModelForm):
         self.question = kwargs.pop('initial', None)['question']
         if self.question:
             self.fields['content'].label = self.question
+        self.fields['survey'].widget = forms.HiddenInput()
+        self.fields['group_title'].widget = forms.HiddenInput()
+        self.fields['group_description'].widget = forms.HiddenInput()
         
 

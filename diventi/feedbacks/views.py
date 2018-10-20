@@ -56,20 +56,27 @@ def survey_questions(request, slug):
     cover = SurveyCover.objects.active()
     question_groups = survey.question_groups.all()
     questions = Question.objects.filter(group__in=(question_groups)).order_by('group')
-    question_data = [{'group':question.group, 'question': question, 'survey': survey} for question in questions]
+    question_data = [{
+        'group_title': question.group.title,
+        'group_description': question.group.description,
+        'question': question, 
+        'survey': survey
+        } for question in questions]
     
     DiventiAnswerFormSet = formset_factory(AnswerForm, max_num=1)
     formset = DiventiAnswerFormSet(request.POST or None, initial=question_data)
-    if formset.is_valid():
-        for answer_form in formset:
-            if answer_form.is_valid():
-                instance = answer_form.save(commit=False)
-                instance.author_name = request.user.get_full_name()
-                instance.author = request.user
-                instance.save()
-        messages.success(request, _('Your survey has been saved!'))                
-    else:
-        messages.warning(request, _('Please, double check your answers below.'))
+    
+    if request.method == 'POST':
+        if formset.is_valid():
+            for answer_form in formset:
+                if answer_form.is_valid():
+                    instance = answer_form.save(commit=False)
+                    instance.author_name = request.user.get_full_name()
+                    instance.author = request.user
+                    instance.save()
+            messages.success(request, _('Your survey has been saved!'))                
+        else:
+            messages.warning(request, _('Please, double check your answers below.'))
 
     user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
     if user_has_answered:

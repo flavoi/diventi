@@ -29,12 +29,14 @@
                 {% csrf_token %}
                 {{ formset.management_form }}
                 {% for form in formset %}
-                    {% ifchanged form.group.value %}
+
+                    {% ifchanged form.group_title.value %}
                     <div class="col-12">
-                        <h3>{{ form.group.value.title }}</h3>
-                        <p class="description">{{ form.group.value.description }}</p>
+                        <h3>{{ form.group_title.value }}</h3>
+                        <p class="description">{{ form.group_description.value }}</p>                        
                     </div>
                     {% endifchanged %}
+
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="form-group abel-floating {% if form.content.errors %}has-danger{% else %}has-warning{% endif %}">
                             <span>{{ form.content.label }}</span>
@@ -47,6 +49,10 @@
                                 </span>
                             {% endif %}
                         </div>
+                        {{ form.group_title }}
+                        {{ form.group_description }}
+                        {{ form.survey }}
+                        {{ form.question }}
                     </div>
                 {% endfor %}
             </div>

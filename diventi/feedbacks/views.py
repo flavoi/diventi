@@ -15,6 +15,7 @@ from .forms import AnswerForm
 
 from cuser.middleware import CuserMiddleware
 
+
 class SurveyListView(ListView):
 
     model = Survey
@@ -51,36 +52,35 @@ class AnswerListView(ListView):
 
 
 @login_required
-def survey_questions(request, slug):
+def survey_questions(request, slug):   
+
     survey = Survey.objects.published().get(slug=slug)
     cover = SurveyCover.objects.active()
     question_groups = survey.question_groups.all()
     questions = Question.objects.filter(group__in=(question_groups)).order_by('group')
-    question_data = [{
-        'group_title': question.group.title,
-        'group_description': question.group.description,
-        'question': question, 
-        'survey': survey
-        } for question in questions]
-    
-    DiventiAnswerFormSet = formset_factory(AnswerForm, max_num=1)
-    formset = DiventiAnswerFormSet(request.POST or None, initial=question_data)
-    
-    if request.method == 'POST':
-        if formset.is_valid():
-            for answer_form in formset:
-                if answer_form.is_valid():
-                    instance = answer_form.save(commit=False)
-                    instance.author_name = request.user.get_full_name()
-                    instance.author = request.user
-                    instance.save()
-            messages.success(request, _('Your survey has been saved!'))                
-        else:
-            messages.warning(request, _('Please, double check your answers below.'))
 
     user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
     if user_has_answered:
-        return redirect(reverse('feedbacks:answers', args=[slug,]))      
+        return redirect(reverse('feedbacks:answers', args=[slug,]))
+
+    DiventiAnswerFormSet = formset_factory(AnswerForm, max_num=1)
+    
+    question_data = [{
+            'group_title': question.group.title,
+            'group_description': question.group.description,
+            'question': question, 
+            'survey': survey
+        } for question in questions]
+
+    formset = DiventiAnswerFormSet(request.POST or None, initial=question_data)
+
+    if request.method == 'POST':
+        if formset.is_valid():
+            for form in formset:
+                form.save()
+            messages.success(request, _('Your survey has been saved!'))                
+        else:
+            messages.warning(request, _('Please, double check your answers below.'))
 
     template_name = 'feedbacks/answer_form.html'
     context = {

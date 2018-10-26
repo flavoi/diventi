@@ -1,6 +1,8 @@
 from django import forms
 
-from .models import Answer
+from .models import Answer, QuestionChoice
+
+from cuser.middleware import CuserMiddleware
 
 
 class AnswerForm(forms.ModelForm):
@@ -19,10 +21,30 @@ class AnswerForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AnswerForm, self).__init__(*args, **kwargs)
         self.question = kwargs.pop('initial', None)['question']
-        if self.question:
-            self.fields['content'].label = self.question
+        if self.question:            
+            choices = self.question.choices.all()
+            if choices:
+                self.fields['content'] = forms.ModelChoiceField(
+                        queryset=choices, widget=forms.RadioSelect(attrs={'class':'form-check-input'},), 
+                        empty_label=None, required=True, label=self.question)
+            else:
+                self.fields['content'].label = self.question
+
         self.fields['survey'].widget = forms.HiddenInput()
         self.fields['group_title'].widget = forms.HiddenInput()
         self.fields['group_description'].widget = forms.HiddenInput()
-        
+
+    def save(self, commit=True):
+        m = super(AnswerForm, self).save(commit=False)
+        user = CuserMiddleware.get_user()
+        m.author_name = user.get_full_name()
+        m.author = user
+        choice = self.cleaned_data['content']
+        question = self.cleaned_data['question']
+        choices = self.question.choices.all()
+        if choices:
+            m.choice = choice
+        if commit:
+            m.save()
+        return m
 

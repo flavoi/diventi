@@ -4,12 +4,12 @@ from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TranslationStackedInline
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished, deactivate
-from .models import Survey, Question, Answer, SurveyCover, QuestionGroup
+from .models import Survey, Question, Answer, SurveyCover, QuestionGroup, QuestionChoice
 
 
 class AnswerAdmin(DiventiTranslationAdmin):
     model = Answer
-    list_display = ['survey', 'question', 'author_name', 'author', 'content']
+    list_display = ['question', 'author', 'get_score', 'content',]
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(AnswerAdmin, self).get_form(request, obj, **kwargs)
@@ -18,9 +18,19 @@ class AnswerAdmin(DiventiTranslationAdmin):
         return form
 
 
+class QuestionChoiceInline(TranslationStackedInline):
+    model = QuestionChoice
+    fields = ('title', 'description', 'score')
+
+
+class QuestionAdmin(DiventiTranslationAdmin):
+    list_display = ['question', 'group']
+    inlines = [QuestionChoiceInline]
+
+
 class QuestionInline(TranslationStackedInline):
     model = Question
-    fields = ('question', )
+    fields = ('question',)
     extra = 1
 
 
@@ -52,5 +62,6 @@ class SurveyCoverAdmin(DiventiTranslationAdmin):
 
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Answer, AnswerAdmin)
+admin.site.register(Question, QuestionAdmin)
 admin.site.register(QuestionGroup, QuestionGroupAdmin)
 admin.site.register(SurveyCover, SurveyCoverAdmin)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-20 15:45+0200\n"
+"POT-Creation-Date: 2018-10-26 23:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,12 +299,12 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/feedbacks/admin.py:37
+#: diventi/blog/admin.py:14 diventi/feedbacks/admin.py:47
 #: diventi/products/admin.py:52
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/feedbacks/admin.py:40
+#: diventi/blog/admin.py:17 diventi/feedbacks/admin.py:50
 #: diventi/products/admin.py:55
 msgid "Editing"
 msgstr "Montaggio"
@@ -322,23 +322,23 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:78 diventi/core/models.py:78
-#: diventi/feedbacks/models.py:13 diventi/feedbacks/models.py:71
-#: diventi/homebrew/models.py:38 diventi/homebrew/models.py:103
-#: diventi/homebrew/models.py:130 diventi/homebrew/models.py:156
-#: diventi/homebrew/models.py:168 diventi/homebrew/models.py:182
-#: diventi/homebrew/models.py:201 diventi/homebrew/models.py:340
-#: diventi/landing/models.py:27 diventi/landing/models.py:45
-#: diventi/products/models.py:57
+#: diventi/feedbacks/models.py:13 diventi/feedbacks/models.py:44
+#: diventi/feedbacks/models.py:88 diventi/homebrew/models.py:38
+#: diventi/homebrew/models.py:103 diventi/homebrew/models.py:130
+#: diventi/homebrew/models.py:156 diventi/homebrew/models.py:168
+#: diventi/homebrew/models.py:182 diventi/homebrew/models.py:201
+#: diventi/homebrew/models.py:340 diventi/landing/models.py:27
+#: diventi/landing/models.py:45 diventi/products/models.py:57
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:79
-#: diventi/feedbacks/models.py:14 diventi/feedbacks/models.py:72
-#: diventi/homebrew/models.py:39 diventi/homebrew/models.py:114
-#: diventi/homebrew/models.py:141 diventi/homebrew/models.py:157
-#: diventi/homebrew/models.py:169 diventi/homebrew/models.py:184
-#: diventi/landing/models.py:29 diventi/landing/models.py:46
-#: diventi/products/models.py:58
+#: diventi/feedbacks/models.py:14 diventi/feedbacks/models.py:45
+#: diventi/feedbacks/models.py:89 diventi/homebrew/models.py:39
+#: diventi/homebrew/models.py:114 diventi/homebrew/models.py:141
+#: diventi/homebrew/models.py:157 diventi/homebrew/models.py:169
+#: diventi/homebrew/models.py:184 diventi/landing/models.py:29
+#: diventi/landing/models.py:46 diventi/products/models.py:58
 msgid "description"
 msgstr "descrizione"
 
@@ -347,7 +347,8 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/homebrew/models.py:202
+#: diventi/blog/models.py:81 diventi/feedbacks/models.py:125
+#: diventi/homebrew/models.py:202
 msgid "content"
 msgstr "contenuto"
 
@@ -355,12 +356,12 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/feedbacks/models.py:73
+#: diventi/blog/models.py:83 diventi/feedbacks/models.py:90
 #: diventi/homebrew/models.py:46 diventi/products/models.py:59
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:84
+#: diventi/blog/models.py:84 diventi/feedbacks/models.py:120
 msgid "author"
 msgstr "autore"
 
@@ -531,6 +532,7 @@ msgid "Questions"
 msgstr "Domande"
 
 #: diventi/feedbacks/models.py:29 diventi/feedbacks/models.py:33
+#: diventi/feedbacks/models.py:122
 msgid "question"
 msgstr "domanda"
 
@@ -538,33 +540,53 @@ msgstr "domanda"
 msgid "questions"
 msgstr "domande"
 
-#: diventi/feedbacks/models.py:79 diventi/feedbacks/models.py:80
+#: diventi/feedbacks/models.py:46
+msgid "score"
+msgstr "punteggio"
+
+#: diventi/feedbacks/models.py:50
+msgid "choice"
+msgstr "scelta"
+
+#: diventi/feedbacks/models.py:51
+msgid "choices"
+msgstr "scelte"
+
+#: diventi/feedbacks/models.py:96
 msgid "survey"
 msgstr "sondaggio"
 
-#: diventi/feedbacks/models.py:90
+#: diventi/feedbacks/models.py:97
+msgid "surveys"
+msgstr "sondaggi"
+
+#: diventi/feedbacks/models.py:107
 msgid "Question Groups"
 msgstr "Gruppi di domande"
 
-#: diventi/feedbacks/models.py:98
-msgid "Survey Cover"
-msgstr "Copertina del sondaggio"
+#: diventi/feedbacks/models.py:115
+msgid "survey cover"
+msgstr "copertina del sondaggio"
 
-#: diventi/feedbacks/models.py:99
-msgid "Survey Covers"
-msgstr "Copertine del sondaggio"
+#: diventi/feedbacks/models.py:116
+msgid "survey covers"
+msgstr "copertine del sondaggio"
 
-#: diventi/feedbacks/models.py:104
+#: diventi/feedbacks/models.py:121
 msgid "author name"
 msgstr "nome dell'autore"
 
-#: diventi/feedbacks/models.py:110
+#: diventi/feedbacks/models.py:128
 msgid "answer"
 msgstr "risposta"
 
-#: diventi/feedbacks/models.py:111
+#: diventi/feedbacks/models.py:129
 msgid "answers"
 msgstr "risposte"
+
+#: diventi/feedbacks/models.py:138
+msgid "Score"
+msgstr "Punteggio"
 
 #: diventi/feedbacks/urls.py:10
 msgid "^(?P<slug>[-\\w]+)/questions/$"
@@ -574,11 +596,11 @@ msgstr "^(?P<slug>[-\\w]+)/domande/$"
 msgid "^(?P<slug>[-\\w]+)/answers/$"
 msgstr "^(?P<slug>[-\\w]+)/risposte/$"
 
-#: diventi/feedbacks/views.py:77
+#: diventi/feedbacks/views.py:81
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
 
-#: diventi/feedbacks/views.py:79
+#: diventi/feedbacks/views.py:83
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
 
@@ -1471,7 +1493,7 @@ msgstr "Mostra le risposte"
 msgid "Survey"
 msgstr "Sondaggio"
 
-#: diventi/templates/feedbacks/answer_form.html:71
+#: diventi/templates/feedbacks/answer_form.html:72
 msgid "send survey"
 msgstr "invia sondaggio"
 
@@ -1482,6 +1504,10 @@ msgstr "Risposte"
 #: diventi/templates/feedbacks/answer_list.html:37
 msgid "You have yet to answer this survey."
 msgstr "Devi ancora rispondere a questo sondaggio."
+
+#: diventi/templates/feedbacks/answer_list.html:39
+msgid "Access the questions"
+msgstr "Accedi alle domande"
 
 #: diventi/templates/feedbacks/survey_detail.html:18
 msgid "your answers"

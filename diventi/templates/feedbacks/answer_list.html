@@ -35,6 +35,9 @@
                             <div class="col-md-10 ml-auto mr-auto">
                                 <div class="text-center">
                                     <h5>{% trans 'You have yet to answer this survey.' %}</h5>
+                                    <a href="{% url 'feedbacks:questions' survey.slug %}" class="btn btn-warning btn-round">
+                                        {% trans 'Access the questions' %}
+                                    </a>
                                 </div>
                             </div>
                             {% endfor %}                          

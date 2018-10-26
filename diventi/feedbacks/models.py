@@ -37,6 +37,23 @@ class Question(models.Model):
         return self.question
 
 
+class QuestionChoice(models.Model):
+    """
+        A model that defines the choice of a closed question.
+    """
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
+    score = models.PositiveIntegerField(blank=True, verbose_name=_('score'))
+    question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL, related_name='choices')
+
+    class Meta:
+        verbose_name = _('choice')
+        verbose_name_plural = _('choices')
+
+    def __str__(self):
+        return self.title
+
+
 class SurveyQuerySet(models.QuerySet):
     
     # Get the list of published surveys
@@ -77,7 +94,7 @@ class Survey(TimeStampedModel, PublishableModel):
 
     class Meta:
         verbose_name = _('survey')
-        verbose_name_plural = _('survey')
+        verbose_name_plural = _('surveys')
     
     def __str__(self):
         return self.title
@@ -95,21 +112,36 @@ class SurveyCover(DiventiCoverModel):
         Stores cover images for the survey page.
     """
     class Meta:
-        verbose_name = _('Survey Cover')
-        verbose_name_plural = _('Survey Covers')
+        verbose_name = _('survey cover')
+        verbose_name_plural = _('survey covers')
 
 
 class Answer(models.Model):
-    author = models.ForeignKey(DiventiUser, on_delete=models.SET_NULL, blank=True, null=True)
+    author = models.ForeignKey(DiventiUser, verbose_name=_('author'), on_delete=models.SET_NULL, blank=True, null=True)
     author_name = models.CharField(max_length=60, verbose_name=_('author name'))
-    question = models.ForeignKey(Question, related_name='answers', on_delete=models.SET_NULL, null=True)
+    question = models.ForeignKey(Question, related_name='answers', verbose_name=_('question'), on_delete=models.SET_NULL, null=True)
     survey = models.ForeignKey(Survey, related_name='answers', on_delete=models.SET_NULL, null=True)
-    content = models.TextField()
+    choice = models.ForeignKey(QuestionChoice, related_name='answers', on_delete=models.SET_NULL, null=True)
+    content = models.TextField(verbose_name=_('content'))
 
     class Meta:
         verbose_name = _('answer')
         verbose_name_plural = _('answers')
         unique_together = ('author_name', 'author', 'question', 'survey')
+
+    def get_score(self):
+        if self.choice:
+            score = self.choice.score
+        else:
+            score = ''
+        return mark_safe("%s" % score)
+    get_score.short_description = _('Score')
+
+
+
+
+
+
 
     def __str__(self):
         return self.author_name

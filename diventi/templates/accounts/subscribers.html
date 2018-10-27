@@ -1,41 +1,51 @@
-{% extends 'base_info.html' %}
+{% extends 'base.html' %}
+
 {% load i18n %}
 {% load accounts_extras %}
 {% load static %}
 
-{% block title %}{% trans "Subscribers" %}{% endblock title %}
+{% block title %}{% trans 'Subscribers' %}{% endblock title %}
 
-{% block pageheader_title %}
-    {% trans "Subscribers" %}
-{% endblock pageheader_title %}
+{% block bodyclass %}signup-page sidebar-collapse{% endblock bodyclass %}
 
-{% block pageheader_content %}
-    
-    
-    <div class="row">
-            {% for ugroups in users_groups %}
-            <div class="col-6">
-                {% get_language_info for ugroups.language as lang %}
-                <button class="btn btn-warning btn-block" data-clipboard-text="{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
-                    {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} users{% endblocktrans %} <span class="badge badge-pill badge-info">{{ ugroups.total }}</span>
-                </button> &nbsp;
+{% block pageheaderimage %}{% endblock pageheaderimage %}
+
+{% block pageheadercontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+                <div class="card">                                        
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{% trans 'Subscribers' %}</h2>
+                        <div class="row">
+                            {% for ugroups in users_groups %}
+                                <div class="col-md-6">
+                                    {% get_language_info for ugroups.language as lang %}
+                                    <button class="btn btn-warning btn-block btn-round" data-clipboard-text="{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
+                                        {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} users{% endblocktrans %} ({{ ugroups.total }})
+                                    </button>
+                                </div>
+                            {% endfor %}                          
+                        </div>
+                        <div class="row">
+                            {% for sgroups in subscribers_groups %}
+                                <div class="col-md-6">
+                                    {% get_language_info for sgroups.language as lang %}
+                                    <button class="btn btn-warning btn-block btn-round" data-clipboard-text="{% for user in subscribers_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
+                                        {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} ({{ sgroups.total }})
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}            
+        </div>
     </div>
-    
+    {% include 'footer.html' %}
+{% endblock pageheadercontent %}
 
-    <div class="row">
-        {% for sgroups in subscribers_groups %}
-            <div class="col-6">
-                {% get_language_info for sgroups.language as lang %}
-                <button class="btn btn-warning btn-block" data-clipboard-text="{% for user in subscribers_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
-                    {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} <span class="badge badge-pill badge-info">{{ sgroups.total }}</span>
-                </button> &nbsp;
-            </div>
-        {% endfor %}
-    </div>
-
-{% endblock pageheader_content %}
+{% block main %}{% endblock main %}
 
 {% block extrascript %}
     <script type="text/javascript" src="{% static 'clipboard/clipboard.min.js' %}"></script>

@@ -7,32 +7,32 @@
 
 {% block bodyclass %}signup-page sidebar-collapse{% endblock bodyclass %}
 
-{% block pageheader %}
-<div class="page-header header-filter" style="background-image: url('{{ cover.image }}'); background-size: cover; background-position: top center;">
+{% block pageheaderimage %}{{ cover.image }}{% endblock pageheaderimage %}
+
+{% block pageheadercontent %}
     <div class="container">
         <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
-                <div class="card card-signup">
-                    
-                    <h2 class="card-title text-center">{{ survey.title }}</h2>
+                <div class="card">                                        
                     <div class="card-body">
-                        <div class="row">
+                        <h2 class="card-title text-center">{{ survey.title }}</h2>
+                        <div class="row">                            
                             {% for answer in answers %}
-                            <div class="col-md-6">
-                                <div class="info info-horizontal">
-                                    <div class="icon icon-rose">
-                                        <i class="fal fa-map-marker-question"></i>
-                                    </div>
-                                    <div class="description">
-                                        <h4 class="info-title">{{ answer.question }}</h4>
-                                        <p class="description">
-                                            {{ answer.content }}
-                                        </p>
+                                <div class="col-md-6">
+                                    <div class="info info-horizontal">
+                                        <div class="icon icon-rose">
+                                            <i class="fal fa-map-marker-question"></i>
+                                        </div>
+                                        <div class="description">
+                                            <h4 class="info-title">{{ answer.question }}</h4>
+                                            <p class="description">
+                                                {{ answer.content }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                                {% empty %}
-                            <div class="col-md-10 ml-auto mr-auto">
+                            {% empty %}
+                            <div class="col-md-12 mr-auto ml-auto"> 
                                 <div class="text-center">
                                     <h5>{% trans 'You have yet to answer this survey.' %}</h5>
                                     <a href="{% url 'feedbacks:questions' survey.slug %}" class="btn btn-warning btn-round">
@@ -40,7 +40,7 @@
                                     </a>
                                 </div>
                             </div>
-                            {% endfor %}                          
+                            {% endfor %}                            
                         </div>
                     </div>
                 </div>
@@ -48,11 +48,7 @@
         </div>
     </div>
     {% include 'footer.html' %}
-</div>
-
-
-
-{% endblock pageheader %}
+{% endblock pageheadercontent %}
 
 {% block main %}{% endblock main %}
 

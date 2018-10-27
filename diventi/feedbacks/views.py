@@ -78,7 +78,8 @@ def survey_questions(request, slug):
         if formset.is_valid():
             for form in formset:
                 form.save()
-            messages.success(request, _('Your survey has been saved!'))                
+            messages.success(request, _('Your survey has been saved!'))
+            return redirect(reverse('feedbacks:answers', args=[slug,]))              
         else:
             messages.warning(request, _('Please, double check your answers below.'))
 

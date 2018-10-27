@@ -13,13 +13,13 @@
 {% block pageheadercontent %}
     <div class="container">
         <div class="row">
-            <div class="col-md-10 ml-auto mr-auto">
+            <div class="col-md-6 ml-auto mr-auto">
                 <div class="card">                                        
                     <div class="card-body">
                         <h2 class="card-title text-center">{% trans 'Subscribers' %}</h2>
                         <div class="row">
                             {% for ugroups in users_groups %}
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     {% get_language_info for ugroups.language as lang %}
                                     <button class="btn btn-warning btn-block btn-round" data-clipboard-text="{% for user in users_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
                                         {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} users{% endblocktrans %} ({{ ugroups.total }})
@@ -29,7 +29,7 @@
                         </div>
                         <div class="row">
                             {% for sgroups in subscribers_groups %}
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     {% get_language_info for sgroups.language as lang %}
                                     <button class="btn btn-warning btn-block btn-round" data-clipboard-text="{% for user in subscribers_lan|get_item:lang.code %}{{ user.email }};{% endfor %}">
                                         {% blocktrans with lang_code=lang.code %}Contact {{ lang_code }} subscribers{% endblocktrans %} ({{ sgroups.total }})

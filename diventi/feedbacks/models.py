@@ -10,6 +10,9 @@ from diventi.accounts.models import DiventiUser
 
 
 class QuestionGroup(models.Model):
+    """
+        A question group is a collection of questions centered around a certain topic.
+    """
     title = models.CharField(max_length=200, verbose_name=_('title'))
     description = models.TextField(verbose_name=_('description'))
 
@@ -26,6 +29,9 @@ class QuestionGroup(models.Model):
 
 
 class Question(models.Model):
+    """
+        A qeustion must be part of a question group to be applied to a survey. 
+    """
     question = models.CharField(max_length=200, verbose_name=_('question'))
     group = models.ForeignKey(QuestionGroup, related_name='questions', on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -117,6 +123,9 @@ class SurveyCover(DiventiCoverModel):
 
 
 class Answer(models.Model):
+    """
+        One answer can be given for each question. If the question provides a score, the answer get it too.
+    """
     author = models.ForeignKey(DiventiUser, verbose_name=_('author'), on_delete=models.SET_NULL, blank=True, null=True)
     author_name = models.CharField(max_length=60, verbose_name=_('author name'))
     question = models.ForeignKey(Question, related_name='answers', verbose_name=_('question'), on_delete=models.SET_NULL, null=True)
@@ -137,11 +146,30 @@ class Answer(models.Model):
         return mark_safe("%s" % score)
     get_score.short_description = _('Score')
 
-
-
-
-
-
-
     def __str__(self):
         return self.author_name
+
+
+class Outcome(models.Model):
+    """
+        An outcome take in account the sum of the answers scores and produces 
+        an authomatic result nased on certain indexes.
+    """
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    upper_index = models.PositiveIntegerField(verbose_name=_('upper index'))
+    upper_outcome = models.TextField(verbose_name=_('upper outcome'))
+    medium_index = models.PositiveIntegerField(verbose_name=_('medium index'))
+    medium_outcome = models.TextField(verbose_name=_('medium outcome'))
+    lower_index = models.PositiveIntegerField(verbose_name=_('lower indez'))
+    lower_outcome = models.TextField(verbose_name=_('lower outcome'))
+
+
+    class Meta:
+        verbose_name = _('outcome')
+        verbose_name_plural = _('outcomes')
+
+    def __str__(self):
+        return self.title
+
+        
+

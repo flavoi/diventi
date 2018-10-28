@@ -30,7 +30,7 @@ class SurveyCoverTranslationOptions(TranslationOptions):
 
 @register(QuestionChoice)
 class QuestionChoiceTranslationOptions(TranslationOptions):
-    fields = ('title', 'description')
+    fields = ('title', )
 
 
 @register(Outcome)

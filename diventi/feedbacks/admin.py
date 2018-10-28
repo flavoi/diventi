@@ -20,7 +20,7 @@ class AnswerAdmin(DiventiTranslationAdmin):
 
 class QuestionChoiceInline(TranslationStackedInline):
     model = QuestionChoice
-    fields = ('title', 'description', 'score')
+    fields = ('title', 'score')
 
 
 class QuestionAdmin(DiventiTranslationAdmin):

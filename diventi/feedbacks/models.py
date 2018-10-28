@@ -47,9 +47,9 @@ class QuestionChoice(models.Model):
     """
         A model that defines the choice of a closed question.
     """
-    title = models.CharField(max_length=60, verbose_name=_('title'))
+    title = models.CharField(max_length=200, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
-    score = models.PositiveIntegerField(blank=True, verbose_name=_('score'))
+    score = models.PositiveIntegerField(default=0, verbose_name=_('score'))
     question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL, related_name='choices')
 
     class Meta:

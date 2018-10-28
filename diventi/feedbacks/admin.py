@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TranslationStackedInline
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished, deactivate
-from .models import Survey, Question, Answer, SurveyCover, QuestionGroup, QuestionChoice
+from .models import Survey, Question, Answer, SurveyCover, QuestionGroup, QuestionChoice, Outcome
 
 
 class AnswerAdmin(DiventiTranslationAdmin):
@@ -39,6 +39,11 @@ class QuestionGroupAdmin(DiventiTranslationAdmin):
     inlines = [QuestionInline]
 
 
+class OutcomeAdmin(DiventiTranslationAdmin):
+    model = Outcome
+    list_display = ['title', 'lower_score', 'medium_score', 'upper_score',]
+
+
 class SurveyAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'get_question_groups', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
@@ -48,7 +53,7 @@ class SurveyAdmin(DiventiTranslationAdmin):
             'fields': ('published',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'description', 'question_groups', 'slug', 'publication_date'),
+            'fields': ('title', 'description', 'question_groups', 'outcome', 'slug', 'publication_date'),
         }),
     )
     actions = [make_published, make_unpublished]
@@ -60,6 +65,7 @@ class SurveyCoverAdmin(DiventiTranslationAdmin):
     actions = [deactivate]
 
 
+admin.site.register(Outcome, OutcomeAdmin)
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Answer, AnswerAdmin)
 admin.site.register(Question, QuestionAdmin)

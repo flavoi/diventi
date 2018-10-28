@@ -76,15 +76,31 @@ class SurveyQuerySet(models.QuerySet):
         surveys = self.published().order_by('-publication_date')
         return surveys
 
-    # Fetch all questions related to a survey
-    def questions(self):
-        survey = self.prefetch_related('questions')
-        return survey
-
     # Fetch all answers related to a survey
     def answers(self):
         survey = self.prefetch_related('answers')
-        return survey        
+        return survey
+
+
+class Outcome(models.Model):
+    """
+        An outcome take in account the sum of the answers scores and produces 
+        an authomatic result nased on certain indexes.
+    """
+    title = models.CharField(max_length=60, verbose_name=_('title'))
+    upper_score = models.PositiveIntegerField(default=0, verbose_name=_('upper score'))
+    upper_outcome = models.TextField(verbose_name=_('upper outcome'))
+    medium_score = models.PositiveIntegerField(default=0, verbose_name=_('medium score'))
+    medium_outcome = models.TextField(verbose_name=_('medium outcome'))
+    lower_score = models.PositiveIntegerField(default=0, verbose_name=_('lower score'))
+    lower_outcome = models.TextField(verbose_name=_('lower outcome'))
+
+    class Meta:
+        verbose_name = _('outcome')
+        verbose_name_plural = _('outcomes')
+
+    def __str__(self):
+        return self.title
 
 
 class Survey(TimeStampedModel, PublishableModel):
@@ -95,6 +111,7 @@ class Survey(TimeStampedModel, PublishableModel):
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys')
+    outcome = models.OneToOneField(Outcome, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True)
 
     objects = SurveyQuerySet.as_manager()
 
@@ -148,28 +165,6 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.author_name
-
-
-class Outcome(models.Model):
-    """
-        An outcome take in account the sum of the answers scores and produces 
-        an authomatic result nased on certain indexes.
-    """
-    title = models.CharField(max_length=60, verbose_name=_('title'))
-    upper_index = models.PositiveIntegerField(verbose_name=_('upper index'))
-    upper_outcome = models.TextField(verbose_name=_('upper outcome'))
-    medium_index = models.PositiveIntegerField(verbose_name=_('medium index'))
-    medium_outcome = models.TextField(verbose_name=_('medium outcome'))
-    lower_index = models.PositiveIntegerField(verbose_name=_('lower indez'))
-    lower_outcome = models.TextField(verbose_name=_('lower outcome'))
-
-
-    class Meta:
-        verbose_name = _('outcome')
-        verbose_name_plural = _('outcomes')
-
-    def __str__(self):
-        return self.title
 
         
 

@@ -16,31 +16,48 @@
                 <div class="card">                                        
                     <div class="card-body">
                         <h2 class="card-title text-center">{{ survey.title }}</h2>
-                        <div class="row">                            
-                            {% for answer in answers %}
-                                <div class="col-md-6">
-                                    <div class="info info-horizontal">
-                                        <div class="icon icon-rose">
-                                            <i class="fal fa-map-marker-question"></i>
-                                        </div>
-                                        <div class="description">
-                                            <h4 class="info-title">{{ answer.question }}</h4>
-                                            <p class="description">
-                                                {{ answer.content }}
-                                            </p>
+                        <div class="row">
+                            {% if answers %}
+                                {% if answers_outcome %}
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <h2>{% trans 'Your result is' %} {{ answers_outcome.progress|stringformat:'d' }}%</h2>
+                                        <div class="progress" style="height: 20px;">
+                                          <div class="progress-bar progress-bar-striped {% ifequal answers_outcome.progress 100 %}bg-success{% endifequal %}" role="progressbar" style="width: {{ answers_outcome.progress|stringformat:'d' }}%" aria-valuenow="{{ answers_outcome.choice__score__sum }}" aria-valuemin="0" aria-valuemax="{{ answers_outcome.upper_score }}"></div>
                                         </div>
                                     </div>
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <p class="description">{{ answers_outcome.result }}</p>
+                                    </div>
+                                    <div class="col-md-10 ml-auto mr-auto text-center">
+                                        <h3>{% trans 'Thanks for partecipating!' %}</h3>
+                                    </div>
+                                {% else %}                   
+                                    {% for answer in answers %}
+                                        <div class="col-md-6">
+                                            <div class="info info-horizontal">
+                                                <div class="icon icon-rose">
+                                                    <i class="fal fa-map-marker-question"></i>
+                                                </div>
+                                                <div class="description">
+                                                    <h4 class="info-title">{{ answer.question }}</h4>
+                                                    <p class="description">
+                                                        {{ answer.content }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% else %}
+                                <div class="col-md-12 mr-auto ml-auto"> 
+                                    <div class="text-center">
+                                        <h5>{% trans 'You have yet to answer this survey.' %}</h5>
+                                        <a href="{% url 'feedbacks:questions' survey.slug %}" class="btn btn-warning btn-round">
+                                            {% trans 'Access the questions' %}
+                                        </a>
+                                    </div>
                                 </div>
-                            {% empty %}
-                            <div class="col-md-12 mr-auto ml-auto"> 
-                                <div class="text-center">
-                                    <h5>{% trans 'You have yet to answer this survey.' %}</h5>
-                                    <a href="{% url 'feedbacks:questions' survey.slug %}" class="btn btn-warning btn-round">
-                                        {% trans 'Access the questions' %}
-                                    </a>
-                                </div>
-                            </div>
-                            {% endfor %}                            
+                            {% endif %}
                         </div>
                     </div>
                 </div>

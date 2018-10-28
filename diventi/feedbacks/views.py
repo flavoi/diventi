@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Sum
 from django.contrib import messages
 from django.forms import formset_factory
 from django.contrib.auth.decorators import login_required
@@ -45,8 +46,25 @@ class AnswerListView(ListView):
         context = super(AnswerListView, self).get_context_data(**kwargs)
         slug = self.kwargs.get('slug', None)
         survey = Survey.objects.published().get(slug=slug)
-        cover = SurveyCover.objects.active()
+        cover = SurveyCover.objects.active()    
+        outcome = survey.outcome    
+        if outcome:
+            answers_outcome = self.get_queryset().aggregate(Sum('choice__score'))
+            # Generic calculatio of the survey outcome
+            # @myself: consider to improve the algorithm
+            answers_score_value = answers_outcome['choice__score__sum']
+            if answers_score_value:
+                if answers_score_value >= outcome.upper_score:
+                    answers_outcome['result'] = outcome.upper_outcome
+                elif answers_score_value >= outcome.lower_score:
+                    answers_outcome['result'] = outcome.medium_outcome
+                elif answers_score_value < outcome.lower_score:
+                    answers_outcome['result'] = outcome.lower_outcome
+                answers_outcome['lower_score'] = outcome.lower_score
+                answers_outcome['upper_score'] = outcome.upper_score
+                answers_outcome['progress'] = answers_score_value / outcome.upper_score * 100
         context['survey'] = survey
+        context['answers_outcome'] = answers_outcome or None
         context['cover'] = cover
         return context
 

@@ -54,7 +54,7 @@ class AnswerListView(ListView):
             # @myself: consider to improve the algorithm
             answers_score_value = answers_outcome['choice__score__sum']
             if answers_score_value:
-                if answers_score_value >= outcome.upper_score:
+                if answers_score_value >= outcome.upper_score - outcome.upper_score / 10:
                     answers_outcome['result'] = outcome.upper_outcome
                 elif answers_score_value >= outcome.lower_score:
                     answers_outcome['result'] = outcome.medium_outcome

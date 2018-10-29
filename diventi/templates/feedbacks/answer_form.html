@@ -5,6 +5,12 @@
 
 {% block title %}{{ survey.title}}{% endblock title %}
 
+{% block extrahead %}
+<style>
+    .form-check-input {list-style:none}
+</style>
+{% endblock extrahead %}
+
 {% block pageheaderextraclass %}header-small{% endblock pageheaderextraclass %}
 {% block pageheaderimage %}{{ cover.image }}{% endblock pageheaderimage %}
 
@@ -25,7 +31,7 @@
         <div class="card-body">
             <h3 class="card-title">{% trans 'Survey' %}</h3>
 
-            <div class="row">
+            <div class="form-row">
                 {% csrf_token %}
                 {{ formset.management_form }}
                 {% for form in formset %}
@@ -37,7 +43,7 @@
                     </div>
                     {% endifchanged %}
 
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-4 mr-2 mt-2">
                         <div class="form-group label-floating bmd-form-group {% if form.content.errors %}has-danger{% else %}has-warning{% endif %}">
                             <span>{{ form.content.label }}</span>                            
                             {% if form.content.errors %}
@@ -47,7 +53,20 @@
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            <div>{{ form.content }}</div>                            
+                            {% if form.is_closed %}
+                                {% for radio in form.content %}
+                                <div class="form-check form-check-radio">
+                                    <label for="{{ radio.id_for_label }}" class="form-check-label"> 
+                                        {{ radio.tag }}{{ radio|striptags }}
+                                        <span class="circle">
+                                            <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.content }}
+                            {% endif %}
                         </div>
                         {{ form.group_title }}
                         {{ form.group_description }}

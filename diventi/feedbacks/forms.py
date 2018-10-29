@@ -24,10 +24,12 @@ class AnswerForm(forms.ModelForm):
         if self.question:            
             choices = self.question.choices.all()
             if choices:
+                self.set_closed(closed=True)
                 self.fields['content'] = forms.ModelChoiceField(
                         queryset=choices, widget=forms.RadioSelect(attrs={'class':'form-check-input'},), 
                         empty_label=None, required=True, label=self.question)
             else:
+                self.set_closed(closed=False)
                 self.fields['content'].label = self.question
 
         self.fields['survey'].widget = forms.HiddenInput()
@@ -47,4 +49,14 @@ class AnswerForm(forms.ModelForm):
         if commit:
             m.save()
         return m
+        
+    def set_closed(self, closed):
+        self.closed = closed
+
+    @property
+    def is_closed(self):
+        return self.closed
+
+
+
 

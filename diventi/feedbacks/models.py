@@ -2,11 +2,15 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import mark_safe
 from django.urls import reverse
+from django.template.defaultfilters import truncatechars
 
 from cuser.middleware import CuserMiddleware
 
 from diventi.core.models import TimeStampedModel, PublishableModel, DiventiCoverModel, DiventiImageModel
 from diventi.accounts.models import DiventiUser
+
+
+SHORT_STRINGS_LENGTH = 60
 
 
 class QuestionGroup(models.Model):
@@ -42,6 +46,10 @@ class Question(models.Model):
     def __str__(self):
         return self.question
 
+    @property
+    def short_question(self):
+        return truncatechars(self.question, SHORT_STRINGS_LENGTH)
+        
 
 class QuestionChoice(models.Model):
     """
@@ -165,6 +173,15 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.author_name
+
+    @property
+    def short_content(self):
+        return truncatechars(self.content, SHORT_STRINGS_LENGTH)
+
+    @property
+    def short_question(self):
+        return truncatechars(self.question, SHORT_STRINGS_LENGTH)
+        
 
         
 

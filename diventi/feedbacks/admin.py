@@ -9,7 +9,7 @@ from .models import Survey, Question, Answer, SurveyCover, QuestionGroup, Questi
 
 class AnswerAdmin(DiventiTranslationAdmin):
     model = Answer
-    list_display = ['question', 'author', 'get_score', 'content',]
+    list_display = ['short_question', 'author', 'get_score', 'short_content',]
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(AnswerAdmin, self).get_form(request, obj, **kwargs)
@@ -24,7 +24,7 @@ class QuestionChoiceInline(TranslationStackedInline):
 
 
 class QuestionAdmin(DiventiTranslationAdmin):
-    list_display = ['question', 'group']
+    list_display = ['short_question', 'group']
     inlines = [QuestionChoiceInline]
 
 

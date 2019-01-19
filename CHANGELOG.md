@@ -11,14 +11,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced homebrew: an experiental app to write papers
 - Introduced feedbacks: an app that automates the creation of surveys
-- Upgraded the icons to fontawesome 5.3
+- Upgraded icons to fontawesome v5.6.3
 
 ### Changed
 - Enabled additional fieldsets for blog admin
 - Enabled dynamic cover support for about page
+- Enabled blog post preview for admins
 - Updated user report with buttons related to all users, gruped by language
 - Updated styles of product carousel
-- Enabled blog post preview for admins
+- Moved about page in the landing page
 
 ### Removed
 - Removed generic feedback form and features

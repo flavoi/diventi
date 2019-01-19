@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Presentation, AboutCover
+from .models import Presentation
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
@@ -22,6 +22,7 @@ def landing(request):
         team members. 
     """
     presentation = Presentation.objects.active()
+    authors = DiventiUser.objects.authors()
     featured_product = Product.objects.featured()    
     registration_form = DiventiUserInitForm()
 
@@ -42,6 +43,7 @@ def landing(request):
         'presentation': presentation,
         'registration_form': registration_form,
         'featured_product': featured_product,
+        'authors': authors,
     }
 
     # This session variable enables and error message in the login modal.
@@ -92,19 +94,4 @@ class PresentationSearchView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PresentationSearchView, self).get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('q')
-        return context
-
-
-class AboutView(TemplateView):
-    """ Displays the about page. """
-    template_name = 'landing/about.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(AboutView, self).get_context_data(**kwargs)
-        authors = DiventiUser.objects.authors()
-        presentation = Presentation.objects.active()
-        cover = AboutCover.objects.active()
-        context['presentation'] = presentation
-        context['authors'] = authors
-        context['cover'] = cover
         return context

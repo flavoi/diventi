@@ -36,25 +36,50 @@
                     <h5 class="description">{{ presentation.description|striptags }}</h5>
                 </div>                
             </div>
+            <div class="features">
+                <div class="container">
+                    <div class="row">
+                        {% for feature in presentation.features.all %}
+                        <div class="col-sm-4">
+                            <div class="info">
+                                <div class="icon icon-{{ feature.color }}">
+                                    <i class="fal fa-{{ feature.icon }} fa-5x"></i>
+                                </div>
+                                <h4 class="info-title">{{ feature.title|title }}</h4>
+                                <p>{{ feature.description|safe }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-     <div class="section text-center">
-        <div class="features">
-            <div class="container">
-                <div class="row">
-                    {% for feature in presentation.features.all %}
-                    <div class="col-sm-4">
-                        <div class="info">
-                            <div class="icon icon-{{ feature.color }}">
-                                <i class="fal fa-{{ feature.icon }} fa-5x"></i>
+    <div class="section text-center">
+        <div class="container">
+            <h2 class="title">{% trans 'Our content creators' %}</h2>
+             <div class="row">
+                {% for author in authors %}
+                    <div class="col-md-4">
+                        <div class="card card-profile card-plain">
+                            <div class="card-avatar">
+                                <a href="{{ author.get_absolute_url }}">
+                                    {% if author.profilepic %}
+                                        <img class="img" src="{{ author.profilepic.url }}">
+                                    {% endif %}
+                                </a>
                             </div>
-                            <h4 class="info-title">{{ feature.title|title }}</h4>
-                            <p>{{ feature.description|safe }}</p>
+                            <div class="card-content">
+                                <h4 class="card-title"><a href="{{ author.get_absolute_url }}">{{ author.get_full_name}}</a></h4>
+                                <h6 class="category text-rose">{% trans "Creator" %}</h6>
+                                <p class="card-description">
+                                    {{ author.bio }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -11,8 +11,7 @@ class PresentationManager(models.Manager):
 
     def active(self):
         try:
-            active_presentation = self.prefetch_related('features')
-            active_presentation = self.prefetch_related('about')
+            active_presentation = self.prefetch_related('features')            
             active_presentation = active_presentation.get(active=True)
         except Presentation.DoesNotExist:
             msg = _("There is no active landing page.")
@@ -40,29 +39,9 @@ class Presentation(DiventiCoverModel):
         verbose_name_plural = _('presentations')
 
 
-class About(models.Model):
-    profile = models.ForeignKey(Presentation, null=True, related_name='about', on_delete=models.SET_NULL)
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    description = models.TextField(blank=True, verbose_name=_('description'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('about')
-        verbose_name_plural = _('about')
-
-
 class Feature(Element):    
     profile = models.ForeignKey(Presentation, null=True, related_name='features', on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('feature')
         verbose_name_plural = _('features')
-
-
-class AboutCover(DiventiCoverModel):
-
-    class Meta:
-        verbose_name = _('About Cover')
-        verbose_name_plural = _('About Covers')

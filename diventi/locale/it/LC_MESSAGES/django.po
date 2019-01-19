@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-28 22:07+0100\n"
+"POT-Creation-Date: 2019-01-19 18:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,7 +155,7 @@ msgstr "privilegi di iscritto"
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:120 diventi/landing/models.py:30
+#: diventi/accounts/models.py:120 diventi/landing/models.py:29
 msgid "cover"
 msgstr "copertina"
 
@@ -322,24 +322,23 @@ msgid "Blog Covers"
 msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:78 diventi/core/models.py:78
-#: diventi/feedbacks/models.py:16 diventi/feedbacks/models.py:50
-#: diventi/feedbacks/models.py:90 diventi/feedbacks/models.py:110
+#: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:58
+#: diventi/feedbacks/models.py:98 diventi/feedbacks/models.py:118
 #: diventi/homebrew/models.py:38 diventi/homebrew/models.py:103
 #: diventi/homebrew/models.py:130 diventi/homebrew/models.py:156
 #: diventi/homebrew/models.py:168 diventi/homebrew/models.py:182
 #: diventi/homebrew/models.py:201 diventi/homebrew/models.py:340
-#: diventi/landing/models.py:27 diventi/landing/models.py:45
-#: diventi/products/models.py:57
+#: diventi/landing/models.py:26 diventi/products/models.py:57
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:79
-#: diventi/feedbacks/models.py:17 diventi/feedbacks/models.py:51
-#: diventi/feedbacks/models.py:111 diventi/homebrew/models.py:39
+#: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:59
+#: diventi/feedbacks/models.py:119 diventi/homebrew/models.py:39
 #: diventi/homebrew/models.py:114 diventi/homebrew/models.py:141
 #: diventi/homebrew/models.py:157 diventi/homebrew/models.py:169
-#: diventi/homebrew/models.py:184 diventi/landing/models.py:29
-#: diventi/landing/models.py:46 diventi/products/models.py:58
+#: diventi/homebrew/models.py:184 diventi/landing/models.py:28
+#: diventi/products/models.py:58
 msgid "description"
 msgstr "descrizione"
 
@@ -348,7 +347,7 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/feedbacks/models.py:151
+#: diventi/blog/models.py:81 diventi/feedbacks/models.py:159
 #: diventi/homebrew/models.py:202
 msgid "content"
 msgstr "contenuto"
@@ -357,12 +356,12 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/feedbacks/models.py:112
+#: diventi/blog/models.py:83 diventi/feedbacks/models.py:120
 #: diventi/homebrew/models.py:46 diventi/products/models.py:59
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:84 diventi/feedbacks/models.py:146
+#: diventi/blog/models.py:84 diventi/feedbacks/models.py:154
 msgid "author"
 msgstr "autore"
 
@@ -512,7 +511,7 @@ msgstr "Immagine"
 msgid "There must be only one object at a time. Please fix!"
 msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 
-#: diventi/core/models.py:164 diventi/landing/models.py:31
+#: diventi/core/models.py:164 diventi/landing/models.py:30
 msgid "active"
 msgstr "attiva"
 
@@ -520,106 +519,106 @@ msgstr "attiva"
 msgid "Feedbacks"
 msgstr "Riscontri"
 
-#: diventi/feedbacks/models.py:23
+#: diventi/feedbacks/models.py:27
 msgid "question group"
 msgstr "gruppo di domande"
 
-#: diventi/feedbacks/models.py:24
+#: diventi/feedbacks/models.py:28
 msgid "question groups"
 msgstr "gruppi di domande"
 
-#: diventi/feedbacks/models.py:28
+#: diventi/feedbacks/models.py:32
 msgid "Questions"
 msgstr "Domande"
 
-#: diventi/feedbacks/models.py:35 diventi/feedbacks/models.py:39
-#: diventi/feedbacks/models.py:148
+#: diventi/feedbacks/models.py:39 diventi/feedbacks/models.py:43
+#: diventi/feedbacks/models.py:156
 msgid "question"
 msgstr "domanda"
 
-#: diventi/feedbacks/models.py:40
+#: diventi/feedbacks/models.py:44
 msgid "questions"
 msgstr "domande"
 
-#: diventi/feedbacks/models.py:52
+#: diventi/feedbacks/models.py:60
 msgid "score"
 msgstr "punteggio"
 
-#: diventi/feedbacks/models.py:56
+#: diventi/feedbacks/models.py:64
 msgid "choice"
 msgstr "scelta"
 
-#: diventi/feedbacks/models.py:57
+#: diventi/feedbacks/models.py:65
 msgid "choices"
 msgstr "scelte"
 
-#: diventi/feedbacks/models.py:91
+#: diventi/feedbacks/models.py:99
 #, fuzzy
 #| msgid "score"
 msgid "upper score"
 msgstr "punteggio"
 
-#: diventi/feedbacks/models.py:92
+#: diventi/feedbacks/models.py:100
 msgid "upper outcome"
 msgstr "esito superiore"
 
-#: diventi/feedbacks/models.py:93
+#: diventi/feedbacks/models.py:101
 msgid "medium score"
 msgstr "punteggio medio"
 
-#: diventi/feedbacks/models.py:94
+#: diventi/feedbacks/models.py:102
 msgid "medium outcome"
 msgstr "esito medio"
 
-#: diventi/feedbacks/models.py:95
+#: diventi/feedbacks/models.py:103
 msgid "lower score"
 msgstr "punteggio inferiore"
 
-#: diventi/feedbacks/models.py:96
+#: diventi/feedbacks/models.py:104
 msgid "lower outcome"
 msgstr "risultato inferiore"
 
-#: diventi/feedbacks/models.py:99
+#: diventi/feedbacks/models.py:107
 msgid "outcome"
 msgstr "risultato"
 
-#: diventi/feedbacks/models.py:100
+#: diventi/feedbacks/models.py:108
 msgid "outcomes"
 msgstr "risultati"
 
-#: diventi/feedbacks/models.py:119
+#: diventi/feedbacks/models.py:127
 msgid "survey"
 msgstr "sondaggio"
 
-#: diventi/feedbacks/models.py:120
+#: diventi/feedbacks/models.py:128
 msgid "surveys"
 msgstr "sondaggi"
 
-#: diventi/feedbacks/models.py:130
+#: diventi/feedbacks/models.py:138
 msgid "Question Groups"
 msgstr "Gruppi di domande"
 
-#: diventi/feedbacks/models.py:138
+#: diventi/feedbacks/models.py:146
 msgid "survey cover"
 msgstr "copertina del sondaggio"
 
-#: diventi/feedbacks/models.py:139
+#: diventi/feedbacks/models.py:147
 msgid "survey covers"
 msgstr "copertine del sondaggio"
 
-#: diventi/feedbacks/models.py:147
+#: diventi/feedbacks/models.py:155
 msgid "author name"
 msgstr "nome dell'autore"
 
-#: diventi/feedbacks/models.py:154
+#: diventi/feedbacks/models.py:162
 msgid "answer"
 msgstr "risposta"
 
-#: diventi/feedbacks/models.py:155
+#: diventi/feedbacks/models.py:163
 msgid "answers"
 msgstr "risposte"
 
-#: diventi/feedbacks/models.py:164
+#: diventi/feedbacks/models.py:172
 msgid "Score"
 msgstr "Punteggio"
 
@@ -924,45 +923,33 @@ msgstr "Questo documento richiede un modello"
 msgid "Landing"
 msgstr "Pagina di destinazione"
 
-#: diventi/landing/models.py:18
+#: diventi/landing/models.py:17
 msgid "There is no active landing page."
 msgstr "Non risulta attiva alcuna pagina di destinazione"
 
-#: diventi/landing/models.py:21
+#: diventi/landing/models.py:20
 msgid "There must be only one landing page at a time. Please fix!"
 msgstr "Può esistere una sola pagina di destinazione per volta."
 
-#: diventi/landing/models.py:28
+#: diventi/landing/models.py:27
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:39
+#: diventi/landing/models.py:38
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:40
+#: diventi/landing/models.py:39
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:52 diventi/landing/models.py:53
-msgid "about"
-msgstr "su di noi"
-
-#: diventi/landing/models.py:60
+#: diventi/landing/models.py:46
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:61
+#: diventi/landing/models.py:47
 msgid "features"
 msgstr "aspetti"
-
-#: diventi/landing/models.py:67
-msgid "About Cover"
-msgstr "Copertina Su di Noi"
-
-#: diventi/landing/models.py:68
-msgid "About Covers"
-msgstr "Copertine Su di Noi"
 
 #: diventi/landing/urls.py:10
 msgid "^presentation/(?P<pk>\\d+)/$"
@@ -972,11 +959,7 @@ msgstr "^presentazione/(?P<pk>\\d+)/$"
 msgid "^search/$"
 msgstr "^cerca/$"
 
-#: diventi/landing/urls.py:12
-msgid "^about/$"
-msgstr "^su-di-noi/$"
-
-#: diventi/landing/views.py:35
+#: diventi/landing/views.py:36
 msgid "Please double check your email."
 msgstr "Per favore controlla la tua email."
 
@@ -1140,7 +1123,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:77
+#: diventi/templates/navigation.html:72
 #: diventi/templates/products/product_detail.html:138
 msgid "Sign in"
 msgstr "Accedi"
@@ -1268,7 +1251,7 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:32
-#: diventi/templates/landing/landing.html:95
+#: diventi/templates/landing/landing.html:120
 msgid "Sign up"
 msgstr "Registrati"
 
@@ -1286,7 +1269,7 @@ msgstr "Iniziamo"
 
 #: diventi/templates/accounts/subscribers.html:7
 #: diventi/templates/accounts/subscribers.html:19
-#: diventi/templates/navigation.html:48
+#: diventi/templates/navigation.html:43
 msgid "Subscribers"
 msgstr "Iscritti"
 
@@ -1305,7 +1288,7 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
-#: diventi/templates/landing/about.html:48
+#: diventi/templates/landing/landing.html:75
 #: diventi/templates/products/product_detail.html:185
 msgid "Creator"
 msgstr "Autore"
@@ -1476,7 +1459,7 @@ msgid "Take part in the discussion"
 msgstr "Partecipa alla discussione"
 
 #: diventi/templates/comments/comments.html:19
-#: diventi/templates/comments/tree.html:51
+#: diventi/templates/comments/tree.html:56
 msgid "Write your comment"
 msgstr "Scrivi il tuo commento"
 
@@ -1520,15 +1503,15 @@ msgstr "Ora puoi lasciare la pagina oppure ritornare"
 msgid "to the previous page"
 msgstr "alla pagina precedente"
 
-#: diventi/templates/comments/tree.html:35
+#: diventi/templates/comments/tree.html:40
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/feedbacks/answer_form.html:26
+#: diventi/templates/feedbacks/answer_form.html:32
 msgid "Survey"
 msgstr "Sondaggio"
 
-#: diventi/templates/feedbacks/answer_form.html:72
+#: diventi/templates/feedbacks/answer_form.html:91
 msgid "send survey"
 msgstr "invia sondaggio"
 
@@ -1560,45 +1543,35 @@ msgstr "le tue risposte"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
-#: diventi/templates/landing/about.html:5 diventi/templates/navigation.html:34
-msgid "About"
-msgstr "Su di noi"
-
-#: diventi/templates/landing/about.html:15
-msgid "About Us"
-msgstr "Su di noi"
-
-#: diventi/templates/landing/about.html:16
-msgid "Meet the team behind this project and find out more about how we work."
-msgstr ""
-"Incontra la squadra che ci cela dietro questo progetto e scopri di più su "
-"come lavoriamo."
-
 #: diventi/templates/landing/landing.html:21
 msgid "Find out more"
 msgstr "Scopri di più"
 
-#: diventi/templates/landing/landing.html:68
+#: diventi/templates/landing/landing.html:61
+msgid "Our content creators"
+msgstr "I nostri autori"
+
+#: diventi/templates/landing/landing.html:93
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing.html:69
+#: diventi/templates/landing/landing.html:94
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:71
-#: diventi/templates/navigation.html:67
+#: diventi/templates/landing/landing.html:96
+#: diventi/templates/navigation.html:62
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
-#: diventi/templates/landing/landing.html:75
+#: diventi/templates/landing/landing.html:100
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing.html:76
+#: diventi/templates/landing/landing.html:101
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
@@ -1610,15 +1583,15 @@ msgstr "Fine dei risultati"
 msgid "Search"
 msgstr "Cerca"
 
-#: diventi/templates/navigation.html:41
+#: diventi/templates/navigation.html:36
 msgid "Staff"
 msgstr "Staff"
 
-#: diventi/templates/navigation.html:45
+#: diventi/templates/navigation.html:40
 msgid "Control panel"
 msgstr "Pannello di controllo"
 
-#: diventi/templates/navigation.html:70
+#: diventi/templates/navigation.html:65
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
@@ -1665,6 +1638,30 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "about"
+#~ msgstr "su di noi"
+
+#~ msgid "About Cover"
+#~ msgstr "Copertina Su di Noi"
+
+#~ msgid "About Covers"
+#~ msgstr "Copertine Su di Noi"
+
+#~ msgid "^about/$"
+#~ msgstr "^su-di-noi/$"
+
+#~ msgid "About"
+#~ msgstr "Su di noi"
+
+#~ msgid "About Us"
+#~ msgstr "Su di noi"
+
+#~ msgid ""
+#~ "Meet the team behind this project and find out more about how we work."
+#~ msgstr ""
+#~ "Incontra la squadra che ci cela dietro questo progetto e scopri di più su "
+#~ "come lavoriamo."
 
 #~ msgid "Tell us what you think!"
 #~ msgstr "Dicci che ne pensi!"

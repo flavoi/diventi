@@ -35,6 +35,9 @@ tlmgr install graphbox
 tlmgr install antt       
 tlmgr install symbol
 tlmgr install fourier
+tlmgr install babel-latin
+tlmgr install thumbpdf
+tlmgr install wrapfig
 
 Creare albero utente: 
 tlmgr init-usertree

@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enabled additional fieldsets for blog admin
 - Enabled dynamic cover support for about page
 - Enabled blog post preview for admins
+- Enabled products section in the landing page
 - Updated user report with buttons related to all users, gruped by language
 - Updated styles of product carousel
 - Moved about page in the landing page

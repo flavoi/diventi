@@ -9,7 +9,7 @@ from .models import Presentation, Feature
 
 class FeatureInline(TranslationStackedInline):
     model = Feature
-    fields = ('title', 'icon', 'color', 'description')
+    fields = ('title', 'icon', 'color', 'description',)
     extra = 0
 
 

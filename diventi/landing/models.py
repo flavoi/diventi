@@ -26,6 +26,7 @@ class Presentation(DiventiCoverModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
+    projects_description = models.TextField(blank=True, verbose_name=_('projects description'))
     cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
     

@@ -55,6 +55,7 @@ class ProductCategory(Category):
 class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50, verbose_name=_('title'))
+    abstract = models.TextField(blank=True, max_length=200, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     featured = models.BooleanField(default=False, verbose_name=_('featured'))    

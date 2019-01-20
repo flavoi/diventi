@@ -23,7 +23,8 @@ def landing(request):
     """
     presentation = Presentation.objects.active()
     authors = DiventiUser.objects.authors()
-    featured_product = Product.objects.featured()    
+    featured_product = Product.objects.featured()
+    products = Product.objects.published() 
     registration_form = DiventiUserInitForm()
 
     if request.method == 'POST':
@@ -43,6 +44,7 @@ def landing(request):
         'presentation': presentation,
         'registration_form': registration_form,
         'featured_product': featured_product,
+        'products': products,
         'authors': authors,
     }
 

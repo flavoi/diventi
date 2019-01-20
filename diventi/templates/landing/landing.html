@@ -31,11 +31,16 @@
     <div class="section text-center">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 ml-auto mr-auto">
+                <div class="col-md-5 ml-auto mr-auto">
                     <img class="rounded img-fluid" src="{% static 'brand/diventi-logo.png' %}" alt="Diventi">
-                    <h5 class="description">{{ presentation.description|striptags }}</h5>
                 </div>                
             </div>
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h5 class="description">{{ presentation.description|striptags }}</h5>
+                </div>
+            </div>
+            
             <div class="features">
                 <div class="container">
                     <div class="row">
@@ -43,7 +48,7 @@
                         <div class="col-sm-4">
                             <div class="info">
                                 <div class="icon icon-{{ feature.color }}">
-                                    <i class="fal fa-{{ feature.icon }} fa-5x"></i>
+                                    <i class="fal fa-{{ feature.icon }} fa-4x"></i>
                                 </div>
                                 <h4 class="info-title">{{ feature.title|title }}</h4>
                                 <p>{{ feature.description|safe }}</p>
@@ -54,6 +59,58 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="projects-4" id="projects-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h2 class="title">{% trans 'This is what we do' %}</h2>
+              <h5 class="description">{{ presentation.projects_description|striptags }}</h5>
+              <div class="section-space"></div>
+            </div>
+          </div>
+          {% for product in products %}
+              {% if forloop.first %}
+              {% else %}
+                <hr>
+              {% endif %}
+              <div class="row">
+                <div class="col-md-5 ml-auto">
+                  <div class="card card-background" style="background-image:url('{% if product.image %}{{ product.image }}{% endif %}')">
+                    <a href="#pablo"></a>
+                    <div class="card-body">
+                      <h6 class="card-category text-info">{{ product.category }}</h6>                      
+                      <a href="{% url 'products:detail' product.slug %}">
+                        <h3 class="card-title">{{ product.title }}</h3>
+                      </a>
+                      <p class="card-description">
+                        {{ product.abstract|striptags }}
+                      </p>
+                      <a href="{% url 'products:detail' product.slug %}" class="btn btn-warning btn-round">
+                        <i class="fal fa-lg fa-fw fa-hand-point-right"></i> {% trans 'View Project' %}
+                      </a>
+                    </div>
+                  </div>
+                </div>                
+                <div class="col-md-5 mr-auto">
+                    {% for chapter in product.chapters.all %}
+                      <div class="info info-horizontal">
+                        <div class="icon icon-warning">
+                            <i class="fal fa-2x fa-fw fa-{{ chapter.icon }}"></i>
+                        </div>
+                        <div class="description">
+                          <h4 class="info-title">{{ chapter.title|capfirst }}</h4>
+                          <p class="description">
+                            {{ chapter.description|striptags|capfirst }}
+                          </p>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </div>
+              </div>
+        {% endfor %}
+      </div>
     </div>
 
     <div class="section text-center">

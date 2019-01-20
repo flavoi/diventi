@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-19 18:50+0100\n"
+"POT-Creation-Date: 2019-01-20 11:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,7 +155,7 @@ msgstr "privilegi di iscritto"
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:120 diventi/landing/models.py:29
+#: diventi/accounts/models.py:120 diventi/landing/models.py:30
 msgid "cover"
 msgstr "copertina"
 
@@ -338,12 +338,12 @@ msgstr "titolo"
 #: diventi/homebrew/models.py:114 diventi/homebrew/models.py:141
 #: diventi/homebrew/models.py:157 diventi/homebrew/models.py:169
 #: diventi/homebrew/models.py:184 diventi/landing/models.py:28
-#: diventi/products/models.py:58
+#: diventi/products/models.py:59
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:80 diventi/products/models.py:64
-#: diventi/products/models.py:115
+#: diventi/blog/models.py:80 diventi/products/models.py:65
+#: diventi/products/models.py:116
 msgid "category"
 msgstr "tipo"
 
@@ -357,7 +357,7 @@ msgid "hot"
 msgstr "hot"
 
 #: diventi/blog/models.py:83 diventi/feedbacks/models.py:120
-#: diventi/homebrew/models.py:46 diventi/products/models.py:59
+#: diventi/homebrew/models.py:46 diventi/products/models.py:60
 msgid "slug"
 msgstr "slug"
 
@@ -503,7 +503,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:127 diventi/products/models.py:135
+#: diventi/core/models.py:127 diventi/products/models.py:136
 msgid "Image"
 msgstr "Immagine"
 
@@ -511,7 +511,7 @@ msgstr "Immagine"
 msgid "There must be only one object at a time. Please fix!"
 msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 
-#: diventi/core/models.py:164 diventi/landing/models.py:30
+#: diventi/core/models.py:164 diventi/landing/models.py:31
 msgid "active"
 msgstr "attiva"
 
@@ -931,23 +931,29 @@ msgstr "Non risulta attiva alcuna pagina di destinazione"
 msgid "There must be only one landing page at a time. Please fix!"
 msgstr "Può esistere una sola pagina di destinazione per volta."
 
-#: diventi/landing/models.py:27
+#: diventi/landing/models.py:27 diventi/products/models.py:58
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:38
+#: diventi/landing/models.py:29
+#, fuzzy
+#| msgid "description"
+msgid "projects description"
+msgstr "descrizione"
+
+#: diventi/landing/models.py:39
 msgid "presentation"
 msgstr "presentazione"
 
-#: diventi/landing/models.py:39
+#: diventi/landing/models.py:40
 msgid "presentations"
 msgstr "presentazioni"
 
-#: diventi/landing/models.py:46
+#: diventi/landing/models.py:47
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:47
+#: diventi/landing/models.py:48
 msgid "features"
 msgstr "aspetti"
 
@@ -959,7 +965,7 @@ msgstr "^presentazione/(?P<pk>\\d+)/$"
 msgid "^search/$"
 msgstr "^cerca/$"
 
-#: diventi/landing/views.py:36
+#: diventi/landing/views.py:37
 msgid "Please double check your email."
 msgstr "Per favore controlla la tua email."
 
@@ -987,66 +993,66 @@ msgstr "Tipo Prodotto"
 msgid "Product categories"
 msgstr "Tipi Prodotto"
 
-#: diventi/products/models.py:60
+#: diventi/products/models.py:61
 msgid "featured"
 msgstr "in primo piano"
 
-#: diventi/products/models.py:61
+#: diventi/products/models.py:62
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:62
+#: diventi/products/models.py:63
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:63
+#: diventi/products/models.py:64
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:65
+#: diventi/products/models.py:66
 msgid "available"
 msgstr "disponibile"
 
-#: diventi/products/models.py:66
+#: diventi/products/models.py:67
 msgid "courtesy message"
 msgstr "messaggio di cortesia"
 
-#: diventi/products/models.py:71 diventi/products/models.py:78
-#: diventi/products/models.py:114 diventi/products/models.py:124
-#: diventi/products/models.py:132
+#: diventi/products/models.py:72 diventi/products/models.py:79
+#: diventi/products/models.py:115 diventi/products/models.py:125
+#: diventi/products/models.py:133
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/products/models.py:72
+#: diventi/products/models.py:73
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:108
+#: diventi/products/models.py:109
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:109
+#: diventi/products/models.py:110
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:118
+#: diventi/products/models.py:119
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:119
+#: diventi/products/models.py:120
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:127
+#: diventi/products/models.py:128
 msgid "Characteristic"
 msgstr "Caratteristica"
 
-#: diventi/products/models.py:128
+#: diventi/products/models.py:129
 #: diventi/templates/products/product_detail.html:82
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/products/models.py:136
+#: diventi/products/models.py:137
 msgid "Images"
 msgstr "Immagini"
 
@@ -1251,7 +1257,7 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:32
-#: diventi/templates/landing/landing.html:120
+#: diventi/templates/landing/landing.html:177
 msgid "Sign up"
 msgstr "Registrati"
 
@@ -1288,7 +1294,7 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:29
-#: diventi/templates/landing/landing.html:75
+#: diventi/templates/landing/landing.html:132
 #: diventi/templates/products/product_detail.html:185
 msgid "Creator"
 msgstr "Autore"
@@ -1547,31 +1553,39 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "Find out more"
 msgstr "Scopri di più"
 
-#: diventi/templates/landing/landing.html:61
+#: diventi/templates/landing/landing.html:68
+msgid "This is what we do"
+msgstr "Ecco ciò che facciamo"
+
+#: diventi/templates/landing/landing.html:91
+msgid "View Project"
+msgstr "Visualizza progetto"
+
+#: diventi/templates/landing/landing.html:118
 msgid "Our content creators"
 msgstr "I nostri autori"
 
-#: diventi/templates/landing/landing.html:93
+#: diventi/templates/landing/landing.html:150
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing.html:94
+#: diventi/templates/landing/landing.html:151
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:96
+#: diventi/templates/landing/landing.html:153
 #: diventi/templates/navigation.html:62
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
-#: diventi/templates/landing/landing.html:100
+#: diventi/templates/landing/landing.html:157
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing.html:101
+#: diventi/templates/landing/landing.html:158
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 

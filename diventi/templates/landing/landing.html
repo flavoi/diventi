@@ -88,7 +88,7 @@
                         {{ product.abstract|striptags }}
                       </p>
                       <a href="{% url 'products:detail' product.slug %}" class="btn btn-warning btn-round">
-                        <i class="fal fa-lg fa-fw fa-hand-point-right"></i> {% trans 'View Project' %}
+                        {% trans 'View Project' %}
                       </a>
                     </div>
                   </div>

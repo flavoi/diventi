@@ -4,7 +4,7 @@ from subprocess import Popen, PIPE, check_output, STDOUT
 from django.conf import settings
 from django.http import HttpResponse
 
-from django_tex.engine import engine
+from django.template.loader import get_template
 
 
 DEFAULT_INTERPRETER = 'lualatex'
@@ -42,7 +42,7 @@ def render_template_with_context(template_name, context):
     return template.render(context)
 
 def get_template(template_name):
-    return engine.get_template(template_name)
+    return get_template(template_name)
 
 
 class PDFResponse(HttpResponse):

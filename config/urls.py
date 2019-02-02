@@ -38,7 +38,7 @@ urlpatterns += i18n_patterns(
     url(_(r'^control-panel/'), admin.site.urls),
     url(_(r'^accounts/'), include('diventi.accounts.urls', namespace='accounts')),
     url(_(r'^blog/'), include('diventi.blog.urls', namespace='blog')),
-    url(_(r'^products/'), include('diventi.products.urls', namespace='products')),
+    url(_(r'^projects/'), include('diventi.products.urls', namespace='products')),
     url(_(r'^comments/'), include('diventi.comments.urls', namespace='comments')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings',)),
     url(_(r'^homebrew/'), include('diventi.homebrew.urls', namespace='homebrew',)),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-02 15:02+0100\n"
+"POT-Creation-Date: 2019-02-02 15:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,8 @@ msgid "^blog/"
 msgstr "^blog/"
 
 #: config/urls.py:41
-msgid "^products/"
-msgstr "^prodotti/"
+msgid "^projects/"
+msgstr "^progetti/"
 
 #: config/urls.py:42
 msgid "^comments/"
@@ -503,7 +503,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:127 diventi/products/models.py:136
+#: diventi/core/models.py:127 diventi/products/models.py:137
 msgid "Image"
 msgstr "Immagine"
 
@@ -938,10 +938,8 @@ msgid "abstract"
 msgstr "sommario"
 
 #: diventi/landing/models.py:29
-#, fuzzy
-#| msgid "description"
 msgid "projects description"
-msgstr "descrizione"
+msgstr "descrizione progetti"
 
 #: diventi/landing/models.py:39
 msgid "presentation"
@@ -980,8 +978,8 @@ msgid "Mark selected products as hidden"
 msgstr "Nascondi i prodotti selezionati"
 
 #: diventi/products/apps.py:7
-msgid "Products"
-msgstr "Prodotti"
+msgid "Projects"
+msgstr "Progetti"
 
 #: diventi/products/models.py:33
 msgid "Multiple featured products returned. Please fix!"
@@ -1021,7 +1019,7 @@ msgstr "messaggio di cortesia"
 
 #: diventi/products/models.py:72 diventi/products/models.py:79
 #: diventi/products/models.py:115 diventi/products/models.py:125
-#: diventi/products/models.py:133
+#: diventi/products/models.py:134
 msgid "product"
 msgstr "prodotto"
 
@@ -1054,7 +1052,7 @@ msgstr "Caratteristica"
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/products/models.py:137
+#: diventi/products/models.py:138
 msgid "Images"
 msgstr "Immagini"
 
@@ -1654,6 +1652,9 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Products"
+#~ msgstr "Prodotti"
 
 #~ msgid "This is what we do"
 #~ msgstr "Ecco ciò che facciamo"

@@ -128,6 +128,7 @@ class Characteristic(Element):
         verbose_name = _('Characteristic')
         verbose_name_plural = _('Characteristics')
 
+
 class ImagePreview(DiventiImageModel):    
     """A list of cool images of the product."""
     product = models.ForeignKey(Product, null=True, related_name='imagepreviews', verbose_name=_('product'), on_delete=models.SET_NULL)

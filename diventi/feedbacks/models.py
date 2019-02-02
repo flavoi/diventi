@@ -93,7 +93,7 @@ class SurveyQuerySet(models.QuerySet):
 class Outcome(models.Model):
     """
         An outcome take in account the sum of the answers scores and produces 
-        an authomatic result nased on certain indexes.
+        an authomatic result based on certain indexes.
     """
     title = models.CharField(max_length=60, verbose_name=_('title'))
     upper_score = models.PositiveIntegerField(default=0, verbose_name=_('upper score'))
@@ -118,8 +118,8 @@ class Survey(TimeStampedModel, PublishableModel):
     title = models.CharField(max_length=60, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys')
-    outcome = models.OneToOneField(Outcome, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True)
+    question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys', verbose_name=_('question groups'))
+    outcome = models.OneToOneField(Outcome, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('outcome'))
 
     objects = SurveyQuerySet.as_manager()
 

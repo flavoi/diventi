@@ -50,7 +50,7 @@ class AnswerListView(ListView):
         outcome = survey.outcome    
         if outcome:
             answers_outcome = self.get_queryset().aggregate(Sum('choice__score'))
-            # Generic calculatio of the survey outcome
+            # Generic calculation of the survey outcome
             # @myself: consider to improve the algorithm
             answers_score_value = answers_outcome['choice__score__sum']
             if answers_score_value:

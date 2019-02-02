@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Removed generic feedback form and features
+- Removed homebrew app and latex related functionalities
 
 ### Fixed
 - Fixed an hidden label in the blog admin page

@@ -50,11 +50,6 @@ TEMPLATES = [
             ],
         },
     },
-    {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [],
-        'APP_DIRS': True,
-    },
 ]
 
 
@@ -95,7 +90,6 @@ LOCAL_APPS = [
     'diventi.landing',
     'diventi.comments',
     'diventi.products',
-    'diventi.homebrew',
     'diventi.feedbacks',
 ]
 

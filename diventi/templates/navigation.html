@@ -26,44 +26,31 @@
             </form>
             <li class="nav-item">
                 <a href="{% url 'blog:home' %}" class="nav-link">
-                    <i class="fal fa-align-center fa-lg fa-fw"></i> Blog
+                    Blog
                 </a>
             </li>            
             {% if user.is_authenticated %}
-                {% if user.is_staff %}              
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="StaffDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fal fa-briefcase fa-lg fa-fw"></i> {% trans "Staff" %}
-                        </a>                        
-                        <div class="dropdown-menu" aria-labelledby="StaffDropdown">
-                            <a href="{% url 'admin:index' %}" class="dropdown-item">
-                                {% trans "Control panel" %}
-                            </a>
-                            <a href="{% url 'accounts:subscribers' %}" class="dropdown-item">
-                                {% trans "Subscribers" %}
-                            </a>
-                        </div>
-                    </li>                     
-                {% endif %}
                 <li class="dropdown nav-item">
-                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
-                        <div class="profile-photo-small">
-                            {% if user.avatar.image %}                    
-                                <img src="{{ user.avatar.image }}" alt="User" class="rounded-circle img-fluid">
-                            {% else %}
-                                <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="rounded-circle img-fluid">
-                            {% endif %}
-                        </div>
-                        <div class="ripple-container"></div>
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-2x fa-fw fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">{{ user.first_name }} &middot; {{ user.email }}</h6>
+                        {% if user.is_staff %}
+                            <a href="{% url 'admin:index' %}" class="dropdown-item">
+                                {% trans "Enter the control panel" %}
+                            </a>
+                            <a href="{% url 'accounts:subscribers' %}" class="dropdown-item">
+                                {% trans "Contact the subscribers" %}
+                            </a>
+                            <div class="dropdown-divider"></div> 
+                        {% endif %}
                         <a href="{% url 'accounts:update' user.pk %}" class="dropdown-item">
                             {% trans "Manage profile" %}
                         </a>
                         <a href="{% url 'accounts:signout' %}" class="dropdown-item">
                             {% trans "Sign out" %}
-                        </a> 
+                        </a>
                     </div>
                 </li>
             {% else %}

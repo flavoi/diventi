@@ -23,17 +23,16 @@
 
 {% block content %}
 <div class="section">
-
     <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-
-            {% for article in articles %}
-                <div class="card card-plain {% if forloop.first %}{% else %}card-blog{% endif %}">
+        {% for article in articles %}
+            <div class="col-md-6 col-sm-12">
+                <div class="card card-plain">
                     <div class="card-header card-header-image">
                         <a href="{% url 'blog:detail' article.slug %}">
-                            <img class="img img-raised" src="{{ article.image }}">
+                            <img class="img" src="{{ article.image }}">
                         </a>
-                    <div class="colored-shadow colored-shadow-big"; opacity: 1;"></div></div>
+                        <div class="colored-shadow colored-shadow-big"; opacity: 1;"></div>
+                    </div>
                     <div class="card-body">
                         <h6 class="card-category {% if article.hot %}text-danger{% else %}text-info{% endif %}">
                             {% if article.hot %}<i class="fal fa-fire fa-lg"></i>{% endif %} {{ article.category }} 
@@ -47,39 +46,37 @@
                         <a href="{% url 'blog:detail' article.slug %}" class="btn btn-primary btn-warning btn-round">{% trans "read article" %}</a>
                     </div>
                 </div>
-                {% empty %}
-                <div class="text-center">
-                    <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
-                </div>
-            {% endfor %}
-
-            {% if is_paginated %}
-                <br>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="pagination pagination-warning" style="justify-content: center;">
-                        {% if page_obj.has_previous %}
-                          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a></li>
-                        {% else %}
-                          <li class="page-item disabled"><span class="page-link">{% trans "Previous" %}</span></li>
-                        {% endif %}
-                        {% for i in page_obj.paginator.page_range %}
-                          {% if page_obj.number == i %}
-                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">({% trans "current" %})</span></span></li>
-                          {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                          {% endif %}
-                        {% endfor %}
-                        {% if page_obj.has_next %}
-                          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a></li>
-                        {% else %}
-                          <li class="page-item disabled"><span class="page-link">{% trans "Next" %}</span></li>
-                        {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
+            </div>
+            {% empty %}
+            <div class="text-center">
+                <h3>{% trans "There are no posts yet" %} <i class="fal fa-frown"></i></h3>
+            </div>
+        {% endfor %}
     </div>
+    {% if is_paginated %}
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="pagination pagination-warning" style="justify-content: center;">
+                {% if page_obj.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a></li>
+                {% else %}
+                  <li class="page-item disabled"><span class="page-link">{% trans "Previous" %}</span></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                  {% if page_obj.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">({% trans "current" %})</span></span></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                  <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a></li>
+                {% else %}
+                  <li class="page-item disabled"><span class="page-link">{% trans "Next" %}</span></li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock content %}

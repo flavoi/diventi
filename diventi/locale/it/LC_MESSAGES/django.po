@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-02 19:40+0100\n"
+"POT-Creation-Date: 2019-02-03 19:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,7 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:96
-#: diventi/templates/accounts/user_customization.html:28
+#: diventi/templates/accounts/user_customization.html:26
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -122,7 +122,7 @@ msgid "Cover"
 msgstr "Copertina"
 
 #: diventi/accounts/models.py:105
-#: diventi/templates/accounts/user_customization.html:43
+#: diventi/templates/accounts/user_customization.html:41
 msgid "Covers"
 msgstr "Copertine"
 
@@ -131,7 +131,6 @@ msgid "Achievement"
 msgstr "Riconoscimento"
 
 #: diventi/accounts/models.py:112
-#: diventi/templates/accounts/user_achievements.html:4
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
@@ -167,7 +166,7 @@ msgstr "biografia"
 msgid "role"
 msgstr "classe"
 
-#: diventi/accounts/models.py:132 diventi/templates/accounts/user.html:31
+#: diventi/accounts/models.py:132
 msgid "User"
 msgstr "Utente"
 
@@ -821,7 +820,7 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:24
-#: diventi/templates/accounts/user.html:53
+#: diventi/templates/accounts/user.html:42
 msgid "Collection"
 msgstr "Collezione"
 
@@ -925,7 +924,7 @@ msgstr "Invio"
 
 #: diventi/templates/accounts/password_reset_form.html:55
 #: diventi/templates/accounts/signin.html:61
-#: diventi/templates/accounts/user.html:143
+#: diventi/templates/accounts/user.html:132
 #: diventi/templates/accounts/user_credentials.html:33
 msgid "Confirm"
 msgstr "Conferma"
@@ -969,7 +968,7 @@ msgid "Sign up"
 msgstr "Registrati"
 
 #: diventi/templates/accounts/signup.html:110
-#: diventi/templates/accounts/user_privacy.html:17
+#: diventi/templates/accounts/user_privacy.html:19
 msgid ""
 "We send an average of 2 emails each month, covering faq and new content."
 msgstr ""
@@ -999,51 +998,45 @@ msgstr "Contatta gli iscritti %(lang_code)s"
 msgid "Profile"
 msgstr "Profilo"
 
-#: diventi/templates/accounts/user.html:29
-#: diventi/templates/landing/landing.html:132
-#: diventi/templates/products/product_detail.html:187
-msgid "Creator"
-msgstr "Autore"
-
-#: diventi/templates/accounts/user.html:51
-#: diventi/templates/accounts/user.html:79
+#: diventi/templates/accounts/user.html:40
+#: diventi/templates/accounts/user.html:68
 #: diventi/templates/products/product_detail.html:111
 msgid "collection"
 msgstr "collezione"
 
-#: diventi/templates/accounts/user.html:57
-#: diventi/templates/accounts/user.html:86
+#: diventi/templates/accounts/user.html:46
+#: diventi/templates/accounts/user.html:75
 msgid "customization"
 msgstr "personalizzazioni"
 
-#: diventi/templates/accounts/user.html:59
+#: diventi/templates/accounts/user.html:48
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:63
-#: diventi/templates/accounts/user.html:96
+#: diventi/templates/accounts/user.html:52
+#: diventi/templates/accounts/user.html:85
 msgid "credentials"
 msgstr "credenziali"
 
-#: diventi/templates/accounts/user.html:65
+#: diventi/templates/accounts/user.html:54
 msgid "Credentials"
 msgstr "Credenziali"
 
-#: diventi/templates/accounts/user.html:69
-#: diventi/templates/accounts/user.html:106
+#: diventi/templates/accounts/user.html:58
+#: diventi/templates/accounts/user.html:95
 msgid "privacy"
 msgstr "privacy"
 
-#: diventi/templates/accounts/user.html:71
+#: diventi/templates/accounts/user.html:60
 msgid "Privacy"
 msgstr "Privacy"
 
-#: diventi/templates/accounts/user.html:131
-#: diventi/templates/accounts/user_privacy.html:51
+#: diventi/templates/accounts/user.html:120
+#: diventi/templates/accounts/user_privacy.html:53
 msgid "Delete your account"
 msgstr "Cancella la tua utenza"
 
-#: diventi/templates/accounts/user.html:137
+#: diventi/templates/accounts/user.html:126
 msgid ""
 "We will immediately delete all of your data, along with all of your "
 "comments, feedbacks and upvotes."
@@ -1051,7 +1044,7 @@ msgstr ""
 "Cancelleremo immediatamente tutti i tuoi dati, i commenti e le iterazioni "
 "che hai registrato."
 
-#: diventi/templates/accounts/user.html:139
+#: diventi/templates/accounts/user.html:128
 msgid ""
 "You will no longer be contacted and your username will be available to "
 "anyone on Diventi."
@@ -1059,7 +1052,7 @@ msgstr ""
 "Non ti contatteremo più e il tuo nome utente tornerà disponibile per altri "
 "in Diventi."
 
-#: diventi/templates/accounts/user.html:142
+#: diventi/templates/accounts/user.html:131
 msgid "Rollback"
 msgstr "Annulla"
 
@@ -1097,11 +1090,15 @@ msgstr "Nuova password"
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/user_customization.html:61
+#: diventi/templates/accounts/user_customization.html:59
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 
-#: diventi/templates/accounts/user_privacy.html:6
+#: diventi/templates/accounts/user_privacy.html:3
+msgid "Privacy settings"
+msgstr "Impostazioni sulla privacy"
+
+#: diventi/templates/accounts/user_privacy.html:8
 msgid ""
 "\"Privacy is the ability of an individual or group to seclude themselves, or "
 "information about themselves, and thereby express themselves selectively.\""
@@ -1110,7 +1107,7 @@ msgstr ""
 "che la riguardano vengano trattate o guardate da altri solo in caso di "
 "necessità.\""
 
-#: diventi/templates/accounts/user_privacy.html:9
+#: diventi/templates/accounts/user_privacy.html:11
 msgid ""
 "We don't sell your data to others. Feel free to tell us what we can use, you "
 "can always change your mind later."
@@ -1118,11 +1115,11 @@ msgstr ""
 "Noi non vendiamo i tuoi dati a terzi. Facci sapere se possiamo utilizzarli, "
 "potrai sempre cambiare idea in un secondo momento."
 
-#: diventi/templates/accounts/user_privacy.html:38
+#: diventi/templates/accounts/user_privacy.html:40
 msgid "Update profile"
 msgstr "Aggiorna profilo"
 
-#: diventi/templates/accounts/user_privacy.html:46
+#: diventi/templates/accounts/user_privacy.html:48
 msgid ""
 "Do you wish to delete your account? There is no going back. Please be "
 "certain."
@@ -1270,6 +1267,11 @@ msgstr "Visualizza progetto"
 #: diventi/templates/landing/landing.html:118
 msgid "Our content creators"
 msgstr "I nostri autori"
+
+#: diventi/templates/landing/landing.html:132
+#: diventi/templates/products/product_detail.html:187
+msgid "Creator"
+msgstr "Autore"
 
 #: diventi/templates/landing/landing.html:150
 msgid "Hello"

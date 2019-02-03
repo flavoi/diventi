@@ -3,11 +3,13 @@
 
 <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
+
     <div class="navbar-translate">
         <a href="{% url 'landing:home' %}" class="navbar-brand">
+            <!--<img src="https://i.imgur.com/sRSL2hC.png" width="30" height="30" class="d-inline-block align-top img-raised rounded img-fluid" alt="">-->
             Diventi
         </a>
-        <button type="button" class="ml-auto navbar-toggler" data-toggle="collapse" data-target="#navigation-example3">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation-example3">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon"></span>
             <span class="navbar-toggler-icon"></span>
@@ -31,8 +33,15 @@
             </li>            
             {% if user.is_authenticated %}
                 <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-2x fa-fw fa-user-circle"></i>
+                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                        <div class="profile-photo-small">
+                            {% if user.avatar.image %}                    
+                                <img src="{{ user.avatar.image }}" alt="User" class="rounded-circle img-fluid">
+                            {% else %}
+                                <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="rounded-circle img-fluid">
+                            {% endif %}
+                        </div>
+                        <div class="ripple-container"></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">{{ user.first_name }} &middot; {{ user.email }}</h6>

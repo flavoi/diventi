@@ -11,37 +11,34 @@
 
 {% block bodyclass %}profile-page{% endblock bodyclass %}
 
-{% block pageheaderimage %}{% if object.cover %}{{ object.cover.image }}{% endif %}{% endblock pageheaderimage %}
+{% block pageheaderimage %}{{ object.cover.image }}{% endblock pageheaderimage %}
 
 {% block maincontainer %}
     <div class="profile-content">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">                                 
-                    <div class="profile">
-                        <div class="avatar">
-                            <img src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
-                        </div>
-                        <div class="name">
-                            <h3 class="title">{{ object.first_name }}</h3>
-                            <h6 class="text-rose">
-                            {% if object.is_staff %}                            
-                                {% trans "Creator" %}
-                            {% else %}
-                                {% trans "User" %}
-                            {% endif %}
-                            </h6>
-                            {% block userdata %}
-                                <h6 class="text-muted">{{ object.email }}</h6>                            
-                                {% include 'accounts/user_achievements.html' %}
-                            {% endblock userdata %}
-                        </div>
-                    </div>
+                <div class="col-md-6 mx-auto">
+                <div class="profile">
+                  <div class="avatar">
+                    <img src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
+                  </div>
+                  <div class="name" >
+                    <h3 class="title" style="margin-bottom:10px;">{{ object.first_name|title }}</h3>
+                  </div>
                 </div>
+              </div>
             </div>
-
-            {% block usercontent %}{% endblock usercontent %}
-
+            <div class="text-center">
+                <h5>{{ object.bio|striptags }}</h5>
+                {% for a in achievements %}
+                    <span class="text-{{ a.color }}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<h6>{{ a.title }}</h6>{{ a.description }}">
+                        <span class="fa-stack">
+                            <i class="fas fa-rectangle-landscape fa-stack-2x"></i>
+                            <i class="fas fa-{{ a.icon }} fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </span>
+                {% endfor %}
+            </div>
             {% block tabs %}
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto">
@@ -115,7 +112,6 @@
                 </div>
             </div>
             {% endblock tabs %}
-
         </div>
     </div>
 {% endblock maincontainer %}

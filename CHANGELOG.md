@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [UNRELEASED] → 2019-02-19
+## [1.0.0-beta.4] → 2019-02-19
 
 ### Added
 - Introduced homebrew: an experiental app to write papers

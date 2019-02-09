@@ -1,13 +1,13 @@
-{% extends 'base_infos.html' %}
+{% extends 'base_info.html' %}
 
 {% load i18n %}
 
 {% block title %}Comment posted{% endblock title %}
 
-{% block info_title %}
+{% block pageheader_title %}
     {% trans "Comment posted" %}!
-{% endblock info_title %}
+{% endblock pageheader_title %}
 
-{% block info_content %}
+{% block pageheader_content %}
     {% trans "You can leave the page or go back" %} <b><a class="text-warning" href="{{ request.META.HTTP_REFERER }}#comments"> {% trans "to the previous page" %}.</a></b>
-{% endblock info_content %}
+{% endblock pageheader_content %}

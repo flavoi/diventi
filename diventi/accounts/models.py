@@ -163,7 +163,7 @@ class DiventiUser(AbstractUser):
             reduce(operator.and_,
                    (Q(first_name__icontains=q) for q in query_list)) |
             reduce(operator.and_,
-                   (Q(role__icontains=q) for q in query_list)) |
+                   (Q(role__title__icontains=q) for q in query_list)) |
             reduce(operator.and_,
                    (Q(bio__icontains=q) for q in query_list))
         )

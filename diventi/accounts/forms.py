@@ -63,8 +63,9 @@ class DiventiUserUpdateForm(forms.ModelForm):
 
     class Meta:       
         model = DiventiUser
-        fields = ['avatar', 'cover', 'bio', 'role', 'language']
+        fields = ['first_name', 'avatar', 'cover', 'bio', 'role', 'language']
         widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control',}),
             'bio': forms.Textarea(attrs={'class': 'form-control', 'rows':4,}),
             'role': forms.Select(attrs={'class': 'selectpicker', 'data-style': 'select-with-transition', 'title': _('Your favourite role')}),
             'language': forms.Select(attrs={'class': 'selectpicker', 'data-style':'select-with-transition', 'title': _('Your favourite language')}),

@@ -1,11 +1,12 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import DiventiAvatar, DiventiCover, Achievement, DiventiUser
+from .models import DiventiAvatar, DiventiCover, Achievement, DiventiUser, Role
 
 
 @register(DiventiUser)
 class DiventiAvatarTranslationOptions(TranslationOptions):
     fields = ('bio',)    
+
 
 @register(DiventiAvatar)
 class DiventiAvatarTranslationOptions(TranslationOptions):
@@ -19,4 +20,9 @@ class DiventiCoverTranslationOptions(TranslationOptions):
 
 @register(Achievement)
 class AchievementTranslationOptions(TranslationOptions):
+    fields = ('title', 'description',)
+
+
+@register(Role)
+class RoleTranslationOptions(TranslationOptions):
     fields = ('title', 'description',)

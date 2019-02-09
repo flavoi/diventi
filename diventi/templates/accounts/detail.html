@@ -4,20 +4,7 @@
 
 {% block title %}{{ object.get_full_name }}{% endblock title %}
 
-{% block email %}
-    {% include 'accounts/user_achievements.html' %}
-{% endblock email %}
-
-{% block userdata %}
-<div class="description text-center">
-    <p>{{ object.bio|striptags }}</p>
-    {% include 'accounts/user_achievements.html' %}
-</div>
-
-{% endblock userdata %}
-
 {% block usercontent %}
-
 <div class="container">
     <div class="row text-center">
         <div class="col-md-10 ml-auto mr-auto">

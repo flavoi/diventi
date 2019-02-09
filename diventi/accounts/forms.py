@@ -2,11 +2,12 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.conf import settings
 
 from captcha.fields import ReCaptchaField
 from cuser.middleware import CuserMiddleware
 
-from .models import DiventiUser, DiventiAvatar, DiventiCover
+from .models import DiventiUser, DiventiAvatar, DiventiCover, Role
 from .widgets import DiventiAvatarSelect, DiventiCoverSelect, DiventiAvatarChoiceField, DiventiCoverChoiceField
 
 
@@ -63,14 +64,10 @@ class DiventiUserUpdateForm(forms.ModelForm):
     class Meta:       
         model = DiventiUser
         fields = ['avatar', 'cover', 'bio', 'role', 'language']
-        labels = {
-            'bio': _("What's your story?"),
-            'role': _("What's your favourite class?"),
-        }
         widgets = {
             'bio': forms.Textarea(attrs={'class': 'form-control', 'rows':4,}),
-            'role': forms.TextInput(attrs={'class': 'form-control',}),
-            'language': forms.Select(attrs={'class': 'form-control',}),
+            'role': forms.Select(attrs={'class': 'selectpicker', 'data-style': 'select-with-transition', 'title': _('Your favourite role')}),
+            'language': forms.Select(attrs={'class': 'selectpicker', 'data-style':'select-with-transition', 'title': _('Your favourite language')}),
         }
 
     def get_avatar_queryset():

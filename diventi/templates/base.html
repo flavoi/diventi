@@ -64,6 +64,26 @@
         margin-top: 5px;
     }
 
+    .select-with-transition{
+        background: no-repeat center bottom, center calc(100% - 1px);
+        transition: background 0s ease-out !important;
+        background-size: 0 100%, 100% 100%;
+        background-color: transparent !important;
+        color: inherit !important;
+        box-shadow: none !important;
+    }
+
+    .bootstrap-select .select-with-transition, .bootstrap-select .btn:active, .bootstrap-select .btn.active {
+        background-image: linear-gradient(to top, #ff9800 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
+    }
+
+    &.show .select-with-transition{
+        &:focus{
+            background-size: 100% 100%, 100% 100%;
+            transition-duration: 0.3s !important;
+        }
+    }
+
   </style>
   
   {% block jquery %}

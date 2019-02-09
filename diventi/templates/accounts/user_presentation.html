@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<h3 class="title" style="margin-bottom:10px;">{{ object.first_name|title }}</h3>
+<h6>{{ object.role.title }}</h6>
+{% for a in achievements %}
+	<span class="text-{{ a.color }}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<h6>{{ a.title }}</h6>{{ a.description }}" >
+        <span class="fa-stack" style="vertical-align: middle;">
+            <i class="fas fa-rectangle-landscape fa-stack-2x"></i>
+            <i class="fas fa-{{ a.icon }} fa-stack-1x fa-inverse"></i>
+        </span>
+    </span>
+{% endfor %}

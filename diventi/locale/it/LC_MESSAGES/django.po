@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-03 19:14+0100\n"
+"POT-Creation-Date: 2019-02-09 17:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,43 +54,43 @@ msgstr "^riscontri/"
 msgid "Accounts"
 msgstr "Profili"
 
-#: diventi/accounts/forms.py:13
+#: diventi/accounts/forms.py:14
 msgid "Yes, I'm interested."
 msgstr "Si, mi interessa."
 
-#: diventi/accounts/forms.py:13
+#: diventi/accounts/forms.py:14
 msgid "No, don't send me emails."
 msgstr "No, non inviarmi email."
 
-#: diventi/accounts/forms.py:28 diventi/accounts/forms.py:107
+#: diventi/accounts/forms.py:29 diventi/accounts/forms.py:104
 msgid "Can we send you emails?"
 msgstr "Possiamo inviarti email?"
 
-#: diventi/accounts/forms.py:31 diventi/accounts/forms.py:53
+#: diventi/accounts/forms.py:32 diventi/accounts/forms.py:54
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:32 diventi/accounts/forms.py:57
+#: diventi/accounts/forms.py:33 diventi/accounts/forms.py:58
 #: diventi/templates/accounts/password_reset_form.html:50
 #: diventi/templates/accounts/signin.html:38
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:42 diventi/templates/accounts/signin.html:48
+#: diventi/accounts/forms.py:43 diventi/templates/accounts/signin.html:48
 msgid "Your password"
 msgstr "La tua password"
 
-#: diventi/accounts/forms.py:46
+#: diventi/accounts/forms.py:47
 msgid "Repeat your password"
 msgstr "Ripeti la tua password"
 
-#: diventi/accounts/forms.py:67
-msgid "What's your story?"
-msgstr "Qual è la tua storia?"
+#: diventi/accounts/forms.py:69
+msgid "Your favourite role"
+msgstr "Il tuo ruolo preferito"
 
-#: diventi/accounts/forms.py:68
-msgid "What's your favourite class?"
-msgstr "Qual è la tua classe preferita?"
+#: diventi/accounts/forms.py:70
+msgid "Your favourite language"
+msgstr "La tua lingua preferita"
 
 #: diventi/accounts/models.py:48
 msgid "The email must be set"
@@ -113,7 +113,7 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:96
-#: diventi/templates/accounts/user_customization.html:26
+#: diventi/templates/accounts/user_customization.html:32
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -122,7 +122,7 @@ msgid "Cover"
 msgstr "Copertina"
 
 #: diventi/accounts/models.py:105
-#: diventi/templates/accounts/user_customization.html:41
+#: diventi/templates/accounts/user_customization.html:47
 msgid "Covers"
 msgstr "Copertine"
 
@@ -134,47 +134,55 @@ msgstr "Riconoscimento"
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:116
+#: diventi/accounts/models.py:118
+msgid "Role"
+msgstr "Ruolo"
+
+#: diventi/accounts/models.py:119
+msgid "Roles"
+msgstr "Ruoli"
+
+#: diventi/accounts/models.py:123
 msgid "email"
 msgstr "email"
 
-#: diventi/accounts/models.py:117
+#: diventi/accounts/models.py:124
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:118
+#: diventi/accounts/models.py:125
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:119
+#: diventi/accounts/models.py:126
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:120 diventi/landing/models.py:30
+#: diventi/accounts/models.py:127 diventi/landing/models.py:30
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:121
+#: diventi/accounts/models.py:128
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:122
+#: diventi/accounts/models.py:129
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:123
+#: diventi/accounts/models.py:130
 msgid "role"
-msgstr "classe"
+msgstr "ruolo"
 
-#: diventi/accounts/models.py:132
+#: diventi/accounts/models.py:139
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:133
+#: diventi/accounts/models.py:140
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:146
+#: diventi/accounts/models.py:153
 msgid "account"
 msgstr "profilo"
 
@@ -819,7 +827,7 @@ msgid "Our service team has been dispatched to bring it back online."
 msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
-#: diventi/templates/accounts/detail.html:24
+#: diventi/templates/accounts/detail.html:11
 #: diventi/templates/accounts/user.html:42
 msgid "Collection"
 msgstr "Collezione"
@@ -835,7 +843,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:59
+#: diventi/templates/navigation.html:68
 #: diventi/templates/products/product_detail.html:140
 msgid "Sign in"
 msgstr "Accedi"
@@ -924,7 +932,7 @@ msgstr "Invio"
 
 #: diventi/templates/accounts/password_reset_form.html:55
 #: diventi/templates/accounts/signin.html:61
-#: diventi/templates/accounts/user.html:132
+#: diventi/templates/accounts/user.html:131
 #: diventi/templates/accounts/user_credentials.html:33
 msgid "Confirm"
 msgstr "Conferma"
@@ -1031,12 +1039,12 @@ msgstr "privacy"
 msgid "Privacy"
 msgstr "Privacy"
 
-#: diventi/templates/accounts/user.html:120
+#: diventi/templates/accounts/user.html:119
 #: diventi/templates/accounts/user_privacy.html:53
 msgid "Delete your account"
 msgstr "Cancella la tua utenza"
 
-#: diventi/templates/accounts/user.html:126
+#: diventi/templates/accounts/user.html:125
 msgid ""
 "We will immediately delete all of your data, along with all of your "
 "comments, feedbacks and upvotes."
@@ -1044,7 +1052,7 @@ msgstr ""
 "Cancelleremo immediatamente tutti i tuoi dati, i commenti e le iterazioni "
 "che hai registrato."
 
-#: diventi/templates/accounts/user.html:128
+#: diventi/templates/accounts/user.html:127
 msgid ""
 "You will no longer be contacted and your username will be available to "
 "anyone on Diventi."
@@ -1052,7 +1060,7 @@ msgstr ""
 "Non ti contatteremo più e il tuo nome utente tornerà disponibile per altri "
 "in Diventi."
 
-#: diventi/templates/accounts/user.html:131
+#: diventi/templates/accounts/user.html:130
 msgid "Rollback"
 msgstr "Annulla"
 
@@ -1090,7 +1098,7 @@ msgstr "Nuova password"
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/user_customization.html:59
+#: diventi/templates/accounts/user_customization.html:65
 msgid "Update details"
 msgstr "Aggiorna dettagli"
 
@@ -1285,7 +1293,7 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:153
-#: diventi/templates/navigation.html:49
+#: diventi/templates/navigation.html:58
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1301,19 +1309,19 @@ msgstr "Registrati per saperne di più e accedere ai contenuti."
 msgid "End of results"
 msgstr "Fine dei risultati"
 
-#: diventi/templates/navigation.html:21
+#: diventi/templates/navigation.html:23
 msgid "Search"
 msgstr "Cerca"
 
-#: diventi/templates/navigation.html:41
+#: diventi/templates/navigation.html:50
 msgid "Enter the control panel"
 msgstr "Accedi al pannello di controllo"
 
-#: diventi/templates/navigation.html:44
+#: diventi/templates/navigation.html:53
 msgid "Contact the subscribers"
 msgstr "Contatta gli iscritti"
 
-#: diventi/templates/navigation.html:52
+#: diventi/templates/navigation.html:61
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
@@ -1360,6 +1368,9 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "What's your story?"
+#~ msgstr "Qual è la tua storia?"
 
 #~ msgid "Manage subscribers"
 #~ msgstr "Gestisci gli iscritti"

@@ -23,21 +23,13 @@
                     <img src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
                   </div>
                   <div class="name" >
-                    <h3 class="title" style="margin-bottom:10px;">{{ object.first_name|title }}</h3>
+                    {% include 'accounts/user_presentation.html' %}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="text-center">
+            <div class="description text-center">
                 <h5>{{ object.bio|striptags }}</h5>
-                {% for a in achievements %}
-                    <span class="text-{{ a.color }}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<h6>{{ a.title }}</h6>{{ a.description }}">
-                        <span class="fa-stack">
-                            <i class="fas fa-rectangle-landscape fa-stack-2x"></i>
-                            <i class="fas fa-{{ a.icon }} fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </span>
-                {% endfor %}
             </div>
             {% block tabs %}
             <div class="row">

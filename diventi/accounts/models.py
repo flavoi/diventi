@@ -111,16 +111,23 @@ class Achievement(Element):
         verbose_name = _('Achievement')
         verbose_name_plural = _('Achievements')
 
+
+class Role(Element):
+
+    class Meta:
+        verbose_name = _('Role')
+        verbose_name_plural = _('Roles')
         
+
 class DiventiUser(AbstractUser): 
     email = models.EmailField(unique=True, verbose_name=_('email'))
     language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
     has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('subscriber status'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
     cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
-    profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) #  Staff use only
+    profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) # For staff use only
     bio = models.TextField(blank=True, verbose_name=_('bio'))
-    role = models.CharField(blank=True, max_length=70, verbose_name=_('role')) # Favourite class
+    role = models.ForeignKey(Role, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('role'))
     achievements = models.ManyToManyField(Achievement, related_name='users')
 
     USERNAME_FIELD = 'email'

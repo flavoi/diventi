@@ -4,7 +4,12 @@
 {% load i18n %}
 
 {% block extrahead %}
-    <link href="{% static 'image-picker/css/image-picker.css' %}" rel="stylesheet"/>
+    <link href="{% static 'image-picker-v2/css/image-picker.css' %}" rel="stylesheet"/>
+
+    <style>
+        ul.thumbnails.image_picker_selector li .thumbnail.selected {
+      background: #00bcd4; }
+    </style>
 {% endblock extrahead %}
 
 {% block title %}{% trans "Profile" %}{% endblock title %}
@@ -137,10 +142,13 @@
 {% endblock extramodal %}
 
 {% block extrascript %}
-<script src="{% static 'image-picker/js/image-picker.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'image-picker-v2/js/image-picker.min.js' %}" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(".image-picker").imagepicker();
+    $("select").imagepicker({
+          hide_select : true,
+          show_label  : true,
+        })
 </script>
 
 <script type="text/javascript">

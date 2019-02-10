@@ -82,7 +82,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
     avatar = DiventiAvatarChoiceField(
         queryset = get_avatar_queryset(),
         widget = DiventiAvatarSelect(attrs = {
-            'class': 'image-picker show-html'
+            'class': 'image-picker show-labels show-html'
         }),
         required = False,
     )
@@ -90,7 +90,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
     cover = DiventiCoverChoiceField(
         queryset = DiventiCover.objects.all(),
         widget = DiventiCoverSelect(attrs = {
-            'class': 'image-picker show-html'
+            'class': 'image-picker show-labels show-html'
         }),
         required = False,
     )

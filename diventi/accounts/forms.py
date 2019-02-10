@@ -67,8 +67,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control',}),
             'bio': forms.Textarea(attrs={'class': 'form-control', 'rows':4,}),
-            'role': forms.Select(attrs={'class': 'selectpicker', 'data-style': 'select-with-transition', 'title': _('Your favourite role')}),
-            'language': forms.Select(attrs={'class': 'selectpicker', 'data-style':'select-with-transition', 'title': _('Your favourite language')}),
+            'role': forms.Select(attrs={'class': 'selectpicker show-tick', 'data-style': 'select-with-transition', 'title': _('Your favourite role')}),
+            'language': forms.Select(attrs={'class': 'selectpicker show-tick', 'data-style':'select-with-transition', 'title': _('Your favourite language')}),
         }
 
     def get_avatar_queryset():

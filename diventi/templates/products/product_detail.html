@@ -20,23 +20,24 @@
         <div class="main main-raised main-product">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="tab-content">
-                          {% for imagepreview in product.imagepreviews.all %}
-                          <div class="tab-pane" id="product-page{{ imagepreview.id }}">
+                    <div class="tab-content">
+                        {% for imagepreview in product.imagepreviews.all %}
+                          <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="product-page{{ imagepreview.id }}">
                             <img src="{{ imagepreview.image }}">
                           </div>
-                          {% endfor %}
-                        </div>
-                        <div class="nbs-flexisel-container"><div class="nbs-flexisel-inner"><ul class="nav flexi-nav nbs-flexisel-ul" data-tabs="tabs" id="flexiselDemo1" style="left: -435px;">{% for imagepreview in product.imagepreviews.all %}<li class="nav-item nbs-flexisel-item" style="width: 72.5px;">
-                            <a href="#product-page{{ imagepreview.id }}" class="nav-link" data-toggle="tab">
+                        {% endfor %}
+                      <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
+                        {% for imagepreview in product.imagepreviews.all %}
+                          <li class="nav-item {% if forloop.first %}active show{% endif %}">
+                            <a href="#product-page{{ imagepreview.id }}" class="nav-link {% if forloop.first %}active show{% endif %}" data-toggle="tab">
                               <img src="{{ imagepreview.image }}">
                             </a>
-                          </li>{% endfor %}</ul><div class="nbs-flexisel-nav-left"><i class="material-icons">chevron_left</i></div><div class="nbs-flexisel-nav-right"><i class="material-icons">chevron_right</i></div></div></div>
-                      </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
                 </div>
                 <div class="col-md-6 col-sm-6">
-
                     <h2 class="title">{{ product.title }}</h2>                     
                         {% if product.available == False %}
                             <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {% trans 'under maintenance' %}

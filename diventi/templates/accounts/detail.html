@@ -5,17 +5,26 @@
 {% block title %}{{ object.get_full_name }}{% endblock title %}
 
 {% block usercontent %}
-<div class="container">
-    <div class="row text-center">
-        <div class="col-md-10 ml-auto mr-auto">
-            <h4 class="title">{% trans "Collection" %}</h4>
-            {% include 'accounts/user_collection.html' %}
-        </div>
-    </div>
-</div>
+
+
 {% endblock usercontent %}
 
 
 {% block tabs %}
+
+{% if user.is_authenticated %}
+	<div class="container">
+    	<div class="row text-center">
+    		<div class="col-md-10 ml-auto mr-auto">
+			{% ifequal user.pk object.pk %}
+				<a href="{% url 'accounts:update' user.pk %}" class="btn btn-warning btn-round">
+                    <i class="fal fa-user-circle fa-lg"></i> {% trans "Manage profile" %}
+                </a>
+			{% endifequal %}
+			</div>
+	    </div>
+	</div>
+{% endif %}
+
 <div class="tab-content tab-space"></div>
 {% endblock tabs %}

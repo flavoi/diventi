@@ -69,17 +69,39 @@
         background-image: linear-gradient(to top, #ff9800 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
     }
     
+    @font-face {
+    font-family: 'Kravitz';
+    src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
+        url('{% static "Kravitz.woff" %}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Kravitz Extra Thermal';
+        src: url('{% static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
+            url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Kravitz Thermal';
+        src: url('{% static "fonts/KravitzThermal.woff2 "%}') format('woff2'),
+            url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .diventi-font {
+      font-family: 'Kravitz';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 32px;
+    }
 
   </style>
   
-  {% block jquery %}
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-      crossorigin="anonymous">
-    </script>
-  {% endblock jquery %}
-
 </head>
 {% endblock head %}
 
@@ -130,28 +152,18 @@
 </body>
 {% endblock body %}
 
-<script src="{% static "material-kit-v211/js/material-kit.js" %}" type="text/javascript"></script>
-
 <script src="{% static "material-kit-v211/js/core/jquery.min.js" %}" type="text/javascript"></script>
 <script src="{% static "material-kit-v211/js/core/popper.min.js" %}" type="text/javascript"></script>
 <script src="{% static "material-kit-v211/js/core/bootstrap-material-design.min.js" %}" type="text/javascript"></script>
 <script src="{% static "material-kit-v211/js/plugins/moment.min.js" %}"></script>
-<!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
 <script src="{% static "material-kit-v211/js/plugins/bootstrap-datetimepicker.js" %}" type="text/javascript"></script>
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="{% static "material-kit-v211/js/plugins/nouislider.min.js" %}" type="text/javascript"></script>
-<!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="{% static "material-kit-v211/js/plugins/bootstrap-tagsinput.js" %}" type="text/javascript"></script>
-<!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
 <script src="{% static "material-kit-v211/js/plugins/bootstrap-selectpicker.js" %}" type="text/javascript"></script>
-<!--  Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 <script src="{% static "material-kit-v211/js/plugins/jasny-bootstrap.min.js" %}" type="text/javascript"></script>
-<!--  Plugin for Small Gallery in Product Page -->
 <script src="{% static "material-kit-v211/js/plugins/jquery.flexisel.js" %}" type="text/javascript"></script>
-<!-- Plugins for presentation and navigation  -->
 <script src="{% static "material-kit-v211/demo/modernizr.js" %}" type="text/javascript"></script>
 <script src="{% static "material-kit-v211/demo/vertical-nav.js" %}" type="text/javascript"></script>
-<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="{% static "material-kit-v211/js/material-kit.js" %}" type="text/javascript"></script>
 
 <script>

@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from diventi.core.admin import DiventiTranslationAdmin
 
-from .models import DiventiUser, DiventiAvatar, DiventiCover, Achievement, Role
+from .models import DiventiUser, DiventiAvatar, DiventiProfilePic, DiventiCover, Achievement, Role
 
 
 class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
@@ -40,6 +40,10 @@ class DiventiAvatarAdmin(DiventiTranslationAdmin):
     list_display = ('label', 'image_tag', 'staff_only')
 
 
+class DiventiProfilePicAdmin(DiventiTranslationAdmin):
+    list_display = ('label', 'image_tag',)
+
+
 class DiventiCoverAdmin(DiventiTranslationAdmin):
     list_display = ('label', 'image_tag')
 
@@ -47,11 +51,13 @@ class DiventiCoverAdmin(DiventiTranslationAdmin):
 class DiventiUserInline(admin.TabularInline):
     model = Achievement.users.through
 
+
 class AchievementAdmin(DiventiTranslationAdmin):
     list_display = ('title', 'description')
     inlines = [
         DiventiUserInline,
     ]
+
 
 class RoleAdmin(DiventiTranslationAdmin):
     list_display = ('title', 'description')
@@ -59,6 +65,7 @@ class RoleAdmin(DiventiTranslationAdmin):
 
 admin.site.register(DiventiUser, DiventiUserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)
+admin.site.register(DiventiProfilePic, DiventiProfilePicAdmin)
 admin.site.register(DiventiCover, DiventiCoverAdmin)
 admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(Role, RoleAdmin)

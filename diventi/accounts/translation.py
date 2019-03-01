@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import DiventiAvatar, DiventiCover, Achievement, DiventiUser, Role
+from .models import DiventiAvatar, DiventiProfilePic, DiventiCover, Achievement, DiventiUser, Role
 
 
 @register(DiventiUser)
@@ -10,6 +10,11 @@ class DiventiAvatarTranslationOptions(TranslationOptions):
 
 @register(DiventiAvatar)
 class DiventiAvatarTranslationOptions(TranslationOptions):
+    fields = ('label',)
+
+
+@register(DiventiProfilePic)
+class DiventiProfilePicTranslationOptions(TranslationOptions):
     fields = ('label',)
 
 

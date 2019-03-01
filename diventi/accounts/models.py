@@ -96,6 +96,13 @@ class DiventiAvatar(DiventiImageModel):
         verbose_name_plural = _('Avatars')
 
 
+class DiventiProfilePic(DiventiImageModel):    
+    
+    class Meta:
+        verbose_name = _('Profile picture')
+        verbose_name_plural = _('Profile pictures')
+
+
 class DiventiCover(DiventiImageModel):
 
     objects = DiventiAvatarQuerySet.as_manager()
@@ -125,7 +132,7 @@ class DiventiUser(AbstractUser):
     has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('subscriber status'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
     cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
-    profilepic = models.ImageField(blank=True, upload_to='accounts/profilepics/', verbose_name=_('profilepic')) # For staff use only
+    profilepic = models.ForeignKey(DiventiProfilePic, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('profilepic')) # For staff use only
     bio = models.TextField(blank=True, verbose_name=_('bio'))
     role = models.ForeignKey(Role, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('role'))
     achievements = models.ManyToManyField(Achievement, related_name='users')

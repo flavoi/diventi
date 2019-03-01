@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-01 08:54+0100\n"
+"POT-Creation-Date: 2019-03-01 17:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -835,10 +835,11 @@ msgid "Our service team has been dispatched to bring it back online."
 msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
-#: diventi/templates/accounts/detail.html:11
-#: diventi/templates/accounts/user.html:47
-msgid "Collection"
-msgstr "Collezione"
+#: diventi/templates/accounts/detail.html:21
+#: diventi/templates/landing/landing.html:138
+#: diventi/templates/navigation.html:77
+msgid "Manage profile"
+msgstr "Gestisci profilo"
 
 #: diventi/templates/accounts/password_reset_complete.html:4
 #: diventi/templates/accounts/password_reset_done.html:4
@@ -851,7 +852,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:68
+#: diventi/templates/navigation.html:87
 #: diventi/templates/products/product_detail.html:129
 msgid "Sign in"
 msgstr "Accedi"
@@ -1020,6 +1021,10 @@ msgstr "Profilo"
 msgid "collection"
 msgstr "collezione"
 
+#: diventi/templates/accounts/user.html:47
+msgid "Collection"
+msgstr "Collezione"
+
 #: diventi/templates/accounts/user.html:51
 #: diventi/templates/accounts/user.html:80
 msgid "customization"
@@ -1140,6 +1145,14 @@ msgid ""
 "Do you wish to delete your account? There is no going back. Please be "
 "certain."
 msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
+
+#: diventi/templates/base.html:151
+msgid "Search contents in this website"
+msgstr "Cerca contenuti in questo sito web"
+
+#: diventi/templates/base.html:164
+msgid "Search"
+msgstr "Cerca"
 
 #: diventi/templates/blog/article_detail.html:29
 msgid "Photo"
@@ -1296,11 +1309,6 @@ msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:138
-#: diventi/templates/navigation.html:58
-msgid "Manage profile"
-msgstr "Gestisci profilo"
-
 #: diventi/templates/landing/landing.html:142
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
@@ -1313,19 +1321,15 @@ msgstr "Registrati per saperne di più e accedere ai contenuti."
 msgid "End of results"
 msgstr "Fine dei risultati"
 
-#: diventi/templates/navigation.html:23
-msgid "Search"
-msgstr "Cerca"
-
-#: diventi/templates/navigation.html:50
+#: diventi/templates/navigation.html:69
 msgid "Enter the control panel"
 msgstr "Accedi al pannello di controllo"
 
-#: diventi/templates/navigation.html:53
+#: diventi/templates/navigation.html:72
 msgid "Contact the subscribers"
 msgstr "Contatta gli iscritti"
 
-#: diventi/templates/navigation.html:61
+#: diventi/templates/navigation.html:80
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 

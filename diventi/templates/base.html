@@ -72,7 +72,7 @@
     @font-face {
     font-family: 'Kravitz';
     src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
-        url('{% static "Kravitz.woff" %}') format('woff');
+        url('{% static "fonts/Kravitz.woff" %}') format('woff');
     font-weight: normal;
     font-style: normal;
     }
@@ -87,14 +87,14 @@
 
     @font-face {
         font-family: 'Kravitz Thermal';
-        src: url('{% static "fonts/KravitzThermal.woff2 "%}') format('woff2'),
+        src: url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
             url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
         font-weight: normal;
         font-style: normal;
     }
 
     .diventi-font {
-      font-family: 'Kravitz';
+      font-family: 'Kravitz Thermal';
       font-weight: normal;
       font-style: normal;
       font-size: 32px;
@@ -141,6 +141,31 @@
         <div class="modal-content">
             {% include 'accounts/signin.html' %}
         </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="searchModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans "Search contents in this website" %}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="material-icons">clear</i>
+            </button>
+          </div>
+          <form action="{% url 'landing:search' %}" class="has-warning">
+            <div class="modal-body">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fal fa-search fa-lg"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="{% trans 'Search' %}" name="q" aria-label="{% trans 'Search' %}" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
+                </div>
+            </div>
+        </form>
+      </div>
     </div>
   </div>
 

@@ -45,8 +45,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" data-toggle="modal" class="btn btn-info btn-raised btn-fab btn-round"  data-target="#searchModal" class="nav-link">
-                    <i class="fal fa-search fa-sm"></i>
+                <a href="#" data-toggle="modal" class="nav-link"  data-target="#searchModal" class="nav-link">
+                    {% trans "Search"  %}
                     <div class="ripple-container"></div>
                 </a>
               </li>
@@ -82,10 +82,13 @@
                     </div>
                 </li>
             {% else %}
-                <li class="nav-item">
-                    <a href="#" data-toggle="modal" data-target="#loginModal" class="nav-link">
-                        <i class="fal fa-sign-in-alt fa-lg fa-fw"></i> {% trans "Sign in" %}
-                    </a> 
+                <li class="nav-item">   
+                    <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-warning btn-raised btn-fab btn-round">
+                        <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans "Sign in" %}">
+                            <i class="fal fa-sign-in-alt"></i>
+                            <div class="ripple-container"></div>
+                        </span>
+                    </a>
                 </li>
             {% endif %}
         </ul>

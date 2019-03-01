@@ -685,7 +685,7 @@ msgstr "^presentazione/(?P<pk>\\d+)/$"
 
 #: diventi/landing/urls.py:11
 msgid "^search/$"
-msgstr "^cerca/$"
+msgstr "^ricerca/$"
 
 #: diventi/landing/views.py:37
 msgid "Please double check your email."
@@ -1152,7 +1152,7 @@ msgstr "Cerca contenuti in questo sito web"
 
 #: diventi/templates/base.html:164
 msgid "Search"
-msgstr "Cerca"
+msgstr "Ricerca"
 
 #: diventi/templates/blog/article_detail.html:29
 msgid "Photo"

@@ -20,35 +20,24 @@
         <div class="main main-raised main-product">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
-                    <div class="card card-raised card-carousel">
-                        <div id="carouselIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
-                          <ol class="carousel-indicators">
-                            {% for imagepreview in product.imagepreviews.all %}
-                                <li data-target="#carouselIndicators" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
-                            {% endfor %}
-                          </ol>
-                          <div class="carousel-inner">
-                            {% for imagepreview in product.imagepreviews.all %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                  <img class="d-block w-100" src="{{ imagepreview.image }}" alt="{{ imagepreview.label }}">
-                                </div>
-                            {% endfor %}
+                    <div class="tab-content">
+                        {% for imagepreview in product.imagepreviews.all %}
+                          <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="product-page{{ imagepreview.id }}">
+                            <img src="{{ imagepreview.image }}">
                           </div>
-                          {% if product.imagepreviews.all.count > 1 %}
-                              <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-                                <i class="material-icons">keyboard_arrow_left</i>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-                                <i class="material-icons">keyboard_arrow_right</i>
-                                <span class="sr-only">Next</span>
-                              </a>
-                          {% endif %}
-                        </div>
+                        {% endfor %}
+                      <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
+                        {% for imagepreview in product.imagepreviews.all %}
+                          <li class="nav-item {% if forloop.first %}active show{% endif %}">
+                            <a href="#product-page{{ imagepreview.id }}" class="nav-link {% if forloop.first %}active show{% endif %}" data-toggle="tab">
+                              <img src="{{ imagepreview.image }}">
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6">
-
                     <h2 class="title">{{ product.title }}</h2>                     
                         {% if product.available == False %}
                             <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {% trans 'under maintenance' %}

@@ -22,13 +22,11 @@
                 <div style="vertical-align:middle;">                         
                     {{ node.user.first_name }}
                     {% for a in node.user.achievements.all %}
-                        <span class="text-{{ a.color }}" data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>{{ a.title }}</h6>{{ a.description }}">
-                            <span class="badge badge-{{ a.color }}" style="vertical-align: middle; margin-top: -0.5em;">
-                                <i class="fas fa-{{ a.icon }} fa-inverse"></i>
-                            </span>
+                        <span class="text-{{ a.color }}" data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>{{ a.title }}</h6>{{ a.description }}">                            
+                            <i class="fas fa-sm fa-{{ a.icon }}"></i>                            
                         </span>
                     {% endfor %}
-                    <small>{{ node.submit_date|naturaltime }}</small>
+                    <small>&middot; {{ node.submit_date|naturaltime }}</small>
                 </div>
                 </a>
             </h4>

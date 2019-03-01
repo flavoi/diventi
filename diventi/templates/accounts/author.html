@@ -1,0 +1,16 @@
+<div class="card card-profile card-plain">
+    <div class="card-avatar">
+        <a href="{{ author.get_absolute_url }}">
+            {% if author.profilepic %}
+                <img class="img" src="{{ author.profilepic.image }}">
+            {% endif %}
+        </a>
+    </div>
+    <div class="card-content">
+        <h4 class="card-title"><a href="{{ author.get_absolute_url }}">{{ author.get_full_name}}</a></h4>
+        <h6 class="category text-rose">{{ author.role }}</h6>
+        <p class="card-description">
+            {{ author.bio }}
+        </p>
+    </div>
+</div>

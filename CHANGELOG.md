@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fixed an hidden label in the blog admin page
 - Fixed a blog hidden field that should be visible
+- Fixed a problem that made the survey page crash
 
 
 ## [1.0.0-beta.3] → 2018-06-13

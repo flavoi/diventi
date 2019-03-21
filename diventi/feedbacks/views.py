@@ -47,8 +47,9 @@ class AnswerListView(ListView):
         slug = self.kwargs.get('slug', None)
         survey = Survey.objects.published().get(slug=slug)
         cover = SurveyCover.objects.active()    
-        outcome = survey.outcome    
-        if outcome:
+        outcome = survey.outcome
+        print(outcome)   
+        if outcome is not None:
             answers_outcome = self.get_queryset().aggregate(Sum('choice__score'))
             # Generic calculation of the survey outcome
             # @myself: consider to improve the algorithm
@@ -63,8 +64,10 @@ class AnswerListView(ListView):
                 answers_outcome['lower_score'] = outcome.lower_score
                 answers_outcome['upper_score'] = outcome.upper_score
                 answers_outcome['progress'] = answers_score_value / outcome.upper_score * 100
+        else:
+            answers_outcome = None
         context['survey'] = survey
-        context['answers_outcome'] = answers_outcome or None
+        context['answers_outcome'] = answers_outcome 
         context['cover'] = cover
         return context
 

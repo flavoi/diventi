@@ -35,8 +35,9 @@ class QuestionInline(TranslationStackedInline):
 
 
 class QuestionGroupAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'get_questions']
+    list_display = ['title', 'order_index', 'get_questions']
     inlines = [QuestionInline]
+    ordering = ('order_index',)
 
 
 class OutcomeAdmin(DiventiTranslationAdmin):

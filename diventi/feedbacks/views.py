@@ -74,7 +74,7 @@ def survey_questions(request, slug):
 
     survey = Survey.objects.published().get(slug=slug)
     question_groups = survey.question_groups.all()
-    questions = Question.objects.filter(group__in=(question_groups)).order_by('group')
+    questions = Question.objects.filter(group__in=(question_groups)).order_by('group__order_index')
 
     user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
     if user_has_answered:

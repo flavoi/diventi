@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta.4] → 2019-03-01
+## [1.0.0-beta.4] → 2019-03-22
 
 ### Added
 - Introduced homebrew: an experiental app to write papers
@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated user report with buttons related to all users, gruped by language
 - Updated styles of product carousel
 - Updated styles for dropdowns on user page
+- Updated survey models to enable different covers for different surveys.
 - Moved about page in the landing page
 - Moded authors' profile pictures to imgur
 

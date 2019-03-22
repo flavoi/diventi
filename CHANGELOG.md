@@ -22,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated user report with buttons related to all users, gruped by language
 - Updated styles of product carousel
 - Updated styles for dropdowns on user page
-- Updated survey models to enable different covers for different surveys.
 - Moved about page in the landing page
 - Moded authors' profile pictures to imgur
 

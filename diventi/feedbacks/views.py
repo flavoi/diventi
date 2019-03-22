@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 from diventi.core.views import DiventiActionMixin
 
-from .models import Survey, Answer, Question, SurveyCover, QuestionGroup
+from .models import Survey, Answer, Question, QuestionGroup
 from .forms import AnswerForm
 
 from cuser.middleware import CuserMiddleware
@@ -45,10 +45,8 @@ class AnswerListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AnswerListView, self).get_context_data(**kwargs)
         slug = self.kwargs.get('slug', None)
-        survey = Survey.objects.published().get(slug=slug)
-        cover = SurveyCover.objects.active()    
+        survey = Survey.objects.published().get(slug=slug)    
         outcome = survey.outcome
-        print(outcome)   
         if outcome is not None:
             answers_outcome = self.get_queryset().aggregate(Sum('choice__score'))
             # Generic calculation of the survey outcome
@@ -68,7 +66,6 @@ class AnswerListView(ListView):
             answers_outcome = None
         context['survey'] = survey
         context['answers_outcome'] = answers_outcome 
-        context['cover'] = cover
         return context
 
 
@@ -76,7 +73,6 @@ class AnswerListView(ListView):
 def survey_questions(request, slug):   
 
     survey = Survey.objects.published().get(slug=slug)
-    cover = SurveyCover.objects.active()
     question_groups = survey.question_groups.all()
     questions = Question.objects.filter(group__in=(question_groups)).order_by('group')
 
@@ -107,7 +103,6 @@ def survey_questions(request, slug):
     template_name = 'feedbacks/answer_form.html'
     context = {
         'survey': survey,
-        'cover': cover,
-        'formset': formset,
+        'formset': formset
     }
     return render(request, template_name, context)    

@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from modeltranslation.admin import TranslationStackedInline
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished, deactivate
-from .models import Survey, Question, Answer, SurveyCover, QuestionGroup, QuestionChoice, Outcome
+from .models import Survey, Question, Answer, QuestionGroup, QuestionChoice, Outcome
 
 
 class AnswerAdmin(DiventiTranslationAdmin):
@@ -45,7 +45,7 @@ class OutcomeAdmin(DiventiTranslationAdmin):
 
 
 class SurveyAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'get_question_groups', 'published', 'publication_date']
+    list_display = ['title', 'image_tag', 'get_question_groups', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (
@@ -53,16 +53,12 @@ class SurveyAdmin(DiventiTranslationAdmin):
             'fields': ('published',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'description', 'question_groups', 'outcome', 'slug', 'publication_date'),
+            'fields': ('title', 'image', 'description', 'question_groups', 'outcome', 'slug', 'publication_date'),
         }),
     )
     actions = [make_published, make_unpublished]
     inlines = []
 
-
-class SurveyCoverAdmin(DiventiTranslationAdmin):
-    list_display= ('label', 'image_tag', 'active')
-    actions = [deactivate]
 
 
 admin.site.register(Outcome, OutcomeAdmin)
@@ -70,4 +66,3 @@ admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Answer, AnswerAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(QuestionGroup, QuestionGroupAdmin)
-admin.site.register(SurveyCover, SurveyCoverAdmin)

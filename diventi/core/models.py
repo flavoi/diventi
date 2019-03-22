@@ -158,7 +158,7 @@ class DiventiCoverManager(models.Manager):
 
 class DiventiCoverModel(DiventiImageModel):
     """
-        Stores cover images for the blog page.
+    An abstract base class that helps to implement an image that can be activated.
     """
 
     active = models.BooleanField(default=False, verbose_name=_('active'))

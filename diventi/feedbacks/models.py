@@ -111,7 +111,7 @@ class Outcome(models.Model):
         return self.title
 
 
-class Survey(TimeStampedModel, PublishableModel):
+class Survey(TimeStampedModel, PublishableModel, DiventiImageModel):
     """
         A collection of questions and answers centered around a specifi title.
     """
@@ -136,15 +136,6 @@ class Survey(TimeStampedModel, PublishableModel):
     def get_question_groups(self):
         return mark_safe("<br>".join([s.__str__() for s in self.question_groups.all()]))
     get_question_groups.short_description = _('Question Groups')
-
-
-class SurveyCover(DiventiCoverModel):
-    """
-        Stores cover images for the survey page.
-    """
-    class Meta:
-        verbose_name = _('survey cover')
-        verbose_name_plural = _('survey covers')
 
 
 class Answer(models.Model):

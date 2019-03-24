@@ -3,7 +3,7 @@ import operator
 
 from django.db import models
 from django.db.models import Q
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
@@ -80,6 +80,9 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
 
     def get_absolute_url(self):
         return reverse('products:detail', args=[str(self.slug)])
+
+    def get_lazy_absolute_url(self):
+        return reverse_lazy('products:detail', args=[str(self.slug)])
 
     def search(self, query, *args, **kwargs):
         results = Product.objects.published()

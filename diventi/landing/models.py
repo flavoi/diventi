@@ -4,7 +4,7 @@ from django.conf import settings
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, DiventiCoverModel
+from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, FeaturedModel
 
 
 class PresentationManager(models.Manager):
@@ -22,12 +22,12 @@ class PresentationManager(models.Manager):
         return active_presentation
 
 
-class Presentation(DiventiCoverModel):
+class Presentation(DiventiImageModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     projects_description = models.TextField(blank=True, verbose_name=_('projects description'))
-    cover = models.ImageField(blank=True, upload_to='landing/', verbose_name=_('cover'))
+    featured_link = models.CharField(max_length=150, verbose_name=_('featured link'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
     
     objects = PresentationManager()

@@ -1,10 +1,14 @@
+from django import forms
 from django.contrib import admin
-
-from diventi.core.admin import DiventiTranslationAdmin, deactivate
+from django.contrib.sites.models import Site
+from django.utils.translation import gettext_lazy as _
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
+from diventi.core.admin import DiventiTranslationAdmin, deactivate
+
 from .models import Presentation, Feature
+from .forms import PresentationForm
 
 
 class FeatureInline(TranslationStackedInline):
@@ -14,9 +18,19 @@ class FeatureInline(TranslationStackedInline):
 
 
 class PresentationAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'active']    
+    list_display = ['title', 'image_tag', 'featured_link', 'active']
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('active', )
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'image', 'featured_link', 'abstract', 'description', 'projects_description'),
+        }),
+    )  
     inlines = [        
         FeatureInline,
     ]
+    actions = [deactivate]
+    form = PresentationForm
 
 admin.site.register(Presentation, PresentationAdmin)

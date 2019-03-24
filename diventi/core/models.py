@@ -167,3 +167,43 @@ class DiventiCoverModel(DiventiImageModel):
 
     class Meta:
         abstract = True
+
+
+class FeaturedModelQuerySet(models.QuerySet):
+
+    # Get the featured object that can be selected to appear on the landing page 
+    def featured(self):
+        try:
+            featured_model = self.get(featured=True)            
+        except self.model.DoesNotExist:
+            # Fail silently, return nothing
+            featured_model = self.none() 
+        except self.model.MultipleObjectsReturned:
+            msg = _('Multiple featured objects returned. Please fix!')
+            raise self.model.MultipleObjectsReturned(msg)  
+        return featured_model
+
+
+class FeaturedModelManager(models.Manager):
+
+    def get_queryset(self):
+        return FeaturedModelQuerySet(self.model, using=self._db)
+
+    def featured(self):
+        return self.get_queryset().featured()
+
+
+class FeaturedModel(models.Model):
+    """
+    An abstract base class that includes a featured boolean field that
+    
+    """
+    featured = models.BooleanField(default=False, verbose_name=_('featured'))
+
+    objects = FeaturedModelManager()
+
+    class Meta:
+        abstract = True
+
+
+

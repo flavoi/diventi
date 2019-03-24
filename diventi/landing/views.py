@@ -24,7 +24,7 @@ def landing(request):
     presentation = Presentation.objects.active()
     authors = DiventiUser.objects.authors()
     featured_product = Product.objects.featured()
-    products = Product.objects.published() 
+    products = Product.objects.published()
     registration_form = DiventiUserInitForm()
 
     if request.method == 'POST':
@@ -60,7 +60,7 @@ def landing(request):
 
 
 class PresentationDetailView(DetailView):
-    """ Renders an instance of the landing page.. """
+    """ Renders an instance of the landing page. """
 
     model = Presentation
     context_object_name = 'presentation'

@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import mark_safe
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.template.defaultfilters import truncatechars
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import TimeStampedModel, PublishableModel, DiventiCoverModel, DiventiImageModel
+from diventi.core.models import TimeStampedModel, PublishableModel, DiventiCoverModel, DiventiImageModel, FeaturedModel, FeaturedModelQuerySet
 from diventi.accounts.models import DiventiUser
 
 
@@ -69,7 +69,7 @@ class QuestionChoice(models.Model):
         return self.title
 
 
-class SurveyQuerySet(models.QuerySet):
+class SurveyQuerySet(FeaturedModelQuerySet):
     
     # Get the list of published surveys
     def published(self):
@@ -112,7 +112,7 @@ class Outcome(models.Model):
         return self.title
 
 
-class Survey(TimeStampedModel, PublishableModel, DiventiImageModel):
+class Survey(TimeStampedModel, PublishableModel, DiventiImageModel, FeaturedModel):
     """
         A collection of questions and answers centered around a specifi title.
     """
@@ -131,8 +131,14 @@ class Survey(TimeStampedModel, PublishableModel, DiventiImageModel):
     def __str__(self):
         return self.title
 
+    def class_name(self):
+        return _('survey')
+
     def get_absolute_url(self):
         return reverse('feedbacks:answers', args=[str(self.slug)])
+
+    def get_lazy_absolute_url(self):
+        return reverse_lazy('feedbacks:questions', args=[str(self.slug)])
 
     def get_question_groups(self):
         return mark_safe("<br>".join([s.__str__() for s in self.question_groups.all()]))

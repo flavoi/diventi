@@ -7,7 +7,7 @@
 
 {% block bodyclass %}landing-page{% endblock bodyclass %}
 
-{% block pageheaderimage %}{% if presentation.cover %}{{ presentation.image }}{% endif %}{% endblock pageheaderimage %}
+{% block pageheaderimage %}{% if presentation.image %}{{ presentation.image }}{% endif %}{% endblock pageheaderimage %}
 
 {% block pageheadercontent %}
     <div class="container">
@@ -16,8 +16,8 @@
                 <h1 class="title">{{ presentation.title|title }}.</h1>
                 <h4>{{ presentation.abstract|striptags }}</h4>
                 <br>
-                {% if featured_product %}
-                    <a href="{% url 'products:detail' featured_product.slug %}" class="btn btn-danger btn-raised btn-lg">
+                {% if presentation.featured_link %}
+                    <a href="{{ presentation.featured_link }}" class="btn btn-danger btn-raised btn-lg">
                         {% trans "Find out more" %}
                     </a>
                 {% endif %}

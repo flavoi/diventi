@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced homebrew: an experiental app to write papers
 - Introduced feedbacks: an app that automates the creation of surveys
+- Introduced a primary link dynamic field that pre-populated with featured objects accross the project.
 - Upgraded icons to fontawesome v5.6.3
 - Upgrade material kit to v2.1.1
 

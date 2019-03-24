@@ -27,7 +27,8 @@ class Presentation(DiventiImageModel):
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     projects_description = models.TextField(blank=True, verbose_name=_('projects description'))
-    featured_link = models.CharField(max_length=150, verbose_name=_('featured link'))
+    featured_link = models.CharField(blank=True, max_length=150, verbose_name=_('featured link'))
+    featured_label = models.CharField(blank=True, max_length=50, verbose_name=_('featured label'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
     
     objects = PresentationManager()

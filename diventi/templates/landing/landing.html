@@ -18,7 +18,11 @@
                 <br>
                 {% if presentation.featured_link %}
                     <a href="{{ presentation.featured_link }}" class="btn btn-danger btn-raised btn-lg">
-                        {% trans "Find out more" %}
+                        {% if presentation.featured_label %}
+                            {{ presentation.featured_label }} 
+                        {% else %} 
+                            {% trans "Find out more" %}
+                        {% endif %}
                     </a>
                 {% endif %}
             </div>

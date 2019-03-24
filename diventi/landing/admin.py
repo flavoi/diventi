@@ -24,7 +24,7 @@ class PresentationAdmin(DiventiTranslationAdmin):
             'fields': ('active', )
         }),
         (_('Editing'), {
-            'fields': ('title', 'image', 'featured_link', 'abstract', 'description', 'projects_description'),
+            'fields': ('title', 'image', 'featured_link', 'featured_label', 'abstract', 'description', 'projects_description'),
         }),
     )  
     inlines = [        

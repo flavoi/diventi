@@ -5,7 +5,7 @@ from .models import Presentation, Feature
 
 @register(Presentation)
 class PresentationTranslationOptions(TranslationOptions):
-    fields = ('title', 'abstract', 'description', 'projects_description', 'label')
+    fields = ('title', 'abstract', 'description', 'projects_description', 'label', 'featured_label')
 
 
 @register(Feature)

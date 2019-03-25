@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-25 09:05+0100\n"
+"POT-Creation-Date: 2019-03-25 09:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -682,12 +682,16 @@ msgid "featured label"
 msgstr "in primo piano"
 
 #: diventi/landing/models.py:33
-msgid "left header"
-msgstr "testatina sinistra"
+msgid "standard left header"
+msgstr "testatina sinistra normale"
 
 #: diventi/landing/models.py:34
-msgid "centered header"
-msgstr "testatina centrale"
+msgid "survey centered header"
+msgstr "testatina con sondaggio centrale"
+
+#: diventi/landing/models.py:36
+msgid "template"
+msgstr "modello"
 
 #: diventi/landing/models.py:45
 msgid "presentation"
@@ -1303,15 +1307,6 @@ msgstr "le tue risposte"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
-#: diventi/templates/landing/centered_header.html:17
-msgid "Name"
-msgstr "Nome"
-
-#: diventi/templates/landing/centered_header.html:22
-#: diventi/templates/landing/left_header.html:11
-msgid "Find out more"
-msgstr "Scopri di più"
-
 #: diventi/templates/landing/landing.html:57
 msgid "Our projects"
 msgstr "I nostri progetti"
@@ -1347,6 +1342,15 @@ msgstr "Registrati per saperne di più e accedere ai contenuti."
 #: diventi/templates/landing/search_results.html:36
 msgid "End of results"
 msgstr "Fine dei risultati"
+
+#: diventi/templates/landing/standard_left_header.html:11
+#: diventi/templates/landing/survey_centered_header.html:22
+msgid "Find out more"
+msgstr "Scopri di più"
+
+#: diventi/templates/landing/survey_centered_header.html:17
+msgid "Name"
+msgstr "Nome"
 
 #: diventi/templates/navigation.html:69
 msgid "Enter the control panel"
@@ -1443,9 +1447,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "diventi card - A4"
 #~ msgstr "carta diventi - A4"
-
-#~ msgid "template"
-#~ msgstr "modello"
 
 #~ msgid "paper"
 #~ msgstr "documento"

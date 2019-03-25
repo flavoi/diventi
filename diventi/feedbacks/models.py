@@ -90,6 +90,12 @@ class SurveyQuerySet(FeaturedModelQuerySet):
         survey = self.prefetch_related('answers')
         return survey
 
+    # Fetch the featured survey that is also published
+    def featured(self):
+        survey = super(SurveyQuerySet, self).featured()
+        survey = survey.filter(published=True)
+        return survey
+
 
 class Outcome(models.Model):
     """

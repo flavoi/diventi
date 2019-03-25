@@ -69,14 +69,25 @@ class AnswerListView(ListView):
         return context
 
 
-@login_required
+class AnswerListViewByName(AnswerListView):
+
+    def get_queryset(self):
+        qs = super(AnswerListView, self).get_queryset()
+        slug = self.kwargs.get('slug', None)
+        author_name = self.kwargs.get('author_name', None)
+        survey = Survey.objects.published().get(slug=slug)
+        qs = qs.filter(survey=survey)
+        qs = qs.filter(author_name=author_name)
+        return qs
+
+
 def survey_questions(request, slug):   
 
     survey = Survey.objects.published().get(slug=slug)
     question_groups = survey.question_groups.all()
     questions = Question.objects.filter(group__in=(question_groups)).order_by('group__order_index')
 
-    user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
+    user_has_answered = Answer.objects.filter(author_name=request.user, survey=survey).exists()
     if user_has_answered:
         return redirect(reverse('feedbacks:answers', args=[slug,]))
 
@@ -89,20 +100,34 @@ def survey_questions(request, slug):
             'survey': survey
         } for question in questions]
 
+    author_name = None
+    if request.method == 'GET':       
+        author_name = request.GET.get('author_name', None)
+        if author_name is not None:
+            for question in question_data: 
+                question.update({'author_name': author_name,}) 
+
     formset = DiventiAnswerFormSet(request.POST or None, initial=question_data)
 
     if request.method == 'POST':
         if formset.is_valid():
             for form in formset:
-                form.save()
+                form.save(request)
             messages.success(request, _('Your survey has been saved!'))
-            return redirect(reverse('feedbacks:answers', args=[slug,]))              
+            author = request.session.get('author', None)
+            del request.session['author']
+            if author is not None:
+                return redirect(reverse('feedbacks:answers', args=[slug,]))
+            elif author_name is not None:
+                return redirect(reverse('feedbacks:answers-name', args=[slug, author_name]))
+            messages.warning(request, _('There was a problem redirecting to your results.'))
         else:
             messages.warning(request, _('Please, double check your answers below.'))
 
     template_name = 'feedbacks/answer_form.html'
     context = {
         'survey': survey,
-        'formset': formset
+        'formset': formset,
+        'author_name': author_name,
     }
     return render(request, template_name, context)    

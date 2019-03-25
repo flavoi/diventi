@@ -14,6 +14,8 @@ from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
 from diventi.blog.models import Article
+from diventi.feedbacks.forms import FeaturedSurveyInitForm
+from diventi.feedbacks.models import Survey, Answer
 
 
 def landing(request):
@@ -25,7 +27,7 @@ def landing(request):
     authors = DiventiUser.objects.authors()
     featured_product = Product.objects.featured()
     products = Product.objects.published()
-    registration_form = DiventiUserInitForm()
+    featured_survey = Survey.objects.featured().get()
 
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
@@ -39,11 +41,18 @@ def landing(request):
         return redirect('accounts:signup')
     else:
         registration_form = DiventiUserInitForm()
+        featured_survey_data = {
+            'survey': featured_survey.id,
+        }
+        if request.user.is_authenticated:
+            featured_survey_data.update({'author_name': request.user.get_full_name()})
+        featured_survey_form = FeaturedSurveyInitForm(initial = featured_survey_data)
 
     context = {   
         'presentation': presentation,
         'registration_form': registration_form,
         'featured_product': featured_product,
+        'featured_survey_form': featured_survey_form,
         'products': products,
         'authors': authors,
     }

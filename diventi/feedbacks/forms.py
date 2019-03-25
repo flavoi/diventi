@@ -1,6 +1,8 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import AnonymousUser
 
-from .models import Answer, QuestionChoice
+from .models import Survey, Answer, QuestionChoice
 
 from cuser.middleware import CuserMiddleware
 
@@ -11,10 +13,12 @@ class AnswerForm(forms.ModelForm):
 
     class Meta:
         model = Answer
-        fields = ('survey', 'question', 'content',)        
+        fields = ('survey', 'question', 'content', 'author', 'author_name')        
         widgets = {
             'survey': forms.HiddenInput(),
-            'question': forms.HiddenInput(),            
+            'question': forms.HiddenInput(),
+            'author': forms.HiddenInput(), 
+            'author_name': forms.HiddenInput(),    
             'content': forms.Textarea(attrs={'class':'form-control'},),
         }
 
@@ -36,11 +40,22 @@ class AnswerForm(forms.ModelForm):
         self.fields['group_title'].widget = forms.HiddenInput()
         self.fields['group_description'].widget = forms.HiddenInput()
 
-    def save(self, commit=True):
+    def save(self, request, commit=True):
         m = super(AnswerForm, self).save(commit=False)
         user = CuserMiddleware.get_user()
-        m.author_name = user.get_full_name()
-        m.author = user
+        
+        if user.is_anonymous:
+            m.author = None
+        elif user.is_superuser:            
+            if m.author_name is None:
+                m.author = user
+                m.author_name = user.get_full_name()
+            else:
+                m.author = None
+        else:
+            m.author = user
+            m.author_name = user.get_full_name()
+        request.session['author'] = m.author # Returns the author to the view
         choice = self.cleaned_data['content']
         question = self.cleaned_data['question']
         choices = self.question.choices.all()
@@ -58,5 +73,13 @@ class AnswerForm(forms.ModelForm):
         return self.closed
 
 
+class FeaturedSurveyInitForm(forms.ModelForm):
 
-
+    class Meta:
+        model = Answer
+        fields = ('survey', 'author_name',)
+        widgets = {
+            'survey': forms.HiddenInput(),
+            'author_name': forms.TextInput(attrs={'class':'form-control', 'placeholder': _('Name')},),
+        }
+        

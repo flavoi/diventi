@@ -174,7 +174,7 @@ class FeaturedModelQuerySet(models.QuerySet):
     # Get the featured object that can be selected to appear on the landing page 
     def featured(self):
         try:
-            featured_model = self.get(featured=True)            
+            featured_model = self.filter(featured=True)            
         except self.model.DoesNotExist:
             # Fail silently, return nothing
             featured_model = self.none() 

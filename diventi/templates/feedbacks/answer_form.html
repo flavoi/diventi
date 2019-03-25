@@ -19,7 +19,8 @@
     <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
             <h2 class="title">{{ survey.title }}</h2>
-            <h4 class="description">{{ survey.description }}</h4>                                     
+            <h4 class="description">{{ survey.description }}</h4>
+            <h4 class="description">{% trans "You are answering as" %} <b>{{ author_name }}</b></h4>                                         
         </div>
     </div>
 </div>
@@ -35,6 +36,8 @@
                 {% csrf_token %}
                 {{ formset.management_form }}
                 {% for form in formset %}
+                    
+                    {{ form.author_name }}
 
                     {% ifchanged form.group_title.value %}
                     <div class="col-12">

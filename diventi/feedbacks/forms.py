@@ -35,27 +35,18 @@ class AnswerForm(forms.ModelForm):
             else:
                 self.set_closed(closed=False)
                 self.fields['content'].label = self.question
-
         self.fields['survey'].widget = forms.HiddenInput()
         self.fields['group_title'].widget = forms.HiddenInput()
         self.fields['group_description'].widget = forms.HiddenInput()
 
-    def save(self, request, commit=True):
+    def save(self, commit=True):
         m = super(AnswerForm, self).save(commit=False)
-        user = CuserMiddleware.get_user()
-        
+        user = CuserMiddleware.get_user()       
         if user.is_anonymous:
             m.author = None
-        elif user.is_superuser:            
-            if m.author_name is None:
-                m.author = user
-                m.author_name = user.get_full_name()
-            else:
-                m.author = None
         else:
             m.author = user
             m.author_name = user.get_full_name()
-        request.session['author'] = m.author # Returns the author to the view
         choice = self.cleaned_data['content']
         question = self.cleaned_data['question']
         choices = self.question.choices.all()
@@ -74,6 +65,13 @@ class AnswerForm(forms.ModelForm):
 
 
 class FeaturedSurveyInitForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(FeaturedSurveyInitForm, self).__init__(*args, **kwargs)
+        user = CuserMiddleware.get_user()       
+        if user.is_authenticated:
+            self.fields['author_name'].inital = user.get_full_name()
+            self.fields['author_name'].widget.attrs['readonly'] = True
 
     class Meta:
         model = Answer

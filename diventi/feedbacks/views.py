@@ -36,15 +36,20 @@ class AnswerListView(ListView):
         qs = super(AnswerListView, self).get_queryset()
         user = CuserMiddleware.get_user()
         slug = self.kwargs.get('slug', None)
+        author_name = self.kwargs.get('author_name', None)
         survey = Survey.objects.published().get(slug=slug)
         qs = qs.filter(survey=survey)
-        qs = qs.filter(author=user)
+        if user.is_authenticated:
+            qs = qs.filter(author=user)
+        else:
+            qs = qs.filter(author_name=author_name)
         qs = qs.select_related('question__group')
         return qs
 
     def get_context_data(self, **kwargs):
         context = super(AnswerListView, self).get_context_data(**kwargs)
         slug = self.kwargs.get('slug', None)
+        author_name = self.kwargs.get('author_name', None)
         survey = Survey.objects.published().get(slug=slug)    
         outcome = survey.outcome
         if outcome is not None:
@@ -65,7 +70,8 @@ class AnswerListView(ListView):
         else:
             answers_outcome = None
         context['survey'] = survey
-        context['answers_outcome'] = answers_outcome 
+        context['answers_outcome'] = answers_outcome
+        context['author_name'] = author_name
         return context
 
 
@@ -99,28 +105,26 @@ def survey_questions(request, slug):
             'question': question, 
             'survey': survey
         } for question in questions]
-
-    author_name = None
-    if request.method == 'GET':       
-        author_name = request.GET.get('author_name', None)
-        if author_name is not None:
-            for question in question_data: 
-                question.update({'author_name': author_name,}) 
+      
+    author_name = request.GET.get('author_name', None)
+    if author_name is not None:
+        for question in question_data: 
+            question.update({'author_name': author_name,}) 
 
     formset = DiventiAnswerFormSet(request.POST or None, initial=question_data)
 
     if request.method == 'POST':
         if formset.is_valid():
             for form in formset:
-                form.save(request)
+                form.save()
             messages.success(request, _('Your survey has been saved!'))
-            author = request.session.get('author', None)
-            del request.session['author']
-            if author is not None:
+            print(author_name)
+            if request.user.is_authenticated:
                 return redirect(reverse('feedbacks:answers', args=[slug,]))
             elif author_name is not None:
-                return redirect(reverse('feedbacks:answers-name', args=[slug, author_name]))
-            messages.warning(request, _('There was a problem redirecting to your results.'))
+                return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
+            else:
+                messages.warning(request, _('There was a problem redirecting to your results.'))
         else:
             messages.warning(request, _('Please, double check your answers below.'))
 

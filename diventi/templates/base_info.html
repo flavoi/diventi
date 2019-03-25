@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block pageheader %}
 <div class="page-header header-filter" style="background-image: url('{% block background %}{% endblock background %}'); background-size: cover; background-position: top center;">
     <div class="container">
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto text-center">
+                <img class="img-fluid" style="max-width: 420px;" src="{% static 'brand/diventi-logo-transparent-white.png' %}" />
                 <h2 class="title">{% block pageheader_title %}{% endblock pageheader_title %}</h2>
                 <h4>{% block pageheader_content %}{% endblock pageheader_content %}</h4>
             </div>

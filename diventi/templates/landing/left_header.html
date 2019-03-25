@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">                
+            <h1 class="title">{{ presentation.title|title }}</h1>
+            <h4>{{ presentation.abstract|striptags }}</h4>
+            <br>
+            {% if presentation.featured_link %}
+                <a href="{{ presentation.featured_link }}" class="btn btn-danger btn-raised btn-lg">
+                    {{ presentation.featured_label|default:_("Find out more") }} 
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

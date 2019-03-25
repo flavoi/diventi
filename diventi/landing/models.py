@@ -29,6 +29,11 @@ class Presentation(DiventiImageModel):
     projects_description = models.TextField(blank=True, verbose_name=_('projects description'))
     featured_link = models.CharField(blank=True, max_length=150, verbose_name=_('featured link'))
     featured_label = models.CharField(blank=True, max_length=50, verbose_name=_('featured label'))
+    TEMPLATE_CHOICES = (
+        ('left_header.html', _('left standard header')),
+        ('centered_header.html', _('centered standard header')),
+    )
+    template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50)
     active = models.BooleanField(default=False, verbose_name=_('active'))
     
     objects = PresentationManager()

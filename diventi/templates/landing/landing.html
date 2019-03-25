@@ -10,24 +10,9 @@
 {% block pageheaderimage %}{% if presentation.image %}{{ presentation.image }}{% endif %}{% endblock pageheaderimage %}
 
 {% block pageheadercontent %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">                
-                <h1 class="title">{{ presentation.title|title }}.</h1>
-                <h4>{{ presentation.abstract|striptags }}</h4>
-                <br>
-                {% if presentation.featured_link %}
-                    <a href="{{ presentation.featured_link }}" class="btn btn-danger btn-raised btn-lg">
-                        {% if presentation.featured_label %}
-                            {{ presentation.featured_label }} 
-                        {% else %} 
-                            {% trans "Find out more" %}
-                        {% endif %}
-                    </a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+    {% with "landing/"|add:presentation.template as template_name %}
+    {% include template_name %}
+    {% endwith %}
 {% endblock pageheadercontent %}
 
 {% block maincontainer %}

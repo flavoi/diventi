@@ -21,7 +21,7 @@ class PresentationAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'image_tag', 'featured_link', 'active']
     fieldsets = (
         (_('Management'), {
-            'fields': ('active', )
+            'fields': ('active', 'template',)
         }),
         (_('Editing'), {
             'fields': ('title', 'image', 'featured_link', 'featured_label', 'abstract', 'description', 'projects_description'),

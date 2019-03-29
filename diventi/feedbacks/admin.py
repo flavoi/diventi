@@ -46,12 +46,12 @@ class OutcomeAdmin(DiventiTranslationAdmin):
 
 
 class SurveyAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'get_question_groups', 'published', 'publication_date', 'featured']
+    list_display = ['title', 'image_tag', 'get_question_groups', 'published', 'publication_date', 'featured', 'public']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'featured',)
+            'fields': ('published', 'featured', 'public')
         }),
         (_('Editing'), {
             'fields': ('title', 'image', 'description', 'question_groups', 'outcome', 'slug', 'publication_date'),

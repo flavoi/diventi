@@ -1,19 +1,7 @@
-"""diventi URL Configuration
+""" Diventi URL Configuration """
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
-from django.conf.urls import url, include
+from django.conf.urls import url
+from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
@@ -34,12 +22,12 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
-    url(r'^', include('diventi.landing.urls', namespace='landing')),
-    url(_(r'^control-panel/'), admin.site.urls),
-    url(_(r'^accounts/'), include('diventi.accounts.urls', namespace='accounts')),
-    url(_(r'^blog/'), include('diventi.blog.urls', namespace='blog')),
-    url(_(r'^projects/'), include('diventi.products.urls', namespace='products')),
-    url(_(r'^comments/'), include('diventi.comments.urls', namespace='comments')),
-    url(r'^ratings/', include('star_ratings.urls', namespace='ratings',)),
-    url(_(r'^feedbacks/'), include('diventi.feedbacks.urls', namespace='feedbacks')),
+    path('', include('diventi.landing.urls', namespace='landing')),
+    path(_('control-panel/'), admin.site.urls),
+    path(_('accounts/'), include('diventi.accounts.urls', namespace='accounts')),
+    path(_('blog/'), include('diventi.blog.urls', namespace='blog')),
+    path(_('projects/'), include('diventi.products.urls', namespace='products')),
+    path(_('comments/'), include('diventi.comments.urls', namespace='comments')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings',)),
+    path(_('feedbacks/'), include('diventi.feedbacks.urls', namespace='feedbacks')),
 )

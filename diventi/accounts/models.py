@@ -3,12 +3,10 @@ import operator
 
 from django.db import models
 from django.db.models import Q, Count, Sum
-from django.contrib.auth.models import AbstractUser, UserManager
-from django.contrib.auth import models as auth_models
 from django.urls import reverse_lazy
-from django.contrib.auth.models import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser, UserManager
 
 from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
@@ -38,29 +36,7 @@ class DiventiUserQuerySet(models.QuerySet):
         return self.values('language').annotate(total=Count('email')).order_by('language')
 
 
-class DiventiUserManager(BaseUserManager):
-
-    def _create_user(self, email, password, **extra_fields):
-        """
-        Creates and saves a User with the given email and password.
-        """
-        if not email:
-            raise ValueError(_('The email must be set'))
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.set_password(password)
-        user.save()
-        return user
-
-    def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError(_('Superuser must have is_staff=True.'))
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError(_('Superuser must have is_superuser=True.'))
-        return self._create_user(email, password, **extra_fields)
+class DiventiUserManager(UserManager):
 
     def get_queryset(self):
         return DiventiUserQuerySet(self.model, using=self._db)
@@ -126,8 +102,7 @@ class Role(Element):
         verbose_name_plural = _('Roles')
         
 
-class DiventiUser(AbstractUser): 
-    email = models.EmailField(unique=True, verbose_name=_('email'))
+class DiventiUser(AbstractUser):
     language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
     has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('subscriber status'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
@@ -137,10 +112,8 @@ class DiventiUser(AbstractUser):
     role = models.ForeignKey(Role, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('role'))
     achievements = models.ManyToManyField(Achievement, related_name='users')
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-    objects = DiventiUserManager()
 
+    objects = DiventiUserManager()
 
     class Meta:
         verbose_name = _('User')

@@ -89,13 +89,26 @@ class AnswerListViewByName(AnswerListView):
 
 def survey_questions(request, slug):   
 
+    print(slug)
     survey = Survey.objects.published().get(slug=slug)
+    author_name = request.GET.get('author_name', None)
+
+    if survey.public:
+        user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
+    else:
+        if request.user.is_authenticated:
+            author_name = request.user.get_full_name()
+            user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
+        else:
+            request.session['show_login_form'] = 1
+            messages.warning(request, _('You should sign in to access that survey.'))
+            return redirect(reverse('landing:home'))
+
+    if user_has_answered:
+        return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
+
     question_groups = survey.question_groups.all()
     questions = Question.objects.filter(group__in=(question_groups)).order_by('group__order_index')
-
-    user_has_answered = Answer.objects.filter(author_name=request.user, survey=survey).exists()
-    if user_has_answered:
-        return redirect(reverse('feedbacks:answers', args=[slug,]))
 
     DiventiAnswerFormSet = formset_factory(AnswerForm, max_num=1)
     
@@ -103,14 +116,10 @@ def survey_questions(request, slug):
             'group_title': question.group.title,
             'group_description': question.group.description,
             'question': question, 
-            'survey': survey
+            'survey': survey,
+            'author_name': author_name,
         } for question in questions]
       
-    author_name = request.GET.get('author_name', None)
-    if author_name is not None:
-        for question in question_data: 
-            question.update({'author_name': author_name,}) 
-
     formset = DiventiAnswerFormSet(request.POST or None, initial=question_data)
 
     if request.method == 'POST':
@@ -118,13 +127,7 @@ def survey_questions(request, slug):
             for form in formset:
                 form.save()
             messages.success(request, _('Your survey has been saved!'))
-            print(author_name)
-            if request.user.is_authenticated:
-                return redirect(reverse('feedbacks:answers', args=[slug,]))
-            elif author_name is not None:
-                return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
-            else:
-                messages.warning(request, _('There was a problem redirecting to your results.'))
+            return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
         else:
             messages.warning(request, _('Please, double check your answers below.'))
 

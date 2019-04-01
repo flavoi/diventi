@@ -1283,7 +1283,7 @@ msgstr "Mostra le risposte"
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
 msgid "You are answering as"
-msgstr "Hai risposto come"
+msgstr "Stai rispondendo come"
 
 #: diventi/templates/feedbacks/answer_form.html:33
 msgid "Survey"

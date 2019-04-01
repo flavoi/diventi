@@ -12,8 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced homebrew: an experiental app to write papers
 - Introduced feedbacks: an app that automates the creation of surveys
 - Introduced a primary link dynamic field that pre-populated with featured objects accross the project.
+- Upgraded django to v2.1.
 - Upgraded icons to fontawesome v5.6.3
-- Upgrade material kit to v2.1.1
+- Upgrade material kit to v2.1.7
 
 ### Changed
 - Enabled additional fieldsets for blog admin

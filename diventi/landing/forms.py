@@ -17,7 +17,6 @@ class PresentationForm(forms.ModelForm):
             LINK_CHOICES.update([(featured_product.get_lazy_absolute_url(), '%s/%s' % (featured_product.class_name(), featured_product))])
         featured_survey = Survey.objects.featured()
         if featured_survey:
-            featured_survey = featured_survey.get()
             LINK_CHOICES.update([(featured_survey.get_lazy_absolute_url(), '%s/%s' % (featured_survey.class_name(), featured_survey))])
         self.fields['featured_link'].widget = forms.Select(
             choices = LINK_CHOICES

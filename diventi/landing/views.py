@@ -27,7 +27,7 @@ def landing(request):
     authors = DiventiUser.objects.authors()
     featured_product = Product.objects.featured()
     products = Product.objects.published()
-    featured_survey = Survey.objects.featured().get()
+    featured_survey = Survey.objects.featured()
 
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
@@ -42,7 +42,7 @@ def landing(request):
     else:
         registration_form = DiventiUserInitForm()
         featured_survey_data = {
-            'survey': featured_survey.id,
+            'survey': featured_survey,
         }
         if request.user.is_authenticated:
             featured_survey_data.update({'author_name': request.user.get_full_name()})

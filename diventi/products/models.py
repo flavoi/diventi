@@ -7,6 +7,8 @@ from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from cuser.middleware import CuserMiddleware
+
 from .fields import ProtectedFileField
 
 from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category
@@ -16,7 +18,11 @@ class ProductQuerySet(models.QuerySet):
     
     # Get all the published products 
     def published(self):
-        products = self.filter(published=True)
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            products = self
+        else:
+            products = self.filter(published=True)
         return products
 
     # Get the featured product that appears on the landing page 

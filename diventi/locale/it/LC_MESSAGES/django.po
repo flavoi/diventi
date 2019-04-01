@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-29 08:03+0100\n"
+"POT-Creation-Date: 2019-04-01 22:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,37 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:161
+#: config/settings/base.py:156
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:162
+#: config/settings/base.py:157
 msgid "English"
 msgstr "Inglese"
 
-#: config/urls.py:38
-msgid "^control-panel/"
-msgstr "^pannello-di-controllo/"
+#: config/urls.py:26
+msgid "control-panel/"
+msgstr "pannello-di-controllo/"
 
-#: config/urls.py:39
-msgid "^accounts/"
-msgstr "^profili/"
+#: config/urls.py:27
+msgid "accounts/"
+msgstr "profili/"
 
-#: config/urls.py:40
-msgid "^blog/"
-msgstr "^blog/"
+#: config/urls.py:28
+msgid "blog/"
+msgstr "blog/"
 
-#: config/urls.py:41
-msgid "^projects/"
-msgstr "^progetti/"
+#: config/urls.py:29
+msgid "projects/"
+msgstr "progetti/"
 
-#: config/urls.py:42
-msgid "^comments/"
-msgstr "^commenti/"
+#: config/urls.py:30
+msgid "comments/"
+msgstr "commenti/"
 
-#: config/urls.py:44
-msgid "^feedbacks/"
-msgstr "^riscontri/"
+#: config/urls.py:32
+msgid "feedbacks/"
+msgstr "riscontri/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -92,105 +92,89 @@ msgstr "Il tuo ruolo preferito"
 msgid "Your favourite language"
 msgstr "La tua lingua preferita"
 
-#: diventi/accounts/models.py:48
-msgid "The email must be set"
-msgstr "L'email deve essere valorizzata"
-
-#: diventi/accounts/models.py:60
-msgid "Superuser must have is_staff=True."
-msgstr "Un amministratore deve essere impostato come is_staff=True."
-
-#: diventi/accounts/models.py:62
-msgid "Superuser must have is_superuser=True."
-msgstr "Un amministratore deve essere impostato come is_superuser=True."
-
-#: diventi/accounts/models.py:90
+#: diventi/accounts/models.py:66
 msgid "staff_only"
 msgstr "riservato allo staff"
 
-#: diventi/accounts/models.py:95
+#: diventi/accounts/models.py:71
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:96
+#: diventi/accounts/models.py:72
 #: diventi/templates/accounts/user_customization.html:37
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:102
+#: diventi/accounts/models.py:78
 msgid "Profile picture"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:103
+#: diventi/accounts/models.py:79
 msgid "Profile pictures"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:111
+#: diventi/accounts/models.py:87
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:112
+#: diventi/accounts/models.py:88
 #: diventi/templates/accounts/user_customization.html:52
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:118
+#: diventi/accounts/models.py:94
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:119
+#: diventi/accounts/models.py:95
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:125
+#: diventi/accounts/models.py:101
 msgid "Role"
 msgstr "Ruolo"
 
-#: diventi/accounts/models.py:126
+#: diventi/accounts/models.py:102
 msgid "Roles"
 msgstr "Ruoli"
 
-#: diventi/accounts/models.py:130
-msgid "email"
-msgstr "email"
-
-#: diventi/accounts/models.py:131
+#: diventi/accounts/models.py:106
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:132
+#: diventi/accounts/models.py:107
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:133
+#: diventi/accounts/models.py:108
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:134
+#: diventi/accounts/models.py:109
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:135
+#: diventi/accounts/models.py:110
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:136
+#: diventi/accounts/models.py:111
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:137
+#: diventi/accounts/models.py:112
 msgid "role"
 msgstr "ruolo"
 
-#: diventi/accounts/models.py:146
+#: diventi/accounts/models.py:119
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:147
+#: diventi/accounts/models.py:120
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:160
+#: diventi/accounts/models.py:133
 msgid "account"
 msgstr "profilo"
 
@@ -334,24 +318,24 @@ msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:78 diventi/core/models.py:78
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
-#: diventi/feedbacks/models.py:105 diventi/feedbacks/models.py:125
-#: diventi/landing/models.py:26 diventi/products/models.py:57
+#: diventi/feedbacks/models.py:90 diventi/feedbacks/models.py:110
+#: diventi/landing/models.py:26 diventi/products/models.py:63
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:79
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
-#: diventi/feedbacks/models.py:126 diventi/landing/models.py:28
-#: diventi/products/models.py:59
+#: diventi/feedbacks/models.py:111 diventi/landing/models.py:28
+#: diventi/products/models.py:65
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:80 diventi/products/models.py:65
-#: diventi/products/models.py:119
+#: diventi/blog/models.py:80 diventi/products/models.py:71
+#: diventi/products/models.py:125
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/feedbacks/models.py:163
+#: diventi/blog/models.py:81 diventi/feedbacks/models.py:149
 msgid "content"
 msgstr "contenuto"
 
@@ -359,12 +343,12 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/feedbacks/models.py:127
-#: diventi/products/models.py:60
+#: diventi/blog/models.py:83 diventi/feedbacks/models.py:112
+#: diventi/products/models.py:66
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:84 diventi/feedbacks/models.py:158
+#: diventi/blog/models.py:84 diventi/feedbacks/models.py:144
 msgid "author"
 msgstr "autore"
 
@@ -506,7 +490,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:127 diventi/products/models.py:140
+#: diventi/core/models.py:127 diventi/products/models.py:146
 msgid "Image"
 msgstr "Immagine"
 
@@ -518,11 +502,11 @@ msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 msgid "active"
 msgstr "attiva"
 
-#: diventi/core/models.py:182
+#: diventi/core/models.py:200
 msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
-#: diventi/core/models.py:201 diventi/products/models.py:61
+#: diventi/core/models.py:219 diventi/products/models.py:67
 msgid "featured"
 msgstr "in primo piano"
 
@@ -542,7 +526,7 @@ msgstr "id ordinamento"
 msgid "question group"
 msgstr "gruppo di domande"
 
-#: diventi/feedbacks/models.py:29 diventi/feedbacks/models.py:128
+#: diventi/feedbacks/models.py:29 diventi/feedbacks/models.py:113
 msgid "question groups"
 msgstr "gruppi di domande"
 
@@ -551,7 +535,7 @@ msgid "Questions"
 msgstr "Domande"
 
 #: diventi/feedbacks/models.py:40 diventi/feedbacks/models.py:44
-#: diventi/feedbacks/models.py:160
+#: diventi/feedbacks/models.py:146
 msgid "question"
 msgstr "domanda"
 
@@ -571,93 +555,112 @@ msgstr "scelta"
 msgid "choices"
 msgstr "scelte"
 
-#: diventi/feedbacks/models.py:106
+#: diventi/feedbacks/models.py:91
 msgid "upper score"
 msgstr "esito superiore"
 
-#: diventi/feedbacks/models.py:107
+#: diventi/feedbacks/models.py:92
 msgid "upper outcome"
 msgstr "esito superiore"
 
-#: diventi/feedbacks/models.py:108
+#: diventi/feedbacks/models.py:93
 msgid "medium score"
 msgstr "punteggio medio"
 
-#: diventi/feedbacks/models.py:109
+#: diventi/feedbacks/models.py:94
 msgid "medium outcome"
 msgstr "esito medio"
 
-#: diventi/feedbacks/models.py:110
+#: diventi/feedbacks/models.py:95
 msgid "lower score"
 msgstr "punteggio inferiore"
 
-#: diventi/feedbacks/models.py:111
+#: diventi/feedbacks/models.py:96
 msgid "lower outcome"
 msgstr "esito inferiore"
 
-#: diventi/feedbacks/models.py:114 diventi/feedbacks/models.py:129
+#: diventi/feedbacks/models.py:99 diventi/feedbacks/models.py:114
 msgid "outcome"
 msgstr "esito"
 
-#: diventi/feedbacks/models.py:115
+#: diventi/feedbacks/models.py:100
 msgid "outcomes"
 msgstr "esiti"
 
-#: diventi/feedbacks/models.py:130
+#: diventi/feedbacks/models.py:115
 msgid "public"
-msgstr "pubblicato"
+msgstr "pubblico"
 
-#: diventi/feedbacks/models.py:134 diventi/feedbacks/models.py:141
+#: diventi/feedbacks/models.py:120 diventi/feedbacks/models.py:127
 msgid "survey"
 msgstr "sondaggio"
 
-#: diventi/feedbacks/models.py:135
+#: diventi/feedbacks/models.py:121
 msgid "surveys"
 msgstr "sondaggi"
 
-#: diventi/feedbacks/models.py:151
+#: diventi/feedbacks/models.py:137
 msgid "Question Groups"
 msgstr "Gruppi di domande"
 
-#: diventi/feedbacks/models.py:159
+#: diventi/feedbacks/models.py:145
 msgid "author name"
 msgstr "nome dell'autore"
 
-#: diventi/feedbacks/models.py:166
+#: diventi/feedbacks/models.py:152
 msgid "answer"
 msgstr "risposta"
 
-#: diventi/feedbacks/models.py:167
+#: diventi/feedbacks/models.py:153
 msgid "answers"
 msgstr "risposte"
 
-#: diventi/feedbacks/models.py:176
+#: diventi/feedbacks/models.py:162
 msgid "Score"
 msgstr "Punteggio"
 
-#: diventi/feedbacks/urls.py:10
-msgid "^<slug:slug>/questions/$"
-msgstr "^<slug:slug>/domande/$"
+#: diventi/feedbacks/urls.py:17
+msgid "<slug:slug>/new-submit/"
+msgstr "<slug:slug>/risposte/$"
 
-#: diventi/feedbacks/urls.py:11
-msgid "^<slug:slug>/answers/$"
-msgstr "^<slug:slug>/risposte/$"
+#: diventi/feedbacks/urls.py:18
+msgid "<slug:slug>/questions/"
+msgstr "<slug:slug>/domande/$"
 
-#: diventi/feedbacks/urls.py:12
-msgid "^<slug:slug>/answers/<str:author_name>/$"
-msgstr "^<slug:slug>/risposte/<str:author_name>/$"
+#: diventi/feedbacks/urls.py:19
+msgid "<slug:slug>/questions/<str:author_name>"
+msgstr "<slug:slug>/risposte/<str:author_name>/$"
 
-#: diventi/feedbacks/views.py:103
+#: diventi/feedbacks/urls.py:20
+msgid "<slug:slug>/answers/"
+msgstr "<slug:slug>/risposte/$"
+
+#: diventi/feedbacks/urls.py:21
+msgid "<slug:slug>/answers/<str:author_name>"
+msgstr "<slug:slug>/risposte/<str:author_name>/$"
+
+#: diventi/feedbacks/views.py:102
 msgid "You should sign in to access that survey."
 msgstr "Per rispondere a questo sondaggio devi prima autenticarti."
 
-#: diventi/feedbacks/views.py:128
+#: diventi/feedbacks/views.py:127
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
 
-#: diventi/feedbacks/views.py:131
+#: diventi/feedbacks/views.py:130
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
+
+#: diventi/feedbacks/views.py:146
+msgid "The selected survey doesn't exist or is not published yet."
+msgstr "Il sondaggio selezionato non esiste o non è ancora stato pubblicato."
+
+#: diventi/feedbacks/views.py:161
+msgid ""
+"An other user already picked that name and answered, please choose an other "
+"name."
+msgstr ""
+"Un altro utente ha già utilizzato questo nome, per favore scegline un altro."
 
 #: diventi/landing/apps.py:7
 msgid "Landing"
@@ -671,7 +674,7 @@ msgstr "Non risulta attiva alcuna pagina di destinazione"
 msgid "There must be only one landing page at a time. Please fix!"
 msgstr "Può esistere una sola pagina di destinazione per volta."
 
-#: diventi/landing/models.py:27 diventi/products/models.py:58
+#: diventi/landing/models.py:27 diventi/products/models.py:64
 msgid "abstract"
 msgstr "sommario"
 
@@ -739,74 +742,74 @@ msgstr "Nascondi i prodotti selezionati"
 msgid "Projects"
 msgstr "Progetti"
 
-#: diventi/products/models.py:33
+#: diventi/products/models.py:39
 msgid "Multiple featured products returned. Please fix!"
 msgstr "Trovati molteplici prodotti sponsorizzati. Sistemare!"
 
-#: diventi/products/models.py:51
+#: diventi/products/models.py:57
 msgid "Product category"
 msgstr "Tipo Prodotto"
 
-#: diventi/products/models.py:52
+#: diventi/products/models.py:58
 msgid "Product categories"
 msgstr "Tipi Prodotto"
 
-#: diventi/products/models.py:62
+#: diventi/products/models.py:68
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:63
+#: diventi/products/models.py:69
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:64
+#: diventi/products/models.py:70
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:66
+#: diventi/products/models.py:72
 msgid "available"
 msgstr "disponibile"
 
-#: diventi/products/models.py:67
+#: diventi/products/models.py:73
 msgid "courtesy message"
 msgstr "messaggio di cortesia"
 
-#: diventi/products/models.py:72 diventi/products/models.py:79
-#: diventi/products/models.py:118 diventi/products/models.py:128
-#: diventi/products/models.py:137
+#: diventi/products/models.py:78 diventi/products/models.py:85
+#: diventi/products/models.py:124 diventi/products/models.py:134
+#: diventi/products/models.py:143
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/products/models.py:73
+#: diventi/products/models.py:79
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:112
+#: diventi/products/models.py:118
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:113
+#: diventi/products/models.py:119
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:122
+#: diventi/products/models.py:128
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:123
+#: diventi/products/models.py:129
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:131
+#: diventi/products/models.py:137
 msgid "Characteristic"
 msgstr "Caratteristica"
 
-#: diventi/products/models.py:132
+#: diventi/products/models.py:138
 #: diventi/templates/products/product_detail.html:73
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/products/models.py:141
+#: diventi/products/models.py:147
 msgid "Images"
 msgstr "Immagini"
 
@@ -1278,6 +1281,7 @@ msgid "Show replies"
 msgstr "Mostra le risposte"
 
 #: diventi/templates/feedbacks/answer_form.html:23
+#: diventi/templates/feedbacks/answer_list.html:19
 msgid "You are answering as"
 msgstr "Hai risposto come"
 
@@ -1413,6 +1417,18 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "The email must be set"
+#~ msgstr "L'email deve essere valorizzata"
+
+#~ msgid "Superuser must have is_staff=True."
+#~ msgstr "Un amministratore deve essere impostato come is_staff=True."
+
+#~ msgid "Superuser must have is_superuser=True."
+#~ msgstr "Un amministratore deve essere impostato come is_superuser=True."
+
+#~ msgid "email"
+#~ msgstr "email"
 
 #~ msgid "survey cover"
 #~ msgstr "copertina del sondaggio"

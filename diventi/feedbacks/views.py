@@ -139,7 +139,13 @@ def survey_questions(request, slug, author_name=None):
 
 
 def new_answers_gate(request, slug):
-    survey = Survey.objects.published().get(slug=slug)
+
+    try:
+        survey = Survey.objects.published().get(slug=slug)
+    except Survey.DoesNotExist:
+        messages.warning(request, _('The selected survey doesn\'t exist or is not published yet.'))
+        return redirect(reverse('landing:home'))
+
     author_name = request.GET.get('author_name', None)
     
     user_has_answered = False

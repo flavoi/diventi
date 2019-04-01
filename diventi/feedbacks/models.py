@@ -71,15 +71,6 @@ class QuestionChoice(models.Model):
 
 class SurveyQuerySet(FeaturedModelQuerySet):
     
-    # Get the list of published surveys
-    def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            surveys = self
-        else:
-            surveys = self.filter(published=True)
-        return surveys
-
     # Get the list of published surveys from the most recent to the least 
     def history(self):
         surveys = self.published().order_by('-publication_date')
@@ -88,12 +79,6 @@ class SurveyQuerySet(FeaturedModelQuerySet):
     # Fetch all answers related to a survey
     def answers(self):
         survey = self.prefetch_related('answers')
-        return survey
-
-    # Fetch the featured survey that is also published
-    def featured(self):
-        survey = super(SurveyQuerySet, self).featured()
-        survey = survey.filter(published=True)
         return survey
 
 
@@ -128,6 +113,7 @@ class Survey(TimeStampedModel, PublishableModel, DiventiImageModel, FeaturedMode
     question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys', verbose_name=_('question groups'))
     outcome = models.OneToOneField(Outcome, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('outcome'))
     public = models.BooleanField(verbose_name=_('public'))
+    
     objects = SurveyQuerySet.as_manager()
 
     class Meta:

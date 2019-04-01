@@ -169,12 +169,30 @@ class DiventiCoverModel(DiventiImageModel):
         abstract = True
 
 
-class FeaturedModelQuerySet(models.QuerySet):
+class PublishableModelQuerySet(models.QuerySet):
 
-    # Get the featured object that can be selected to appear on the landing page 
+    # Get self for super users or the published objects for everyone else
+    def published(self):
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            published_model = self
+        else:
+            published_model = self.filter(published=True)
+        return published_model
+
+    # Get just the published objects for everyone
+    def strictly_published(self):
+        published_model = self.filter(published=True) 
+        return published_model
+
+
+class FeaturedModelQuerySet(PublishableModelQuerySet):
+
+    # Get the featured object that can be selected to appear on the landing page
+    # Even super users should not see featured objects if they are not strictly published
     def featured(self):
         try:
-            featured_model = self.filter(featured=True)            
+            featured_model = self.strictly_published().get(featured=True)            
         except self.model.DoesNotExist:
             # Fail silently, return nothing
             featured_model = self.none() 

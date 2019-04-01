@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 22:49+0200\n"
+"POT-Creation-Date: 2019-04-01 23:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -335,7 +335,7 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/feedbacks/models.py:148
+#: diventi/blog/models.py:81 diventi/feedbacks/models.py:149
 msgid "content"
 msgstr "contenuto"
 
@@ -348,7 +348,7 @@ msgstr "hot"
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:84 diventi/feedbacks/models.py:143
+#: diventi/blog/models.py:84 diventi/feedbacks/models.py:144
 msgid "author"
 msgstr "autore"
 
@@ -535,7 +535,7 @@ msgid "Questions"
 msgstr "Domande"
 
 #: diventi/feedbacks/models.py:40 diventi/feedbacks/models.py:44
-#: diventi/feedbacks/models.py:145
+#: diventi/feedbacks/models.py:146
 msgid "question"
 msgstr "domanda"
 
@@ -587,31 +587,35 @@ msgstr "esito"
 msgid "outcomes"
 msgstr "esiti"
 
-#: diventi/feedbacks/models.py:119 diventi/feedbacks/models.py:126
+#: diventi/feedbacks/models.py:115
+msgid "public"
+msgstr "pubblico"
+
+#: diventi/feedbacks/models.py:120 diventi/feedbacks/models.py:127
 msgid "survey"
 msgstr "sondaggio"
 
-#: diventi/feedbacks/models.py:120
+#: diventi/feedbacks/models.py:121
 msgid "surveys"
 msgstr "sondaggi"
 
-#: diventi/feedbacks/models.py:136
+#: diventi/feedbacks/models.py:137
 msgid "Question Groups"
 msgstr "Gruppi di domande"
 
-#: diventi/feedbacks/models.py:144
+#: diventi/feedbacks/models.py:145
 msgid "author name"
 msgstr "nome dell'autore"
 
-#: diventi/feedbacks/models.py:151
+#: diventi/feedbacks/models.py:152
 msgid "answer"
 msgstr "risposta"
 
-#: diventi/feedbacks/models.py:152
+#: diventi/feedbacks/models.py:153
 msgid "answers"
 msgstr "risposte"
 
-#: diventi/feedbacks/models.py:161
+#: diventi/feedbacks/models.py:162
 msgid "Score"
 msgstr "Punteggio"
 
@@ -1278,11 +1282,6 @@ msgstr "Mostra le risposte"
 
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
-msgid "You have answered as"
-msgstr "Hai rispostoo come"
-
-#: diventi/templates/feedbacks/answer_form.html:23
-#: diventi/templates/feedbacks/answer_list.html:19
 msgid "You are answering as"
 msgstr "Hai risposto come"
 
@@ -1297,6 +1296,10 @@ msgstr "invia sondaggio"
 #: diventi/templates/feedbacks/answer_list.html:6
 msgid "Answers"
 msgstr "Risposte"
+
+#: diventi/templates/feedbacks/answer_list.html:19
+msgid "You have answered as"
+msgstr "Hai rispostoo come"
 
 #: diventi/templates/feedbacks/answer_list.html:24
 msgid "Your result is"
@@ -1414,9 +1417,6 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
-
-#~ msgid "public"
-#~ msgstr "pubblico"
 
 #~ msgid "The email must be set"
 #~ msgstr "L'email deve essere valorizzata"

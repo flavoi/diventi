@@ -112,6 +112,7 @@ class Survey(TimeStampedModel, PublishableModel, DiventiImageModel, FeaturedMode
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys', verbose_name=_('question groups'))
     outcome = models.OneToOneField(Outcome, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('outcome'))
+    public = models.BooleanField(verbose_name=_('public'))
     
     objects = SurveyQuerySet.as_manager()
 

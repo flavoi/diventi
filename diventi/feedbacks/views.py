@@ -87,12 +87,10 @@ class AnswerListViewByName(AnswerListView):
         return qs
 
 
-def survey_questions(request, slug):   
+def survey_questions(request, slug, author_name=None):
 
-    print(slug)
     survey = Survey.objects.published().get(slug=slug)
-    author_name = request.GET.get('author_name', None)
-
+    
     if survey.public:
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
     else:
@@ -138,3 +136,25 @@ def survey_questions(request, slug):
         'author_name': author_name,
     }
     return render(request, template_name, context)    
+
+
+def new_answers_gate(request, slug):
+    survey = Survey.objects.published().get(slug=slug)
+    author_name = request.GET.get('author_name', None)
+    
+    user_has_answered = False
+    user_can_submit = False
+
+    if request.user.is_authenticated:
+        user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
+        if user_has_answered:
+            return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
+    else:    
+        user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
+        if user_has_answered:
+            messages.warning(request, _('An other user already picked that name and answered, please choose an other name.'))
+            return redirect(reverse('landing:home'))
+
+    return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
+
+

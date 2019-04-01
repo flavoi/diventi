@@ -144,7 +144,7 @@ class Survey(TimeStampedModel, PublishableModel, DiventiImageModel, FeaturedMode
         return reverse('feedbacks:answers', args=[str(self.slug)])
 
     def get_lazy_absolute_url(self):
-        return reverse_lazy('feedbacks:questions', args=[str(self.slug)])
+        return reverse_lazy('feedbacks:new_answers_gate', args=[str(self.slug)])
 
     def get_question_groups(self):
         return mark_safe("<br>".join([s.__str__() for s in self.question_groups.all()]))

@@ -16,7 +16,7 @@
                 <div class="card">                                        
                     <div class="card-body">
                         <h2 class="card-title text-center">{{ survey.title }}</h2>
-                        <h4 class="description text-center">{% trans "You have answered as" %} <b>{{ author_name }}</b></h4>  
+                        <h4 class="description text-center">{% if answers %}{% trans "You have answered as" %}{% else %}{% trans "You are answering as" %}{% endif %} <b>{{ author_name }}</b></h4>  
                         <div class="row">
                             {% if answers %}
                                 {% if answers_outcome %}
@@ -53,7 +53,7 @@
                                 <div class="col-md-12 mr-auto ml-auto"> 
                                     <div class="text-center">
                                         <h5>{% trans 'You have yet to answer this survey.' %}</h5>
-                                        <a href="{% url 'feedbacks:questions' survey.slug %}" class="btn btn-warning btn-round">
+                                        <a href="{% url 'feedbacks:questions-author' survey.slug author_name %}" class="btn btn-warning btn-round">
                                             {% trans 'Access the questions' %}
                                         </a>
                                     </div>

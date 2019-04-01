@@ -16,7 +16,7 @@ urlpatterns = [
     path('', SurveyListView.as_view(), name='list'),
     path(_('<slug:slug>/new-submit/'), new_answers_gate, name='new_answers_gate'),
     path(_('<slug:slug>/questions/'), survey_questions, name='questions'),
-    path(_('<slug:slug>/questions/<str:author_name>'), survey_questions, name='questions-author'),
+    path(_('<slug:slug>/questions/<str:author_name>/'), survey_questions, name='questions-author'),
     path(_('<slug:slug>/answers/'), AnswerListView.as_view(), name='answers'),
-    path(_('<slug:slug>/answers/<str:author_name>'), AnswerListViewByName.as_view(), name='answers-author'),
+    path(_('<slug:slug>/answers/<str:author_name>/'), AnswerListViewByName.as_view(), name='answers-author'),
 ]

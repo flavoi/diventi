@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 23:04+0200\n"
+"POT-Creation-Date: 2019-04-01 23:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -628,16 +628,16 @@ msgid "<slug:slug>/questions/"
 msgstr "<slug:slug>/domande/$"
 
 #: diventi/feedbacks/urls.py:19
-msgid "<slug:slug>/questions/<str:author_name>"
-msgstr "<slug:slug>/risposte/<str:author_name>/$"
+msgid "<slug:slug>/questions/<str:author_name>/"
+msgstr "<slug:slug>/risposte/<str:author_name>/"
 
 #: diventi/feedbacks/urls.py:20
 msgid "<slug:slug>/answers/"
-msgstr "<slug:slug>/risposte/$"
+msgstr "<slug:slug>/risposte/"
 
 #: diventi/feedbacks/urls.py:21
-msgid "<slug:slug>/answers/<str:author_name>"
-msgstr "<slug:slug>/risposte/<str:author_name>/$"
+msgid "<slug:slug>/answers/<str:author_name>/"
+msgstr "<slug:slug>/risposte/<str:author_name>/"
 
 #: diventi/feedbacks/views.py:106
 msgid "You should sign in to access that survey."
@@ -1299,7 +1299,7 @@ msgstr "Risposte"
 
 #: diventi/templates/feedbacks/answer_list.html:19
 msgid "You have answered as"
-msgstr "Hai rispostoo come"
+msgstr "Hai risposto come"
 
 #: diventi/templates/feedbacks/answer_list.html:24
 msgid "Your result is"

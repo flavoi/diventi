@@ -36,12 +36,12 @@ class AnswerListView(ListView):
         qs = super(AnswerListView, self).get_queryset()
         user = CuserMiddleware.get_user()
         slug = self.kwargs.get('slug', None)
-        author_name = self.kwargs.get('author_name', None)
         survey = Survey.objects.published().get(slug=slug)
         qs = qs.filter(survey=survey)
         if user.is_authenticated:
             qs = qs.filter(author=user)
         else:
+            author_name = self.kwargs.get('author_name', None)
             qs = qs.filter(author_name=author_name)
         qs = qs.select_related('question__group')
         return qs
@@ -49,7 +49,11 @@ class AnswerListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AnswerListView, self).get_context_data(**kwargs)
         slug = self.kwargs.get('slug', None)
-        author_name = self.kwargs.get('author_name', None)
+        user = CuserMiddleware.get_user()
+        if user.is_authenticated:
+            author_name = user.get_full_name()
+        else:
+            author_name = self.kwargs.get('author_name', None)
         survey = Survey.objects.published().get(slug=slug)    
         outcome = survey.outcome
         if outcome is not None:

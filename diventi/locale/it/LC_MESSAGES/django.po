@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 22:27+0200\n"
+"POT-Creation-Date: 2019-04-01 22:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -335,7 +335,7 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/feedbacks/models.py:149
+#: diventi/blog/models.py:81 diventi/feedbacks/models.py:148
 msgid "content"
 msgstr "contenuto"
 
@@ -348,7 +348,7 @@ msgstr "hot"
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:84 diventi/feedbacks/models.py:144
+#: diventi/blog/models.py:84 diventi/feedbacks/models.py:143
 msgid "author"
 msgstr "autore"
 
@@ -535,7 +535,7 @@ msgid "Questions"
 msgstr "Domande"
 
 #: diventi/feedbacks/models.py:40 diventi/feedbacks/models.py:44
-#: diventi/feedbacks/models.py:146
+#: diventi/feedbacks/models.py:145
 msgid "question"
 msgstr "domanda"
 
@@ -587,35 +587,31 @@ msgstr "esito"
 msgid "outcomes"
 msgstr "esiti"
 
-#: diventi/feedbacks/models.py:115
-msgid "public"
-msgstr "pubblico"
-
-#: diventi/feedbacks/models.py:120 diventi/feedbacks/models.py:127
+#: diventi/feedbacks/models.py:119 diventi/feedbacks/models.py:126
 msgid "survey"
 msgstr "sondaggio"
 
-#: diventi/feedbacks/models.py:121
+#: diventi/feedbacks/models.py:120
 msgid "surveys"
 msgstr "sondaggi"
 
-#: diventi/feedbacks/models.py:137
+#: diventi/feedbacks/models.py:136
 msgid "Question Groups"
 msgstr "Gruppi di domande"
 
-#: diventi/feedbacks/models.py:145
+#: diventi/feedbacks/models.py:144
 msgid "author name"
 msgstr "nome dell'autore"
 
-#: diventi/feedbacks/models.py:152
+#: diventi/feedbacks/models.py:151
 msgid "answer"
 msgstr "risposta"
 
-#: diventi/feedbacks/models.py:153
+#: diventi/feedbacks/models.py:152
 msgid "answers"
 msgstr "risposte"
 
-#: diventi/feedbacks/models.py:162
+#: diventi/feedbacks/models.py:161
 msgid "Score"
 msgstr "Punteggio"
 
@@ -639,23 +635,23 @@ msgstr "<slug:slug>/risposte/$"
 msgid "<slug:slug>/answers/<str:author_name>"
 msgstr "<slug:slug>/risposte/<str:author_name>/$"
 
-#: diventi/feedbacks/views.py:102
+#: diventi/feedbacks/views.py:106
 msgid "You should sign in to access that survey."
 msgstr "Per rispondere a questo sondaggio devi prima autenticarti."
 
-#: diventi/feedbacks/views.py:127
+#: diventi/feedbacks/views.py:131
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
 
-#: diventi/feedbacks/views.py:130
+#: diventi/feedbacks/views.py:134
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
 
-#: diventi/feedbacks/views.py:146
+#: diventi/feedbacks/views.py:150
 msgid "The selected survey doesn't exist or is not published yet."
 msgstr "Il sondaggio selezionato non esiste o non è ancora stato pubblicato."
 
-#: diventi/feedbacks/views.py:161
+#: diventi/feedbacks/views.py:165
 msgid ""
 "An other user already picked that name and answered, please choose an other "
 "name."
@@ -1282,6 +1278,11 @@ msgstr "Mostra le risposte"
 
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
+msgid "You have answered as"
+msgstr "Hai rispostoo come"
+
+#: diventi/templates/feedbacks/answer_form.html:23
+#: diventi/templates/feedbacks/answer_list.html:19
 msgid "You are answering as"
 msgstr "Hai risposto come"
 
@@ -1296,10 +1297,6 @@ msgstr "invia sondaggio"
 #: diventi/templates/feedbacks/answer_list.html:6
 msgid "Answers"
 msgstr "Risposte"
-
-#: diventi/templates/feedbacks/answer_list.html:19
-msgid "You have answered as"
-msgstr "Hai rispostoo come"
 
 #: diventi/templates/feedbacks/answer_list.html:24
 msgid "Your result is"
@@ -1417,6 +1414,9 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "public"
+#~ msgstr "pubblico"
 
 #~ msgid "The email must be set"
 #~ msgstr "L'email deve essere valorizzata"

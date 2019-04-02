@@ -44,8 +44,6 @@ def landing(request):
         featured_survey_data = {
             'survey': featured_survey,
         }
-        if request.user.is_authenticated:
-            featured_survey_data.update({'author_name': request.user.get_full_name()})
         featured_survey_form = FeaturedSurveyInitForm(initial = featured_survey_data)
 
     context = {   

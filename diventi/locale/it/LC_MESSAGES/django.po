@@ -621,15 +621,15 @@ msgstr "Punteggio"
 
 #: diventi/feedbacks/urls.py:17
 msgid "<slug:slug>/new-submit/"
-msgstr "<slug:slug>/risposte/$"
+msgstr "<slug:slug>/risposte/"
 
 #: diventi/feedbacks/urls.py:18
 msgid "<slug:slug>/questions/"
-msgstr "<slug:slug>/domande/$"
+msgstr "<slug:slug>/domande/"
 
 #: diventi/feedbacks/urls.py:19
 msgid "<slug:slug>/questions/<str:author_name>/"
-msgstr "<slug:slug>/risposte/<str:author_name>/"
+msgstr "<slug:slug>/domande/<str:author_name>/"
 
 #: diventi/feedbacks/urls.py:20
 msgid "<slug:slug>/answers/"

@@ -49,11 +49,7 @@ class AnswerListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AnswerListView, self).get_context_data(**kwargs)
         slug = self.kwargs.get('slug', None)
-        user = CuserMiddleware.get_user()
-        if user.is_authenticated:
-            author_name = user.get_full_name()
-        else:
-            author_name = self.kwargs.get('author_name', None)
+        author_name = self.kwargs.get('author_name', None)
         survey = Survey.objects.published().get(slug=slug)    
         outcome = survey.outcome
         if outcome is not None:
@@ -99,7 +95,7 @@ def survey_questions(request, slug, author_name=None):
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
     else:
         if request.user.is_authenticated:
-            author_name = request.user.get_full_name()
+            author_name = request.user.get_short_name()
             user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
         else:
             request.session['show_login_form'] = 1

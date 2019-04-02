@@ -159,4 +159,4 @@ class DiventiUser(AbstractUser):
         return results
 
     def __str__(self):
-        return u'{0} ({1})'.format(self.get_full_name(), self.username)
+        return u'{0} ({1})'.format(self.get_short_name(), self.username)

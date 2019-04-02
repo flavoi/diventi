@@ -1,12 +1,14 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from .models import Presentation
 from diventi.products.models import Product
 from diventi.feedbacks.models import Survey
 
 
 class PresentationForm(forms.ModelForm):
 
+    # To do: improve the integration of featured link in modeltranslation
     def __init__(self, *args, **kwargs):
         super(PresentationForm, self).__init__(*args, **kwargs)
         LINK_CHOICES = {
@@ -20,4 +22,4 @@ class PresentationForm(forms.ModelForm):
             LINK_CHOICES.update([(featured_survey.get_lazy_absolute_url(), '%s/%s' % (featured_survey.class_name(), featured_survey))])
         self.fields['featured_link'].widget = forms.Select(
             choices = LINK_CHOICES
-            )
+        )

@@ -46,7 +46,7 @@ class AnswerForm(forms.ModelForm):
             m.author = None
         else:
             m.author = user
-            m.author_name = user.get_full_name()
+            m.author_name = user.get_short_name()
         choice = self.cleaned_data['content']
         question = self.cleaned_data['question']
         choices = self.question.choices.all()
@@ -70,7 +70,7 @@ class FeaturedSurveyInitForm(forms.ModelForm):
         super(FeaturedSurveyInitForm, self).__init__(*args, **kwargs)
         user = CuserMiddleware.get_user()       
         if user.is_authenticated:
-            self.fields['author_name'].inital = user.get_full_name()
+            self.fields['author_name'].initial = user.get_short_name()
             self.fields['author_name'].widget.attrs['readonly'] = True
 
     class Meta:

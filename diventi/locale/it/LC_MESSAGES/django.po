@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 23:18+0200\n"
+"POT-Creation-Date: 2019-04-03 08:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,7 +101,7 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:72
-#: diventi/templates/accounts/user_customization.html:37
+#: diventi/templates/accounts/user_customization.html:39
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -118,7 +118,7 @@ msgid "Cover"
 msgstr "Copertina"
 
 #: diventi/accounts/models.py:88
-#: diventi/templates/accounts/user_customization.html:52
+#: diventi/templates/accounts/user_customization.html:54
 msgid "Covers"
 msgstr "Copertine"
 
@@ -318,14 +318,14 @@ msgstr "Copertine del blog"
 
 #: diventi/blog/models.py:78 diventi/core/models.py:78
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
-#: diventi/feedbacks/models.py:90 diventi/feedbacks/models.py:110
+#: diventi/feedbacks/models.py:96 diventi/feedbacks/models.py:116
 #: diventi/landing/models.py:26 diventi/products/models.py:63
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:79
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
-#: diventi/feedbacks/models.py:111 diventi/landing/models.py:28
+#: diventi/feedbacks/models.py:117 diventi/landing/models.py:28
 #: diventi/products/models.py:65
 msgid "description"
 msgstr "descrizione"
@@ -335,7 +335,7 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/feedbacks/models.py:149
+#: diventi/blog/models.py:81 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
@@ -343,12 +343,12 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/feedbacks/models.py:112
+#: diventi/blog/models.py:83 diventi/feedbacks/models.py:118
 #: diventi/products/models.py:66
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:84 diventi/feedbacks/models.py:144
+#: diventi/blog/models.py:84 diventi/feedbacks/models.py:150
 msgid "author"
 msgstr "autore"
 
@@ -526,7 +526,7 @@ msgstr "id ordinamento"
 msgid "question group"
 msgstr "gruppo di domande"
 
-#: diventi/feedbacks/models.py:29 diventi/feedbacks/models.py:113
+#: diventi/feedbacks/models.py:29 diventi/feedbacks/models.py:119
 msgid "question groups"
 msgstr "gruppi di domande"
 
@@ -535,7 +535,7 @@ msgid "Questions"
 msgstr "Domande"
 
 #: diventi/feedbacks/models.py:40 diventi/feedbacks/models.py:44
-#: diventi/feedbacks/models.py:146
+#: diventi/feedbacks/models.py:152
 msgid "question"
 msgstr "domanda"
 
@@ -555,67 +555,68 @@ msgstr "scelta"
 msgid "choices"
 msgstr "scelte"
 
-#: diventi/feedbacks/models.py:91
+#: diventi/feedbacks/models.py:97
 msgid "upper score"
 msgstr "esito superiore"
 
-#: diventi/feedbacks/models.py:92
+#: diventi/feedbacks/models.py:98
 msgid "upper outcome"
 msgstr "esito superiore"
 
-#: diventi/feedbacks/models.py:93
+#: diventi/feedbacks/models.py:99
 msgid "medium score"
 msgstr "punteggio medio"
 
-#: diventi/feedbacks/models.py:94
+#: diventi/feedbacks/models.py:100
 msgid "medium outcome"
 msgstr "esito medio"
 
-#: diventi/feedbacks/models.py:95
+#: diventi/feedbacks/models.py:101
 msgid "lower score"
 msgstr "punteggio inferiore"
 
-#: diventi/feedbacks/models.py:96
+#: diventi/feedbacks/models.py:102
 msgid "lower outcome"
 msgstr "esito inferiore"
 
-#: diventi/feedbacks/models.py:99 diventi/feedbacks/models.py:114
+#: diventi/feedbacks/models.py:105 diventi/feedbacks/models.py:120
 msgid "outcome"
 msgstr "esito"
 
-#: diventi/feedbacks/models.py:100
+#: diventi/feedbacks/models.py:106
 msgid "outcomes"
 msgstr "esiti"
 
-#: diventi/feedbacks/models.py:115
+#: diventi/feedbacks/models.py:121
 msgid "public"
 msgstr "pubblico"
 
-#: diventi/feedbacks/models.py:120 diventi/feedbacks/models.py:127
+#: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
+#: diventi/templates/accounts/user_collection.html:47
 msgid "survey"
 msgstr "sondaggio"
 
-#: diventi/feedbacks/models.py:121
+#: diventi/feedbacks/models.py:127
 msgid "surveys"
 msgstr "sondaggi"
 
-#: diventi/feedbacks/models.py:137
+#: diventi/feedbacks/models.py:143
 msgid "Question Groups"
 msgstr "Gruppi di domande"
 
-#: diventi/feedbacks/models.py:145
+#: diventi/feedbacks/models.py:151
 msgid "author name"
 msgstr "nome dell'autore"
 
-#: diventi/feedbacks/models.py:152
+#: diventi/feedbacks/models.py:158
 msgid "answer"
 msgstr "risposta"
 
-#: diventi/feedbacks/models.py:153
+#: diventi/feedbacks/models.py:159
 msgid "answers"
 msgstr "risposte"
 
-#: diventi/feedbacks/models.py:162
+#: diventi/feedbacks/models.py:168
 msgid "Score"
 msgstr "Punteggio"
 
@@ -639,23 +640,23 @@ msgstr "<slug:slug>/risposte/"
 msgid "<slug:slug>/answers/<str:author_name>/"
 msgstr "<slug:slug>/risposte/<str:author_name>/"
 
-#: diventi/feedbacks/views.py:106
+#: diventi/feedbacks/views.py:102
 msgid "You should sign in to access that survey."
 msgstr "Per rispondere a questo sondaggio devi prima autenticarti."
 
-#: diventi/feedbacks/views.py:131
+#: diventi/feedbacks/views.py:127
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
 
-#: diventi/feedbacks/views.py:134
+#: diventi/feedbacks/views.py:130
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
 
-#: diventi/feedbacks/views.py:150
+#: diventi/feedbacks/views.py:146
 msgid "The selected survey doesn't exist or is not published yet."
 msgstr "Il sondaggio selezionato non esiste o non è ancora stato pubblicato."
 
-#: diventi/feedbacks/views.py:165
+#: diventi/feedbacks/views.py:161
 msgid ""
 "An other user already picked that name and answered, please choose an other "
 "name."
@@ -870,7 +871,7 @@ msgid "Our service team has been dispatched to bring it back online."
 msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
-#: diventi/templates/accounts/detail.html:21
+#: diventi/templates/accounts/detail.html:16
 #: diventi/templates/landing/landing.html:127
 #: diventi/templates/navigation.html:77
 msgid "Manage profile"
@@ -1057,6 +1058,7 @@ msgid "collection"
 msgstr "collezione"
 
 #: diventi/templates/accounts/user.html:47
+#: diventi/templates/accounts/user_collection.html:4
 msgid "Collection"
 msgstr "Collezione"
 
@@ -1112,23 +1114,37 @@ msgstr ""
 msgid "Rollback"
 msgstr "Annulla"
 
-#: diventi/templates/accounts/user_collection.html:11
+#: diventi/templates/accounts/user_collection.html:12
+#: diventi/templates/accounts/user_collection.html:45
 #: diventi/templates/products/product_detail.html:43
-msgid "under maintenance"
-msgstr "in manutenzione"
+msgid "not yet available"
+msgstr "Non ancora disponibile"
 
-#: diventi/templates/accounts/user_collection.html:14
+#: diventi/templates/accounts/user_collection.html:15
+#: diventi/templates/accounts/user_collection.html:48
 #: diventi/templates/products/product_detail.html:47
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
-#: diventi/templates/accounts/user_collection.html:22
+#: diventi/templates/accounts/user_collection.html:23
 msgid "Download"
 msgstr "Scarica"
 
-#: diventi/templates/accounts/user_collection.html:31
-msgid "No collection found"
-msgstr "Nessuna collezione trovata"
+#: diventi/templates/accounts/user_collection.html:32
+msgid "This collection is empty."
+msgstr "Questa collezione è vuota."
+
+#: diventi/templates/accounts/user_collection.html:37
+msgid "Surveys"
+msgstr "Sondaggi"
+
+#: diventi/templates/accounts/user_collection.html:55
+msgid "Access"
+msgstr "Accedi"
+
+#: diventi/templates/accounts/user_collection.html:63
+msgid "There are no surveys yet."
+msgstr "Nessun sondaggio è ora disponibile."
 
 #: diventi/templates/accounts/user_credentials.html:3
 msgid "Change password"
@@ -1146,9 +1162,13 @@ msgstr "Nuova password"
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/user_customization.html:70
-msgid "Update details"
-msgstr "Aggiorna dettagli"
+#: diventi/templates/accounts/user_customization.html:5
+msgid "Profile update"
+msgstr "Aggiornamento profilo"
+
+#: diventi/templates/accounts/user_customization.html:72
+msgid "Update profile"
+msgstr "Aggiorna profilo"
 
 #: diventi/templates/accounts/user_privacy.html:3
 msgid "Privacy settings"
@@ -1172,8 +1192,8 @@ msgstr ""
 "potrai sempre cambiare idea in un secondo momento."
 
 #: diventi/templates/accounts/user_privacy.html:40
-msgid "Update profile"
-msgstr "Aggiorna profilo"
+msgid "Update preference"
+msgstr "Aggiorna preferenza"
 
 #: diventi/templates/accounts/user_privacy.html:48
 msgid ""
@@ -1362,7 +1382,7 @@ msgid "End of results"
 msgstr "Fine dei risultati"
 
 #: diventi/templates/landing/standard_left_header.html:11
-#: diventi/templates/landing/survey_centered_header.html:22
+#: diventi/templates/landing/survey_centered_header.html:23
 msgid "Find out more"
 msgstr "Scopri di più"
 
@@ -1417,6 +1437,15 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Update details"
+#~ msgstr "Aggiorna dettagli"
+
+#~ msgid "under maintenance"
+#~ msgstr "in manutenzione"
+
+#~ msgid "No collection found"
+#~ msgstr "Nessuna collezione trovata"
 
 #~ msgid "The email must be set"
 #~ msgstr "L'email deve essere valorizzata"

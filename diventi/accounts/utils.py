@@ -1,6 +1,7 @@
 from .models import DiventiUser
 
 from diventi.products.models import Product
+from diventi.feedbacks.models import Survey
 
 
 """
@@ -10,6 +11,8 @@ from diventi.products.models import Product
 def get_user_data(context, user, loggeduser=None):
     achievements = user.achievements.all()
     context['achievements'] = achievements
+    surveys = Survey.objects.user_collection(user)
+    context['surveys'] = surveys
     collection = Product.objects.user_collection(user=user)
     PUBLIC_FIELDS = [
         'id', 'title', 'slug', 'category__title', 'description', 'image', 'file', 'available', 'courtesy_message', 'created', 'modified'

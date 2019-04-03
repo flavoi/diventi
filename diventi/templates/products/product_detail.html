@@ -40,7 +40,7 @@
                 <div class="col-md-6 col-sm-6">
                     <h2 class="title">{{ product.title }}</h2>                     
                         {% if product.available == False %}
-                            <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {% trans 'under maintenance' %}
+                            <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {% trans 'not yet available' %}
                             </span>
                         {% else %}
                             <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category.title }}</label>

@@ -1,6 +1,7 @@
 {% load humanize %}
 {% load i18n %}
 
+<h4 class="title">{% trans "Collection" %}</h4>
 <div class="row">
     {% if collection %}
         {% for product in collection %}
@@ -8,7 +9,7 @@
                 <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}')"{% endif %}>
                     <div class="card-body">
                         {% if product.available == False %}
-                            <label class="badge badge-pill badge-danger"> {% trans 'under maintenance' %}</label>
+                            <label class="badge badge-pill badge-danger">{% trans 'not yet available' %}</label>
                         {% else %}
                             <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category__title }}</label>
                             <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
@@ -16,7 +17,7 @@
                         <a href="{% url 'products:detail' product.slug %}">
                             <h3 class="card-title">{{ product.title }}</h3>
                         </a>
-                        <p class="card-description">{{ product.description }}</p>                    
+                        <p class="card-description">{{ product.description|striptags|truncatechars:250 }}</p>                    
                         {% if product.file %}
                             <a target="_blank" class="btn btn-warning btn-round {% if product.available == False %}disabled{% endif %}" href="{% url 'products:secretfile' product.id %}">
                                 <i class="fal fa-download fa-lg fa-fw"></i> {% trans "Download" %}
@@ -28,7 +29,38 @@
         {% endfor %}
     {% else %}
         <div class="col-md-12">
-            <h4>{% trans "No collection found" %} <i class="fal fa-frown"></i></h4>
+            <h4>{% trans "This collection is empty." %}</h4>
+        </div>
+    {% endif %}
+</div>
+
+<h4 class="title">{% trans "Surveys" %}</h4>
+<div class="row">
+    {% if surveys %}
+        {% for survey in surveys %}
+            <div class="col-md-6">
+                <div class="card card-background" {% if survey.image %}style="background-image: url('{{ survey.image }}')"{% endif %}>
+                    <div class="card-body">
+                        {% if survey.published == False %}
+                            <label class="badge badge-pill badge-danger">{% trans 'not yet available' %}</label>
+                        {% else %}
+                            <label class="badge badge-rose"><i class="fal fa-lg fa-poll-h fa-fw"></i> {% trans 'survey' %}</label>
+                            <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ survey.modified|date:"M d, Y" }}</label>
+                        {% endif %}            
+                        <a href="{% url 'feedbacks:questions' survey.slug %}">
+                            <h3 class="card-title">{{ survey.title }}</h3>
+                        </a>
+                        <p class="card-description">{{ survey.description|striptags|truncatechars:250 }}</p>                    
+                        <a target="_blank" class="btn btn-warning btn-round {% if survey.published == False %}disabled{% endif %}" href="{% url 'feedbacks:questions' survey.slug %}">
+                            <i class="fal fa-sign-in-alt fa-lg fa-fw"></i> {% trans "Access" %}
+                        </a>
+                    </div>                
+                </div>
+            </div>           
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <h4>{% trans "There are no surveys yet." %}</h4>
         </div>
     {% endif %}
 </div>

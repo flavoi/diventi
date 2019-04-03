@@ -81,6 +81,12 @@ class SurveyQuerySet(FeaturedModelQuerySet):
         survey = self.prefetch_related('answers')
         return survey
 
+    # Fetch the surveys authored by the user
+    def user_collection(self, user):
+        surveys = self.filter(answers__author=user)
+        surveys = surveys.distinct()
+        return surveys
+
 
 class Outcome(models.Model):
     """

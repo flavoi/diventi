@@ -133,7 +133,7 @@ class Survey(TimeStampedModel, PublishableModel, DiventiImageModel, FeaturedMode
         return _('survey')
 
     def get_absolute_url(self):
-        return reverse('feedbacks:answers', args=[str(self.slug)])
+        return reverse('feedbacks:questions', args=[str(self.slug)])
 
     def get_lazy_absolute_url(self):
         return reverse_lazy('feedbacks:new_answers_gate', args=[str(self.slug)])

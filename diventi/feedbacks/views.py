@@ -91,16 +91,15 @@ def survey_questions(request, slug, author_name=None):
 
     survey = Survey.objects.published().get(slug=slug)
     
-    if survey.public:
+    if request.user.is_authenticated:
+        author_name = request.user.get_short_name()
+        user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
+    elif survey.public:
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
-    else:
-        if request.user.is_authenticated:
-            author_name = request.user.get_short_name()
-            user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
-        else:
-            request.session['show_login_form'] = 1
-            messages.warning(request, _('You should sign in to access that survey.'))
-            return redirect(reverse('landing:home'))
+    else: 
+        request.session['show_login_form'] = 1
+        messages.warning(request, _('You should sign in to access that survey.'))
+        return redirect(reverse('landing:home'))
 
     if user_has_answered:
         return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-03 08:21+0200\n"
+"POT-Creation-Date: 2019-04-04 07:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -640,23 +640,23 @@ msgstr "<slug:slug>/risposte/"
 msgid "<slug:slug>/answers/<str:author_name>/"
 msgstr "<slug:slug>/risposte/<str:author_name>/"
 
-#: diventi/feedbacks/views.py:102
+#: diventi/feedbacks/views.py:101
 msgid "You should sign in to access that survey."
 msgstr "Per rispondere a questo sondaggio devi prima autenticarti."
 
-#: diventi/feedbacks/views.py:127
+#: diventi/feedbacks/views.py:126
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
 
-#: diventi/feedbacks/views.py:130
+#: diventi/feedbacks/views.py:129
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
 
-#: diventi/feedbacks/views.py:146
+#: diventi/feedbacks/views.py:145
 msgid "The selected survey doesn't exist or is not published yet."
 msgstr "Il sondaggio selezionato non esiste o non è ancora stato pubblicato."
 
-#: diventi/feedbacks/views.py:161
+#: diventi/feedbacks/views.py:160
 msgid ""
 "An other user already picked that name and answered, please choose an other "
 "name."
@@ -1139,8 +1139,8 @@ msgid "Surveys"
 msgstr "Sondaggi"
 
 #: diventi/templates/accounts/user_collection.html:55
-msgid "Access"
-msgstr "Accedi"
+msgid "Display"
+msgstr "Visualizza"
 
 #: diventi/templates/accounts/user_collection.html:63
 msgid "There are no surveys yet."
@@ -1437,6 +1437,9 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Access"
+#~ msgstr "Accedi"
 
 #~ msgid "Update details"
 #~ msgstr "Aggiorna dettagli"

@@ -7,7 +7,7 @@ from modeltranslation.admin import TranslationTabularInline, TranslationStackedI
 
 from diventi.core.admin import DiventiTranslationAdmin, deactivate
 
-from .models import Presentation, Feature
+from .models import Presentation, Feature, Section
 from .forms import PresentationForm
 
 
@@ -15,6 +15,18 @@ class FeatureInline(TranslationStackedInline):
     model = Feature
     fields = ('title', 'icon', 'color', 'description',)
     extra = 0
+
+
+class SectionAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'description']
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('',)
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'icon', 'color', 'description',),
+        }),
+    )  
 
 
 class PresentationAdmin(DiventiTranslationAdmin):
@@ -34,3 +46,4 @@ class PresentationAdmin(DiventiTranslationAdmin):
     form = PresentationForm
 
 admin.site.register(Presentation, PresentationAdmin)
+admin.site.register(Section, SectionAdmin)

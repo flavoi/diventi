@@ -46,8 +46,17 @@ class Presentation(DiventiImageModel):
         verbose_name_plural = _('presentations')
 
 
+class Section(Element):
+    profile = models.ForeignKey(Presentation, null=True, related_name='sections', on_delete=models.SET_NULL)
+
+    class Meta:
+        verbose_name = _('section')
+        verbose_name_plural = _('sections')
+
+
 class Feature(Element):    
     profile = models.ForeignKey(Presentation, null=True, related_name='features', on_delete=models.SET_NULL)
+    section = models.ForeignKey(Section, null=True, related_name='features', on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('feature')

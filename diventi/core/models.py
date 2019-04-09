@@ -71,8 +71,7 @@ class PromotableModel(models.Model):
 
 class Element(models.Model):
     """
-    An abstract base class model that represents a single piece of content of 
-    any section.
+    An abstract base class model that represents a single piece of content.
     """
     icon = models.CharField(max_length=30, verbose_name=_('icon'))
     title = models.CharField(max_length=50, verbose_name=_('title'))

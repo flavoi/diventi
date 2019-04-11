@@ -4,7 +4,7 @@ from django.conf import settings
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, FeaturedModel
+from diventi.core.models import Element, DiventiImageModel, FeaturedModel
 
 
 class PresentationManager(models.Manager):
@@ -46,8 +46,26 @@ class Presentation(DiventiImageModel):
         verbose_name_plural = _('presentations')
 
 
-class Section(Element):
+class Section(DiventiImageModel, FeaturedModel):
+    title = models.CharField(max_length=50, verbose_name=_('title'))
+    abstract = models.TextField(blank=True, verbose_name=_('abstract'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
     profile = models.ForeignKey(Presentation, null=True, related_name='sections', on_delete=models.SET_NULL)
+    order_index = models.PositiveIntegerField(verbose_name=_('order index'))
+    TEMPLATE_CHOICES = (
+        ('', _('')),
+    )
+    template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('template'))
+    featured_link = models.CharField(blank=True, max_length=150, verbose_name=_('featured link'))
+    featured_label = models.CharField(blank=True, max_length=50, verbose_name=_('featured label'))
+    FEATURED_TEMPLATE_CHOICES = (
+        ('standard_left_header.html', _('standard left header')),
+        ('survey_centered_header.html', _('survey centered header')),
+    )
+    featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
+
+    def __str__(self):
+        return '(%s) %s' % (self.order_index, self.title)
 
     class Meta:
         verbose_name = _('section')
@@ -61,3 +79,4 @@ class Feature(Element):
     class Meta:
         verbose_name = _('feature')
         verbose_name_plural = _('features')
+        

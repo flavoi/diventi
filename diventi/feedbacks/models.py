@@ -109,7 +109,7 @@ class Outcome(models.Model):
         return self.title
 
 
-class Survey(TimeStampedModel, PublishableModel, DiventiImageModel, FeaturedModel):
+class Survey(TimeStampedModel, DiventiImageModel, FeaturedModel):
     """
         A collection of questions and answers centered around a specifi title.
     """

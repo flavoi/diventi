@@ -104,7 +104,7 @@ class DiventiImageModel(models.Model):
     """
     An abstract base class that manages models based on images uploaded on Imgur.
     """
-    image = models.URLField(verbose_name=_('image'))
+    image = models.URLField(blank=True, verbose_name=_('image'))
     label = models.CharField(max_length=50, blank=True, verbose_name=_('label'))
     
     def image_thumbnail(self):
@@ -204,13 +204,14 @@ class FeaturedModelQuerySet(PublishableModelQuerySet):
 class FeaturedModelManager(models.Manager):
 
     def get_queryset(self):
+
         return FeaturedModelQuerySet(self.model, using=self._db)
 
     def featured(self):
         return self.get_queryset().featured()
 
 
-class FeaturedModel(models.Model):
+class FeaturedModel(PublishableModel):
     """
     An abstract base class that includes a featured boolean field that
     

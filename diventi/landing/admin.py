@@ -16,18 +16,24 @@ class FeatureInline(TranslationStackedInline):
     fields = ('title', 'icon', 'color', 'description',)
     extra = 0
 
-"""
+
 class SectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'description']
     fieldsets = (
         (_('Management'), {
-            'fields': ('',)
+            'fields': ('published', 'featured')
+        }),
+        (_('Templates'), {
+            'fields': ('template', 'featured_template')
         }),
         (_('Editing'), {
-            'fields': ('title', 'icon', 'color', 'description',),
+            'fields': ('title', 'abstract', 'order_index', 'presentation', 'description',),
         }),
     )
-"""
+    inlines = [        
+        FeatureInline,
+    ]
+    actions = [deactivate]
 
 
 class PresentationAdmin(DiventiTranslationAdmin):
@@ -47,4 +53,4 @@ class PresentationAdmin(DiventiTranslationAdmin):
     form = PresentationForm
 
 admin.site.register(Presentation, PresentationAdmin)
-admin.site.register(Section)
+admin.site.register(Section, SectionAdmin)

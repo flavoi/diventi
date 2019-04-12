@@ -50,12 +50,12 @@ class Section(DiventiImageModel, FeaturedModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
-    profile = models.ForeignKey(Presentation, null=True, related_name='sections', on_delete=models.SET_NULL)
+    presentation = models.ForeignKey(Presentation, null=True, related_name='sections', on_delete=models.SET_NULL)
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     TEMPLATE_CHOICES = (
         ('', _('')),
     )
-    template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('template'))
+    template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
     featured_link = models.CharField(blank=True, max_length=150, verbose_name=_('featured link'))
     featured_label = models.CharField(blank=True, max_length=50, verbose_name=_('featured label'))
     FEATURED_TEMPLATE_CHOICES = (

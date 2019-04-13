@@ -18,7 +18,7 @@ class FeatureInline(TranslationStackedInline):
 
 
 class SectionAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'description']
+    list_display = ['title', 'abstract']
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'featured')

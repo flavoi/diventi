@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Presentation
+from .models import Presentation, Section
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
@@ -28,6 +28,7 @@ def landing(request):
     featured_product = Product.objects.featured()
     products = Product.objects.published()
     featured_survey = Survey.objects.featured()
+    sections = Section.objects.published().filter(presentation=presentation)
 
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
@@ -53,6 +54,7 @@ def landing(request):
         'featured_survey_form': featured_survey_form,
         'products': products,
         'authors': authors,
+        'sections': sections,
     }
 
     # This session variable enables and error message in the login modal.

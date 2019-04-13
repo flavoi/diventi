@@ -11,7 +11,7 @@ class PresentationManager(models.Manager):
 
     def active(self):
         try:
-            active_presentation = self.prefetch_related('features')            
+            active_presentation = self.prefetch_related('profile_features')            
             active_presentation = active_presentation.get(active=True)
         except Presentation.DoesNotExist:
             msg = _("There is no active landing page.")
@@ -53,7 +53,7 @@ class Section(DiventiImageModel, FeaturedModel):
     presentation = models.ForeignKey(Presentation, null=True, related_name='sections', on_delete=models.SET_NULL)
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     TEMPLATE_CHOICES = (
-        ('', _('')),
+        ('standard_centered_section.html', _('standard centered section')),
     )
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
     featured_link = models.CharField(blank=True, max_length=150, verbose_name=_('featured link'))
@@ -73,8 +73,8 @@ class Section(DiventiImageModel, FeaturedModel):
 
 
 class Feature(Element):    
-    profile = models.ForeignKey(Presentation, null=True, related_name='features', on_delete=models.SET_NULL)
-    section = models.ForeignKey(Section, null=True, related_name='features', on_delete=models.SET_NULL)
+    profile = models.ForeignKey(Presentation, null=True, related_name='profile_features', on_delete=models.SET_NULL)
+    section = models.ForeignKey(Section, null=True, related_name='section_features', on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('feature')

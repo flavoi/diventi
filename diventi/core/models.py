@@ -204,11 +204,13 @@ class FeaturedModelQuerySet(PublishableModelQuerySet):
 class FeaturedModelManager(models.Manager):
 
     def get_queryset(self):
-
         return FeaturedModelQuerySet(self.model, using=self._db)
 
     def featured(self):
         return self.get_queryset().featured()
+
+    def published(self):
+        return self.get_queryset().published()
 
 
 class FeaturedModel(PublishableModel):

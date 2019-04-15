@@ -1,33 +1,33 @@
 {% load i18n %}
 
 <div class="container">
-    <div class="row">
-      <div class="col-md-8 ml-auto mr-auto text-center">
-        <h1 class="title">{{ presentation.title|title }}</h1>
-        <h4>{{ presentation.abstract|striptags }}</h4>
-      </div>
-      {% if presentation.featured_link %}
-        <div class="col-md-6 ml-auto mr-auto">
-          <div class="card card-raised card-form-horizontal">        
-            <div class="card-body">
-              <form method="GET" action="{{ presentation.featured_link }}" class="has-warning">                  
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group bmd-form-group">
-                      {{ featured_survey_form.survey }}
-                      {{ featured_survey_form.author_name }}                    
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <button type="submit" class="btn btn-warning btn-block">
-                      {{ presentation.featured_label|default:_("Find out more") }}
-                    </button>
+  <div class="row">
+    <div class="col-md-8 ml-auto mr-auto text-center">
+      <h1 class="title">{{ featured_section.title|title }}</h1>
+      <h4>{{ featured_section.abstract|striptags }}</h4>
+    </div>
+    {% if presentation.featured_link %}
+      <div class="col-md-6 ml-auto mr-auto">
+        <div class="card card-raised card-form-horizontal">        
+          <div class="card-body">
+            <form method="GET" action="{{ presentation.featured_link }}" class="has-warning">                  
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group bmd-form-group">
+                    {{ featured_survey_form.survey }}
+                    {{ featured_survey_form.author_name }}                    
                   </div>
                 </div>
-              </form>
-            </div>
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-warning btn-block">
+                    {{ presentation.featured_label|default:_("Find out more") }}
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
+  </div>
 </div>

@@ -200,17 +200,25 @@ class FeaturedModelQuerySet(PublishableModelQuerySet):
             raise self.model.MultipleObjectsReturned(msg)  
         return featured_model
 
+    # Get the not featured object that can be selected to appear on the landing page
+    def not_featured(self):
+        not_featured_model = self.published().filter(featured=False)
+        return not_featured_model
+
 
 class FeaturedModelManager(models.Manager):
 
     def get_queryset(self):
         return FeaturedModelQuerySet(self.model, using=self._db)
 
+    def published(self):
+        return self.get_queryset().published()
+
     def featured(self):
         return self.get_queryset().featured()
 
-    def published(self):
-        return self.get_queryset().published()
+    def not_featured(self):
+        return self.get_queryset().not_featured()
 
 
 class FeaturedModel(PublishableModel):

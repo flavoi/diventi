@@ -5,6 +5,8 @@ from django.conf import settings
 from cuser.middleware import CuserMiddleware
 
 from diventi.core.models import Element, DiventiImageModel, FeaturedModel
+from diventi.accounts.models import DiventiUser
+from diventi.products.models import Product
 
 
 class PresentationManager(models.Manager):
@@ -63,6 +65,8 @@ class Section(DiventiImageModel, FeaturedModel):
         ('survey_centered_header.html', _('survey centered header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
+    products = models.ManyToManyField(Product, related_name='product_features', blank=True)
+    users = models.ManyToManyField(DiventiUser, related_name='user_features', blank=True)
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)

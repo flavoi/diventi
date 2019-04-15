@@ -11,7 +11,7 @@
 
 {% block pageheadercontent %}
     {% with "landing/"|add:presentation.template as template_name %}
-    {% include template_name %}
+        {% include template_name %}
     {% endwith %}
 {% endblock pageheadercontent %}
 
@@ -29,7 +29,6 @@
                     <h5 class="description">{{ presentation.description|striptags }}</h5>
                 </div>
             </div>
-            
             <div class="features">
                 <div class="container">
                     <div class="row">
@@ -50,9 +49,13 @@
         </div>
     </div>
 
-    <div class="section text-center">
-        {{ sections }}
+    {% for section in sections %}
+    <div class="section">
+        {% with "landing/"|add:section.template as section_template_name %}
+            {% include section_template_name %}
+        {% endwith %}
     </div>
+    {% endfor %}
 
     <div class="projects-4" id="projects-4">
         <div class="container">

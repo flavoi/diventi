@@ -28,7 +28,10 @@ def landing(request):
     featured_product = Product.objects.featured()
     products = Product.objects.published()
     featured_survey = Survey.objects.featured()
-    sections = Section.objects.published().filter(presentation=presentation)
+    featured_section = Section.objects.featured()
+    sections = Section.objects.not_featured()
+    sections = sections.prefetch_related('users')
+    sections = sections.prefetch_related('products')
 
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)
@@ -55,6 +58,7 @@ def landing(request):
         'products': products,
         'authors': authors,
         'sections': sections,
+        'featured_section': featured_section,
     }
 
     # This session variable enables and error message in the login modal.

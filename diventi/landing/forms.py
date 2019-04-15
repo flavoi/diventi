@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Presentation
 from diventi.products.models import Product
 from diventi.feedbacks.models import Survey
+from diventi.accounts.models import DiventiUser
 
 
 class PresentationForm(forms.ModelForm):
@@ -23,3 +24,14 @@ class PresentationForm(forms.ModelForm):
         self.fields['featured_link'].widget = forms.Select(
             choices = LINK_CHOICES
         )
+
+
+class SectionForm(forms.ModelForm): 
+    def __init__(self, *args, **kwargs):
+        super(SectionForm, self).__init__(*args, **kwargs)
+        users = DiventiUser.objects.filter(is_staff=True);
+        w = self.fields['users'].widget
+        choices = []
+        for choice in users:
+            choices.append((choice.id, choice))
+        w.choices = choices

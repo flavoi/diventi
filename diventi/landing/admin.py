@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib import admin
 from django.contrib.sites.models import Site
 from django.utils.translation import gettext_lazy as _
@@ -8,7 +7,7 @@ from modeltranslation.admin import TranslationTabularInline, TranslationStackedI
 from diventi.core.admin import DiventiTranslationAdmin, deactivate
 
 from .models import Presentation, Feature, Section
-from .forms import PresentationForm
+from .forms import PresentationForm, SectionForm
 
 
 class FeatureInline(TranslationStackedInline):
@@ -29,11 +28,15 @@ class SectionAdmin(DiventiTranslationAdmin):
         (_('Editing'), {
             'fields': ('title', 'abstract', 'order_index', 'presentation', 'description',),
         }),
+        (_('Additionals'), {
+            'fields': ('products', 'users',),
+        }),
     )
     inlines = [        
         FeatureInline,
     ]
     actions = [deactivate]
+    form = SectionForm
 
 
 class PresentationAdmin(DiventiTranslationAdmin):

@@ -6,11 +6,11 @@
       <h1 class="title">{{ featured_section.title|title }}</h1>
       <h4>{{ featured_section.abstract|striptags }}</h4>
     </div>
-    {% if presentation.featured_link %}
+    {% if featured_section.featured_link %}
       <div class="col-md-6 ml-auto mr-auto">
         <div class="card card-raised card-form-horizontal">        
           <div class="card-body">
-            <form method="GET" action="{{ presentation.featured_link }}" class="has-warning">                  
+            <form method="GET" action="{{ featured_section.featured_link }}" class="has-warning">                  
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group bmd-form-group">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-6">
                   <button type="submit" class="btn btn-warning btn-block">
-                    {{ presentation.featured_label|default:_("Find out more") }}
+                    {{ featured_section.featured_label|default:_("Find out more") }}
                   </button>
                 </div>
               </div>

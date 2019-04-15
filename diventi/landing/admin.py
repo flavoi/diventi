@@ -17,7 +17,7 @@ class FeatureInline(TranslationStackedInline):
 
 
 class SectionAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'abstract']
+    list_display = ['title', 'order_index', 'featured_link', 'published', 'featured']
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'featured')
@@ -37,6 +37,7 @@ class SectionAdmin(DiventiTranslationAdmin):
     ]
     actions = [deactivate]
     form = SectionForm
+    ordering = ['-published', 'order_index']
 
 
 class PresentationAdmin(DiventiTranslationAdmin):

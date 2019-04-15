@@ -32,7 +32,6 @@ docutils==0.14
 future==0.16.0
 gunicorn==19.9.0
 idna==2.7
-Jinja2==2.10
 jmespath==0.9.3
 josepy==1.1.0
 latexmk.py==0.4

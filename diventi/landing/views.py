@@ -32,6 +32,7 @@ def landing(request):
     sections = Section.objects.not_featured()
     sections = sections.prefetch_related('users')
     sections = sections.prefetch_related('products')
+    sections = sections.order_by('order_index')
 
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)

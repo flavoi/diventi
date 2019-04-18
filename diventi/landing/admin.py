@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from diventi.core.admin import DiventiTranslationAdmin, deactivate
+from diventi.core.admin import DiventiTranslationAdmin, deactivate, make_published, make_unpublished
 
 from .models import Presentation, Feature, Section
 from .forms import PresentationForm, SectionForm
@@ -17,7 +17,7 @@ class FeatureInline(TranslationStackedInline):
 
 
 class SectionAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'featured_link', 'published', 'featured']
+    list_display = ['title', 'order_index', 'get_features', 'get_products', 'get_users', 'published', 'featured', 'featured_link']
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'featured')
@@ -35,7 +35,7 @@ class SectionAdmin(DiventiTranslationAdmin):
     inlines = [        
         FeatureInline,
     ]
-    actions = [deactivate]
+    actions = [make_published, make_unpublished]
     form = SectionForm
     ordering = ['-published', 'order_index']
 

@@ -29,22 +29,18 @@
                     <h5 class="description">{{ presentation.description|striptags }}</h5>
                 </div>
             </div>
-            <div class="features">
-                <div class="container">
-                    <div class="row">
-                        {% for feature in presentation.features.all %}
-                        <div class="col-sm-4">
-                            <div class="info">
-                                <div class="icon icon-{{ feature.color }}">
-                                    <i class="fal fa-{{ feature.icon }} fa-4x"></i>
-                                </div>
-                                <h4 class="info-title">{{ feature.title|title }}</h4>
-                                <p>{{ feature.description|safe }}</p>
-                            </div>
+            <div class="row">
+                {% for feature in presentation.features.all %}
+                <div class="col-sm-4">
+                    <div class="info">
+                        <div class="icon icon-{{ feature.color }}">
+                            <i class="fal fa-{{ feature.icon }} fa-4x"></i>
                         </div>
-                        {% endfor %}
+                        <h4 class="info-title">{{ feature.title|title }}</h4>
+                        <p>{{ feature.description|safe }}</p>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>

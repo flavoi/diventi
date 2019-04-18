@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.utils.html import mark_safe
 
 from cuser.middleware import CuserMiddleware
 
@@ -65,11 +66,23 @@ class Section(DiventiImageModel, FeaturedModel):
         ('survey_centered_header.html', _('survey centered header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
-    products = models.ManyToManyField(Product, related_name='product_features', blank=True)
-    users = models.ManyToManyField(DiventiUser, related_name='user_features', blank=True)
+    products = models.ManyToManyField(Product, related_name='products', blank=True)
+    users = models.ManyToManyField(DiventiUser, related_name='users', blank=True)
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)
+
+    def get_features(self):
+        return mark_safe("<br>".join([s.title for s in self.section_features.all()]))
+    get_features.short_description = _('Features')
+
+    def get_products(self):
+        return mark_safe("<br>".join([s.title for s in self.products.all()]))
+    get_products.short_description = _('Products')
+
+    def get_users(self):
+        return mark_safe("<br>".join([s.get_full_name() for s in self.users.all()]))
+    get_users.short_description = _('Users')
 
     class Meta:
         verbose_name = _('section')

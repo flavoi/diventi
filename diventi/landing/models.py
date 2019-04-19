@@ -35,7 +35,7 @@ class Presentation(DiventiImageModel):
     featured_label = models.CharField(blank=True, max_length=50, verbose_name=_('featured label'))
     TEMPLATE_CHOICES = (
         ('standard_left_header.html', _('standard left header')),
-        ('survey_centered_header.html', _('survey centered header')),
+        ('survey_centered_header.html', _('standard centered header')),
     )
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('template'))
     active = models.BooleanField(default=False, verbose_name=_('active'))
@@ -61,7 +61,7 @@ class Section(DiventiImageModel, FeaturedModel):
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
     FEATURED_TEMPLATE_CHOICES = (
         ('standard_left_header.html', _('standard left header')),
-        ('survey_centered_header.html', _('survey centered header')),
+        ('survey_centered_header.html', _('standard centered header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
     products = models.ManyToManyField(Product, related_name='products', blank=True, verbose_name=_('products'))

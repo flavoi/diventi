@@ -40,11 +40,16 @@ def landing(request):
     """
     authors = DiventiUser.objects.authors()
     products = Product.objects.published()
-    featured_section = Section.objects.featured()
     sections = Section.objects.not_featured()
     sections = sections.prefetch_related('users')
     sections = sections.prefetch_related('products')
     sections = sections.order_by('order_index')
+    featured_section = Section.objects.featured()
+    if featured_section:
+        pass
+    else:
+        featured_section = sections.first()
+        sections = sections.exclude(id=featured_section.id)
 
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)

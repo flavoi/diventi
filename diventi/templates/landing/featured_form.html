@@ -1,0 +1,28 @@
+{% for product in featured_section.products.all %}
+  <a href="{{ product.get_absolute_url }}" class="btn btn-danger btn-raised btn-lg">
+      {{ featured_section.label|default:_("Find out more") }} 
+  </a>
+{% endfor %}
+
+{% if featured_section.section_survey %}
+  <div class="card card-raised card-form-horizontal">        
+    <div class="card-body">
+      <form method="POST" action="{% url 'landing:survey' %}" class="has-warning">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              {{ featured_survey_form.survey }}
+              {{ featured_survey_form.author_name }}                    
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-warning btn-block">
+              {{ featured_section.featured_label|default:_("Find out more") }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endif %}

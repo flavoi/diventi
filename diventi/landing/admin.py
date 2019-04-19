@@ -26,7 +26,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('template', 'featured_template')
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'order_index', 'description', 'image'),
+            'fields': ('title', 'abstract', 'order_index', 'description', 'image', 'label'),
         }),
         (_('Additionals'), {
             'fields': ('products', 'users', 'section_survey'),

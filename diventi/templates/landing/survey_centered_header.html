@@ -6,11 +6,12 @@
       <h1 class="title">{{ featured_section.title|title }}</h1>
       <h4>{{ featured_section.abstract|striptags }}</h4>
     </div>
-    {% if featured_section.featured_link %}
+    {% if featured_section.section_survey %}
       <div class="col-md-6 ml-auto mr-auto">
         <div class="card card-raised card-form-horizontal">        
           <div class="card-body">
-            <form method="GET" action="{{ featured_section.featured_link }}" class="has-warning">                  
+            <form method="POST" action="{% url 'landing:survey' %}" class="has-warning">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group bmd-form-group">

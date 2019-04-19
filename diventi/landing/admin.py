@@ -17,7 +17,7 @@ class FeatureInline(TranslationStackedInline):
 
 
 class SectionAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'get_features', 'get_products', 'get_users', 'published', 'featured', 'featured_link']
+    list_display = ['title', 'image_tag', 'order_index', 'get_features', 'get_products', 'get_users', 'section_survey', 'published', 'featured',]
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'featured')
@@ -26,10 +26,10 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('template', 'featured_template')
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'order_index', 'presentation', 'description',),
+            'fields': ('title', 'abstract', 'order_index', 'description', 'image'),
         }),
         (_('Additionals'), {
-            'fields': ('products', 'users',),
+            'fields': ('products', 'users', 'section_survey'),
         }),
     )
     inlines = [        
@@ -38,23 +38,6 @@ class SectionAdmin(DiventiTranslationAdmin):
     actions = [make_published, make_unpublished]
     form = SectionForm
     ordering = ['-published', 'order_index']
+    
 
-
-class PresentationAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'featured_link', 'active']
-    fieldsets = (
-        (_('Management'), {
-            'fields': ('active', 'template',)
-        }),
-        (_('Editing'), {
-            'fields': ('title', 'image', 'featured_link', 'featured_label', 'abstract', 'description', 'projects_description'),
-        }),
-    )  
-    inlines = [        
-        FeatureInline,
-    ]
-    actions = [deactivate]
-    form = PresentationForm
-
-admin.site.register(Presentation, PresentationAdmin)
 admin.site.register(Section, SectionAdmin)

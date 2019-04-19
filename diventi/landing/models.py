@@ -8,6 +8,7 @@ from cuser.middleware import CuserMiddleware
 from diventi.core.models import Element, DiventiImageModel, FeaturedModel
 from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
+from diventi.feedbacks.models import Survey
 
 
 class PresentationManager(models.Manager):
@@ -53,21 +54,19 @@ class Section(DiventiImageModel, FeaturedModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
-    presentation = models.ForeignKey(Presentation, null=True, related_name='sections', on_delete=models.SET_NULL)
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     TEMPLATE_CHOICES = (
         ('standard_centered_section.html', _('standard centered section')),
     )
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
-    featured_link = models.CharField(blank=True, max_length=150, verbose_name=_('featured link'))
-    featured_label = models.CharField(blank=True, max_length=50, verbose_name=_('featured label'))
     FEATURED_TEMPLATE_CHOICES = (
         ('standard_left_header.html', _('standard left header')),
         ('survey_centered_header.html', _('survey centered header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
-    products = models.ManyToManyField(Product, related_name='products', blank=True)
-    users = models.ManyToManyField(DiventiUser, related_name='users', blank=True)
+    products = models.ManyToManyField(Product, related_name='products', blank=True, verbose_name=_('products'))
+    users = models.ManyToManyField(DiventiUser, related_name='users', blank=True, verbose_name=_('users'))
+    section_survey = models.ForeignKey(Survey, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('survey'))
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)
@@ -90,7 +89,6 @@ class Section(DiventiImageModel, FeaturedModel):
 
 
 class Feature(Element):    
-    profile = models.ForeignKey(Presentation, null=True, related_name='profile_features', on_delete=models.SET_NULL)
     section = models.ForeignKey(Section, null=True, related_name='section_features', on_delete=models.SET_NULL)
 
     class Meta:

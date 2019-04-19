@@ -7,43 +7,15 @@
 
 {% block bodyclass %}landing-page{% endblock bodyclass %}
 
-{% block pageheaderimage %}{% if presentation.image %}{{ presentation.image }}{% endif %}{% endblock pageheaderimage %}
+{% block pageheaderimage %}{% if featured_section.image %}{{ featured_section.image }}{% endif %}{% endblock pageheaderimage %}
 
 {% block pageheadercontent %}
-    {% with "landing/"|add:presentation.template as template_name %}
+    {% with "landing/"|add:featured_section.featured_template as template_name %}
         {% include template_name %}
     {% endwith %}
 {% endblock pageheadercontent %}
 
 {% block maincontainer %}
-
-    <div class="section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 ml-auto mr-auto">
-                    <img class="rounded img-fluid" src="{% static 'brand/diventi-logo.png' %}" alt="Diventi">
-                </div>                
-            </div>
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto">
-                    <h5 class="description">{{ presentation.description|striptags }}</h5>
-                </div>
-            </div>
-            <div class="row">
-                {% for feature in presentation.features.all %}
-                <div class="col-sm-4">
-                    <div class="info">
-                        <div class="icon icon-{{ feature.color }}">
-                            <i class="fal fa-{{ feature.icon }} fa-4x"></i>
-                        </div>
-                        <h4 class="info-title">{{ feature.title|title }}</h4>
-                        <p>{{ feature.description|safe }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
 
     {% for section in sections %}
     <div class="section">
@@ -58,7 +30,6 @@
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
               <h2 class="title">{% trans 'Our projects' %}</h2>
-              <h5 class="description">{{ presentation.projects_description|striptags }}</h5>
               <div class="section-space"></div>
             </div>
           </div>

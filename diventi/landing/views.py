@@ -6,8 +6,8 @@ from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 from .models import Presentation, Section
 from diventi.accounts.models import DiventiUser
@@ -18,16 +18,28 @@ from diventi.feedbacks.forms import FeaturedSurveyInitForm
 from diventi.feedbacks.models import Survey, Answer
 
 
+def landing_survey(request):
+    """
+        Redirect te user to the survey included in the current section.
+    """
+    if request.method == 'POST':
+        featured_survey_form = FeaturedSurveyInitForm(request.POST)
+        if featured_survey_form.is_valid():
+            survey = featured_survey_form.cleaned_data['survey']
+            author_name = featured_survey_form.cleaned_data['author_name']
+            return redirect(reverse('feedbacks:questions-author', kwargs={'slug': survey.slug, 'author_name': author_name}))
+        else:
+            messages.error(request, _('We encountered an error while redirecting to your survey.'))
+    return redirect('landing:home')
+
+
 def landing(request):
     """ 
-        Renders the landing page with Diventi's main features and
+        Renders the landing page with Diventi main features and
         team members. 
     """
-    presentation = Presentation.objects.active()
     authors = DiventiUser.objects.authors()
-    featured_product = Product.objects.featured()
     products = Product.objects.published()
-    featured_survey = Survey.objects.featured()
     featured_section = Section.objects.featured()
     sections = Section.objects.not_featured()
     sections = sections.prefetch_related('users')
@@ -46,15 +58,16 @@ def landing(request):
         return redirect('accounts:signup')
     else:
         registration_form = DiventiUserInitForm()
-        featured_survey_data = {
-            'survey': featured_survey,
-        }
-        featured_survey_form = FeaturedSurveyInitForm(initial = featured_survey_data)
+        if featured_section.section_survey:
+            featured_survey_data = {
+                'survey': featured_section.section_survey,
+            }
+            featured_survey_form = FeaturedSurveyInitForm(initial = featured_survey_data)
+        else:
+            featured_survey_form = None
 
     context = {   
-        'presentation': presentation,
         'registration_form': registration_form,
-        'featured_product': featured_product,
         'featured_survey_form': featured_survey_form,
         'products': products,
         'authors': authors,

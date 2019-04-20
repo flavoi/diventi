@@ -3,7 +3,6 @@
         <div class="col-md-8 ml-auto mr-auto text-center">
             <h2 class="title">{{ section.title|capfirst }}</h2>
             <h5 class="description">{{ section.abstract|striptags }}</h5>
-            <div class="section-space"></div>
         </div>
     </div>
     <div class="row">
@@ -34,6 +33,13 @@
         {% for author in section.users.all %}
             <div class="col-md-4">
                 {% include "accounts/author.html" %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for product in section.products.all %}
+            <div class="col-md-5">
+                {% include "products/product_card.html" %}
             </div>
         {% endfor %}
     </div>

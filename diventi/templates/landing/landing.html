@@ -25,57 +25,6 @@
     </div>
     {% endfor %}
 
-    <div class="projects-4" id="projects-4">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-center">
-              <h2 class="title">{% trans 'Our projects' %}</h2>
-              <div class="section-space"></div>
-            </div>
-          </div>
-          {% for product in products %}
-              {% if forloop.first %}
-              {% else %}
-                <hr>
-              {% endif %}
-              <div class="row">
-                <div class="col-md-5 ml-auto">
-                  <div class="card card-background" style="background-image:url('{% if product.image %}{{ product.image }}{% endif %}')">
-                    <a href="#pablo"></a>
-                    <div class="card-body">
-                      <h6 class="card-category text-info">{{ product.category }}</h6>                      
-                      <a href="{% url 'products:detail' product.slug %}">
-                        <h3 class="card-title">{{ product.title }}</h3>
-                      </a>
-                      <p class="card-description">
-                        {{ product.abstract|striptags }}
-                      </p>
-                      <a href="{% url 'products:detail' product.slug %}" class="btn btn-warning btn-round">
-                        {% trans 'View Project' %}
-                      </a>
-                    </div>
-                  </div>
-                </div>                
-                <div class="col-md-5 mr-auto">
-                    {% for chapter in product.chapters.all %}
-                      <div class="info info-horizontal">
-                        <div class="icon icon-warning">
-                            <i class="fal fa-2x fa-fw fa-{{ chapter.icon }}"></i>
-                        </div>
-                        <div class="description">
-                          <h4 class="info-title">{{ chapter.title|capfirst }}</h4>
-                          <p class="description">
-                            {{ chapter.description|striptags|capfirst }}
-                          </p>
-                        </div>
-                      </div>
-                    {% endfor %}
-                </div>
-              </div>
-        {% endfor %}
-      </div>
-    </div>
-
     <div class="section text-center">
         <div class="container">
             <h2 class="title">{% trans 'Our authors' %}</h2>

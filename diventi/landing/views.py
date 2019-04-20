@@ -39,7 +39,6 @@ def landing(request):
         team members. 
     """
     authors = DiventiUser.objects.authors()
-    products = Product.objects.published()
     sections = Section.objects.not_featured()
     sections = sections.prefetch_related('users')
     sections = sections.prefetch_related('products')
@@ -74,7 +73,6 @@ def landing(request):
     context = {   
         'registration_form': registration_form,
         'featured_survey_form': featured_survey_form,
-        'products': products,
         'authors': authors,
         'sections': sections,
         'featured_section': featured_section,

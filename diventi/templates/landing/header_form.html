@@ -1,5 +1,11 @@
 {% load i18n %}
 
+{% for product in section.products.all %}
+  <a href="{{ product.get_absolute_url }}" class="btn btn-danger btn-raised btn-lg">
+      {% trans "Find out more" %} 
+  </a>
+{% endfor %}
+
 {% if section.section_survey %}
   <a href="{% url 'feedbacks:new_answers_gate' section.section_survey.slug %}" class="btn btn-warning btn-round">
     {% trans "Access the survey" %}

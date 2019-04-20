@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from diventi.core.views import DiventiActionMixin
 
 from .models import Survey, Answer, Question, QuestionGroup
-from .forms import AnswerForm
+from .forms import AnswerForm, FeaturedSurveyInitForm
 
 from cuser.middleware import CuserMiddleware
 
@@ -90,6 +90,9 @@ class AnswerListViewByName(AnswerListView):
 def survey_questions(request, slug, author_name=None):
 
     survey = Survey.objects.published().get(slug=slug)
+
+    if survey.public and author_name is None:
+        return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
     
     if request.user.is_authenticated:
         author_name = request.user.get_short_name()
@@ -145,8 +148,28 @@ def new_answers_gate(request, slug):
         messages.warning(request, _('The selected survey doesn\'t exist or is not published yet.'))
         return redirect(reverse('landing:home'))
 
-    author_name = request.GET.get('author_name', None)
-    
+    if survey.public:
+        if request.method == 'POST':
+            survey_form = FeaturedSurveyInitForm(request.POST)
+            if survey_form.is_valid():
+                author_name = survey_form.cleaned_data['author_name']
+            else:
+                messages.warning(request, _('There was an error while processing your survey.'))
+                return redirect(reverse('feedbacks:new_answers_gate', args=[survey.slug,]))
+        else:
+            template_name = 'feedbacks/author_form.html'
+            featured_survey_data = {
+                'survey': survey,
+            }
+            survey_form = FeaturedSurveyInitForm(initial = featured_survey_data)
+            context = {
+                'survey': survey,
+                'survey_form': survey_form,
+            }
+            return render(request, template_name, context)
+    else:
+        pass
+
     user_has_answered = False
     user_can_submit = False
 
@@ -158,7 +181,7 @@ def new_answers_gate(request, slug):
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
         if user_has_answered:
             messages.warning(request, _('An other user already picked that name and answered, please choose an other name.'))
-            return redirect(reverse('landing:home'))
+            return redirect(reverse('feedbacks:new_answers_gate', args=[survey.slug,]))
 
     return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
 

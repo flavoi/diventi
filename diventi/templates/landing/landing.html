@@ -18,7 +18,7 @@
 {% block maincontainer %}
 
     {% for section in sections %}
-    <div class="section">
+    <div class="section" style="background-image: url('{{ section.image }}">
         {% with "landing/"|add:section.template as section_template_name %}
             {% include section_template_name %}
         {% endwith %}

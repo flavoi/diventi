@@ -6,8 +6,8 @@ from modeltranslation.admin import TranslationTabularInline, TranslationStackedI
 
 from diventi.core.admin import DiventiTranslationAdmin, deactivate, make_published, make_unpublished
 
-from .models import Presentation, Feature, Section
-from .forms import PresentationForm, SectionForm
+from .models import Feature, Section
+from .forms import SectionForm
 
 
 class FeatureInline(TranslationStackedInline):
@@ -26,7 +26,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('template', 'featured_template')
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'order_index', 'description', 'image', 'label'),
+            'fields': ('title', 'abstract', 'order_index', 'description', 'image',),
         }),
         (_('Additionals'), {
             'fields': ('products', 'users', 'section_survey'),
@@ -37,7 +37,7 @@ class SectionAdmin(DiventiTranslationAdmin):
     ]
     actions = [make_published, make_unpublished]
     form = SectionForm
-    ordering = ['-published', 'order_index']
+    ordering = ['-featured', 'order_index']
     
 
 admin.site.register(Section, SectionAdmin)

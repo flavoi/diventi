@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
-from .models import Presentation, Section
+from .models import Section
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
@@ -91,27 +91,12 @@ def landing(request):
     return render(request, 'landing/landing.html', context)
 
 
-class PresentationDetailView(DetailView):
-    """ Renders an instance of the landing page. """
-
-    model = Presentation
-    context_object_name = 'presentation'
-    template_name = 'landing/landing.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(PresentationDetailView, self).get_context_data(**kwargs)
-        context['staff'] = DiventiUser.objects.members()
-        context['registration_form'] = DiventiUserInitForm()
-        context['featured_product'] = Product.objects.featured()
-        return context
-
-
 class PresentationSearchView(ListView):
     """ Search for every content in the project. """
 
-    model = Presentation
     template_name = "landing/search_results.html"
     context_object_name = 'results'
+    model = Section
 
     def get_queryset(self):
         results = super(PresentationSearchView, self).get_queryset()

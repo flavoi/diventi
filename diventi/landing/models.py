@@ -11,45 +11,6 @@ from diventi.products.models import Product
 from diventi.feedbacks.models import Survey
 
 
-class PresentationManager(models.Manager):
-
-    def active(self):
-        try:
-            active_presentation = self.prefetch_related('profile_features')            
-            active_presentation = active_presentation.get(active=True)
-        except Presentation.DoesNotExist:
-            msg = _("There is no active landing page.")
-            raise Presentation.DoesNotExist(msg)
-        except Presentation.MultipleObjectsReturned:
-            msg = _("There must be only one landing page at a time. Please fix!")
-            raise Presentation.MultipleObjectsReturned(msg)
-        return active_presentation
-
-
-class Presentation(DiventiImageModel):
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    abstract = models.TextField(blank=True, verbose_name=_('abstract'))
-    description = models.TextField(blank=True, verbose_name=_('description'))
-    projects_description = models.TextField(blank=True, verbose_name=_('projects description'))
-    featured_link = models.CharField(blank=True, max_length=150, verbose_name=_('featured link'))
-    featured_label = models.CharField(blank=True, max_length=50, verbose_name=_('featured label'))
-    TEMPLATE_CHOICES = (
-        ('standard_left_header.html', _('standard left header')),
-        ('survey_centered_header.html', _('standard centered header')),
-    )
-    template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('template'))
-    active = models.BooleanField(default=False, verbose_name=_('active'))
-    
-    objects = PresentationManager()
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('presentation')
-        verbose_name_plural = _('presentations')
-
-
 class Section(DiventiImageModel, FeaturedModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, verbose_name=_('abstract'))
@@ -61,7 +22,7 @@ class Section(DiventiImageModel, FeaturedModel):
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
     FEATURED_TEMPLATE_CHOICES = (
         ('standard_left_header.html', _('standard left header')),
-        ('survey_centered_header.html', _('standard centered header')),
+        ('standard_centered_header.html', _('standard centered header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
     products = models.ManyToManyField(Product, related_name='products', blank=True, verbose_name=_('products'))

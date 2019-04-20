@@ -1,6 +1,4 @@
-
 <div class="container">
-
     <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
             <h2 class="title">{{ section.title|capfirst }}</h2>
@@ -8,7 +6,13 @@
             <div class="section-space"></div>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-6 ml-auto mr-auto text-center">
+            {% with section as section %}
+                {% include "landing/section_form.html" %}
+            {% endwith %}
+        </div>
+    </div>
     <div class="features">
         <div class="container">
             <div class="row text-center">
@@ -26,7 +30,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         {% for author in section.users.all %}
             <div class="col-md-4">
@@ -34,5 +37,4 @@
             </div>
         {% endfor %}
     </div>
-
 </div>

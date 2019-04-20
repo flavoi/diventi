@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'New survey gate' %}{% endblock title %}
+
+{% block bodyclass %}signup-page sidebar-collapse{% endblock bodyclass %}
+
+{% block pageheaderimage %}{{ survey.image }}{% endblock pageheaderimage %}
+
+{% block pageheadercontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+                <div class="card">                                        
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{{ survey.title }}</h2>
+                        <h4 class="description text-center">{{ survey.description }}</h4>
+                        <form method="post" action="{% url 'feedbacks:new_answers_gate' survey.slug %}" class="has-warning">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group bmd-form-group col-md-4 ml-auto">
+                                    {{ survey_form.survey }}
+                                    {{ survey_form.author_name }}
+                                </div>
+                                <div class="form-group bmd-form-group col-md-4 mr-auto">                                
+                                    <button type="submit" class="btn btn-warning btn-round btn-block">
+                                        {% trans "Access the survey" %}
+                                    </button>
+                                </div>     
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock pageheadercontent %}
+
+{% block main %}{% endblock main %}
+
+{% block footer %}{% endblock footer %}

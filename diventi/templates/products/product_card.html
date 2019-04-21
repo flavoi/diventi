@@ -1,18 +1,22 @@
 {% load i18n %}
 
-<div class="card card-plain">
-  <a href="{{ product.get_absolute_url }}">
-    <div class="card-header card-header-image">
-      <img src="{{ product.image }}">
+<div class="card card-plain card-blog">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card-header card-header-image">
+        <a href="{{ product.get_absolute_url }}">
+          <img class="img" src="{{ product.image }}">
+        </a>
+      <div class="colored-shadow" style="background-image: url({{ product.image }}); opacity: 1;"></div></div>
     </div>
-  </a>
-  <div class="card-body ">
-    <h6 class="card-category">{% trans "app" %}</h6>
-    <a href="{{ product.get_absolute_url }}">
-      <h4 class="card-title">{{ product.title }}</h4>
-    </a>
-    <p class="card-description">
-      {{ product.abstract }}
-    </p>
+    <div class="col-md-7">
+      <h6 class="card-category text-info">{{ product.category }}</h6>
+      <h3 class="card-title">
+        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+      </h3>
+      <p class="card-description">
+        {{ product.description }}
+      </p>
+    </div>
   </div>
 </div>

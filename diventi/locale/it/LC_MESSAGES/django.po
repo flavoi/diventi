@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-04 07:30+0200\n"
+"POT-Creation-Date: 2019-04-20 22:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,7 +170,7 @@ msgstr "ruolo"
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:120
+#: diventi/accounts/models.py:120 diventi/landing/models.py:45
 msgid "Users"
 msgstr "Utenti"
 
@@ -295,12 +295,12 @@ msgid "User covers"
 msgstr "Copertine utente"
 
 #: diventi/blog/admin.py:14 diventi/feedbacks/admin.py:53
-#: diventi/landing/admin.py:23 diventi/products/admin.py:52
+#: diventi/landing/admin.py:22 diventi/products/admin.py:52
 msgid "Management"
 msgstr "Gestione"
 
 #: diventi/blog/admin.py:17 diventi/feedbacks/admin.py:56
-#: diventi/landing/admin.py:26 diventi/products/admin.py:55
+#: diventi/landing/admin.py:28 diventi/products/admin.py:55
 msgid "Editing"
 msgstr "Montaggio"
 
@@ -316,16 +316,16 @@ msgstr "Copertina del blog"
 msgid "Blog Covers"
 msgstr "Copertine del blog"
 
-#: diventi/blog/models.py:78 diventi/core/models.py:78
+#: diventi/blog/models.py:78 diventi/core/models.py:77
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
 #: diventi/feedbacks/models.py:96 diventi/feedbacks/models.py:116
-#: diventi/landing/models.py:26 diventi/products/models.py:63
+#: diventi/landing/models.py:15 diventi/products/models.py:63
 msgid "title"
 msgstr "titolo"
 
-#: diventi/blog/models.py:79 diventi/core/models.py:79
+#: diventi/blog/models.py:79 diventi/core/models.py:78
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
-#: diventi/feedbacks/models.py:117 diventi/landing/models.py:28
+#: diventi/feedbacks/models.py:117 diventi/landing/models.py:17
 #: diventi/products/models.py:65
 msgid "description"
 msgstr "descrizione"
@@ -466,47 +466,47 @@ msgstr "data pubblicazione"
 msgid "promotions"
 msgstr "promozioni"
 
-#: diventi/core/models.py:77
+#: diventi/core/models.py:76
 msgid "icon"
 msgstr "icona"
 
-#: diventi/core/models.py:80
+#: diventi/core/models.py:79
 msgid "color"
 msgstr "colore"
 
-#: diventi/core/models.py:100
+#: diventi/core/models.py:99
 msgid "categories"
 msgstr "categorie"
 
-#: diventi/core/models.py:108
+#: diventi/core/models.py:107
 msgid "image"
 msgstr "immagine"
 
-#: diventi/core/models.py:109
+#: diventi/core/models.py:108
 msgid "label"
 msgstr "didascalia"
 
-#: diventi/core/models.py:126
+#: diventi/core/models.py:125
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:127 diventi/products/models.py:146
+#: diventi/core/models.py:126 diventi/products/models.py:146
 msgid "Image"
 msgstr "Immagine"
 
-#: diventi/core/models.py:145
+#: diventi/core/models.py:144
 msgid "There must be only one object at a time. Please fix!"
 msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 
-#: diventi/core/models.py:164 diventi/landing/models.py:37
+#: diventi/core/models.py:163
 msgid "active"
 msgstr "attiva"
 
-#: diventi/core/models.py:200
+#: diventi/core/models.py:199
 msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
-#: diventi/core/models.py:219 diventi/products/models.py:67
+#: diventi/core/models.py:229 diventi/products/models.py:67
 msgid "featured"
 msgstr "in primo piano"
 
@@ -518,7 +518,7 @@ msgstr "Riscontri"
 msgid "Name"
 msgstr "Nome"
 
-#: diventi/feedbacks/models.py:22
+#: diventi/feedbacks/models.py:22 diventi/landing/models.py:18
 msgid "order index"
 msgstr "id ordinamento"
 
@@ -592,6 +592,7 @@ msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
+#: diventi/landing/models.py:30
 #: diventi/templates/accounts/user_collection.html:47
 msgid "survey"
 msgstr "sondaggio"
@@ -640,94 +641,126 @@ msgstr "<slug:slug>/risposte/"
 msgid "<slug:slug>/answers/<str:author_name>/"
 msgstr "<slug:slug>/risposte/<str:author_name>/"
 
-#: diventi/feedbacks/views.py:101
+#: diventi/feedbacks/views.py:104
 msgid "You should sign in to access that survey."
 msgstr "Per rispondere a questo sondaggio devi prima autenticarti."
 
-#: diventi/feedbacks/views.py:126
+#: diventi/feedbacks/views.py:129
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
 
-#: diventi/feedbacks/views.py:129
+#: diventi/feedbacks/views.py:132
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
 
-#: diventi/feedbacks/views.py:145
+#: diventi/feedbacks/views.py:148
 msgid "The selected survey doesn't exist or is not published yet."
 msgstr "Il sondaggio selezionato non esiste o non è ancora stato pubblicato."
 
-#: diventi/feedbacks/views.py:160
+#: diventi/feedbacks/views.py:157
+msgid "There was an error while processing your survey."
+msgstr "Si è verificato un errore mentre processavamo il tuo sondaggio."
+
+#: diventi/feedbacks/views.py:183
 msgid ""
 "An other user already picked that name and answered, please choose an other "
 "name."
 msgstr ""
 "Un altro utente ha già utilizzato questo nome, per favore scegline un altro."
 
+#: diventi/landing/admin.py:25
+msgid "Templates"
+msgstr "Modelli"
+
+#: diventi/landing/admin.py:31
+msgid "Additionals"
+msgstr "Extra"
+
 #: diventi/landing/apps.py:7
 msgid "Landing"
 msgstr "Pagina di destinazione"
 
-#: diventi/landing/models.py:17
-msgid "There is no active landing page."
-msgstr "Non risulta attiva alcuna pagina di destinazione"
-
-#: diventi/landing/models.py:20
-msgid "There must be only one landing page at a time. Please fix!"
-msgstr "Può esistere una sola pagina di destinazione per volta."
-
-#: diventi/landing/models.py:27 diventi/products/models.py:64
+#: diventi/landing/models.py:16 diventi/products/models.py:64
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:29
-msgid "projects description"
-msgstr "descrizione progetti"
+#: diventi/landing/models.py:20
+#, fuzzy
+#| msgid "standard left header"
+msgid "standard centered section"
+msgstr "testatina sinistra normale"
 
-#: diventi/landing/models.py:30
-msgid "featured link"
-msgstr "link in primo piano"
+#: diventi/landing/models.py:22
+#, fuzzy
+#| msgid "standard left header"
+msgid "standard template"
+msgstr "testatina sinistra normale"
 
-#: diventi/landing/models.py:31
-msgid "featured label"
-msgstr "etichetta in primo piano"
-
-#: diventi/landing/models.py:33
+#: diventi/landing/models.py:24
 msgid "standard left header"
 msgstr "testatina sinistra normale"
 
-#: diventi/landing/models.py:34
-msgid "survey centered header"
-msgstr "testatina con sondaggio centrale"
+#: diventi/landing/models.py:25
+#, fuzzy
+#| msgid "standard left header"
+msgid "standard centered header"
+msgstr "testatina sinistra normale"
 
-#: diventi/landing/models.py:36
-msgid "template"
-msgstr "modello"
+#: diventi/landing/models.py:27
+#, fuzzy
+#| msgid "featured label"
+msgid "featured template"
+msgstr "etichetta in primo piano"
 
-#: diventi/landing/models.py:45
-msgid "presentation"
-msgstr "presentazione"
+#: diventi/landing/models.py:28 diventi/products/models.py:79
+msgid "products"
+msgstr "prodotti"
 
-#: diventi/landing/models.py:46
-msgid "presentations"
-msgstr "presentazioni"
+#: diventi/landing/models.py:29
+#, fuzzy
+#| msgid "user"
+msgid "users"
+msgstr "utente"
 
-#: diventi/landing/models.py:53
+#: diventi/landing/models.py:37
+#, fuzzy
+#| msgid "features"
+msgid "Features"
+msgstr "aspetti"
+
+#: diventi/landing/models.py:41
+msgid "Products"
+msgstr "Prodotti"
+
+#: diventi/landing/models.py:48
+msgid "section"
+msgstr "sezione"
+
+#: diventi/landing/models.py:49
+msgid "sections"
+msgstr "sezioni"
+
+#: diventi/landing/models.py:56
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:54
+#: diventi/landing/models.py:57
 msgid "features"
 msgstr "aspetti"
 
 #: diventi/landing/urls.py:10
-msgid "^presentation/(?P<pk>\\d+)/$"
-msgstr "^presentazione/(?P<pk>\\d+)/$"
-
-#: diventi/landing/urls.py:11
 msgid "^search/$"
 msgstr "^ricerca/$"
 
-#: diventi/landing/views.py:39
+#: diventi/landing/urls.py:11
+msgid "^survey/$"
+msgstr "^sondaggio/$"
+
+#: diventi/landing/views.py:32
+msgid "We encountered an error while redirecting to your survey."
+msgstr "Abbiamo riscontrato un errore in fase di riindirizzamento al tuo sondaggio."
+
+#: diventi/landing/views.py:60
 msgid "Please double check your email."
 msgstr "Per favore controlla la tua email."
 
@@ -780,10 +813,6 @@ msgstr "messaggio di cortesia"
 #: diventi/products/models.py:143
 msgid "product"
 msgstr "prodotto"
-
-#: diventi/products/models.py:79
-msgid "products"
-msgstr "prodotti"
 
 #: diventi/products/models.py:118
 msgid "Chapter category"
@@ -872,7 +901,7 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/landing/landing.html:127
+#: diventi/templates/landing/landing.html:50
 #: diventi/templates/navigation.html:77
 msgid "Manage profile"
 msgstr "Gestisci profilo"
@@ -1016,7 +1045,7 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:32
-#: diventi/templates/landing/landing.html:151
+#: diventi/templates/landing/landing.html:74
 msgid "Sign up"
 msgstr "Registrati"
 
@@ -1138,11 +1167,11 @@ msgstr "Questa collezione è vuota."
 msgid "Surveys"
 msgstr "Sondaggi"
 
-#: diventi/templates/accounts/user_collection.html:55
+#: diventi/templates/accounts/user_collection.html:53
 msgid "Display"
 msgstr "Visualizza"
 
-#: diventi/templates/accounts/user_collection.html:63
+#: diventi/templates/accounts/user_collection.html:61
 msgid "There are no surveys yet."
 msgstr "Nessun sondaggio è ora disponibile."
 
@@ -1337,6 +1366,20 @@ msgstr "Devi ancora rispondere a questo sondaggio."
 msgid "Access the questions"
 msgstr "Accedi alle domande"
 
+#: diventi/templates/feedbacks/author_form.html:6
+#, fuzzy
+#| msgid "send survey"
+msgid "New survey gate"
+msgstr "invia sondaggio"
+
+#: diventi/templates/feedbacks/author_form.html:29
+#: diventi/templates/landing/header_form.html:11
+#: diventi/templates/landing/section_form.html:5
+#, fuzzy
+#| msgid "Access the questions"
+msgid "Access the survey"
+msgstr "Accedi alle domande"
+
 #: diventi/templates/feedbacks/survey_detail.html:18
 msgid "your answers"
 msgstr "le tue risposte"
@@ -1345,46 +1388,37 @@ msgstr "le tue risposte"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
-#: diventi/templates/landing/landing.html:57
-msgid "Our projects"
-msgstr "I nostri progetti"
+#: diventi/templates/landing/header_form.html:5
+msgid "Find out more"
+msgstr "Scopri di più"
 
-#: diventi/templates/landing/landing.html:80
-msgid "View Project"
-msgstr "Visualizza progetto"
-
-#: diventi/templates/landing/landing.html:107
+#: diventi/templates/landing/landing.html:30
 #: diventi/templates/products/product_detail.html:161
 msgid "Our authors"
 msgstr "I nostri autori"
 
-#: diventi/templates/landing/landing.html:124
+#: diventi/templates/landing/landing.html:47
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing.html:125
+#: diventi/templates/landing/landing.html:48
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:131
+#: diventi/templates/landing/landing.html:54
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing.html:132
+#: diventi/templates/landing/landing.html:55
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
 #: diventi/templates/landing/search_results.html:36
 msgid "End of results"
 msgstr "Fine dei risultati"
-
-#: diventi/templates/landing/standard_left_header.html:11
-#: diventi/templates/landing/survey_centered_header.html:23
-msgid "Find out more"
-msgstr "Scopri di più"
 
 #: diventi/templates/navigation.html:69
 msgid "Enter the control panel"
@@ -1397,6 +1431,10 @@ msgstr "Contatta gli iscritti"
 #: diventi/templates/navigation.html:80
 msgid "Sign out"
 msgstr "Annulla l'accesso"
+
+#: diventi/templates/products/product_card.html:10
+msgid "app"
+msgstr ""
 
 #: diventi/templates/products/product_detail.html:56
 msgid "Description"
@@ -1437,6 +1475,36 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "There is no active landing page."
+#~ msgstr "Non risulta attiva alcuna pagina di destinazione"
+
+#~ msgid "There must be only one landing page at a time. Please fix!"
+#~ msgstr "Può esistere una sola pagina di destinazione per volta."
+
+#~ msgid "projects description"
+#~ msgstr "descrizione progetti"
+
+#~ msgid "featured link"
+#~ msgstr "link in primo piano"
+
+#~ msgid "survey centered header"
+#~ msgstr "testatina con sondaggio centrale"
+
+#~ msgid "presentation"
+#~ msgstr "presentazione"
+
+#~ msgid "presentations"
+#~ msgstr "presentazioni"
+
+#~ msgid "^presentation/(?P<pk>\\d+)/$"
+#~ msgstr "^presentazione/(?P<pk>\\d+)/$"
+
+#~ msgid "Our projects"
+#~ msgstr "I nostri progetti"
+
+#~ msgid "View Project"
+#~ msgstr "Visualizza progetto"
 
 #~ msgid "Access"
 #~ msgstr "Accedi"
@@ -1563,9 +1631,6 @@ msgstr "nessun voto rilevato"
 #~ msgid "cards"
 #~ msgstr "carte"
 
-#~ msgid "section"
-#~ msgstr "sezione"
-
 #~ msgid "subsection"
 #~ msgstr "sottosezione"
 
@@ -1662,9 +1727,6 @@ msgstr "nessun voto rilevato"
 #~ msgid "throne"
 #~ msgstr "trono"
 
-#~ msgid "sections"
-#~ msgstr "sezioni"
-
 #~ msgid "table"
 #~ msgstr "tabella"
 
@@ -1695,9 +1757,6 @@ msgstr "nessun voto rilevato"
 #~ msgid "This paper requires a template.'"
 #~ msgstr "Questo documento richiede un modello"
 
-#~ msgid "Products"
-#~ msgstr "Prodotti"
-
 #~ msgid "This is what we do"
 #~ msgstr "Ecco ciò che facciamo"
 
@@ -1727,9 +1786,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "Tell us what you think!"
 #~ msgstr "Dicci che ne pensi!"
-
-#~ msgid "user"
-#~ msgstr "utente"
 
 #~ msgid "feedback"
 #~ msgstr "feedback"

@@ -18,25 +18,12 @@
 {% block maincontainer %}
 
     {% for section in sections %}
-    <div class="section" style="background-image: url('{{ section.image }}">
+    <div {% if section.image %}class="section section-image" style="background-image: url('{{ section.image }}"{% else %}class="section"{% endif %}>
         {% with "landing/"|add:section.template as section_template_name %}
             {% include section_template_name %}
         {% endwith %}
     </div>
     {% endfor %}
-
-    <div class="section text-center">
-        <div class="container">
-            <h2 class="title">{% trans 'Our authors' %}</h2>
-             <div class="row">
-                {% for author in authors %}
-                    <div class="col-md-4">
-                        {% include "accounts/author.html" %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
 
     <div class="section section-contacts">
         <div class="container">

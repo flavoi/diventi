@@ -6,11 +6,36 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 ml-auto mr-auto text-center">
-            {% with section as section %}
-                {% include "landing/section_form.html" %}
+        {% for author in section.users.all %}
+            <div class="col-md-4">
+                {% include "accounts/author.html" %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for product in section.products.all %}
+            <div class="col-md-10">
+                {% include "products/product_card.html" %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-md-6 ml-auto mr-auto">
+            {% with section.section_survey as survey %}
+                {% if survey %}
+                    {% include "feedbacks/survey_card.html" %}
+                {% endif %}
             {% endwith %}
         </div>
+    </div>
+    <div class="row">
+        {% with section.section_article as article %}
+            {% if article %}
+                <div class="col-md-6 mr-auto ml-auto text-center">
+                    {% include "blog/article_card.html" %}
+                </div>
+            {% endif %}
+        {% endwith %}
     </div>
     <div class="features">
         <div class="container">
@@ -28,19 +53,5 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
-    <div class="row">
-        {% for author in section.users.all %}
-            <div class="col-md-4">
-                {% include "accounts/author.html" %}
-            </div>
-        {% endfor %}
-    </div>
-    <div class="row">
-        {% for product in section.products.all %}
-            <div class="col-md-5">
-                {% include "products/product_card.html" %}
-            </div>
-        {% endfor %}
     </div>
 </div>

@@ -29,7 +29,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('title', 'abstract', 'order_index', 'description', 'image',),
         }),
         (_('Additionals'), {
-            'fields': ('products', 'users', 'section_survey'),
+            'fields': ('products', 'users', 'section_survey', 'section_article'),
         }),
     )
     inlines = [        

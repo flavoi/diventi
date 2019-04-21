@@ -1,8 +1,0 @@
-{% load i18n %}
-
-{% if section.section_survey %}
-  <a href="{% url 'feedbacks:new_answers_gate' section.section_survey.slug %}" class="btn btn-warning btn-round">
-    {% trans "Access the survey" %}
-  </a>
-{% endif %}
-

@@ -14,7 +14,6 @@ from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
 from diventi.blog.models import Article
-from diventi.feedbacks.forms import FeaturedSurveyInitForm
 from diventi.feedbacks.models import Survey, Answer
 
 
@@ -38,10 +37,11 @@ def landing(request):
         Renders the landing page with Diventi main features and
         team members. 
     """
-    authors = DiventiUser.objects.authors()
     sections = Section.objects.not_featured()
     sections = sections.prefetch_related('users')
     sections = sections.prefetch_related('products')
+    sections = sections.select_related('section_survey')
+    sections = sections.select_related('section_article')
     sections = sections.order_by('order_index')
     featured_section = Section.objects.featured()
     if featured_section:
@@ -62,18 +62,9 @@ def landing(request):
         return redirect('accounts:signup')
     else:
         registration_form = DiventiUserInitForm()
-        if featured_section.section_survey:
-            featured_survey_data = {
-                'survey': featured_section.section_survey,
-            }
-            featured_survey_form = FeaturedSurveyInitForm(initial = featured_survey_data)
-        else:
-            featured_survey_form = None
 
     context = {   
         'registration_form': registration_form,
-        'featured_survey_form': featured_survey_form,
-        'authors': authors,
         'sections': sections,
         'featured_section': featured_section,
     }

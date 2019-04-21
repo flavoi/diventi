@@ -1,22 +1,35 @@
 {% load i18n %}
 
-<div class="card card-plain card-blog">
-  <div class="row">
-    <div class="col-md-5">
-      <div class="card-header card-header-image">
-        <a href="{{ product.get_absolute_url }}">
-          <img class="img" src="{{ product.image }}">
-        </a>
-      <div class="colored-shadow" style="background-image: url({{ product.image }}); opacity: 1;"></div></div>
-    </div>
-    <div class="col-md-7">
-      <h6 class="card-category text-info">{{ product.category }}</h6>
-      <h3 class="card-title">
-        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-      </h3>
+<div class="col-md-6 ml-auto">
+  <div class="card card-background" style="background-image:url('{{ product.image }}')">
+    <a href="{{ product.get_absolute_url }}"></a>
+    <div class="card-body">
+      <h6 class="card-category text-info">{{ product.category }}</h6>                      
+      <a href="/it/progetti/primo-contatto/">
+        <h3 class="card-title">{{ product.title|capfirst }}</h3>
+      </a>
       <p class="card-description">
-        {{ product.description }}
+         {{ product.abstract|striptags }}
       </p>
+      <a href="{{ product.get_absolute_url }}" class="btn btn-warning btn-round">
+        {% trans 'View Project' %}
+      </a>
     </div>
   </div>
+</div>                
+<div class="col-md-6 mr-auto">
+    {% for chapter in product.chapters.all %}
+      <div class="info info-horizontal">
+        <div class="icon icon-warning">
+            <i class="fal fa-2x fa-fw fa-{{ chapter.icon }}"></i>
+        </div>
+        <div class="description">
+          <h4 class="info-title {% if section.image %}text-warning{% endif %}">{{ chapter.title|capfirst }}</h4>
+          <p class="description">
+            {{ chapter.description|striptags|capfirst }}
+          </p>
+        </div>
+      </div>
+    {% endfor %}
 </div>
+

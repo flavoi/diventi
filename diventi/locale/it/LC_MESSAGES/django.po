@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-20 22:33+0200\n"
+"POT-Creation-Date: 2019-04-21 22:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,7 +170,7 @@ msgstr "ruolo"
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:120 diventi/landing/models.py:45
+#: diventi/accounts/models.py:120 diventi/landing/models.py:48
 msgid "Users"
 msgstr "Utenti"
 
@@ -319,13 +319,13 @@ msgstr "Copertine del blog"
 #: diventi/blog/models.py:78 diventi/core/models.py:77
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
 #: diventi/feedbacks/models.py:96 diventi/feedbacks/models.py:116
-#: diventi/landing/models.py:15 diventi/products/models.py:63
+#: diventi/landing/models.py:16 diventi/products/models.py:63
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:78
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
-#: diventi/feedbacks/models.py:117 diventi/landing/models.py:17
+#: diventi/feedbacks/models.py:117 diventi/landing/models.py:18
 #: diventi/products/models.py:65
 msgid "description"
 msgstr "descrizione"
@@ -353,6 +353,7 @@ msgid "author"
 msgstr "autore"
 
 #: diventi/blog/models.py:90 diventi/blog/models.py:111
+#: diventi/landing/models.py:33
 msgid "article"
 msgstr "articolo"
 
@@ -518,7 +519,7 @@ msgstr "Riscontri"
 msgid "Name"
 msgstr "Nome"
 
-#: diventi/feedbacks/models.py:22 diventi/landing/models.py:18
+#: diventi/feedbacks/models.py:22 diventi/landing/models.py:19
 msgid "order index"
 msgstr "id ordinamento"
 
@@ -592,7 +593,7 @@ msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
-#: diventi/landing/models.py:30
+#: diventi/landing/models.py:32
 #: diventi/templates/accounts/user_collection.html:47
 msgid "survey"
 msgstr "sondaggio"
@@ -680,71 +681,65 @@ msgstr "Extra"
 msgid "Landing"
 msgstr "Pagina di destinazione"
 
-#: diventi/landing/models.py:16 diventi/products/models.py:64
+#: diventi/landing/models.py:17 diventi/products/models.py:64
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/landing/models.py:20
-#, fuzzy
-#| msgid "standard left header"
+#: diventi/landing/models.py:21
 msgid "standard centered section"
-msgstr "testatina sinistra normale"
+msgstr "testatina centrale normale"
 
 #: diventi/landing/models.py:22
 #, fuzzy
-#| msgid "standard left header"
-msgid "standard template"
-msgstr "testatina sinistra normale"
+#| msgid "standard centered section"
+msgid "standard left section"
+msgstr "testatina centrale normale"
 
 #: diventi/landing/models.py:24
+msgid "standard template"
+msgstr "modello normale"
+
+#: diventi/landing/models.py:26
 msgid "standard left header"
 msgstr "testatina sinistra normale"
 
-#: diventi/landing/models.py:25
-#, fuzzy
-#| msgid "standard left header"
-msgid "standard centered header"
-msgstr "testatina sinistra normale"
-
 #: diventi/landing/models.py:27
-#, fuzzy
-#| msgid "featured label"
-msgid "featured template"
-msgstr "etichetta in primo piano"
+msgid "standard centered header"
+msgstr "testatina centrale normale"
 
-#: diventi/landing/models.py:28 diventi/products/models.py:79
+#: diventi/landing/models.py:29
+msgid "featured template"
+msgstr "modello in primo piano"
+
+#: diventi/landing/models.py:30 diventi/products/models.py:79
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/landing/models.py:29
-#, fuzzy
-#| msgid "user"
+#: diventi/landing/models.py:31
 msgid "users"
-msgstr "utente"
+msgstr "utenti"
 
-#: diventi/landing/models.py:37
-#, fuzzy
-#| msgid "features"
+#: diventi/landing/models.py:40
 msgid "Features"
-msgstr "aspetti"
+msgstr "Aspetti"
 
-#: diventi/landing/models.py:41
+#: diventi/landing/models.py:44
 msgid "Products"
 msgstr "Prodotti"
 
-#: diventi/landing/models.py:48
+#: diventi/landing/models.py:52
 msgid "section"
 msgstr "sezione"
 
-#: diventi/landing/models.py:49
+#: diventi/landing/models.py:53
 msgid "sections"
 msgstr "sezioni"
 
-#: diventi/landing/models.py:56
+#: diventi/landing/models.py:60
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:57
+#: diventi/landing/models.py:61
 msgid "features"
 msgstr "aspetti"
 
@@ -758,9 +753,14 @@ msgstr "^sondaggio/$"
 
 #: diventi/landing/views.py:32
 msgid "We encountered an error while redirecting to your survey."
-msgstr "Abbiamo riscontrato un errore in fase di riindirizzamento al tuo sondaggio."
+msgstr ""
+"Abbiamo riscontrato un errore in fase di riindirizzamento al tuo sondaggio."
 
-#: diventi/landing/views.py:60
+#: diventi/landing/views.py:54
+msgid "This page is not available yet."
+msgstr "Questa pagina non è ancora disponibile."
+
+#: diventi/landing/views.py:63
 msgid "Please double check your email."
 msgstr "Per favore controlla la tua email."
 
@@ -901,7 +901,7 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/landing/landing.html:50
+#: diventi/templates/landing/landing.html:37
 #: diventi/templates/navigation.html:77
 msgid "Manage profile"
 msgstr "Gestisci profilo"
@@ -1045,7 +1045,7 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:32
-#: diventi/templates/landing/landing.html:74
+#: diventi/templates/landing/landing.html:61
 msgid "Sign up"
 msgstr "Registrati"
 
@@ -1238,6 +1238,10 @@ msgstr "Cerca contenuti in questo sito web"
 msgid "Search"
 msgstr "Ricerca"
 
+#: diventi/templates/blog/article_card.html:14
+msgid "read the story"
+msgstr "leggi la storia"
+
 #: diventi/templates/blog/article_detail.html:29
 msgid "Photo"
 msgstr "Foto"
@@ -1367,18 +1371,17 @@ msgid "Access the questions"
 msgstr "Accedi alle domande"
 
 #: diventi/templates/feedbacks/author_form.html:6
-#, fuzzy
-#| msgid "send survey"
 msgid "New survey gate"
-msgstr "invia sondaggio"
+msgstr "Nuovo sondaggio"
 
-#: diventi/templates/feedbacks/author_form.html:29
+#: diventi/templates/feedbacks/author_form.html:31
+msgid "Confirm username"
+msgstr "Conferma nome utente"
+
+#: diventi/templates/feedbacks/survey_card.html:4
 #: diventi/templates/landing/header_form.html:11
-#: diventi/templates/landing/section_form.html:5
-#, fuzzy
-#| msgid "Access the questions"
 msgid "Access the survey"
-msgstr "Accedi alle domande"
+msgstr "Accedi al sondaggio"
 
 #: diventi/templates/feedbacks/survey_detail.html:18
 msgid "your answers"
@@ -1392,27 +1395,22 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "Find out more"
 msgstr "Scopri di più"
 
-#: diventi/templates/landing/landing.html:30
-#: diventi/templates/products/product_detail.html:161
-msgid "Our authors"
-msgstr "I nostri autori"
-
-#: diventi/templates/landing/landing.html:47
+#: diventi/templates/landing/landing.html:34
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing.html:48
+#: diventi/templates/landing/landing.html:35
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing.html:54
+#: diventi/templates/landing/landing.html:41
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing.html:55
+#: diventi/templates/landing/landing.html:42
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
@@ -1432,9 +1430,9 @@ msgstr "Contatta gli iscritti"
 msgid "Sign out"
 msgstr "Annulla l'accesso"
 
-#: diventi/templates/products/product_card.html:10
-msgid "app"
-msgstr ""
+#: diventi/templates/products/product_card.html:15
+msgid "View Project"
+msgstr "Visualizza progetto"
 
 #: diventi/templates/products/product_detail.html:56
 msgid "Description"
@@ -1455,6 +1453,10 @@ msgstr "Aggiungi questo prodotto alla tua collezione"
 #: diventi/templates/products/product_detail.html:129
 msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
+
+#: diventi/templates/products/product_detail.html:161
+msgid "Our authors"
+msgstr "I nostri autori"
 
 #: diventi/templates/star_ratings/widget.html:38
 msgid "Log in to rate"
@@ -1502,9 +1504,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "Our projects"
 #~ msgstr "I nostri progetti"
-
-#~ msgid "View Project"
-#~ msgstr "Visualizza progetto"
 
 #~ msgid "Access"
 #~ msgstr "Accedi"

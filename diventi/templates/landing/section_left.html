@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
+        <div class="col-md-12 mr-auto text-left">
             <h2 class="title">{{ section.title|capfirst }}</h2>
             <h5 class="description">{{ section.abstract|striptags }}</h5>
         </div>
@@ -34,7 +34,7 @@
 {% if section.section_survey %}
 <div class="container">
     <div class="row">
-        <div class="col-md-6 ml-auto mr-auto text-center">
+        <div class="col-md-12 mr-auto text-left">
             {% with section.section_survey as survey %}
                 {% include "feedbacks/survey_card.html" %}
             {% endwith %}
@@ -47,7 +47,7 @@
 <div class="container">
     <div class="row">
         {% with section.section_article as article %}
-            <div class="col-md-6 mr-auto ml-auto text-center">
+            <div class="col-md-12 mr-auto text-left">
                 {% include "blog/article_card.html" %}
             </div>
         {% endwith %}

@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from django.http import HttpResponse
 
 from .models import Section
 from diventi.accounts.models import DiventiUser
@@ -39,16 +40,18 @@ def landing(request):
     """
     sections = Section.objects.not_featured()
     sections = sections.prefetch_related('users')
-    sections = sections.prefetch_related('products')
+    sections = sections.prefetch_related('products').prefetch_related('products__chapters')
     sections = sections.select_related('section_survey')
     sections = sections.select_related('section_article')
     sections = sections.order_by('order_index')
     featured_section = Section.objects.featured()
     if featured_section:
         pass
-    else:
+    elif sections.exists():
         featured_section = sections.first()
         sections = sections.exclude(id=featured_section.id)
+    else:
+        return HttpResponse(_('This page is not available yet.'))
 
     if request.method == 'POST':
         registration_form = DiventiUserInitForm(request.POST)

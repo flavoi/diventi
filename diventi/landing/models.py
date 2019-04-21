@@ -19,6 +19,8 @@ class Section(DiventiImageModel, FeaturedModel):
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     TEMPLATE_CHOICES = (
         ('section_centered.html', _('standard centered section')),
+        ('section_left.html', _('standard left section')),
+        ('section_right.html', _('standard right section')),
     )
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
     FEATURED_TEMPLATE_CHOICES = (

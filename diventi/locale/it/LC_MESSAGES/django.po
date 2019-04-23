@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-21 22:50+0200\n"
+"POT-Creation-Date: 2019-04-23 15:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,7 +170,7 @@ msgstr "ruolo"
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:120 diventi/landing/models.py:48
+#: diventi/accounts/models.py:120 diventi/landing/models.py:53
 msgid "Users"
 msgstr "Utenti"
 
@@ -353,7 +353,7 @@ msgid "author"
 msgstr "autore"
 
 #: diventi/blog/models.py:90 diventi/blog/models.py:111
-#: diventi/landing/models.py:33
+#: diventi/landing/models.py:38
 msgid "article"
 msgstr "articolo"
 
@@ -593,7 +593,7 @@ msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
-#: diventi/landing/models.py:32
+#: diventi/landing/models.py:37
 #: diventi/templates/accounts/user_collection.html:47
 msgid "survey"
 msgstr "sondaggio"
@@ -670,8 +670,8 @@ msgstr ""
 "Un altro utente ha già utilizzato questo nome, per favore scegline un altro."
 
 #: diventi/landing/admin.py:25
-msgid "Templates"
-msgstr "Modelli"
+msgid "Visual style"
+msgstr "Stile visivo"
 
 #: diventi/landing/admin.py:31
 msgid "Additionals"
@@ -686,60 +686,70 @@ msgid "abstract"
 msgstr "sommario"
 
 #: diventi/landing/models.py:21
-msgid "standard centered section"
-msgstr "testatina centrale normale"
+msgid "standard section"
+msgstr "sezione normale"
 
-#: diventi/landing/models.py:22
-#, fuzzy
-#| msgid "standard centered section"
-msgid "standard left section"
-msgstr "testatina centrale normale"
-
-#: diventi/landing/models.py:24
+#: diventi/landing/models.py:23
 msgid "standard template"
 msgstr "modello normale"
 
-#: diventi/landing/models.py:26
-msgid "standard left header"
-msgstr "testatina sinistra normale"
+#: diventi/landing/models.py:25
+msgid "standard header"
+msgstr "testatina normale"
 
 #: diventi/landing/models.py:27
-msgid "standard centered header"
-msgstr "testatina centrale normale"
-
-#: diventi/landing/models.py:29
 msgid "featured template"
 msgstr "modello in primo piano"
 
-#: diventi/landing/models.py:30 diventi/products/models.py:79
+#: diventi/landing/models.py:28
+msgid "dark mode"
+msgstr "modalità scura"
+
+#: diventi/landing/models.py:30
+msgid "left"
+msgstr "sinistra"
+
+#: diventi/landing/models.py:31
+msgid "centered"
+msgstr "centrale"
+
+#: diventi/landing/models.py:32
+msgid "right"
+msgstr "destra"
+
+#: diventi/landing/models.py:34
+msgid "alignment"
+msgstr "allineamento"
+
+#: diventi/landing/models.py:35 diventi/products/models.py:79
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/landing/models.py:31
+#: diventi/landing/models.py:36
 msgid "users"
 msgstr "utenti"
 
-#: diventi/landing/models.py:40
+#: diventi/landing/models.py:45
 msgid "Features"
 msgstr "Aspetti"
 
-#: diventi/landing/models.py:44
+#: diventi/landing/models.py:49
 msgid "Products"
 msgstr "Prodotti"
 
-#: diventi/landing/models.py:52
+#: diventi/landing/models.py:67
 msgid "section"
 msgstr "sezione"
 
-#: diventi/landing/models.py:53
+#: diventi/landing/models.py:68
 msgid "sections"
 msgstr "sezioni"
 
-#: diventi/landing/models.py:60
+#: diventi/landing/models.py:75
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:61
+#: diventi/landing/models.py:76
 msgid "features"
 msgstr "aspetti"
 
@@ -1238,7 +1248,7 @@ msgstr "Cerca contenuti in questo sito web"
 msgid "Search"
 msgstr "Ricerca"
 
-#: diventi/templates/blog/article_card.html:14
+#: diventi/templates/blog/article_card_content.html:11
 msgid "read the story"
 msgstr "leggi la storia"
 
@@ -1258,25 +1268,25 @@ msgstr ""
 "Benvenuti nel blog Diventi. Avete raggiunto la prima pagina per notizie su "
 "giochi di ruolo, narrazione collaborativa e annunci relativi a Diventi"
 
-#: diventi/templates/blog/article_list.html:43
+#: diventi/templates/blog/article_list.html:44
 msgid "read article"
 msgstr "leggi articolo"
 
-#: diventi/templates/blog/article_list.html:50
+#: diventi/templates/blog/article_list.html:51
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:59
-#: diventi/templates/blog/article_list.html:61
+#: diventi/templates/blog/article_list.html:60
+#: diventi/templates/blog/article_list.html:62
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:65
+#: diventi/templates/blog/article_list.html:66
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:71
-#: diventi/templates/blog/article_list.html:73
+#: diventi/templates/blog/article_list.html:72
+#: diventi/templates/blog/article_list.html:74
 msgid "Next"
 msgstr "Successivo"
 
@@ -1477,6 +1487,15 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Templates"
+#~ msgstr "Modelli"
+
+#~ msgid "standard centered section"
+#~ msgstr "testatina centrale normale"
+
+#~ msgid "standard centered header"
+#~ msgstr "testatina centrale normale"
 
 #~ msgid "There is no active landing page."
 #~ msgstr "Non risulta attiva alcuna pagina di destinazione"

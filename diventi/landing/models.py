@@ -52,6 +52,16 @@ class Section(DiventiImageModel, FeaturedModel):
         return mark_safe("<br>".join([s.get_full_name() for s in self.users.all()]))
     get_users.short_description = _('Users')
 
+    def get_alignment_classes(self):     
+        if self.alignment == 'left':
+            alignment_classes = 'mr-auto text-left'
+        elif self.alignment == 'centered':
+            alignment_classes = 'ml-auto mr-auto text-center'
+        elif self.alignment == 'right':
+            alignment_classes = 'ml-auto text-right'
+        else:
+            alignment_classes = ''   
+        return alignment_classes
 
     class Meta:
         verbose_name = _('section')

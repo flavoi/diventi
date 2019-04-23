@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 mr-auto text-left">
+        <div class="col-md-12 {{ section.get_alignment_classes }}">
             <h2 class="title">
                 {{ section.title|capfirst }} {% with section as object %}{% include "publishable_badge.html" %}{% endwith %}
             </h2>
@@ -36,7 +36,7 @@
 {% if section.section_survey %}
 <div class="container">
     <div class="row">
-        <div class="col-md-12 mr-auto text-left">
+        <div class="col-md-12 {{ section.get_alignment_classes }}">
             {% with section.section_survey as survey %}
                 {% include "feedbacks/survey_card.html" %}
             {% endwith %}
@@ -48,7 +48,7 @@
 {% if section.section_article %}
 <div class="container">
     <div class="row">
-        <div class="col-md-10 mr-auto">
+        <div class="col-md-10 {{ section.get_alignment_classes }}">
             {% with section.section_article as article %}
                 {% include "blog/article_card.html" %}
             {% endwith %}

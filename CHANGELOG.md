@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-beta.5] → 2019-04-xx
+
+### Added
+- Introduced sections: a landing model that enables easier customization of the landing page
+
+### Changed
+- Enabled a published/draft badge next to publishable content for admin eyes only 
+
+## Removed
+- Removed latex requirements since it is now a depreated feature
+- Removed the presentatation module since it is now supplanted by sections
+
 
 ## [1.0.0-beta.4] → 2019-03-22
 

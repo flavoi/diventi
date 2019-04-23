@@ -46,11 +46,11 @@
 {% if section.section_article %}
 <div class="container">
     <div class="row">
-        {% with section.section_article as article %}
-            <div class="col-md-6 mr-auto ml-auto text-center">
+        <div class="col-md-10 ml-auto mr-auto">
+            {% with section.section_article as article %}
                 {% include "blog/article_card.html" %}
-            </div>
-        {% endwith %}
+            {% endwith %}
+        </div>
     </div>
 </div>
 {% endif %}

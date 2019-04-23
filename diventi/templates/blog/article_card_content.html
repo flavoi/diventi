@@ -1,0 +1,19 @@
+{% load humanize %}
+{% load i18n %}
+
+<h6 class="card-category text-info">{{ article.category }}</h6>
+<h3 class="card-title">
+  <a href="href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
+</h3>
+<p class="card-description">
+  {{ article.title|capfirst }}
+  <a href="{% url 'blog:detail' article.slug %}" class="text-warning">
+    {% trans "read the story" %}
+  </a>
+</p>
+<p class="author">
+  by
+  <a class="text-warning" href="{{ article.author.get_absolute_url }}">
+    <b>{{ article.author.get_short_name }}</b>
+  </a>, {{ article.publication_date|naturaltime }}
+</p>

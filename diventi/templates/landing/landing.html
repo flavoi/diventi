@@ -18,7 +18,7 @@
 {% block maincontainer %}
 
     {% for section in sections %}
-    <div {% if section.image %}class="section section-image" style="background-image: url('{{ section.image }}"{% else %}class="section"{% endif %}>
+    <div class="section {% if section.dark_mode %}section-dark{% endif %}">
         {% with "landing/"|add:section.template as section_template_name %}
             {% include section_template_name %}
         {% endwith %}

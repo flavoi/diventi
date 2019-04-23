@@ -18,16 +18,20 @@ class Section(DiventiImageModel, FeaturedModel):
     description = models.TextField(blank=True, verbose_name=_('description'))
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     TEMPLATE_CHOICES = (
-        ('section_centered.html', _('standard centered section')),
-        ('section_left.html', _('standard left section')),
-        ('section_right.html', _('standard right section')),
+        ('standard_section.html', _('standard section')),
     )
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
     FEATURED_TEMPLATE_CHOICES = (
-        ('header_left.html', _('standard left header')),
-        ('header_centered.html', _('standard centered header')),
+        ('standard_header.html', _('standard header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
+    dark_mode = models.BooleanField(verbose_name=_('dark mode'))
+    ALIGNMENT_CHOICES = (
+        ('left', _('left')),
+        ('centered', _('centered')),
+        ('right', _('right')),
+    )
+    alignment = models.CharField(choices=ALIGNMENT_CHOICES, max_length=50, verbose_name=_('alignment'))
     products = models.ManyToManyField(Product, related_name='products', blank=True, verbose_name=_('products'))
     users = models.ManyToManyField(DiventiUser, related_name='users', blank=True, verbose_name=_('users'))
     section_survey = models.ForeignKey(Survey, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('survey'))

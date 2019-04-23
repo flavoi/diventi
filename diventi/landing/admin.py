@@ -22,11 +22,11 @@ class SectionAdmin(DiventiTranslationAdmin):
         (_('Management'), {
             'fields': ('published', 'featured')
         }),
-        (_('Templates'), {
-            'fields': ('template', 'featured_template')
+        (_('Visual style'), {
+            'fields': ('template', 'featured_template', 'alignment', 'image', 'dark_mode')
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'order_index', 'description', 'image',),
+            'fields': ('title', 'abstract', 'order_index', 'description',),
         }),
         (_('Additionals'), {
             'fields': ('products', 'users', 'section_survey', 'section_article'),

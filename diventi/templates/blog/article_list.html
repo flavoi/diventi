@@ -28,13 +28,14 @@
             <div class="col-md-4">
                 <div class="card card-plain card-blog">
                     <div class="card-header card-header-image">
-                      <a href="#pablo">
+                      <a href="{% url 'blog:detail' article.slug %}">
                         <img class="img img-raised" src="{{ article.image }}">
                       </a>
                     <div class="colored-shadow" style="background-image: url(&quot;{{ article.image }}&quot;); opacity: 1;"></div></div>
                     <div class="card-body">
                       <h6 class="card-category {% if article.hot %}text-danger{% else %}text-info{% endif %}">
-                        {% if article.hot %}<i class="fas fa-fire-alt fa-lg fa-fw"></i> {% endif %}{{ article.category }}</h6>
+                        {% if article.hot %}<i class="fas fa-fire-alt fa-lg fa-fw"></i> {% endif %}{{ article.category }}
+                        {% with article as object %}{% include "publishable_badge.html" %}{% endwith %}</h6>
                       <h4 class="card-title">
                         <a href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
                       </h4>

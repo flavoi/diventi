@@ -32,6 +32,7 @@ docutils==0.14
 future==0.16.0
 gunicorn==19.9.0
 idna==2.7
+Jinja2==2.10.1
 jmespath==0.9.3
 josepy==1.1.0
 latexmk.py==0.4
@@ -56,7 +57,7 @@ rsa==3.4.2
 s3transfer==0.1.13
 six==1.11.0
 swapper==1.1.0
-urllib3==1.23
+urllib3==1.25
 wcwidth==0.1.7
 zope.component==4.4.1
 zope.event==4.3.0

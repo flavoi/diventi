@@ -5,15 +5,21 @@
     <a href="{{ product.get_absolute_url }}"></a>
     <div class="card-body">
       <h6 class="card-category text-info">{{ product.category }}</h6>                      
-      <a href="/it/progetti/primo-contatto/">
         <h3 class="card-title">{{ product.title|capfirst }}</h3>
-      </a>
       <p class="card-description">
          {{ product.abstract|striptags }}
       </p>
-      <a href="{{ product.get_absolute_url }}" class="btn btn-warning btn-round">
-        {% trans 'View Project' %}
-      </a>
+      {% if product.available %}
+        <a href="{{ product.get_absolute_url }}" class="btn btn-warning btn-round">
+          {% trans 'View Project' %}
+        </a>
+      {% else %}
+        <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
+          <a href="" class="btn btn-warning btn-round disabled">
+            {% trans 'not yet available' %}
+          </a>
+        </span>
+      {% endif %}
     </div>
   </div>
 </div>                

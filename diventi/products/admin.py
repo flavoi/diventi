@@ -6,6 +6,7 @@ from diventi.core.admin import DiventiTranslationAdmin
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
 from .models import Product, Chapter, Characteristic, ImagePreview, ProductCategory, ChapterCategory
+from .forms import ProductForm
 
 def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
@@ -46,7 +47,7 @@ class ProductAdmin(DiventiTranslationAdmin):
         CharacteristicInline,
         ImagePreviewInline,
     ]
-    #prepopulated_fields = {"slug": ("title",)}
+    prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
         (_('Management'), {
@@ -57,6 +58,7 @@ class ProductAdmin(DiventiTranslationAdmin):
         }),
     )
     actions = [make_published, make_unpublished]
+    form = ProductForm
 
 
 class CategoryAdmin(DiventiTranslationAdmin):

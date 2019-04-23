@@ -13,9 +13,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Enabled a published/draft badge next to publishable content for admin eyes only 
 
-## Removed
+### Removed
 - Removed latex requirements since it is now a depreated feature
 - Removed the presentatation module since it is now supplanted by sections
+
+### Fixed
+- Fixed a problem that made the product card point to one static page
+
+### Security
+- Upgraded urllib3 to v1.25
 
 
 ## [1.0.0-beta.4] → 2019-03-22

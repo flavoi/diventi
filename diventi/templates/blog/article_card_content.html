@@ -6,7 +6,7 @@
   <a href="href="{% url 'blog:detail' article.slug %}">{{ article.title|capfirst }}</a>
 </h3>
 <p class="card-description">
-  {{ article.title|capfirst }}
+  {{ article.description|capfirst }}
   <a href="{% url 'blog:detail' article.slug %}" class="text-warning">
     {% trans "read the story" %}
   </a>

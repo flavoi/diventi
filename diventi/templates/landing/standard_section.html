@@ -1,9 +1,23 @@
 <div class="container">
+    {% if section.image %}
     <div class="row">
-        <div class="col-md-12 {{ section.get_alignment_classes }}">
+        <div class="col-md-5 {{ section.get_alignment_classes }}">
+            {% with section as object %}{% include "publishable_badge.html" %}{% endwith %}
+            <img class="rounded img-fluid" src="{{ section.image }}" alt="Diventi">
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-md-8 {{ section.get_alignment_classes }}">
+            {% with section as object %}{% include "publishable_badge.html" %}{% endwith %}
             <h2 class="title">
-                {{ section.title|capfirst }} {% with section as object %}{% include "publishable_badge.html" %}{% endwith %}
+                {{ section.title|capfirst }}
             </h2>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-8 {{ section.get_alignment_classes }}">
             <h5 class="description">{{ section.abstract|striptags }}</h5>
         </div>
     </div>
@@ -48,7 +62,7 @@
 {% if section.section_article %}
 <div class="container">
     <div class="row">
-        <div class="col-md-10 {{ section.get_alignment_classes }}">
+        <div class="col-md-12 {{ section.get_alignment_classes }}">
             {% with section.section_article as article %}
                 {% include "blog/article_card.html" %}
             {% endwith %}

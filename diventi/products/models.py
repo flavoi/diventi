@@ -25,11 +25,10 @@ class ProductQuerySet(models.QuerySet):
             products = self.filter(published=True)
         return products
 
-    # Get the featured product that appears on the landing page 
+    # Get the featured product 
     def featured(self):
         try:
             featured_product = self.prefetch_related('chapters')
-            featured_product = featured_product.prefetch_related('characteristics')
             featured_product = featured_product.prefetch_related('authors')
             featured_product = featured_product.published().get(featured=True) 
         except Product.DoesNotExist:
@@ -120,22 +119,13 @@ class ChapterCategory(Category):
 
 
 class Chapter(Element, DiventiImageModel):
-    """ A stand-alone chapter of an adventure."""
+    """ A specific detail of a product."""
     product = models.ForeignKey(Product, null=True, related_name='chapters', verbose_name=_('product'), on_delete=models.SET_NULL)     
     category = models.ForeignKey(ChapterCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('Chapter')
         verbose_name_plural = _('Chapters')
-
-
-class Characteristic(Element):
-    """ A specific detail of a product."""
-    product = models.ForeignKey(Product, null=True, related_name='characteristics', verbose_name=_('product'), on_delete=models.SET_NULL)
-
-    class Meta:
-        verbose_name = _('Characteristic')
-        verbose_name_plural = _('Characteristics')
 
 
 class ImagePreview(DiventiImageModel):    

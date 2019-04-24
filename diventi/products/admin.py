@@ -5,7 +5,7 @@ from diventi.core.admin import DiventiTranslationAdmin
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from .models import Product, Chapter, Characteristic, ImagePreview, ProductCategory, ChapterCategory
+from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory
 from .forms import ProductForm
 
 def make_published(modeladmin, request, queryset):
@@ -24,12 +24,6 @@ class ChapterInline(TranslationStackedInline):
     extra = 0
 
 
-class CharacteristicInline(TranslationStackedInline):
-    model = Characteristic
-    fields = ('title', 'description',)
-    extra = 0
-
-
 class ImagePreviewInline(TranslationStackedInline):
     model = ImagePreview
     fields = ( 'label', 'image')
@@ -44,7 +38,6 @@ class ProductAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'image_tag', 'featured', 'published', 'available', 'publication_date', 'modified']    
     inlines = [
         ChapterInline,
-        CharacteristicInline,
         ImagePreviewInline,
     ]
     prepopulated_fields = {"slug": ("title",)}

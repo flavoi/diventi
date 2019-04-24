@@ -5,11 +5,25 @@ from django.utils.html import mark_safe
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import Element, DiventiImageModel, FeaturedModel
+from diventi.core.models import Element, DiventiImageModel, FeaturedModel, FeaturedModelManager
 from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
 from diventi.feedbacks.models import Survey
 from diventi.blog.models import Article
+
+
+class SectionModelManager(FeaturedModelManager):
+
+    # Get the non featured sections that appear on the landing page
+    # Pre-loads related objects to speed up the templates
+    def not_featured(self):
+        sections = super(SectionModelManager, self).not_featured()
+        sections = sections.prefetch_related('users')
+        sections = sections.prefetch_related('products').prefetch_related('products__chapters')
+        sections = sections.select_related('section_survey')
+        sections = sections.select_related('section_article')
+        sections = sections.order_by('order_index')
+        return sections
 
 
 class Section(DiventiImageModel, FeaturedModel):
@@ -36,6 +50,8 @@ class Section(DiventiImageModel, FeaturedModel):
     users = models.ManyToManyField(DiventiUser, related_name='users', blank=True, verbose_name=_('users'))
     section_survey = models.ForeignKey(Survey, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('survey'))
     section_article = models.ForeignKey(Article, related_name='article', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('article'))
+
+    objects = SectionModelManager()
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)

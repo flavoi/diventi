@@ -39,11 +39,6 @@ def landing(request):
         team members. 
     """
     sections = Section.objects.not_featured()
-    sections = sections.prefetch_related('users')
-    sections = sections.prefetch_related('products').prefetch_related('products__chapters')
-    sections = sections.select_related('section_survey')
-    sections = sections.select_related('section_article')
-    sections = sections.order_by('order_index')
     featured_section = Section.objects.featured()
     if featured_section:
         pass

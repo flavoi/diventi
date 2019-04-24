@@ -128,6 +128,3 @@ class SecretFileView(RedirectView):
                 raise Http404
         else:
             raise Http404
-
-
-

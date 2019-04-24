@@ -28,7 +28,6 @@ class SectionModelManager(FeaturedModelManager):
 
 class Section(DiventiImageModel, FeaturedModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
-    abstract = models.TextField(blank=True, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     TEMPLATE_CHOICES = (

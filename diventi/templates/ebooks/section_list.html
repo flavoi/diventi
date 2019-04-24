@@ -1,0 +1,39 @@
+{% extends 'base_dashboard.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block logo %}
+    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+      D
+    </a>
+    <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      Primo Contatto
+    </a>
+{% endblock logo %}
+
+{% block sidebar %}
+  {% for s in sections %}
+    <li class="nav-item">
+      <a class="nav-link" href="#{{ s.id }}">
+        <p>{{ s.title }}</p>
+      </a>
+    </li>
+  {% endfor %}
+{% endblock sidebar %}
+
+{% block content_header %}{% endblock content_header %}
+
+{% block content_body %}
+  {% for s in sections %}
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{ s.title }}</h4>
+        <p class="card-category">
+          Be brave and roll the dice
+        </p>
+      </div>
+      <div class="card-body">{{ s.content|safe }}</div>
+    </div>
+  {% endfor %}
+{% endblock content_body %}    

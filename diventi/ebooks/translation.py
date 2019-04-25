@@ -5,4 +5,4 @@ from .models import Section
 
 @register(Section)
 class SurveyTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'content')
+    fields = ('title', 'description', 'content', 'slug')

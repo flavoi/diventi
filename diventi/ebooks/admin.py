@@ -7,15 +7,16 @@ from .models import Section
 
 
 class SectionAdmin(DiventiTranslationAdmin):
-    model = Section
     list_display = ['title', 'order_index']
+    prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
         (_('Editing'), {
-            'fields': ('title', 'order_index',),
+            'fields': ('title', 'order_index', 'slug'),
         }),
         (_('Content'), {
             'fields': ('content',),
         }),
     )
+    ordering = ['order_index']
 
 admin.site.register(Section, SectionAdmin)

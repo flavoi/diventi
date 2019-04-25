@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 from ckeditor.fields import RichTextField
 
@@ -12,9 +13,13 @@ class Section(Element, TimeStampedModel):
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     content = RichTextField(verbose_name=_('content'))
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('product'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)
+
+    def get_absolute_url(self):
+        return reverse('ebooks:detail', args=[self.slug])
 
     class Meta:
         verbose_name = _('section')

@@ -24,6 +24,40 @@
   <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}?v=3" color="#5bbad5">
   <meta name="theme-color" content="#ffffff">
 
+   <style>
+        
+    @font-face {
+    font-family: 'Kravitz';
+    src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
+        url('{% static "fonts/Kravitz.woff" %}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Kravitz Extra Thermal';
+        src: url('{% static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
+            url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Kravitz Thermal';
+        src: url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
+            url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .diventi-font {
+      font-family: 'Kravitz Thermal';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 23px;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -35,14 +69,7 @@
       Tip 2: you can also add an image using data-image tag
   -->
       <div class="logo">
-        {% block logo %}
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-          CT
-        </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
-        </a>
-        {% endblock logo %}
+        {% block logo %}{% endblock logo %}
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -63,7 +90,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand diventi-font" href="#pablo" style="font-size: 32px;">Diventi</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -106,18 +133,14 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
+                <a href=".">
+                  playdiventi.it
                 </a>
               </li>
             </ul>
           </nav>
           <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            &copy; {{ copy }}. {% trans "Made with passion by Diventi's team" %}.<br>
           </div>
           <!-- your footer here -->
         </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 22:22+0200\n"
+"POT-Creation-Date: 2019-04-29 17:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -303,8 +303,9 @@ msgstr "Copertine utente"
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/feedbacks/admin.py:56
-#: diventi/landing/admin.py:28 diventi/products/admin.py:49
+#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:13
+#: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:28
+#: diventi/products/admin.py:49
 msgid "Editing"
 msgstr "Montaggio"
 
@@ -339,7 +340,7 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/ebooks/models.py:13
+#: diventi/blog/models.py:81 diventi/ebooks/models.py:14
 #: diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
@@ -348,8 +349,8 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/feedbacks/models.py:118
-#: diventi/products/models.py:65
+#: diventi/blog/models.py:83 diventi/ebooks/models.py:16
+#: diventi/feedbacks/models.py:118 diventi/products/models.py:65
 msgid "slug"
 msgstr "slug"
 
@@ -460,7 +461,7 @@ msgstr "creato"
 msgid "modified"
 msgstr "modificato"
 
-#: diventi/core/models.py:38
+#: diventi/core/models.py:38 diventi/templates/publishable_badge.html:2
 msgid "published"
 msgstr "pubblicato"
 
@@ -516,32 +517,34 @@ msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 msgid "featured"
 msgstr "in primo piano"
 
+#: diventi/ebooks/admin.py:16
+#, fuzzy
+#| msgid "content"
+msgid "Content"
+msgstr "contenuto"
+
 #: diventi/ebooks/apps.py:7
 msgid "Ebooks"
 msgstr "Ebook"
 
-#: diventi/ebooks/models.py:12 diventi/feedbacks/models.py:22
+#: diventi/ebooks/models.py:13 diventi/feedbacks/models.py:22
 #: diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:14 diventi/products/models.py:77
+#: diventi/ebooks/models.py:15 diventi/products/models.py:77
 #: diventi/products/models.py:84 diventi/products/models.py:123
 #: diventi/products/models.py:133
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/ebooks/models.py:20 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:25 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:21 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:26 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
-
-#: diventi/ebooks/urls.py:9
-msgid "demo"
-msgstr ""
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"
@@ -1254,6 +1257,10 @@ msgstr "Cerca contenuti in questo sito web"
 msgid "Search"
 msgstr "Ricerca"
 
+#: diventi/templates/base_dashboard.html:143 diventi/templates/footer.html:6
+msgid "Made with passion by Diventi's team"
+msgstr "Sviluppato con passione dagli autori Diventi"
+
 #: diventi/templates/blog/article_card_content.html:11
 msgid "read the story"
 msgstr "leggi la storia"
@@ -1403,10 +1410,6 @@ msgstr "Accedi al sondaggio"
 msgid "your answers"
 msgstr "le tue risposte"
 
-#: diventi/templates/footer.html:6
-msgid "Made with passion by Diventi's team"
-msgstr "Sviluppato con passione dagli autori Diventi"
-
 #: diventi/templates/landing/header_form.html:5
 msgid "Find out more"
 msgstr "Scopri di più"
@@ -1477,6 +1480,10 @@ msgstr "per aggiungere questo prodotto alla tua collezione"
 #: diventi/templates/products/product_detail.html:161
 msgid "Our authors"
 msgstr "I nostri autori"
+
+#: diventi/templates/publishable_badge.html:4
+msgid "draft"
+msgstr "bozza"
 
 #: diventi/templates/star_ratings/widget.html:38
 msgid "Log in to rate"

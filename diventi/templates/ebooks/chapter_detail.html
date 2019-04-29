@@ -1,0 +1,44 @@
+{% extends 'base_dashboard.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+  {{ chapter.title }}
+{% endblock title %}
+
+{% block logo %}
+    <a href="." class="simple-text logo-mini">
+      PC
+    </a>
+    <a href="." class="simple-text logo-normal">
+      Primo Contatto
+    </a>
+{% endblock logo %}
+
+{% block navbarbrand %}{{ chapter.title }}{% endblock navbarbrand %}
+
+{% block sidebar %}
+  {% for c in chapters %}
+    <li class="nav-item {% if c.slug == chapter.slug %}active{% endif %}">
+      <a class="nav-link" href="{% url 'ebooks:chapter-detail' c.slug %}">
+        <p>{{ c.title }}</p>
+      </a>
+    </li>
+  {% endfor %}
+{% endblock sidebar %}
+
+{% block content_header_title %}
+  <h3 class="title">{{ chapter.title }}</h3>
+  <p class="category"></p>
+{% endblock content_header_title %}
+
+{% block content_body %}
+
+{% for section in chapter.sections.all %}
+    <div class="card">
+      <div class="card-body">{{ section.content|safe }}</div>
+    </div>
+{% endfor %}
+
+{% endblock content_body %}    

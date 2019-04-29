@@ -1,6 +1,11 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Section
+from .models import Chapter, Section
+
+
+@register(Chapter)
+class SurveyTranslationOptions(TranslationOptions):
+    fields = ('title', 'description', 'slug')
 
 
 @register(Section)

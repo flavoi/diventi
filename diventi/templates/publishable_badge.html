@@ -1,3 +1,7 @@
-{% if request.user.is_staff and object.published %}<span class="badge badge-pill badge-success align-middle">published</span>
-{% elif request.user.is_staff and not object.published %}<span class="badge badge-pill badge-warning align-middle">draft</span>
+{% load i18n %}
+
+{% if request.user.is_staff and object.published %}
+	<span class="badge badge-pill badge-success align-middle">{% trans "published" %}</span>
+{% elif request.user.is_staff and not object.published %}
+	<span class="badge badge-pill badge-warning align-middle">{% trans "draft" %}</span>
 {% endif %}

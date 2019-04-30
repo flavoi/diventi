@@ -8,11 +8,11 @@
 {% endblock title %}
 
 {% block logo %}
-    <a href="." class="simple-text logo-mini">
-      PC
+    <a href="{% url 'ebooks:chapter-detail' chapter.chapter_book.slug chapter.slug %}" class="simple-text logo-mini">
+      {{ chapter.chapter_book.short_title }}
     </a>
-    <a href="." class="simple-text logo-normal">
-      Primo Contatto
+    <a href="{% url 'ebooks:chapter-detail' chapter.chapter_book.slug chapter.slug %}" class="simple-text logo-normal">
+      {{ chapter.chapter_book.title }}
     </a>
 {% endblock logo %}
 
@@ -21,7 +21,7 @@
 {% block sidebar %}
   {% for c in chapters %}
     <li class="nav-item {% if c.slug == chapter.slug %}active{% endif %}">
-      <a class="nav-link" href="{% url 'ebooks:chapter-detail' c.slug %}">
+      <a class="nav-link" href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}">
         <p>{{ c.title }}</p>
       </a>
     </li>
@@ -41,8 +41,8 @@
       <img class="img" src="https://i.imgur.com/HnrMXBl.png?1">
     </div>
     <div class="card-body ">
-        <h4 class="card-title">Diventi: Primo Contatto</h4>
-        <h6 class="card-category text-gray">A Diventi Application</h6>
+        <h4 class="card-title">Diventi: {{ chapter.chapter_book.title }}</h4>
+        <h6 class="card-category text-gray">{{ chapter.chapter_book.category }}</h6>
     </div>
   </div>
 {% endif %}

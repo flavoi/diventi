@@ -1,13 +1,16 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Chapter, Section
+from .models import Book, Chapter, Section
 
 
-@register(Chapter)
-class SurveyTranslationOptions(TranslationOptions):
+@register(Book)
+class BookTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'slug')
 
+@register(Chapter)
+class ChapterTranslationOptions(TranslationOptions):
+    fields = ('title', 'description', 'slug')
 
 @register(Section)
-class SurveyTranslationOptions(TranslationOptions):
+class SectionTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'content', 'slug')

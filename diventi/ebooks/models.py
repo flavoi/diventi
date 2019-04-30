@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -5,11 +7,25 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 from diventi.products.models import Product
-from diventi.core.models import Element, TimeStampedModel, PublishableModel
+from diventi.core.models import Element, TimeStampedModel, PublishableModel, DisclosableModel
+
+
+class Book(Element, TimeStampedModel, PublishableModel):
+    """ A collection of chapters that constitutes a product. """
+    short_title = models.CharField(max_length=2, verbose_name=_('short title'))
+    category = models.CharField(max_length=100, verbose_name=_('category'), blank=True)
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+
+    def __str__(self):
+        return '%s' % (self.title)
+
+    class Meta:
+        verbose_name = _('book')
+        verbose_name_plural = _('books')
 
 
 class ChapterQuerySet(models.QuerySet):
-    
+
     # Fetch all the sections related to the chapter
     def sections(self):
         chapter = self.prefetch_related('sections')
@@ -17,16 +33,17 @@ class ChapterQuerySet(models.QuerySet):
 
 
 class Chapter(Element, TimeStampedModel, PublishableModel):
-    """ A chapter of a product's content. """
+    """ A chapter of a book. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     chapter_product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('product'))
-    
+    chapter_book = models.ForeignKey(Book, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('book'))
+
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)
 
     def get_absolute_url(self):
-        return reverse('ebooks:chapter-detail', args=[self.slug])
+        return reverse('ebooks:chapter-detail', args=[self.chapter_book.slug, self.slug])
 
     objects = ChapterQuerySet.as_manager()
 

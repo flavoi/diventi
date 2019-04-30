@@ -12,9 +12,16 @@ class ChapterDetailView(DetailView):
     
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
-        return queryset.sections() 
+        book_slug = self.kwargs.get('chapter_book', None)
+        if book_slug is not None:
+            queryset = queryset.filter(chapter_book__slug=book_slug)
+            queryset = queryset.sections()
+            return queryset
+        else: 
+            return queryset.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['chapters'] = Chapter.objects.all().order_by('order_index')
         return context
+        

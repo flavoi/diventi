@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -32,7 +34,7 @@ class TimeStampedModel(models.Model):
 
 class PublishableModel(models.Model):
     """
-    An abstract base class model that updates the publication
+    A concrete base class model that updates the publication
     date as soon as it becomes published.
     """
     published = models.BooleanField(default=False, verbose_name=_('published'))
@@ -46,8 +48,29 @@ class PublishableModel(models.Model):
     def save(self, *args, **kwargs):
         if self.old_published != self.published and self.published:
             self.publication_date = timezone.now()
-        print(self.publication_date)
         super(PublishableModel, self).save(*args, **kwargs)
+
+
+class DisclosableModel(models.Model):
+    """
+    An abstract base class model that updates the publication
+    date as soon as it becomes published.
+    """
+    published = models.BooleanField(default=False, verbose_name=_('published'))
+    publication_date = models.DateTimeField(blank=True, null=True, verbose_name=_('publication_date'))
+
+    # Pubblication date is updated if published has been modified from False to True
+    def __init__(self, *args, **kwargs):
+        super(DisclosableModel, self).__init__(*args, **kwargs)
+        self.old_published = self.published
+
+    def save(self, *args, **kwargs):
+        if self.old_published != self.published and self.published:
+            self.publication_date = timezone.now()
+        super(DisclosableModel, self).save(*args, **kwargs)
+
+    class Meta:
+        abstract = True
 
 
 class PromotableModel(models.Model):

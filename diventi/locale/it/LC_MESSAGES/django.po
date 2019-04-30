@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-29 17:12+0200\n"
+"POT-Creation-Date: 2019-04-30 11:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,12 +298,13 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/feedbacks/admin.py:53
-#: diventi/landing/admin.py:22 diventi/products/admin.py:46
+#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:29
+#: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
+#: diventi/products/admin.py:46
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:13
+#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:32
 #: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:28
 #: diventi/products/admin.py:49
 msgid "Editing"
@@ -340,7 +341,7 @@ msgstr "descrizione"
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/ebooks/models.py:14
+#: diventi/blog/models.py:81 diventi/ebooks/models.py:41
 #: diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
@@ -349,8 +350,9 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/ebooks/models.py:16
-#: diventi/feedbacks/models.py:118 diventi/products/models.py:65
+#: diventi/blog/models.py:83 diventi/ebooks/models.py:22
+#: diventi/ebooks/models.py:42 diventi/feedbacks/models.py:118
+#: diventi/products/models.py:65
 msgid "slug"
 msgstr "slug"
 
@@ -461,7 +463,7 @@ msgstr "creato"
 msgid "modified"
 msgstr "modificato"
 
-#: diventi/core/models.py:38 diventi/templates/publishable_badge.html:2
+#: diventi/core/models.py:38 diventi/templates/publishable_badge.html:4
 msgid "published"
 msgstr "pubblicato"
 
@@ -517,34 +519,40 @@ msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 msgid "featured"
 msgstr "in primo piano"
 
-#: diventi/ebooks/admin.py:16
-#, fuzzy
-#| msgid "content"
-msgid "Content"
-msgstr "contenuto"
-
 #: diventi/ebooks/apps.py:7
 msgid "Ebooks"
 msgstr "Ebook"
 
-#: diventi/ebooks/models.py:13 diventi/feedbacks/models.py:22
-#: diventi/landing/models.py:32
+#: diventi/ebooks/models.py:21 diventi/ebooks/models.py:40
+#: diventi/feedbacks/models.py:22 diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:15 diventi/products/models.py:77
+#: diventi/ebooks/models.py:23 diventi/products/models.py:77
 #: diventi/products/models.py:84 diventi/products/models.py:123
 #: diventi/products/models.py:133
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/ebooks/models.py:25 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:34 diventi/ebooks/models.py:43
+msgid "chapter"
+msgstr "capitolo"
+
+#: diventi/ebooks/models.py:35
+msgid "chapters"
+msgstr "capitoli"
+
+#: diventi/ebooks/models.py:49 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:26 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:50 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
+
+#: diventi/ebooks/urls.py:9
+msgid "chapter/<slug:slug>/"
+msgstr "capitolo/<slug:slug>/"
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"
@@ -919,8 +927,9 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:16
+#: diventi/templates/base_dashboard.html:98
 #: diventi/templates/landing/landing.html:37
-#: diventi/templates/navigation.html:77
+#: diventi/templates/navigation.html:57
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -935,7 +944,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:87
+#: diventi/templates/navigation.html:67
 #: diventi/templates/products/product_detail.html:129
 msgid "Sign in"
 msgstr "Accedi"
@@ -1253,11 +1262,32 @@ msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 msgid "Search contents in this website"
 msgstr "Cerca contenuti in questo sito web"
 
-#: diventi/templates/base.html:164 diventi/templates/navigation.html:49
+#: diventi/templates/base.html:164 diventi/templates/navigation.html:29
 msgid "Search"
 msgstr "Ricerca"
 
-#: diventi/templates/base_dashboard.html:143 diventi/templates/footer.html:6
+#: diventi/templates/base_dashboard.html:90
+msgid "CP"
+msgstr ""
+
+#: diventi/templates/base_dashboard.html:91
+msgid "control panel"
+msgstr "pannello di controllo"
+
+#: diventi/templates/base_dashboard.html:97
+msgid "MP"
+msgstr "GP"
+
+#: diventi/templates/base_dashboard.html:103
+msgid "SO"
+msgstr "AA"
+
+#: diventi/templates/base_dashboard.html:104
+#: diventi/templates/navigation.html:60
+msgid "Sign out"
+msgstr "Annulla accesso"
+
+#: diventi/templates/base_dashboard.html:181 diventi/templates/footer.html:6
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -1437,17 +1467,13 @@ msgstr "Registrati per saperne di più e accedere ai contenuti."
 msgid "End of results"
 msgstr "Fine dei risultati"
 
-#: diventi/templates/navigation.html:69
+#: diventi/templates/navigation.html:49
 msgid "Enter the control panel"
 msgstr "Accedi al pannello di controllo"
 
-#: diventi/templates/navigation.html:72
+#: diventi/templates/navigation.html:52
 msgid "Contact the subscribers"
 msgstr "Contatta gli iscritti"
-
-#: diventi/templates/navigation.html:80
-msgid "Sign out"
-msgstr "Annulla l'accesso"
 
 #: diventi/templates/products/product_card.html:14
 msgid "View Project"
@@ -1481,7 +1507,7 @@ msgstr "per aggiungere questo prodotto alla tua collezione"
 msgid "Our authors"
 msgstr "I nostri autori"
 
-#: diventi/templates/publishable_badge.html:4
+#: diventi/templates/publishable_badge.html:6
 msgid "draft"
 msgstr "bozza"
 
@@ -1504,6 +1530,11 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#, fuzzy
+#~| msgid "content"
+#~ msgid "Content"
+#~ msgstr "contenuto"
 
 #~ msgid "prototype"
 #~ msgstr "prototipo"

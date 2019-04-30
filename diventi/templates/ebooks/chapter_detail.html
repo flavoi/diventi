@@ -35,6 +35,18 @@
 
 {% block content_body %}
 
+{% if chapter.order_index == 1 %}
+  <div class="card card-profile text-center ml-auto mr-auto" style="max-width: 720px">
+    <div class="card-header card-header-image">
+      <img class="img" src="https://i.imgur.com/HnrMXBl.png?1">
+    </div>
+    <div class="card-body ">
+        <h4 class="card-title">Diventi: Primo Contatto</h4>
+        <h6 class="card-category text-gray">A Diventi Application</h6>
+    </div>
+  </div>
+{% endif %}
+
 {% for section in chapter.sections.all %}
     <div class="card">
       <div class="card-body">{{ section.content|safe }}</div>

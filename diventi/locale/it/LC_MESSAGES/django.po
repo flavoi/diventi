@@ -521,20 +521,16 @@ msgid "featured"
 msgstr "in primo piano"
 
 #: diventi/ebooks/admin.py:44
-#, fuzzy
-#| msgid "publication_date"
 msgid "Pubblication"
-msgstr "data pubblicazione"
+msgstr "Pubblicazione"
 
 #: diventi/ebooks/apps.py:7
 msgid "Ebooks"
 msgstr "Ebook"
 
 #: diventi/ebooks/models.py:23
-#, fuzzy
-#| msgid "title"
 msgid "short title"
-msgstr "titolo"
+msgstr "titolo breve"
 
 #: diventi/ebooks/models.py:25 diventi/products/models.py:77
 #: diventi/products/models.py:84 diventi/products/models.py:123
@@ -543,16 +539,12 @@ msgid "product"
 msgstr "prodotto"
 
 #: diventi/ebooks/models.py:47 diventi/ebooks/models.py:63
-#, fuzzy
-#| msgid "Ebooks"
 msgid "book"
-msgstr "Ebook"
+msgstr "libro"
 
 #: diventi/ebooks/models.py:48
-#, fuzzy
-#| msgid "Ebooks"
 msgid "books"
-msgstr "Ebook"
+msgstr "libri"
 
 #: diventi/ebooks/models.py:61 diventi/ebooks/models.py:80
 #: diventi/feedbacks/models.py:22 diventi/landing/models.py:32
@@ -576,16 +568,12 @@ msgid "sections"
 msgstr "sezioni"
 
 #: diventi/ebooks/urls.py:9
-#, fuzzy
-#| msgid "chapter/<slug:slug>/"
 msgid "<slug:slug>/"
-msgstr "capitolo/<slug:slug>/"
+msgstr "<slug:slug>/"
 
 #: diventi/ebooks/urls.py:10
-#, fuzzy
-#| msgid "chapter/<slug:slug>/"
 msgid "<slug:chapter_book>/chapter/<slug:slug>/"
-msgstr "capitolo/<slug:slug>/"
+msgstr "<slug:chapter_book>/capitolo/<slug:slug>/"
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"

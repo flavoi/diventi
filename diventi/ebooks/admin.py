@@ -36,6 +36,7 @@ class BookAdmin(DiventiTranslationAdmin):
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)}
     actions = [make_published, make_unpublished]
+    search_fields = ['title']
 
 
 class ChapterAdmin(DiventiTranslationAdmin):
@@ -51,7 +52,6 @@ class ChapterAdmin(DiventiTranslationAdmin):
     readonly_fields = ['created', 'modified',]
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
-    actions = [make_published, make_unpublished]
     inlines = [SectionInline]
 
 

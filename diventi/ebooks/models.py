@@ -17,6 +17,9 @@ class BookQuerySet(models.QuerySet):
         book = self.select_related('book_product')
         return book
 
+    def chapters(self):
+        book = self.prefetch_related('')
+
 
 class Book(Element, TimeStampedModel, PublishableModel):
     """ A collection of chapters that constitutes a product. """
@@ -63,7 +66,7 @@ class Chapter(Element, TimeStampedModel, PublishableModel):
     """ A chapter of a book. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    chapter_book = models.ForeignKey(Book, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('book'))
+    chapter_book = models.ForeignKey(Book, null=True, blank=True, related_name='chapters', on_delete=models.SET_NULL, verbose_name=_('book'))
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)

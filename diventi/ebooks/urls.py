@@ -6,6 +6,6 @@ from .views import BookDetailView, ChapterDetailView
 app_name = 'ebooks'
 
 urlpatterns = [
-	path(_('<slug:slug>/'), BookDetailView.as_view(), name='book-detail'),
-	path(_('<slug:chapter_book>/chapter/<slug:slug>/'), ChapterDetailView.as_view(), name='chapter-detail'),
+	path(_('<slug:book_slug>/'), BookDetailView.as_view(), name='book-detail'),
+	path(_('<slug:book_slug>/chapter/<slug:chapter_slug>/'), ChapterDetailView.as_view(), name='chapter-detail'),
 ]

@@ -1,43 +1,41 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
+from django.views import View
 
 from .models import Book, Chapter
 
 
-class BookDetailView(DetailView):
+class EbookView(View):
+    """ Generic view that manages context data for ebooks. """
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        book_slug = self.kwargs.get('book_slug', None)
+        chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
+        chapters = chapters.order_by('order_index')
+        context['chapters'] = chapters
+        return context
+
+
+class BookDetailView(EbookView, DetailView):
     """ Returns the digital content of a product. """
     
     model = Book
     template_name = "ebooks/book_detail.html"
-    
+    slug_url_kwarg = 'book_slug'
+
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
         return queryset.product()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['chapters'] = Chapter.objects.all().order_by('order_index')
-        return context
 
-
-class ChapterDetailView(DetailView):
+class ChapterDetailView(EbookView, DetailView):
     """ Returns the chapter of a book. """
     
     model = Chapter
     template_name = "ebooks/chapter_detail.html"
+    slug_url_kwarg = 'chapter_slug'
     
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
-        book_slug = self.kwargs.get('chapter_book', None)
-        if book_slug is not None:
-            queryset = queryset.filter(chapter_book__slug=book_slug)
-            queryset = queryset.sections()
-            return queryset
-        else: 
-            return queryset.none()
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['chapters'] = Chapter.objects.all().order_by('order_index')
-        return context
-        
+        return queryset.sections()

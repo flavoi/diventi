@@ -10,14 +10,38 @@ from diventi.products.models import Product
 from diventi.core.models import Element, TimeStampedModel, PublishableModel, DisclosableModel
 
 
+class BookQuerySet(models.QuerySet):
+
+    # Fetch the book related to the chapter
+    def product(self):
+        book = self.select_related('book_product')
+        return book
+
+
 class Book(Element, TimeStampedModel, PublishableModel):
     """ A collection of chapters that constitutes a product. """
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
-    category = models.CharField(max_length=100, verbose_name=_('category'), blank=True)
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
+    book_product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('product'))
+
+    objects = BookQuerySet.as_manager()
 
     def __str__(self):
         return '%s' % (self.title)
+
+    def get_product_category(self):
+        if self.book_product:
+            return self.book_product.category
+        else:
+            return None
+    get_product_category.short_description = _('category')
+
+    def get_product_image(self):
+        if self.book_product:
+            return self.book_product.image_tag()
+        else:
+            return None
+    get_product_image.short_description = _('image')
 
     class Meta:
         verbose_name = _('book')
@@ -36,7 +60,6 @@ class Chapter(Element, TimeStampedModel, PublishableModel):
     """ A chapter of a book. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    chapter_product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('product'))
     chapter_book = models.ForeignKey(Book, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('book'))
 
     def __str__(self):

@@ -140,7 +140,7 @@ class DiventiImageModel(models.Model):
         if image == original_image:
             image = self.image.replace('.jpg', '{0}.jpg'.format(IMAGE_MODE))        
         return image
-
+    
     def image_tag(self):
         if self.image:
             return mark_safe('<img src="{0}" />'.format(self.image_thumbnail()))

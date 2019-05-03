@@ -8,18 +8,18 @@
 {% endblock title %}
 
 {% block logo %}
-  {% with chapter.chapter_book as book %}
-      {% include 'ebooks/book_logo.html' %}
-  {% endwith %}
+    {% with book as book %}
+        {% include 'ebooks/book_logo.html' %}
+    {% endwith %}
 {% endblock logo %}
 
 {% block navbar_logo %}
-    {% with chapter.chapter_book as book %}
+    {% with book as book %}
         {% include 'ebooks/navbar_logo.html' %}
     {% endwith %}
 {% endblock navbar_logo %}
 
-{% block navbarbrand %}{{ chapter.title }}{% endblock navbarbrand %}
+{% block navbarbrand %}{{ book.title }}{% endblock navbarbrand %}
 
 {% block sidebar %}
   {% for c in chapters %}
@@ -32,16 +32,22 @@
 {% endblock sidebar %}
 
 {% block content_header_title %}
-  <h3 class="title">{{ chapter.title }}</h3>
-  <p class="category"></p>
+  <h3 class="title">{% trans 'Cover' %}</h3>
+  <p class="category">{{ book.book_product.abstract }}</p>
 {% endblock content_header_title %}
 
 {% block content_body %}
 
-{% for section in chapter.sections.all %}
-    <div class="card">
-      <div class="card-body">{{ section.content|safe }}</div>
-    </div>
-{% endfor %}
+<div class="card card-profile text-center ml-auto mr-auto" style="max-width: 720px">
+  <div class="card-header card-header-image">
+    <img class="img" src="{{ book.book_product.image }}">
+  </div>
+  <div class="card-body ">
+      <h4 class="card-title">Diventi: {{ book.title }}</h4>
+      <h6 class="card-category text-gray">{{ book.book_product.category }}</h6>
+  </div>
+</div>
 
 {% endblock content_body %}    
+
+

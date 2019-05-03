@@ -29,6 +29,9 @@ class Book(Element, TimeStampedModel, PublishableModel):
     def __str__(self):
         return '%s' % (self.title)
 
+    def get_absolute_url(self):
+        return reverse('ebooks:book-detail', args=[self.slug])
+
     def get_product_category(self):
         if self.book_product:
             return self.book_product.category

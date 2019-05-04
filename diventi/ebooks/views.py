@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views import View
 
+from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
+
 from .models import Book, Chapter
 
 
@@ -17,7 +19,10 @@ class EbookView(View):
         return context
 
 
-class BookDetailView(EbookView, DetailView):
+class BookDetailView(LoginRequiredMixin,
+                     SuperuserRequiredMixin,
+                     EbookView, 
+                     DetailView):
     """ Returns the digital content of a product. """
     
     model = Book
@@ -29,7 +34,10 @@ class BookDetailView(EbookView, DetailView):
         return queryset.product()
 
 
-class ChapterDetailView(EbookView, DetailView):
+class ChapterDetailView(LoginRequiredMixin,
+                        SuperuserRequiredMixin,
+                        EbookView, 
+                        DetailView):
     """ Returns the chapter of a book. """
     
     model = Chapter

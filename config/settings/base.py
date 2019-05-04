@@ -17,6 +17,7 @@ import os, sys, json
 
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse_lazy
 
 
 PROJ_ROOT = Path(__file__).resolve().parent.parent.parent 
@@ -65,6 +66,7 @@ DEBUG = None
 ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = reverse_lazy('accounts:login')
 
 # Application definition
 

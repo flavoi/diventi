@@ -60,13 +60,16 @@
   </style>
 </head>
 
-<body>
-  <div class="wrapper">
-  <div class="sidebar" data-color="orange" data-background-color="white">
+<body class="{% block bodyclass %}{% endblock bodyclass %}">
+  {% block navbar %}{% endblock navbar %}
+  <div class="wrapper {% block wrapperclass %}{% endblock wrapperclass %}">
+    {% block sidebar %}
+    <div class="sidebar" data-color="orange" data-background-color="white">
       <div class="logo">
         {% block logo %}{% endblock logo %}
       </div>
       <div class="sidebar-wrapper ps-container ps-theme-default" data-ps-id="a3706454-ce1a-8984-4c4e-087c45cf988a">
+        {% if user.is_authenticated %}
         <div class="user">
           <div class="photo">
             {% if user.avatar.image %}
@@ -108,20 +111,24 @@
             </div>
           </div>
         </div>
-
+        {% endif %}
+ 
         <ul class="nav">
-          {% block sidebar %}
+          {% block sidebar_items %}
           <li class="nav-item active ">
             <a class="nav-link" href="../examples/dashboard.html">
               <i class="material-icons">dashboard</i>
               <p> Dashboard </p>
             </a>
           </li>
-          {% endblock sidebar %}
+          {% endblock sidebar_items %}
         </ul>
 
     <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-    <div class="sidebar-background" style="background-image: url()"></div></div>
+    <div class="sidebar-background" style="background-image: url()"></div>
+  </div>
+  {% endblock sidebar %}
+  {% block mainpanel %}
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -170,22 +177,13 @@
           {% endblock content %}
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <i class="fal fa-envelope-open fa-sm"></i> info@playdiventi.it
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy; {{ copy }}. {% trans "Made with passion by Diventi's team" %}.<br>
-          </div>
-          <!-- your footer here -->
-        </div>
-      </footer>
+
+      {% block footer %}
+        {% include 'footer.html' %}
+      {% endblock footer %}
+
     </div>
+  {% endblock mainpanel %}
   </div>
 </body>
 
@@ -195,5 +193,7 @@
 <script src="{% static 'material-dashboard-v210/js/plugins/perfect-scrollbar.jquery.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'material-dashboard-v210/js/plugins/moment.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'material-dashboard-v210/js/material-dashboard.js' %}" type="text/javascript"></script>
+
+{% block extrascript %}{% endblock extrascript %}
 
 </html>

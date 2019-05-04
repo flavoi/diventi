@@ -57,6 +57,12 @@ class DiventiLoginView(AnonymousRequiredMixin, LoginView):
         return redirect(self.fail_url)
         
 
+class DashboardLoginView(AnonymousRequiredMixin, LoginView):
+    template_name = "accounts/login.html"
+    success_msg = _('You have signed in!')
+    fail_msg = _('Your sign in has failed.')
+    
+
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 
 	template_name = "accounts/signout.html"

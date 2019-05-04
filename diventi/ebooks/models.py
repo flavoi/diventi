@@ -1,8 +1,10 @@
 import uuid
 
 from django.db import models
+from django.db.models import Prefetch
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.db.models import Prefetch
 
 from ckeditor.fields import RichTextField
 
@@ -16,9 +18,6 @@ class BookQuerySet(models.QuerySet):
     def product(self):
         book = self.select_related('book_product')
         return book
-
-    def chapters(self):
-        book = self.prefetch_related('')
 
 
 class Book(Element, TimeStampedModel, PublishableModel):
@@ -58,7 +57,7 @@ class ChapterQuerySet(models.QuerySet):
 
     # Fetch all the sections related to the chapter
     def sections(self):
-        chapter = self.prefetch_related('sections')
+        chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.order_by('order_index')))
         return chapter
 
 

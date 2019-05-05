@@ -63,7 +63,7 @@
                 </li>
             {% else %}
                 <li class="nav-item">   
-                    <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-warning btn-round">
+                    <a href="{% url 'accounts:signin' %}" class="btn btn-warning btn-round">
                         <i class="fal fa-sign-in-alt fa-lg"></i> {% trans "Sign in" %} 
                         <div class="ripple-container"></div>
                     </a>

@@ -21,8 +21,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 from django.db.models import Count, Sum
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from braces.views import AnonymousRequiredMixin, LoginRequiredMixin
+from braces.views import AnonymousRequiredMixin
 
 from .models import DiventiUser, DiventiAvatar, Achievement
 from .forms import DiventiUserCreationForm, DiventiUserUpdateForm, DiventiUserPrivacyChangeForm
@@ -37,30 +38,10 @@ class DiventiLoginView(AnonymousRequiredMixin, LoginView):
     template_name = "accounts/signin.html"
     success_msg = _('You have signed in!')
     fail_msg = _('Your sign in has failed.')
-    fail_url = reverse_lazy('landing:home')
-
-    def get_success_url(self):
-        next_url = self.request.GET.get('next', None)
-        if next_url:            
-            return next_url
-        else:
-            super().get_success_url()
 
     def form_valid(self, form):
         messages.success(self.request, self.success_msg)        
-        return super(DiventiLoginView, self).form_valid(form)
-    
-    def form_invalid(self, form):
-        # This session variable must be managed by the fail_url view
-        self.request.session['show_login_form'] = 1
-        self.request.session['fail_login_msg'] = str(self.fail_msg)        
-        return redirect(self.fail_url)
-        
-
-class DashboardLoginView(AnonymousRequiredMixin, LoginView):
-    template_name = "accounts/login.html"
-    success_msg = _('You have signed in!')
-    fail_msg = _('Your sign in has failed.')
+        return super(DiventiLoginView, self).form_valid(form)   
     
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):

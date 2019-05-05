@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-03 08:17+0200\n"
+"POT-Creation-Date: 2019-05-05 18:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:157
+#: config/settings/base.py:159
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:158
+#: config/settings/base.py:160
 msgid "English"
 msgstr "Inglese"
 
@@ -75,12 +75,14 @@ msgid "Your name"
 msgstr "Il tuo nome"
 
 #: diventi/accounts/forms.py:33 diventi/accounts/forms.py:58
+#: diventi/templates/accounts/login.html:73
 #: diventi/templates/accounts/password_reset_form.html:50
 #: diventi/templates/accounts/signin.html:38
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/forms.py:43 diventi/templates/accounts/signin.html:48
+#: diventi/accounts/forms.py:43 diventi/templates/accounts/login.html:83
+#: diventi/templates/accounts/signin.html:48
 msgid "Your password"
 msgstr "La tua password"
 
@@ -182,47 +184,47 @@ msgstr "Utenti"
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/urls.py:23
+#: diventi/accounts/urls.py:24
 msgid "^signin/$"
 msgstr "^accedi/$"
 
-#: diventi/accounts/urls.py:24
+#: diventi/accounts/urls.py:25
 msgid "^signout/$"
 msgstr "^annulla-accesso/$"
 
-#: diventi/accounts/urls.py:25
+#: diventi/accounts/urls.py:26
 msgid "^password-change/ajax/$"
 msgstr "^modifica-password/ajax/$"
 
-#: diventi/accounts/urls.py:26
+#: diventi/accounts/urls.py:27
 msgid "^signup/$"
 msgstr "^registrati/$"
 
-#: diventi/accounts/urls.py:27
+#: diventi/accounts/urls.py:28
 msgid "^(?P<pk>\\d+)/$"
 msgstr "^(?P<pk>\\d+)/$"
 
-#: diventi/accounts/urls.py:28
+#: diventi/accounts/urls.py:29
 msgid "^(?P<pk>\\d+)/update/$"
 msgstr "^(?P<pk>\\d+)/aggiorna/$"
 
-#: diventi/accounts/urls.py:29
+#: diventi/accounts/urls.py:30
 msgid "^privacy-change/ajax/$"
 msgstr "^modifica-privacy/ajax/$"
 
-#: diventi/accounts/urls.py:30
+#: diventi/accounts/urls.py:31
 msgid "^(?P<pk>\\d+)/delete/$"
 msgstr "^(?P<pk>\\d+)/cancella/$"
 
-#: diventi/accounts/urls.py:31
+#: diventi/accounts/urls.py:32
 msgid "^password-reset/$"
 msgstr "^password-reset/$"
 
-#: diventi/accounts/urls.py:32
+#: diventi/accounts/urls.py:33
 msgid "^password-reset/done/$"
 msgstr "^password-reset/completato/$"
 
-#: diventi/accounts/urls.py:33
+#: diventi/accounts/urls.py:34
 msgid ""
 "^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
 "{1,20})/$"
@@ -230,59 +232,63 @@ msgstr ""
 "^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
 "{1,20})/$"
 
-#: diventi/accounts/urls.py:34
+#: diventi/accounts/urls.py:35
 msgid "^reset/done/$"
 msgstr "^reset/completato/$"
 
-#: diventi/accounts/urls.py:35
+#: diventi/accounts/urls.py:36
 msgid "^subscribers/$"
 msgstr "^iscritti/$"
 
-#: diventi/accounts/views.py:38
+#: diventi/accounts/urls.py:37
+msgid "^login/$"
+msgstr "^accedi/$"
+
+#: diventi/accounts/views.py:38 diventi/accounts/views.py:62
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:39
+#: diventi/accounts/views.py:39 diventi/accounts/views.py:63
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:78
+#: diventi/accounts/views.py:84
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:103
+#: diventi/accounts/views.py:109
 msgid "Your privacy was successfully updated!"
 msgstr "La tua privacy è stata aggiornata!"
 
-#: diventi/accounts/views.py:121
+#: diventi/accounts/views.py:127
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:122
+#: diventi/accounts/views.py:128
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:159
+#: diventi/accounts/views.py:165
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:160
+#: diventi/accounts/views.py:166
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:172
+#: diventi/accounts/views.py:178
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:198
+#: diventi/accounts/views.py:204
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
-#: diventi/accounts/views.py:234
+#: diventi/accounts/views.py:240
 msgid "The email addresses have been copied to clipboard."
 msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#: diventi/accounts/views.py:235
+#: diventi/accounts/views.py:241
 msgid "Something went wrong with the copy."
 msgstr "La copia degli indirizzi email è fallita."
 
@@ -305,7 +311,7 @@ msgid "Management"
 msgstr "Gestione"
 
 #: diventi/blog/admin.py:17 diventi/ebooks/admin.py:32
-#: diventi/ebooks/admin.py:47 diventi/feedbacks/admin.py:56
+#: diventi/ebooks/admin.py:48 diventi/feedbacks/admin.py:56
 #: diventi/landing/admin.py:28 diventi/products/admin.py:49
 msgid "Editing"
 msgstr "Montaggio"
@@ -325,23 +331,23 @@ msgstr "Copertine del blog"
 #: diventi/blog/models.py:78 diventi/core/models.py:100
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
 #: diventi/feedbacks/models.py:96 diventi/feedbacks/models.py:116
-#: diventi/landing/models.py:30 diventi/products/models.py:62
+#: diventi/landing/models.py:30 diventi/products/models.py:63
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:101
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
 #: diventi/feedbacks/models.py:117 diventi/landing/models.py:31
-#: diventi/products/models.py:64
+#: diventi/products/models.py:65
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:80 diventi/ebooks/models.py:37
-#: diventi/products/models.py:70 diventi/products/models.py:124
+#: diventi/blog/models.py:80 diventi/ebooks/models.py:42
+#: diventi/products/models.py:71 diventi/products/models.py:125
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/ebooks/models.py:81
+#: diventi/blog/models.py:81 diventi/ebooks/models.py:86
 #: diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
@@ -350,9 +356,9 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/ebooks/models.py:24
-#: diventi/ebooks/models.py:62 diventi/ebooks/models.py:82
-#: diventi/feedbacks/models.py:118 diventi/products/models.py:65
+#: diventi/blog/models.py:83 diventi/ebooks/models.py:26
+#: diventi/ebooks/models.py:67 diventi/ebooks/models.py:87
+#: diventi/feedbacks/models.py:118 diventi/products/models.py:66
 msgid "slug"
 msgstr "slug"
 
@@ -488,7 +494,7 @@ msgstr "colore"
 msgid "categories"
 msgstr "categorie"
 
-#: diventi/core/models.py:130 diventi/ebooks/models.py:44
+#: diventi/core/models.py:130 diventi/ebooks/models.py:49
 msgid "image"
 msgstr "immagine"
 
@@ -500,7 +506,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:149 diventi/products/models.py:136
+#: diventi/core/models.py:149 diventi/products/models.py:137
 msgid "Image"
 msgstr "Immagine"
 
@@ -516,11 +522,11 @@ msgstr "attiva"
 msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
-#: diventi/core/models.py:252 diventi/products/models.py:66
+#: diventi/core/models.py:252 diventi/products/models.py:67
 msgid "featured"
 msgstr "in primo piano"
 
-#: diventi/ebooks/admin.py:44
+#: diventi/ebooks/admin.py:45
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -528,52 +534,52 @@ msgstr "Pubblicazione"
 msgid "Ebooks"
 msgstr "Ebook"
 
-#: diventi/ebooks/models.py:23
+#: diventi/ebooks/models.py:25
 msgid "short title"
 msgstr "titolo breve"
 
-#: diventi/ebooks/models.py:25 diventi/products/models.py:77
-#: diventi/products/models.py:84 diventi/products/models.py:123
-#: diventi/products/models.py:133
+#: diventi/ebooks/models.py:27 diventi/products/models.py:78
+#: diventi/products/models.py:85 diventi/products/models.py:124
+#: diventi/products/models.py:134
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/ebooks/models.py:47 diventi/ebooks/models.py:63
+#: diventi/ebooks/models.py:52 diventi/ebooks/models.py:68
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:48
+#: diventi/ebooks/models.py:53
 msgid "books"
 msgstr "libri"
 
-#: diventi/ebooks/models.py:61 diventi/ebooks/models.py:80
+#: diventi/ebooks/models.py:66 diventi/ebooks/models.py:85
 #: diventi/feedbacks/models.py:22 diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:74 diventi/ebooks/models.py:83
+#: diventi/ebooks/models.py:79 diventi/ebooks/models.py:88
 msgid "chapter"
 msgstr "capitolo"
 
-#: diventi/ebooks/models.py:75
+#: diventi/ebooks/models.py:80
 msgid "chapters"
 msgstr "capitoli"
 
-#: diventi/ebooks/models.py:89 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:94 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:90 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:95 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 
 #: diventi/ebooks/urls.py:9
-msgid "<slug:slug>/"
-msgstr "<slug:slug>/"
+msgid "<slug:book_slug>/"
+msgstr "<slug:book_slug>/"
 
 #: diventi/ebooks/urls.py:10
-msgid "<slug:chapter_book>/chapter/<slug:slug>/"
-msgstr "<slug:chapter_book>/capitolo/<slug:slug>/"
+msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/"
+msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/"
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"
@@ -654,7 +660,7 @@ msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
 #: diventi/landing/models.py:50
-#: diventi/templates/accounts/user_collection.html:47
+#: diventi/templates/accounts/user_collection.html:50
 msgid "survey"
 msgstr "sondaggio"
 
@@ -777,7 +783,7 @@ msgstr "destra"
 msgid "alignment"
 msgstr "allineamento"
 
-#: diventi/landing/models.py:48 diventi/products/models.py:78
+#: diventi/landing/models.py:48 diventi/products/models.py:79
 msgid "products"
 msgstr "prodotti"
 
@@ -838,55 +844,55 @@ msgstr "Progetti"
 msgid "Multiple featured products returned. Please fix!"
 msgstr "Trovati molteplici prodotti sponsorizzati. Sistemare!"
 
-#: diventi/products/models.py:56
+#: diventi/products/models.py:57
 msgid "Product category"
 msgstr "Tipo Prodotto"
 
-#: diventi/products/models.py:57
+#: diventi/products/models.py:58
 msgid "Product categories"
 msgstr "Tipi Prodotto"
 
-#: diventi/products/models.py:63
+#: diventi/products/models.py:64
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/products/models.py:67
+#: diventi/products/models.py:68
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:68
+#: diventi/products/models.py:69
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:69
+#: diventi/products/models.py:70
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:71
+#: diventi/products/models.py:72
 msgid "available"
 msgstr "disponibile"
 
-#: diventi/products/models.py:72
+#: diventi/products/models.py:73
 msgid "courtesy message"
 msgstr "messaggio di cortesia"
 
-#: diventi/products/models.py:117
+#: diventi/products/models.py:118
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:118
+#: diventi/products/models.py:119
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:127
+#: diventi/products/models.py:128
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:128
+#: diventi/products/models.py:129
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:137
+#: diventi/products/models.py:138
 msgid "Images"
 msgstr "Immagini"
 
@@ -948,11 +954,52 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/base_dashboard.html:98
+#: diventi/templates/base_dashboard.html:101
 #: diventi/templates/landing/landing.html:37
 #: diventi/templates/navigation.html:57
 msgid "Manage profile"
 msgstr "Gestisci profilo"
+
+#: diventi/templates/accounts/login.html:63
+#: diventi/templates/accounts/password_reset_complete.html:14
+#: diventi/templates/accounts/signin.html:11
+#: diventi/templates/navigation.html:67
+#: diventi/templates/products/product_detail.html:129
+msgid "Sign in"
+msgstr "Accedi"
+
+#: diventi/templates/accounts/login.html:90
+#: diventi/templates/accounts/signin.html:55
+msgid "No account yet? Then"
+msgstr "Non hai ancora un profilo? Allora"
+
+#: diventi/templates/accounts/login.html:90
+#: diventi/templates/accounts/signin.html:55
+msgid "sign up"
+msgstr "registrati"
+
+#: diventi/templates/accounts/login.html:90
+#: diventi/templates/accounts/signin.html:55
+msgid "first"
+msgstr "subito"
+
+#: diventi/templates/accounts/login.html:91
+#: diventi/templates/accounts/signin.html:56
+msgid "Lost your password? Then"
+msgstr "Hai perso la tua password? Allora"
+
+#: diventi/templates/accounts/login.html:91
+#: diventi/templates/accounts/signin.html:56
+msgid "request a reset here"
+msgstr "richiedi un reset qui"
+
+#: diventi/templates/accounts/login.html:96
+#: diventi/templates/accounts/password_reset_form.html:55
+#: diventi/templates/accounts/signin.html:61
+#: diventi/templates/accounts/user.html:136
+#: diventi/templates/accounts/user_credentials.html:33
+msgid "Confirm"
+msgstr "Conferma"
 
 #: diventi/templates/accounts/password_reset_complete.html:4
 #: diventi/templates/accounts/password_reset_done.html:4
@@ -962,13 +1009,6 @@ msgstr "Reset password"
 #: diventi/templates/accounts/password_reset_complete.html:12
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
-
-#: diventi/templates/accounts/password_reset_complete.html:14
-#: diventi/templates/accounts/signin.html:11
-#: diventi/templates/navigation.html:67
-#: diventi/templates/products/product_detail.html:129
-msgid "Sign in"
-msgstr "Accedi"
 
 #: diventi/templates/accounts/password_reset_confirm.html:38
 msgid ""
@@ -1051,33 +1091,6 @@ msgstr ""
 #: diventi/templates/accounts/password_reset_form.html:54
 msgid "Sending"
 msgstr "Invio"
-
-#: diventi/templates/accounts/password_reset_form.html:55
-#: diventi/templates/accounts/signin.html:61
-#: diventi/templates/accounts/user.html:136
-#: diventi/templates/accounts/user_credentials.html:33
-msgid "Confirm"
-msgstr "Conferma"
-
-#: diventi/templates/accounts/signin.html:55
-msgid "No account yet? Then"
-msgstr "Non hai ancora un profilo? Allora"
-
-#: diventi/templates/accounts/signin.html:55
-msgid "sign up"
-msgstr "registrati"
-
-#: diventi/templates/accounts/signin.html:55
-msgid "first"
-msgstr "subito"
-
-#: diventi/templates/accounts/signin.html:56
-msgid "Lost your password? Then"
-msgstr "Hai perso la tua password? Allora"
-
-#: diventi/templates/accounts/signin.html:56
-msgid "request a reset here"
-msgstr "richiedi un reset qui"
 
 #: diventi/templates/accounts/signout.html:10
 msgid "Sign out completed"
@@ -1192,37 +1205,41 @@ msgid "Rollback"
 msgstr "Annulla"
 
 #: diventi/templates/accounts/user_collection.html:12
-#: diventi/templates/accounts/user_collection.html:45
+#: diventi/templates/accounts/user_collection.html:48
 #: diventi/templates/products/product_card.html:19
 #: diventi/templates/products/product_detail.html:43
 msgid "not yet available"
 msgstr "Non ancora disponibile"
 
 #: diventi/templates/accounts/user_collection.html:15
-#: diventi/templates/accounts/user_collection.html:48
+#: diventi/templates/accounts/user_collection.html:51
 #: diventi/templates/products/product_detail.html:47
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
-#: diventi/templates/accounts/user_collection.html:23
+#: diventi/templates/accounts/user_collection.html:22
+msgid "Access"
+msgstr "Accedi"
+
+#: diventi/templates/accounts/user_collection.html:26
 msgid "Download"
 msgstr "Scarica"
 
-#: diventi/templates/accounts/user_collection.html:32
+#: diventi/templates/accounts/user_collection.html:35
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_collection.html:37
+#: diventi/templates/accounts/user_collection.html:40
 msgid "Surveys"
 msgstr "Sondaggi"
 
-#: diventi/templates/accounts/user_collection.html:53
+#: diventi/templates/accounts/user_collection.html:56
 msgid "Display"
 msgstr "Visualizza"
 
-#: diventi/templates/accounts/user_collection.html:61
+#: diventi/templates/accounts/user_collection.html:64
 msgid "There are no surveys yet."
-msgstr "Nessun sondaggio è ora disponibile."
+msgstr "Nessun sondaggio disponibile."
 
 #: diventi/templates/accounts/user_credentials.html:3
 msgid "Change password"
@@ -1287,30 +1304,26 @@ msgstr "Cerca contenuti in questo sito web"
 msgid "Search"
 msgstr "Ricerca"
 
-#: diventi/templates/base_dashboard.html:90
+#: diventi/templates/base_dashboard.html:93
 msgid "CP"
 msgstr ""
 
-#: diventi/templates/base_dashboard.html:91
+#: diventi/templates/base_dashboard.html:94
 msgid "control panel"
 msgstr "pannello di controllo"
 
-#: diventi/templates/base_dashboard.html:97
+#: diventi/templates/base_dashboard.html:100
 msgid "MP"
 msgstr "GP"
 
-#: diventi/templates/base_dashboard.html:103
+#: diventi/templates/base_dashboard.html:106
 msgid "SO"
 msgstr "AA"
 
-#: diventi/templates/base_dashboard.html:104
+#: diventi/templates/base_dashboard.html:107
 #: diventi/templates/navigation.html:60
 msgid "Sign out"
 msgstr "Annulla accesso"
-
-#: diventi/templates/base_dashboard.html:183 diventi/templates/footer.html:6
-msgid "Made with passion by Diventi's team"
-msgstr "Sviluppato con passione dagli autori Diventi"
 
 #: diventi/templates/blog/article_card_content.html:11
 msgid "read the story"
@@ -1461,6 +1474,10 @@ msgstr "Accedi al sondaggio"
 msgid "your answers"
 msgstr "le tue risposte"
 
+#: diventi/templates/footer.html:6
+msgid "Made with passion by Diventi's team"
+msgstr "Sviluppato con passione dagli autori Diventi"
+
 #: diventi/templates/landing/header_form.html:5
 msgid "Find out more"
 msgstr "Scopri di più"
@@ -1598,9 +1615,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "Our projects"
 #~ msgstr "I nostri progetti"
-
-#~ msgid "Access"
-#~ msgstr "Accedi"
 
 #~ msgid "Update details"
 #~ msgstr "Aggiorna dettagli"

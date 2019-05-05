@@ -45,6 +45,7 @@ class ProductQuerySet(models.QuerySet):
             products = self.filter(authors=user)
         else:
             products = self.filter(buyers=user)
+        products = products.prefetch_related('book')
         return products
 
 

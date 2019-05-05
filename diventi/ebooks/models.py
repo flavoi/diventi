@@ -24,7 +24,7 @@ class Book(Element, TimeStampedModel, PublishableModel):
     """ A collection of chapters that constitutes a product. """
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    book_product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_('product'))
+    book_product = models.OneToOneField(Product, null=True, blank=True, related_name='book', on_delete=models.SET_NULL, verbose_name=_('product'))
 
     objects = BookQuerySet.as_manager()
 

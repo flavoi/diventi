@@ -18,6 +18,9 @@
                             <h3 class="card-title">{{ product.title }}</h3>
                         </a>
                         <p class="card-description">{{ product.description|striptags|truncatechars:250 }}</p>                    
+                        <a target="_blank" class="btn btn-warning btn-round {% if product.available == False %}disabled{% endif %}" href="{% url 'ebooks:book-detail product.book.slug ">
+                            <i class="fal fa-sign-in fa-lg fa-fw"></i> {% trans "Access" %}
+                        </a>   
                         {% if product.file %}
                             <a target="_blank" class="btn btn-warning btn-round {% if product.available == False %}disabled{% endif %}" href="{% url 'products:secretfile' product.id %}">
                                 <i class="fal fa-download fa-lg fa-fw"></i> {% trans "Download" %}

@@ -67,14 +67,6 @@ def landing(request):
         'featured_section': featured_section,
     }
 
-    # This session variable enables and error message in the login modal.
-    if request.session.get('show_login_form', None):
-        context['show_login_form'] = 1
-        del request.session['show_login_form']
-    if request.session.get('fail_login_msg', None):
-        context['fail_login_msg'] = request.session.get('fail_login_msg')
-        del request.session['fail_login_msg']
-
     return render(request, 'landing/landing.html', context)
 
 
@@ -100,9 +92,4 @@ class PresentationSearchView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PresentationSearchView, self).get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('q')
-        queryset_size = len(self.get_queryset())
-        if queryset_size < 4: 
-            context['short_queryset'] = True
-        else:
-            context['short_queryset'] = False
         return context

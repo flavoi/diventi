@@ -53,7 +53,7 @@
                             </a>
                             <div class="dropdown-divider"></div> 
                         {% endif %}
-                        <a href="{% url 'accounts:update' user.pk %}" class="dropdown-item">
+                        <a href="{% url 'accounts:update' user.get_short_name|slugify user.pk %}" class="dropdown-item">
                             {% trans "Manage profile" %}
                         </a>
                         <a href="{% url 'accounts:signout' %}" class="dropdown-item">

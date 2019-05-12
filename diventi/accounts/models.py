@@ -121,7 +121,7 @@ class DiventiUser(AbstractUser):
         ordering = ('id', )
 
     def get_absolute_url(self):
-        return reverse_lazy('accounts:detail', kwargs={'pk': self.pk})
+        return reverse_lazy('accounts:detail', kwargs={'name': self.get_short_name(), 'pk': self.pk})
 
     def get_short_name(self):
         return self.first_name

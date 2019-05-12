@@ -80,7 +80,7 @@
                 <div class="tab-pane connections" id="{% trans 'customization' %}">
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-10 ml-auto mr-auto">
-                            <form method="post" action="{% url 'accounts:update' object.pk %}">
+                            <form method="post" action="{% url 'accounts:update' object.get_short_name|slugify object.pk %}">
                                 {% csrf_token %}
                                 {% include 'accounts/user_customization.html' %}
                             </form>
@@ -117,7 +117,7 @@
 <!-- User deletion modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{% url 'accounts:delete' object.pk %}">
+        <form method="POST" action="{% url 'accounts:delete' object.get_short_name|slugify object.pk %}">
             {% csrf_token %}
             <div class="modal-content">
                 <div class="modal-header">

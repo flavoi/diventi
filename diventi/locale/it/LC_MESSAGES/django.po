@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-12 11:21+0200\n"
+"POT-Creation-Date: 2019-05-12 15:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,8 @@ msgid "blog/"
 msgstr "blog/"
 
 #: config/urls.py:29
-msgid "projects/"
-msgstr "progetti/"
+msgid "applications/"
+msgstr "applicazioni/"
 
 #: config/urls.py:30
 msgid "comments/"
@@ -182,47 +182,47 @@ msgstr "Utenti"
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/urls.py:23
+#: diventi/accounts/urls.py:24
 msgid "^signin/$"
 msgstr "^accedi/$"
 
-#: diventi/accounts/urls.py:24
+#: diventi/accounts/urls.py:25
 msgid "^signout/$"
 msgstr "^annulla-accesso/$"
 
-#: diventi/accounts/urls.py:25
+#: diventi/accounts/urls.py:26
 msgid "^password-change/ajax/$"
 msgstr "^modifica-password/ajax/$"
 
-#: diventi/accounts/urls.py:26
+#: diventi/accounts/urls.py:27
 msgid "^signup/$"
 msgstr "^registrati/$"
 
-#: diventi/accounts/urls.py:27
-msgid "^(?P<pk>\\d+)/$"
-msgstr "^(?P<pk>\\d+)/$"
-
 #: diventi/accounts/urls.py:28
-msgid "^(?P<pk>\\d+)/update/$"
-msgstr "^(?P<pk>\\d+)/aggiorna/$"
+msgid "<slug:name>-<int:pk>/"
+msgstr "<slug:name>-<int:pk>/"
 
 #: diventi/accounts/urls.py:29
+msgid "<slug:name>-<int:pk>/update/"
+msgstr "<slug:name>-<int:pk>/aggiorna/"
+
+#: diventi/accounts/urls.py:30
+msgid "<slug:name>-<int:pk>/delete/"
+msgstr "<slug:name>-<int:pk>/cancella/"
+
+#: diventi/accounts/urls.py:31
 msgid "^privacy-change/ajax/$"
 msgstr "^modifica-privacy/ajax/$"
 
-#: diventi/accounts/urls.py:30
-msgid "^(?P<pk>\\d+)/delete/$"
-msgstr "^(?P<pk>\\d+)/cancella/$"
-
-#: diventi/accounts/urls.py:31
+#: diventi/accounts/urls.py:32
 msgid "^password-reset/$"
 msgstr "^password-reset/$"
 
-#: diventi/accounts/urls.py:32
+#: diventi/accounts/urls.py:33
 msgid "^password-reset/done/$"
 msgstr "^password-reset/completato/$"
 
-#: diventi/accounts/urls.py:33
+#: diventi/accounts/urls.py:34
 msgid ""
 "^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
 "{1,20})/$"
@@ -230,11 +230,11 @@ msgstr ""
 "^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
 "{1,20})/$"
 
-#: diventi/accounts/urls.py:34
+#: diventi/accounts/urls.py:35
 msgid "^reset/done/$"
 msgstr "^reset/completato/$"
 
-#: diventi/accounts/urls.py:35
+#: diventi/accounts/urls.py:36
 msgid "^subscribers/$"
 msgstr "^iscritti/$"
 
@@ -325,19 +325,19 @@ msgstr "Copertine del blog"
 #: diventi/blog/models.py:78 diventi/core/models.py:100
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
 #: diventi/feedbacks/models.py:96 diventi/feedbacks/models.py:116
-#: diventi/landing/models.py:30 diventi/products/models.py:72
+#: diventi/landing/models.py:30 diventi/products/models.py:73
 msgid "title"
 msgstr "titolo"
 
 #: diventi/blog/models.py:79 diventi/core/models.py:101
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
 #: diventi/feedbacks/models.py:117 diventi/landing/models.py:31
-#: diventi/products/models.py:74
+#: diventi/products/models.py:75
 msgid "description"
 msgstr "descrizione"
 
 #: diventi/blog/models.py:80 diventi/ebooks/models.py:42
-#: diventi/products/models.py:80 diventi/products/models.py:134
+#: diventi/products/models.py:81 diventi/products/models.py:135
 msgid "category"
 msgstr "tipo"
 
@@ -352,11 +352,12 @@ msgstr "hot"
 
 #: diventi/blog/models.py:83 diventi/ebooks/models.py:26
 #: diventi/ebooks/models.py:67 diventi/ebooks/models.py:87
-#: diventi/feedbacks/models.py:118 diventi/products/models.py:75
+#: diventi/feedbacks/models.py:118 diventi/products/models.py:76
 msgid "slug"
 msgstr "slug"
 
 #: diventi/blog/models.py:84 diventi/feedbacks/models.py:150
+#: diventi/templates/accounts/user_collection.html:17
 msgid "author"
 msgstr "autore"
 
@@ -500,7 +501,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:149 diventi/products/models.py:146
+#: diventi/core/models.py:149 diventi/products/models.py:147
 msgid "Image"
 msgstr "Immagine"
 
@@ -516,7 +517,7 @@ msgstr "attiva"
 msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
-#: diventi/core/models.py:252 diventi/products/models.py:76
+#: diventi/core/models.py:252 diventi/products/models.py:77
 msgid "featured"
 msgstr "in primo piano"
 
@@ -532,8 +533,8 @@ msgstr "Ebook"
 msgid "short title"
 msgstr "titolo breve"
 
-#: diventi/ebooks/models.py:27 diventi/products/models.py:87
-#: diventi/products/models.py:133 diventi/products/models.py:143
+#: diventi/ebooks/models.py:27 diventi/products/models.py:88
+#: diventi/products/models.py:134 diventi/products/models.py:144
 msgid "product"
 msgstr "prodotto"
 
@@ -653,7 +654,7 @@ msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
 #: diventi/landing/models.py:50
-#: diventi/templates/accounts/user_collection.html:50
+#: diventi/templates/accounts/user_collection.html:48
 msgid "survey"
 msgstr "sondaggio"
 
@@ -776,7 +777,7 @@ msgstr "destra"
 msgid "alignment"
 msgstr "allineamento"
 
-#: diventi/landing/models.py:48 diventi/products/models.py:88
+#: diventi/landing/models.py:48 diventi/products/models.py:89
 msgid "products"
 msgstr "prodotti"
 
@@ -837,59 +838,59 @@ msgstr "Progetti"
 msgid "Multiple featured products returned. Please fix!"
 msgstr "Trovati molteplici prodotti sponsorizzati. Sistemare!"
 
-#: diventi/products/models.py:66
+#: diventi/products/models.py:67
 msgid "Product category"
 msgstr "Tipo Prodotto"
 
-#: diventi/products/models.py:67
+#: diventi/products/models.py:68
 msgid "Product categories"
 msgstr "Tipi Prodotto"
 
-#: diventi/products/models.py:73
+#: diventi/products/models.py:74
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/products/models.py:77
+#: diventi/products/models.py:78
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:78
+#: diventi/products/models.py:79
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:79
+#: diventi/products/models.py:80
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:81
+#: diventi/products/models.py:82
 msgid "available"
 msgstr "disponibile"
 
-#: diventi/products/models.py:82
+#: diventi/products/models.py:83
 msgid "courtesy message"
 msgstr "messaggio di cortesia"
 
-#: diventi/products/models.py:94
+#: diventi/products/models.py:95
 msgid "application"
 msgstr "applicazione"
 
-#: diventi/products/models.py:127
+#: diventi/products/models.py:128
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:128
+#: diventi/products/models.py:129
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:137
+#: diventi/products/models.py:138
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:138
+#: diventi/products/models.py:139
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:147
+#: diventi/products/models.py:148
 msgid "Images"
 msgstr "Immagini"
 
@@ -1196,39 +1197,35 @@ msgid "Rollback"
 msgstr "Annulla"
 
 #: diventi/templates/accounts/user_collection.html:12
-#: diventi/templates/accounts/user_collection.html:48
+#: diventi/templates/accounts/user_collection.html:46
 #: diventi/templates/products/product_card.html:19
 #: diventi/templates/products/product_detail.html:43
 msgid "not yet available"
 msgstr "Non ancora disponibile"
 
 #: diventi/templates/accounts/user_collection.html:15
-#: diventi/templates/accounts/user_collection.html:51
+#: diventi/templates/accounts/user_collection.html:49
 #: diventi/templates/products/product_detail.html:47
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
-#: diventi/templates/accounts/user_collection.html:22
-msgid "Access"
-msgstr "Accedi"
+#: diventi/templates/accounts/user_collection.html:25
+msgid "Open"
+msgstr "Apri"
 
-#: diventi/templates/accounts/user_collection.html:26
-msgid "Download"
-msgstr "Scarica"
-
-#: diventi/templates/accounts/user_collection.html:35
+#: diventi/templates/accounts/user_collection.html:33
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_collection.html:40
+#: diventi/templates/accounts/user_collection.html:38
 msgid "Surveys"
 msgstr "Sondaggi"
 
-#: diventi/templates/accounts/user_collection.html:56
+#: diventi/templates/accounts/user_collection.html:54
 msgid "Display"
 msgstr "Visualizza"
 
-#: diventi/templates/accounts/user_collection.html:64
+#: diventi/templates/accounts/user_collection.html:62
 msgid "There are no surveys yet."
 msgstr "Nessun sondaggio disponibile."
 
@@ -1492,7 +1489,7 @@ msgstr "Unisciti alla nostra community"
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/search_results.html:47
+#: diventi/templates/landing/search_results.html:43
 #, fuzzy
 #| msgid "No collection found"
 msgid "No items found"
@@ -1561,6 +1558,24 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "^(?P<pk>\\d+)/delete/$"
+#~ msgstr "^(?P<pk>\\d+)/cancella/$"
+
+#~ msgid "Access"
+#~ msgstr "Accedi"
+
+#~ msgid "Download"
+#~ msgstr "Scarica"
+
+#~ msgid "^(?P<pk>\\d+)/update/$"
+#~ msgstr "^(?P<pk>\\d+)/aggiorna/$"
+
+#~ msgid "^(?P<pk>\\d+)/$"
+#~ msgstr "^(?P<pk>\\d+)/$"
+
+#~ msgid "projects/"
+#~ msgstr "progetti/"
 
 #~ msgid "project"
 #~ msgstr "progetto"

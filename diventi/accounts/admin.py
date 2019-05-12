@@ -10,14 +10,14 @@ from .models import DiventiUser, DiventiAvatar, DiventiProfilePic, DiventiCover,
 class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'language', 'has_agreed_gdpr', 'bio', 'avatar', 'cover', 'profilepic', 'role')}),
+        ('Personal info', {'fields': ('nametag', 'first_name', 'language', 'has_agreed_gdpr', 'bio', 'avatar', 'cover', 'profilepic', 'role')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     limited_fieldsets = (
         (None, {'fields': ('email',)}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'language', 'bio', 'avatar', 'profilepic')}),
+        ('Personal info', {'fields': ('nametag', 'first_name', 'last_name', 'language', 'bio', 'avatar', 'profilepic')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
@@ -33,7 +33,7 @@ class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
     list_filter = ('role', 'is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('first_name', 'last_name', 'email')
     ordering = ('email',)
-    readonly_fields = ('last_login', 'date_joined',)
+    readonly_fields = ('nametag', 'last_login', 'date_joined',)
 
 
 class DiventiAvatarAdmin(DiventiTranslationAdmin):

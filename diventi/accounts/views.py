@@ -145,6 +145,8 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
     template_name = "accounts/user.html"
     success_msg = _('Profile updated!')
     fail_msg = _('Profile has not been updated.')
+    slug_field = 'nametag'
+    slug_url_kwarg = 'nametag'
 
     def user_passes_test(self):
         """ A user may update his own profile only. """
@@ -171,6 +173,8 @@ class DiventiUserDetailView(DetailView):
 
     model = DiventiUser
     template_name = "accounts/detail.html"
+    slug_field = 'nametag'
+    slug_url_kwarg = 'nametag'
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
@@ -181,6 +185,8 @@ class DiventiUserDetailView(DetailView):
 class DiventiUserDeleteView(LoginRequiredMixin, DiventiActionMixin, DeleteView):
 
     model = DiventiUser
+    slug_field = 'nametag'
+    slug_url_kwarg = 'nametag'
     success_url = reverse_lazy('landing:home')
     success_msg = _('Your profile has been deleted.')
 

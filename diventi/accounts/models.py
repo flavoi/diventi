@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, UserManager
+from django.utils.text import slugify
 
 from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
@@ -103,6 +104,7 @@ class Role(Element):
         
 
 class DiventiUser(AbstractUser):
+    nametag = models.SlugField(max_length=200, unique=True, verbose_name=_('nametag'))
     language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
     has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('subscriber status'))
     avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
@@ -112,7 +114,6 @@ class DiventiUser(AbstractUser):
     role = models.ForeignKey(Role, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('role'))
     achievements = models.ManyToManyField(Achievement, related_name='users')
 
-
     objects = DiventiUserManager()
 
     class Meta:
@@ -120,14 +121,12 @@ class DiventiUser(AbstractUser):
         verbose_name_plural = _('Users')
         ordering = ('id', )
 
+    def save(self, *args, **kwargs):
+        self.nametag = '-'.join((slugify(self.get_short_name()), slugify(self.pk)))
+        super(DiventiUser, self).save(*args, **kwargs)
+
     def get_absolute_url(self):
-        return reverse_lazy('accounts:detail', kwargs={'name': self.get_short_name(), 'pk': self.pk})
-
-    def get_short_name(self):
-        return self.first_name
-
-    def get_full_name(self):
-        return u'{0} {1}'.format(self.first_name, self.last_name)
+        return reverse_lazy('accounts:detail', kwargs={'nametag': self.nametag})
 
     def class_name(self):
         return _('account')

@@ -12,7 +12,7 @@
 	    	<div class="row text-center">
 	    		<div class="col-md-10 ml-auto mr-auto">
 				{% ifequal user.pk object.pk %}
-					<a href="{% url 'accounts:update' user.get_short_name|slugify user.pk %}" class="btn btn-warning btn-round">
+					<a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-round">
 	                    <i class="fal fa-user-circle fa-lg"></i> {% trans "Manage profile" %}
 	                </a>
 				{% endifequal %}

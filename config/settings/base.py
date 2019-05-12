@@ -66,7 +66,7 @@ DEBUG = None
 ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = reverse_lazy('accounts:login')
+LOGIN_URL = reverse_lazy('accounts:signin')
 
 # Application definition
 

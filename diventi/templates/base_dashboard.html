@@ -96,7 +96,7 @@
                   </li>
                 {% endif %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'accounts:update' user.get_short_name|slugify user.pk %}">
+                  <a class="nav-link" href="{% url 'accounts:update' user.nametag %}">
                     <span class="sidebar-mini"> {% trans "MP" %} </span>
                     <span class="sidebar-normal"> {% trans "Manage profile" %} </span>
                   </a>

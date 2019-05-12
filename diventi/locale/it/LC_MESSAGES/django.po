@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-12 15:11+0200\n"
+"POT-Creation-Date: 2019-05-12 16:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,89 +96,93 @@ msgstr "Il tuo ruolo preferito"
 msgid "Your favourite language"
 msgstr "La tua lingua preferita"
 
-#: diventi/accounts/models.py:66
+#: diventi/accounts/models.py:67
 msgid "staff_only"
 msgstr "riservato allo staff"
 
-#: diventi/accounts/models.py:71
+#: diventi/accounts/models.py:72
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:72
+#: diventi/accounts/models.py:73
 #: diventi/templates/accounts/user_customization.html:39
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:78
+#: diventi/accounts/models.py:79
 msgid "Profile picture"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:79
+#: diventi/accounts/models.py:80
 msgid "Profile pictures"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:87 diventi/templates/ebooks/book_detail.html:35
+#: diventi/accounts/models.py:88 diventi/templates/ebooks/book_detail.html:35
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:88
+#: diventi/accounts/models.py:89
 #: diventi/templates/accounts/user_customization.html:54
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:94
+#: diventi/accounts/models.py:95
 msgid "Achievement"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:95
+#: diventi/accounts/models.py:96
 msgid "Achievements"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:101
+#: diventi/accounts/models.py:102
 msgid "Role"
 msgstr "Ruolo"
 
-#: diventi/accounts/models.py:102
+#: diventi/accounts/models.py:103
 msgid "Roles"
 msgstr "Ruoli"
 
-#: diventi/accounts/models.py:106
+#: diventi/accounts/models.py:107
+msgid "nametag"
+msgstr "nametag"
+
+#: diventi/accounts/models.py:108
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:107
+#: diventi/accounts/models.py:109
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:108
+#: diventi/accounts/models.py:110
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:109
+#: diventi/accounts/models.py:111
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:110
+#: diventi/accounts/models.py:112
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:111
+#: diventi/accounts/models.py:113
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:112
+#: diventi/accounts/models.py:114
 msgid "role"
 msgstr "ruolo"
 
-#: diventi/accounts/models.py:119
+#: diventi/accounts/models.py:120
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:120 diventi/landing/models.py:68
+#: diventi/accounts/models.py:121 diventi/landing/models.py:68
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:133
+#: diventi/accounts/models.py:132
 msgid "account"
 msgstr "profilo"
 
@@ -199,16 +203,16 @@ msgid "^signup/$"
 msgstr "^registrati/$"
 
 #: diventi/accounts/urls.py:28
-msgid "<slug:name>-<int:pk>/"
-msgstr "<slug:name>-<int:pk>/"
+msgid "<slug:nametag>/"
+msgstr "<slug:nametag>/"
 
 #: diventi/accounts/urls.py:29
-msgid "<slug:name>-<int:pk>/update/"
-msgstr "<slug:name>-<int:pk>/aggiorna/"
+msgid "<slug:nametag>/update/"
+msgstr "<slug:nametag>/aggiorna/"
 
 #: diventi/accounts/urls.py:30
-msgid "<slug:name>-<int:pk>/delete/"
-msgstr "<slug:name>-<int:pk>/cancella/"
+msgid "<slug:nametag>/delete/"
+msgstr "<slug:nametag>/cancella/"
 
 #: diventi/accounts/urls.py:31
 msgid "^privacy-change/ajax/$"
@@ -238,51 +242,51 @@ msgstr "^reset/completato/$"
 msgid "^subscribers/$"
 msgstr "^iscritti/$"
 
-#: diventi/accounts/views.py:39
+#: diventi/accounts/views.py:40
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:40
+#: diventi/accounts/views.py:41
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:65
+#: diventi/accounts/views.py:66
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:90
+#: diventi/accounts/views.py:91
 msgid "Your privacy was successfully updated!"
 msgstr "La tua privacy è stata aggiornata!"
 
-#: diventi/accounts/views.py:108
+#: diventi/accounts/views.py:109
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:109
+#: diventi/accounts/views.py:110
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:146
+#: diventi/accounts/views.py:147
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:147
+#: diventi/accounts/views.py:148
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:159
+#: diventi/accounts/views.py:160
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:185
+#: diventi/accounts/views.py:187
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
-#: diventi/accounts/views.py:221
+#: diventi/accounts/views.py:223
 msgid "The email addresses have been copied to clipboard."
 msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#: diventi/accounts/views.py:222
+#: diventi/accounts/views.py:224
 msgid "Something went wrong with the copy."
 msgstr "La copia degli indirizzi email è fallita."
 
@@ -1490,10 +1494,8 @@ msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
 #: diventi/templates/landing/search_results.html:43
-#, fuzzy
-#| msgid "No collection found"
 msgid "No items found"
-msgstr "Nessuna collezione trovata"
+msgstr "Nessun risultato trovato"
 
 #: diventi/templates/navigation.html:49
 msgid "Enter the control panel"

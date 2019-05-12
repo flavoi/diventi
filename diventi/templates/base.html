@@ -153,7 +153,7 @@
                       <i class="fal fa-search fa-lg"></i>
                     </span>
                   </div>
-                  <input type="text" class="form-control" placeholder="{% trans 'Search' %}" name="q" aria-label="{% trans 'Search' %}" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
+                  <input type="text" class="form-control" autofocus="autofocus" placeholder="{% trans 'Search' %}" name="q" aria-label="{% trans 'Search' %}" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
                 </div>
             </div>
         </form>
@@ -188,16 +188,14 @@
   // Enable tooltips
   $('[data-toggle="tooltip"]').tooltip();
 
-  // Enable modals
-  {% if show_login_form %}
-    $(document).ready(function() {    
-        $("#loginModal").modal("show");
-    });
-  {% endif %}
-
   // Timeout for messages
   $(".basealert").fadeTo(2000, 500).slideUp(500, function(){
     $(".basealert").slideUp(500);
+  });
+
+  // Autofocus form in searchModal
+  $('#searchModal').on('shown.bs.modal', function() {
+    $(this).find('[autofocus]').focus();
   });
 
 </script>

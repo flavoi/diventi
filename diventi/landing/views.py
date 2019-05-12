@@ -92,7 +92,7 @@ class PresentationSearchView(ListView):
             articles = Article.search(self, query)
             products = Product.search(self, query)
             users = DiventiUser.search(self, query)
-            results = chain(articles, products, users)
+            results = list(chain(articles, products, users))
         else:
             results = None
         return results
@@ -100,4 +100,9 @@ class PresentationSearchView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PresentationSearchView, self).get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('q')
+        queryset_size = len(self.get_queryset())
+        if queryset_size < 4: 
+            context['short_queryset'] = True
+        else:
+            context['short_queryset'] = False
         return context

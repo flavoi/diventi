@@ -4,6 +4,19 @@
 
 {% block title %}Search Results{% endblock title %}
 
+{% block extrahead %}
+{% if short_queryset %}
+    <style>
+        .footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 85px;
+        }
+    </style>
+{% endif %}
+{% endblock extrahead %}
+
 {% block bodyclass %}section-gray{% endblock bodyclass %}
 
 {% block navbarclasses %}bg-dark{% endblock navbarclasses %}
@@ -18,7 +31,16 @@
                     {% for result in results %}
                         <div class="card card-blog">
                             <div class="card-body ">
-                                <h6 class="card-category text-rose">{{ result.class_name }}</h6>
+                                <div class="row">
+                                  <div class="col-md-8">
+                                    <h6 class="card-category text-rose">{{ result.class_name }}</h6>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <h6 class="card-category text-right">
+                                        {% with result as object %}{% include "publishable_badge.html" %}{% endwith %}
+                                    </h6>
+                                  </div>
+                                </div>                                
                                 <h4 class="card-title">
                                     <a href="{{ result.get_absolute_url }}">{{ result.title }}</a>
                                 </h4>
@@ -26,15 +48,16 @@
                                     {{ result.description|striptags }}
                                 </p>
                             </div>
-                        </div>                             
+                        </div>
+                    {% empty %}
+                        <div class="row">
+                            <div class="col-md-8 ml-auto mr-auto mt-3">
+                                <div class="text-center">
+                                    <h3>{% trans "No items found" %} <i class="fal fa-globe"></i></h3>
+                                </div>
+                            </div>
+                        </div>              
                     {% endfor %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto mt-3">
-                    <div class="text-center">
-                        <h3>{% trans "End of results" %} <i class="fal fa-globe"></i></h3>
-                    </div>
                 </div>
             </div>
         </div>

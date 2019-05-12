@@ -25,6 +25,15 @@ class ProductQuerySet(models.QuerySet):
             products = self.filter(published=True)
         return products
 
+    # Get the available products
+    def available(self):
+        products = self.published()
+        if user.is_superuser:
+            products = self
+        else:
+            products = self.filter(available=True)
+        return products
+
     # Get the featured product 
     def featured(self):
         try:
@@ -41,11 +50,12 @@ class ProductQuerySet(models.QuerySet):
 
     # Fetch the products authored or purchased by the user
     def user_collection(self, user):
-        if user.is_staff: # User is a creator
-            products = self.filter(authors=user)
-        else:
-            products = self.filter(buyers=user)
+        if user.is_staff:
+            authored_products = self.filter(authors=user)
+        products = self.filter(buyers=user)
+        products = products.union(authored_products)
         products = products.prefetch_related('book')
+        products = products.prefetch_related('authors')
         return products
 
 
@@ -82,7 +92,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         return self.title
 
     def class_name(self):
-        return _('product')
+        return _('application')
 
     def get_absolute_url(self):
         return reverse('products:detail', args=[str(self.slug)])

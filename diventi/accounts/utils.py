@@ -14,11 +14,23 @@ def get_user_data(context, user, loggeduser=None):
     surveys = Survey.objects.user_collection(user)
     context['surveys'] = surveys
     collection = Product.objects.user_collection(user=user)
-    PUBLIC_FIELDS = [
-        'id', 'title', 'slug', 'category__title', 'description', 'image', 'file', 'available', 'courtesy_message', 'book__slug', 'created', 'modified'
-    ]
-    if loggeduser and loggeduser != user:
-        PUBLIC_FIELDS.remove('file')
-    collection = collection.values(*PUBLIC_FIELDS)
+    # PUBLIC_FIELDS = [
+    #     'id', 
+    #     'title', 
+    #     'slug', 
+    #     'category__title', 
+    #     'description', 
+    #     'image', 
+    #     'file', 
+    #     'available',
+    #     'authors', 
+    #     'courtesy_message', 
+    #     'book__slug', 
+    #     'created', 
+    #     'modified'
+    # ]
+    # if loggeduser and loggeduser != user:
+    #     PUBLIC_FIELDS.remove('file')
+    # collection = collection.values(*PUBLIC_FIELDS)
     context['collection'] = collection
     return context

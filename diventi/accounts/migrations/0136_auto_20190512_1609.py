@@ -12,7 +12,6 @@ def forwards(apps, schema_editor):
             if obj.is_staff == False:
                 obj.profilepic = None
                 obj.role = None
-            print(obj.first_name)
             obj.save()
 
 

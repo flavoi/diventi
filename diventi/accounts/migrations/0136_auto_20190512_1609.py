@@ -11,7 +11,6 @@ def forwards(apps, schema_editor):
             obj.nametag = '-'.join((slugify(obj.first_name), slugify(obj.pk)))
             if obj.is_staff == False:
                 obj.profilepic = None
-                obj.role = 'Game Master'
             else:
                 obj.role = None
             print(obj.first_name)

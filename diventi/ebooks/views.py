@@ -1,10 +1,13 @@
+from itertools import chain
+
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from diventi.products.models import Product
-from .models import Book, Chapter
+from .models import Book, Chapter, Section
 
 
 class UserHasProductMixin(UserPassesTestMixin):
@@ -33,16 +36,16 @@ class EbookView(View):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         book_slug = self.kwargs.get('book_slug', None)
+        book = Book.objects.get(slug=book_slug)
+        context['book'] = book
         chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
         chapters = chapters.order_by('order_index')
         context['chapters'] = chapters
         return context
 
 
-class BookDetailView(LoginRequiredMixin,
-                     UserHasProductMixin,
-                     EbookView,
-                     DetailView):
+class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
+                     EbookView, DetailView):
     """ Returns the digital content of a product. """
     
     model = Book
@@ -54,10 +57,8 @@ class BookDetailView(LoginRequiredMixin,
         return queryset.product()
 
 
-class ChapterDetailView(LoginRequiredMixin,
-                        UserHasProductMixin,
-                        EbookView, 
-                        DetailView):
+class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
+                        EbookView, DetailView):
     """ Returns the chapter of a book. """
     
     model = Chapter
@@ -67,3 +68,30 @@ class ChapterDetailView(LoginRequiredMixin,
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
         return queryset.sections()
+
+
+class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,
+                        EbookView, ListView):
+    """
+        Returns a list of sections that matches the searched phrase.
+    """
+    template_name = "ebooks/search_results.html"
+    context_object_name = 'results'
+    model = Section
+
+    def get_queryset(self, **kwargs):
+        results = super().get_queryset(**kwargs)
+        query = self.request.GET.get('q')
+        book_slug = self.kwargs.get('book_slug')
+        if query:
+            sections = Section.search(self, query, book_slug)
+            results = list(chain(sections,))
+        else:
+            results = None
+        return results
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('q')
+        return context
+

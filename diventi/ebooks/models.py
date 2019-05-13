@@ -1,10 +1,11 @@
-import uuid
+import operator
+from functools import reduce
 
 from django.db import models
 from django.db.models import Prefetch
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 
 from ckeditor.fields import RichTextField
 
@@ -89,6 +90,18 @@ class Section(Element, TimeStampedModel):
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)
+
+    def search(self, query, book_slug, *args, **kwargs):
+        book = Book.objects.get(slug=book_slug)
+        results = Section.objects.filter(chapter__chapter_book=book)
+        query_list = query.split()
+        results = results.filter(
+            reduce(operator.and_,
+                   (Q(title__icontains=q) for q in query_list)) |
+            reduce(operator.and_,
+                   (Q(description__icontains=q) for q in query_list))
+        )
+        return results
 
     class Meta:
         verbose_name = _('section')

@@ -37,6 +37,7 @@ class BookAdmin(DiventiTranslationAdmin):
     prepopulated_fields = {"slug": ("title",)}
     actions = [make_published, make_unpublished]
     search_fields = ['title']
+    save_as = True
 
 
 class ChapterAdmin(DiventiTranslationAdmin):

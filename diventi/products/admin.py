@@ -51,6 +51,7 @@ class ProductAdmin(DiventiTranslationAdmin):
         }),
     )
     actions = [make_published, make_unpublished]
+    raw_id_fields = ['buyers']
     form = ProductForm
 
 

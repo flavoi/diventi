@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Introduced sections: a landing model that enables easier customization of the landing page
+- Introduced ebooks: a new app that handles the digital content of a product with dynamic chapters, section and search 
 
 ### Changed
 - Enabled a published/draft badge next to publishable content for admin eyes only 

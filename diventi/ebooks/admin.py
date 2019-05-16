@@ -5,19 +5,44 @@ from modeltranslation.admin import TranslationStackedInline
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
-from .models import Book, Chapter, Section
+from .models import Book, Chapter, Section, UniversalSection
+
+
+class UniversalSectionAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'order_index', 'get_universal_chapter',]
+    fields = ['title', 'order_index', 'content',]
+    ordering = ['order_index']
 
 
 class SectionAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'chapter',]
-    fields = ('chapter', 'title', 'order_index', 'content', 'slug')
+    list_display = ['title', 'internal_order_index', 'chapter',]
+    fieldsets = (
+        (_('Universal content'), {
+            'fields': ('universal_section',)
+        }),
+        (_('Table of contents'), {
+            'fields': ('chapter',)
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'internal_order_index', 'order_index', 'content', 'slug',),
+        }),
+    )
     prepopulated_fields = {"slug": ("title",)}
-    ordering = ['chapter__order_index', 'order_index']
+    ordering = ['internal_order_index', ]
+    readonly_fields = ['internal_order_index',
+    ]
 
 
 class SectionInline(TranslationStackedInline):
     model = Section
-    fields = ('title', 'order_index', 'content', 'slug')
+    fieldsets = (
+        (_('Universal content'), {
+            'fields': ('universal_section',)
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'order_index', 'content', 'slug',),
+        }),
+    )
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
     extra = 0
@@ -51,6 +76,7 @@ class ChapterAdmin(DiventiTranslationAdmin):
         }),
     )
     readonly_fields = ['created', 'modified',]
+    list_filter = ['chapter_book',]
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
     inlines = [SectionInline]
@@ -59,3 +85,4 @@ class ChapterAdmin(DiventiTranslationAdmin):
 admin.site.register(Book, BookAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
+admin.site.register(UniversalSection, UniversalSectionAdmin)

@@ -36,7 +36,7 @@ class EbookView(View):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         book_slug = self.kwargs.get('book_slug', None)
-        book = Book.objects.get(slug=book_slug)
+        book = get_object_or_404(Book, slug=book_slug)
         context['book'] = book
         chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
         chapters = chapters.order_by('order_index')

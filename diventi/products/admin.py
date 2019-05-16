@@ -8,6 +8,7 @@ from modeltranslation.admin import TranslationTabularInline, TranslationStackedI
 from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory
 from .forms import ProductForm
 
+
 def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
 make_published.short_description = _("Mark selected products as published")

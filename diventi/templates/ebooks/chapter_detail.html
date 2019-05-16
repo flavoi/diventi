@@ -4,17 +4,17 @@
 {% load static %}
 
 {% block title %}
-  {{ chapter.chapter_book.title }} &middot; {{ chapter.title }}
+  {{ book.title }} &middot; {{ chapter.title }}
 {% endblock title %}
 
 {% block logo %}
-  {% with chapter.chapter_book as book %}
+  {% with book as book %}
       {% include 'ebooks/book_logo.html' %}
   {% endwith %}
 {% endblock logo %}
 
 {% block navbar_logo %}
-    {% with chapter.chapter_book as book %}
+    {% with book as book %}
         {% include 'ebooks/navbar_logo.html' %}
     {% endwith %}
 {% endblock navbar_logo %}
@@ -40,7 +40,12 @@
 
 {% for section in chapter.sections.all %}
     <div class="card">
-      <div class="card-body">{{ section.content|safe }}</div>
+      <div class="card-body">
+        {% if section.universal_section %}
+            {{ section.universal_section.content|safe }}
+        {% endif %}
+        {{ section.content|safe }}
+      </div>
     </div>
 {% endfor %}
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-12 16:19+0200\n"
+"POT-Creation-Date: 2019-05-16 08:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,51 +242,51 @@ msgstr "^reset/completato/$"
 msgid "^subscribers/$"
 msgstr "^iscritti/$"
 
-#: diventi/accounts/views.py:40
+#: diventi/accounts/views.py:39
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:41
+#: diventi/accounts/views.py:40
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:66
+#: diventi/accounts/views.py:65
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:91
+#: diventi/accounts/views.py:90
 msgid "Your privacy was successfully updated!"
 msgstr "La tua privacy è stata aggiornata!"
 
-#: diventi/accounts/views.py:109
+#: diventi/accounts/views.py:108
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:110
+#: diventi/accounts/views.py:109
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:147
+#: diventi/accounts/views.py:146
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:148
+#: diventi/accounts/views.py:147
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:160
+#: diventi/accounts/views.py:161
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:187
+#: diventi/accounts/views.py:191
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
-#: diventi/accounts/views.py:223
+#: diventi/accounts/views.py:227
 msgid "The email addresses have been copied to clipboard."
 msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#: diventi/accounts/views.py:224
+#: diventi/accounts/views.py:228
 msgid "Something went wrong with the copy."
 msgstr "La copia degli indirizzi email è fallita."
 
@@ -302,14 +302,15 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:29
+#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:53
 #: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
 #: diventi/products/admin.py:46
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:32
-#: diventi/ebooks/admin.py:48 diventi/feedbacks/admin.py:56
+#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:26
+#: diventi/ebooks/admin.py:41 diventi/ebooks/admin.py:56
+#: diventi/ebooks/admin.py:73 diventi/feedbacks/admin.py:56
 #: diventi/landing/admin.py:28 diventi/products/admin.py:49
 msgid "Editing"
 msgstr "Montaggio"
@@ -340,13 +341,13 @@ msgstr "titolo"
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:80 diventi/ebooks/models.py:42
+#: diventi/blog/models.py:80 diventi/ebooks/models.py:43
 #: diventi/products/models.py:81 diventi/products/models.py:135
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/ebooks/models.py:86
-#: diventi/feedbacks/models.py:155
+#: diventi/blog/models.py:81 diventi/ebooks/models.py:87
+#: diventi/ebooks/models.py:104 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
@@ -354,8 +355,8 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/ebooks/models.py:26
-#: diventi/ebooks/models.py:67 diventi/ebooks/models.py:87
+#: diventi/blog/models.py:83 diventi/ebooks/models.py:27
+#: diventi/ebooks/models.py:68 diventi/ebooks/models.py:105
 #: diventi/feedbacks/models.py:118 diventi/products/models.py:76
 msgid "slug"
 msgstr "slug"
@@ -493,7 +494,7 @@ msgstr "colore"
 msgid "categories"
 msgstr "categorie"
 
-#: diventi/core/models.py:130 diventi/ebooks/models.py:49
+#: diventi/core/models.py:130 diventi/ebooks/models.py:50
 msgid "image"
 msgstr "immagine"
 
@@ -525,7 +526,17 @@ msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 msgid "featured"
 msgstr "in primo piano"
 
-#: diventi/ebooks/admin.py:45
+#: diventi/ebooks/admin.py:20 diventi/ebooks/admin.py:38
+msgid "Universal content"
+msgstr ""
+
+#: diventi/ebooks/admin.py:23
+#, fuzzy
+#| msgid "contents"
+msgid "Table of contents"
+msgstr "indice"
+
+#: diventi/ebooks/admin.py:70
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -533,41 +544,72 @@ msgstr "Pubblicazione"
 msgid "Ebooks"
 msgstr "Ebook"
 
-#: diventi/ebooks/models.py:25
+#: diventi/ebooks/models.py:26
 msgid "short title"
 msgstr "titolo breve"
 
-#: diventi/ebooks/models.py:27 diventi/products/models.py:88
+#: diventi/ebooks/models.py:28 diventi/products/models.py:88
 #: diventi/products/models.py:134 diventi/products/models.py:144
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/ebooks/models.py:52 diventi/ebooks/models.py:68
+#: diventi/ebooks/models.py:53 diventi/ebooks/models.py:69
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:53
+#: diventi/ebooks/models.py:54
 msgid "books"
 msgstr "libri"
 
-#: diventi/ebooks/models.py:66 diventi/ebooks/models.py:85
-#: diventi/feedbacks/models.py:22 diventi/landing/models.py:32
+#: diventi/ebooks/models.py:67 diventi/ebooks/models.py:86
+#: diventi/ebooks/models.py:102 diventi/feedbacks/models.py:22
+#: diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:79 diventi/ebooks/models.py:88
+#: diventi/ebooks/models.py:80 diventi/ebooks/models.py:106
 msgid "chapter"
 msgstr "capitolo"
 
-#: diventi/ebooks/models.py:80
+#: diventi/ebooks/models.py:81
 msgid "chapters"
 msgstr "capitoli"
 
-#: diventi/ebooks/models.py:94 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:93
+msgid "universal diventi"
+msgstr ""
+
+#: diventi/ebooks/models.py:96
+msgid "universal Section"
+msgstr ""
+
+#: diventi/ebooks/models.py:97
+#, fuzzy
+#| msgid "sections"
+msgid "universal Sections"
+msgstr "sezioni"
+
+#: diventi/ebooks/models.py:103
+#, fuzzy
+#| msgid "order index"
+msgid "internal order index"
+msgstr "id ordinamento"
+
+#: diventi/ebooks/models.py:107
+#, fuzzy
+#| msgid "standard section"
+msgid "universal section"
+msgstr "sezione normale"
+
+#: diventi/ebooks/models.py:108
+msgid "overwrite"
+msgstr ""
+
+#: diventi/ebooks/models.py:134 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:95 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:135 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 
@@ -578,6 +620,14 @@ msgstr "<slug:book_slug>/"
 #: diventi/ebooks/urls.py:10
 msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/"
 msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/"
+
+#: diventi/ebooks/urls.py:11
+msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/sections/"
+msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/sezioni/"
+
+#: diventi/ebooks/urls.py:12
+msgid "<slug:book_slug>/search/"
+msgstr "<slug:book_slug>/ricerca/"
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"
@@ -1288,11 +1338,12 @@ msgid ""
 "certain."
 msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 
-#: diventi/templates/base.html:143
+#: diventi/templates/base.html:151
 msgid "Search contents in this website"
 msgstr "Cerca contenuti in questo sito web"
 
-#: diventi/templates/base.html:156 diventi/templates/navigation.html:29
+#: diventi/templates/base.html:164 diventi/templates/base_dashboard.html:154
+#: diventi/templates/navigation.html:29
 msgid "Search"
 msgstr "Ricerca"
 
@@ -1411,6 +1462,12 @@ msgstr "alla pagina precedente"
 #: diventi/templates/comments/tree.html:37
 msgid "Show replies"
 msgstr "Mostra le risposte"
+
+#: diventi/templates/ebooks/search_results.html:6
+#: diventi/templates/ebooks/search_results.html:15
+#: diventi/templates/ebooks/search_results.html:28
+msgid "Search results"
+msgstr "Risultati"
 
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
@@ -1873,9 +1930,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "watermarks"
 #~ msgstr "filigrane"
-
-#~ msgid "contents"
-#~ msgstr "indice"
 
 #~ msgid "This paper requires a template.'"
 #~ msgstr "Questo documento richiede un modello"

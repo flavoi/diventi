@@ -42,7 +42,7 @@ class ArticlePromoteToggleView(RedirectView):
         slug = self.kwargs.get('slug')
         article = get_object_or_404(Article, slug=slug)
         user = self.request.user
-        if user.is_authenticated():
+        if user.is_authenticated:
             if user in article.promotions.all():
                 article.promotions.remove(user)
             else:
@@ -60,7 +60,7 @@ class ArticlePromoteToggleAPIView(APIView):
         user = self.request.user
         updated = False
         promoted = False
-        if user.is_authenticated():
+        if user.is_authenticated:
             if user in article.promotions.all():
                 article.promotions.remove(user)
                 promoted = False

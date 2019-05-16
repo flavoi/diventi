@@ -34,5 +34,13 @@
         <div class="card">
           <div class="card-body">{{ section.content|safe }}</div>
         </div>
+        {% empty %}
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto mt-3">
+                <div class="text-center">
+                    <h4>{% trans "No items found" %}.</h4>
+                </div>
+            </div>
+        </div>   
     {% endfor %}
 {% endblock content_body %}    

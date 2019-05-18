@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-16 08:17+0200\n"
+"POT-Creation-Date: 2019-05-18 19:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,16 +302,16 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:53
+#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:66
 #: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
-#: diventi/products/admin.py:46
+#: diventi/products/admin.py:47
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:26
-#: diventi/ebooks/admin.py:41 diventi/ebooks/admin.py:56
-#: diventi/ebooks/admin.py:73 diventi/feedbacks/admin.py:56
-#: diventi/landing/admin.py:28 diventi/products/admin.py:49
+#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:47
+#: diventi/ebooks/admin.py:69 diventi/ebooks/admin.py:86
+#: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:28
+#: diventi/products/admin.py:50
 msgid "Editing"
 msgstr "Montaggio"
 
@@ -347,7 +347,7 @@ msgid "category"
 msgstr "tipo"
 
 #: diventi/blog/models.py:81 diventi/ebooks/models.py:87
-#: diventi/ebooks/models.py:104 diventi/feedbacks/models.py:155
+#: diventi/ebooks/models.py:111 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
@@ -356,7 +356,7 @@ msgid "hot"
 msgstr "hot"
 
 #: diventi/blog/models.py:83 diventi/ebooks/models.py:27
-#: diventi/ebooks/models.py:68 diventi/ebooks/models.py:105
+#: diventi/ebooks/models.py:68 diventi/ebooks/models.py:112
 #: diventi/feedbacks/models.py:118 diventi/products/models.py:76
 msgid "slug"
 msgstr "slug"
@@ -417,23 +417,23 @@ msgstr "^(?P<pk>[-\\w]+)/promuovi/api/$"
 msgid "Comment has been promoted!"
 msgstr "Il commento è stato promosso!"
 
-#: diventi/core/admin.py:6 diventi/core/admin.py:7
+#: diventi/core/admin.py:7 diventi/core/admin.py:8
 msgid "Diventi Control Panel"
 msgstr "Diventi: pannello di controllo"
 
-#: diventi/core/admin.py:12
+#: diventi/core/admin.py:13
 msgid "Mark selected items as published"
 msgstr "Pubblica gli elementi selezionati"
 
-#: diventi/core/admin.py:17
+#: diventi/core/admin.py:18
 msgid "Mark selected items as hidden"
 msgstr "Nascondi gli elementi selezionati"
 
-#: diventi/core/admin.py:22
+#: diventi/core/admin.py:23
 msgid "Mark selected items for deactivation"
 msgstr "Disattiva gli elementi selezionati"
 
-#: diventi/core/admin.py:28
+#: diventi/core/admin.py:29
 msgid "Duplicate selected items"
 msgstr "Duplica gli elementi selezionati"
 
@@ -526,17 +526,15 @@ msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 msgid "featured"
 msgstr "in primo piano"
 
-#: diventi/ebooks/admin.py:20 diventi/ebooks/admin.py:38
+#: diventi/ebooks/admin.py:41
 msgid "Universal content"
-msgstr ""
+msgstr "Contenuti universali"
 
-#: diventi/ebooks/admin.py:23
-#, fuzzy
-#| msgid "contents"
+#: diventi/ebooks/admin.py:44
 msgid "Table of contents"
-msgstr "indice"
+msgstr "Indice"
 
-#: diventi/ebooks/admin.py:70
+#: diventi/ebooks/admin.py:83
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -562,12 +560,12 @@ msgid "books"
 msgstr "libri"
 
 #: diventi/ebooks/models.py:67 diventi/ebooks/models.py:86
-#: diventi/ebooks/models.py:102 diventi/feedbacks/models.py:22
+#: diventi/ebooks/models.py:110 diventi/feedbacks/models.py:22
 #: diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:80 diventi/ebooks/models.py:106
+#: diventi/ebooks/models.py:80 diventi/ebooks/models.py:113
 msgid "chapter"
 msgstr "capitolo"
 
@@ -577,33 +575,19 @@ msgstr "capitoli"
 
 #: diventi/ebooks/models.py:93
 msgid "universal diventi"
-msgstr ""
+msgstr "diventi universal"
 
 #: diventi/ebooks/models.py:96
 msgid "universal Section"
-msgstr ""
+msgstr "Sezione universale"
 
 #: diventi/ebooks/models.py:97
-#, fuzzy
-#| msgid "sections"
 msgid "universal Sections"
-msgstr "sezioni"
+msgstr "Sezioni universali"
 
-#: diventi/ebooks/models.py:103
-#, fuzzy
-#| msgid "order index"
-msgid "internal order index"
-msgstr "id ordinamento"
-
-#: diventi/ebooks/models.py:107
-#, fuzzy
-#| msgid "standard section"
+#: diventi/ebooks/models.py:114
 msgid "universal section"
-msgstr "sezione normale"
-
-#: diventi/ebooks/models.py:108
-msgid "overwrite"
-msgstr ""
+msgstr "sezione universale"
 
 #: diventi/ebooks/models.py:134 diventi/landing/models.py:82
 msgid "section"
@@ -622,10 +606,6 @@ msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/"
 msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/"
 
 #: diventi/ebooks/urls.py:11
-msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/sections/"
-msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/sezioni/"
-
-#: diventi/ebooks/urls.py:12
 msgid "<slug:book_slug>/search/"
 msgstr "<slug:book_slug>/ricerca/"
 
@@ -876,11 +856,11 @@ msgstr "Questa pagina non è ancora disponibile."
 msgid "Please double check your email."
 msgstr "Per favore controlla la tua email."
 
-#: diventi/products/admin.py:13
+#: diventi/products/admin.py:14
 msgid "Mark selected products as published"
 msgstr "Pubblica i prodotti selezionati"
 
-#: diventi/products/admin.py:18
+#: diventi/products/admin.py:19
 msgid "Mark selected products as hidden"
 msgstr "Nascondi i prodotti selezionati"
 
@@ -1349,7 +1329,7 @@ msgstr "Ricerca"
 
 #: diventi/templates/base_dashboard.html:93
 msgid "CP"
-msgstr ""
+msgstr "PC"
 
 #: diventi/templates/base_dashboard.html:94
 msgid "control panel"
@@ -1469,6 +1449,11 @@ msgstr "Mostra le risposte"
 msgid "Search results"
 msgstr "Risultati"
 
+#: diventi/templates/ebooks/search_results.html:41
+#: diventi/templates/landing/search_results.html:43
+msgid "No items found"
+msgstr "Nessun risultato trovato"
+
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
 msgid "You are answering as"
@@ -1550,10 +1535,6 @@ msgstr "Unisciti alla nostra community"
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/search_results.html:43
-msgid "No items found"
-msgstr "Nessun risultato trovato"
-
 #: diventi/templates/navigation.html:49
 msgid "Enter the control panel"
 msgstr "Accedi al pannello di controllo"
@@ -1617,6 +1598,12 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "internal order index"
+#~ msgstr "id ordinamento"
+
+#~ msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/sections/"
+#~ msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/sezioni/"
 
 #~ msgid "^(?P<pk>\\d+)/delete/$"
 #~ msgstr "^(?P<pk>\\d+)/cancella/$"

@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 
-from modeltranslation.admin import TranslationStackedInline
+from modeltranslation.admin import TranslationStackedInline, TranslationTabularInline
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 

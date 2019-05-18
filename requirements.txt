@@ -12,9 +12,9 @@ ConfigArgParse==0.13.0
 configobj==5.0.6
 cryptography==2.3
 dj-database-url==0.5.0
-Django==2.1.7
+Django==2.2.1
 django-braces==1.13.0
-django-ckeditor==5.6.1
+django-ckeditor==5.7.1
 django-contrib-comments==1.9.0
 django-cuser==2017.3.16
 django-js-asset==1.1.0
@@ -56,6 +56,7 @@ requests-toolbelt==0.8.0
 rsa==3.4.2
 s3transfer==0.1.13
 six==1.11.0
+sqlparse==0.3.0
 swapper==1.1.0
 urllib3==1.24.2
 wcwidth==0.1.7

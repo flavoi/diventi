@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced sections: a landing model that enables easier customization of the landing page
 - Introduced ebooks: a new app that handles the digital content of a product with dynamic chapters, section and search 
+- Upgraded django to v2.2
 
 ### Changed
 - Enabled a published/draft badge next to publishable content for admin eyes only 
@@ -31,8 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Introduced homebrew: an experiental app to write papers
 - Introduced feedbacks: an app that automates the creation of surveys
-- Introduced a primary link dynamic field that pre-populated with featured objects accross the project.
-- Upgraded django to v2.1.
+- Introduced a primary link dynamic field that pre-populated with featured objects accross the project
+- Upgraded django to v2.1
 - Upgraded icons to fontawesome v5.6.3
 - Upgrade material kit to v2.1.7
 

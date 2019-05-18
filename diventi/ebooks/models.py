@@ -58,7 +58,7 @@ class ChapterQuerySet(models.QuerySet):
 
     # Fetch all the sections related to the chapter
     def sections(self):
-        chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.usection().order_by('internal_order_index')))
+        chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.usection().order_by('order_index')))
         return chapter
 
 
@@ -108,7 +108,6 @@ class SectionQuerySet(models.QuerySet):
 class Section(Element, TimeStampedModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    internal_order_index = models.PositiveIntegerField(verbose_name=_('internal order index'))
     content = RichTextField(verbose_name=_('content'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
@@ -118,14 +117,6 @@ class Section(Element, TimeStampedModel):
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)
-
-    def save(self, *args, **kwargs):
-        """
-            The real order index of a section is calculated as a function
-            of the user defined index and the chapter. 
-        """
-        self.internal_order_index = int(f'{self.chapter.order_index}{self.order_index}')
-        super(Section, self).save(*args, **kwargs)
 
     def search(self, query, book_slug, *args, **kwargs):
         book = Book.objects.get(slug=book_slug)

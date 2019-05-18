@@ -1,5 +1,7 @@
 from django.contrib import admin
+
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Q
 
 from modeltranslation.admin import TranslationStackedInline
 
@@ -14,8 +16,27 @@ class UniversalSectionAdmin(DiventiTranslationAdmin):
     ordering = ['order_index']
 
 
-class SectionAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'internal_order_index', 'chapter',]
+class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(FilteredSectionAdminMixin, self).get_form(request, obj, **kwargs)
+        """
+            Adjust the section queryset to cope with the following requirement:
+            A universal section should be used only one per book.            
+        """
+        if obj is not None and obj.chapter is not None:
+            book = obj.chapter.chapter_book
+            sections = Section.objects.filter(chapter__chapter_book=book)
+            q = UniversalSection.objects.all().exclude(sections__in=sections)
+            if obj.universal_section is not None: # Don't exclude the current universal section
+                universal_section = UniversalSection.objects.filter(pk=obj.universal_section.pk)
+                q = q.union(universal_section) 
+            form.base_fields['universal_section'].queryset = q
+        return form
+
+
+class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
+    list_display = ['title', 'order_index', 'chapter',]
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
@@ -24,25 +45,16 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('chapter',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'internal_order_index', 'order_index', 'content', 'slug',),
-        }),
-    )
-    prepopulated_fields = {"slug": ("title",)}
-    ordering = ['internal_order_index', ]
-    readonly_fields = ['internal_order_index',
-    ]
-
-
-class SectionInline(TranslationStackedInline):
-    model = Section
-    fieldsets = (
-        (_('Universal content'), {
-            'fields': ('universal_section',)
-        }),
-        (_('Editing'), {
             'fields': ('title', 'order_index', 'content', 'slug',),
         }),
     )
+    prepopulated_fields = {"slug": ("title",)}
+    ordering = ['chapter__order_index', 'order_index']
+
+
+class SectionInline(FilteredSectionAdminMixin, TranslationStackedInline):
+    model = Section
+    fields = ('universal_section', 'title', 'order_index', 'content', 'slug')
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
     extra = 0

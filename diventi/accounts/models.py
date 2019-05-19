@@ -119,11 +119,12 @@ class DiventiUser(AbstractUser):
     class Meta:
         verbose_name = _('User')
         verbose_name_plural = _('Users')
-        ordering = ('id', )
+        ordering = ('nametag', )
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         self.nametag = '-'.join((slugify(self.get_short_name()), slugify(self.pk)))
-        super(DiventiUser, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse_lazy('accounts:detail', kwargs={'nametag': self.nametag})

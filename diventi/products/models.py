@@ -50,10 +50,10 @@ class ProductQuerySet(models.QuerySet):
 
     # Fetch the products authored or purchased by the user
     def user_collection(self, user):
+        products = self.filter(buyers=user)
         if user.is_staff:
             authored_products = self.filter(authors=user)
-        products = self.filter(buyers=user)
-        products = products.union(authored_products)
+            products = products.union(authored_products)
         products = products.prefetch_related('book')
         products = products.prefetch_related('authors')
         return products

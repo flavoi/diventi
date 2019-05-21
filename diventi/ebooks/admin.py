@@ -45,17 +45,15 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
             'fields': ('chapter',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'content', 'slug',),
+            'fields': ('title', 'order_index', 'content',),
         }),
     )
-    prepopulated_fields = {"slug": ("title",)}
     ordering = ['chapter__order_index', 'order_index']
 
 
 class SectionInline(FilteredSectionAdminMixin, TranslationStackedInline):
     model = Section
-    fields = ('universal_section', 'title', 'order_index', 'content', 'slug')
-    prepopulated_fields = {"slug": ("title",)}
+    fields = ('universal_section', 'title', 'order_index', 'content',)
     ordering = ['order_index']
     extra = 0
 

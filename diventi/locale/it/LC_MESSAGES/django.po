@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-18 19:03+0200\n"
+"POT-Creation-Date: 2019-05-21 07:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,7 +182,7 @@ msgstr "Utente"
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:132
+#: diventi/accounts/models.py:133
 msgid "account"
 msgstr "profilo"
 
@@ -347,7 +347,7 @@ msgid "category"
 msgstr "tipo"
 
 #: diventi/blog/models.py:81 diventi/ebooks/models.py:87
-#: diventi/ebooks/models.py:111 diventi/feedbacks/models.py:155
+#: diventi/ebooks/models.py:112 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
@@ -356,7 +356,7 @@ msgid "hot"
 msgstr "hot"
 
 #: diventi/blog/models.py:83 diventi/ebooks/models.py:27
-#: diventi/ebooks/models.py:68 diventi/ebooks/models.py:112
+#: diventi/ebooks/models.py:68 diventi/ebooks/models.py:113
 #: diventi/feedbacks/models.py:118 diventi/products/models.py:76
 msgid "slug"
 msgstr "slug"
@@ -560,12 +560,13 @@ msgid "books"
 msgstr "libri"
 
 #: diventi/ebooks/models.py:67 diventi/ebooks/models.py:86
-#: diventi/ebooks/models.py:110 diventi/feedbacks/models.py:22
+#: diventi/ebooks/models.py:111 diventi/feedbacks/models.py:22
 #: diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:80 diventi/ebooks/models.py:113
+#: diventi/ebooks/models.py:80 diventi/ebooks/models.py:94
+#: diventi/ebooks/models.py:114
 msgid "chapter"
 msgstr "capitolo"
 
@@ -574,26 +575,26 @@ msgid "chapters"
 msgstr "capitoli"
 
 #: diventi/ebooks/models.py:93
-msgid "universal diventi"
-msgstr "diventi universal"
+msgid "universal Diventi"
+msgstr "Diventi universale"
 
-#: diventi/ebooks/models.py:96
+#: diventi/ebooks/models.py:97
 msgid "universal Section"
 msgstr "Sezione universale"
 
-#: diventi/ebooks/models.py:97
+#: diventi/ebooks/models.py:98
 msgid "universal Sections"
 msgstr "Sezioni universali"
 
-#: diventi/ebooks/models.py:114
+#: diventi/ebooks/models.py:115
 msgid "universal section"
 msgstr "sezione universale"
 
-#: diventi/ebooks/models.py:134 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:135 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:135 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:136 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 

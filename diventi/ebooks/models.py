@@ -90,7 +90,8 @@ class UniversalSection(Element, TimeStampedModel):
         return '(%s) %s' % (self.order_index, self.title)
 
     def get_universal_chapter(self):
-        return _('universal diventi')
+        return _('universal Diventi')
+    get_universal_chapter.short_description = _('chapter')
 
     class Meta:
         verbose_name = _('universal Section')
@@ -108,8 +109,7 @@ class SectionQuerySet(models.QuerySet):
 class Section(Element, TimeStampedModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    content = RichTextField(verbose_name=_('content'))
-    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+    content = RichTextField(verbose_name=_('content'), blank=True)
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
 

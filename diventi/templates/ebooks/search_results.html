@@ -32,7 +32,12 @@
 {% block content_body %}
     {% for section in results %}
         <div class="card">
-          <div class="card-body">{{ section.content|safe }}</div>
+          <div class="card-body">
+              {% if section.universal_section %}
+                {{ section.universal_section.content|safe }}
+              {% endif %}
+              {{ section.content|safe }}
+          </div>
         </div>
         {% empty %}
         <div class="row">

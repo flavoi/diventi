@@ -112,6 +112,13 @@ class Section(Element, TimeStampedModel):
     content = RichTextField(verbose_name=_('content'), blank=True)
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
+    COL_CHOICES = [
+        (12, _('Full')),
+        (6, _('Half')),
+        (4, _('Quarter')),
+    ]
+    col_lg = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('lg column'))
+    col_md = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('md column'))
 
     objects = SectionQuerySet.as_manager()
 

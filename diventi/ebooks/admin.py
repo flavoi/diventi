@@ -44,6 +44,9 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
         (_('Table of contents'), {
             'fields': ('chapter',)
         }),
+        (_('Layout'), {
+            'fields': ('col_lg', 'col_md')
+        }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'content',),
         }),

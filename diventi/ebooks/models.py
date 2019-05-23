@@ -10,7 +10,7 @@ from django.db.models import Prefetch, Q
 from ckeditor.fields import RichTextField
 
 from diventi.products.models import Product
-from diventi.core.models import Element, TimeStampedModel, PublishableModel, DisclosableModel
+from diventi.core.models import Element, TimeStampedModel, PublishableModel, DisclosableModel, DiventiImageModel
 
 
 class BookQuerySet(models.QuerySet):
@@ -106,7 +106,7 @@ class SectionQuerySet(models.QuerySet):
         return section
 
 
-class Section(Element, TimeStampedModel):
+class Section(Element, TimeStampedModel, DiventiImageModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     content = RichTextField(verbose_name=_('content'), blank=True)
@@ -119,6 +119,12 @@ class Section(Element, TimeStampedModel):
     ]
     col_lg = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('lg column'))
     col_md = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('md column'))
+    ALIGNMENT_CHOICES = [
+        ('left', _('Left')),
+        ('center', _('Center')),
+        ('right', _('Right')),
+    ]
+    text_alignment = models.CharField(default='left', max_length=20, choices=ALIGNMENT_CHOICES, verbose_name=_('text alignment'))
 
     objects = SectionQuerySet.as_manager()
 

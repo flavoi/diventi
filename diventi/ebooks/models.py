@@ -125,6 +125,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel):
         ('right', _('Right')),
     ]
     text_alignment = models.CharField(default='left', max_length=20, choices=ALIGNMENT_CHOICES, verbose_name=_('text alignment'))
+    super_title = models.BooleanField(default=False, verbose_name=_('super title'))
 
     objects = SectionQuerySet.as_manager()
 

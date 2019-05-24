@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-21 07:32+0200\n"
+"POT-Creation-Date: 2019-05-24 08:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,14 +302,14 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:66
+#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:67
 #: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
 #: diventi/products/admin.py:47
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:47
-#: diventi/ebooks/admin.py:69 diventi/ebooks/admin.py:86
+#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:50
+#: diventi/ebooks/admin.py:70 diventi/ebooks/admin.py:87
 #: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:28
 #: diventi/products/admin.py:50
 msgid "Editing"
@@ -327,7 +327,7 @@ msgstr "Copertina del blog"
 msgid "Blog Covers"
 msgstr "Copertine del blog"
 
-#: diventi/blog/models.py:78 diventi/core/models.py:100
+#: diventi/blog/models.py:78 diventi/core/models.py:99
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
 #: diventi/feedbacks/models.py:96 diventi/feedbacks/models.py:116
 #: diventi/landing/models.py:30 diventi/products/models.py:73
@@ -356,8 +356,8 @@ msgid "hot"
 msgstr "hot"
 
 #: diventi/blog/models.py:83 diventi/ebooks/models.py:27
-#: diventi/ebooks/models.py:68 diventi/ebooks/models.py:113
-#: diventi/feedbacks/models.py:118 diventi/products/models.py:76
+#: diventi/ebooks/models.py:68 diventi/feedbacks/models.py:118
+#: diventi/products/models.py:76
 msgid "slug"
 msgstr "slug"
 
@@ -482,7 +482,7 @@ msgstr "data pubblicazione"
 msgid "promotions"
 msgstr "promozioni"
 
-#: diventi/core/models.py:99
+#: diventi/core/models.py:100
 msgid "icon"
 msgstr "icona"
 
@@ -534,7 +534,11 @@ msgstr "Contenuti universali"
 msgid "Table of contents"
 msgstr "Indice"
 
-#: diventi/ebooks/admin.py:83
+#: diventi/ebooks/admin.py:47
+msgid "Layout"
+msgstr "Disposizione"
+
+#: diventi/ebooks/admin.py:84
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -566,7 +570,7 @@ msgid "order index"
 msgstr "id ordinamento"
 
 #: diventi/ebooks/models.py:80 diventi/ebooks/models.py:94
-#: diventi/ebooks/models.py:114
+#: diventi/ebooks/models.py:113
 msgid "chapter"
 msgstr "capitolo"
 
@@ -586,15 +590,55 @@ msgstr "Sezione universale"
 msgid "universal Sections"
 msgstr "Sezioni universali"
 
-#: diventi/ebooks/models.py:115
+#: diventi/ebooks/models.py:114
 msgid "universal section"
 msgstr "sezione universale"
 
-#: diventi/ebooks/models.py:135 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:116
+msgid "Full"
+msgstr "Intero"
+
+#: diventi/ebooks/models.py:117
+msgid "Half"
+msgstr "Mezzo"
+
+#: diventi/ebooks/models.py:118
+msgid "Quarter"
+msgstr "Un quarto"
+
+#: diventi/ebooks/models.py:120
+msgid "lg column"
+msgstr "colonna lg"
+
+#: diventi/ebooks/models.py:121
+msgid "md column"
+msgstr "colonna md"
+
+#: diventi/ebooks/models.py:123
+msgid "Left"
+msgstr "Sinistra"
+
+#: diventi/ebooks/models.py:124
+msgid "Center"
+msgstr "Centrato"
+
+#: diventi/ebooks/models.py:125
+msgid "Right"
+msgstr "Destra"
+
+#: diventi/ebooks/models.py:127
+msgid "text alignment"
+msgstr "allineamento del testo"
+
+#: diventi/ebooks/models.py:128
+msgid "super title"
+msgstr "super titolo"
+
+#: diventi/ebooks/models.py:148 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:136 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:149 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 

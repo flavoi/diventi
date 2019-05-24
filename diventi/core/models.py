@@ -96,13 +96,27 @@ class Element(models.Model):
     """
     An abstract base class model that represents a single piece of content.
     """
-    icon = models.CharField(max_length=30, verbose_name=_('icon'))
     title = models.CharField(max_length=50, verbose_name=_('title'))
-    description = models.TextField(verbose_name=_('description'))
-    color = models.CharField(choices=COLORS_CHOICES, max_length=30, default='default', verbose_name=_('color'))
+    icon = models.CharField(blank=True, max_length=30, verbose_name=_('icon'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
+    color = models.CharField(blank=True, choices=COLORS_CHOICES, max_length=30, default='warning', verbose_name=_('color'))
 
     def __str__(self):
         return self.title
+
+    def icon_tag(self):
+        if self.icon:
+            return mark_safe('<i class="fal fa-{0} fa-2x"></i>'.format(self.icon))
+        else:
+            return _('No icon')    
+    icon_tag.short_description = _('Icon')
+
+    def color_tag(self):
+        if self.color:
+            return mark_safe('<i class="fas fa-square fa-2x" style="color: Dodgerblue;"></i>'.format())
+        else:
+            return _('No color')    
+    color_tag.short_description = _('Color')
 
     class Meta:
         abstract = True

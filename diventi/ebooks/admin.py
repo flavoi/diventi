@@ -36,7 +36,7 @@ class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
 
 
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'image_tag', 'chapter',]
+    list_display = ['title', 'order_index', 'chapter', 'super_title', 'color', 'image_tag', 'icon_tag']
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
@@ -45,10 +45,10 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
             'fields': ('chapter',)
         }),
         (_('Layout'), {
-            'fields': ('col_lg', 'col_md', 'image', 'text_alignment')
+            'fields': ('col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'super_title',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'content',),
+            'fields': ('title', 'order_index', 'description', 'content',),
         }),
     )
     ordering = ['chapter__order_index', 'order_index']

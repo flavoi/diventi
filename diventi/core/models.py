@@ -113,7 +113,7 @@ class Element(models.Model):
 
     def color_tag(self):
         if self.color:
-            return mark_safe('<i class="fas fa-square fa-2x" style="color: Dodgerblue;"></i>'.format())
+            return mark_safe('<i class="fas fa-square fa-2x color-{0}"></i>'.format(self.color))
         else:
             return _('No color')    
     color_tag.short_description = _('Color')

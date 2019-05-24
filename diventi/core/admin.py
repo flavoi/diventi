@@ -39,6 +39,7 @@ class DiventiTranslationAdmin(TranslationAdmin):
         css = {
             'screen': (
                 'modeltranslation/css/tabbed_translation_fields.css',
+                'diventi/css/diventi-admin.css',
                 'https://pro.fontawesome.com/releases/v5.8.2/css/all.css',
             ),
         }

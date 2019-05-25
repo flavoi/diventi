@@ -30,7 +30,7 @@ class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
             q = UniversalSection.objects.all().exclude(sections__in=sections)
             if obj.universal_section is not None: # Don't exclude the current universal section
                 universal_section = UniversalSection.objects.filter(pk=obj.universal_section.pk)
-                q = q.union(universal_section) 
+                q = q | universal_section  
             form.base_fields['universal_section'].queryset = q
         return form
 

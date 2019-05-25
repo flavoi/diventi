@@ -157,7 +157,7 @@ class DiventiImageModel(models.Model):
     
     def image_tag(self):
         if self.image:
-            return mark_safe('<img src="{0}" />'.format(self.image_thumbnail()))
+            return mark_safe('<img style="max-width:120px;" src="{0}" />'.format(self.image_thumbnail()))
         else:
             return _('No image')    
     image_tag.short_description = _('Image')

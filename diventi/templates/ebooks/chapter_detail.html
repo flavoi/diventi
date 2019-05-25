@@ -39,9 +39,11 @@
 {% block content_body %}
 
 {% for section in chapter.sections.all %}
-  {% with section as section %}
+  {% if section.super_title %}
     {% include 'ebooks/section.html' %}
-  {% endwith %}
+  {% else %}
+    {% include 'ebooks/section_with_footer.html' %}
+  {% endif %}
 {% endfor %}
 
 {% endblock content_body %}    

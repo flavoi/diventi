@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-24 21:22+0200\n"
+"POT-Creation-Date: 2019-05-26 11:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,7 +117,7 @@ msgstr "Foto profilo"
 msgid "Profile pictures"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:88 diventi/templates/ebooks/book_detail.html:35
+#: diventi/accounts/models.py:88
 msgid "Cover"
 msgstr "Copertina"
 
@@ -309,7 +309,7 @@ msgid "Management"
 msgstr "Gestione"
 
 #: diventi/blog/admin.py:17 diventi/ebooks/admin.py:50
-#: diventi/ebooks/admin.py:70 diventi/ebooks/admin.py:87
+#: diventi/ebooks/admin.py:73 diventi/ebooks/admin.py:90
 #: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:28
 #: diventi/products/admin.py:50
 msgid "Editing"
@@ -542,6 +542,26 @@ msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 msgid "featured"
 msgstr "in primo piano"
 
+#: diventi/core/models.py:276
+msgid "Wide"
+msgstr "Larga"
+
+#: diventi/core/models.py:277
+msgid "Half"
+msgstr "Media"
+
+#: diventi/core/models.py:278
+msgid "Narrow"
+msgstr "Stretta"
+
+#: diventi/core/models.py:280
+msgid "lg column"
+msgstr "colonna lg"
+
+#: diventi/core/models.py:281
+msgid "md column"
+msgstr "colonna md"
+
 #: diventi/ebooks/admin.py:41
 msgid "Universal content"
 msgstr "Contenuti universali"
@@ -550,11 +570,11 @@ msgstr "Contenuti universali"
 msgid "Table of contents"
 msgstr "Indice"
 
-#: diventi/ebooks/admin.py:47
+#: diventi/ebooks/admin.py:47 diventi/ebooks/admin.py:70
 msgid "Layout"
 msgstr "Disposizione"
 
-#: diventi/ebooks/admin.py:84
+#: diventi/ebooks/admin.py:87
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -611,50 +631,30 @@ msgid "universal section"
 msgstr "sezione universale"
 
 #: diventi/ebooks/models.py:116
-msgid "Full"
-msgstr "Intero"
-
-#: diventi/ebooks/models.py:117
-msgid "Half"
-msgstr "Mezzo"
-
-#: diventi/ebooks/models.py:118
-msgid "Quarter"
-msgstr "Un quarto"
-
-#: diventi/ebooks/models.py:120
-msgid "lg column"
-msgstr "colonna lg"
-
-#: diventi/ebooks/models.py:121
-msgid "md column"
-msgstr "colonna md"
-
-#: diventi/ebooks/models.py:123
 msgid "Left"
 msgstr "Sinistra"
 
-#: diventi/ebooks/models.py:124
+#: diventi/ebooks/models.py:117
 msgid "Center"
 msgstr "Centrato"
 
-#: diventi/ebooks/models.py:125
+#: diventi/ebooks/models.py:118
 msgid "Right"
 msgstr "Destra"
 
-#: diventi/ebooks/models.py:127
+#: diventi/ebooks/models.py:120
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:128
+#: diventi/ebooks/models.py:121
 msgid "super title"
 msgstr "super titolo"
 
-#: diventi/ebooks/models.py:148 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:141 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:149 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:142 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 
@@ -1047,7 +1047,7 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/base_dashboard.html:101
+#: diventi/templates/base_dashboard.html:102
 #: diventi/templates/landing/landing.html:37
 #: diventi/templates/navigation.html:57
 msgid "Manage profile"
@@ -1383,28 +1383,28 @@ msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 msgid "Search contents in this website"
 msgstr "Cerca contenuti in questo sito web"
 
-#: diventi/templates/base.html:164 diventi/templates/base_dashboard.html:154
+#: diventi/templates/base.html:164 diventi/templates/base_dashboard.html:156
 #: diventi/templates/navigation.html:29
 msgid "Search"
 msgstr "Ricerca"
 
-#: diventi/templates/base_dashboard.html:93
+#: diventi/templates/base_dashboard.html:94
 msgid "CP"
 msgstr "PC"
 
-#: diventi/templates/base_dashboard.html:94
+#: diventi/templates/base_dashboard.html:95
 msgid "control panel"
 msgstr "pannello di controllo"
 
-#: diventi/templates/base_dashboard.html:100
+#: diventi/templates/base_dashboard.html:101
 msgid "MP"
 msgstr "GP"
 
-#: diventi/templates/base_dashboard.html:106
+#: diventi/templates/base_dashboard.html:107
 msgid "SO"
 msgstr "AA"
 
-#: diventi/templates/base_dashboard.html:107
+#: diventi/templates/base_dashboard.html:108
 #: diventi/templates/navigation.html:60
 msgid "Sign out"
 msgstr "Annulla accesso"
@@ -1659,6 +1659,12 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Full"
+#~ msgstr "Intero"
+
+#~ msgid "Quarter"
+#~ msgstr "Un quarto"
 
 #~ msgid "internal order index"
 #~ msgstr "id ordinamento"

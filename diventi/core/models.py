@@ -271,4 +271,17 @@ class FeaturedModel(PublishableModel):
         abstract = True
 
 
+class DiventiColModel(models.Model):
+    COL_CHOICES = [
+        (12, _('Wide')),
+        (6, _('Half')),
+        (4, _('Narrow')),
+    ]
+    col_lg = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('lg column'))
+    col_md = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('md column'))
+
+    class Meta:
+        abstract = True
+
+
 

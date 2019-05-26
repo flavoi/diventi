@@ -35,14 +35,21 @@
 
 {% block content_body %}
 
-<div class="col-lg-8 col-md-12 ml-auto mr-auto">
-  <div class="card card-product text-center">
+<div class="col-lg-{{ book.col_lg }} col-md-{{ book.col_md }} ml-auto mr-auto">
+  <div class="card card-blog">
     <div class="card-header card-header-image">
-      <img class="img" src="{{ book.book_product.image }}">
+        <a href="#pablo">
+            <img class="img" src="{{ book.book_product.image }}">
+            <div class="card-title">
+                Diventi: {{ book.title }}
+            </div>
+        </a>
     </div>
     <div class="card-body">
-        <h4 class="card-title">Diventi: {{ book.title }}</h4>
-        <p class="card-category">{{ book.book_product.abstract }}</p>
+        <h6 class="card-category text-info">{{ book.book_product.category }}</h6>
+        <p class="card-description">
+            {{ book.book_product.abstract }}
+        </p>
     </div>
   </div>
 </div>

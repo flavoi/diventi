@@ -67,6 +67,9 @@ class BookAdmin(DiventiTranslationAdmin):
         (_('Management'), {
             'fields': ('published', 'book_product')
         }),
+        (_('Layout'), {
+            'fields': ('col_lg', 'col_md',)
+        }),
         (_('Editing'), {
             'fields': ('title', 'short_title', 'slug', 'created', 'modified', 'publication_date'),
         }),

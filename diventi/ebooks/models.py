@@ -10,7 +10,7 @@ from django.db.models import Prefetch, Q
 from ckeditor.fields import RichTextField
 
 from diventi.products.models import Product
-from diventi.core.models import Element, TimeStampedModel, PublishableModel, DisclosableModel, DiventiImageModel
+from diventi.core.models import Element, TimeStampedModel, PublishableModel, DisclosableModel, DiventiImageModel, DiventiColModel
 
 
 class BookQuerySet(models.QuerySet):
@@ -21,7 +21,7 @@ class BookQuerySet(models.QuerySet):
         return book
 
 
-class Book(Element, TimeStampedModel, PublishableModel):
+class Book(Element, TimeStampedModel, PublishableModel, DiventiColModel):
     """ A collection of chapters that constitutes a product. """
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
@@ -106,19 +106,12 @@ class SectionQuerySet(models.QuerySet):
         return section
 
 
-class Section(Element, TimeStampedModel, DiventiImageModel):
+class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     content = RichTextField(verbose_name=_('content'), blank=True)
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
-    COL_CHOICES = [
-        (12, _('Full')),
-        (6, _('Half')),
-        (4, _('Quarter')),
-    ]
-    col_lg = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('lg column'))
-    col_md = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('md column'))
     ALIGNMENT_CHOICES = [
         ('left', _('Left')),
         ('center', _('Center')),

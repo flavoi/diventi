@@ -7,7 +7,7 @@ from modeltranslation.admin import TranslationStackedInline, TranslationTabularI
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
-from .models import Book, Chapter, Section, UniversalSection
+from .models import Book, Chapter, Section, UniversalSection, SectionCategory
 
 
 class UniversalSectionAdmin(DiventiTranslationAdmin):
@@ -36,7 +36,7 @@ class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
 
 
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'chapter', 'super_title', 'color_tag', 'image_tag', 'icon_tag']
+    list_display = ['title', 'order_index', 'category', 'chapter', 'super_title', 'color_tag', 'image_tag', 'icon_tag']
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
@@ -48,7 +48,7 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
             'fields': ('col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'super_title',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'description', 'content',),
+            'fields': ('title', 'category', 'order_index', 'description', 'content',),
         }),
     )
     ordering = ['chapter__order_index', 'order_index']
@@ -98,7 +98,12 @@ class ChapterAdmin(DiventiTranslationAdmin):
     inlines = [SectionInline]
 
 
+class SectionCategoryadmin(DiventiTranslationAdmin):
+    list_display = ['title', 'default',]
+
+
 admin.site.register(Book, BookAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(UniversalSection, UniversalSectionAdmin)
+admin.site.register(SectionCategory, SectionCategoryadmin)

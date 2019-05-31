@@ -106,18 +106,32 @@ class UniversalSection(Element, TimeStampedModel):
         verbose_name_plural = _('universal Sections')
 
 
+class SectionCategoryQuerySet(models.QuerySet):
+
+    def default_category(self):
+        try:
+            category = SectionCategory.objects.get_or_create(pk=1, title='default', default=True)
+        except SectionCategory.MultipleObjectsReturned:
+            msg = _("There must be only one default category. Please fix!")
+            raise SectionCategory.MultipleObjectsReturned(msg)
+        return category
+
+
 class SectionCategory(Category):
     """
         Defines the type of a section.
     """
 
+    objects = SectionCategoryQuerySet.as_manager()
+
     @classmethod
     def get_default_category(cls):
-        return SectionCategory.objects.filter(default=True).first()
+        return SectionCategory.objects.default_category()
 
     class Meta:
         verbose_name = _('Section category')
         verbose_name_plural = _('Section categories')
+
 
 
 class SectionQuerySet(models.QuerySet):
@@ -132,7 +146,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     content = RichTextField(verbose_name=_('content'), blank=True)
-    #category = models.ForeignKey(SectionCategory, default=SectionCategory.get_default_category(), verbose_name=_('category'), on_delete=models.SET_NULL)
+    category = models.ForeignKey(SectionCategory, null=True, default=SectionCategory.get_default_category, verbose_name=_('category'), on_delete=models.SET_NULL)
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
     ALIGNMENT_CHOICES = [
@@ -146,7 +160,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     objects = SectionQuerySet.as_manager()
 
     def __str__(self):
-        return '(%s) %s' % (self.order_index, self.title)
+        return '({0})({1}) {2}'.format(self.order_index, self.category, self.title)
 
     def search(self, query, book_slug, *args, **kwargs):
         book = Book.objects.get(slug=book_slug)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-26 11:02+0200\n"
+"POT-Creation-Date: 2019-05-31 07:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -341,13 +341,13 @@ msgstr "titolo"
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:80 diventi/ebooks/models.py:43
+#: diventi/blog/models.py:80 diventi/ebooks/models.py:51
 #: diventi/products/models.py:81 diventi/products/models.py:135
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/ebooks/models.py:87
-#: diventi/ebooks/models.py:112 diventi/feedbacks/models.py:155
+#: diventi/blog/models.py:81 diventi/ebooks/models.py:95
+#: diventi/ebooks/models.py:134 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
@@ -355,8 +355,8 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/ebooks/models.py:27
-#: diventi/ebooks/models.py:68 diventi/feedbacks/models.py:118
+#: diventi/blog/models.py:83 diventi/ebooks/models.py:35
+#: diventi/ebooks/models.py:76 diventi/feedbacks/models.py:118
 #: diventi/products/models.py:76
 msgid "slug"
 msgstr "slug"
@@ -510,7 +510,7 @@ msgstr "Colore"
 msgid "categories"
 msgstr "categorie"
 
-#: diventi/core/models.py:144 diventi/ebooks/models.py:50
+#: diventi/core/models.py:144 diventi/ebooks/models.py:58
 msgid "image"
 msgstr "immagine"
 
@@ -582,79 +582,87 @@ msgstr "Pubblicazione"
 msgid "Ebooks"
 msgstr "Ebook"
 
-#: diventi/ebooks/models.py:26
+#: diventi/ebooks/models.py:34
 msgid "short title"
 msgstr "titolo breve"
 
-#: diventi/ebooks/models.py:28 diventi/products/models.py:88
+#: diventi/ebooks/models.py:36 diventi/products/models.py:88
 #: diventi/products/models.py:134 diventi/products/models.py:144
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/ebooks/models.py:53 diventi/ebooks/models.py:69
+#: diventi/ebooks/models.py:61 diventi/ebooks/models.py:77
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:54
+#: diventi/ebooks/models.py:62
 msgid "books"
 msgstr "libri"
 
-#: diventi/ebooks/models.py:67 diventi/ebooks/models.py:86
-#: diventi/ebooks/models.py:111 diventi/feedbacks/models.py:22
+#: diventi/ebooks/models.py:75 diventi/ebooks/models.py:94
+#: diventi/ebooks/models.py:133 diventi/feedbacks/models.py:22
 #: diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:80 diventi/ebooks/models.py:94
-#: diventi/ebooks/models.py:113
+#: diventi/ebooks/models.py:88 diventi/ebooks/models.py:102
+#: diventi/ebooks/models.py:136
 msgid "chapter"
 msgstr "capitolo"
 
-#: diventi/ebooks/models.py:81
+#: diventi/ebooks/models.py:89
 msgid "chapters"
 msgstr "capitoli"
 
-#: diventi/ebooks/models.py:93
+#: diventi/ebooks/models.py:101
 msgid "universal Diventi"
 msgstr "Diventi universale"
 
-#: diventi/ebooks/models.py:97
+#: diventi/ebooks/models.py:105
 msgid "universal Section"
 msgstr "Sezione universale"
 
-#: diventi/ebooks/models.py:98
+#: diventi/ebooks/models.py:106
 msgid "universal Sections"
 msgstr "Sezioni universali"
 
-#: diventi/ebooks/models.py:114
+#: diventi/ebooks/models.py:119
+msgid "Section category"
+msgstr "Tipo Sezione"
+
+#: diventi/ebooks/models.py:120
+msgid "Section categories"
+msgstr "Tipi Sezione"
+
+#: diventi/ebooks/models.py:137
 msgid "universal section"
 msgstr "sezione universale"
 
-#: diventi/ebooks/models.py:116
+#: diventi/ebooks/models.py:139
 msgid "Left"
 msgstr "Sinistra"
 
-#: diventi/ebooks/models.py:117
+#: diventi/ebooks/models.py:140
 msgid "Center"
 msgstr "Centrato"
 
-#: diventi/ebooks/models.py:118
+#: diventi/ebooks/models.py:141
 msgid "Right"
 msgstr "Destra"
 
-#: diventi/ebooks/models.py:120
+#: diventi/ebooks/models.py:143
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:121
+#: diventi/ebooks/models.py:144
 msgid "super title"
 msgstr "super titolo"
 
-#: diventi/ebooks/models.py:141 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:164 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:142 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:165 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 

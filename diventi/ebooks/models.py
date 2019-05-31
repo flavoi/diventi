@@ -10,7 +10,15 @@ from django.db.models import Prefetch, Q
 from ckeditor.fields import RichTextField
 
 from diventi.products.models import Product
-from diventi.core.models import Element, TimeStampedModel, PublishableModel, DisclosableModel, DiventiImageModel, DiventiColModel
+from diventi.core.models import (
+    Element, 
+    Category, 
+    TimeStampedModel, 
+    PublishableModel, 
+    DisclosableModel, 
+    DiventiImageModel, 
+    DiventiColModel
+)
 
 
 class BookQuerySet(models.QuerySet):
@@ -98,6 +106,20 @@ class UniversalSection(Element, TimeStampedModel):
         verbose_name_plural = _('universal Sections')
 
 
+class SectionCategory(Category):
+    """
+        Defines the type of a section.
+    """
+
+    @classmethod
+    def get_default_category(cls):
+        return SectionCategory.objects.filter(default=True).first()
+
+    class Meta:
+        verbose_name = _('Section category')
+        verbose_name_plural = _('Section categories')
+
+
 class SectionQuerySet(models.QuerySet):
 
     # Fetch the universal section related to the section
@@ -110,6 +132,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     content = RichTextField(verbose_name=_('content'), blank=True)
+    #category = models.ForeignKey(SectionCategory, default=SectionCategory.get_default_category(), verbose_name=_('category'), on_delete=models.SET_NULL)
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
     ALIGNMENT_CHOICES = [

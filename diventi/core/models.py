@@ -124,7 +124,7 @@ class Element(models.Model):
 
 class Category(models.Model):
     """
-    An abstract base class model that defines a specific type of an object.
+    An abstract base class model that defines a specific type of object.
     """
     title = models.CharField(max_length=60, unique=True)
     default = models.BooleanField(default=False)

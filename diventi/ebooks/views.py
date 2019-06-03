@@ -54,7 +54,7 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
 
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
-        return queryset.product()
+        return queryset.published().product()
 
 
 class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
@@ -67,7 +67,7 @@ class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
     
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
-        return queryset.sections()
+        return queryset.published().sections()
 
 
 class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,

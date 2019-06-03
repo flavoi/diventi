@@ -41,7 +41,7 @@
         <a href="#pablo">
             <img class="img" src="{{ book.book_product.image }}">
             <div class="card-title">
-                Diventi: {{ book.title }}
+                Diventi: {{ book.title }} {% with book as object %}{% include "publishable_badge.html" %}{% endwith %}
             </div>
         </a>
     </div>

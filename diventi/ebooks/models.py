@@ -8,6 +8,8 @@ from django.urls import reverse
 from django.db.models import Prefetch, Q
 
 from ckeditor.fields import RichTextField
+from cuser.middleware import CuserMiddleware
+
 
 from diventi.products.models import Product
 from diventi.core.models import (
@@ -22,6 +24,15 @@ from diventi.core.models import (
 
 
 class BookQuerySet(models.QuerySet):
+
+    # Get the list of published articles 
+    def published(self):
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            books = self
+        else:
+            books = self.filter(published=True)
+        return books
 
     # Fetch the book related to the chapter
     def product(self):
@@ -64,6 +75,16 @@ class Book(Element, TimeStampedModel, PublishableModel, DiventiColModel):
 
 class ChapterQuerySet(models.QuerySet):
 
+    # Get the list of published articles 
+    def published(self):
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            chapters = self
+        else:
+            chapters = self.filter(chapter_book__published=True)
+        return chapters
+
+
     # Fetch all the sections related to the chapter
     def sections(self):
         chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.usection().order_by('order_index')))
@@ -77,7 +98,7 @@ class Chapter(Element, TimeStampedModel, PublishableModel):
     chapter_book = models.ForeignKey(Book, null=True, blank=True, related_name='chapters', on_delete=models.SET_NULL, verbose_name=_('book'))
 
     def __str__(self):
-        return '(%s) %s' % (self.order_index, self.title)
+        return '({0}) {1} - {2}'.format(self.order_index, self.chapter_book, self.title)
 
     def get_absolute_url(self):
         return reverse('ebooks:chapter-detail', args=[self.chapter_book.slug, self.slug])
@@ -163,7 +184,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
         return '({0})({1}) {2}'.format(self.order_index, self.category, self.title)
 
     def search(self, query, book_slug, *args, **kwargs):
-        book = Book.objects.get(slug=book_slug)
+        book = Book.objects.published().get(slug=book_slug)
         results = Section.objects.filter(chapter__chapter_book=book)
         query_list = query.split()
         results = results.filter(

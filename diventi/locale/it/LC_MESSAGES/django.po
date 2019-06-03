@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-31 07:39+0200\n"
+"POT-Creation-Date: 2019-06-03 09:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -342,12 +342,13 @@ msgid "description"
 msgstr "descrizione"
 
 #: diventi/blog/models.py:80 diventi/ebooks/models.py:51
-#: diventi/products/models.py:81 diventi/products/models.py:135
+#: diventi/ebooks/models.py:149 diventi/products/models.py:81
+#: diventi/products/models.py:135
 msgid "category"
 msgstr "tipo"
 
 #: diventi/blog/models.py:81 diventi/ebooks/models.py:95
-#: diventi/ebooks/models.py:134 diventi/feedbacks/models.py:155
+#: diventi/ebooks/models.py:148 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
@@ -600,13 +601,13 @@ msgid "books"
 msgstr "libri"
 
 #: diventi/ebooks/models.py:75 diventi/ebooks/models.py:94
-#: diventi/ebooks/models.py:133 diventi/feedbacks/models.py:22
+#: diventi/ebooks/models.py:147 diventi/feedbacks/models.py:22
 #: diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
 #: diventi/ebooks/models.py:88 diventi/ebooks/models.py:102
-#: diventi/ebooks/models.py:136
+#: diventi/ebooks/models.py:150
 msgid "chapter"
 msgstr "capitolo"
 
@@ -626,43 +627,49 @@ msgstr "Sezione universale"
 msgid "universal Sections"
 msgstr "Sezioni universali"
 
-#: diventi/ebooks/models.py:119
+#: diventi/ebooks/models.py:115
+#, fuzzy
+#| msgid "There must be only one object at a time. Please fix!"
+msgid "There must be only one default category. Please fix!"
+msgstr "Può esistere un solo oggetto per volta. Sistemare!"
+
+#: diventi/ebooks/models.py:132
 msgid "Section category"
 msgstr "Tipo Sezione"
 
-#: diventi/ebooks/models.py:120
+#: diventi/ebooks/models.py:133
 msgid "Section categories"
 msgstr "Tipi Sezione"
 
-#: diventi/ebooks/models.py:137
+#: diventi/ebooks/models.py:151
 msgid "universal section"
 msgstr "sezione universale"
 
-#: diventi/ebooks/models.py:139
+#: diventi/ebooks/models.py:153
 msgid "Left"
 msgstr "Sinistra"
 
-#: diventi/ebooks/models.py:140
+#: diventi/ebooks/models.py:154
 msgid "Center"
 msgstr "Centrato"
 
-#: diventi/ebooks/models.py:141
+#: diventi/ebooks/models.py:155
 msgid "Right"
 msgstr "Destra"
 
-#: diventi/ebooks/models.py:143
+#: diventi/ebooks/models.py:157
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:144
+#: diventi/ebooks/models.py:158
 msgid "super title"
 msgstr "super titolo"
 
-#: diventi/ebooks/models.py:164 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:178 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:165 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:179 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 

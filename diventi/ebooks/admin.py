@@ -95,6 +95,7 @@ class ChapterAdmin(DiventiTranslationAdmin):
     list_filter = ['chapter_book',]
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
+    search_fields = ['chapter_book__title']
     inlines = [SectionInline]
 
 

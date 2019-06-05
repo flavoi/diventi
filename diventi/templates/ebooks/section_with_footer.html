@@ -1,20 +1,37 @@
 <div class="col-lg-{{ section.col_lg }} col-md-{{ section.col_md }}">
-    <div class="card card-testimonial">
-      {% if section.icon %}
-        <div class="icon">
-            <i class="fas fa-{{ section.icon }} fa-2x"></i>
+    <div class="card {{ section.card_type }}">
+      {% if section.image %}      
+        <div class="card-header card-header-image" data-header-animation="false">
+          <img class="img" src="{{ section.image }}">
+        </div>
+      {% elif section.icon %}
+        <div class="card-header card-header-icon card-header-{{ section.color }}">
+          <div class="card-icon">
+            <i class="fal fa-{{ section.icon }} fa-2x"></i>
+          </div>
+          <h4 class="card-title">{{ section.title|capfirst }}</h4>
+        </div>
+      {% elif section.supertitle %}
+        <div class="card-header card-header-text card-header-{{ section.color }}" data-header-animation="false">
+          <div class="card-text">
+              <h4 class="card-title">{{ section.title|capfirst }}</h4>
+              <p class="card-category">{{ section.description|capfirst }}</p>
+            </div>
         </div>
       {% endif %}
       <div class="card-body text-{{ section.text_alignment }}">
-        {% if section.universal_section %}
-            {{ section.universal_section.content|safe }}
+        {% if not section.image %}
+          <h3 class="text-warning card-title"><small>{{ section.title|capfirst }}</small></h3>
         {% endif %}
-        {{ section.content|safe }}
+        {% if section.universal_section %}
+            <h5>{{ section.universal_section.content|safe }}</h5>
+        {% endif %}
+        <h5>{{ section.content|safe }}</h5>
       </div>
       <div class="card-footer">
-          <h4 class="card-title">{{ section.title|capfirst }}</h4>
-          <h6 class="card-category">{{ section.description|capfirst }}</h6>
-          {% if section.image %}      
+          {% if section.image %} 
+            <h3 class="card-title">{{ section.title|capfirst }}</h3>
+            <h6 class="card-category">{{ section.description|capfirst }}</h6>               
             <div class="card-avatar">
               <img class="img" src="{{ section.image }}">
             </div>
@@ -22,25 +39,3 @@
       </div>
     </div>
 </div>
-
-<!--
-<div class="card card-testimonial">
-  <div class="icon">
-    <i class="material-icons">format_quote</i>
-  </div>
-  <div class="card-body">
-    <h5 class="card-description">
-      Your products, all the kits that I have downloaded from your site and worked with are sooo cool! I love the color mixtures, cards... everything. Keep up the great work!
-    </h5>
-  </div>
-  <div class="card-footer">
-    <h4 class="card-title">Alec Thompson</h4>
-    <h6 class="card-category">@alecthompson</h6>
-    <div class="card-avatar">
-      <a href="#pablo">
-        <img class="img" src="./../assets/img/faces/card-profile1-square.jpg">
-      </a>
-    </div>
-  </div>
-</div>
--->

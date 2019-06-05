@@ -32,18 +32,16 @@
 {% endblock sidebar_items %}
 
 {% block content_header_title %}
-  <h3 class="title">{{ chapter.title }}</h3>
+  <h2 class="title"><small>{{ chapter.title }}</small></h2>
   <p class="category"></p>
 {% endblock content_header_title %}
 
 {% block content_body %}
 
 {% for section in chapter.sections.all %}
-  {% if section.super_title %}
-    {% include 'ebooks/section.html' %}
-  {% else %}
-    {% include 'ebooks/section_with_footer.html' %}
-  {% endif %}
+  {% with "ebooks/"|add:section.template as template_name %}
+    {% include template_name %}
+  {% endwith %}
 {% endfor %}
 
 {% endblock content_body %}    

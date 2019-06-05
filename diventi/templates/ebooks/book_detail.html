@@ -38,18 +38,16 @@
 <div class="col-lg-{{ book.col_lg }} col-md-{{ book.col_md }} ml-auto mr-auto">
   <div class="card card-blog">
     <div class="card-header card-header-image">
-        <a href="#pablo">
-            <img class="img" src="{{ book.book_product.image }}">
-            <div class="card-title">
-                Diventi: {{ book.title }} {% with book as object %}{% include "publishable_badge.html" %}{% endwith %}
-            </div>
-        </a>
+      <img class="img" src="{{ book.book_product.image }}">
+      <div class="card-title">
+          Diventi: {{ book.title }} {% with book as object %}{% include "publishable_badge.html" %}{% endwith %}
+      </div>
     </div>
     <div class="card-body">
-        <h6 class="card-category text-info">{{ book.book_product.category }}</h6>
-        <p class="card-description">
-            {{ book.book_product.abstract }}
-        </p>
+      <h6 class="card-category text-info">{{ book.book_product.category }}</h6>
+      <p class="card-description">
+          {{ book.book_product.abstract }}
+      </p>
     </div>
   </div>
 </div>

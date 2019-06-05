@@ -112,7 +112,7 @@ class Chapter(Element, TimeStampedModel, PublishableModel):
 class UniversalSection(Element, TimeStampedModel):
     """ A section that can be copied but not published. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    content = RichTextField(verbose_name=_('content'))
+    content = RichTextField(blank=True, null=True, verbose_name=_('content'))
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)
@@ -140,13 +140,23 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     content = RichTextField(verbose_name=_('content'), blank=True)
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
+    DEFAULT_ALIGNMENT = 'left'
     ALIGNMENT_CHOICES = [
-        ('left', _('Left')),
+        (DEFAULT_ALIGNMENT, _('Left')),
         ('center', _('Center')),
         ('right', _('Right')),
     ]
-    text_alignment = models.CharField(default='left', max_length=20, choices=ALIGNMENT_CHOICES, verbose_name=_('text alignment'))
-    super_title = models.BooleanField(default=True, verbose_name=_('super title'))
+    text_alignment = models.CharField(max_length=20, choices=ALIGNMENT_CHOICES, default=DEFAULT_ALIGNMENT, verbose_name=_('text alignment'))
+    DEFAULT_TEMPLATE = 'section_standard.html'
+    TEMPLATE_CHOICES = (
+        (DEFAULT_TEMPLATE, _('standard section')),
+    )
+    template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('standard template'))
+    CARD_TYPES = [
+        ('card-plain', _('plain')),
+        ('card-testimonial', _('testimonial')),
+    ]
+    card_type = models.CharField(max_length=30, choices=CARD_TYPES, blank=True, null=True, verbose_name=_('card type'))
 
     objects = SectionQuerySet.as_manager()
 

@@ -36,7 +36,7 @@ class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
 
 
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'chapter', 'super_title', 'color_tag', 'image_tag', 'icon_tag']
+    list_display = ['title', 'order_index', 'chapter', 'color_tag', 'image_tag', 'icon_tag']
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
@@ -45,7 +45,7 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
             'fields': ('chapter',)
         }),
         (_('Layout'), {
-            'fields': ('col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'super_title',)
+            'fields': ('template', 'col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'card_type')
         }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'description', 'content',),
@@ -56,14 +56,14 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     list_filter = ['chapter__chapter_book',]
 
 
-class SectionInline(FilteredSectionAdminMixin, TranslationStackedInline):
+class SectionInline(TranslationStackedInline):
     model = Section
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
         }),
         (_('Layout'), {
-            'fields': ('col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'super_title',)
+            'fields': ('template', 'col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'card_type')
         }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'description', 'content',),

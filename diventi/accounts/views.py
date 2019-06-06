@@ -126,16 +126,15 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
     def form_valid(self, form):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
-        if email and password:
+        if email and password and not email_has_been_used:
             form.save()
             user = authenticate(self.request, username=email, password=password)
             if user is not None:
                 messages.success(self.request, self.success_msg)
                 return redirect(self.get_success_url())
             else:
-
                 messages.error(self.request, self.fail_msg)
-        return super(DiventiUserCreationView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):

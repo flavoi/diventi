@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 07:39+0200\n"
+"POT-Creation-Date: 2019-06-06 08:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,15 +66,15 @@ msgstr "Si, mi interessa."
 msgid "No, don't send me emails."
 msgstr "No, non inviarmi email."
 
-#: diventi/accounts/forms.py:29 diventi/accounts/forms.py:105
+#: diventi/accounts/forms.py:29 diventi/accounts/forms.py:112
 msgid "Can we send you emails?"
 msgstr "Possiamo inviarti email?"
 
-#: diventi/accounts/forms.py:32 diventi/accounts/forms.py:54
+#: diventi/accounts/forms.py:32 diventi/accounts/forms.py:61
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:33 diventi/accounts/forms.py:58
+#: diventi/accounts/forms.py:33 diventi/accounts/forms.py:65
 #: diventi/templates/accounts/password_reset_form.html:50
 #: diventi/templates/accounts/signin.html:42
 msgid "Your email"
@@ -88,11 +88,15 @@ msgstr "La tua password"
 msgid "Repeat your password"
 msgstr "Ripeti la tua password"
 
-#: diventi/accounts/forms.py:70
+#: diventi/accounts/forms.py:54
+msgid "This email has already been used."
+msgstr "Questa email è già stata usata."
+
+#: diventi/accounts/forms.py:77
 msgid "Your favourite role"
 msgstr "Il tuo ruolo preferito"
 
-#: diventi/accounts/forms.py:71
+#: diventi/accounts/forms.py:78
 msgid "Your favourite language"
 msgstr "La tua lingua preferita"
 
@@ -266,27 +270,27 @@ msgstr "La tua registrazione è andata a buon fine!"
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:146
+#: diventi/accounts/views.py:145
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:147
+#: diventi/accounts/views.py:146
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:161
+#: diventi/accounts/views.py:160
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:191
+#: diventi/accounts/views.py:190
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
-#: diventi/accounts/views.py:227
+#: diventi/accounts/views.py:226
 msgid "The email addresses have been copied to clipboard."
 msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#: diventi/accounts/views.py:228
+#: diventi/accounts/views.py:227
 msgid "Something went wrong with the copy."
 msgstr "La copia degli indirizzi email è fallita."
 
@@ -693,7 +697,9 @@ msgstr "<slug:book_slug>/ricerca/"
 
 #: diventi/ebooks/views.py:22
 msgid "This book is not in your collection, please check your profile."
-msgstr "Questa risorsa non è presente nella tua collezione, per favore controlla il tuo profilo."
+msgstr ""
+"Questa risorsa non è presente nella tua collezione, per favore controlla il "
+"tuo profilo."
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"

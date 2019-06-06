@@ -47,6 +47,13 @@ class DiventiUserCreationForm(UserCreationForm):
             'placeholder': _('Repeat your password'),
             })
 
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        email_has_been_used = DiventiUser.objects.filter(email=email).exists()
+        if email_has_been_used:
+            raise forms.ValidationError( _('This email has already been used.'))
+        return email
+
 
 class DiventiUserInitForm(forms.Form):
     first_name = forms.CharField(

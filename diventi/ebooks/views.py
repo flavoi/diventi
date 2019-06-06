@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views import View
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from diventi.products.models import Product
@@ -17,6 +18,8 @@ class UserHasProductMixin(UserPassesTestMixin):
         It assumes to have the slug of the book object available
         in book_slug get parameter.
     """
+
+    permission_denied_message = _('This book is not in your collection, please check your profile.')
 
     def test_func(self):
         book_slug = self.kwargs.get('book_slug', None)

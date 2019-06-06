@@ -8,5 +8,9 @@
 {% endblock pageheader_title %}
 
 {% block pageheader_content %}
-    {% trans "The requested resource could not be found but may be available again in the future." %}
+    {% if exception %}
+        {{ exception }}
+    {% else %}
+        {% trans "The requested resource could not be found but may be available again in the future." %}
+    {% endif %}
 {% endblock pageheader_content %}

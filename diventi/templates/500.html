@@ -8,6 +8,10 @@
 {% endblock pageheader_title %}
 
 {% block pageheader_content %}
-    {% trans "An unexpected condition was encountered." %} <br />
-    {% trans "Our service team has been dispatched to bring it back online." %}
+    {% if exception %}
+        {{ exception }}
+    {% else %}
+        {% trans "An unexpected condition was encountered." %} <br />
+        {% trans "Our service team has been dispatched to bring it back online." %}
+    {% endif %}
 {% endblock pageheader_content %}

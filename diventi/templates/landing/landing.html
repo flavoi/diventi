@@ -7,7 +7,7 @@
 
 {% block bodyclass %}landing-page{% endblock bodyclass %}
 
-{% block pageheaderimage %}{% if featured_section.image %}{{ featured_section.image }}{% endif %}{% endblock pageheaderimage %}
+{% block pageheaderimage %}{% if featured_section.image %}{{ featured_section.image }}{% elif featured_section.section_survey.image %}{{ featured_section.section_survey.image }}{% elif featured_section.section_article.image %}{{ featured_section.section_article.image }}{% endif %}{% endblock pageheaderimage %}
 
 {% block pageheadercontent %}
     {% with "landing/"|add:featured_section.featured_template as template_name %}

@@ -9,7 +9,7 @@
                 <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}')"{% endif %}>
                     <div class="card-body">
                         {% if product.available == False %}
-                            <label class="badge badge-pill badge-danger">{% trans 'not yet available' %}</label>
+                            <label class="badge badge-pill badge-danger">{{ product.courtesy_short_message }}</label>
                         {% else %}
                             <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category.title }}</label>
                             <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>

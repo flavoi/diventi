@@ -16,7 +16,7 @@
       {% else %}
         <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
           <a href="" class="btn btn-warning btn-round disabled">
-            {% trans 'not yet available' %}
+            {{ product.courtesy_short_message }}
           </a>
         </span>
       {% endif %}

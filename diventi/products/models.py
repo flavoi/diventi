@@ -80,7 +80,8 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
     category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default', on_delete=models.SET_NULL)
     available = models.BooleanField(default=False, verbose_name=_('available')) # Disable the access to the file
-    courtesy_message = models.TextField(blank=True, verbose_name=_('courtesy message')) # Explains why the product is under maintenance
+    courtesy_short_message = models.CharField(max_length=50, verbose_name=_('short courtesy messages'))
+    courtesy_message = models.TextField(verbose_name=_('courtesy message')) # Explains why the product is under maintenance
 
     objects = ProductQuerySet.as_manager()
 

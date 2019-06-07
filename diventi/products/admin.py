@@ -48,7 +48,7 @@ class ProductAdmin(DiventiTranslationAdmin):
             'fields': ('published', 'available', 'featured')
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'buyers', 'courtesy_message', 'slug'),
+            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'buyers', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
     )
     actions = [make_published, make_unpublished]

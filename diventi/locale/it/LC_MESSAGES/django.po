@@ -661,7 +661,7 @@ msgstr "modello normale"
 
 #: diventi/ebooks/models.py:156
 msgid "plain"
-msgstr "pulita"
+msgstr "pulito"
 
 #: diventi/ebooks/models.py:157
 msgid "testimonial"

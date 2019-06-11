@@ -150,6 +150,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     DEFAULT_TEMPLATE = 'section_standard.html'
     TEMPLATE_CHOICES = (
         (DEFAULT_TEMPLATE, _('standard section')),
+        ('section_with_icon.html', _('section with icon'))
     )
     template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('standard template'))
     CARD_TYPES = [

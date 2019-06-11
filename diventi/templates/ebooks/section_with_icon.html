@@ -1,0 +1,14 @@
+{% extends "ebooks/section_base.html" %}
+
+{% block card_header_class %}card-header-icon card-header-{{ section.color }}{% endblock card_header_class %} 
+
+{% block card_header_content %}
+    <div class="card-icon">
+        <i class="fal fa-{{ section.icon }} fa-2x"></i>
+    </div>
+    <h4 class="card-title">{{ section.title|capfirst }}</h4>
+{% endblock card_header_content %}
+
+{% block card_body_title %}{% endblock card_body_title %}
+
+{% block card_footer %}{% endblock card_footer %}

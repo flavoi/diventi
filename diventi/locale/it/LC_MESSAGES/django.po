@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-07 22:16+0200\n"
+"POT-Creation-Date: 2019-06-11 08:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -655,27 +655,31 @@ msgstr "allineamento del testo"
 msgid "standard section"
 msgstr "sezione normale"
 
-#: diventi/ebooks/models.py:154 diventi/landing/models.py:36
+#: diventi/ebooks/models.py:153
+msgid "section with icon"
+msgstr "sezione con icona"
+
+#: diventi/ebooks/models.py:155 diventi/landing/models.py:36
 msgid "standard template"
 msgstr "modello normale"
 
-#: diventi/ebooks/models.py:156
+#: diventi/ebooks/models.py:157
 msgid "plain"
 msgstr "pulito"
 
-#: diventi/ebooks/models.py:157
+#: diventi/ebooks/models.py:158
 msgid "testimonial"
 msgstr "testimonial"
 
-#: diventi/ebooks/models.py:159
+#: diventi/ebooks/models.py:160
 msgid "card type"
 msgstr "tipo cartello"
 
-#: diventi/ebooks/models.py:179 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:180 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:180 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:181 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 
@@ -1333,7 +1337,6 @@ msgid "Surveys"
 msgstr "Sondaggi"
 
 #: diventi/templates/accounts/user_collection.html:46
-#: diventi/templates/products/product_detail.html:43
 msgid "not yet available"
 msgstr "Non ancora disponibile"
 
@@ -1924,9 +1927,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "illustration"
 #~ msgstr "illustrazione"
-
-#~ msgid "section type"
-#~ msgstr "tipo sezione"
 
 #~ msgid "green"
 #~ msgstr "verde"

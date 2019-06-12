@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-11 08:48+0200\n"
+"POT-Creation-Date: 2019-06-12 08:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -651,35 +651,35 @@ msgstr "Destra"
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:152 diventi/landing/models.py:34
-msgid "standard section"
-msgstr "sezione normale"
+#: diventi/ebooks/models.py:152 diventi/ebooks/models.py:159
+msgid "Standard"
+msgstr "Normale"
 
 #: diventi/ebooks/models.py:153
-msgid "section with icon"
-msgstr "sezione con icona"
+msgid "With icon"
+msgstr "Con icona"
 
-#: diventi/ebooks/models.py:155 diventi/landing/models.py:36
-msgid "standard template"
-msgstr "modello normale"
+#: diventi/ebooks/models.py:154
+msgid "With image"
+msgstr "Con immagine"
 
-#: diventi/ebooks/models.py:157
-msgid "plain"
-msgstr "pulito"
-
-#: diventi/ebooks/models.py:158
-msgid "testimonial"
-msgstr "testimonial"
+#: diventi/ebooks/models.py:156
+msgid "template"
+msgstr "modello"
 
 #: diventi/ebooks/models.py:160
+msgid "No background"
+msgstr "Nessuno sfondo"
+
+#: diventi/ebooks/models.py:162
 msgid "card type"
 msgstr "tipo cartello"
 
-#: diventi/ebooks/models.py:180 diventi/landing/models.py:82
+#: diventi/ebooks/models.py:182 diventi/landing/models.py:82
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:181 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:183 diventi/landing/models.py:83
 msgid "sections"
 msgstr "sezioni"
 
@@ -866,6 +866,14 @@ msgstr "Extra"
 #: diventi/landing/apps.py:7
 msgid "Landing"
 msgstr "Pagina di destinazione"
+
+#: diventi/landing/models.py:34
+msgid "standard section"
+msgstr "sezione normale"
+
+#: diventi/landing/models.py:36
+msgid "standard template"
+msgstr "modello normale"
 
 #: diventi/landing/models.py:38
 msgid "standard header"
@@ -1688,6 +1696,15 @@ msgstr "Il tuo voto: "
 msgid "not rated"
 msgstr "nessun voto rilevato"
 
+#~ msgid "plain"
+#~ msgstr "pulito"
+
+#~ msgid "testimonial"
+#~ msgstr "testimonial"
+
+#~ msgid "normal"
+#~ msgstr "normale"
+
 #, fuzzy
 #~| msgid "There must be only one object at a time. Please fix!"
 #~ msgid "There must be only one default category. Please fix!"
@@ -1751,9 +1768,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "Characteristic"
 #~ msgstr "Caratteristica"
-
-#~ msgid "Templates"
-#~ msgstr "Modelli"
 
 #~ msgid "standard centered section"
 #~ msgstr "testatina centrale normale"

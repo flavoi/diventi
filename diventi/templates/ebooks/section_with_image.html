@@ -1,0 +1,13 @@
+{% extends "ebooks/section_base.html" %}
+
+{% block card_header_class %}card-header-image{% endblock card_header_class %} 
+
+{% block card_header_content %}
+    <img class="img" src="{{ section.image }}">
+{% endblock card_header_content %}
+
+{% block card_body_title %}
+<h3 class="card-title text-center"><small>{{ section.title|capfirst }}</small></h3>
+{% endblock card_body_title %}
+
+{% block card_footer %}{% endblock card_footer %}

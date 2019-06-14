@@ -32,43 +32,7 @@
   {% block extrahead %}{% endblock extrahead %}
 
   <style>
-    .bg-dark .dropdown-menu .dropdown-item:hover,
-    .dropdown-menu .dropdown-item:focus,
-    .dropdown-menu a:hover,
-    .dropdown-menu a:focus,
-    .dropdown-menu a:active {
-      color: #FFFFFF;
-      background-color: #ff9800;
-      box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(33, 33, 33, 0.4);
-    }
 
-    .card-collapse .card-header a:hover,
-    .card-collapse .card-header a:active,
-    .card-collapse .card-header a[aria-expanded="true"] {
-        color: #ff9800;
-    }
-
-    .honeypot {
-      display: none;
-    }
-      
-    .form-check .form-check-input:checked ~ .circle {
-        border-color: #ff9800;
-    }
-    .form-check .form-check-label .circle .check {
-        background-color: #ff9800;
-    }
-
-    .card-signup .form-check {
-        padding-top: 5px; 
-        margin-top: 5px;
-    }
-
-    .bootstrap-select .select-with-transition, .bootstrap-select .btn:active, .bootstrap-select .btn.active 
-    {
-        background-image: linear-gradient(to top, #ff9800 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
-    }
-    
     @font-face {
     font-family: 'Kravitz';
     src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
@@ -98,14 +62,6 @@
       font-weight: normal;
       font-style: normal;
       font-size: 32px;
-    }
-
-    .modal-open {
-      padding-right: 0 !important;
-    }
-
-    html {
-      overflow-y: scroll !important;
     }
 
   </style>
@@ -187,26 +143,8 @@
 <script src="{% static "material-kit-v211/js/plugins/bootstrap-selectpicker.gz.js" %}" type="text/javascript"></script>
 <script src="{% static "material-kit-v211/js/plugins/jasny-bootstrap.min.gz.js" %}" type="text/javascript"></script>
 <script src="{% static "material-kit-v211/js/plugins/jquery.flexisel.gz.js" %}" type="text/javascript"></script>
-<script src="{% static "material-kit-v211/demo/modernizr.js" %}" type="text/javascript"></script>
-<script src="{% static "material-kit-v211/demo/vertical-nav.js" %}" type="text/javascript"></script>
 <script src="{% static "material-kit-v211/js/material-kit.min.gz.js" %}" type="text/javascript"></script>
-
-<script>
-
-  // Enable tooltips
-  $('[data-toggle="tooltip"]').tooltip();
-
-  // Timeout for messages
-  $(".basealert").fadeTo(2000, 500).slideUp(500, function(){
-    $(".basealert").slideUp(500);
-  });
-
-  // Autofocus form in searchModal
-  $('#searchModal').on('shown.bs.modal', function() {
-    $(this).find('[autofocus]').focus();
-  });
-
-</script>
+<script src="{% static "diventi/js/diventi.min.gz.js" %}" type="text/javascript"></script>
 
 {% block extrascript %}{% endblock extrascript %}
 

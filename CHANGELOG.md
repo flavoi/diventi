@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Enabled a published/draft badge next to publishable content for admin eyes only 
+- Improved static files efficiency with deferred loading
 
 ### Removed
 - Removed latex requirements since it is now a depreated feature

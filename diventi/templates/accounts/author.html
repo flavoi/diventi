@@ -2,7 +2,7 @@
     <div class="card-avatar">
         <a href="{{ author.get_absolute_url }}">
             {% if author.profilepic %}
-                <img class="img" src="{{ author.profilepic.image }}">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ author.profilepic.image }}" class="img">
             {% endif %}
         </a>
     </div>

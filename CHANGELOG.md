@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed latex requirements since it is now a depreated feature
 - Removed the presentatation module since it is now supplanted by sections
 - Removed the website logo from error pages
+- Removed imgur tags from the admin templates
 
 ### Fixed
 - Fixed a problem that made the product card point to one static page

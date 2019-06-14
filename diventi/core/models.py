@@ -143,21 +143,10 @@ class DiventiImageModel(models.Model):
     """
     image = models.URLField(blank=True, verbose_name=_('image'))
     label = models.CharField(max_length=50, blank=True, verbose_name=_('label'))
-    
-    def image_thumbnail(self):
-        # imgur legend
-        # 't' stands for 'small thumbnail'
-        # 's' stands for 'small square'
-        IMAGE_MODE = 't'
-        original_image = self.image
-        image = original_image.replace('.png', '{0}.png'.format(IMAGE_MODE))
-        if image == original_image:
-            image = self.image.replace('.jpg', '{0}.jpg'.format(IMAGE_MODE))        
-        return image
-    
+
     def image_tag(self):
         if self.image:
-            return mark_safe('<img style="max-width:120px;" src="{0}" />'.format(self.image_thumbnail()))
+            return mark_safe('<img style="max-width:120px;" src="{0}" />'.format(self.image))
         else:
             return _('No image')    
     image_tag.short_description = _('Image')

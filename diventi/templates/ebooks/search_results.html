@@ -14,16 +14,6 @@
 
 {% block navbarbrand %}{% trans "Search results" %}{% endblock navbarbrand %}
 
-{% block sidebar_items %}
-  {% for c in chapters %}
-    <li class="nav-item {% if c.slug == chapter.slug %}active{% endif %}">
-      <a class="nav-link" href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}">
-        <p>{{ c.title }}</p>
-      </a>
-    </li>
-  {% endfor %}
-{% endblock sidebar_items %}
-
 {% block content_header_title %}
     <h3 class="title">{% trans "Search results" %}</h3>
     <p class="category"></p>

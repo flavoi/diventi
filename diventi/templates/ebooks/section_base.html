@@ -11,7 +11,7 @@
 
         {% block card_body %}
             <div class="card-body text-{{ section.text_alignment }}">
-                <a name="{{ section.title }}">
+                <a name="{{ section.slug }}">
                 {% block card_body_title %}
                     <h3 class="text-warning card-title"><small>{{ section.title|capfirst }}</small></h3>
                 {% endblock card_body_title %}

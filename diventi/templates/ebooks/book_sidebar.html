@@ -8,7 +8,7 @@
       <ul class="nav">
         {% for section in c.sections.all %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}#{{ section.title }}">
+          <a class="nav-link" href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}#{{ section.slug }}">
             <span class="sidebar-normal">{{ section.title }}</span>
           </a>
         </li>

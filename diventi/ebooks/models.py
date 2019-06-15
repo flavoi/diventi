@@ -160,6 +160,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
         ('card-plain', _('No background')),
     ]
     card_type = models.CharField(max_length=30, choices=CARD_TYPES, default=DEFAULT_CARD_TYPE, verbose_name=_('card type'))
+    slug = models.SlugField(unique=True, null=True, verbose_name=_('slug'))
 
     objects = SectionQuerySet.as_manager()
 

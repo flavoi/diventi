@@ -11,9 +11,11 @@
 
         {% block card_body %}
             <div class="card-body text-{{ section.text_alignment }}">
+                <a name="{{ section.title }}">
                 {% block card_body_title %}
                     <h3 class="text-warning card-title"><small>{{ section.title|capfirst }}</small></h3>
                 {% endblock card_body_title %}
+                </a>
                 {% block card_body_content %}
                     {% if section.universal_section %}
                         <h5>{{ section.universal_section.content|safe }}</h5>

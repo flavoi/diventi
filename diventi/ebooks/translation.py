@@ -13,7 +13,7 @@ class ChapterTranslationOptions(TranslationOptions):
 
 @register(Section)
 class SectionTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'content',)
+    fields = ('title', 'description', 'content', 'slug')
 
 @register(UniversalSection)
 class UniversalSectionTranslationOptions(TranslationOptions):

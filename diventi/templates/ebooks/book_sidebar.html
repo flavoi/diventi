@@ -1,0 +1,19 @@
+{% for c in chapters %}
+
+<li class="nav-item {% if c.slug == chapter.slug %}active{% endif %}">
+  <a class="nav-link" data-toggle="collapse" href="#chapter{{ c.id }}"> 
+    <p>{{ c.title }} <b class="caret"></b></p>
+  </a>
+   <div class="collapse" id="chapter{{ c.id }}">
+      <ul class="nav">
+        {% for section in c.sections.all %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}#{{ section.title }}">
+            <span class="sidebar-normal">{{ section.title }}</span>
+          </a>
+        </li>
+        {% endfor %}
+    </div>
+</li>
+
+{% endfor %}

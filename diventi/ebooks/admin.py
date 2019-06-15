@@ -48,12 +48,13 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
             'fields': ('template', 'col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'card_type')
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'description', 'content',),
+            'fields': ('title', 'order_index', 'description', 'content', 'slug'),
         }),
     )
     ordering = ['chapter__order_index', 'order_index']
     search_fields = ['chapter__chapter_book__title', 'title']
     list_filter = ['chapter__chapter_book',]
+    prepopulated_fields = {"slug": ("title",)}
 
 
 class SectionInline(TranslationStackedInline):
@@ -66,10 +67,11 @@ class SectionInline(TranslationStackedInline):
             'fields': ('template', 'col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'card_type')
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'description', 'content',),
+            'fields': ('title', 'order_index', 'description', 'content', 'slug'),
         }),
     )
     ordering = ['order_index']
+    prepopulated_fields = {"slug": ("title",)}
     extra = 0
 
 

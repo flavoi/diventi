@@ -83,10 +83,14 @@ class ChapterQuerySet(models.QuerySet):
             chapters = self.filter(chapter_book__published=True)
         return chapters
 
-
     # Fetch all the sections related to the chapter
     def sections(self):
-        chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.usection().order_by('order_index')))
+        chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.usection()))
+        return chapter
+
+    # Fetch the sections that are also bookmarks
+    def bookmark_sections(self):
+        chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.bookmarks()))
         return chapter
 
 
@@ -130,15 +134,23 @@ class SectionQuerySet(models.QuerySet):
 
     # Fetch the universal section related to the section
     def usection(self):
-        section = self.select_related('universal_section')
-        return section
+        sections = self.select_related('universal_section')
+        sections = sections.order_by('order_index')
+        return sections
+
+    # Fetch the section that are also bookmarks
+    def bookmarks(self):
+        sections = self.usection()
+        sections = sections.filter(bookmark=True)
+        return sections
 
 
 class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    content = RichTextField(verbose_name=_('content'), blank=True)
+    content = RichTextField(blank=True, verbose_name=_('content'))
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
+    bookmark = models.BooleanField(default=True, verbose_name=_('bookmark'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
     DEFAULT_ALIGNMENT = 'left'
     ALIGNMENT_CHOICES = [

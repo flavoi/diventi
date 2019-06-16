@@ -42,7 +42,7 @@ class EbookView(View):
         book = get_object_or_404(Book, slug=book_slug)
         context['book'] = book
         chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
-        chapters = chapters.order_by('order_index').sections()
+        chapters = chapters.order_by('order_index').bookmark_sections()
         context['chapters'] = chapters
         return context
 

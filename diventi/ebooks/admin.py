@@ -7,7 +7,7 @@ from modeltranslation.admin import TranslationStackedInline, TranslationTabularI
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
-from .models import Book, Chapter, Section, UniversalSection
+from .models import Book, Chapter, Section, UniversalSection, Attachment
 
 
 def enable_bookmarks(modeladmin, request, queryset):
@@ -45,8 +45,14 @@ class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
         return form
 
 
+class AttachmentInline(TranslationStackedInline):
+    model = Attachment
+    fields = ['title', 'content']
+    extra = 0
+
+
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'bookmark', 'chapter', 'color_tag', 'image_tag', 'icon_tag']
+    list_display = ['title', 'order_index', 'bookmark', 'chapter', 'color_tag', 'image_tag', 'icon_tag', 'get_attachments']
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
@@ -65,6 +71,7 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     ordering = ['chapter__order_index', 'order_index']
     search_fields = ['chapter__chapter_book__title', 'title']
     list_filter = ['chapter__chapter_book',]
+    inlines = [AttachmentInline]
     actions = [enable_bookmarks, disable_bookmarks]
 
 
@@ -135,3 +142,4 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(UniversalSection, UniversalSectionAdmin)
+admin.site.register(Attachment)

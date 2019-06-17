@@ -6,10 +6,10 @@ from django.db.models import Prefetch
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.db.models import Prefetch, Q
+from django.utils.html import mark_safe
 
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
-
 
 from diventi.products.models import Product
 from diventi.core.models import (
@@ -135,6 +135,7 @@ class SectionQuerySet(models.QuerySet):
     # Fetch the universal section related to the section
     def usection(self):
         sections = self.select_related('universal_section')
+        section = self.select_related('attachments')
         sections = sections.order_by('order_index')
         return sections
 
@@ -179,6 +180,13 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     def __str__(self):
         return '({0}) {1}'.format(self.order_index, self.title)
 
+    def get_absolute_url(self):
+        return reverse('ebooks:section-detail', args=[self.chapter.chapter_book.slug, self.chapter.slug, self.slug])
+
+    def get_attachments(self):
+        return mark_safe("<br>".join([a.title for a in self.attachments.all()]))
+    get_attachments.short_description = _('attachments')
+
     def search(self, query, book_slug, *args, **kwargs):
         book = Book.objects.published().get(slug=book_slug)
         results = Section.objects.filter(chapter__chapter_book=book)
@@ -194,3 +202,12 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     class Meta:
         verbose_name = _('section')
         verbose_name_plural = _('sections')
+
+
+class Attachment(Element):
+    content = RichTextField(blank=True, verbose_name=_('content'))
+    section = models.ForeignKey(Section, null=True, blank=True, on_delete=models.SET_NULL, related_name=('attachments'), verbose_name=_('section'))
+
+    class Meta:
+        verbose_name = _('attachment')
+        verbose_name_plural = _('attachments')

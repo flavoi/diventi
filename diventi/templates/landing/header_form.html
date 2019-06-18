@@ -10,8 +10,10 @@
   <a href="{% url 'feedbacks:new_answers_gate' section.section_survey.slug %}" class="btn btn-warning btn-round">
     {% trans "Access the survey" %}
   </a>
-{% elif section.section_article %}
-  <a href="{% url 'blog:detail' section.section_article.slug %}" class="btn btn-warning btn-round">
-    {% trans "Read the story" %}
-  </a>
 {% endif %}
+
+{% for article in section.articles.all %}
+    <a href="{% url 'blog:detail' article.slug %}" class="btn btn-warning btn-round">
+        {% trans "Read the story" %}
+    </a>
+{% endfor %}

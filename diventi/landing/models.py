@@ -21,7 +21,7 @@ class SectionModelManager(FeaturedModelManager):
         sections = sections.prefetch_related('users')
         sections = sections.prefetch_related('products').prefetch_related('products__chapters')
         sections = sections.select_related('section_survey')
-        sections = sections.select_related('section_article')
+        sections = sections.prefetch_related('articles')
         sections = sections.order_by('order_index')
         return sections
 
@@ -48,7 +48,7 @@ class Section(DiventiImageModel, FeaturedModel):
     products = models.ManyToManyField(Product, related_name='products', blank=True, verbose_name=_('products'))
     users = models.ManyToManyField(DiventiUser, related_name='users', blank=True, verbose_name=_('users'))
     section_survey = models.ForeignKey(Survey, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('survey'))
-    section_article = models.ForeignKey(Article, related_name='article', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('article'))
+    articles = models.ManyToManyField(Article, related_name='articles', blank=True, verbose_name=_('articles'))
 
     objects = SectionModelManager()
 
@@ -56,16 +56,20 @@ class Section(DiventiImageModel, FeaturedModel):
         return '(%s) %s' % (self.order_index, self.title)
 
     def get_features(self):
-        return mark_safe("<br>".join([s.title for s in self.section_features.all()]))
+        return mark_safe("<br>".join([obj.title for obj in self.section_features.all()]))
     get_features.short_description = _('Features')
 
     def get_products(self):
-        return mark_safe("<br>".join([s.title for s in self.products.all()]))
+        return mark_safe("<br>".join([obj.title for obj in self.products.all()]))
     get_products.short_description = _('Products')
 
     def get_users(self):
-        return mark_safe("<br>".join([s.get_full_name() for s in self.users.all()]))
+        return mark_safe("<br>".join([obj.get_full_name() for obj in self.users.all()]))
     get_users.short_description = _('Users')
+
+    def get_articles(self):
+        return mark_safe("<br>".join([obj.title for obj in self.articles.all()]))
+    get_articles.short_description = _('Articles')
 
     def get_alignment_classes(self):     
         if self.alignment == 'left':

@@ -17,7 +17,7 @@ class FeatureInline(TranslationStackedInline):
 
 
 class SectionAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'order_index', 'get_features', 'get_products', 'get_users', 'section_survey', 'published', 'featured',]
+    list_display = ['title', 'image_tag', 'order_index', 'get_features', 'get_products', 'get_users', 'get_articles', 'section_survey', 'published', 'featured',]
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'featured')
@@ -29,7 +29,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('title', 'order_index', 'description',),
         }),
         (_('Additionals'), {
-            'fields': ('products', 'users', 'section_survey', 'section_article'),
+            'fields': ('products', 'users', 'section_survey', 'articles'),
         }),
     )
     inlines = [        

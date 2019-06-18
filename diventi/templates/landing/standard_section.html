@@ -59,14 +59,14 @@
 </div>
 {% endif %}
 
-{% if section.section_article %}
+{% if section.articles.all %}
 <div class="container">
     <div class="row">
-        <div class="col-md-12 {{ section.get_alignment_classes }}">
-            {% with section.section_article as article %}
+        {% for article in section.articles.all %}
+            <div class="col-md-12 {{ section.get_alignment_classes }}">
                 {% include "blog/article_card.html" %}
-            {% endwith %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 {% endif %}

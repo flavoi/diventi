@@ -208,6 +208,9 @@ class Attachment(Element):
     content = RichTextField(blank=True, verbose_name=_('content'))
     section = models.ForeignKey(Section, null=True, blank=True, on_delete=models.SET_NULL, related_name=('attachments'), verbose_name=_('section'))
 
+    def __str__(self):
+        return '{0}'.format(self.title)
+
     class Meta:
         verbose_name = _('attachment')
         verbose_name_plural = _('attachments')

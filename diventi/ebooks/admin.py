@@ -51,6 +51,11 @@ class AttachmentInline(TranslationStackedInline):
     extra = 0
 
 
+class AttachmentAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'section']
+    fields = ['title', 'content', 'section']
+
+
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'bookmark', 'chapter', 'color_tag', 'image_tag', 'icon_tag', 'get_attachments']
     fieldsets = (
@@ -142,4 +147,4 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(UniversalSection, UniversalSectionAdmin)
-admin.site.register(Attachment)
+admin.site.register(Attachment, AttachmentAdmin)

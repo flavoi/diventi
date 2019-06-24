@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 08:55+0200\n"
+"POT-Creation-Date: 2019-06-20 12:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:159
+#: config/settings/base.py:160
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:160
+#: config/settings/base.py:161
 msgid "English"
 msgstr "Inglese"
 
@@ -53,6 +53,10 @@ msgstr "riscontri/"
 #: config/urls.py:33
 msgid "ebooks/"
 msgstr "ebook/"
+
+#: config/urls.py:34
+msgid "sheets/"
+msgstr "schede/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -306,16 +310,17 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:102
+#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:107
 #: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
-#: diventi/products/admin.py:47
+#: diventi/products/admin.py:47 diventi/sheets/admin.py:20
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:66
-#: diventi/ebooks/admin.py:90 diventi/ebooks/admin.py:108
-#: diventi/ebooks/admin.py:125 diventi/feedbacks/admin.py:56
+#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:71
+#: diventi/ebooks/admin.py:95 diventi/ebooks/admin.py:113
+#: diventi/ebooks/admin.py:130 diventi/feedbacks/admin.py:56
 #: diventi/landing/admin.py:28 diventi/products/admin.py:50
+#: diventi/sheets/admin.py:23
 msgid "Editing"
 msgstr "Montaggio"
 
@@ -372,11 +377,10 @@ msgid "author"
 msgstr "autore"
 
 #: diventi/blog/models.py:90 diventi/blog/models.py:111
-#: diventi/landing/models.py:51
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:91
+#: diventi/blog/models.py:91 diventi/landing/models.py:51
 msgid "articles"
 msgstr "articoli"
 
@@ -575,20 +579,20 @@ msgstr "Mostra nell'indice gli oggetti selezionati"
 msgid "Hide the selected items from the table of contents"
 msgstr "Nascondi dall'indice gli oggetti selezionati"
 
-#: diventi/ebooks/admin.py:57 diventi/ebooks/admin.py:81
+#: diventi/ebooks/admin.py:62 diventi/ebooks/admin.py:86
 msgid "Universal content"
 msgstr "Contenuti universali"
 
-#: diventi/ebooks/admin.py:60 diventi/ebooks/admin.py:84
+#: diventi/ebooks/admin.py:65 diventi/ebooks/admin.py:89
 msgid "Table of contents"
 msgstr "Indice"
 
-#: diventi/ebooks/admin.py:63 diventi/ebooks/admin.py:87
-#: diventi/ebooks/admin.py:105
+#: diventi/ebooks/admin.py:68 diventi/ebooks/admin.py:92
+#: diventi/ebooks/admin.py:110
 msgid "Layout"
 msgstr "Disposizione"
 
-#: diventi/ebooks/admin.py:122
+#: diventi/ebooks/admin.py:127
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -606,6 +610,7 @@ msgid "product"
 msgstr "prodotto"
 
 #: diventi/ebooks/models.py:71 diventi/ebooks/models.py:101
+#: diventi/sheets/models.py:21
 msgid "book"
 msgstr "libro"
 
@@ -688,20 +693,20 @@ msgstr "Nessuno sfondo"
 msgid "card type"
 msgstr "tipo cartello"
 
-#: diventi/ebooks/models.py:188 diventi/ebooks/models.py:213
+#: diventi/ebooks/models.py:188 diventi/ebooks/models.py:216
 msgid "attachments"
 msgstr "allegati"
 
 #: diventi/ebooks/models.py:203 diventi/ebooks/models.py:209
-#: diventi/landing/models.py:82
+#: diventi/landing/models.py:86
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:204 diventi/landing/models.py:83
+#: diventi/ebooks/models.py:204 diventi/landing/models.py:87
 msgid "sections"
 msgstr "sezioni"
 
-#: diventi/ebooks/models.py:212
+#: diventi/ebooks/models.py:215
 msgid "attachment"
 msgstr "allegato"
 
@@ -945,11 +950,15 @@ msgstr "Aspetti"
 msgid "Products"
 msgstr "Prodotti"
 
-#: diventi/landing/models.py:90
+#: diventi/landing/models.py:72
+msgid "Articles"
+msgstr "Articoli"
+
+#: diventi/landing/models.py:94
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:91
+#: diventi/landing/models.py:95
 msgid "features"
 msgstr "aspetti"
 
@@ -1074,6 +1083,46 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
+#: diventi/sheets/apps.py:7
+msgid "Sheets"
+msgstr ""
+
+#: diventi/sheets/models.py:17
+msgid "name"
+msgstr "nome"
+
+#: diventi/sheets/models.py:18
+msgid "origin"
+msgstr "origine"
+
+#: diventi/sheets/models.py:19
+msgid "predisposition"
+msgstr "predisposizione"
+
+#: diventi/sheets/models.py:20
+msgid "player"
+msgstr "giocatore"
+
+#: diventi/sheets/models.py:27
+msgid "character sheet"
+msgstr "scheda del personaggio"
+
+#: diventi/sheets/models.py:28
+msgid "character sheets"
+msgstr "schede del personaggio"
+
+#: diventi/sheets/models.py:38
+msgid "relationship"
+msgstr "relazione"
+
+#: diventi/sheets/models.py:39
+msgid "relationships"
+msgstr "relazioni"
+
+#: diventi/sheets/urls.py:9
+msgid "character/<int:pk>/book/<slug:book_slug>"
+msgstr "personaggio/<int:pk>/libro/<slug:book_slug>"
+
 #: diventi/templates/403.html:7
 msgid "Error 403: Access Denied"
 msgstr "Errore 403: Accesso Negato"
@@ -1108,7 +1157,7 @@ msgstr ""
 "Il nostro team di assistenza è stato attivato per ripristinare il sistema."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/base_dashboard.html:105
+#: diventi/templates/base_dashboard.html:127
 #: diventi/templates/landing/landing.html:37
 #: diventi/templates/navigation.html:57
 msgid "Manage profile"
@@ -1441,31 +1490,42 @@ msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 msgid "Search contents in this website"
 msgstr "Cerca contenuti in questo sito web"
 
-#: diventi/templates/base.html:120 diventi/templates/base_dashboard.html:155
+#: diventi/templates/base.html:120 diventi/templates/base_dashboard.html:177
 #: diventi/templates/navigation.html:29
 msgid "Search"
 msgstr "Ricerca"
 
-#: diventi/templates/base_dashboard.html:97
+#: diventi/templates/base_dashboard.html:119
 msgid "CP"
 msgstr "PC"
 
-#: diventi/templates/base_dashboard.html:98
+#: diventi/templates/base_dashboard.html:120
 msgid "control panel"
 msgstr "pannello di controllo"
 
-#: diventi/templates/base_dashboard.html:104
+#: diventi/templates/base_dashboard.html:126
 msgid "MP"
 msgstr "GP"
 
-#: diventi/templates/base_dashboard.html:110
+#: diventi/templates/base_dashboard.html:132
 msgid "SO"
 msgstr "AA"
 
-#: diventi/templates/base_dashboard.html:111
+#: diventi/templates/base_dashboard.html:133
 #: diventi/templates/navigation.html:60
 msgid "Sign out"
 msgstr "Annulla accesso"
+
+#: diventi/templates/base_dashboard.html:189
+#: diventi/templates/base_dashboard.html:193
+#, fuzzy
+#| msgid "Characteristics"
+msgid "Character sheets"
+msgstr "Caratteristiche"
+
+#: diventi/templates/base_dashboard.html:194
+msgid "GM sheets"
+msgstr ""
 
 #: diventi/templates/blog/article_card_content.html:11
 msgid "read the story"
@@ -1640,7 +1700,7 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "Find out more"
 msgstr "Scopri di più"
 
-#: diventi/templates/landing/header_form.html:15
+#: diventi/templates/landing/header_form.html:17
 msgid "Read the story"
 msgstr "Leggi il racconto"
 
@@ -1818,12 +1878,6 @@ msgstr "nessun voto rilevato"
 #~ msgid "survey centered header"
 #~ msgstr "testatina con sondaggio centrale"
 
-#~ msgid "presentation"
-#~ msgstr "presentazione"
-
-#~ msgid "presentations"
-#~ msgstr "presentazioni"
-
 #~ msgid "^presentation/(?P<pk>\\d+)/$"
 #~ msgstr "^presentazione/(?P<pk>\\d+)/$"
 
@@ -1933,12 +1987,6 @@ msgstr "nessun voto rilevato"
 
 #~ msgid "character blocks"
 #~ msgstr "caselle personaggio"
-
-#~ msgid "character item"
-#~ msgstr "elemento del personaggio"
-
-#~ msgid "character items"
-#~ msgstr "elementi del personaggio"
 
 #~ msgid "flavortext"
 #~ msgstr "desc"

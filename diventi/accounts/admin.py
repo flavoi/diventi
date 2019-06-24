@@ -32,7 +32,7 @@ class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
     list_display = ('email', 'first_name', 'last_login', 'date_joined', 'language', 'has_agreed_gdpr', 'is_superuser')
     list_filter = ('role', 'is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('first_name', 'last_name', 'email')
-    ordering = ('email',)
+    ordering = ('-date_joined',)
     readonly_fields = ('nametag', 'last_login', 'date_joined',)
 
 

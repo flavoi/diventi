@@ -83,7 +83,7 @@
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
   {% block navbar %}{% endblock navbar %}
   {% block wrapper %}
-  <div class="wrapper">
+  <div class="wrapper {% block wrapperclass %}{% endblock wrapperclass %}">
     {% block sidebar %}
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="">
       <!--

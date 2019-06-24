@@ -31,6 +31,7 @@ from .utils import get_user_data
 from diventi.core.views import DiventiActionMixin, StaffRequiredMixin
 from diventi.products.models import Product
 from diventi.comments.models import DiventiComment
+from diventi.landing.models import Section
 
 
 class DiventiLoginView(AnonymousRequiredMixin, LoginView):
@@ -41,8 +42,20 @@ class DiventiLoginView(AnonymousRequiredMixin, LoginView):
 
     def form_valid(self, form):
         messages.success(self.request, self.success_msg)        
-        return super(DiventiLoginView, self).form_valid(form)   
-    
+        return super(DiventiLoginView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        sections = Section.objects.not_featured()
+        featured_section = Section.objects.featured()
+        if featured_section: # Get the featured section to display the image on the login page
+            pass
+        elif sections.exists():
+            featured_section = sections.first()
+            sections = sections.exclude(id=featured_section.id)
+        context['featured_section'] = featured_section
+        return context
+
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 

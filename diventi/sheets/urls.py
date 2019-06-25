@@ -6,5 +6,5 @@ from .views import CharacterSheetDetailView
 app_name = 'sheets'
 
 urlpatterns = [
-    path(_('character/<int:pk>/book/<slug:book_slug>'), CharacterSheetDetailView.as_view(), name='charactersheet-detail'),
+    path(_('character/<slug:character_slug>/book/<slug:book_slug>'), CharacterSheetDetailView.as_view(), name='charactersheet-detail'),
 ]

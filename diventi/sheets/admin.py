@@ -21,10 +21,11 @@ class CharacterSheetAdmin(DiventiTranslationAdmin):
             'fields': ('book', 'player')
         }),
         (_('Editing'), {
-            'fields': ('name', 'origin', 'predisposition'),
+            'fields': ('name', 'origin', 'predisposition', 'slug'),
         }),
     )
     inlines = (RelationshipInline,)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 admin.site.register(CharacterSheet, CharacterSheetAdmin)

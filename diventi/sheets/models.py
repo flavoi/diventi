@@ -20,12 +20,13 @@ class CharacterSheet(models.Model):
     predisposition = models.CharField(max_length=50, verbose_name=_('predisposition'))
     player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('player'))
     book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name=_('book'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
 
     def __str__(self):
         return '{0}'.format(self.name)
 
     def get_absolute_url(self):
-        return reverse('sheets:charactersheet-detail', args=[self.pk, self.book.slug])
+        return reverse('sheets:charactersheet-detail', args=[self.slug, self.book.slug])
 
     class Meta:
         verbose_name = _('character sheet')

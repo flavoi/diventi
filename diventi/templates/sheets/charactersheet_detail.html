@@ -1,6 +1,238 @@
-{% extends 'base_dashboard.html' %}
+{% extends 'ebooks/base_book.html' %}
 
 {% load i18n %}
 {% load static %}
 
-{% block mainpanel %}{% endblock mainpanel %}
+{% block title %}
+  {{ book.title }} &middot; {{ object.name|title }}
+{% endblock title %}
+
+{% block navbarbrand %}{{ book.title }} &middot; {{ object.name|title }}{% endblock navbarbrand %}
+
+{% block content_body %}
+
+    <div class="col-md-4">
+      <div class="card card-testimonial">
+        <div class="card-header">
+          <h4 class="card-title">Caratteristiche
+          </h4>
+        </div>
+        <div class="card-body text-left">
+            <div class="table-responsive">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <strong>Audacia</strong>
+                            </td>
+                            <td>
+                                +2
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Maestria</strong>
+                            </td>
+                            <td>
+                              +1
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Destino</strong>
+                            </td>
+                            <td>
+                              +3
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Difesa</strong>
+                            </td>
+                            <td>
+                              14
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <strong>Punti Vita</strong>
+                            </td>
+                            <td>
+                              5
+                            </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+        </div>
+            <div class="card-footer">
+      <h4 class="card-title">{{ object.name }}</h4>
+      <h6 class="card-category">{{ object.origin }}  &middot; {{ object.predisposition }}</h6>
+      <div class="card-avatar">
+        <a href="#pablo">
+          <img class="img" src="https://i.imgur.com/tvWbJDU.jpg?1">
+        </a>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{% trans "relationships"|title %}</h4>
+        </div>
+        <div class="card-body">
+          <div id="accordion" role="tablist">
+            <div class="card-collapse">
+              <div class="card-header" role="tab" id="headingOne">
+                <h5 class="mb-0">
+                  <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                    {% trans "relationship"|title %} #1
+                    <i class="material-icons">keyboard_arrow_down</i>
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card-collapse">
+              <div class="card-header" role="tab" id="headingTwo">
+                <h5 class="mb-0">
+                  <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    {% trans "relationship"|title %} #2
+                    <i class="material-icons">keyboard_arrow_down</i>
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion" style="">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card-collapse">
+              <div class="card-header" role="tab" id="headingThree">
+                <h5 class="mb-0">
+                  <a class="" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    {% trans "relationship"|title %} #3
+                    <i class="material-icons">keyboard_arrow_down</i>
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion" style="">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 ml-auto mr-auto">
+      <div class="page-categories">
+        <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active show" data-toggle="tab" href="#link7" role="tablist">
+              Doti
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#link8" role="tablist">
+              Poteri
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#link9" role="tablist">
+              Flussi
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#link10" role="tablist">
+              Attrezzi
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content tab-space tab-subcategories">
+          <div class="tab-pane active show" id="link7">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Le doti di Kane</h4>
+                <p class="card-category">
+                  Descrizioni entusiasmanti e piene di effetto
+                </p>
+              </div>
+              <div class="card-body">
+                <p>
+                    <strong>Colpo tattico</strong>: ellentesque imperdiet metus eget dolor bibendum tristique et id mi. Mauris pharetra nec est rhoncus vestibulum. Praesent tempus orci in enim facilisis aliquam. Sed pellentesque metus a augue suscipit consectetur.
+                </p>
+                <p>
+                    <strong>Passo degli antichi</strong>: sed sit amet ex sem. Quisque elementum quam nec dolor ultricies sodales. Nulla finibus diam eget lorem commodo auctor. Cras fermentum ex enim, lacinia semper sapien pellentesque eu. 
+                </p>
+                <p>
+                    <strong>Sferzata furente</strong>: donec ut odio facilisis, semper libero id, semper lectus. 
+                </p>
+                <p>
+                    <strong>Potenziamento psicofisico</strong>: suspendisse vitae auctor ante.
+                </p>
+                <p>
+                    <strong>Indurimento della corteccia</strong>: nullam volutpat ante vel sapien pretium, nec interdum nisi rutrum. Vestibulum at massa sapien. Proin dolor felis, tristique ut lectus quis, imperdiet imperdiet nibh.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="link8">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Location of the product</h4>
+                <p class="card-category">
+                  More information here
+                </p>
+              </div>
+              <div class="card-body">
+                Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                <br>
+                <br> Dramatically maintain clicks-and-mortar solutions without functional solutions.
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="link9">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Legal info of the product</h4>
+                <p class="card-category">
+                  More information here
+                </p>
+              </div>
+              <div class="card-body">
+                Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                <br>
+                <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="link10">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Help center</h4>
+                <p class="card-category">
+                  More information here
+                </p>
+              </div>
+              <div class="card-body">
+                From the seamless transition of glass and metal to the streamlined profile, every detail was carefully considered to enhance your experience. So while its display is larger, the phone feels just right.
+                <br>
+                <br> Another Text. The first thing you notice when you hold the phone is how great it feels in your hand. The cover glass curves down around the sides to meet the anodized aluminum enclosure in a remarkable, simplified design.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content_body %}

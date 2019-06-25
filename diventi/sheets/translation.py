@@ -5,7 +5,7 @@ from .models import CharacterSheet, Relationship
 
 @register(CharacterSheet)
 class CharacterSheetTranslationOptions(TranslationOptions):
-    fields = ('name', 'origin', 'predisposition')
+    fields = ('name', 'origin', 'predisposition', 'slug')
 
 @register(Relationship)
 class RelationshipTranslationOptions(TranslationOptions):

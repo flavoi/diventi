@@ -1,0 +1,26 @@
+{% extends 'base_dashboard.html' %}
+
+{% load i18n %}
+
+{% block title %}
+  {{ book.title }} &middot; {{ section.title }}
+{% endblock title %}
+
+{% block logo %}
+  {% with book as book %}
+      {% include 'ebooks/book_logo.html' %}
+  {% endwith %}
+{% endblock logo %}
+
+{% block navbarbrand %}{{ section.title }}{% endblock navbarbrand %}
+
+{% block content_header_title %}
+    <h3 class="title">{{ section.title }}</h3>
+    <p class="category"></p>
+{% endblock content_header_title %}
+
+{% block content_body %}
+  {% with "ebooks/"|add:section.template as template_name %}
+    {% include template_name %}
+  {% endwith %}
+{% endblock content_body %}    

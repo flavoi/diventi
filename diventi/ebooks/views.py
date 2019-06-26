@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.views import View
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import Http404
 
 from diventi.products.models import Product
 from .models import Book, Chapter, Section
@@ -98,3 +99,21 @@ class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,
         context['search_query'] = self.request.GET.get('q')
         return context
 
+
+class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
+                        EbookView, DetailView):
+    """ Returns the chapter of a book. """
+    
+    model = Section
+    template_name = "ebooks/section_detail.html"
+    pk_url_kwarg = 'section_pk'
+    
+    def get_object(self, **kwargs):
+        obj = super().get_object(**kwargs)
+        chapter = Chapter.objects.filter(slug=obj.chapter.slug)
+        chapter = chapter.published()
+        try:
+            chapter = chapter.get()
+        except chapter.model.DoesNotExist:
+            raise Http404(_("This book hasn't been published yet."))
+        return obj

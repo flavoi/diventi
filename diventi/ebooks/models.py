@@ -181,7 +181,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
         return '({0}) {1}'.format(self.order_index, self.title)
 
     def get_absolute_url(self):
-        return reverse('ebooks:section-detail', args=[self.chapter.chapter_book.slug, self.chapter.slug, self.slug])
+        return reverse('ebooks:section-detail', args=[self.chapter.chapter_book.slug, self.chapter.slug, self.slug, self.pk])
 
     def get_attachments(self):
         return mark_safe("<br>".join([a.title for a in self.attachments.all()]))

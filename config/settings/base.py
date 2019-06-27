@@ -104,7 +104,6 @@ THIRD_PARTY_APPS = [
     'braces',
     'rest_framework',
     'captcha',
-    'star_ratings',
     'mptt',
     'boto',
     'letsencrypt',

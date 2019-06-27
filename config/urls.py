@@ -28,7 +28,6 @@ urlpatterns += i18n_patterns(
     path(_('blog/'), include('diventi.blog.urls', namespace='blog')),
     path(_('applications/'), include('diventi.products.urls', namespace='products')),
     path(_('comments/'), include('diventi.comments.urls', namespace='comments')),
-    path('ratings/', include('star_ratings.urls', namespace='ratings',)),
     path(_('feedbacks/'), include('diventi.feedbacks.urls', namespace='feedbacks')),
     path(_('ebooks/'), include('diventi.ebooks.urls', namespace='ebooks')),
     path(_('sheets/'), include('diventi.sheets.urls', namespace='sheets')),

@@ -5,11 +5,6 @@
 
 {% block title %}{{ product.title }}{% endblock title %}
 
-{% block extrahead %}
-    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>    
-{% endblock extrahead %}
-
 {% block bodyclass %}product-page{% endblock bodyclass %}
 
 {% block pageheaderimage %}{% if product.image %}{{ product.image }}{% endif %}{% endblock pageheaderimage %}
@@ -88,48 +83,30 @@
                         {% endif %}
                     </div>
                 
-                    <div class="row">
-                        <div class="col-md-6 pick-size">
-                            {% load ratings %}
-                            {% ratings product %}
-                        </div>
-                        {% if user.is_authenticated %}
-                            <div class="col-md-6 text-right pick-size">                                
-                                {% if bought %}
-                                <form action="{% url 'products:drop' product.slug %}" method="POST">                                                                      
-                                    <a class="btn btn-warning btn-fab btn-round btn-tooltip" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">
-                                        <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans "View this product in your collection" %}.">
-                                            <i class="fal fa-shopping-bag"></i>
-                                        </span>
-                                    </a>                     
+                    <div class="row text-right">
+                        <div class="col-md-12">
+                        {% if user.is_authenticated %}                             
+                            {% if bought %}                                 
+                                <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">
+                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'This product is in your collection' %}.">
+                                        {% trans "Check collection" %}
+                                    </span>
+                                </a>
+                            {% else %}
+                                <form action="{% url 'products:add' product.slug %}" method="POST">
                                     {% csrf_token %}
-                                    {{ drop_collection_form }}
-                                    {{ drop_collection_form.errors }}
-                                    <button type="submit" class="btn btn-gray btn-fab btn-round btn-tooltip">
-                                        <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Remove this product from your collection' %}.">
-                                            <i class="fal fa-trash-alt"></i>
-                                        </span>
-                                    </button>
-                                </form>
-                                {% else %}
-                                    <form action="{% url 'products:add' product.slug %}" method="POST">
-                                        {% csrf_token %}
-                                        {{ add_collection_form }}
-                                        {{ add_collection_form.errors }}
-                                        <button type="submit" class="btn btn-fab btn-round btn-warning btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Add this product to your collection' %}.">
-                                            <i class="fal fa-plus"></i>
-                                        </button>                                        
-                                    </form>                                    
-                                {% endif %}                                
-                            </div>
+                                    {{ add_collection_form }}
+                                    {{ add_collection_form.errors }}
+                                    <button type="submit" class="btn btn-round btn-warning">
+                                        {% trans "Add to collection" %}
+                                    </button>                                        
+                                </form>                                    
+                            {% endif %}                                
                         {% else %}
-                            <div class="col-md-12 pick-size">
-                            <p>
-                                <a href="#" data-toggle="modal" data-target="#loginModal" class="text-warning">
-                                <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
-                            </p>                            
-                            </div>
+                            <a href="#" data-toggle="modal" data-target="#loginModal" class="text-warning">
+                            <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
                         {% endif %}
+                        </div>
                     </div>
 
                 </div>
@@ -154,34 +131,87 @@
             </div>
             {% endif %}
         </div>
-        
-        {% if product.authors.all %}
-            <div class="row">
-                <div class="col-md-10 ml-auto mr-auto">       
-                    <h3 class="title text-center">{% trans 'Our authors' %}</h3>
-                    <div class="team">
-                        <div class="row">                   
-                            {% for author in product.authors.all %}
-                                <div class="col-md-4">
-                                    {% include "accounts/author.html" %}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
     </div>
-</div>    
+    </div>    
 
-<div class="container">
-    <div class="section section-comments">
-        <div class="row">
-            <div class="col-lg-8 col-md-12 ml-auto mr-auto">
-                {% include "comments/comments.html" %}
+    <div class="cd-section" id="testimonials">
+
+        <!--     *********    TESTIMONIALS 2     *********      -->
+      <div class="testimonials-2 section-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center">
+              <h2 class="title">Our Clients Love Us</h2>
+              <h5 class="description">You need more information? Check what other persons are saying about our product. They are very happy with their purchase.</h5>
             </div>
+            <div class="col-md-12">
+              <div id="carouselExampleIndicatorss" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item">
+                    <div class="card card-testimonial card-plain">
+                      <div class="card-avatar">
+                        <a href="#pablo">
+                          <img class="img" src="https://i.imgur.com/TBlvPo6.jpg?1">
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-description">"I speak yell scream directly at the old guard on behalf of the future. I gotta say at that time I’d like to meet Kanye I speak yell scream directly at the old guard on behalf of the future. My brother Chance!!!
+                          <br>Thank you for letting me work on this masterpiece. One of my favorite people."
+                        </h5>
+                        <h4 class="card-title">Kendall Thompson</h4>
+                        <h6 class="card-category text-muted">CEO @ Marketing Digital Ltd.</h6>
+                        <div class="footer">
+                        <span style="color: Mediumslateblue;">
+                          <i class="fas fa-lg fa-star"></i>
+                          <i class="fas fa-lg fa-star"></i>
+                          <i class="fas fa-lg fa-star"></i>
+                          <i class="fas fa-lg fa-star"></i>
+                          <i class="fas fa-lg fa-star"></i>
+                        </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item active">
+                    <div class="card card-testimonial card-plain">
+                      <div class="card-avatar">
+                        <a href="#pablo">
+                          <img class="img" src="https://i.imgur.com/sBR1vAQ.jpg?1">
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-description">"Thank you Anna for the invite thank you to the whole Vogue team Called I Miss the Old Kanye At the God's last game Chop up the soul Kanye. I promise I will never let the people down. I want a better life for all!!! Pablo Pablo Pablo Pablo! Thank you Anna for the invite thank you to the whole Vogue team."
+                        </h5>
+                        <h4 class="card-title">Christian Louboutin</h4>
+                        <h6 class="card-category text-muted">Designer @ Louboutin &amp; Co.</h6>
+                        <div class="footer">
+                        <span style="color: Mediumslateblue;">
+                          <i class="fas fa-lg fa-star"></i>
+                          <i class="fas fa-lg fa-star"></i>
+                          <i class="fas fa-lg fa-star"></i>
+                          <i class="fas fa-lg fa-star"></i>
+                        </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicatorss" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicatorss" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <!--     *********    END TESTIMONIALS 2      *********      -->
     </div>
-</div>
+
+
 
 {% endblock main %}

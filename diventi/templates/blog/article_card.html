@@ -1,19 +1,8 @@
 <div class="card card-plain card-blog">
-  <div class="row">
-  {% if section.alignment == 'left' or section.alignment == 'centered' %}
-    <div class="col-md-5">
-      {% include "blog/article_card_image.html" %}
-    </div>
-    <div class="col-md-7 text-left">
-      {% include "blog/article_card_content.html" %}
-    </div>
-  {% elif section.alignment == 'right' %}
-    <div class="col-md-7 text-left">
-      {% include "blog/article_card_content.html" %}
-    </div>
-    <div class="col-md-5">
-      {% include "blog/article_card_image.html" %}
-    </div>
-  {% endif %}
+  <div class="card-header card-header-image">
+    {% include "blog/article_card_image.html" %}
+  </div>
+  <div class="card-body">
+    {% include "blog/article_card_content.html" %}
   </div>
 </div>

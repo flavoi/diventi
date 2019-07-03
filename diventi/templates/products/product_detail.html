@@ -33,14 +33,28 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6">
-                    <h2 class="title">{{ product.title }}</h2>                     
+                    <div class="text-center">
+                        <h2 class="title my-0">{{ product.title }}</h2>
                         {% if product.available == False %}
-                            <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {{ product.courtesy_short_message }}
-                            </span>
+                            <div class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {{ product.courtesy_short_message }}
+                            </div>
                         {% else %}
                             <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category.title }}</label>
                             <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
-                        {% endif %}               
+                        {% endif %}    
+                        
+                        <div class="my-3">
+                            <span style="color: Mediumslateblue;">
+                              <i class="fas fa-lg fa-star"></i>
+                              <i class="fas fa-lg fa-star"></i>
+                              <i class="fas fa-lg fa-star"></i>
+                              <i class="fas fa-lg fa-star"></i>
+                              <i class="fas fa-lg fa-star-half-alt"></i>
+                            </span>
+                          &middot; 10 {% trans "reviews" %}
+                        </div> 
+                    
+                    </div>
 
                     <div id="accordion" role="tablist">
 
@@ -82,14 +96,17 @@
                         </div>
                         {% endif %}
                     </div>
-                
-                    <div class="row text-right">
+                    
+                    <hr> 
+
+                    <div class="row">
                         <div class="col-md-12">
-                        {% if user.is_authenticated %}                             
-                            {% if bought %}                                 
+                        {% if user.is_authenticated %}      
+                            <div class="text-center">                       
+                            {% if bought %}                    
                                 <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">
                                     <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'This product is in your collection' %}.">
-                                        {% trans "Check collection" %}
+                                        {% trans "View in collection" %}
                                     </span>
                                 </a>
                             {% else %}
@@ -101,9 +118,10 @@
                                         {% trans "Add to collection" %}
                                     </button>                                        
                                 </form>                                    
-                            {% endif %}                                
+                            {% endif %}     
+                            </div>                           
                         {% else %}
-                            <a href="#" data-toggle="modal" data-target="#loginModal" class="text-warning">
+                            <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
                             <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
                         {% endif %}
                         </div>
@@ -136,13 +154,12 @@
 
     <div class="cd-section" id="testimonials">
 
-        <!--     *********    TESTIMONIALS 2     *********      -->
       <div class="testimonials-2 section-dark">
         <div class="container">
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto text-center">
-              <h2 class="title">Our Clients Love Us</h2>
-              <h5 class="description">You need more information? Check what other persons are saying about our product. They are very happy with their purchase.</h5>
+              <h2 class="title">{% trans "community reviews"|title %}</h2>
+              <h5 class="description">{% trans "you need more information? Check what others are saying about this app."|capfirst %}</h5>
             </div>
             <div class="col-md-12">
               <div id="carouselExampleIndicatorss" class="carousel slide" data-ride="carousel">
@@ -198,20 +215,27 @@
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicatorss" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
+                  <span class="sr-only">{% trans "previous"|capfirst %}</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleIndicatorss" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
+                  <span class="sr-only">{% trans "next"|capfirst %}</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!--     *********    END TESTIMONIALS 2      *********      -->
     </div>
 
-
-
+    <div class="container">
+        <div class="section section-comments">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 ml-auto mr-auto">
+                    {% include "comments/comments.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
 {% endblock main %}

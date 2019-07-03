@@ -63,7 +63,7 @@
 <div class="container">
     <div class="row">
         {% for article in section.articles.all %}
-            <div class="col-md-12 {{ section.get_alignment_classes }}">
+            <div class="col-md-4 {{ section.get_alignment_classes }}">
                 {% include "blog/article_card.html" %}
             </div>
         {% endfor %}

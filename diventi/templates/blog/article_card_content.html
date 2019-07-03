@@ -8,7 +8,7 @@
 <p class="card-description">
   {{ article.description|capfirst }}
   <a href="{% url 'blog:detail' article.slug %}" class="text-warning">
-    {% trans "read the story" %}
+    {% trans "read the story"|capfirst %}.
   </a>
 </p>
 <p class="author">

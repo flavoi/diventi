@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^comments/default/', include('django_comments.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^\.well-known/', include('letsencrypt.urls')),
+    url(r'^reviews/', include('reviews.urls')),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -107,6 +107,7 @@ THIRD_PARTY_APPS = [
     'mptt',
     'boto',
     'letsencrypt',
+    'reviews',
 ]
 
 INSTALLED_APPS = TRANSLATION_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS

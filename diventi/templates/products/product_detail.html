@@ -45,20 +45,10 @@
                         {% endif %}    
                         
                         <div class="my-3">
-                            <span style="color: Mediumslateblue;">
-                              <i class="fas fa-lg fa-star"></i>
-                              <i class="fas fa-lg fa-star"></i>
-                              <i class="fas fa-lg fa-star"></i>
-                              <i class="fas fa-lg fa-star"></i>
-                              <i class="fas fa-lg fa-star-half-alt"></i>
-                            </span>
-
                           {% render_rating for product %}
-                    
-                    </div>
+                        </div>
 
-                    <div id="accordion" role="tablist">
-
+                      <div id="accordion" role="tablist">
                         <div class="card card-collapse">
                             <div class="card-header" role="tab" id="headingOne">
                                 <h5 class="mb-0">
@@ -110,6 +100,7 @@
                                         {% trans "View in collection" %}
                                     </span>
                                 </a>
+                                {% include "reviews/review_button_modal.html" %}
                             {% else %}
                                 <form action="{% url 'products:add' product.slug %}" method="POST">
                                     {% csrf_token %}
@@ -131,26 +122,27 @@
                 </div>
             </div>
         </div>
+      </div>
 
-        <div class="features text-center">
-            {% if product.chapters.all %}
-            <div class="row">
-                {% for chapter in product.chapters.all %}
-                <div class="col-md-4">
-                    <div class="info">
-                        <div class="icon icon-warning">
-                            <i class="fal fa-4x fa-{{ chapter.icon }}"></i>
-                        </div>
-                        <h4 class="info-title">{{ chapter.title|capfirst }}</h4>
-                        <h6 class="card-category text-rose">{{ chapter.category }}</h6>
-                        <p>{{ chapter.description|striptags|capfirst }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </div>
-    </div>
+      <div class="features text-center">
+          {% if product.chapters.all %}
+          <div class="row">
+              {% for chapter in product.chapters.all %}
+              <div class="col-md-4">
+                  <div class="info">
+                      <div class="icon icon-warning">
+                          <i class="fal fa-4x fa-{{ chapter.icon }}"></i>
+                      </div>
+                      <h4 class="info-title">{{ chapter.title|capfirst }}</h4>
+                      <h6 class="card-category text-rose">{{ chapter.category }}</h6>
+                      <p>{{ chapter.description|striptags|capfirst }}</p>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+          {% endif %}
+      </div>
+
     </div>    
 
     <div class="cd-section" id="testimonials">
@@ -236,12 +228,11 @@
                 {% render_review_list for product %}
               </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-md-12 ml-auto mr-auto">
-                    {% render_review_form for product %}
-                </div>
-            </div>
         </div>
     </div>
-    
+
+    {% if user.is_authenticated %}
+      {% include "reviews/review_form.html" %}
+    {% endif %}
+
 {% endblock main %}

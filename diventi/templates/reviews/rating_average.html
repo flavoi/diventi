@@ -1,0 +1,88 @@
+{% load i18n %}
+{% block rating_container %}
+<span class="star-rating"{% if average_rating %} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{% endif %}>
+{% if average_rating %}
+<meta itemprop="worstRating" content="1" />
+<meta itemprop="bestRating" content="{{ rating_choices|length }}" />
+<meta itemprop="ratingValue" content="{{ average_rating }}" />
+<meta itemprop="ratingCount" content="{{ review_count }}" />
+<meta itemprop="reviewCount" content="{{ review_count }}" />
+{% endif %}
+{% block rating_stars %}
+{% include "reviews/rating_value.html" with rating=average_rating rating_star=average_rating_star rating_text=average_rating_text %}
+<span style="color: Mediumslateblue;">
+    {% with average_rating as ar %}
+        {% if average_rating_star == "s10" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% elif average_rating_star == "s15" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star-half-alt"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% elif average_rating_star == "s20" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% elif average_rating_star == "s25" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star-half-alt"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% elif average_rating_star == "s30" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% elif average_rating_star == "s35" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star-half-alt"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% elif average_rating_star == "s40" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% elif average_rating_star == "s45" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star-half-alt"></i>
+        {% elif average_rating_star == "s50" %}
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+            <i class="fas fa-lg fa-star"></i>
+        {% else %}
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+            <i class="fal fa-lg fa-star"></i>
+        {% endif %}
+    {% endwith %} 
+</span>
+{% endblock rating_stars %}
+{% block rating_details %}
+{% if show_rating_text and average_rating %}
+<span class="star-rating-details">
+    <span>&#183;</span>
+    {% blocktrans count review_count=review_count %}{{ review_count }} review{% plural %}{{ review_count }} reviews{% endblocktrans %}:
+    <strong>{{ average_rating }}</strong> ({{ average_rating_text }})</span>
+    {% endif %}
+    {% endblock rating_details %}
+</span>
+{% endblock rating_container %}

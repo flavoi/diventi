@@ -9,7 +9,6 @@
 <meta itemprop="reviewCount" content="{{ review_count }}" />
 {% endif %}
 {% block rating_stars %}
-{% include "reviews/rating_value.html" with rating=average_rating rating_star=average_rating_star rating_text=average_rating_text %}
 <span style="color: Mediumslateblue;">
     {% with average_rating as ar %}
         {% if average_rating_star == "s10" %}

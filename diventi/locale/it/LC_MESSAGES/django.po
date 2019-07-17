@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 12:21+0200\n"
+"POT-Creation-Date: 2019-07-17 11:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,23 +26,23 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/urls.py:26
+#: config/urls.py:27
 msgid "control-panel/"
 msgstr "pannello-di-controllo/"
 
-#: config/urls.py:27
+#: config/urls.py:28
 msgid "accounts/"
 msgstr "profili/"
 
-#: config/urls.py:28
+#: config/urls.py:29
 msgid "blog/"
 msgstr "blog/"
 
-#: config/urls.py:29
+#: config/urls.py:30
 msgid "applications/"
 msgstr "applicazioni/"
 
-#: config/urls.py:30
+#: config/urls.py:31
 msgid "comments/"
 msgstr "commenti/"
 
@@ -113,7 +113,7 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:73
-#: diventi/templates/accounts/user_customization.html:39
+#: diventi/templates/accounts/user_customization.html:38
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -130,7 +130,7 @@ msgid "Cover"
 msgstr "Copertina"
 
 #: diventi/accounts/models.py:89
-#: diventi/templates/accounts/user_customization.html:54
+#: diventi/templates/accounts/user_customization.html:53
 msgid "Covers"
 msgstr "Copertine"
 
@@ -250,51 +250,51 @@ msgstr "<slug:nametag>/aggiorna/"
 msgid "<slug:nametag>/delete/"
 msgstr "<slug:nametag>/cancella/"
 
-#: diventi/accounts/views.py:39
+#: diventi/accounts/views.py:40
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:40
+#: diventi/accounts/views.py:41
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
-#: diventi/accounts/views.py:65
+#: diventi/accounts/views.py:78
 msgid "Your password was successfully updated!"
 msgstr "La tua password è stata aggiornata!"
 
-#: diventi/accounts/views.py:90
+#: diventi/accounts/views.py:103
 msgid "Your privacy was successfully updated!"
 msgstr "La tua privacy è stata aggiornata!"
 
-#: diventi/accounts/views.py:108
+#: diventi/accounts/views.py:121
 msgid "You have signed up!"
 msgstr "La tua registrazione è andata a buon fine!"
 
-#: diventi/accounts/views.py:109
+#: diventi/accounts/views.py:122
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:146
+#: diventi/accounts/views.py:159
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:147
+#: diventi/accounts/views.py:160
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:161
+#: diventi/accounts/views.py:174
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:191
+#: diventi/accounts/views.py:204
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
-#: diventi/accounts/views.py:227
+#: diventi/accounts/views.py:240
 msgid "The email addresses have been copied to clipboard."
 msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#: diventi/accounts/views.py:228
+#: diventi/accounts/views.py:241
 msgid "Something went wrong with the copy."
 msgstr "La copia degli indirizzi email è fallita."
 
@@ -368,6 +368,7 @@ msgstr "hot"
 #: diventi/blog/models.py:83 diventi/ebooks/models.py:45
 #: diventi/ebooks/models.py:100 diventi/ebooks/models.py:176
 #: diventi/feedbacks/models.py:118 diventi/products/models.py:76
+#: diventi/sheets/models.py:23
 msgid "slug"
 msgstr "slug"
 
@@ -610,7 +611,7 @@ msgid "product"
 msgstr "prodotto"
 
 #: diventi/ebooks/models.py:71 diventi/ebooks/models.py:101
-#: diventi/sheets/models.py:21
+#: diventi/sheets/models.py:22
 msgid "book"
 msgstr "libro"
 
@@ -719,18 +720,26 @@ msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/"
 msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/"
 
 #: diventi/ebooks/urls.py:11
-msgid "<slug:book_slug>/chapter/<slug:chapter_slug>#<slug:section_slug>"
+#, fuzzy
+#| msgid "<slug:book_slug>/chapter/<slug:chapter_slug>#<slug:section_slug>"
+msgid ""
+"<slug:book_slug>/chapter/<slug:chapter_slug>/<slug:section_slug>-<int:"
+"section_pk>"
 msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>#<slug:section_slug>"
 
 #: diventi/ebooks/urls.py:12
 msgid "<slug:book_slug>/search/"
 msgstr "<slug:book_slug>/ricerca/"
 
-#: diventi/ebooks/views.py:22
+#: diventi/ebooks/views.py:23
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questa risorsa non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
+
+#: diventi/ebooks/views.py:118
+msgid "This book hasn't been published yet."
+msgstr ""
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"
@@ -1087,40 +1096,46 @@ msgstr "L'utente non ha ancora questo prodotto."
 msgid "Sheets"
 msgstr ""
 
-#: diventi/sheets/models.py:17
+#: diventi/sheets/models.py:18
 msgid "name"
 msgstr "nome"
 
-#: diventi/sheets/models.py:18
+#: diventi/sheets/models.py:19
 msgid "origin"
 msgstr "origine"
 
-#: diventi/sheets/models.py:19
+#: diventi/sheets/models.py:20
 msgid "predisposition"
 msgstr "predisposizione"
 
-#: diventi/sheets/models.py:20
+#: diventi/sheets/models.py:21
 msgid "player"
 msgstr "giocatore"
 
-#: diventi/sheets/models.py:27
+#: diventi/sheets/models.py:32
 msgid "character sheet"
 msgstr "scheda del personaggio"
 
-#: diventi/sheets/models.py:28
+#: diventi/sheets/models.py:33
 msgid "character sheets"
 msgstr "schede del personaggio"
 
-#: diventi/sheets/models.py:38
+#: diventi/sheets/models.py:43
+#: diventi/templates/sheets/charactersheet_detail.html:91
+#: diventi/templates/sheets/charactersheet_detail.html:106
+#: diventi/templates/sheets/charactersheet_detail.html:121
 msgid "relationship"
 msgstr "relazione"
 
-#: diventi/sheets/models.py:39
+#: diventi/sheets/models.py:44
+#: diventi/templates/sheets/charactersheet_detail.html:83
 msgid "relationships"
 msgstr "relazioni"
 
 #: diventi/sheets/urls.py:9
-msgid "character/<int:pk>/book/<slug:book_slug>"
+#, fuzzy
+#| msgid "character/<int:pk>/book/<slug:book_slug>"
+msgid "character/<slug:character_slug>/book/<slug:book_slug>"
 msgstr "personaggio/<int:pk>/libro/<slug:book_slug>"
 
 #: diventi/templates/403.html:7
@@ -1176,7 +1191,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
 #: diventi/templates/navigation.html:67
-#: diventi/templates/products/product_detail.html:129
+#: diventi/templates/products/product_detail.html:117
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -1340,7 +1355,7 @@ msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:45
 #: diventi/templates/accounts/user.html:73
-#: diventi/templates/products/product_detail.html:100
+#: diventi/templates/products/product_detail.html:98
 msgid "collection"
 msgstr "collezione"
 
@@ -1403,7 +1418,7 @@ msgstr "Annulla"
 
 #: diventi/templates/accounts/user_collection.html:15
 #: diventi/templates/accounts/user_collection.html:49
-#: diventi/templates/products/product_detail.html:47
+#: diventi/templates/products/product_detail.html:44
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
@@ -1447,11 +1462,11 @@ msgstr "Nuova password"
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/user_customization.html:5
+#: diventi/templates/accounts/user_customization.html:4
 msgid "Profile update"
 msgstr "Aggiornamento profilo"
 
-#: diventi/templates/accounts/user_customization.html:72
+#: diventi/templates/accounts/user_customization.html:71
 msgid "Update profile"
 msgstr "Aggiorna profilo"
 
@@ -1516,14 +1531,14 @@ msgstr "AA"
 msgid "Sign out"
 msgstr "Annulla accesso"
 
-#: diventi/templates/base_dashboard.html:189
-#: diventi/templates/base_dashboard.html:193
+#: diventi/templates/base_dashboard.html:190
+#: diventi/templates/base_dashboard.html:194
 #, fuzzy
 #| msgid "Characteristics"
 msgid "Character sheets"
 msgstr "Caratteristiche"
 
-#: diventi/templates/base_dashboard.html:194
+#: diventi/templates/base_dashboard.html:195
 msgid "GM sheets"
 msgstr ""
 
@@ -1622,6 +1637,11 @@ msgstr "alla pagina precedente"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
+#: diventi/templates/ebooks/base_section.html:56
+#: diventi/templates/ebooks/base_section.html:64
+msgid "Close"
+msgstr ""
+
 #: diventi/templates/ebooks/search_results.html:6
 #: diventi/templates/ebooks/search_results.html:15
 #: diventi/templates/ebooks/search_results.html:18
@@ -1632,11 +1652,6 @@ msgstr "Risultati"
 #: diventi/templates/landing/search_results.html:43
 msgid "No items found"
 msgstr "Nessun risultato trovato"
-
-#: diventi/templates/ebooks/section_base.html:56
-#: diventi/templates/ebooks/section_base.html:64
-msgid "Close"
-msgstr ""
 
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
@@ -1743,29 +1758,65 @@ msgstr "Descrizione"
 msgid "Characteristics"
 msgstr "Caratteristiche"
 
-#: diventi/templates/products/product_detail.html:101
-msgid "View this product in your collection"
+#: diventi/templates/products/product_detail.html:99
+#, fuzzy
+#| msgid "View this product in your collection"
+msgid "This product is in your collection"
 msgstr "Visualizza questo prodotto nella tua collezione"
 
-#: diventi/templates/products/product_detail.html:109
-msgid "Remove this product from your collection"
-msgstr "Rimuovi questo prodotto dalla tua collezione"
+#: diventi/templates/products/product_detail.html:100
+#, fuzzy
+#| msgid "collection"
+msgid "View in collection"
+msgstr "collezione"
 
-#: diventi/templates/products/product_detail.html:119
-msgid "Add this product to your collection"
-msgstr "Aggiungi questo prodotto alla tua collezione"
+#: diventi/templates/products/product_detail.html:110
+#, fuzzy
+#| msgid "collection"
+msgid "Add to collection"
+msgstr "collezione"
 
-#: diventi/templates/products/product_detail.html:129
+#: diventi/templates/products/product_detail.html:117
 msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:161
-msgid "Our authors"
-msgstr "I nostri autori"
+#: diventi/templates/products/product_detail.html:154
+msgid "community reviews"
+msgstr ""
+
+#: diventi/templates/products/product_detail.html:155
+msgid "you need more information? Check what others are saying about this app."
+msgstr ""
+
+#: diventi/templates/products/product_detail.html:211
+#, fuzzy
+#| msgid "Previous"
+msgid "previous"
+msgstr "Precedente"
+
+#: diventi/templates/products/product_detail.html:215
+msgid "next"
+msgstr ""
 
 #: diventi/templates/publishable_badge.html:6
 msgid "draft"
 msgstr "bozza"
+
+#: diventi/templates/reviews/rating_average.html:82
+#, python-format
+msgid "%(review_count)s review"
+msgid_plural "%(review_count)s reviews"
+msgstr[0] "%(review_count)s recensione"
+msgstr[1] "recensioni"
+
+#: diventi/templates/reviews/review_button_modal.html:4
+#: diventi/templates/reviews/review_form.html:8
+msgid "review"
+msgstr "recensione"
+
+#: diventi/templates/reviews/review_form.html:18
+msgid "close"
+msgstr "chiudi"
 
 #: diventi/templates/star_ratings/widget.html:38
 msgid "Log in to rate"
@@ -1786,6 +1837,15 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "Remove this product from your collection"
+#~ msgstr "Rimuovi questo prodotto dalla tua collezione"
+
+#~ msgid "Add this product to your collection"
+#~ msgstr "Aggiungi questo prodotto alla tua collezione"
+
+#~ msgid "Our authors"
+#~ msgstr "I nostri autori"
 
 #~ msgid "plain"
 #~ msgstr "pulito"

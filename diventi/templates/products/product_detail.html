@@ -157,6 +157,17 @@
             <div class="col-md-12">
               <div id="carouselExampleIndicatorss" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                  {% get_review_list for product as review_list %}
+                    {% for review in review_list %}
+                      <dt id="r{{ review.id }}">
+                        {% render_rating_value review.rating %}
+                        {{ review.submit_date }} - {{ review.user }}
+                      </dt>
+                      <dd>
+                        <p>{{ review.comment|linebreaks }}</p>
+                      </dd>
+                    {% endfor %}
+
                   <div class="carousel-item">
                     <div class="card card-testimonial card-plain">
                       <div class="card-avatar">

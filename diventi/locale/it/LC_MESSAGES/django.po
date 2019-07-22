@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-17 11:01+0200\n"
+"POT-Creation-Date: 2019-07-22 09:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:160
+#: config/settings/base.py:161
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:161
+#: config/settings/base.py:162
 msgid "English"
 msgstr "Inglese"
+
+#: config/settings/base.py:235
+msgid "Terrible"
+msgstr "Terribile"
+
+#: config/settings/base.py:236
+msgid "Poor"
+msgstr "Scarso"
+
+#: config/settings/base.py:237
+msgid "Average"
+msgstr "Medio"
+
+#: config/settings/base.py:238
+msgid "Very Good"
+msgstr "Molto buono"
+
+#: config/settings/base.py:239
+msgid "Excellent"
+msgstr "Eccellente"
 
 #: config/urls.py:27
 msgid "control-panel/"
@@ -720,12 +740,12 @@ msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/"
 msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/"
 
 #: diventi/ebooks/urls.py:11
-#, fuzzy
-#| msgid "<slug:book_slug>/chapter/<slug:chapter_slug>#<slug:section_slug>"
 msgid ""
 "<slug:book_slug>/chapter/<slug:chapter_slug>/<slug:section_slug>-<int:"
 "section_pk>"
-msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>#<slug:section_slug>"
+msgstr ""
+"<slug:book_slug>/capitolo/<slug:chapter_slug>/<slug:section_slug>-<int:"
+"section_pk>"
 
 #: diventi/ebooks/urls.py:12
 msgid "<slug:book_slug>/search/"
@@ -734,12 +754,12 @@ msgstr "<slug:book_slug>/ricerca/"
 #: diventi/ebooks/views.py:23
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
-"Questa risorsa non è presente nella tua collezione, per favore controlla il "
+"Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
 #: diventi/ebooks/views.py:118
 msgid "This book hasn't been published yet."
-msgstr ""
+msgstr "Questo libro non è stato ancora pubblicato."
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"
@@ -1094,7 +1114,7 @@ msgstr "L'utente non ha ancora questo prodotto."
 
 #: diventi/sheets/apps.py:7
 msgid "Sheets"
-msgstr ""
+msgstr "Schede"
 
 #: diventi/sheets/models.py:18
 msgid "name"
@@ -1133,10 +1153,8 @@ msgid "relationships"
 msgstr "relazioni"
 
 #: diventi/sheets/urls.py:9
-#, fuzzy
-#| msgid "character/<int:pk>/book/<slug:book_slug>"
 msgid "character/<slug:character_slug>/book/<slug:book_slug>"
-msgstr "personaggio/<int:pk>/libro/<slug:book_slug>"
+msgstr "personaggio/<slug:character_slug>/book/<slug:book_slug>"
 
 #: diventi/templates/403.html:7
 msgid "Error 403: Access Denied"
@@ -1533,14 +1551,12 @@ msgstr "Annulla accesso"
 
 #: diventi/templates/base_dashboard.html:190
 #: diventi/templates/base_dashboard.html:194
-#, fuzzy
-#| msgid "Characteristics"
 msgid "Character sheets"
-msgstr "Caratteristiche"
+msgstr "Schede personaggio"
 
 #: diventi/templates/base_dashboard.html:195
 msgid "GM sheets"
-msgstr ""
+msgstr "Schede del GM"
 
 #: diventi/templates/blog/article_card_content.html:11
 msgid "read the story"
@@ -1594,6 +1610,7 @@ msgid "Write your comment"
 msgstr "Scrivi il tuo commento"
 
 #: diventi/templates/comments/comments.html:26
+#: diventi/templates/reviews/review_form.html:18
 msgid "Post"
 msgstr "Pubblica"
 
@@ -1621,15 +1638,18 @@ msgstr "Degrada"
 msgid "Promote"
 msgstr "Promuovi"
 
+#: diventi/templates/comments/posted.html:5
 #: diventi/templates/comments/posted.html:8
 msgid "Comment posted"
 msgstr "Commento pubblicato"
 
 #: diventi/templates/comments/posted.html:12
+#: diventi/templates/reviews/posted.html:13
 msgid "You can leave the page or go back"
 msgstr "Ora puoi lasciare la pagina oppure ritornare"
 
 #: diventi/templates/comments/posted.html:12
+#: diventi/templates/reviews/posted.html:13
 msgid "to the previous page"
 msgstr "alla pagina precedente"
 
@@ -1759,22 +1779,16 @@ msgid "Characteristics"
 msgstr "Caratteristiche"
 
 #: diventi/templates/products/product_detail.html:99
-#, fuzzy
-#| msgid "View this product in your collection"
 msgid "This product is in your collection"
-msgstr "Visualizza questo prodotto nella tua collezione"
+msgstr "Questo prodotto è nella tua collezione"
 
 #: diventi/templates/products/product_detail.html:100
-#, fuzzy
-#| msgid "collection"
 msgid "View in collection"
-msgstr "collezione"
+msgstr "Visualizza collezione"
 
 #: diventi/templates/products/product_detail.html:110
-#, fuzzy
-#| msgid "collection"
 msgid "Add to collection"
-msgstr "collezione"
+msgstr "Aggiungi alla collezione"
 
 #: diventi/templates/products/product_detail.html:117
 msgid "to add this product in your collection"
@@ -1782,39 +1796,48 @@ msgstr "per aggiungere questo prodotto alla tua collezione"
 
 #: diventi/templates/products/product_detail.html:154
 msgid "community reviews"
-msgstr ""
+msgstr "Recensioni della community"
 
 #: diventi/templates/products/product_detail.html:155
 msgid "you need more information? Check what others are saying about this app."
 msgstr ""
+"hai bisogno di più informazioni? Dai un'occhiata a cosa gli altri utenti "
+"dicono di questa app."
 
 #: diventi/templates/products/product_detail.html:211
-#, fuzzy
-#| msgid "Previous"
 msgid "previous"
-msgstr "Precedente"
+msgstr "precedente"
 
 #: diventi/templates/products/product_detail.html:215
 msgid "next"
-msgstr ""
+msgstr "successivo"
 
 #: diventi/templates/publishable_badge.html:6
 msgid "draft"
 msgstr "bozza"
+
+#: diventi/templates/reviews/form.html:23
+msgid "Select a rating"
+msgstr "Seleziona un punteggio"
+
+#: diventi/templates/reviews/posted.html:6
+#: diventi/templates/reviews/posted.html:9
+msgid "Thank you for your review"
+msgstr "Grazie per la tua recensione"
 
 #: diventi/templates/reviews/rating_average.html:82
 #, python-format
 msgid "%(review_count)s review"
 msgid_plural "%(review_count)s reviews"
 msgstr[0] "%(review_count)s recensione"
-msgstr[1] "recensioni"
+msgstr[1] "%(review_count)s recensioni"
 
 #: diventi/templates/reviews/review_button_modal.html:4
-#: diventi/templates/reviews/review_form.html:8
+#: diventi/templates/reviews/review_form.html:9
 msgid "review"
 msgstr "recensione"
 
-#: diventi/templates/reviews/review_form.html:18
+#: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
 

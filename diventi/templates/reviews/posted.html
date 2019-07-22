@@ -1,0 +1,14 @@
+{% extends 'base_info.html' %}
+
+{% load reviews i18n %}
+{% load i18n %}
+
+{% block title %}{% trans "Thank you for your review" %}{% endblock title %}
+
+{% block pageheader_title %}
+    {% trans "Thank you for your review" %}!
+{% endblock pageheader_title %}
+
+{% block pageheader_content %}
+    {% trans "You can leave the page or go back" %} <b><a class="text-warning" href="{{ request.META.HTTP_REFERER }}#comments"> {% trans "to the previous page" %}.</a></b>
+{% endblock pageheader_content %}

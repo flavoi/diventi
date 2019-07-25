@@ -159,63 +159,26 @@
                 <div class="carousel-inner">
                   {% get_review_list for product as review_list %}
                     {% for review in review_list %}
-                      <dt id="r{{ review.id }}">
-                        {% render_rating_value review.rating %}
-                        {{ review.submit_date }} - {{ review.user }}
-                      </dt>
-                      <dd>
-                        <p>{{ review.comment|linebreaks }}</p>
-                      </dd>
+                      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="card card-testimonial card-plain">
+                          <div class="card-avatar">
+                            <a href="{{ review.user.get_absolute_url }}">
+                              <img class="img" src="{% if review.user.avatar.image %}{{ review.user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}">
+                            </a>
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-description">
+                              {{ review.comment|linebreaks }}
+                            </h5>
+                            <h4 class="card-title">{{ review.user.first_name|title }}</h4>
+                            <h6 class="card-category text-muted">{{ review.user.role }}</h6>
+                            <div class="footer">
+                              {{ review.rating }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     {% endfor %}
-
-                  <div class="carousel-item">
-                    <div class="card card-testimonial card-plain">
-                      <div class="card-avatar">
-                        <a href="#pablo">
-                          <img class="img" src="https://i.imgur.com/TBlvPo6.jpg?1">
-                        </a>
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-description">"I speak yell scream directly at the old guard on behalf of the future. I gotta say at that time I’d like to meet Kanye I speak yell scream directly at the old guard on behalf of the future. My brother Chance!!!
-                          <br>Thank you for letting me work on this masterpiece. One of my favorite people."
-                        </h5>
-                        <h4 class="card-title">Kendall Thompson</h4>
-                        <h6 class="card-category text-muted">CEO @ Marketing Digital Ltd.</h6>
-                        <div class="footer">
-                        <span style="color: Mediumslateblue;">
-                          <i class="fas fa-lg fa-star"></i>
-                          <i class="fas fa-lg fa-star"></i>
-                          <i class="fas fa-lg fa-star"></i>
-                          <i class="fas fa-lg fa-star"></i>
-                          <i class="fas fa-lg fa-star"></i>
-                        </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item active">
-                    <div class="card card-testimonial card-plain">
-                      <div class="card-avatar">
-                        <a href="#pablo">
-                          <img class="img" src="https://i.imgur.com/sBR1vAQ.jpg?1">
-                        </a>
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-description">"Thank you Anna for the invite thank you to the whole Vogue team Called I Miss the Old Kanye At the God's last game Chop up the soul Kanye. I promise I will never let the people down. I want a better life for all!!! Pablo Pablo Pablo Pablo! Thank you Anna for the invite thank you to the whole Vogue team."
-                        </h5>
-                        <h4 class="card-title">Christian Louboutin</h4>
-                        <h6 class="card-category text-muted">Designer @ Louboutin &amp; Co.</h6>
-                        <div class="footer">
-                        <span style="color: Mediumslateblue;">
-                          <i class="fas fa-lg fa-star"></i>
-                          <i class="fas fa-lg fa-star"></i>
-                          <i class="fas fa-lg fa-star"></i>
-                          <i class="fas fa-lg fa-star"></i>
-                        </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicatorss" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>

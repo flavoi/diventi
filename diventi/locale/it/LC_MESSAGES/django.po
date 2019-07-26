@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-26 08:37+0200\n"
+"POT-Creation-Date: 2019-07-26 09:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,7 +133,7 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: diventi/accounts/models.py:73
-#: diventi/templates/accounts/user_customization.html:38
+#: diventi/templates/accounts/user_customization.html:39
 msgid "Avatars"
 msgstr "Avatar"
 
@@ -150,7 +150,7 @@ msgid "Cover"
 msgstr "Copertina"
 
 #: diventi/accounts/models.py:89
-#: diventi/templates/accounts/user_customization.html:53
+#: diventi/templates/accounts/user_customization.html:54
 msgid "Covers"
 msgstr "Copertine"
 
@@ -1209,7 +1209,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
 #: diventi/templates/navigation.html:67
-#: diventi/templates/products/product_detail.html:122
+#: diventi/templates/products/product_detail.html:121
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -1480,11 +1480,11 @@ msgstr "Nuova password"
 msgid "Confirm new password"
 msgstr "Conferma nuova password"
 
-#: diventi/templates/accounts/user_customization.html:4
+#: diventi/templates/accounts/user_customization.html:5
 msgid "Profile update"
 msgstr "Aggiornamento profilo"
 
-#: diventi/templates/accounts/user_customization.html:71
+#: diventi/templates/accounts/user_customization.html:72
 msgid "Update profile"
 msgstr "Aggiorna profilo"
 
@@ -1782,28 +1782,32 @@ msgstr "Caratteristiche"
 msgid "View in collection"
 msgstr "Visualizza collezione"
 
-#: diventi/templates/products/product_detail.html:106
+#: diventi/templates/products/product_detail.html:105
 #: diventi/templates/reviews/review_button_modal.html:4
 msgid "leave a review"
 msgstr "lascia una recensione"
 
-#: diventi/templates/products/product_detail.html:115
+#: diventi/templates/products/product_detail.html:114
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/products/product_detail.html:122
+#: diventi/templates/products/product_detail.html:121
 msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:159
+#: diventi/templates/products/product_detail.html:158
 msgid "community reviews"
 msgstr "Recensioni della community"
 
-#: diventi/templates/products/product_detail.html:191
+#: diventi/templates/products/product_detail.html:196
+msgid "there are no reviews yet, be the first to post one!"
+msgstr "non c'è alcuna recensione per ora, postane una tu!"
+
+#: diventi/templates/products/product_detail.html:205
 msgid "previous"
 msgstr "precedente"
 
-#: diventi/templates/products/product_detail.html:195
+#: diventi/templates/products/product_detail.html:209
 msgid "next"
 msgstr "successivo"
 
@@ -1835,25 +1839,20 @@ msgstr "recensione"
 msgid "close"
 msgstr "chiudi"
 
-#: diventi/templates/star_ratings/widget.html:38
-msgid "Log in to rate"
-msgstr "Accedi per votare"
+#~ msgid "Log in to rate"
+#~ msgstr "Accedi per votare"
 
-#: diventi/templates/star_ratings/widget.html:61
-msgid "Average: "
-msgstr "Media: "
+#~ msgid "Average: "
+#~ msgstr "Media: "
 
-#: diventi/templates/star_ratings/widget.html:64
-msgid "Rating Count: "
-msgstr "Conteggio dei voti: "
+#~ msgid "Rating Count: "
+#~ msgstr "Conteggio dei voti: "
 
-#: diventi/templates/star_ratings/widget.html:67
-msgid "You Rated: "
-msgstr "Il tuo voto: "
+#~ msgid "You Rated: "
+#~ msgstr "Il tuo voto: "
 
-#: diventi/templates/star_ratings/widget.html:67
-msgid "not rated"
-msgstr "nessun voto rilevato"
+#~ msgid "not rated"
+#~ msgstr "nessun voto rilevato"
 
 #~ msgid "This product is in your collection"
 #~ msgstr "Questo prodotto è nella tua collezione"

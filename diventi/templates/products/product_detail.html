@@ -99,7 +99,6 @@
                                   {% trans "View in collection" %}
                                 </a>
                                 {% if product.available %}
-                                  {% include "reviews/review_form.html" %}
                                   {% include "reviews/review_button_modal.html" %}
                                 {% else %}
                                   <button class="btn btn-round disabled" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
@@ -201,4 +200,9 @@
       </div>
     </div>
 
+{% if product.available and user.is_authenticated %}
+  {% include "reviews/review_form.html" %}
+{% endif %}
+
 {% endblock main %}
+

@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load core_extras %}
+
 {% block rating_container %}
 <span class="star-rating"{% if average_rating %} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{% endif %}>
 {% if average_rating %}
@@ -9,71 +11,9 @@
 <meta itemprop="reviewCount" content="{{ review_count }}" />
 {% endif %}
 {% block rating_stars %}
-<span style="color: Mediumslateblue;">
-    {% with average_rating as ar %}
-        {% if average_rating_star == "s10" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% elif average_rating_star == "s15" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star-half-alt"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% elif average_rating_star == "s20" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% elif average_rating_star == "s25" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star-half-alt"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% elif average_rating_star == "s30" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% elif average_rating_star == "s35" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star-half-alt"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% elif average_rating_star == "s40" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% elif average_rating_star == "s45" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star-half-alt"></i>
-        {% elif average_rating_star == "s50" %}
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-            <i class="fas fa-lg fa-star"></i>
-        {% else %}
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-            <i class="fal fa-lg fa-star"></i>
-        {% endif %}
-    {% endwith %} 
-</span>
+{% with average_rating|to_float as rating %}
+    {% include 'reviews/rating_star.html' %}        
+{% endwith %}
 {% endblock rating_stars %}
 {% block rating_details %}
 {% if show_rating_text and average_rating %}

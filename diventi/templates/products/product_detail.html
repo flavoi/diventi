@@ -95,12 +95,17 @@
                         {% if user.is_authenticated %}      
                             <div class="text-center">                       
                             {% if bought %}                    
-                                <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">
-                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'This product is in your collection' %}.">
-                                        {% trans "View in collection" %}
-                                    </span>
+                                <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">       
+                                  {% trans "View in collection" %}
                                 </a>
-                                {% include "reviews/review_button_modal.html" %}
+                                {% if product.available %}
+                                  {% include "reviews/review_form.html" %}
+                                  {% include "reviews/review_button_modal.html" %}
+                                {% else %}
+                                  <button class="btn btn-round disabled" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
+                                      <i class="fal fa-lg fa-comment-edit"></i> {% trans "leave a review" %}
+                                  </button>
+                                {% endif %}
                             {% else %}
                                 <form action="{% url 'products:add' product.slug %}" method="POST">
                                     {% csrf_token %}
@@ -152,10 +157,9 @@
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h2 class="title">{% trans "community reviews"|title %}</h2>
-              <h5 class="description">{% trans "you need more information? Check what others are saying about this app."|capfirst %}</h5>
             </div>
             <div class="col-md-12">
-              <div id="carouselExampleIndicatorss" class="carousel slide" data-ride="carousel">
+              <div id="carouselReviews" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   {% get_review_list for product as review_list %}
                     {% for review in review_list %}
@@ -168,23 +172,25 @@
                           </div>
                           <div class="card-body">
                             <h5 class="card-description">
-                              {{ review.comment|linebreaks }}
+                              "{{ review.comment|striptags }}"
                             </h5>
                             <h4 class="card-title">{{ review.user.first_name|title }}</h4>
                             <h6 class="card-category text-muted">{{ review.user.role }}</h6>
                             <div class="footer">
-                              {{ review.rating }}
+                              {% with review.rating as rating %}
+                                {% include 'reviews/rating_star.html' %}
+                              {% endwith %}
                             </div>
                           </div>
                         </div>
                       </div>
                     {% endfor %}
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicatorss" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carouselReviews" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="sr-only">{% trans "previous"|capfirst %}</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicatorss" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselReviews" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">{% trans "next"|capfirst %}</span>
                 </a>
@@ -194,19 +200,5 @@
         </div>
       </div>
     </div>
-
-    <div class="container">
-        <div class="section section-comments">
-            <div class="row">
-              <div class="col-lg-8 col-md-12 ml-auto mr-auto">
-                {% render_review_list for product %}
-              </div>
-            </div>
-        </div>
-    </div>
-
-    {% if user.is_authenticated %}
-      {% include "reviews/review_form.html" %}
-    {% endif %}
 
 {% endblock main %}

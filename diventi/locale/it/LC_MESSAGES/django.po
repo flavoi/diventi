@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-22 09:06+0200\n"
+"POT-Creation-Date: 2019-07-26 08:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,23 +26,23 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:235
+#: config/settings/base.py:239
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:236
+#: config/settings/base.py:240
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:237
+#: config/settings/base.py:241
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:238
+#: config/settings/base.py:242
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:239
+#: config/settings/base.py:243
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -1209,7 +1209,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
 #: diventi/templates/navigation.html:67
-#: diventi/templates/products/product_detail.html:117
+#: diventi/templates/products/product_detail.html:122
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -1779,36 +1779,31 @@ msgid "Characteristics"
 msgstr "Caratteristiche"
 
 #: diventi/templates/products/product_detail.html:99
-msgid "This product is in your collection"
-msgstr "Questo prodotto è nella tua collezione"
-
-#: diventi/templates/products/product_detail.html:100
 msgid "View in collection"
 msgstr "Visualizza collezione"
 
-#: diventi/templates/products/product_detail.html:110
+#: diventi/templates/products/product_detail.html:106
+#: diventi/templates/reviews/review_button_modal.html:4
+msgid "leave a review"
+msgstr "lascia una recensione"
+
+#: diventi/templates/products/product_detail.html:115
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/products/product_detail.html:117
+#: diventi/templates/products/product_detail.html:122
 msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
-#: diventi/templates/products/product_detail.html:154
+#: diventi/templates/products/product_detail.html:159
 msgid "community reviews"
 msgstr "Recensioni della community"
 
-#: diventi/templates/products/product_detail.html:155
-msgid "you need more information? Check what others are saying about this app."
-msgstr ""
-"hai bisogno di più informazioni? Dai un'occhiata a cosa gli altri utenti "
-"dicono di questa app."
-
-#: diventi/templates/products/product_detail.html:211
+#: diventi/templates/products/product_detail.html:191
 msgid "previous"
 msgstr "precedente"
 
-#: diventi/templates/products/product_detail.html:215
+#: diventi/templates/products/product_detail.html:195
 msgid "next"
 msgstr "successivo"
 
@@ -1825,14 +1820,13 @@ msgstr "Seleziona un punteggio"
 msgid "Thank you for your review"
 msgstr "Grazie per la tua recensione"
 
-#: diventi/templates/reviews/rating_average.html:82
+#: diventi/templates/reviews/rating_average.html:22
 #, python-format
 msgid "%(review_count)s review"
 msgid_plural "%(review_count)s reviews"
 msgstr[0] "%(review_count)s recensione"
 msgstr[1] "%(review_count)s recensioni"
 
-#: diventi/templates/reviews/review_button_modal.html:4
 #: diventi/templates/reviews/review_form.html:9
 msgid "review"
 msgstr "recensione"
@@ -1860,6 +1854,15 @@ msgstr "Il tuo voto: "
 #: diventi/templates/star_ratings/widget.html:67
 msgid "not rated"
 msgstr "nessun voto rilevato"
+
+#~ msgid "This product is in your collection"
+#~ msgstr "Questo prodotto è nella tua collezione"
+
+#~ msgid ""
+#~ "you need more information? Check what others are saying about this app."
+#~ msgstr ""
+#~ "hai bisogno di più informazioni? Dai un'occhiata a cosa gli altri utenti "
+#~ "dicono di questa app."
 
 #~ msgid "Remove this product from your collection"
 #~ msgstr "Rimuovi questo prodotto dalla tua collezione"

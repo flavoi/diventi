@@ -1,5 +1,17 @@
 <span style="color: Mediumslateblue;">
-    {% if rating == 1 %}
+    {% if rating == 0 %}
+        <i class="fal fa-lg fa-star"></i>
+        <i class="fal fa-lg fa-star"></i>
+        <i class="fal fa-lg fa-star"></i>
+        <i class="fal fa-lg fa-star"></i>
+        <i class="fal fa-lg fa-star"></i>
+    {% elif rating < 1 %}
+        <i class="fas fa-lg fa-star-half-alt"></i>
+        <i class="fal fa-lg fa-star"></i>
+        <i class="fal fa-lg fa-star"></i>
+        <i class="fal fa-lg fa-star"></i>
+        <i class="fal fa-lg fa-star"></i>
+    {% elif rating == 1 %}
         <i class="fas fa-lg fa-star"></i>
         <i class="fal fa-lg fa-star"></i>
         <i class="fal fa-lg fa-star"></i>

@@ -161,6 +161,7 @@
               <div id="carouselReviews" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   {% get_review_list for product as review_list %}
+                  {% if review_list %}
                     {% for review in review_list %}
                       <div class="carousel-item {% if forloop.first %}active{% endif %}">
                         <div class="card card-testimonial card-plain">
@@ -184,6 +185,20 @@
                         </div>
                       </div>
                     {% endfor %}
+                  {% else %}
+                    <div class="carousel-item active">
+                      <div class="card card-testimonial card-plain">
+                        <div class="card-avatar">
+                            <img class="img" src="{% static 'material-kit/img/placeholder.jpg' %}">
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-description">
+                            {% trans "there are no reviews yet, be the first to post one!"|capfirst %}
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
                 </div>
                 <a class="carousel-control-prev" href="#carouselReviews" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>

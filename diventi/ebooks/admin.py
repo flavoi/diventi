@@ -102,13 +102,13 @@ class SectionInline(TranslationStackedInline):
 
 
 class BookAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'get_product_image', 'get_product_category', 'created', 'modified', 'published', 'publication_date']
+    list_display = ['title', 'get_product_image', 'get_product_category', 'template', 'created', 'modified', 'published', 'publication_date']
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'book_product')
         }),
         (_('Layout'), {
-            'fields': ('col_lg', 'col_md',)
+            'fields': ('template', 'col_lg', 'col_md',)
         }),
         (_('Editing'), {
             'fields': ('title', 'short_title', 'description', 'slug', 'created', 'modified', 'publication_date'),

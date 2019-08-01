@@ -53,12 +53,15 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
     """ Returns the digital content of a product. """
     
     model = Book
-    template_name = "ebooks/book_detail.html"
+    #template_name = "ebooks/book_detail.html"
     slug_url_kwarg = 'book_slug'
 
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
         return queryset.published().product()
+
+    def get_template_names(self):
+        return ['ebooks/%s' % self.object.template]
 
 
 class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,

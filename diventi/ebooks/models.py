@@ -44,6 +44,12 @@ class Book(Element, TimeStampedModel, PublishableModel, DiventiColModel):
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     book_product = models.OneToOneField(Product, null=True, blank=True, related_name='book', on_delete=models.SET_NULL, verbose_name=_('product'))
+    DEFAULT_TEMPLATE = 'book_detail.html'
+    TEMPLATE_CHOICES = (
+        (DEFAULT_TEMPLATE, _('Standard')),
+        ('wbook_detail.html', _('Alternative')),
+    )
+    template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('template'))
 
     objects = BookQuerySet.as_manager()
 

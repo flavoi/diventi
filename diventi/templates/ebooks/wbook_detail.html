@@ -1,3 +1,6 @@
+{% load i18n %}
+{% load static %}
+
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com -->
 <!-- Last Published: Thu Jun 13 2019 18:58:01 GMT+0000 (UTC) -->
@@ -5,7 +8,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>How to design interactions effectively | Web design 101</title>
+    <title>Diventi &middot; {{ book.title }}</title>
     <meta content="Get 5 tips on building better interactions and animations for your websites." name="description" />
     <meta content="How to design interactions effectively | Web design 101" property="og:title" />
     <meta content="Get 5 tips on building better interactions and animations for your websites." property="og:description" />
@@ -24,146 +27,60 @@
     </script>
     <link href="https://assets.website-files.com/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://assets.website-files.com/img/webclip.png" rel="apple-touch-icon" />
-    <script src="https://api.ipstack.com/check?access_key=53038fede8e664ed0b2e5274047e23a8&fields=continent_code&callback=wf_detectContinent"></script>
     <link rel="canonical" href="https://webflow.com/blog/how-to-design-interactions-effectively">
+
+    <style>
+        @font-face {
+            font-family: 'Kravitz';
+            src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
+                url('{% static "fonts/Kravitz.woff" %}') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'Kravitz Extra Thermal';
+                src: url('{% static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
+                    url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'Kravitz Thermal';
+                src: url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
+                    url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            .diventi-font {
+              font-family: 'Kravitz Thermal';
+              font-weight: normal;
+              font-style: normal;
+              font-size: 26px;
+            }
+    </style>
 </head>
 
 <body>
-    <div data-ix="popup-overlay" class="popupoverlay">
-        <div class="signupmodal-wrap"><a href="#" data-ix="click-to-close" class="closelink">Back to reading X</a>
-            <div class="signupmodal">
-                <div>
-                    <a href="http://www.webflow.com/dashboard/signup?utm_source=ebooks&amp;utm_medium=web%20design%20101&amp;utm_campaign=Ebooks" class="ctabanner w-inline-block"><img src="https://assets.website-files.com/56c60feb4d4f81a50633a1b0/56e9efd23770e9bc4c176302_webflow-white.svg" alt="" class="ctalogo" /></a>
-                    <div class="modalheading">Want to put your new web design knowledge to work?</div>
-                    <div class="modaltext">Join over 700,000 professionals who build beautiful, responsive websites with Webflow.</div><a href="https://webflow.com/dashboard/signup?utm_source=ebooks&amp;utm_medium=web%20design%20101&amp;utm_campaign=Ebooks" class="button w-button">Try Webflow free</a></div>
-            </div>
-        </div>
-    </div>
     <div class="chapterslider"><a href="#" data-ix="close-view-chapters" class="close-x">X</a>
         <div class="sidecontent-wrap">
-            <h3>Chapters</h3>
+            <h3>{% trans "Chapters" %}</h3>
             <div class="w-dyn-list">
                 <div class="w-clearfix w-dyn-items">
+                    {% for c in chapters %}
                     <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/essential-visual-design-principles-for-web-designers" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
+                        <a href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
                             <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64d71e7d76f195f0e1f5e_Visual%20Design%20Principles.jpg&quot;)" class="sidethumb"></div>
                             <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">1</div>
+                                <div class="sidechapter-text">{% trans "Chapter" %}</div>
+                                <div class="sidechapter-text">{{ forloop.counter }}</div>
                             </div>
-                            <div class="sidechapter-title">Essential visual design principles for web designers</div>
+                            <div class="sidechapter-title">{{ c.title|capfirst }}</div>
                         </a>
                     </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/web-design-101-color-theory" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64d7b8c8192f64d41b7d3_Color%20Theory.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">2</div>
-                            </div>
-                            <div class="sidechapter-title">Color theory</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/web-typography-101" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64d878c8192f64d41b7d9_Web%20Typography.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">3</div>
-                            </div>
-                            <div class="sidechapter-title">Web typography 101</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/how-element-spacing-works" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64d950034b33270664b96_Element%20Spacing.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">4</div>
-                            </div>
-                            <div class="sidechapter-title">How element spacing works</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/9-essential-ui-design-tips" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64dabe7d76f195f0e1fc3_Desinging%20User%20Interfaces.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">5</div>
-                            </div>
-                            <div class="sidechapter-title">UI design essentials</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/designing-for-mobile" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64dbbc5d3303170c6fb79_Designing%20for%20Mobile.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">6</div>
-                            </div>
-                            <div class="sidechapter-title">Designing for mobile</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/how-to-design-interactions-effectively" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix w--current">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64dc98c8192f64d41b83d_Interaction%20and%20Animations.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">7</div>
-                            </div>
-                            <div class="sidechapter-title">How to design interactions effectively</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/building-high-performing-websites" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64dd6e7d76f195f0e1fc6_High%20Performance%20Websites.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">8</div>
-                            </div>
-                            <div class="sidechapter-title">Building high-performing websites</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/how-to-design-landing-pages-that-convert" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64de04fec60fb4d3fca50_Landing%20Pages%20that%20Convert.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">9</div>
-                            </div>
-                            <div class="sidechapter-title">How to design landing pages that convert</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/why-your-design-process-should-start-with-content" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64dede7d76f195f0e1fc8_Content%20First.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">10</div>
-                            </div>
-                            <div class="sidechapter-title">Why your design process should start with content</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/always-choose-prototypes-over-mockups" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64df80034b33270664c0b_Prototypes%20over%20Mockups.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">11</div>
-                            </div>
-                            <div class="sidechapter-title">Always choose prototypes over mockups</div>
-                        </a>
-                    </div>
-                    <div class="sidechapter-wrap w-dyn-item">
-                        <a href="/chapter/the-essential-pre-launch-checklist-for-your-website" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64e03c5d3303170c6fb88_Pre%20Launch%20List.jpg&quot;)" class="sidethumb"></div>
-                            <div>
-                                <div class="sidechapter-text">Chapter</div>
-                                <div class="sidechapter-text">12</div>
-                            </div>
-                            <div class="sidechapter-title">The essential pre-launch checklist for your website</div>
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -173,19 +90,19 @@
             <div class="leftnavigation bottom">
                 <div class="w-row">
                     <div class="buttoncol w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-col w-col-4 w-col-stack"></div>
-                    <div class="buttoncol w-col w-col-4 w-col-stack"><a href="#" data-ix="view-chapters" class="allchapters w-hidden-small w-hidden-tiny">View Chapters</a></div>
+                    <div class="buttoncol w-col w-col-4 w-col-stack"><a href="#" data-ix="view-chapters" class="allchapters w-hidden-small w-hidden-tiny">{% trans "View Chapters" %}</a></div>
                     <div class="buttoncol w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-col w-col-4 w-col-stack"></div>
                 </div>
             </div>
             <a href="#" data-ix="view-chapters" class="viewchapters-link w-hidden-main w-hidden-medium w-inline-block">
-                <div class="w-hidden-tiny">View Chapters</div>
+                <div class="w-hidden-tiny">{% trans "View Chapters" %}</div>
             </a>
             <div class="leftoverlay"></div>
             <div class="titlewrapper">
                 <div class="leftnavigation">
                     <div>
-                        <a href="https://webflow.com/?utm_source=ebooks&amp;utm_medium=web%20design%20101&amp;utm_campaign=Ebooks" class="logoblock w-inline-block"><img src="https://assets.website-files.com/56c60feb4d4f81a50633a1b0/56cfa04a2157a1891a47be5c_webflow-white.svg" alt="" class="logo" /></a><a href="/" class="sitetitle white">Ebooks</a></div>
-                </div>
+                        <a href="{% url 'ebooks:book-detail' book.slug %}" class="sitetitle white"><span class="diventi-font">Diventi</span> &middot; {{ book.title }}</a></div>
+                    </div>
                 <div class="titleblock">
                     <div class="sidechapters">Chapter</div>
                     <div class="sidechapters">7</div>

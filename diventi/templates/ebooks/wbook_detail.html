@@ -58,7 +58,8 @@
               font-family: 'Kravitz Thermal';
               font-weight: normal;
               font-style: normal;
-              font-size: 26px;
+              font-size: 36px;
+              color: #fff;
             }
     </style>
 </head>
@@ -86,7 +87,7 @@
         </div>
     </div>
     <div class="fullscreen w-clearfix">
-        <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64dc98c8192f64d41b83d_Interaction%20and%20Animations.jpg&quot;)" class="leftside">
+        <div style="background-image:url(&quot;{% block side_image %}{{ book.book_product.image }}{% endblock side_image %}&quot;)" class="leftside">
             <div class="leftnavigation bottom">
                 <div class="w-row">
                     <div class="buttoncol w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-col w-col-4 w-col-stack"></div>
@@ -101,21 +102,21 @@
             <div class="titlewrapper">
                 <div class="leftnavigation">
                     <div>
-                        <a href="{% url 'ebooks:book-detail' book.slug %}" class="sitetitle white"><span class="diventi-font">Diventi</span> &middot; {{ book.title }}</a></div>
+                        <a href="{% url 'ebooks:book-detail' book.slug %}" class="sitetitle white"><span class="diventi-font">Diventi</span> Apps</a></div>
                     </div>
                 <div class="titleblock">
-                    <div class="sidechapters">Chapter</div>
-                    <div class="sidechapters">7</div>
-                    <h1 class="sidetitle">How to design interactions effectively</h1>
-                    <div class="subtitle">Get 5 tips on building better interactions and animations for your websites.</div>
-                    <div><img src="https://assets.website-files.com/56c620b120f9e0ef31f54905/56c624f81457615e44d05022_neal.jpg" alt="" class="chapterauthor-image" />
-                        <div class="authorname">By</div><a href="/author/neal-ogrady" class="authorname">Neal O’Grady</a></div>
+                    {% block side_chapter %}
+                        <div class="sidechapters">{% trans "Chapter" %}</div>
+                        <div class="sidechapters">{% block side_chapter_number %}1{% endblock %}</div>
+                    {% endblock side_chapter %}
+                    <h1 class="sidetitle">{% block side_title %}{{ book.title }}{% endblock side_title %}</h1>
+                    <div class="subtitle">{% block side_subtitle %}{{ book.description }}{% endblock side_subtitle %}</div>
                 </div>
             </div>
         </div>
         <div class="rightside">
-            <div class="chapterpage-head w-clearfix"><a href="/ebook/web-design-101" class="chapterpage-header">Web design 101</a>
-                <div class="chapterpage-header chaptertext">Chapter</div>
+            <div class="chapterpage-head w-clearfix"><a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{% block chapterpage_title %}{{ book.title }}{% endblock chapterpage_title %}</a>
+                <div class="chapterpage-header chaptertext">{% trans "Chapter" %}</div>
                 <div class="chapterpage-header chaptertext">7</div><a href="http://www.webflow.com/?utm_source=ebooks&amp;utm_medium=web%20design%20101&amp;utm_campaign=Ebooks" target="_blank" class="chapterpage-header trywebflow-link">Try Webflow</a></div>
             <div class="rightnavigation">
                 <a href="http://ebooks.webflow.com/chapter/designing-for-mobile" class="bottomnav-links w-inline-block">

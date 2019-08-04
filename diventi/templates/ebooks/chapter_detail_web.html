@@ -1,0 +1,37 @@
+{% extends 'base_dashboard.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+  {{ book.title }} &middot; {{ chapter.title }}
+{% endblock title %}
+
+{% block logo %}
+  {% with book as book %}
+      {% include 'ebooks/book_logo.html' %}
+  {% endwith %}
+{% endblock logo %}
+
+{% block navbar_logo %}
+    {% with book as book %}
+        {% include 'ebooks/navbar_logo.html' %}
+    {% endwith %}
+{% endblock navbar_logo %}
+
+{% block navbarbrand %}{{ chapter.title }}{% endblock navbarbrand %}
+
+{% block content_header_title %}
+  <h2 class="title"><small>{{ chapter.title }}</small></h2>
+  <p class="category"></p>
+{% endblock content_header_title %}
+
+{% block content_body %}
+
+{% for section in chapter.sections.all %}
+  {% with "ebooks/"|add:section.template as template_name %}
+    {% include template_name %}
+  {% endwith %}
+{% endfor %}
+
+{% endblock content_body %}    

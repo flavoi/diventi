@@ -61,7 +61,7 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
         return queryset.published().product()
 
     def get_template_names(self):
-        return ['ebooks/%s' % self.object.template]
+        return ['ebooks/book_detail_%s.html' % self.object.template]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
@@ -81,6 +81,9 @@ class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
         return queryset.published().sections()
+
+    def get_template_names(self):
+        return ['ebooks/chapter_detail_%s.html' % self.object.chapter_book.template]
 
 
 class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,

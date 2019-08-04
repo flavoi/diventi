@@ -46,11 +46,12 @@ class Book(Element, TimeStampedModel, PublishableModel, DiventiColModel):
     book_product = models.OneToOneField(Product, null=True, blank=True, related_name='book', on_delete=models.SET_NULL, verbose_name=_('product'))
     lead = models.TextField(blank=True, verbose_name=_('lead'))
     summary = RichTextField(verbose_name=_('summary'))
-    DEFAULT_TEMPLATE = 'book_detail.html'
+    DEFAULT_TEMPLATE = ''
     TEMPLATE_CHOICES = (
-        (DEFAULT_TEMPLATE, _('Standard')),
-        ('wbook_detail.html', _('Alternative')),
+        (DEFAULT_TEMPLATE, _('Material')),
+        ('web', _('Web')),
     )
+    # The template adds a suffix to the template name relative to this object
     template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('template'))
 
     objects = BookQuerySet.as_manager()

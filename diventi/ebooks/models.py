@@ -44,6 +44,8 @@ class Book(Element, TimeStampedModel, PublishableModel, DiventiColModel):
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     book_product = models.OneToOneField(Product, null=True, blank=True, related_name='book', on_delete=models.SET_NULL, verbose_name=_('product'))
+    lead = models.TextField(blank=True, verbose_name=_('lead'))
+    summary = RichTextField(verbose_name=_('summary'))
     DEFAULT_TEMPLATE = 'book_detail.html'
     TEMPLATE_CHOICES = (
         (DEFAULT_TEMPLATE, _('Standard')),

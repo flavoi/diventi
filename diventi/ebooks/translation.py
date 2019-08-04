@@ -5,7 +5,7 @@ from .models import Book, Chapter, Section, UniversalSection, Attachment
 
 @register(Book)
 class BookTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'slug')
+    fields = ('title', 'description', 'lead', 'summary', 'slug')
 
 @register(Chapter)
 class ChapterTranslationOptions(TranslationOptions):

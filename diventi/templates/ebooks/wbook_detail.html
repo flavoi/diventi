@@ -2,17 +2,15 @@
 {% load static %}
 
 <!DOCTYPE html>
-<!-- This site was created in Webflow. http://www.webflow.com -->
-<!-- Last Published: Thu Jun 13 2019 18:58:01 GMT+0000 (UTC) -->
-<html data-wf-domain="ebooks.webflow.com" data-wf-page="56f2257a3b646f43524aa018" data-wf-site="56c60feb4d4f81a50633a1b0" data-wf-status="1">
+<html>
 
 <head>
     <meta charset="utf-8" />
     <title>Diventi &middot; {{ book.title }}</title>
-    <meta content="Get 5 tips on building better interactions and animations for your websites." name="description" />
-    <meta content="How to design interactions effectively | Web design 101" property="og:title" />
-    <meta content="Get 5 tips on building better interactions and animations for your websites." property="og:description" />
-    <meta content="https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64dc98c8192f64d41b83d_Interaction%20and%20Animations.jpg" property="og:image" />
+    <meta content="{{ book.description }}" name="description" />
+    <meta content="{{ book.title }}" property="og:title" />
+    <meta content="{{ book.description }}" property="og:description" />
+    <meta content="{{ book.book_product.image }}" />
     <meta content="summary" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
@@ -27,7 +25,6 @@
     </script>
     <link href="https://assets.website-files.com/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://assets.website-files.com/img/webclip.png" rel="apple-touch-icon" />
-    <link rel="canonical" href="https://webflow.com/blog/how-to-design-interactions-effectively">
 
     <style>
         @font-face {
@@ -73,10 +70,11 @@
                     {% for c in chapters %}
                     <div class="sidechapter-wrap w-dyn-item">
                         <a href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
-                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64d71e7d76f195f0e1f5e_Visual%20Design%20Principles.jpg&quot;)" class="sidethumb"></div>
+                            <div style="background-image:url(&quot;https://assets.website-files.com/56c620b120f9e0ef31f54905/56c64d71e7d76f195f0e1f5e_Visual%20Design%20Principles.jpg&quot;)" class="sidethumb">
+                            </div>
                             <div>
                                 <div class="sidechapter-text">{% trans "Chapter" %}</div>
-                                <div class="sidechapter-text">{{ forloop.counter }}</div>
+                                <div class="sidechapter-text">{{ c.order_index }}</div>
                             </div>
                             <div class="sidechapter-title">{{ c.title|capfirst }}</div>
                         </a>
@@ -106,8 +104,10 @@
                     </div>
                 <div class="titleblock">
                     {% block side_chapter %}
+                    <!--
                         <div class="sidechapters">{% trans "Chapter" %}</div>
                         <div class="sidechapters">{% block side_chapter_number %}1{% endblock %}</div>
+                    -->
                     {% endblock side_chapter %}
                     <h1 class="sidetitle">{% block side_title %}{{ book.title }}{% endblock side_title %}</h1>
                     <div class="subtitle">{% block side_subtitle %}{{ book.description }}{% endblock side_subtitle %}</div>
@@ -115,104 +115,58 @@
             </div>
         </div>
         <div class="rightside">
-            <div class="chapterpage-head w-clearfix"><a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{% block chapterpage_title %}{{ book.title }}{% endblock chapterpage_title %}</a>
+            <!--
+            <div class="chapterpage-head w-clearfix">
+                <a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{{ book.title }}</a>
+
+                
                 <div class="chapterpage-header chaptertext">{% trans "Chapter" %}</div>
-                <div class="chapterpage-header chaptertext">7</div><a href="http://www.webflow.com/?utm_source=ebooks&amp;utm_medium=web%20design%20101&amp;utm_campaign=Ebooks" target="_blank" class="chapterpage-header trywebflow-link">Try Webflow</a></div>
+                <div class="chapterpage-header chaptertext">{{ chapter.order_index }}</div>
+
+                <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
+            </div>
+                -->
             <div class="rightnavigation">
-                <a href="http://ebooks.webflow.com/chapter/designing-for-mobile" class="bottomnav-links w-inline-block">
-                    <div class="previous-next">Previous Chapter</div>
-                    <div class="bottomnav-chapter">Designing for mobile</div>
-                </a>
-                <a href="http://ebooks.webflow.com/chapter/building-high-performing-websites" class="bottomnav-links rights w-inline-block">
-                    <div class="previous-next">Next Chapter</div>
-                    <div class="bottomnav-chapter">Building high-performing websites</div>
-                </a>
+                {% if previous_chapter %}
+                    <!--
+                    <a href="http://ebooks.webflow.com/chapter/designing-for-mobile" class="bottomnav-links w-inline-block">
+                        <div class="previous-next">Previous Chapter</div>
+                        <div class="bottomnav-chapter">Designing for mobile</div>
+                    </a>
+                    -->
+                {% endif %}
+
+                {% if next_chapter %}
+                    <a href="{{ next_chapter.get_absolute_url }}" class="bottomnav-links rights w-inline-block">
+                        <div class="previous-next">
+                            {% block right_navigation_next_chapter_label %}{% trans "Next Chapter" %}{% endblock right_navigation_next_chapter_label %}
+                        </div>
+                        <div class="bottomnav-chapter">{{ next_chapter.title }}</div>
+                    </a>
+                {% endif %}
             </div>
+
             <div class="maincontent-wrap">
-                <div class="lede chapterlede">A website is not a static brochure. It offers all kinds of opportunities for animation and interactivity. But just because you can animate everything, doesn&#x27;t mean you should.</div>
-                <div class="chaptercontent w-richtext">
-                    <p>The internet constitutes a completely different form of media, the fastest-evolving form we’ve ever built. Just load up a 90s-era website like Space Jam, and compare it to the site you’re on right now.</p>
-                    <p>Big difference, right?</p>
-                    <p>You’ll probably notice that the use of white space, typography, color, and imagery has drastically improved over time. Thankfully.</p>
-                    <p>What you might&nbsp;<em>not</em>&nbsp;notice at first glance is the addition of motion. Page elements animate into place. Links change colors. And buttons grow, glow, and move to-and-fro as you hover over them.</p>
-                    <h2><strong>The power of dynamism</strong></h2>
-                    <p>Unlike graphic designers' work, your designs aren’t static — they’re dynamic, shaped by how people use interact with them. That’s what sets web design apart.</p>
-                    <p>So now that we have this dynamic power, should we start making everything spin, twirl, bounce, and change color? Absolutely not. That’s like adding a new sound and transition effect to each slide and bullet point in Powerpoint. Nobody likes that guy.</p>
-                    <p>The real question is: how can we&nbsp;<em>effectively</em>&nbsp;add animations and interactions to our designs? Let's find out.</p>
-                    <p>Effective website animations and interactions possess 5 qualities. They’re:</p>
-                    <ol>
-                        <li><strong>Subtle</strong>&nbsp;– Animations should enhance, not dominate. Visitors should barely even realize they’re happening.</li>
-                        <li><strong>Natural</strong>&nbsp;– Animations should look and feel natural, not robotic and jarring.</li>
-                        <li><strong>Informative</strong>&nbsp;– Although you should always strive to make your designs self-evident, when you’re trying something new, animations can provide subtle cues to provide context.</li>
-                        <li><strong>Rare</strong>&nbsp;– If everything’s moving around and demanding attention, nothing will get it.</li>
-                        <li><strong>Fast</strong>&nbsp;– Slow animations can make people think a site’s broken or non-responsive, leading them to bounce.</li>
-                    </ol>
-                    <p>Let’s explore each of these points in more detail so you can make the most of your animations and interactions.</p>
-                    <h2><strong>Animate subtly</strong></h2>
-                    <blockquote>Good design is obvious. Great design is transparent.&nbsp;– Joe Sparano</blockquote>
-                    <p>It always astonishes me that something that takes countless hours of tweaking to get&nbsp;<em>just right</em>&nbsp;can be digested in seconds.</p>
-                    <p>“This is great. When can we launch?”</p>
-                    <p>They just glanced at it, and they liked it. It didn’t require thought.</p>
-                    <p><strong>But that’s the ideal end result with design.</strong>&nbsp;A fantastic design is subtle. People shouldn’t even notice your animations consciously.</p>
-                    <p>So why add animations if people aren’t even supposed to notice them? The key word is&nbsp;<em>consciously</em>. Because your visitors' subconscious minds definitely notice animations. Effective, subtle animations make your site&nbsp;<em>feel</em>&nbsp;better and more sensible. Animations should enhance the interaction without overpowering the content.</p>
-                    <figure data-rt-type="image" data-rt-align="fullwidth" data-rt-max-width="100" data-rt-max-height="56.25" class="w-richtext-align-fullwidth" style="max-width: 100%;">
-                        <div><img src="https://assets.website-files.com/55fba7ade2ae0be15df2b309/564bf920f933fbd21d9d62c8_animate-images.gif"></div>
-                    </figure>
-                    <p>The best designs get out of the way and let people do what they need to do as easily as possible.</p>
-                    <h3><strong>Interactions should match the tone of the site</strong></h3>
-                    <p>Your animations should always match the aesthetic and tone of the site you’re building. If you’re building a site for kids, you can be more showy and bouncy. If it's for a luxury watch brand, be subtle and elegant.</p>
-                    <figure data-rt-type="image" data-rt-align="fullwidth" data-rt-max-width="100" data-rt-max-height="56.25" class="w-richtext-align-fullwidth" style="max-width: 100%;">
-                        <div><img src="https://assets.website-files.com/55fba7ade2ae0be15df2b309/564bf94ff4a2b8d66d8d4c7a_button-differences.gif"></div>
-                        <figcaption>‍Which animation do you think is better for an ecommerce site or consulting business?</figcaption>
-                    </figure>
-                    <p><strong>Animations should be&nbsp;</strong><em><strong>au natural</strong></em></p>
-                    <p>Animations should never be linear. Linear animations are jerky and awkward. They remind people of robots and machines, and are anything but natural. They’re actually a bit uncomfortable to watch.</p>
-                    <p>Instead, make your animations and interactions smooth, and their easing (their speed over time) natural. For example, an easing of “ease-in” starts slowly, and accelerates until its end. An easing of “ease-out” starts abruptly, but slows down near the end. Linear easings have a uniformly increasing speed throughout the animation.</p>
-                    <p>Keep it natural by using more natural easings like “ease,” “ease-in-out,” and more complicated ones like “ease-in-sine.”</p>
-                    <figure data-rt-type="image" data-rt-align="center" data-rt-max-width="60" class="w-richtext-align-center" style="max-width: 60%;">
-                        <div><img src="https://assets.website-files.com/55fba7ade2ae0be15df2b309/564bf977f4a2b8d66d8d4c83_adjust-easing.gif"></div>
-                        <figcaption>‍Here's how you set the easing in&nbsp;<a href="https://webflow.com/">Webflow</a></figcaption>
-                    </figure>
-                    <h2><strong>Interactions and animations should be informative&nbsp;— not just special effects</strong></h2>
-                    <p>Your site isn’t a Transformers movie where explosions, giant robots, and Megan Fox cover up a simplistic, rehashed plotline.</p>
-                    <p>Your sites serve a purpose: either to convey information or enable a transaction. So your animations should help your visitors’ with these tasks, and not just be overt flourishes designed to wow them.</p>
-                    <p>Sites full of whiz-bang animations exist, and they can be really cool, but clients rarely pay for them. Instead, they’re built by designers and developers playing around on a Tuesday night. If the site's for a client, stick to informative animations.</p>
-                    <p>But what’s an informative interaction? An informative animation enhances the user experience (UX). For example, buttons and links should should let people know they’re clickable. It helps remove the guesswork.</p>
-                    <p>Motion draws the eye. That means animations can also be used to guide visitors to the next step or inform them of something potentially tricky.</p>
-                    <p>In a perfect world, your sites will be clear as day on every page. But if you’re doing something a little different, like a full-height hero section,&nbsp;then some sort of visual cue—like a subtle arrow bouncing on the bottom of the page—can be extremely helpful.</p>
-                    <figure data-rt-type="image" data-rt-align="fullwidth" data-rt-max-width="100" data-rt-max-height="56.25" class="w-richtext-align-fullwidth" style="max-width: 100%;">
-                        <div><img src="https://assets.website-files.com/55fba7ade2ae0be15df2b309/564bf9cd3367264a22cc0f6c_scroll-down.gif"></div>
-                        <figcaption>The best animations provide purposeful guidance.</figcaption>
-                    </figure>
-                    <h2>Animate sparingly</h2>
-                    <p>You can’t be subtle or informative if&nbsp;<em>everything</em>&nbsp;has some sort of animation. This is especially true if you make each animation unique.</p>
-                    <p>For example, if you animate page elements into place as you scroll down a page, then don’t make the first one fade, the second slide, the third one spin, the fourth one checkerboard.</p>
-                    <p>Just make them all the same. If you&nbsp;<em>must</em>&nbsp;add variety, have page elements on the left of the page slide in from the left, and those on the right slide in from the right. Animate similar elements in a similar fashion.</p>
-                    <p>And only add a hover interaction on an element when people can actually&nbsp;<em>do something</em>&nbsp;with that element. On-hover animations are just confusing if you can't actually click, drag, or do anything with that element.</p>
-                    <p>In other words, only add an animation when it actually helps your visitors.</p>
-                    <h2>Don’t keep people waiting</h2>
-                    <p>People have no patience on the internet. Every second of delay on page load decreases customer satisfaction by 16% and&nbsp;<a href="http://www.searchenginejournal.com/seo-101-important-site-speed-2014/111924/">reduces sales by 7%</a>. Making people wait can wreak havoc on a site’s profitability.</p>
-                    <p>And people don’t get any more patient after the site’s loaded.</p>
-                    <p><strong>Note</strong>: Want to keep visitors on your site?&nbsp;<a href="https://webflow.com/blog/how-to-boost-your-sites-performance">Learn how to boost your site’s performance</a>.</p>
-                    <p>What does this mean for your animations and interactions? They should be&nbsp;<em>fast</em>.</p>
-                    <p>After all, no one’s going to hover over a button for 2 seconds, no matter how dramatic your rollover effect looks.</p>
-                    <figure data-rt-type="image" data-rt-align="fullwidth" data-rt-max-width="100" data-rt-max-height="56.25" class="w-richtext-align-fullwidth" style="max-width: 100%;">
-                        <div><img src="https://assets.website-files.com/55fba7ade2ae0be15df2b309/564bf9fb5fd2054822678ecb_normalbuttons.gif"></div>
-                    </figure>
-                    <p>Okay, maybe some will—the first time. But what about the third time? Or the twentieth? Think they’ll still have the appreciation and patience for a slow animation then?</p>
-                    <p>Same goes for the complex, multi-stage loading animations and introductions we used to build in the days of Flash. Nobody wants to sit through those. People use the web to find the information they need, or the product they want, and then move on with their lives.</p>
-                    <p><strong>TL;DR:</strong>&nbsp;Keep your animations below 500ms in duration to keep them snappy.</p>
-                    <h2><strong>Now go forth and animate!</strong></h2>
-                    <p>Open up one of your current projects and start using these tips to improve your animations and interactions. It’ll make a difference.</p>
-                    <p>Interactions done right truly take a site from good to great. They take advantage of the unique power that websites have over print media by making it more real and engaging. And clients and visitors alike really love them.</p>
-                    <p><strong>Note</strong>: To learn more about adding animations to your page using&nbsp;<a href="https://webflow.com/">Webflow</a>'s visual web design tool,&nbsp;<a href="http://help.webflow.com/courses/interactions">check out our course on Webflow interactions</a>.</p>
-                    <p>Have some great examples of animations and interactions done right?&nbsp;<a href="https://twitter.com/webflowapp">Tweet 'em at us</a>!</p>
+
+                <div class="chapterpage-head">
+                    <div class="chapterpage-header"><a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{% block chapterpage_title %}{{ book.title }}{% endblock chapterpage_title %}</a>
+                    </div>
+                    <div class="chapterpage-header chaptertext">{% trans "Introduction" %}</div>
+                    <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
                 </div>
+
+                <div class="lede chapterlede">{{ book.lead|striptags }}</div>
+                <div class="chaptercontent w-richtext">{{ book.summary|safe }}</div>
+
             </div>
-            <a href="http://ebooks.webflow.com/chapter/building-high-performing-websites" class="bottomnav-links cc-bottom w-inline-block">
-                <div class="previous-next">Next Chapter</div>
-                <div class="bottomnav-chapter">Building high-performing websites</div>
+
+            {% if next_chapter %}
+            <a href="{{ next_chapter.get_absolute_url }}" class="bottomnav-links cc-bottom w-inline-block">
+                <div class="previous-next">{% block bottom_navigation_next_chapter_label %}{% trans "Next Chapter" %}{% endblock bottom_navigation_next_chapter_label %}</div>
+                <div class="bottomnav-chapter">{{ next_chapter.title }}</div>
             </a>
+            {% endif %}
+
         </div>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.4.1.min.220afd743d.js" type="text/javascript" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

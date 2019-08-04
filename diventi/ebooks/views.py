@@ -63,6 +63,12 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
     def get_template_names(self):
         return ['ebooks/%s' % self.object.template]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        first_chapter = self.object.chapters.first()
+        context['next_chapter'] = first_chapter
+        return context
+
 
 class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
                         EbookView, DetailView):

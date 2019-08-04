@@ -111,7 +111,7 @@ class BookAdmin(DiventiTranslationAdmin):
             'fields': ('template', 'col_lg', 'col_md',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'short_title', 'description', 'slug', 'created', 'modified', 'publication_date'),
+            'fields': ('title', 'short_title', 'description', 'lead', 'summary', 'slug', 'created', 'modified', 'publication_date'),
         }),
     )
     readonly_fields = ['created', 'modified', 'publication_date']

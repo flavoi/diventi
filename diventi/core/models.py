@@ -139,7 +139,7 @@ class Category(models.Model):
 
 class DiventiImageModel(models.Model):
     """
-    An abstract base class that manages models based on images uploaded on Imgur.
+    An abstract base class that manages models based on images uploaded on the internet.
     """
     image = models.URLField(blank=True, verbose_name=_('image'))
     label = models.CharField(max_length=50, blank=True, verbose_name=_('label'))

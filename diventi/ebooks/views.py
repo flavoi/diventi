@@ -64,7 +64,7 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
         return ['ebooks/book_detail_%s.html' % self.object.template]
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
+        context = super().get_context_data(**kwargs)
         first_chapter = self.object.chapters.first()
         context['next_chapter'] = first_chapter
         return context
@@ -85,6 +85,18 @@ class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
     def get_template_names(self):
         return ['ebooks/chapter_detail_%s.html' % self.object.chapter_book.template]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        chapters = context['chapters']
+        next_chapter = chapters.filter(id__gt=self.object.id)
+        next_chapter = next_chapter.order_by('id')
+        next_chapter = next_chapter.first()
+        context['next_chapter'] = next_chapter
+        previous_chapter = chapters.filter(id__lt=self.object.id)
+        previous_chapter = previous_chapter.order_by('-id')
+        previous_chapter = previous_chapter.first()
+        context['previous_chapter'] = previous_chapter
+        return context
 
 class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,
                         EbookView, ListView):

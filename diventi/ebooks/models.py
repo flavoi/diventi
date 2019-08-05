@@ -103,7 +103,7 @@ class ChapterQuerySet(models.QuerySet):
         return chapter
 
 
-class Chapter(Element, TimeStampedModel, PublishableModel):
+class Chapter(Element, DiventiImageModel, TimeStampedModel, PublishableModel):
     """ A chapter of a book. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))

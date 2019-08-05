@@ -1,37 +1,27 @@
-{% extends 'base_dashboard.html' %}
+{% extends 'ebooks/base_book_web.html' %}
 
 {% load i18n %}
 {% load static %}
 
-{% block title %}
-  {{ book.title }} &middot; {{ chapter.title }}
-{% endblock title %}
+{% block side_image %}{% if chapter.image %}{{ chapter.image }}{% else %}{% static 'material-kit/img/image_placeholder.jpg' %}{% endif %}{% endblock side_image %}
 
-{% block logo %}
-  {% with book as book %}
-      {% include 'ebooks/book_logo.html' %}
-  {% endwith %}
-{% endblock logo %}
+{% block side_chapter %}
+    <div class="sidechapters">{% trans "Chapter" %}</div>
+    <div class="sidechapters">{% block side_chapter_number %}{{ chapter.order_index }}{% endblock %}</div>
+{% endblock side_chapter %}
 
-{% block navbar_logo %}
-    {% with book as book %}
-        {% include 'ebooks/navbar_logo.html' %}
-    {% endwith %}
-{% endblock navbar_logo %}
+{% block side_title %}{{ chapter.title }}{% endblock side_title %}
+{% block side_subtitle %}{{ chapter.description }}{% endblock side_subtitle %}
 
-{% block navbarbrand %}{{ chapter.title }}{% endblock navbarbrand %}
-
-{% block content_header_title %}
-  <h2 class="title"><small>{{ chapter.title }}</small></h2>
-  <p class="category"></p>
-{% endblock content_header_title %}
-
-{% block content_body %}
-
+{% block right_navigation_next_chapter_label %}{% trans "Next Chapter" %}{% endblock right_navigation_next_chapter_label %}
+{% block chapterpage_title %}{{ chapter.title|capfirst }}{% endblock chapterpage_title %}
+{% block chapter_lead %}{% endblock chapter_lead %}
+{% block chapter_content %}
 {% for section in chapter.sections.all %}
-  {% with "ebooks/"|add:section.template as template_name %}
-    {% include template_name %}
-  {% endwith %}
+    <h3>{{ section.title|capfirst }}</h3>
+    {% if section.universal_section %}
+      {{ section.universal_section.content|safe }}
+    {% endif %}
+    {{ section.content|safe }}
 {% endfor %}
-
-{% endblock content_body %}    
+{% endblock chapter_content %}

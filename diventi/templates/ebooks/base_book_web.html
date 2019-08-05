@@ -1,0 +1,172 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Diventi &middot; {{ book.title }}</title>
+    <meta content="{{ book.description }}" name="description" />
+    <meta content="{{ book.title }}" property="og:title" />
+    <meta content="{{ book.description }}" property="og:description" />
+    <meta content="{{ book.book_product.image }}" />
+    <meta content="summary" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Webflow" name="generator" />
+    <link href="https://assets.website-files.com/56c60feb4d4f81a50633a1b0/css/ebook-design.webflow.5f1a487f9.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({
+            google: {
+                families: ["Varela:400", "Roboto Mono:regular"]
+            }
+        });
+    </script>
+    <link href="https://assets.website-files.com/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://assets.website-files.com/img/webclip.png" rel="apple-touch-icon" />
+
+    <style>
+        @font-face {
+            font-family: 'Kravitz';
+            src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
+                url('{% static "fonts/Kravitz.woff" %}') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'Kravitz Extra Thermal';
+                src: url('{% static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
+                    url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'Kravitz Thermal';
+                src: url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
+                    url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            .diventi-font {
+              font-family: 'Kravitz Thermal';
+              font-weight: normal;
+              font-style: normal;
+              font-size: 36px;
+              color: #fff;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="chapterslider"><a href="#" data-ix="close-view-chapters" class="close-x">X</a>
+        <div class="sidecontent-wrap">
+            <h3>{% trans "Chapters" %}</h3>
+            <div class="w-dyn-list">
+                <div class="w-clearfix w-dyn-items">
+                    {% for c in chapters %}
+                    <div class="sidechapter-wrap w-dyn-item">
+                        <a href="{% url 'ebooks:chapter-detail' c.chapter_book.slug c.slug %}" data-ix="side-chapter-link" class="sidechapter-link w-inline-block w-clearfix">
+                            <div style="background-image:url(&quot;{% if c.image %}{{ c.image }}{% else %}{% static 'material-kit/img/image_placeholder.jpg' %}{% endif %}&quot;)" class="sidethumb">
+                            </div>
+                            <div>
+                                <div class="sidechapter-text">{% trans "Chapter" %}</div>
+                                <div class="sidechapter-text">{{ c.order_index }}</div>
+                            </div>
+                            <div class="sidechapter-title">{{ c.title|capfirst }}</div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fullscreen w-clearfix">
+        <div style="background-image:url(&quot;{% block side_image %}{{ book.book_product.image }}{% endblock side_image %}&quot;)" class="leftside">
+            <div class="leftnavigation bottom">
+                <div class="w-row">
+                    <div class="buttoncol w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-col w-col-4 w-col-stack"></div>
+                    <div class="buttoncol w-col w-col-4 w-col-stack"><a href="#" data-ix="view-chapters" class="allchapters w-hidden-small w-hidden-tiny">{% trans "View Chapters" %}</a></div>
+                    <div class="buttoncol w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-col w-col-4 w-col-stack"></div>
+                </div>
+            </div>
+            <a href="#" data-ix="view-chapters" class="viewchapters-link w-hidden-main w-hidden-medium w-inline-block">
+                <div class="w-hidden-tiny">{% trans "View Chapters" %}</div>
+            </a>
+            <div class="leftoverlay"></div>
+            <div class="titlewrapper">
+                <div class="leftnavigation">
+                    <div>
+                        <a href="{% url 'ebooks:book-detail' book.slug %}" class="sitetitle white"><span class="diventi-font">Diventi</span> Apps</a></div>
+                    </div>
+                <div class="titleblock">
+                    {% block side_chapter %}
+                    <!--
+                        <div class="sidechapters">{% trans "Chapter" %}</div>
+                        <div class="sidechapters">{% block side_chapter_number %}1{% endblock %}</div>
+                    -->
+                    {% endblock side_chapter %}
+                    <h1 class="sidetitle">{% block side_title %}{{ book.title }}{% endblock side_title %}</h1>
+                    <div class="subtitle">{% block side_subtitle %}{{ book.description }}{% endblock side_subtitle %}</div>
+                </div>
+            </div>
+        </div>
+        <div class="rightside">
+            <!--
+            <div class="chapterpage-head w-clearfix">
+                <a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{{ book.title }}</a>
+
+                
+                <div class="chapterpage-header chaptertext">{% trans "Chapter" %}</div>
+                <div class="chapterpage-header chaptertext">{{ chapter.order_index }}</div>
+
+                <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
+            </div>
+            -->
+            <div class="rightnavigation">
+                {% if previous_chapter %}
+                    <a href="{{ previous_chapter.get_absolute_url }}" class="bottomnav-links w-inline-block">
+                        <div class="previous-next">
+                            {% block right_navigation_previous_chapter_label %}{% trans "Previous Chapter" %}{% endblock right_navigation_previous_chapter_label %}</div>
+                        <div class="bottomnav-chapter">{{ previous_chapter.title }}</div>
+                    </a>
+                {% endif %}
+                {% if next_chapter %}
+                    <a href="{{ next_chapter.get_absolute_url }}" class="bottomnav-links rights w-inline-block">
+                        <div class="previous-next">
+                            {% block right_navigation_next_chapter_label %}{% trans "Next Chapter" %}{% endblock right_navigation_next_chapter_label %}
+                        </div>
+                        <div class="bottomnav-chapter">{{ next_chapter.title }}</div>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="maincontent-wrap">
+
+                <div class="chapterpage-head">
+                    <div class="chapterpage-header"><a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{{ book.title }}</a>
+                    </div>
+                    <div class="chapterpage-header chaptertext">{% block chapterpage_title %}{% trans "Introduction" %}{% endblock chapterpage_title %}</div>
+                    <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
+                </div>
+
+                <div class="lede chapterlede">{% block chapter_lead %}{{ book.lead|striptags }}{% endblock chapter_lead %}</div>
+                <div class="chaptercontent w-richtext">{% block chapter_content %}{{ book.summary|safe }}{% endblock chapter_content %}</div>
+
+            </div>
+
+            {% if next_chapter %}
+            <a href="{{ next_chapter.get_absolute_url }}" class="bottomnav-links cc-bottom w-inline-block">
+                <div class="previous-next">{% block bottom_navigation_next_chapter_label %}{% trans "Next Chapter" %}{% endblock bottom_navigation_next_chapter_label %}</div>
+                <div class="bottomnav-chapter">{{ next_chapter.title }}</div>
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+    <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.4.1.min.220afd743d.js" type="text/javascript" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://assets.website-files.com/56c60feb4d4f81a50633a1b0/js/webflow.563f60f23.js" type="text/javascript"></script>
+</html>

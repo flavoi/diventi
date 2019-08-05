@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-05 07:38+0200\n"
+"POT-Creation-Date: 2019-08-05 09:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -338,7 +338,7 @@ msgstr "Gestione"
 
 #: diventi/blog/admin.py:17 diventi/ebooks/admin.py:71
 #: diventi/ebooks/admin.py:95 diventi/ebooks/admin.py:113
-#: diventi/ebooks/admin.py:130 diventi/feedbacks/admin.py:56
+#: diventi/ebooks/admin.py:133 diventi/feedbacks/admin.py:56
 #: diventi/landing/admin.py:28 diventi/products/admin.py:50
 #: diventi/sheets/admin.py:23
 msgid "Editing"
@@ -609,7 +609,7 @@ msgid "Table of contents"
 msgstr "Indice"
 
 #: diventi/ebooks/admin.py:68 diventi/ebooks/admin.py:92
-#: diventi/ebooks/admin.py:110
+#: diventi/ebooks/admin.py:110 diventi/ebooks/admin.py:130
 msgid "Layout"
 msgstr "Disposizione"
 
@@ -773,7 +773,7 @@ msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:138
+#: diventi/ebooks/views.py:142
 msgid "This book hasn't been published yet."
 msgstr "Questo libro non è stato ancora pubblicato."
 
@@ -1093,14 +1093,15 @@ msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
 #: diventi/products/models.py:139
-#: diventi/templates/ebooks/book_detail_web.html:76
-#: diventi/templates/ebooks/book_detail_web.html:108
-#: diventi/templates/ebooks/book_detail_web.html:123
+#: diventi/templates/ebooks/base_book_web.html:76
+#: diventi/templates/ebooks/base_book_web.html:108
+#: diventi/templates/ebooks/base_book_web.html:123
+#: diventi/templates/ebooks/chapter_detail_web.html:9
 msgid "Chapter"
 msgstr "Capitolo"
 
 #: diventi/products/models.py:140
-#: diventi/templates/ebooks/book_detail_web.html:67
+#: diventi/templates/ebooks/base_book_web.html:67
 msgid "Chapters"
 msgstr "Capitoli"
 
@@ -1677,28 +1678,34 @@ msgstr "alla pagina precedente"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/ebooks/base_book_web.html:6
-msgid "First Chapter"
-msgstr "Primo Capitolo"
+#: diventi/templates/ebooks/base_book_web.html:92
+#: diventi/templates/ebooks/base_book_web.html:97
+msgid "View Chapters"
+msgstr "Visualzza Capitoli"
+
+#: diventi/templates/ebooks/base_book_web.html:133
+msgid "Previous Chapter"
+msgstr "Capitolo Precedente"
+
+#: diventi/templates/ebooks/base_book_web.html:140
+#: diventi/templates/ebooks/base_book_web.html:163
+#: diventi/templates/ebooks/chapter_detail_web.html:16
+msgid "Next Chapter"
+msgstr "Capitolo Successivo"
+
+#: diventi/templates/ebooks/base_book_web.html:152
+#: diventi/templates/ebooks/book_detail_web.html:12
+msgid "Introduction"
+msgstr "Introduzione"
 
 #: diventi/templates/ebooks/base_section.html:56
 #: diventi/templates/ebooks/base_section.html:64
 msgid "Close"
 msgstr "Chiudi"
 
-#: diventi/templates/ebooks/book_detail_web.html:92
-#: diventi/templates/ebooks/book_detail_web.html:97
-msgid "View Chapters"
-msgstr "Visualzza Capitoli"
-
-#: diventi/templates/ebooks/book_detail_web.html:142
-#: diventi/templates/ebooks/book_detail_web.html:165
-msgid "Next Chapter"
-msgstr "Prossimo Capitolo"
-
-#: diventi/templates/ebooks/book_detail_web.html:154
-msgid "Introduction"
-msgstr "Introduzione"
+#: diventi/templates/ebooks/book_detail_web.html:11
+msgid "First Chapter"
+msgstr "Primo Capitolo"
 
 #: diventi/templates/ebooks/search_results.html:6
 #: diventi/templates/ebooks/search_results.html:15

@@ -5,7 +5,6 @@ from django.db import migrations, models
 def forwards(apps, schema_editor):
     user_model = apps.get_model('ebooks', 'Section')
     obj = user_model.objects.all()
-    print('Updating template names...'.format(obj))
     DEFAULT_TEMPLATE = 'section_standard'
     obj.update(template=DEFAULT_TEMPLATE)     
 

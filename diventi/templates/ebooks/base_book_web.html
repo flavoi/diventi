@@ -230,7 +230,7 @@
                     </form>
                 </div>
 
-                <div class="lede chapterlede">{% block chapter_lead %}{{ book.lead|striptags }}{% endblock chapter_lead %}</div>
+                <div class="lede chapterlede" style="margin-top: 25px;">{% block chapter_lead %}{{ book.lead|striptags }}{% endblock chapter_lead %}</div>
                 <div class="chaptercontent w-richtext">{% block chapter_content %}{{ book.summary|safe }}{% endblock chapter_content %}</div>
 
             </div>

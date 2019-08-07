@@ -29,7 +29,7 @@
 {% block content_body %}
 
 {% for section in chapter.sections.all %}
-  {% with "ebooks/"|add:section.template as template_name %}
+  {% with "ebooks/"|add:section.template|add:"_material.html" as template_name %}
     {% include template_name %}
   {% endwith %}
 {% endfor %}

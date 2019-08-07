@@ -103,9 +103,10 @@ class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,
     """
         Returns a list of sections that matches the searched phrase.
     """
-    template_name = "ebooks/search_results.html"
-    context_object_name = 'results'
+
     model = Section
+    context_object_name = 'results'
+
 
     def get_queryset(self, **kwargs):
         results = super().get_queryset(**kwargs)
@@ -122,6 +123,11 @@ class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,
         context = super().get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('q')
         return context
+
+    def get_template_names(self):
+        book_slug = self.kwargs.get('book_slug', None)
+        book = get_object_or_404(Book, slug=book_slug)
+        return ['ebooks/search_results_%s.html' % book.template]
 
 
 class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,

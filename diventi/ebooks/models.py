@@ -169,11 +169,11 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
         ('right', _('Right')),
     ]
     text_alignment = models.CharField(max_length=20, choices=ALIGNMENT_CHOICES, default=DEFAULT_ALIGNMENT, verbose_name=_('text alignment'))
-    DEFAULT_TEMPLATE = 'section_standard.html'
+    DEFAULT_TEMPLATE = 'section_standard'
     TEMPLATE_CHOICES = (
         (DEFAULT_TEMPLATE, _('Standard')),
-        ('section_with_icon.html', _('With icon')),
-        ('section_with_image.html', _('With image')),
+        ('section_with_icon', _('With icon')),
+        ('section_with_image', _('With image')),
     )
     template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('template'))
     DEFAULT_CARD_TYPE = ' '

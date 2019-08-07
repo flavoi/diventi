@@ -18,16 +18,8 @@
 {% block chapter_lead %}{% endblock chapter_lead %}
 {% block chapter_content %}
 {% for section in chapter.sections.all %}
-    <h3>{{ section.title|capfirst }}</h3>
-    {% if section.universal_section %}
-      {{ section.universal_section.content|safe }}
-    {% endif %}
-    {{ section.content|safe }}
-    {% if section.image %}
-        <figure data-rt-type="image" data-rt-align="center" data-rt-max-width="50" data-rt-max-height="56.25" class="w-richtext-align-center" style="max-width: 60%;">
-            <div><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ section.image }}"></div>
-            <figcaption>{{ section.label }}</figcaption>
-        </figure>
-    {% endif %}
+    {% with "ebooks/"|add:section.template|add:"_web.html" as template_name %}
+        {% include template_name %}
+    {% endwith %}
 {% endfor %}
 {% endblock chapter_content %}

@@ -21,7 +21,7 @@
 
 {% block content_body %}
     {% for section in results %}
-        {% with "ebooks/"|add:section.template as template_name %}
+        {% with "ebooks/"|add:section.template|add:"_material.html" as template_name %}
           {% include template_name %}
         {% endwith %}
         {% empty %}

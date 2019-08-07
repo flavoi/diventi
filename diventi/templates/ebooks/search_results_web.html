@@ -1,0 +1,23 @@
+{% extends 'ebooks/base_book_web.html' %}
+
+{% load i18n %}
+
+{% block side_image %}{{ book.book_product.image }}{% endblock side_image %}
+{% block side_chapter %}{% endblock side_chapter %}
+{% block side_title %}{{ book.title }}{% endblock side_title %}
+{% block side_subtitle %}{{ book.description }}{% endblock side_subtitle %}
+
+{% block right_navigation_next_chapter_label %}{% endblock right_navigation_next_chapter_label %}
+{% block chapterpage_title %}{% trans "Search results" %}{% endblock chapterpage_title %}
+
+{% block chapter_lead %}{% endblock chapter_lead %}
+
+{% block chapter_content %}
+    {% for section in results %}
+        {% with "ebooks/"|add:section.template|add:"_web.html" as template_name %}
+          {% include template_name %}
+        {% endwith %}
+        {% empty %}
+        <h4>{% trans "No items found" %}.</h4>
+    {% endfor %}
+{% endblock chapter_content %}  

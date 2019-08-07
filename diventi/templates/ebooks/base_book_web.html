@@ -74,6 +74,63 @@
 
             tr:nth-child(even){background-color: #f2f2f2}
 
+            /* ===========================
+               ====== Search Box ====== 
+               =========================== */
+
+            .search
+
+            {
+                border: 2px solid #CF5C3F;
+                overflow: auto;
+                border-radius: 5px;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+            }
+
+            .search input[type="text"]
+            {
+                border: 0px;
+                width: 67%;
+                padding: 10px 10px;
+            }
+
+            .search input[type="text"]:focus
+            {
+                outline: 0;
+            }
+
+            .search input[type="submit"]
+            {
+                border: 0px;
+                background: none;
+                background-color: #CF5C3F;
+                color: #fff;
+                float: right;
+                padding: 10px;
+                border-radius-top-right: 5px;
+                -moz-border-radius-top-right: 5px;
+                -webkit-border-radius-top-right: 5px;
+                border-radius-bottom-right: 5px;
+                -moz-border-radius-bottom-right: 5px;
+                -webkit-border-radius-bottom-right: 5px;
+                    cursor:pointer;
+            }
+
+            /* ===========================
+               ====== Medua Query for Search Box ====== 
+               =========================== */
+
+            @media only screen and (min-width : 150px) and (max-width : 780px)
+            {
+                {}
+                .search
+                {
+                    width: 95%;
+                    margin: 0 auto;
+                }
+
+            }
     </style>
 </head>
 
@@ -131,17 +188,14 @@
             </div>
         </div>
         <div class="rightside">
-            <!--
             <div class="chapterpage-head w-clearfix">
+                <!--
                 <a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{{ book.title }}</a>
-
-                
                 <div class="chapterpage-header chaptertext">{% trans "Chapter" %}</div>
                 <div class="chapterpage-header chaptertext">{{ chapter.order_index }}</div>
-
                 <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
+                -->
             </div>
-            -->
             <div class="rightnavigation">
                 {% if previous_chapter %}
                     <a href="{{ previous_chapter.get_absolute_url }}" class="bottomnav-links w-inline-block">
@@ -167,6 +221,13 @@
                     </div>
                     <div class="chapterpage-header chaptertext">{% block chapterpage_title %}{% trans "Introduction" %}{% endblock chapterpage_title %}</div>
                     <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
+                </div>
+
+                <div class="search">
+                    <form action="{% url 'ebooks:section-search' book.slug %}" class="search-form">
+                        <input type="text" name="q" autofocus="autofocus" {% if 'search_query' %}value="{{ search_query }}"{% endif %} placeholder="{% trans 'Search' %}">
+                        <input type="submit" value="{% trans 'Submit' %}">
+                    </form>
                 </div>
 
                 <div class="lede chapterlede">{% block chapter_lead %}{{ book.lead|striptags }}{% endblock chapter_lead %}</div>

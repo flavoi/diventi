@@ -25,7 +25,7 @@
     {{ section.content|safe }}
     {% if section.image %}
         <figure data-rt-type="image" data-rt-align="center" data-rt-max-width="50" data-rt-max-height="56.25" class="w-richtext-align-center" style="max-width: 60%;">
-            <div><img src="{{ section.image }}"></div>
+            <div><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ section.image }}"></div>
             <figcaption>{{ section.label }}</figcaption>
         </figure>
     {% endif %}

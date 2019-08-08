@@ -33,105 +33,124 @@
                 url('{% static "fonts/Kravitz.woff" %}') format('woff');
             font-weight: normal;
             font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Kravitz Extra Thermal';
+            src: url('{% static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
+                url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Kravitz Thermal';
+            src: url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
+                url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .diventi-font {
+          font-family: 'Kravitz Thermal';
+          font-weight: normal;
+          font-style: normal;
+          font-size: 36px;
+          color: #fff;
+        }
+
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 100%;
+          border: 1px solid #ddd;
+        }
+
+        th, td {
+          text-align: left;
+          padding: 8px;
+          min-width: 65px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        /* ===========================
+           ====== Search Box ====== 
+           =========================== */
+
+        .search__container {
+                padding-top: 0;
             }
 
-            @font-face {
-                font-family: 'Kravitz Extra Thermal';
-                src: url('{% static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
-                    url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
-                font-weight: normal;
-                font-style: normal;
+        .search__title {
+                font-size: 22px;
+                font-weight: 900;
+                text-align: center;
+                color: #ff8b88;
             }
 
-            @font-face {
-                font-family: 'Kravitz Thermal';
-                src: url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
-                    url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
-                font-weight: normal;
-                font-style: normal;
+        .search__input {
+                width: 100%;
+                padding: 12px 24px;
+
+                background-color: transparent;
+                transition: transform 250ms ease-in-out;
+                font-size: 14px;
+                line-height: 18px;
+                
+                color: #575756;
+                background-color: transparent;
+        /*         background-image: url(http://mihaeltomic.com/codepen/input-search/ic_search_black_24px.svg); */
+     
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: 18px 18px;
+            background-position: 95% center;
+            border-radius: 50px;
+            border: 1px solid #575756;
+            transition: all 250ms ease-in-out;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .search__input::placeholder {
+                color: rgba(87, 87, 86, 0.8);
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
             }
 
-            .diventi-font {
-              font-family: 'Kravitz Thermal';
-              font-weight: normal;
-              font-style: normal;
-              font-size: 36px;
-              color: #fff;
-            }
-
-            table {
-              border-collapse: collapse;
-              border-spacing: 0;
-              width: 100%;
-              border: 1px solid #ddd;
-            }
-
-            th, td {
-              text-align: left;
-              padding: 8px;
-              min-width: 65px;
-            }
-
-            tr:nth-child(even){background-color: #f2f2f2}
-
-            /* ===========================
-               ====== Search Box ====== 
-               =========================== */
-
-            .search
-
-            {
-                border: 2px solid #CF5C3F;
-                overflow: auto;
-                border-radius: 5px;
-                -moz-border-radius: 5px;
-                -webkit-border-radius: 5px;
-            }
-
-            .search input[type="text"]
-            {
-                border: 0px;
-                width: 67%;
-                padding: 10px 10px;
-            }
-
-            .search input[type="text"]:focus
-            {
-                outline: 0;
-            }
-
-            .search input[type="submit"]
-            {
-                border: 0px;
-                background: none;
-                background-color: #CF5C3F;
-                color: #fff;
-                float: right;
-                padding: 10px;
-                border-radius-top-right: 5px;
-                -moz-border-radius-top-right: 5px;
-                -webkit-border-radius-top-right: 5px;
-                border-radius-bottom-right: 5px;
-                -moz-border-radius-bottom-right: 5px;
-                -webkit-border-radius-bottom-right: 5px;
-                    cursor:pointer;
-            }
-
-            /* ===========================
-               ====== Medua Query for Search Box ====== 
-               =========================== */
-
-            @media only screen and (min-width : 150px) and (max-width : 780px)
-            {
-                {}
-                .search
-                {
-                    width: 95%;
-                    margin: 0 auto;
+        .search__input:hover,
+                .search__input:focus {
+                    padding: 12px 0;
+                    outline: 0;
+                    border: 1px solid transparent;
+                    border-bottom: 1px solid #575756;
+                    border-radius: 0;
+                    background-position: 100% center;
                 }
 
+        .credits__container {
+                margin-top: 24px;
             }
+
+        .credits__text {
+                text-align: center;
+                font-size: 13px;
+                line-height: 18px;
+            }
+
+        .credits__link {
+                color: #ff8b88;
+                text-decoration: none;
+                transition: color 250ms ease-in;
+            }
+
+        .credits__link:hover,
+                .credits__link:focus {
+                    color: rgb(191, 137, 135);
+                }
     </style>
+    
 </head>
 
 <body>
@@ -223,12 +242,22 @@
                     <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
                 </div>
 
-                <div class="search">
+                <div class="search__container">
+                    <!--
+                    <p class="search__title">
+                        Go ahead, hover over search
+                    </p>
+                    -->
                     <form action="{% url 'ebooks:section-search' book.slug %}" class="search-form">
-                        <input type="text" name="q" autofocus="autofocus" {% if 'search_query' %}value="{{ search_query }}"{% endif %} placeholder="{% trans 'Search' %}">
-                        <input type="submit" value="{% trans 'Submit' %}">
+                        <input name="q" class="search__input" type="text" {% if 'search_query' %}value="{{ search_query }}"{% endif %} placeholder="{% trans 'Search' %}">
                     </form>
                 </div>
+
+                <!--
+                <div class="credits__container">
+                    <p class="credits__text">Background color: Pantone Color of the Year 2016 <a href="https://www.pantone.com/color-of-the-year-2016" class="credits__link">Rose Quartz</a></p>
+                </div>
+                -->
 
                 <div class="lede chapterlede" style="margin-top: 25px;">{% block chapter_lead %}{{ book.lead|striptags }}{% endblock chapter_lead %}</div>
                 <div class="chaptercontent w-richtext">{% block chapter_content %}{{ book.summary|safe }}{% endblock chapter_content %}</div>

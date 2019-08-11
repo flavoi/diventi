@@ -147,3 +147,8 @@ class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
         except chapter.model.DoesNotExist:
             raise Http404(_("This book hasn't been published yet."))
         return obj
+
+    def get_template_names(self):
+        book_slug = self.kwargs.get('book_slug', None)
+        book = get_object_or_404(Book, slug=book_slug)
+        return ['ebooks/section_detail_%s.html' % book.template]

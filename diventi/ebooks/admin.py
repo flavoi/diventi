@@ -10,16 +10,6 @@ from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unp
 from .models import Book, Chapter, Section, UniversalSection, Attachment
 
 
-def enable_bookmarks(modeladmin, request, queryset):
-    queryset.update(bookmark=True)
-enable_bookmarks.short_description = _("Show the selected items in the table of contents")
-
-
-def disable_bookmarks(modeladmin, request, queryset):
-    queryset.update(bookmark=False)
-disable_bookmarks.short_description = _("Hide the selected items from the table of contents")
-
-
 class UniversalSectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'get_universal_chapter',]
     fields = ['title', 'order_index', 'content',]
@@ -57,7 +47,7 @@ class AttachmentAdmin(DiventiTranslationAdmin):
 
 
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'bookmark', 'chapter', 'color_tag', 'image_tag', 'icon_tag', 'get_attachments']
+    list_display = ['title', 'order_index', 'chapter', 'color_tag', 'image_tag', 'icon_tag', 'get_attachments']
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
@@ -66,7 +56,7 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
             'fields': ('chapter', 'bookmark')
         }),
         (_('Layout'), {
-            'fields': ('template', 'col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'card_type')
+            'fields': ('col_lg', 'col_md', 'image', 'text_alignment', 'color',)
         }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'description', 'content', 'slug'),
@@ -77,7 +67,6 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     search_fields = ['chapter__chapter_book__title', 'title']
     list_filter = ['chapter__chapter_book',]
     inlines = [AttachmentInline]
-    actions = [enable_bookmarks, disable_bookmarks]
 
 
 class SectionInline(TranslationStackedInline):

@@ -20,7 +20,5 @@
 {% endblock content_header_title %}
 
 {% block content_body %}
-  {% with "ebooks/"|add:section.template as template_name %}
-    {% include template_name %}
-  {% endwith %}
-{% endblock content_body %}    
+    {% include 'ebooks/section_content_material.html' %}
+{% endblock content_body %}

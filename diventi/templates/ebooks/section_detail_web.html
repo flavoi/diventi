@@ -7,17 +7,15 @@
 
 {% block side_chapter %}
     <div class="sidechapters">{% trans "Chapter" %}</div>
-    <div class="sidechapters">{% block side_chapter_number %}{{ chapter.order_index }}{% endblock %}</div>
+    <div class="sidechapters">{% block side_chapter_number %}{{ section.chapter.order_index }}{% endblock %}</div>
 {% endblock side_chapter %}
 
-{% block side_title %}{{ chapter.title }}{% endblock side_title %}
-{% block side_subtitle %}{{ chapter.description }}{% endblock side_subtitle %}
+{% block side_title %}{{ section.chapter.title }}{% endblock side_title %}
+{% block side_subtitle %}{{ section.chapter.description }}{% endblock side_subtitle %}
 
 {% block right_navigation_next_chapter_label %}{% trans "Next Chapter" %}{% endblock right_navigation_next_chapter_label %}
-{% block chapterpage_title %}{{ chapter.title|capfirst }}{% endblock chapterpage_title %}
+{% block chapterpage_title %}{{ section.chapter.title|capfirst }}{% endblock chapterpage_title %}
 {% block chapter_lead %}{% endblock chapter_lead %}
 {% block chapter_content %}
-{% for section in chapter.sections.all %}
     {% include 'ebooks/section_content_web.html' %}
-{% endfor %}
 {% endblock chapter_content %}

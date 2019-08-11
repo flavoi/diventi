@@ -60,7 +60,7 @@ class Book(Element, TimeStampedModel, PublishableModel, DiventiColModel):
         return '%s' % (self.title)
 
     def get_absolute_url(self):
-        return reverse('ebooks:book-detail', args=[self.slug])
+        return reverse('ebooks:book-detail', args=[self.slug,])
 
     def get_product_category(self):
         if self.book_product:
@@ -169,19 +169,6 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
         ('right', _('Right')),
     ]
     text_alignment = models.CharField(max_length=20, choices=ALIGNMENT_CHOICES, default=DEFAULT_ALIGNMENT, verbose_name=_('text alignment'))
-    DEFAULT_TEMPLATE = 'section_standard'
-    TEMPLATE_CHOICES = (
-        (DEFAULT_TEMPLATE, _('Standard')),
-        ('section_with_icon', _('With icon')),
-        ('section_with_image', _('With image')),
-    )
-    template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('template'))
-    DEFAULT_CARD_TYPE = ' '
-    CARD_TYPES = [
-        (DEFAULT_CARD_TYPE, _('Standard')),
-        ('card-plain', _('No background')),
-    ]
-    card_type = models.CharField(max_length=30, choices=CARD_TYPES, default=DEFAULT_CARD_TYPE, verbose_name=_('card type'))
     slug = models.SlugField(null=True, verbose_name=_('slug'))
 
     objects = SectionQuerySet.as_manager()

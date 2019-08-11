@@ -209,6 +209,18 @@ CKEDITOR_CONFIGS = {
             ['TextColor', 'BGColor'],
             ['Smiley', 'SpecialChar'], ['Source'],
         ],
+        'stylesSet': [
+            {
+                "name": _('Base block'),
+                "element": 'div',
+                "styles": {
+                    'padding': '5px 10px',
+                    'background': '#eee',
+                    'border': '1px solid #ccc',
+                    'margin-bottom': '15px',
+                }
+            },
+        ],
     },    
 }
 

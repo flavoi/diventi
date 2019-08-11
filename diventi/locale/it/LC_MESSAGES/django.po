@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-05 09:03+0200\n"
+"POT-Creation-Date: 2019-08-11 21:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,23 +26,27 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:239
+#: config/settings/base.py:214
+msgid "Base block"
+msgstr "Blocco base"
+
+#: config/settings/base.py:251
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:240
+#: config/settings/base.py:252
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:241
+#: config/settings/base.py:253
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:242
+#: config/settings/base.py:254
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:243
+#: config/settings/base.py:255
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -330,15 +334,15 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:107
+#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:96
 #: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
 #: diventi/products/admin.py:47 diventi/sheets/admin.py:20
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:71
-#: diventi/ebooks/admin.py:95 diventi/ebooks/admin.py:113
-#: diventi/ebooks/admin.py:133 diventi/feedbacks/admin.py:56
+#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:61
+#: diventi/ebooks/admin.py:84 diventi/ebooks/admin.py:102
+#: diventi/ebooks/admin.py:122 diventi/feedbacks/admin.py:56
 #: diventi/landing/admin.py:28 diventi/products/admin.py:50
 #: diventi/sheets/admin.py:23
 msgid "Editing"
@@ -376,7 +380,7 @@ msgid "category"
 msgstr "tipo"
 
 #: diventi/blog/models.py:81 diventi/ebooks/models.py:128
-#: diventi/ebooks/models.py:161 diventi/ebooks/models.py:217
+#: diventi/ebooks/models.py:161 diventi/ebooks/models.py:204
 #: diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
@@ -386,7 +390,7 @@ msgid "hot"
 msgstr "hot"
 
 #: diventi/blog/models.py:83 diventi/ebooks/models.py:45
-#: diventi/ebooks/models.py:109 diventi/ebooks/models.py:185
+#: diventi/ebooks/models.py:109 diventi/ebooks/models.py:172
 #: diventi/feedbacks/models.py:118 diventi/products/models.py:76
 #: diventi/sheets/models.py:23
 msgid "slug"
@@ -592,28 +596,20 @@ msgstr "colonna lg"
 msgid "md column"
 msgstr "colonna md"
 
-#: diventi/ebooks/admin.py:15
-msgid "Show the selected items in the table of contents"
-msgstr "Mostra nell'indice gli oggetti selezionati"
-
-#: diventi/ebooks/admin.py:20
-msgid "Hide the selected items from the table of contents"
-msgstr "Nascondi dall'indice gli oggetti selezionati"
-
-#: diventi/ebooks/admin.py:62 diventi/ebooks/admin.py:86
+#: diventi/ebooks/admin.py:52 diventi/ebooks/admin.py:75
 msgid "Universal content"
 msgstr "Contenuti universali"
 
-#: diventi/ebooks/admin.py:65 diventi/ebooks/admin.py:89
+#: diventi/ebooks/admin.py:55 diventi/ebooks/admin.py:78
 msgid "Table of contents"
 msgstr "Indice"
 
-#: diventi/ebooks/admin.py:68 diventi/ebooks/admin.py:92
-#: diventi/ebooks/admin.py:110 diventi/ebooks/admin.py:130
+#: diventi/ebooks/admin.py:58 diventi/ebooks/admin.py:81
+#: diventi/ebooks/admin.py:99 diventi/ebooks/admin.py:119
 msgid "Layout"
 msgstr "Disposizione"
 
-#: diventi/ebooks/admin.py:127
+#: diventi/ebooks/admin.py:116
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -646,7 +642,7 @@ msgstr ""
 msgid "Web"
 msgstr ""
 
-#: diventi/ebooks/models.py:55 diventi/ebooks/models.py:178
+#: diventi/ebooks/models.py:55
 msgid "template"
 msgstr "modello"
 
@@ -710,40 +706,20 @@ msgstr "Destra"
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:174 diventi/ebooks/models.py:181
-msgid "Standard"
-msgstr "Normale"
-
-#: diventi/ebooks/models.py:175
-msgid "With icon"
-msgstr "Con icona"
-
-#: diventi/ebooks/models.py:176
-msgid "With image"
-msgstr "Con immagine"
-
-#: diventi/ebooks/models.py:182
-msgid "No background"
-msgstr "Nessuno sfondo"
-
-#: diventi/ebooks/models.py:184
-msgid "card type"
-msgstr "tipo cartello"
-
-#: diventi/ebooks/models.py:197 diventi/ebooks/models.py:225
+#: diventi/ebooks/models.py:184 diventi/ebooks/models.py:212
 msgid "attachments"
 msgstr "allegati"
 
-#: diventi/ebooks/models.py:212 diventi/ebooks/models.py:218
+#: diventi/ebooks/models.py:199 diventi/ebooks/models.py:205
 #: diventi/landing/models.py:86
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:213 diventi/landing/models.py:87
+#: diventi/ebooks/models.py:200 diventi/landing/models.py:87
 msgid "sections"
 msgstr "sezioni"
 
-#: diventi/ebooks/models.py:224
+#: diventi/ebooks/models.py:211
 msgid "attachment"
 msgstr "allegato"
 
@@ -773,7 +749,7 @@ msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:142
+#: diventi/ebooks/views.py:148
 msgid "This book hasn't been published yet."
 msgstr "Questo libro non è stato ancora pubblicato."
 
@@ -1093,15 +1069,16 @@ msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
 #: diventi/products/models.py:139
-#: diventi/templates/ebooks/base_book_web.html:76
-#: diventi/templates/ebooks/base_book_web.html:108
-#: diventi/templates/ebooks/base_book_web.html:123
+#: diventi/templates/ebooks/base_book_web.html:168
+#: diventi/templates/ebooks/base_book_web.html:200
+#: diventi/templates/ebooks/base_book_web.html:213
 #: diventi/templates/ebooks/chapter_detail_web.html:9
+#: diventi/templates/ebooks/section_detail_web.html:9
 msgid "Chapter"
 msgstr "Capitolo"
 
 #: diventi/products/models.py:140
-#: diventi/templates/ebooks/base_book_web.html:67
+#: diventi/templates/ebooks/base_book_web.html:159
 msgid "Chapters"
 msgstr "Capitoli"
 
@@ -1545,6 +1522,7 @@ msgid "Search contents in this website"
 msgstr "Cerca contenuti in questo sito web"
 
 #: diventi/templates/base.html:120 diventi/templates/base_dashboard.html:177
+#: diventi/templates/ebooks/base_book_web.html:252
 #: diventi/templates/navigation.html:29
 msgid "Search"
 msgstr "Ricerca"
@@ -1678,45 +1656,48 @@ msgstr "alla pagina precedente"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/ebooks/base_book_web.html:92
-#: diventi/templates/ebooks/base_book_web.html:97
+#: diventi/templates/ebooks/base_book_web.html:184
+#: diventi/templates/ebooks/base_book_web.html:189
 msgid "View Chapters"
 msgstr "Visualzza Capitoli"
 
-#: diventi/templates/ebooks/base_book_web.html:133
+#: diventi/templates/ebooks/base_book_web.html:222
 msgid "Previous Chapter"
 msgstr "Capitolo Precedente"
 
-#: diventi/templates/ebooks/base_book_web.html:140
-#: diventi/templates/ebooks/base_book_web.html:163
+#: diventi/templates/ebooks/base_book_web.html:229
+#: diventi/templates/ebooks/base_book_web.html:269
 #: diventi/templates/ebooks/chapter_detail_web.html:16
+#: diventi/templates/ebooks/section_detail_web.html:16
 msgid "Next Chapter"
 msgstr "Capitolo Successivo"
 
-#: diventi/templates/ebooks/base_book_web.html:152
+#: diventi/templates/ebooks/base_book_web.html:241
 #: diventi/templates/ebooks/book_detail_web.html:12
 msgid "Introduction"
 msgstr "Introduzione"
-
-#: diventi/templates/ebooks/base_section.html:56
-#: diventi/templates/ebooks/base_section.html:64
-msgid "Close"
-msgstr "Chiudi"
 
 #: diventi/templates/ebooks/book_detail_web.html:11
 msgid "First Chapter"
 msgstr "Primo Capitolo"
 
-#: diventi/templates/ebooks/search_results.html:6
-#: diventi/templates/ebooks/search_results.html:15
-#: diventi/templates/ebooks/search_results.html:18
+#: diventi/templates/ebooks/search_results_material.html:6
+#: diventi/templates/ebooks/search_results_material.html:15
+#: diventi/templates/ebooks/search_results_material.html:18
+#: diventi/templates/ebooks/search_results_web.html:11
 msgid "Search results"
 msgstr "Risultati"
 
-#: diventi/templates/ebooks/search_results.html:29
+#: diventi/templates/ebooks/search_results_material.html:29
+#: diventi/templates/ebooks/search_results_web.html:21
 #: diventi/templates/landing/search_results.html:43
 msgid "No items found"
 msgstr "Nessun risultato trovato"
+
+#: diventi/templates/ebooks/section_content_material.html:46
+#: diventi/templates/ebooks/section_content_material.html:54
+msgid "Close"
+msgstr "Chiudi"
 
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
@@ -1883,6 +1864,27 @@ msgstr "recensione"
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#~ msgid "Show the selected items in the table of contents"
+#~ msgstr "Mostra nell'indice gli oggetti selezionati"
+
+#~ msgid "Hide the selected items from the table of contents"
+#~ msgstr "Nascondi dall'indice gli oggetti selezionati"
+
+#~ msgid "Standard"
+#~ msgstr "Normale"
+
+#~ msgid "With icon"
+#~ msgstr "Con icona"
+
+#~ msgid "With image"
+#~ msgstr "Con immagine"
+
+#~ msgid "No background"
+#~ msgstr "Nessuno sfondo"
+
+#~ msgid "card type"
+#~ msgstr "tipo cartello"
 
 #~ msgid "Log in to rate"
 #~ msgstr "Accedi per votare"
@@ -2111,9 +2113,6 @@ msgstr "chiudi"
 
 #~ msgid "list items"
 #~ msgstr "elementi della lista"
-
-#~ msgid "character block"
-#~ msgstr "casella personaggio"
 
 #~ msgid "character blocks"
 #~ msgstr "caselle personaggio"

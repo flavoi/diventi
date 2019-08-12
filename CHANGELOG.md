@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED] → 2019-xx-xx
 
 ### Added
+- Introduced new actions in products admin page to lock or unlock items
+- Introduced related products as new section in product detail page
 
 ### Changed
 - Updated ckeditor config with custom block styles

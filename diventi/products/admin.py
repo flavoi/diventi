@@ -13,10 +13,17 @@ def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
 make_published.short_description = _("Mark selected products as published")
 
-
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(published=False)
 make_unpublished.short_description = _("Mark selected products as hidden")
+
+def make_available(modeladmin, request, queryset):
+    queryset.update(available=True)
+make_available.short_description = _("Mark selected products as available")
+
+def make_unavailable(modeladmin, request, queryset):
+    queryset.update(available=False)
+make_unavailable.short_description = _("Mark selected products as unavailable")
 
 
 class ChapterInline(TranslationStackedInline):
@@ -50,8 +57,11 @@ class ProductAdmin(DiventiTranslationAdmin):
         (_('Editing'), {
             'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'buyers', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
+        (_('Related'), {
+            'fields': ('related_products',),
+        }),
     )
-    actions = [make_published, make_unpublished]
+    actions = [make_published, make_unpublished, make_available, make_unavailable]
     raw_id_fields = ['buyers']
     form = ProductForm
 

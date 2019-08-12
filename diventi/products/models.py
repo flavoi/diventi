@@ -23,6 +23,9 @@ class ProductQuerySet(models.QuerySet):
             products = self
         else:
             products = self.filter(published=True)
+        products = products.prefetch_related('chapters')
+        products = products.prefetch_related('authors')
+        products = products.prefetch_related('related_products')
         return products
 
     # Get the available products
@@ -37,8 +40,6 @@ class ProductQuerySet(models.QuerySet):
     # Get the featured product 
     def featured(self):
         try:
-            featured_product = self.prefetch_related('chapters')
-            featured_product = featured_product.prefetch_related('authors')
             featured_product = featured_product.published().get(featured=True) 
         except Product.DoesNotExist:
             # Fail silently, return nothing
@@ -82,6 +83,12 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     available = models.BooleanField(default=False, verbose_name=_('available')) # Disable the access to the file
     courtesy_short_message = models.CharField(max_length=50, verbose_name=_('short courtesy messages'))
     courtesy_message = models.TextField(verbose_name=_('courtesy message')) # Explains why the product is under maintenance
+    related_products = models.ManyToManyField(
+        'self',
+        related_name='related_products', 
+        blank=True, 
+        verbose_name=_('related products'),
+    ) # Connect this product to others
 
     objects = ProductQuerySet.as_manager()
 

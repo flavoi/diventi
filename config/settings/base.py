@@ -200,15 +200,17 @@ NOCAPTCHA = True
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Custom',
-        'height': 500,
-        'toolbar_Custom': [
-            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
+        'toolbar_Basic': [
+            ['Undo', 'Redo'],
+            ['Styles', 'Format'],
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Table', 'HorizontalRule'],
-            ['TextColor', 'BGColor'],
-            ['Smiley', 'SpecialChar'], ['Source'],
+            ['Bold', 'Italic', 'Underline', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList', 'Blockquote'],
+            ['Source',],
+            ['Maximize',],
         ],
+        'toolbar': 'Basic',
         'stylesSet': [
             {
                 "name": _('Base block'),
@@ -220,6 +222,11 @@ CKEDITOR_CONFIGS = {
                     'margin-bottom': '15px',
                 }
             },
+            {
+                "name": _('Super paragraph'),
+                "element": 'div',
+                "attributes": {'class': 'lede'},
+            }
         ],
     },    
 }

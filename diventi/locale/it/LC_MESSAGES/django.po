@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 21:57+0200\n"
+"POT-Creation-Date: 2019-08-12 10:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,27 +26,31 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:214
+#: config/settings/base.py:216
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:251
+#: config/settings/base.py:226
+msgid "Super paragraph"
+msgstr "Super paragrafo"
+
+#: config/settings/base.py:258
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:252
+#: config/settings/base.py:259
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:253
+#: config/settings/base.py:260
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:254
+#: config/settings/base.py:261
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:255
+#: config/settings/base.py:262
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -2128,9 +2132,6 @@ msgstr "chiudi"
 
 #~ msgid "subsubsection"
 #~ msgstr "sotto-sottosezione"
-
-#~ msgid "paragraph"
-#~ msgstr "paragrafo"
 
 #~ msgid "commentbox"
 #~ msgstr "casella commento"

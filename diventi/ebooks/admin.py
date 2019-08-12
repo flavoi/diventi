@@ -9,6 +9,12 @@ from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unp
 
 from .models import Book, Chapter, Section, UniversalSection, Attachment
 
+def duplicate_section(modeladmin, request, queryset):
+    for section in queryset:
+        section.id = None
+        section.chapter = None
+        section.save()
+duplicate_section.short_description = _("Duplicate selected section")
 
 class UniversalSectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'get_universal_chapter',]
@@ -67,6 +73,7 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     search_fields = ['chapter__chapter_book__title', 'title']
     list_filter = ['chapter__chapter_book',]
     inlines = [AttachmentInline]
+    actions = [duplicate_section,]
 
 
 class SectionInline(TranslationStackedInline):

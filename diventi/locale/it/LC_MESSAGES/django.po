@@ -640,7 +640,7 @@ msgstr ""
 
 #: diventi/ebooks/models.py:48
 msgid "summary"
-msgstr ""
+msgstr "sommario"
 
 #: diventi/ebooks/models.py:51
 msgid "Material"

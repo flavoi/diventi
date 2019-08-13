@@ -76,27 +76,6 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     actions = [duplicate_section,]
 
 
-class SectionInline(TranslationStackedInline):
-    model = Section
-    fieldsets = (
-        (_('Universal content'), {
-            'fields': ('universal_section',)
-        }),
-        (_('Table of contents'), {
-            'fields': ('bookmark',)
-        }),
-        (_('Layout'), {
-            'fields': ('template', 'col_lg', 'col_md', 'image', 'text_alignment', 'color', 'icon', 'card_type')
-        }),
-        (_('Editing'), {
-            'fields': ('title', 'order_index', 'description', 'content', 'slug'),
-        }),
-    )
-    ordering = ['order_index']
-    prepopulated_fields = {"slug": ("title",)}
-    extra = 0
-
-
 class BookAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'get_product_image', 'get_product_category', 'template', 'created', 'modified', 'published', 'publication_date']
     fieldsets = (
@@ -135,7 +114,6 @@ class ChapterAdmin(DiventiTranslationAdmin):
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
     search_fields = ['chapter_book__title']
-    inlines = [SectionInline]
 
 
 class SectionCategoryadmin(DiventiTranslationAdmin):

@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished, deactivate
 
 from .models import Article, ArticleCategory, BlogCover
+from .forms import ArticleForm
 
 
 class ArticleAdmin(DiventiTranslationAdmin):
@@ -18,7 +19,13 @@ class ArticleAdmin(DiventiTranslationAdmin):
             'fields': ('title', 'category', 'image', 'description', 'content', 'label', 'author', 'slug', 'publication_date'),
         }),
     )
+    form = ArticleForm
     actions = [make_published, make_unpublished]
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj=None, **kwargs)
+        form.author_field = 'author'
+        return form
 
 
 class BlogCoverAdmin(DiventiTranslationAdmin):

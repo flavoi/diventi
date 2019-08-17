@@ -53,7 +53,7 @@ class AttachmentAdmin(DiventiTranslationAdmin):
 
 
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'chapter', 'color_tag', 'image_tag', 'icon_tag', 'get_attachments']
+    list_display = ['title', 'order_index', 'chapter', 'image_tag',]
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section',)
@@ -62,7 +62,7 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
             'fields': ('chapter', 'bookmark')
         }),
         (_('Layout'), {
-            'fields': ('col_lg', 'col_md', 'image', 'text_alignment', 'color',)
+            'fields': ('image', 'text_alignment',)
         }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'description', 'content', 'slug'),

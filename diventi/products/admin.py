@@ -65,6 +65,11 @@ class ProductAdmin(DiventiTranslationAdmin):
     raw_id_fields = ['buyers']
     form = ProductForm
 
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj=None, **kwargs)
+        form.author_field = 'authors'
+        return form
+
 
 class CategoryAdmin(DiventiTranslationAdmin):
     list_display = ('title', 'default')

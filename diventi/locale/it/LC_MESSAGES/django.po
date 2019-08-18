@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 15:32+0200\n"
+"POT-Creation-Date: 2019-08-18 15:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -338,17 +338,16 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:14 diventi/ebooks/admin.py:103
+#: diventi/blog/admin.py:15 diventi/ebooks/admin.py:82
 #: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
 #: diventi/products/admin.py:54 diventi/sheets/admin.py:20
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:17 diventi/ebooks/admin.py:67
-#: diventi/ebooks/admin.py:91 diventi/ebooks/admin.py:109
-#: diventi/ebooks/admin.py:129 diventi/feedbacks/admin.py:56
-#: diventi/landing/admin.py:28 diventi/products/admin.py:57
-#: diventi/sheets/admin.py:23
+#: diventi/blog/admin.py:18 diventi/ebooks/admin.py:67
+#: diventi/ebooks/admin.py:88 diventi/ebooks/admin.py:108
+#: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:28
+#: diventi/products/admin.py:57 diventi/sheets/admin.py:23
 msgid "Editing"
 msgstr "Contenuti"
 
@@ -604,20 +603,21 @@ msgstr "colonna md"
 msgid "Duplicate selected section"
 msgstr "Duplica la sezione selezionata"
 
-#: diventi/ebooks/admin.py:58 diventi/ebooks/admin.py:82
+#: diventi/ebooks/admin.py:58
 msgid "Universal content"
 msgstr "Contenuti universali"
 
-#: diventi/ebooks/admin.py:61 diventi/ebooks/admin.py:85
+#: diventi/ebooks/admin.py:61
+#: diventi/templates/ebooks/chapter_detail_web.html:20
 msgid "Table of contents"
 msgstr "Indice"
 
-#: diventi/ebooks/admin.py:64 diventi/ebooks/admin.py:88
-#: diventi/ebooks/admin.py:106 diventi/ebooks/admin.py:126
+#: diventi/ebooks/admin.py:64 diventi/ebooks/admin.py:85
+#: diventi/ebooks/admin.py:105
 msgid "Layout"
 msgstr "Disposizione"
 
-#: diventi/ebooks/admin.py:123
+#: diventi/ebooks/admin.py:102
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -1712,8 +1712,8 @@ msgstr "Primo Capitolo"
 msgid "Search results"
 msgstr "Risultati"
 
-#: diventi/templates/ebooks/search_results_material.html:29
-#: diventi/templates/ebooks/search_results_web.html:21
+#: diventi/templates/ebooks/search_results_material.html:27
+#: diventi/templates/ebooks/search_results_web.html:19
 #: diventi/templates/landing/search_results.html:43
 msgid "No items found"
 msgstr "Nessun risultato trovato"

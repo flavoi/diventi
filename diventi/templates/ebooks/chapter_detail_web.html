@@ -17,6 +17,14 @@
 {% block chapterpage_title %}{{ chapter.title|capfirst }}{% endblock chapterpage_title %}
 {% block chapter_lead %}{% endblock chapter_lead %}
 {% block chapter_content %}
+<h3>{% trans "Table of contents" %}</h3>
+    <ol>
+        {% for section in chapter.sections.all %}
+            <li>
+                <a href="{% url 'ebooks:chapter-detail' chapter.chapter_book.slug chapter.slug %}#{{ section.slug }}">{{ section.title }}</a>
+            </li>
+        {% endfor %}
+    </ol>
 {% for section in chapter.sections.all %}
     {% include 'ebooks/section_content_web.html' %}
 {% endfor %}

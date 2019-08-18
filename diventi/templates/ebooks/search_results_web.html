@@ -14,9 +14,7 @@
 
 {% block chapter_content %}
     {% for section in results %}
-        {% with "ebooks/"|add:section.template|add:"_web.html" as template_name %}
-          {% include template_name %}
-        {% endwith %}
+        {% include 'ebooks/section_content_web.html' %}
         {% empty %}
         <h4>{% trans "No items found" %}.</h4>
     {% endfor %}

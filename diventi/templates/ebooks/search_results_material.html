@@ -21,9 +21,7 @@
 
 {% block content_body %}
     {% for section in results %}
-        {% with "ebooks/"|add:section.template|add:"_material.html" as template_name %}
-          {% include template_name %}
-        {% endwith %}
+        {% include 'ebooks/section_content_material.html' %}
         {% empty %}
         <div class="col-lg-12 col-md-12 text-center">
             <h4>{% trans "No items found" %}.</h4>

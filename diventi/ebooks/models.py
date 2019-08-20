@@ -39,7 +39,7 @@ class BookQuerySet(models.QuerySet):
         return book
 
 
-class Book(Element, TimeStampedModel, PublishableModel, DiventiColModel):
+class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, DiventiColModel):
     """ A collection of chapters that constitutes a product. """
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))

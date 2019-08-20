@@ -10,7 +10,7 @@
     <meta content="{{ book.description }}" name="description" />
     <meta content="{{ book.title }}" property="og:title" />
     <meta content="{{ book.description }}" property="og:description" />
-    <meta content="{{ book.book_product.image }}" />
+    <meta content="{{ book.image }}" />
     <meta content="summary" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Diventi" name="generator" />
@@ -177,7 +177,7 @@
         </div>
     </div>
     <div class="fullscreen w-clearfix">
-        <div style="background-image:url(&quot;{% block side_image %}{{ book.book_product.image }}{% endblock side_image %}&quot;)" class="leftside">
+        <div style="background-image:url(&quot;{% block side_image %}{{ book.image }}{% endblock side_image %}&quot;)" class="leftside">
             <div class="leftnavigation bottom">
                 <div class="w-row">
                     <div class="buttoncol w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny w-col w-col-4 w-col-stack"></div>

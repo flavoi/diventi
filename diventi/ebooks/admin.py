@@ -16,6 +16,7 @@ def duplicate_section(modeladmin, request, queryset):
         section.save()
 duplicate_section.short_description = _("Duplicate selected section")
 
+
 class UniversalSectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'get_universal_chapter',]
     fields = ['title', 'order_index', 'content',]
@@ -77,13 +78,13 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
 
 
 class BookAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'get_product_image', 'get_product_category', 'template', 'created', 'modified', 'published', 'publication_date']
+    list_display = ['title', 'image_tag', 'get_product_category', 'template', 'created', 'modified', 'published', 'publication_date']
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'book_product')
         }),
         (_('Layout'), {
-            'fields': ('template', 'col_lg', 'col_md',)
+            'fields': ('template', 'image')
         }),
         (_('Editing'), {
             'fields': ('title', 'short_title', 'description', 'lead', 'summary', 'slug', 'created', 'modified', 'publication_date'),

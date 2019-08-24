@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Updated ckeditor config with custom block styles
 - Ebooks: updated table of contents for chapter's sections 
+- Improved product page mobile responsiveness
 
 ### Removed
 - Removed section templates and values

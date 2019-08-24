@@ -18,8 +18,10 @@
   <script defer src="https://pro.fontawesome.com/releases/v5.9.0/js/all.js" integrity="sha384-nKdXFHC25mX+ztWymakpQ8nRykznAcZ+yHi9XETJ8CuVvvSGeg/0QCPhvDb41hUb" crossorigin="anonymous"></script>
 
   <!-- Core styles CSS -->
+  {% block base_css_styles %}
   <link href="{% static 'material-kit-v211/css/material-kit.min.gz.css' %}" rel="stylesheet"/>
   <link href="{% static 'diventi/css/diventi.min.gz.css' %}" rel="stylesheet"/>
+  {% endblock base_css_styles %}
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}?v=3">

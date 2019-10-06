@@ -1,11 +1,15 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Book, Chapter, Section, UniversalSection, Attachment
+from .models import Book, Chapter, Section, UniversalSection, Attachment, Part
 
 
 @register(Book)
 class BookTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'lead', 'summary', 'slug')
+
+@register(Part)
+class PartTranslationOptions(TranslationOptions):
+    fields = ('title',)
 
 @register(Chapter)
 class ChapterTranslationOptions(TranslationOptions):

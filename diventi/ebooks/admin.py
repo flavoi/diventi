@@ -7,7 +7,7 @@ from modeltranslation.admin import TranslationStackedInline, TranslationTabularI
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
-from .models import Book, Chapter, Section, UniversalSection, Attachment
+from .models import Book, Chapter, Section, UniversalSection, Attachment, Part
 
 def duplicate_section(modeladmin, request, queryset):
     for section in queryset:
@@ -75,6 +75,11 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     list_filter = ['chapter__chapter_book',]
     inlines = [AttachmentInline]
     actions = [duplicate_section,]
+  
+
+class PartAdmin(DiventiTranslationAdmin):
+    list_display = ['title', ]
+    fields = ['title',]
 
 
 class BookAdmin(DiventiTranslationAdmin):
@@ -98,7 +103,7 @@ class BookAdmin(DiventiTranslationAdmin):
 
 
 class ChapterAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'order_index', 'chapter_book', 'created', 'modified',]
+    list_display = ['title', 'image_tag', 'order_index', 'chapter_book', 'part', 'created', 'modified',]
     fieldsets = (
         (_('Pubblication'), {
             'fields': ('chapter_book',)
@@ -107,7 +112,7 @@ class ChapterAdmin(DiventiTranslationAdmin):
             'fields': ('image',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'description', 'slug', 'created', 'modified'),
+            'fields': ('title', 'order_index', 'part', 'description', 'slug', 'created', 'modified'),
         }),
     )
     readonly_fields = ['created', 'modified',]
@@ -122,6 +127,7 @@ class SectionCategoryadmin(DiventiTranslationAdmin):
 
 
 admin.site.register(Book, BookAdmin)
+admin.site.register(Part, PartAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(UniversalSection, UniversalSectionAdmin)

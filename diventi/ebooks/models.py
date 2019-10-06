@@ -39,6 +39,14 @@ class BookQuerySet(models.QuerySet):
         return book
 
 
+class Part(Element):
+    pass
+
+    class Meta:
+        verbose_name = _('part')
+        verbose_name_plural = _('parts')
+
+
 class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, DiventiColModel):
     """ A collection of chapters that constitutes a product. """
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
@@ -46,10 +54,10 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
     book_product = models.OneToOneField(Product, null=True, blank=True, related_name='book', on_delete=models.SET_NULL, verbose_name=_('product'))
     lead = models.TextField(blank=True, verbose_name=_('lead'))
     summary = RichTextField(verbose_name=_('summary'))
-    DEFAULT_TEMPLATE = 'material'
+    DEFAULT_TEMPLATE = 'web'
     TEMPLATE_CHOICES = (
-        (DEFAULT_TEMPLATE, _('Material')),
-        ('web', _('Web')),
+        (DEFAULT_TEMPLATE, _('Web')),
+        ('material', _('Material')),
     )
     # The template adds a suffix to the template name relative to this object
     template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('template'))
@@ -108,6 +116,7 @@ class Chapter(Element, DiventiImageModel, TimeStampedModel, PublishableModel):
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     chapter_book = models.ForeignKey(Book, null=True, blank=True, related_name='chapters', on_delete=models.SET_NULL, verbose_name=_('book'))
+    part = models.ForeignKey(Part, null=True, related_name='parts', on_delete=models.SET_NULL, verbose_name=_('part'))    
 
     def __str__(self):
         return '({0}) {1} - {2}'.format(self.order_index, self.chapter_book, self.title)

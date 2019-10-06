@@ -43,7 +43,7 @@ class EbookView(View):
         book = get_object_or_404(Book, slug=book_slug)
         context['book'] = book
         chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
-        chapters = chapters.order_by('order_index').bookmark_sections()
+        chapters = chapters.order_by('order_index', 'part').bookmark_sections()
         context['chapters'] = chapters
         return context
 
@@ -53,7 +53,6 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
     """ Returns the digital content of a product. """
     
     model = Book
-    #template_name = "ebooks/book_detail.html"
     slug_url_kwarg = 'book_slug'
 
     def get_queryset(self, **kwargs):
@@ -97,6 +96,7 @@ class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
         previous_chapter = previous_chapter.first()
         context['previous_chapter'] = previous_chapter
         return context
+
 
 class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,
                         EbookView, ListView):

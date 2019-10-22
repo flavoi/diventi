@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Book, Chapter, Section, UniversalSection, Attachment, Part
+from .models import Book, Chapter, Section, UniversalSection, Part, AppRule
 
 
 @register(Book)
@@ -22,7 +22,7 @@ class SectionTranslationOptions(TranslationOptions):
 @register(UniversalSection)
 class UniversalSectionTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'content',)
-
-@register(Attachment)
-class SectionTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'content',)
+    
+@register(AppRule)
+class AppRuleTranslationOptions(TranslationOptions):
+    fields = ('title', 'description', 'initial_string', 'result_string')

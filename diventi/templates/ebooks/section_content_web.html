@@ -1,8 +1,5 @@
 <a style="color:#41474d" name="{{ section.slug }}"><h3>{{ section.title|capfirst }}</h3></a>
-{% if section.universal_section %}
-  {{ section.universal_section.content|safe }}
-{% endif %}
-{{ section.content|safe }}
+{{ section.get_converted_content|safe }}
 {% if section.image %}
     <figure data-rt-type="image" data-rt-align="center" data-rt-max-width="50" data-rt-max-height="56.25" class="w-richtext-align-center" style="max-width: 60%;">
         <div><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ section.image }}"></div>

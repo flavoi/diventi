@@ -7,7 +7,7 @@ from modeltranslation.admin import TranslationStackedInline, TranslationTabularI
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
-from .models import Book, Chapter, Section, UniversalSection, Attachment, Part
+from .models import Book, Chapter, Section, UniversalSection, Part, AppRule
 
 def duplicate_section(modeladmin, request, queryset):
     for section in queryset:
@@ -42,22 +42,11 @@ class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
         return form
 
 
-class AttachmentInline(TranslationStackedInline):
-    model = Attachment
-    fields = ['title', 'content']
-    extra = 0
-
-
-class AttachmentAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'section']
-    fields = ['title', 'content', 'section']
-
-
 class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
-    list_display = ['title', 'order_index', 'chapter', 'image_tag',]
+    list_display = ['title', 'order_index', 'chapter', 'image_tag', 'get_rules']
     fieldsets = (
         (_('Universal content'), {
-            'fields': ('universal_section',)
+            'fields': ('universal_section', 'rules')
         }),
         (_('Table of contents'), {
             'fields': ('chapter', 'bookmark')
@@ -73,13 +62,17 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     ordering = ['chapter__order_index', 'order_index']
     search_fields = ['chapter__chapter_book__title', 'title']
     list_filter = ['chapter__chapter_book',]
-    inlines = [AttachmentInline]
     actions = [duplicate_section,]
   
 
 class PartAdmin(DiventiTranslationAdmin):
     list_display = ['title', ]
     fields = ['title',]
+
+
+class AppRuleAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'initial_string', 'result_string']
+    fields = ['title', 'initial_string', 'result_string']
 
 
 class BookAdmin(DiventiTranslationAdmin):
@@ -131,4 +124,4 @@ admin.site.register(Part, PartAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(UniversalSection, UniversalSectionAdmin)
-admin.site.register(Attachment, AttachmentAdmin)
+admin.site.register(AppRule, AppRuleAdmin)

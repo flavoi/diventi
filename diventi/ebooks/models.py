@@ -1,4 +1,4 @@
-import operator
+import operator, re
 from functools import reduce
 
 from django.db import models
@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.db.models import Prefetch, Q
 from django.utils.html import mark_safe
+from django.utils.text import capfirst
 
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
@@ -20,6 +21,12 @@ from diventi.core.models import (
     DiventiImageModel, 
     DiventiColModel
 )
+
+
+class AbstractSection(Element, TimeStampedModel):
+
+    class Meta:
+        abstract = True
 
 
 class BookQuerySet(models.QuerySet):
@@ -131,7 +138,7 @@ class Chapter(Element, DiventiImageModel, TimeStampedModel, PublishableModel):
         verbose_name_plural = _('chapters')
 
 
-class UniversalSection(Element, TimeStampedModel):
+class UniversalSection(AbstractSection):
     """ A section that can be copied but not published. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     content = RichTextField(blank=True, null=True, verbose_name=_('content'))
@@ -148,12 +155,22 @@ class UniversalSection(Element, TimeStampedModel):
         verbose_name_plural = _('universal Sections')
 
 
+class AppRule(Element):
+    """ Contains the rules that trigger specific strings replacements. """
+    initial_string = models.CharField(max_length=30, verbose_name=_('initial string'))
+    result_string = models.CharField(max_length=30, verbose_name=_('result string'))    
+
+    class Meta:
+        verbose_name = _('app rule')
+        verbose_name_plural = _('app rules')
+
+
 class SectionQuerySet(models.QuerySet):
 
     # Fetch the universal section related to the section
     def usection(self):
         sections = self.select_related('universal_section')
-        section = self.select_related('attachments')
+        section = self.select_related('rules')
         sections = sections.order_by('order_index')
         return sections
 
@@ -164,7 +181,7 @@ class SectionQuerySet(models.QuerySet):
         return sections
 
 
-class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
+class Section(AbstractSection, DiventiImageModel, DiventiColModel):
     """ A section of a chapter. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     content = RichTextField(blank=True, verbose_name=_('content'))
@@ -178,6 +195,7 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
         ('right', _('Right')),
     ]
     text_alignment = models.CharField(max_length=20, choices=ALIGNMENT_CHOICES, default=DEFAULT_ALIGNMENT, verbose_name=_('text alignment'))
+    rules = models.ManyToManyField(AppRule, blank=True)
     slug = models.SlugField(null=True, verbose_name=_('slug'))
 
     objects = SectionQuerySet.as_manager()
@@ -188,9 +206,9 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
     def get_absolute_url(self):
         return reverse('ebooks:section-detail', args=[self.chapter.chapter_book.slug, self.chapter.slug, self.slug, self.pk])
 
-    def get_attachments(self):
-        return mark_safe("<br>".join([a.title for a in self.attachments.all()]))
-    get_attachments.short_description = _('attachments')
+    def get_rules(self):
+        return mark_safe("<br>".join([a.title for a in self.rules.all()]))
+    get_rules.short_description = _('rules')
 
     def search(self, query, book_slug, *args, **kwargs):
         book = Book.objects.published().get(slug=book_slug)
@@ -204,18 +222,21 @@ class Section(Element, TimeStampedModel, DiventiImageModel, DiventiColModel):
         )
         return results
 
+    def get_converted_content(self):
+        """
+            Replace the content of the section according
+            to the defined rules.
+        """
+        usection = ''
+        if self.universal_section:
+            usection = self.universal_section.content
+        content = usection + self.content
+        rules = self.rules.all()
+        for r in rules:
+            content = re.sub(r"\b%s\b" % r.initial_string, r.result_string, content)
+            content = re.sub(r"\b%s\b" % capfirst(r.initial_string), capfirst(r.result_string), content)
+        return content
+
     class Meta:
         verbose_name = _('section')
         verbose_name_plural = _('sections')
-
-
-class Attachment(Element):
-    content = RichTextField(blank=True, verbose_name=_('content'))
-    section = models.ForeignKey(Section, null=True, blank=True, on_delete=models.SET_NULL, related_name=('attachments'), verbose_name=_('section'))
-
-    def __str__(self):
-        return '{0}'.format(self.title)
-
-    class Meta:
-        verbose_name = _('attachment')
-        verbose_name_plural = _('attachments')

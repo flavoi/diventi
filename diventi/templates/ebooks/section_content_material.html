@@ -22,9 +22,9 @@
                     </a>
                     {% block card_body_content %}
                         {% if section.universal_section %}
-                            <h5>{{ section.universal_section.content|safe }}</h5>
+                            <h5>{{ section.universal_section.get_converted_content|safe }}</h5>
                         {% endif %}
-                        <h5>{{ section.content|safe }}</h5>
+                        <h5>{{ section.get_converted_content|safe }}</h5>
                     {% endblock card_body_content %}
                     {% for a in section.attachments.all %}
                         <button class="btn btn-outline btn-round" data-toggle="modal" data-target="#attachmentModal{{ a.id }}">

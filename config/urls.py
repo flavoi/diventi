@@ -32,4 +32,5 @@ urlpatterns += i18n_patterns(
     path(_('feedbacks/'), include('diventi.feedbacks.urls', namespace='feedbacks')),
     path(_('ebooks/'), include('diventi.ebooks.urls', namespace='ebooks')),
     path(_('sheets/'), include('diventi.sheets.urls', namespace='sheets')),
+    path(_('payments/'), include('diventi.payments.urls', namespace='payments')),
 )

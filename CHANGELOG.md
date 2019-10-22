@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Ebooks: updated table of contents with parts and chapters
 - Products: the courtesy message is no longer a mandatory field
 - Improved product page mobile responsiveness
+- Removed forced uppercase from article's label
 
 ### Removed
 - Ebooks: removed section templates and values

@@ -43,7 +43,7 @@ mock==2.0.0
 olefile==0.45.1
 parsedatetime==2.4
 pbr==4.2.0
-Pillow==5.2.0
+Pillow==6.2.1
 prompt-toolkit==2.0.4
 pyasn1==0.4.4
 pycparser==2.18

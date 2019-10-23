@@ -7,7 +7,7 @@ from modeltranslation.admin import TranslationStackedInline, TranslationTabularI
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
-from .models import Book, Chapter, Section, UniversalSection, Part, AppRule
+from .models import Book, Chapter, Section, UniversalSection, Part, ReplacementRule
 
 def duplicate_section(modeladmin, request, queryset):
     for section in queryset:
@@ -70,7 +70,7 @@ class PartAdmin(DiventiTranslationAdmin):
     fields = ['title',]
 
 
-class AppRuleAdmin(DiventiTranslationAdmin):
+class ReplacementRuleAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'initial_string', 'result_string']
     fields = ['title', 'initial_string', 'result_string']
 
@@ -124,4 +124,4 @@ admin.site.register(Part, PartAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(UniversalSection, UniversalSectionAdmin)
-admin.site.register(AppRule, AppRuleAdmin)
+admin.site.register(ReplacementRule, ReplacementRuleAdmin)

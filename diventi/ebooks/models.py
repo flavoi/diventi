@@ -155,14 +155,14 @@ class UniversalSection(AbstractSection):
         verbose_name_plural = _('universal Sections')
 
 
-class AppRule(Element):
+class ReplacementRule(Element):
     """ Contains the rules that trigger specific strings replacements. """
     initial_string = models.CharField(max_length=30, verbose_name=_('initial string'))
     result_string = models.CharField(max_length=30, verbose_name=_('result string'))    
 
     class Meta:
-        verbose_name = _('app rule')
-        verbose_name_plural = _('app rules')
+        verbose_name = _('replacement rule')
+        verbose_name_plural = _('replacement rules')
 
 
 class SectionQuerySet(models.QuerySet):
@@ -195,7 +195,7 @@ class Section(AbstractSection, DiventiImageModel, DiventiColModel):
         ('right', _('Right')),
     ]
     text_alignment = models.CharField(max_length=20, choices=ALIGNMENT_CHOICES, default=DEFAULT_ALIGNMENT, verbose_name=_('text alignment'))
-    rules = models.ManyToManyField(AppRule, blank=True)
+    rules = models.ManyToManyField(ReplacementRule, blank=True)
     slug = models.SlugField(null=True, verbose_name=_('slug'))
 
     objects = SectionQuerySet.as_manager()

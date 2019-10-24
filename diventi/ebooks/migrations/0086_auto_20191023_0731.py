@@ -4,7 +4,8 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
+    atomic = False
+    
     dependencies = [
         ('ebooks', '0085_auto_20191022_2234'),
     ]

@@ -195,7 +195,7 @@ class Section(AbstractSection, DiventiImageModel, DiventiColModel):
         ('right', _('Right')),
     ]
     text_alignment = models.CharField(max_length=20, choices=ALIGNMENT_CHOICES, default=DEFAULT_ALIGNMENT, verbose_name=_('text alignment'))
-    rules = models.ManyToManyField(ReplacementRule, blank=True)
+    rules = models.ManyToManyField(ReplacementRule, blank=True, verbose_name=_('rules'))
     slug = models.SlugField(null=True, verbose_name=_('slug'))
 
     objects = SectionQuerySet.as_manager()

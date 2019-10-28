@@ -56,3 +56,8 @@ MEDIA_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
 # Email backend for testing and development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Stripe payments
+# https://dashboard.stripe.com/test/apikeys
+STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')

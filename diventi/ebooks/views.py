@@ -26,8 +26,13 @@ class UserHasProductMixin(UserPassesTestMixin):
         book_slug = self.kwargs.get('book_slug', None)
         book = get_object_or_404(Book, slug=book_slug)
         product = book.book_product
-        test = product.user_has_already_bought(self.request.user) or product.user_has_authored(self.request.user)
-        return test
+        user_has_bought_test = product.user_has_already_bought(self.request.user) or product.user_has_authored(self.request.user)
+        if not user_has_bought_test:
+            self.permission_denied_message = _('This book is not in your collection, please check your profile.')
+        product_is_available_test = product.is_available()
+        if not product_is_available_test:
+            self.permission_denied_message = _('The product related to this book is not yet available, please check back later.')
+        return user_has_bought_test and product_is_available_test
 
 
 class EbookView(View):
@@ -48,7 +53,7 @@ class EbookView(View):
         return context
 
 
-class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
+class BookDetailView(LoginRequiredMixin, UserHasProductMixin, 
                      EbookView, DetailView):
     """ Returns the digital content of a product. """
     

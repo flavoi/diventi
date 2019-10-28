@@ -30,6 +30,7 @@ class ProductQuerySet(models.QuerySet):
 
     # Get the available products
     def available(self):
+        user = CuserMiddleware.get_user()
         if user.is_superuser:
             products = self
         else:
@@ -125,6 +126,11 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     # Return True if the user has authored this collection
     def user_has_authored(self, user):
         return user in self.authors.all()
+
+    # Checks if this product is available for the current user
+    def is_available(self):
+        p = Product.objects.filter(pk=self.pk)
+        return p.available().exists()
 
 
 class ChapterCategory(Category):

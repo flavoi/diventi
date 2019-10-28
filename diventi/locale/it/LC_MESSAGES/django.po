@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-23 07:31+0200\n"
+"POT-Creation-Date: 2019-10-28 09:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -382,7 +382,7 @@ msgid "description"
 msgstr "descrizione"
 
 #: diventi/blog/models.py:80 diventi/ebooks/models.py:85
-#: diventi/products/models.py:82 diventi/products/models.py:143
+#: diventi/products/models.py:82 diventi/products/models.py:148
 msgid "category"
 msgstr "tipo"
 
@@ -562,7 +562,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:152 diventi/products/models.py:155
+#: diventi/core/models.py:152 diventi/products/models.py:160
 msgid "Image"
 msgstr "Immagine"
 
@@ -641,7 +641,7 @@ msgid "short title"
 msgstr "titolo breve"
 
 #: diventi/ebooks/models.py:61 diventi/products/models.py:96
-#: diventi/products/models.py:142 diventi/products/models.py:152
+#: diventi/products/models.py:147 diventi/products/models.py:157
 msgid "product"
 msgstr "prodotto"
 
@@ -741,7 +741,7 @@ msgstr "Destra"
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:211
+#: diventi/ebooks/models.py:198 diventi/ebooks/models.py:211
 msgid "rules"
 msgstr "regole"
 
@@ -773,13 +773,19 @@ msgstr ""
 msgid "<slug:book_slug>/search/"
 msgstr "<slug:book_slug>/ricerca/"
 
-#: diventi/ebooks/views.py:23
+#: diventi/ebooks/views.py:23 diventi/ebooks/views.py:31
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:148
+#: diventi/ebooks/views.py:34
+msgid ""
+"The product related to this book is not yet available, please check back "
+"later."
+msgstr "Il prodotto relativo a questo libro non è ancora disponibile, per favore controlla più tardi."
+
+#: diventi/ebooks/views.py:153
 msgid "This book hasn't been published yet."
 msgstr "Questo libro non è stato ancora pubblicato."
 
@@ -1112,15 +1118,15 @@ msgstr "prodotti correlati"
 msgid "application"
 msgstr "applicazione"
 
-#: diventi/products/models.py:136
+#: diventi/products/models.py:141
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:137
+#: diventi/products/models.py:142
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:146
+#: diventi/products/models.py:151
 #: diventi/templates/ebooks/base_book_web.html:169
 #: diventi/templates/ebooks/base_book_web.html:201
 #: diventi/templates/ebooks/base_book_web.html:214
@@ -1129,12 +1135,12 @@ msgstr "Tipi Capitolo"
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:147
+#: diventi/products/models.py:152
 #: diventi/templates/ebooks/base_book_web.html:159
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:156
+#: diventi/products/models.py:161
 msgid "Images"
 msgstr "Immagini"
 

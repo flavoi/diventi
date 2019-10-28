@@ -30,7 +30,6 @@ class ProductQuerySet(models.QuerySet):
 
     # Get the available products
     def available(self):
-        products = self.published()
         if user.is_superuser:
             products = self
         else:

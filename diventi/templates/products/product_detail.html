@@ -22,28 +22,28 @@
                 <div class="md-layout">
                     <div class="md-layout-item md-size-50 md-small-size-100">
                        <div class="tab-content">
-  <div class="inline-container-zoomer-box">
-    <div class="preview-box tab-content">
-      {% for imagepreview in product.imagepreviews.all %}
-        <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="product-page{{ imagepreview.id }}">
-          <img src="{{ imagepreview.image }}">
-        </div>
-      {% endfor %}
-    </div>
-    <div class="control-box">
-       <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
-        {% for imagepreview in product.imagepreviews.all %}
-          <li class="nav-item {% if forloop.first %}active show{% endif %}">
-            <a href="#product-page{{ imagepreview.id }}" class="nav-link {% if forloop.first %}active show{% endif %}" data-toggle="tab">
-              <img src="{{ imagepreview.image }}">
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div id="inline-container-pane-container" class="pane-container"></div>
-  </div>
-</div>
+                        <div class="inline-container-zoomer-box">
+                          <div class="preview-box tab-content">
+                            {% for imagepreview in product.imagepreviews.all %}
+                              <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="product-page{{ imagepreview.id }}">
+                                <img src="{{ imagepreview.image }}">
+                              </div>
+                            {% endfor %}
+                          </div>
+                          <div class="control-box">
+                             <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
+                              {% for imagepreview in product.imagepreviews.all %}
+                                <li class="nav-item {% if forloop.first %}active show{% endif %}">
+                                  <a href="#product-page{{ imagepreview.id }}" class="nav-link {% if forloop.first %}active show{% endif %}" data-toggle="tab">
+                                    <img src="{{ imagepreview.image }}">
+                                  </a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                          <div id="inline-container-pane-container" class="pane-container"></div>
+                        </div>
+                      </div>
                     </div>
                     <div class="md-layout-item md-size-50 md-small-size-100">
                       <div class="text-center">
@@ -55,11 +55,9 @@
                             <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category.title }}</label>
                             <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
                         {% endif %}    
-                        
                         <div class="my-3">
                           {% render_rating for product %}
                         </div>
-
                       <div id="accordion" role="tablist">
                         <div class="card card-collapse text-left">
                             <div class="card-header" role="tab" id="headingOne">

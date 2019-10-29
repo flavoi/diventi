@@ -7,5 +7,5 @@ app_name = 'payments'
 
 urlpatterns = [
     path(_(''), HomePageView.as_view(), name='home'),
-    path(_('charge/'), charge, name='charge'),
+    path(_('charge/<slug:product_slug>/'), charge, name='charge'),
 ]

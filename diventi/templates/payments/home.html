@@ -1,10 +1,11 @@
 <!-- templates/home.html -->
-<h2>Buy for $5.00</h2>
-<form action="{% url 'payments:charge' %}" method="post">
+<h2>Buy {{ product.title }} for €5.00</h2>
+<form action="{% url 'payments:charge' product.slug %}" method="post">
   {% csrf_token %}
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="{{ key }}"
-          data-description="A Django Charge"
+          data-description="{{ product.title }} Charge"
           data-amount="500"
-          data-locale="auto"></script>
+          data-locale="auto"
+          data-currency="eur"></script>
 </form>

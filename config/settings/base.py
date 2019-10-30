@@ -94,8 +94,6 @@ LOCAL_APPS = [
     'diventi.products',
     'diventi.feedbacks',
     'diventi.ebooks',
-    'diventi.sheets',
-    'diventi.payments',
 ]
 
 THIRD_PARTY_APPS = [

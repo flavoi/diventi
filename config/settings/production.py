@@ -60,3 +60,8 @@ EMAIL_HOST_USER = EMAIL_HOST_USER_KEY # email id
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD_KEY # password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# Stripe payments
+# https://dashboard.stripe.com/test/apikeys
+STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')

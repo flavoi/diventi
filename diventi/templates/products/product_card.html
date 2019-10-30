@@ -9,7 +9,7 @@
       <p class="card-description">
          {{ product.abstract|striptags }}
       </p>
-      {% if product.published %}
+      {% if product.is_published %}
         <a href="{{ product.get_absolute_url }}" class="btn btn-warning btn-round">
           {% trans 'View Project' %}
         </a>

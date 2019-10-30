@@ -15,15 +15,10 @@ from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, Pu
 
 
 class ProductQuerySet(models.QuerySet):
-    
-    # Get all the published products 
-    def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            products = self
-        else:
-            products = self.filter(published=True)
-        products = products.prefetch_related('chapters')
+
+    # Prefetch all relevant data
+    def prefetch(self):
+        products = self.prefetch_related('chapters')
         products = products.prefetch_related('authors')
         products = products.prefetch_related('related_products')
         return products
@@ -37,26 +32,35 @@ class ProductQuerySet(models.QuerySet):
             products = self.filter(available=True)
         return products
 
-    # Get the featured product 
-    def featured(self):
-        try:
-            featured_product = featured_product.published().get(featured=True) 
-        except Product.DoesNotExist:
-            # Fail silently, return nothing
-            featured_product = self.none() 
-        except Product.MultipleObjectsReturned:
-            msg = _('Multiple featured products returned. Please fix!')
-            raise Product.MultipleObjectsReturned(msg)        
-        return featured_product
-
     # Fetch the products authored or purchased by the user
     def user_collection(self, user):
         products = self.filter(buyers=user)
         if user.is_staff:
             authored_products = self.filter(authors=user)
             products = products.union(authored_products)
-        products = products.prefetch_related('book')
-        products = products.prefetch_related('authors')
+        products = products.prefetch()
+        return products
+
+    # Get the featured products that are included in the user collection
+    def featured(self):
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            products = self
+        else:
+            products = self.filter(featured=True) 
+            products = products.user_collection(user)
+        return products
+
+    # Get all the published products 
+    def published(self):
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            products = self
+        else:
+            published_products = self.filter(published=True)
+            featured_products = self.featured()
+            products = published_products.union(featured_products)
+        products = products.prefetch()
         return products
 
 
@@ -75,7 +79,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     abstract = models.TextField(blank=True, max_length=200, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    featured = models.BooleanField(default=False, verbose_name=_('featured'))    
+    featured = models.BooleanField(default=False, verbose_name=_('featured'))
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
@@ -127,10 +131,15 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     def user_has_authored(self, user):
         return user in self.authors.all()
 
-    # Checks if this product is available for the current user
+    # Checks if this product is available for the buyers
     def is_available(self):
         p = Product.objects.filter(pk=self.pk)
         return p.available().exists()
+
+    # Check if this product can be reviewed by the user
+    def is_published(self):
+        p = Product.objects.filter(pk=self.pk)
+        return p.published().exists()
 
 
 class ChapterCategory(Category):

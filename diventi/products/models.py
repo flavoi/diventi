@@ -34,7 +34,10 @@ class ProductQuerySet(models.QuerySet):
 
     # Fetch the products authored or purchased by the user
     def user_collection(self, user):
-        products = self.filter(buyers=user)
+        if user.is_anonymous:
+            products = self.none()
+        else:
+            products = self.filter(buyers=user)
         if user.is_staff:
             authored_products = self.filter(authors=user)
             products = products.union(authored_products)

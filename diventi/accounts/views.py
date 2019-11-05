@@ -221,7 +221,8 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        users = DiventiUser.objects.all()                
+        users = DiventiUser.objects.all()
+        users_count = users.count()                
         users_groups = users.emails()
         subscribers = users.has_agreed_gdpr()
         subscribers_groups = subscribers.emails()
@@ -233,6 +234,7 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
         for sgroup in subscribers_groups:
             lan = sgroup['language']
             subscribers_lan[lan] = subscribers.filter(language=lan)
+        context['users_count'] = users_count
         context['users_groups'] = users_groups
         context['users_lan'] = users_lan
         context['subscribers_groups'] = subscribers_groups

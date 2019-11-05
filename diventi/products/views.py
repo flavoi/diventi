@@ -30,9 +30,10 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
+        user = self.request.user
         context['add_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
-        context['bought'] = self.object.user_has_already_bought(self.request.user)
+        context['bought'] = self.object.user_has_already_bought(user) or self.object.user_has_authored(user)
         return context
 
 

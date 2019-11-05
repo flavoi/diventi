@@ -113,7 +113,7 @@
                                 {% if product.price > 0 %}
                                   {% with product as product %}
                                     {% include "payments/pay_button.html" %}
-                                  {% endwidth %}
+                                  {% endwith %}
                                 {% else %}
                                   <form action="{% url 'products:add' product.slug %}" method="POST">
                                     {% csrf_token %}
@@ -122,7 +122,8 @@
                                     <button type="submit" class="btn btn-round btn-warning">
                                         {% trans "Add to collection" %}
                                     </button>                                        
-                                  </form>                               
+                                  </form>   
+                                {% endif %}                            
                             {% endif %}     
                             </div>                           
                         {% else %}

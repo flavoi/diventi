@@ -93,6 +93,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         blank=True, 
         verbose_name=_('related products'),
     ) # Connect this product to others
+    price = models.PositiveIntegerField(blank=True, verbose_name=_('price'))
 
     objects = ProductQuerySet.as_manager()
 

@@ -110,14 +110,19 @@
                                   {% include "reviews/review_button_modal.html" %}
                                 {% endif %}
                             {% else %}
-                                <form action="{% url 'products:add' product.slug %}" method="POST">
+                                {% if product.price > 0 %}
+                                  {% with product as product %}
+                                    {% include "payments/pay_button.html" %}
+                                  {% endwidth %}
+                                {% else %}
+                                  <form action="{% url 'products:add' product.slug %}" method="POST">
                                     {% csrf_token %}
                                     {{ add_collection_form }}
                                     {{ add_collection_form.errors }}
                                     <button type="submit" class="btn btn-round btn-warning">
                                         {% trans "Add to collection" %}
                                     </button>                                        
-                                </form>                                    
+                                  </form>                               
                             {% endif %}     
                             </div>                           
                         {% else %}

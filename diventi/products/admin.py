@@ -54,6 +54,9 @@ class ProductAdmin(DiventiTranslationAdmin):
         (_('Management'), {
             'fields': ('published', 'available', 'featured',)
         }),
+        (_('Pricing'), {
+            'fields': ('price',)
+        }),
         (_('Editing'), {
             'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'buyers', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),

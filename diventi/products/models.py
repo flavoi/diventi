@@ -60,9 +60,7 @@ class ProductQuerySet(models.QuerySet):
         if user.is_superuser:
             products = self
         else:
-            published_products = self.filter(published=True)
-            featured_products = self.featured()
-            products = published_products.union(featured_products)
+            products = self.filter(published=True)
         products = products.prefetch()
         return products
 

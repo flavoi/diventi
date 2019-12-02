@@ -29,9 +29,9 @@ def charge(request, product_slug):
     if request.method == 'POST':
         try:
             charge = stripe.Charge.create(
-                amount=5,
+                amount=product.price,
                 currency='eur',
-                description='A Diventi charge',
+                description='Diventi charge for {}'.format(product.title),
                 source=request.POST['stripeToken'],
             )
         except stripe.error.CardError as e:
@@ -47,22 +47,27 @@ def charge(request, product_slug):
             pass
         except stripe.error.InvalidRequestError as e:
             # Invalid parameters were supplied to Stripe's API
+            print('Invalid request error')
             pass
         except stripe.error.AuthenticationError as e:
             # Authentication with Stripe's API failed
             # (maybe you changed API keys recently)
+            print('Api authentication error')
             pass
         except stripe.error.APIConnectionError as e:
             # Network communication with Stripe failed
+            print('Api connection error')
             pass
         except stripe.error.StripeError as e:
             # Display a very generic error to the user, and maybe send
             # yourself an email
+            print('Generic error')
             pass
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
+            print('Unexpected error')
             pass
         user = CuserMiddleware.get_user()
         product.buyers.add(user)
-        messages.success(request, _('You paid {} {} for {}'.format('eur', 5, product.title)))
+        messages.success(request, _('You paid {} {} for {}'.format('€', product.price/100, product.title)))
         return redirect(product)

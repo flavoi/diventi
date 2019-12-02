@@ -1,5 +1,8 @@
 <!-- templates/home.html -->
-<h2>Buy {{ product.title }} for €5.00</h2>
+
+{% load i18n %}
+
+<h2>{{ product.title }}</h2>
 <form action="{% url 'payments:charge' product.slug %}" method="post">
   {% csrf_token %}
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"

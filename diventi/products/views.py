@@ -1,3 +1,5 @@
+import stripe
+
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
@@ -15,6 +17,8 @@ from diventi.core.views import DiventiActionMixin
 from .models import Product
 from .forms import UserCollectionUpdateForm
 
+# Paymens api
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class ProductDetailView(DetailView):
     """
@@ -34,6 +38,7 @@ class ProductDetailView(DetailView):
         context['add_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['bought'] = self.object.user_has_already_bought(user) or self.object.user_has_authored(user)
+        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
         return context
 
 

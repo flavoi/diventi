@@ -1,4 +1,5 @@
 import stripe
+import unicodedata
 
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
@@ -44,30 +45,30 @@ def charge(request, product_slug):
             print('Message is: %s' % e.error.message)
         except stripe.error.RateLimitError as e:
             # Too many requests made to the API too quickly
-            pass
+            print('Rate limit error')
         except stripe.error.InvalidRequestError as e:
             # Invalid parameters were supplied to Stripe's API
             print('Invalid request error')
-            pass
         except stripe.error.AuthenticationError as e:
             # Authentication with Stripe's API failed
             # (maybe you changed API keys recently)
             print('Api authentication error')
-            pass
         except stripe.error.APIConnectionError as e:
             # Network communication with Stripe failed
             print('Api connection error')
-            pass
         except stripe.error.StripeError as e:
             # Display a very generic error to the user, and maybe send
             # yourself an email
             print('Generic error')
-            pass
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
             print('Unexpected error')
-            pass
         user = CuserMiddleware.get_user()
         product.buyers.add(user)
-        messages.success(request, _('You paid {} {} for {}'.format('€', product.price/100, product.title)))
+        messages.success(request, _('You paid %(price)s for %(title)s' %
+            {
+                'price': product.get_price, 
+                'title': product.title,
+            }
+        ))
         return redirect(product)

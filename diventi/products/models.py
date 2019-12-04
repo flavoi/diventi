@@ -1,5 +1,6 @@
 from functools import reduce
 import operator
+import unicodedata
 
 from django.db import models
 from django.db.models import Q
@@ -142,6 +143,14 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     def is_published(self):
         p = Product.objects.filter(pk=self.pk)
         return p.published().exists()
+
+    # Returns the price of the product
+    def get_price(self):
+        p = ('%(currency)s %(price).2f' % {
+            'currency': unicodedata.lookup('EURO SIGN'), 
+            'price': self.price / 100,
+        })
+        return p
 
 
 class ChapterCategory(Category):

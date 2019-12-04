@@ -46,8 +46,11 @@
                       </div>
                     </div>
                     <div class="md-layout-item md-size-50 md-small-size-100">
-                      <div class="text-center">
+                      <div class="text-left">
                         <h2 class="title my-0">{{ product.title }}</h2>
+                          <h3 class="main-price">
+                            {% if product.price %}{{ product.get_price }}{% else %}{% trans 'free'|title %}{% endif %}
+                          </h3>
                         {% if product.available == False %}
                             <div class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {{ product.courtesy_short_message }}
                             </div>

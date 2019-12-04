@@ -12,7 +12,7 @@ ConfigArgParse==0.13.0
 configobj==5.0.6
 cryptography==2.3
 dj-database-url==0.5.0
-Django==2.2.4
+Django==2.2.8
 django-braces==1.13.0
 django-ckeditor==5.7.1
 django-contrib-comments==1.9.0

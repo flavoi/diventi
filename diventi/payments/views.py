@@ -5,7 +5,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.contrib import messages
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 
 from cuser.middleware import CuserMiddleware
 
@@ -65,10 +65,6 @@ def charge(request, product_slug):
             print('Unexpected error')
         user = CuserMiddleware.get_user()
         product.buyers.add(user)
-        messages.success(request, _('You paid %(price)s for %(title)s' %
-            {
-                'price': product.get_price, 
-                'title': product.title,
-            }
-        ))
+        message = _('You paid %(price)s for %(title)s') % {'price': product.get_price(), 'title': product.title,}
+        messages.success(request, message)
         return redirect(product)

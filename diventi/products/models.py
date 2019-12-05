@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, gettext
 
 from cuser.middleware import CuserMiddleware
 
@@ -95,7 +95,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         blank=True, 
         verbose_name=_('related products'),
     ) # Connect this product to others
-    price = models.PositiveIntegerField(blank=True, verbose_name=_('price'))
+    price = models.PositiveIntegerField(blank=True, verbose_name=_('price'), help_text=_('This price must be valued in euro cents. For example: 500 for 5.00€, 120 for 1.20€ etc.'))
 
     objects = ProductQuerySet.as_manager()
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-04 08:26+0100\n"
+"POT-Creation-Date: 2019-12-05 08:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1052,6 +1052,7 @@ msgid "charge/<slug:product_slug>/"
 msgstr "addebita/<slug:product_slug>/"
 
 #: diventi/payments/views.py:68
+#, python-format
 msgid "You paid %(price)s for %(title)s"
 msgstr "Hai pagato %(price)s per %(title)s"
 
@@ -1126,6 +1127,14 @@ msgstr "prodotti correlati"
 #: diventi/products/models.py:98
 msgid "price"
 msgstr "prezzo"
+
+#: diventi/products/models.py:98
+msgid ""
+"This price must be valued in euro cents. For example: 500 for 5.00€, 120 for "
+"1.20€ etc."
+msgstr ""
+"Questo prezzo deve essere valorizzato in centesimi di euro. Per esempio: 500 "
+"per 5.00€, 120 per 1.20€ eccetera."
 
 #: diventi/products/models.py:110
 msgid "application"

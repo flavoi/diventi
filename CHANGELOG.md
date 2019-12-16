@@ -13,10 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced replacement rules to better adapt universal sections in any ebook
 
 ### Changed
-- Updated ckeditor config with custom block styles
 - Ebooks: updated table of contents with parts and chapters
 - Products: the courtesy message is no longer a mandatory field
+- Updated ckeditor config with custom block styles
 - Improved product page mobile responsiveness
+- Improved sizing of cards in collection page
 - Removed forced uppercase from article's label
 
 ### Removed

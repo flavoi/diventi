@@ -2,6 +2,35 @@
 {% load i18n %}
 
 <h4 class="title">{% trans "Collection" %}</h4>
+
+<div class="row">
+<div class="col-md-12 ml-auto mr-auto">
+    {% if collection %}
+        <div class="row collections">
+            {% for product in collection %}
+                <div class="col-md-6">
+                    <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}')"{% endif %}>
+                      <div class="card-body">
+                        {% if product.available == False %}
+                            <label class="badge badge-pill badge-danger">{{ product.courtesy_short_message }}</label>
+                        {% else %}
+                            <label class="badge badge-rose">{{ product.category.title }}</label>
+                        {% endif %}
+                        <a {% if product.book.available == False %}class="disabled"{% else %}href="{% url 'ebooks:book-detail' product.book.slug %}"{% endif %}>
+                          <h2 class="card-title">{{ product.title }}</h2>
+                        </a>
+                      </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="col-md-12">
+            <h4>{% trans "This collection is empty." %}</h4>
+        </div>
+    {% endif %}
+</div>
+
 <div class="row">
     {% if collection %}
         {% for product in collection %}
@@ -62,4 +91,22 @@
             <h4>{% trans "There are no surveys yet." %}</h4>
         </div>
     {% endif %}
+</div>
+
+<div class="row collections">
+    {% if collection %}
+        {% for product in collection %}
+          <div class="col-md-6">
+            <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}')"{% endif %}>
+              <a href="#pablo"></a>
+              <div class="card-body">
+                <label class="badge badge-warning">Spring 2016</label>
+                <a href="#pablo">
+                  <h2 class="card-title">Stilleto</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
 </div>

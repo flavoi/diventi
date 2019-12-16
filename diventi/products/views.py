@@ -20,6 +20,7 @@ from .forms import UserCollectionUpdateForm
 # Paymens api
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 class ProductDetailView(DetailView):
     """
         Displays a product with all its infos.

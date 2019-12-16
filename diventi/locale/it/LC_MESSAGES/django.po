@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-05 08:33+0100\n"
+"POT-Creation-Date: 2019-12-06 18:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -220,6 +220,7 @@ msgstr "Utente"
 
 #: diventi/accounts/models.py:121 diventi/landing/models.py:68
 #: diventi/templates/accounts/subscribers.html:19
+#: diventi/templates/landing/reporting.html:19
 msgid "Users"
 msgstr "Utenti"
 
@@ -870,7 +871,7 @@ msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
-#: diventi/landing/models.py:50
+#: diventi/landing/models.py:50 diventi/landing/urls.py:17
 #: diventi/templates/accounts/user_collection.html:48
 msgid "survey"
 msgstr "sondaggio"
@@ -1022,24 +1023,24 @@ msgstr "aspetto"
 msgid "features"
 msgstr "aspetti"
 
-#: diventi/landing/urls.py:10
-msgid "^search/$"
-msgstr "^ricerca/$"
+#: diventi/landing/urls.py:16
+msgid "search"
+msgstr "ricerca"
 
-#: diventi/landing/urls.py:11
-msgid "^survey/$"
-msgstr "^sondaggio/$"
+#: diventi/landing/urls.py:18
+msgid "reporting"
+msgstr "reportistica"
 
-#: diventi/landing/views.py:32
+#: diventi/landing/views.py:33
 msgid "We encountered an error while redirecting to your survey."
 msgstr ""
 "Abbiamo riscontrato un errore in fase di riindirizzamento al tuo sondaggio."
 
-#: diventi/landing/views.py:49
+#: diventi/landing/views.py:50
 msgid "This page is not available yet."
 msgstr "Questa pagina non è ancora disponibile."
 
-#: diventi/landing/views.py:58
+#: diventi/landing/views.py:59
 msgid "Please double check your email."
 msgstr "Per favore controlla la tua email."
 
@@ -1174,19 +1175,19 @@ msgstr "^(?P<slug>[-\\w]+)/aggiungi/$"
 msgid "^(?P<slug>[-\\w]+)/remove/$"
 msgstr "^(?P<slug>[-\\w]+)/rimuovi/$"
 
-#: diventi/products/views.py:58
+#: diventi/products/views.py:59
 msgid "This product has been added to you collection"
 msgstr "Questo prodotto è stato aggiunto alla tua collezione"
 
-#: diventi/products/views.py:65
+#: diventi/products/views.py:66
 msgid "The user has this product already."
 msgstr "L'utente possiede già questo prodotto."
 
-#: diventi/products/views.py:78
+#: diventi/products/views.py:79
 msgid "This product has been dropped from your collection"
 msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 
-#: diventi/products/views.py:85
+#: diventi/products/views.py:86
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
@@ -1431,15 +1432,18 @@ msgid "Get Started"
 msgstr "Iniziamo"
 
 #: diventi/templates/accounts/subscribers.html:7
+#: diventi/templates/landing/reporting.html:7
 msgid "Subscribers"
 msgstr "Iscritti"
 
 #: diventi/templates/accounts/subscribers.html:25
+#: diventi/templates/landing/reporting.html:25
 #, python-format
 msgid "Contact %(lang_code)s users"
 msgstr "Contatta tutti gli utenti %(lang_code)s"
 
 #: diventi/templates/accounts/subscribers.html:35
+#: diventi/templates/landing/reporting.html:35
 #, python-format
 msgid "Contact %(lang_code)s subscribers"
 msgstr "Contatta gli iscritti %(lang_code)s"
@@ -1946,6 +1950,12 @@ msgstr "recensione"
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#~ msgid "^search/$"
+#~ msgstr "^ricerca/$"
+
+#~ msgid "^survey/$"
+#~ msgstr "^sondaggio/$"
 
 #~ msgid "charge for"
 #~ msgstr "pagamento per"

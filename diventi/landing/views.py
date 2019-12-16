@@ -10,13 +10,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.http import HttpResponse
 
-from .models import Section
 from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
 from diventi.products.models import Product
 from diventi.blog.models import Article
 from diventi.feedbacks.models import Survey, Answer
+from diventi.core.views import StaffRequiredMixin
 
+from .models import Section
 
 def landing_survey(request):
     """
@@ -93,3 +94,10 @@ class PresentationSearchView(ListView):
         context = super(PresentationSearchView, self).get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('q')
         return context
+
+
+class ReportListView(StaffRequiredMixin, ListView):
+    """ Report relevant piece of contents of any supported app. """
+
+    template_name = "landing/reporting.html"
+    model = Section

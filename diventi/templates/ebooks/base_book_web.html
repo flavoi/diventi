@@ -204,6 +204,7 @@
                     {% endblock side_chapter %}
                     <h1 class="sidetitle">{% block side_title %}{{ book.title }}{% endblock side_title %}</h1>
                     <div class="subtitle">{% block side_subtitle %}{{ book.description }}{% endblock side_subtitle %}</div>
+                    <div class="authorname">{% with book as object %}{% include "publishable_badge.html" %}{% endwith %}</div>
                 </div>
             </div>
         </div>

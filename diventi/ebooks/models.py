@@ -91,6 +91,11 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
             return None
     get_product_image.short_description = _('image')
 
+    # Check if this book can be read by the user
+    def is_published(self):
+        b = Book.objects.filter(pk=self.pk)
+        return b.published().exists()
+
     class Meta:
         verbose_name = _('book')
         verbose_name_plural = _('books')

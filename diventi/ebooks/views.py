@@ -29,10 +29,10 @@ class UserHasProductMixin(UserPassesTestMixin):
         user_has_bought_test = product.user_has_already_bought(self.request.user) or product.user_has_authored(self.request.user)
         if not user_has_bought_test:
             self.permission_denied_message = _('This book is not in your collection, please check your profile.')
-        product_is_available_test = product.is_available()
-        if not product_is_available_test:
-            self.permission_denied_message = _('The product related to this book is not yet available, please check back later.')
-        return user_has_bought_test and product_is_available_test
+        book_is_published_test = book.is_published()
+        if not book_is_published_test:
+            self.permission_denied_message = _('This book is not yet available, please check back later.')
+        return user_has_bought_test and book_is_published_test
 
 
 class EbookView(View):

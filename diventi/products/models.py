@@ -24,15 +24,6 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch_related('related_products')
         return products
 
-    # Get the available products
-    def available(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            products = self
-        else:
-            products = self.filter(available=True)
-        return products
-
     # Fetch the products authored or purchased by the user
     def user_collection(self, user):
         if user.is_anonymous:
@@ -86,7 +77,6 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
     category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default', on_delete=models.SET_NULL)
-    available = models.BooleanField(default=False, verbose_name=_('available')) # Disable the access to the file
     courtesy_short_message = models.CharField(blank=True, max_length=50, verbose_name=_('short courtesy messages'))
     courtesy_message = models.TextField(blank=True, verbose_name=_('courtesy message')) # Explains why the product is under maintenance
     related_products = models.ManyToManyField(
@@ -133,11 +123,6 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     # Return True if the user has authored this collection
     def user_has_authored(self, user):
         return user in self.authors.all()
-
-    # Checks if this product is available for the buyers
-    def is_available(self):
-        p = Product.objects.filter(pk=self.pk)
-        return p.available().exists()
 
     # Check if this product can be reviewed by the user
     def is_published(self):

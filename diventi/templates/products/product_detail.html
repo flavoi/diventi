@@ -51,13 +51,8 @@
                           <h3 class="main-price">
                             {% if product.price %}{{ product.get_price }}{% else %}{% trans 'free'|title %}{% endif %}
                           </h3>
-                        {% if product.available == False %}
-                            <div class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"> {{ product.courtesy_short_message }}
-                            </div>
-                        {% else %}
                             <label class="badge badge-rose"><i class="fal fa-lg fa-file-powerpoint fa-fw"></i>{{ product.category.title }}</label>
-                            <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
-                        {% endif %}    
+                            <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fal fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>   
                         <div class="my-3">
                           {% render_rating for product %}
                         </div>
@@ -108,10 +103,8 @@
                             {% if bought %}                    
                                 <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">       
                                   {% trans "View in collection" %}
-                                </a>
-                                {% if product.available %}
-                                  {% include "reviews/review_button_modal.html" %}
-                                {% endif %}
+                                </a>                                
+                                {% include "reviews/review_button_modal.html" %}                        
                             {% else %}
                                 {% if product.price > 0 %}
                                   {% with product as product %}
@@ -197,7 +190,7 @@
         </div>
       </div>
     </div>
-    {% if product.available and user.is_authenticated %}
+    {% if user.is_authenticated %}
       {% include "reviews/review_form.html" %}
     {% endif %}
       {% if product.related_products.all %}

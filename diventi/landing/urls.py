@@ -6,7 +6,7 @@ from .views import (
     landing, 
     PresentationSearchView, 
     landing_survey,
-    ReportListView,
+    DashboardView,
 )
 
 app_name = 'landing'
@@ -15,5 +15,5 @@ urlpatterns = [
     path('', landing, name='home'),
     path(_('search'), PresentationSearchView.as_view(), name='search'),
     path(_('survey'), landing_survey, name='survey'),
-    path(_('reporting'), ReportListView.as_view(), name='reporting'),   
+    path(_('dashboard'), DashboardView.as_view(), name='dashboard'),   
 ]

@@ -96,8 +96,16 @@ class PresentationSearchView(ListView):
         return context
 
 
-class ReportListView(StaffRequiredMixin, ListView):
+class DashboardView(StaffRequiredMixin, ListView):
     """ Report relevant piece of contents of any supported app. """
 
-    template_name = "landing/reporting.html"
+    template_name = "landing/dashboard.html"
     model = Section
+
+    def get_queryset(self):
+        results = super(DashboardView, self).get_queryset()
+        articles = Article.reporting(self)
+        products = Product.reporting(self)
+        users = DiventiUser.reporting(self)
+        results = list(chain(articles, products, users))
+        return results

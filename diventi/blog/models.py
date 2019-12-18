@@ -107,5 +107,9 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         )
         return results
 
+    def reporting(self, *args, **kwargs):
+        results = Article.objects.none()
+        return results
+
     def class_name(self):
         return _('article')

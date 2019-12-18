@@ -116,6 +116,10 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         )
         return results
 
+    def reporting(self, *args, **kwargs):
+        results = Product.objects.none()
+        return results
+
     # Return True if the user has added the product to his collections
     def user_has_already_bought(self, user):
         return user in self.buyers.all()

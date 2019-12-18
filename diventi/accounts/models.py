@@ -158,5 +158,9 @@ class DiventiUser(AbstractUser):
             results.append(row)
         return results
 
+    def reporting(self, *args, **kwargs):
+        results = DiventiUser.objects.none()
+        return results
+
     def __str__(self):
         return u'{0} ({1})'.format(self.get_short_name(), self.username)

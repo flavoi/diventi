@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced new actions in products admin page to lock or unlock items
 - Introduced related products as new section in product detail page
 - Introduced replacement rules to better adapt universal sections in any ebook
+- Introduced a new admin page for reporting purposes
+- Introduces payments: a new app that handles real money purchases with Stripe services
 
 ### Changed
 - Ebooks: updated table of contents with parts and chapters

@@ -11,6 +11,7 @@ from cuser.middleware import CuserMiddleware
 
 from diventi.products.models import Product 
 from diventi.products.views import AddToUserCollectionView
+from django.core.mail import send_mail
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -66,5 +67,12 @@ def charge(request, product_slug):
         user = CuserMiddleware.get_user()
         product.buyers.add(user)
         message = _('You paid %(price)s for %(title)s') % {'price': product.get_price(), 'title': product.title,}
+        send_mail(
+            _('Diventi: %(title)s purchase') % {'title': product.title,},
+            _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {'user': user.get_short_name(), 'price': product.get_price(), 'title': product.title,},
+            'info@playdiventi.it',
+            [user.email],
+            fail_silently=False,
+        )
         messages.success(request, message)
         return redirect(product)

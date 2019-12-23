@@ -46,25 +46,25 @@
                         <h6 class="dropdown-header">{{ user.first_name }} &middot; {{ user.email }}</h6>
                         {% if user.is_staff %}
                             <a href="{% url 'admin:index' %}" class="dropdown-item">
-                                {% trans "Enter the control panel" %}
+                                {% trans "control panel"|capfirst %}
                             </a>
-                            <a href="{% url 'accounts:subscribers' %}" class="dropdown-item">
-                                {% trans "Contact the subscribers" %}
+                            <a href="{% url 'landing:dashboard' %}" class="dropdown-item">
+                                {% trans "admin dashboard"|capfirst %}
                             </a>
                             <div class="dropdown-divider"></div> 
                         {% endif %}
                         <a href="{% url 'accounts:update' user.nametag %}" class="dropdown-item">
-                            {% trans "Manage profile" %}
+                            {% trans "profile"|capfirst %}
                         </a>
                         <a href="{% url 'accounts:signout' %}" class="dropdown-item">
-                            {% trans "Sign out" %}
+                            {% trans "sign out"|capfirst %}
                         </a>
                     </div>
                 </li>
             {% else %}
                 <li class="nav-item">   
                     <a href="{% url 'accounts:signin' %}" class="btn btn-warning btn-round">
-                        <i class="fal fa-sign-in-alt fa-lg"></i> {% trans "Sign in" %} 
+                        <i class="fal fa-sign-in-alt fa-lg"></i> {% trans "sign in"|capfirst %} 
                         <div class="ripple-container"></div>
                     </a>
                 </li>

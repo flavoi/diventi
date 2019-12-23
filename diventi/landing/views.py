@@ -99,7 +99,8 @@ class PresentationSearchView(ListView):
 class DashboardView(StaffRequiredMixin, ListView):
     """ Report relevant piece of contents of any supported app. """
 
-    template_name = "landing/dashboard.html"
+    template_name = "landing/vertical_dashboard.html"
+    context_object_name = 'results'
     model = Section
 
     def get_queryset(self):

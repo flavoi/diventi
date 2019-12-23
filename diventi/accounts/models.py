@@ -15,9 +15,13 @@ from diventi.products.models import Product
 
 class DiventiUserQuerySet(models.QuerySet):
     
+    # Return active users
+    def is_active(self):
+        return self.filter(is_active=True)
+
     # Fetch all users that agreed to GDPR
     def has_agreed_gdpr(self):
-        users = self.filter(is_active=True)
+        users = self.is_active()
         users = self.filter(has_agreed_gdpr=True)
         return users
 
@@ -36,6 +40,19 @@ class DiventiUserQuerySet(models.QuerySet):
     def emails(self):
         return self.values('language').annotate(total=Count('email')).order_by('language')
 
+    # Return users that set "lan" as main language
+    def speakers(self, lan):
+        users = self.is_active()
+        users = self.filter(language=lan)
+        return users
+
+    # Return the emails of subscribers that set "lan" as main language
+    def subscribers_emails(self, lan):
+        users = self.has_agreed_gdpr()
+        users = users.filter(language=lan)
+        emails = users.values_list('email', flat=True)  
+        return emails
+
 
 class DiventiUserManager(UserManager):
 
@@ -53,8 +70,14 @@ class DiventiUserManager(UserManager):
 
     def emails(self):
         return self.get_queryset().emails()
-        
 
+    def speakers(self, lan):
+        return self.get_queryset().speakers(lan)
+
+    def subscribers_emails(self, lan):
+        return self.get_queryset().lan_emails(lan)
+
+        
 class DiventiAvatarQuerySet(models.QuerySet):
 
     # Fetch all users related to the avatar
@@ -159,7 +182,29 @@ class DiventiUser(AbstractUser):
         return results
 
     def reporting(self, *args, **kwargs):
-        results = DiventiUser.objects.none()
+        queryset = DiventiUser.objects.all()
+        results = [] 
+        results.append({
+            'name': _("users' count"),
+            'title': queryset.count(),
+            'description': _('%(en)s english speakers, %(it)s italian speakers') % {
+                'en': queryset.speakers('en').count(),
+                'it': queryset.speakers('it').count(),
+            },
+            'action': '',
+        })
+        results.append({
+            'name': _("english subscribers"),
+            'title': queryset.subscribers_emails('en').count(),
+            'description': _('contact them with the button below'),
+            'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('en')},
+        })
+        results.append({
+            'name': _("italian subscribers"),
+            'title': queryset.subscribers_emails('it').count(),
+            'description': _('contact them with the button below'),
+            'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('it')},
+        })
         return results
 
     def __str__(self):

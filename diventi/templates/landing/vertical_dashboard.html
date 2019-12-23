@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'dashboard'|capfirst %}{% endblock title %}
+
+{% block extrahead %}
+<style>
+.dtooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.dtooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.dtooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.dtooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+</style>
+{% endblock %}
+
+{% block bodyclass %}sections-page sidebar-collapse{% endblock bodyclass %}
+
+{% block navbarclasses %}bg-dark fixed-top navbar-expand-lg navbar-color-on-scroll{% endblock navbarclasses %}
+
+{% block pageheader %}{% endblock pageheader %}
+
+{% block main %}
+<div class="section-space"></div>
+<div class="main">
+    <div class="projects-3 section-gray" id="projects-3">
+        <div class="container">           
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h6 class="category text-muted">{% trans 'for admin only' %}</h6>
+              <h2 class="title">{% trans 'welcome to dashboard'|capfirst  %}</h2>
+            </div>
+          </div>
+          <div class="row">
+            {% for result in results %}
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-body text-left">
+                      <h6 class="card-category">{{ result.name }}</h6>
+                      <h2 class="card-title">{{ result.title }}</h2>
+                      <p class="card-description"></p>{{ result.description|capfirst|add:"." }}</div>
+                      {% if result.action %}
+                        <div class="card-footer">
+                            <div class="dtooltip" onmouseout="outFunc('myTooltip-{{ forloop.counter }}', '{{ result.action.label|capfirst }}')">
+                                <button class="btn" data-clipboard-{{ result.action.function }}="" data-clipboard-action="copy" data-clipboard-text="{% for v in result.action.parameters %}{{ v }}{% endfor %}">
+                                    <span class="tooltiptext" id="myTooltip-{{ forloop.counter }}">{{ result.action.label|capfirst }}</span>
+                                    {{ result.action.label|capfirst }}
+                                </button>
+                            </div>
+                        </div>
+                      {% endif %}
+                  </div>
+                </div>
+            {% empty %}
+                <div class="col-md-12">
+                    <div class="text-center text-white">
+                        <h4>{% trans "No items found" %}.</h4>
+                    </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>   
+</div>
+{% endblock main %}
+
+
+{% block extrascript %}
+<script type="text/javascript" src="{% static 'clipboard/clipboard.min.js' %}"></script>
+<script>
+    var clipboardDemos = new ClipboardJS('[data-clipboard-copy-emails]');
+    var tooltip = document.getElementsByClassName('tooltiptext');
+    clipboardDemos.on('success', function(e) {
+        Array.from(tooltip).forEach((t) => {
+            t.innerHTML = "{% trans 'copied'|capfirst %}!"
+        });
+    });
+    clipboardDemos.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        tooltip[0].innerHTML = "Error."
+    });
+    
+    function outFunc(tooltip_id, tooltip_label) {
+        var tooltip = document.getElementById(tooltip_id);
+        tooltip.innerHTML = tooltip_label;
+    }
+</script>
+{% endblock extrascript %}

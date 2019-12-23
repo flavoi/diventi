@@ -18,7 +18,7 @@
                                   <h3 class="card-title">{{ product.title }}</h3>
                                 </a>
                                 <p class="card-description">
-                                  {{ product.abstract|striptags|capfirst|slice:":255"}}
+                                  {{ product.abstract|striptags|capfirst|truncatechars:":201"}}
                                 </p>
                               </div>
                             </div>

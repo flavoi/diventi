@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils.text import slugify
+from django.contrib.humanize.templatetags.humanize import naturalday
 
 from diventi.core.models import DiventiImageModel, Element
 from diventi.products.models import Product
@@ -40,18 +41,25 @@ class DiventiUserQuerySet(models.QuerySet):
     def emails(self):
         return self.values('language').annotate(total=Count('email')).order_by('language')
 
-    # Return users that set "lan" as main language
+    # Returns users that set "lan" as main language
     def speakers(self, lan):
         users = self.is_active()
         users = self.filter(language=lan)
         return users
 
-    # Return the emails of subscribers that set "lan" as main language
+    # Returns the emails of subscribers that set "lan" as main language
     def subscribers_emails(self, lan):
         users = self.has_agreed_gdpr()
         users = users.filter(language=lan)
         emails = users.values_list('email', flat=True)  
         return emails
+
+    # Returns the last user that has signed up and agreed to gdpr
+    # with "lan" as main language 
+    def last_subscriber(self, lan):
+        users = self.is_active()
+        user = users.filter(language=lan).order_by('-date_joined').first()
+        return user
 
 
 class DiventiUserManager(UserManager):
@@ -76,6 +84,9 @@ class DiventiUserManager(UserManager):
 
     def subscribers_emails(self, lan):
         return self.get_queryset().lan_emails(lan)
+
+    def last_subscriber(self, lan):
+        return self.get_queryset().last_subscriber(lan)
 
         
 class DiventiAvatarQuerySet(models.QuerySet):
@@ -193,16 +204,24 @@ class DiventiUser(AbstractUser):
             },
             'action': '',
         })
+        last_subscriber = queryset.last_subscriber('en')
         results.append({
             'name': _("english subscribers"),
             'title': queryset.subscribers_emails('en').count(),
-            'description': _('contact them with the button below'),
+            'description': _('last subscriber: %(last_sub)s on %(date_joined)s') % {
+                'last_sub': last_subscriber.get_short_name(),
+                'date_joined': naturalday(last_subscriber.date_joined),
+            },
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('en')},
         })
+        last_subscriber = queryset.last_subscriber('it')
         results.append({
             'name': _("italian subscribers"),
             'title': queryset.subscribers_emails('it').count(),
-            'description': _('contact them with the button below'),
+            'description': _('last subscriber: %(last_sub)s on %(date_joined)s') % {
+                'last_sub': last_subscriber.get_short_name(),
+                'date_joined': naturalday(last_subscriber.date_joined),
+            },
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('it')},
         })
         return results

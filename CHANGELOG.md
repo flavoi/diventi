@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED] → 2019-xx-xx
+## [1.0.0-beta.6] → 2019-12-26
 
 ### Added
 - Introduced new actions in products admin page to lock or unlock items
@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Ebooks: updated table of contents with parts and chapters
+          enabled sections' bookmarks 
 - Products: the courtesy message is no longer a mandatory field
 - Updated ckeditor config with custom block styles
 - Improved product page mobile responsiveness
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Ebooks: removed section templates and values
 
 ### Fixed
+- Fixed a problem that prevented the first section to appear on the ebook page
 
 ### Security
 

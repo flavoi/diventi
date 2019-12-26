@@ -69,7 +69,7 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        first_chapter = self.object.chapters.first()
+        first_chapter = self.object.chapters.order_by('order_index').first()
         context['next_chapter'] = first_chapter
         return context
 
@@ -100,6 +100,8 @@ class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
         previous_chapter = previous_chapter.order_by('-order_index')
         previous_chapter = previous_chapter.first()
         context['previous_chapter'] = previous_chapter
+        table_of_contents = Section.objects.filter(chapter=self.object).bookmarks()
+        context['table_of_contents'] = table_of_contents
         return context
 
 

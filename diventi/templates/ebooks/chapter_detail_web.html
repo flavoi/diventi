@@ -19,7 +19,7 @@
 {% block chapter_content %}
 <h3>{% trans "Table of contents" %}</h3>
     <ol>
-        {% for section in chapter.sections.all %}
+        {% for section in table_of_contents %}
             <li>
                 <a href="{% url 'ebooks:chapter-detail' chapter.chapter_book.slug chapter.slug %}#{{ section.slug }}">{{ section.title }}</a>
             </li>

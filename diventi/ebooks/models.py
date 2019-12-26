@@ -183,6 +183,7 @@ class SectionQuerySet(models.QuerySet):
     def bookmarks(self):
         sections = self.usection()
         sections = sections.filter(bookmark=True)
+        sections = sections.order_by('order_index')
         return sections
 
 

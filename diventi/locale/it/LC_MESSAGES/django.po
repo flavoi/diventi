@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-24 11:11+0100\n"
+"POT-Creation-Date: 2019-12-28 15:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,14 +369,14 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:15 diventi/ebooks/admin.py:81
+#: diventi/blog/admin.py:15 diventi/ebooks/admin.py:82
 #: diventi/feedbacks/admin.py:53 diventi/landing/admin.py:22
 #: diventi/products/admin.py:46 diventi/sheets/admin.py:20
 msgid "Management"
 msgstr "Gestione"
 
 #: diventi/blog/admin.py:18 diventi/ebooks/admin.py:57
-#: diventi/ebooks/admin.py:87 diventi/ebooks/admin.py:107
+#: diventi/ebooks/admin.py:88 diventi/ebooks/admin.py:108
 #: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:28
 #: diventi/products/admin.py:52 diventi/sheets/admin.py:23
 msgid "Editing"
@@ -408,13 +408,13 @@ msgstr "titolo"
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:80 diventi/ebooks/models.py:85
+#: diventi/blog/models.py:80 diventi/ebooks/models.py:86
 #: diventi/products/models.py:79 diventi/products/models.py:157
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:81 diventi/ebooks/models.py:149
-#: diventi/ebooks/models.py:192 diventi/feedbacks/models.py:155
+#: diventi/blog/models.py:81 diventi/ebooks/models.py:168
+#: diventi/ebooks/models.py:212 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
@@ -422,8 +422,8 @@ msgstr "contenuto"
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:83 diventi/ebooks/models.py:60
-#: diventi/ebooks/models.py:129 diventi/ebooks/models.py:204
+#: diventi/blog/models.py:83 diventi/ebooks/models.py:61
+#: diventi/ebooks/models.py:130 diventi/ebooks/models.py:224
 #: diventi/feedbacks/models.py:118 diventi/products/models.py:74
 #: diventi/sheets/models.py:23
 msgid "slug"
@@ -576,7 +576,7 @@ msgstr "Colore"
 msgid "categories"
 msgstr "categorie"
 
-#: diventi/core/models.py:144 diventi/ebooks/models.py:92
+#: diventi/core/models.py:144 diventi/ebooks/models.py:93
 msgid "image"
 msgstr "immagine"
 
@@ -641,12 +641,12 @@ msgstr "Contenuti universali"
 msgid "Table of contents"
 msgstr "Indice"
 
-#: diventi/ebooks/admin.py:54 diventi/ebooks/admin.py:84
-#: diventi/ebooks/admin.py:104
+#: diventi/ebooks/admin.py:54 diventi/ebooks/admin.py:85
+#: diventi/ebooks/admin.py:105
 msgid "Layout"
 msgstr "Disposizione"
 
-#: diventi/ebooks/admin.py:101
+#: diventi/ebooks/admin.py:102
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
@@ -654,128 +654,133 @@ msgstr "Pubblicazione"
 msgid "Ebooks"
 msgstr "Ebook"
 
-#: diventi/ebooks/models.py:53 diventi/ebooks/models.py:131
+#: diventi/ebooks/models.py:54 diventi/ebooks/models.py:132
 msgid "part"
 msgstr "parte"
 
-#: diventi/ebooks/models.py:54
+#: diventi/ebooks/models.py:55
 msgid "parts"
 msgstr "parti"
 
-#: diventi/ebooks/models.py:59
+#: diventi/ebooks/models.py:60
 msgid "short title"
 msgstr "titolo breve"
 
-#: diventi/ebooks/models.py:61 diventi/products/models.py:93
+#: diventi/ebooks/models.py:62 diventi/products/models.py:93
 #: diventi/products/models.py:156 diventi/products/models.py:166
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/ebooks/models.py:62
+#: diventi/ebooks/models.py:63
 msgid "lead"
 msgstr ""
 
-#: diventi/ebooks/models.py:63
+#: diventi/ebooks/models.py:64
 msgid "summary"
 msgstr "sommario"
 
-#: diventi/ebooks/models.py:66
+#: diventi/ebooks/models.py:67
 msgid "Web"
 msgstr ""
 
-#: diventi/ebooks/models.py:67
+#: diventi/ebooks/models.py:68
 msgid "Material"
 msgstr ""
 
-#: diventi/ebooks/models.py:70
+#: diventi/ebooks/models.py:71
 msgid "template"
 msgstr "modello"
 
-#: diventi/ebooks/models.py:100 diventi/ebooks/models.py:130
+#: diventi/ebooks/models.py:101 diventi/ebooks/models.py:131
 #: diventi/sheets/models.py:22
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:101
+#: diventi/ebooks/models.py:102
 msgid "books"
 msgstr "libri"
 
-#: diventi/ebooks/models.py:128 diventi/ebooks/models.py:148
-#: diventi/ebooks/models.py:191 diventi/feedbacks/models.py:22
+#: diventi/ebooks/models.py:129 diventi/ebooks/models.py:167
+#: diventi/ebooks/models.py:211 diventi/feedbacks/models.py:22
 #: diventi/landing/models.py:32
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:142 diventi/ebooks/models.py:156
-#: diventi/ebooks/models.py:193
+#: diventi/ebooks/models.py:142
+#, python-format
+msgid "There cannot be two or more chapter with the same slug in %(book)s."
+msgstr "Non possono coesistere due o più capitoli con lo stesso slug in %(book)s."
+
+#: diventi/ebooks/models.py:161 diventi/ebooks/models.py:175
+#: diventi/ebooks/models.py:213
 msgid "chapter"
 msgstr "capitolo"
 
-#: diventi/ebooks/models.py:143
+#: diventi/ebooks/models.py:162
 msgid "chapters"
 msgstr "capitoli"
 
-#: diventi/ebooks/models.py:155
+#: diventi/ebooks/models.py:174
 msgid "universal Diventi"
 msgstr "Diventi universale"
 
-#: diventi/ebooks/models.py:159
+#: diventi/ebooks/models.py:178
 msgid "universal Section"
 msgstr "Sezione universale"
 
-#: diventi/ebooks/models.py:160
+#: diventi/ebooks/models.py:179
 msgid "universal Sections"
 msgstr "Sezioni universali"
 
-#: diventi/ebooks/models.py:165
+#: diventi/ebooks/models.py:184
 msgid "initial string"
 msgstr "stringa iniziale"
 
-#: diventi/ebooks/models.py:166
+#: diventi/ebooks/models.py:185
 msgid "result string"
 msgstr "stringa risultato"
 
-#: diventi/ebooks/models.py:169
+#: diventi/ebooks/models.py:188
 msgid "replacement rule"
 msgstr "regola di sostituzione"
 
-#: diventi/ebooks/models.py:170
+#: diventi/ebooks/models.py:189
 msgid "replacement rules"
 msgstr "regole di sostituzione"
 
-#: diventi/ebooks/models.py:194
+#: diventi/ebooks/models.py:214
 msgid "bookmark"
 msgstr "segnalibro"
 
-#: diventi/ebooks/models.py:195
+#: diventi/ebooks/models.py:215
 msgid "universal section"
 msgstr "sezione universale"
 
-#: diventi/ebooks/models.py:198
+#: diventi/ebooks/models.py:218
 msgid "Left"
 msgstr "Sinistra"
 
-#: diventi/ebooks/models.py:199
+#: diventi/ebooks/models.py:219
 msgid "Center"
 msgstr "Centrato"
 
-#: diventi/ebooks/models.py:200
+#: diventi/ebooks/models.py:220
 msgid "Right"
 msgstr "Destra"
 
-#: diventi/ebooks/models.py:202
+#: diventi/ebooks/models.py:222
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:203 diventi/ebooks/models.py:216
+#: diventi/ebooks/models.py:223 diventi/ebooks/models.py:236
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:246 diventi/landing/models.py:86
+#: diventi/ebooks/models.py:266 diventi/landing/models.py:86
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:247 diventi/landing/models.py:87
+#: diventi/ebooks/models.py:267 diventi/landing/models.py:87
 msgid "sections"
 msgstr "sezioni"
 
@@ -809,7 +814,7 @@ msgstr ""
 msgid "This book is not yet available, please check back later."
 msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi."
 
-#: diventi/ebooks/views.py:153
+#: diventi/ebooks/views.py:155
 msgid "This book hasn't been published yet."
 msgstr "Questo libro non è stato ancora pubblicato."
 

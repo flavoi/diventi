@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.db.models import Prefetch, Q
 from django.utils.html import mark_safe
 from django.utils.text import capfirst
+from django.core.exceptions import ValidationError
 
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
@@ -126,7 +127,7 @@ class ChapterQuerySet(models.QuerySet):
 class Chapter(Element, DiventiImageModel, TimeStampedModel, PublishableModel):
     """ A chapter of a book. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+    slug = models.SlugField(verbose_name=_('slug'))
     chapter_book = models.ForeignKey(Book, null=True, blank=True, related_name='chapters', on_delete=models.SET_NULL, verbose_name=_('book'))
     part = models.ForeignKey(Part, null=True, related_name='parts', on_delete=models.SET_NULL, verbose_name=_('part'))    
 
@@ -136,6 +137,24 @@ class Chapter(Element, DiventiImageModel, TimeStampedModel, PublishableModel):
     def get_absolute_url(self):
         return reverse('ebooks:chapter-detail', args=[self.chapter_book.slug, self.slug])
 
+    def clean(self):
+        # Don't allow the same slug in the same book.
+        slug_error_message = _('There cannot be two or more chapter with the same slug in %(book)s.') % {
+            'book': self.chapter_book,
+        }
+        # Italian slug
+        if self.chapter_book and self.slug_it:
+            same_slug_chapter = Chapter.objects.filter(chapter_book=self.chapter_book, slug_it=self.slug_it)
+            same_slug_chapter = same_slug_chapter.count()
+            if same_slug_chapter > 1:
+                raise ValidationError({'slug_it': slug_error_message})
+        # English slug
+        if self.chapter_book and self.slug_en:
+            same_slug_chapter = Chapter.objects.filter(chapter_book=self.chapter_book, slug_en=self.slug_en)
+            same_slug_chapter = same_slug_chapter.count()
+            if same_slug_chapter > 1:
+                raise ValidationError({'slug_en': slug_error_message })
+        
     objects = ChapterQuerySet.as_manager()
 
     class Meta:

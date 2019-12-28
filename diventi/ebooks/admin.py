@@ -62,6 +62,7 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     ordering = ['chapter__order_index', 'order_index']
     search_fields = ['chapter__chapter_book__title', 'title']
     list_filter = ['chapter__chapter_book',]
+    preserve_filters = True
     actions = [duplicate_section,]
   
 
@@ -110,6 +111,7 @@ class ChapterAdmin(DiventiTranslationAdmin):
     )
     readonly_fields = ['created', 'modified',]
     list_filter = ['chapter_book',]
+    preserve_filters = True
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
     search_fields = ['chapter_book__title']

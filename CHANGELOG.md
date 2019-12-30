@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed a problem that prevented the first section to appear on the ebook page
+- Fixed a problem that prevented a chapter image to display in ebooks sidebar
 
 ### Security
 

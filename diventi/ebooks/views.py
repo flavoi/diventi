@@ -153,7 +153,8 @@ class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
             chapter = chapter.get()
         except chapter.model.DoesNotExist:
             raise Http404(_("This book hasn't been published yet."))
-        return obj
+        section = Section.objects.usection().get(id=obj.id) # Select related objects
+        return section
 
     def get_template_names(self):
         book_slug = self.kwargs.get('book_slug', None)

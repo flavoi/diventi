@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block side_image %}{% if chapter.image %}{{ chapter.image }}{% else %}{% static 'material-kit/img/image_placeholder.jpg' %}{% endif %}{% endblock side_image %}
+{% block side_image %}{% if section.chapter.image %}{{ section.chapter.image }}{% else %}{% static 'material-kit/img/image_placeholder.jpg' %}{% endif %}{% endblock side_image %}
 
 {% block side_chapter %}
     <div class="sidechapters">{% trans "Chapter" %}</div>

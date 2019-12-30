@@ -191,10 +191,11 @@ class ReplacementRule(Element):
 
 class SectionQuerySet(models.QuerySet):
 
-    # Fetch the universal section related to the section
+    # Fetch the related objects attached to the section
     def usection(self):
         sections = self.select_related('universal_section')
-        section = self.select_related('rules')
+        sections = sections.prefetch_related('rules')
+        sections = sections.select_related('chapter')
         sections = sections.order_by('order_index')
         return sections
 
@@ -237,7 +238,7 @@ class Section(AbstractSection, DiventiImageModel, DiventiColModel):
 
     def search(self, query, book_slug, *args, **kwargs):
         book = Book.objects.published().get(slug=book_slug)
-        results = Section.objects.filter(chapter__chapter_book=book)
+        results = Section.objects.filter(chapter__chapter_book=book).usection()
         query_list = query.split()
         results = results.filter(
             reduce(operator.and_,

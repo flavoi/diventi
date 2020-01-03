@@ -84,6 +84,9 @@ class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
     
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)
+        book_slug = self.kwargs.get('book_slug')
+        book = get_object_or_404(Book, slug=book_slug) 
+        queryset = queryset.filter(chapter_book=book)
         return queryset.published().sections()
 
     def get_template_names(self):
@@ -147,7 +150,7 @@ class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
     
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
-        chapter = Chapter.objects.filter(slug=obj.chapter.slug)
+        chapter = Chapter.objects.filter(id=obj.chapter.id)
         chapter = chapter.published()
         try:
             chapter = chapter.get()

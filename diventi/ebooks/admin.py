@@ -114,7 +114,7 @@ class ChapterAdmin(DiventiTranslationAdmin):
     preserve_filters = True
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['order_index']
-    search_fields = ['chapter_book__title']
+    search_fields = ['title',]
 
 
 class SectionCategoryadmin(DiventiTranslationAdmin):

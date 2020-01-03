@@ -193,7 +193,7 @@
             <div class="titlewrapper">
                 <div class="leftnavigation">
                     <div>
-                        <a href="{% url 'ebooks:book-detail' book.slug %}" class="sitetitle white"><span class="diventi-font">Diventi</span></a></div>
+                        <a href="{% url 'landing:home' %}" class="sitetitle white"><span class="diventi-font">Diventi</span></a></div>
                     </div>
                 <div class="titleblock">
                     {% block side_chapter %}
@@ -241,7 +241,7 @@
                     <div class="chapterpage-header"><a href="{% url 'ebooks:book-detail' book.slug %}" class="chapterpage-header">{{ book.title }}</a>
                     </div>
                     <div class="chapterpage-header chaptertext">{% block chapterpage_title %}{% trans "Introduction" %}{% endblock chapterpage_title %}</div>
-                    <a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>
+                    <!--<a href="{% url 'landing:home' %}" target="_blank" class="chapterpage-header trywebflow-link">Diventi</a>-->
                 </div>
 
                 <div class="search__container">

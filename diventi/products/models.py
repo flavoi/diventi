@@ -85,7 +85,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         blank=True, 
         verbose_name=_('related products'),
     ) # Connect this product to others
-    price = models.PositiveIntegerField(blank=True, verbose_name=_('price'), help_text=_('This price must be valued in euro cents. For example: 500 for 5.00€, 120 for 1.20€ etc.'))
+    price = models.PositiveIntegerField(default=0, verbose_name=_('price'), help_text=_('This price must be valued in euro cents. For example: 500 for 5.00€, 120 for 1.20€ etc.'))
 
     objects = ProductQuerySet.as_manager()
 
@@ -94,7 +94,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         verbose_name_plural = _('products')
 
     def __str__(self):
-        return self.title
+        return '{} ({})'.format(self.title, self.category) 
 
     def class_name(self):
         return _('application')

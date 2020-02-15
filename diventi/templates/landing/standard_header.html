@@ -7,8 +7,8 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-md-8 {% if featured_section.alignment == 'centered' %}col-md-6 ml-auto mr-auto text-center{% endif %}">                
-            {% with featured_section as section %}
+        <div class="col-md-8 {% if featured_section.alignment == 'centered' %}col-md-6 ml-auto mr-auto text-center{% endif %}">
+            {% with extra_style='btn-danger' section=featured_section %}
               {% include "landing/header_form.html" %}
             {% endwith %}
         </div>

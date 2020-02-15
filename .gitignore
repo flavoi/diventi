@@ -5,6 +5,7 @@ diventi/staticfiles/*
 latest.dump
 diventi.sqlite
 secrets.json
+gmail-api.json
 
 # Vagrant
 .vagrant/*

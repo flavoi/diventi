@@ -32,10 +32,12 @@ class Section(DiventiImageModel, FeaturedModel):
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     TEMPLATE_CHOICES = (
         ('standard_section.html', _('standard section')),
+        ('cards_section.html', _('cards section')),
     )
     template = models.CharField(choices=TEMPLATE_CHOICES, max_length=50, verbose_name=_('standard template'))
     FEATURED_TEMPLATE_CHOICES = (
         ('standard_header.html', _('standard header')),
+        ('search_header.html', _('search header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
     dark_mode = models.BooleanField(verbose_name=_('dark mode'))

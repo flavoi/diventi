@@ -19,51 +19,40 @@
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
+
             <li class="nav-item">
                 <a href="{% url 'blog:home' %}" class="nav-link">
                     Blog
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" data-toggle="modal" class="nav-link"  data-target="#searchModal" class="nav-link">
-                    {% trans "Search"  %}
-                    <div class="ripple-container"></div>
-                </a>
-              </li>
-            {% if user.is_authenticated %}
-                <li class="dropdown nav-item">
-                    <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
-                        <div class="profile-photo-small">
-                            {% if user.avatar.image %}                    
-                                <img src="{{ user.avatar.image }}" alt="User" class="rounded-circle img-fluid">
-                            {% else %}
-                                <img src="{% static 'material-kit/img/placeholder.jpg' %}" alt="User" class="rounded-circle img-fluid">
-                            {% endif %}
-                        </div>
-                        <div class="ripple-container"></div>
+
+            {% if user.is_staff %}
+                <li class="nav-item">
+                    <a href="{% url 'admin:index' %}" class="nav-link">
+                        {% trans "admin"|capfirst %}
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <h6 class="dropdown-header">{{ user.first_name }} &middot; {{ user.email }}</h6>
-                        {% if user.is_staff %}
-                            <a href="{% url 'admin:index' %}" class="dropdown-item">
-                                {% trans "control panel"|capfirst %}
-                            </a>
-                            <a href="{% url 'landing:dashboard' %}" class="dropdown-item">
-                                {% trans "admin dashboard"|capfirst %}
-                            </a>
-                            <div class="dropdown-divider"></div> 
-                        {% endif %}
-                        <a href="{% url 'accounts:update' user.nametag %}" class="dropdown-item">
-                            {% trans "profile"|capfirst %}
-                        </a>
-                        <a href="{% url 'accounts:signout' %}" class="dropdown-item">
-                            {% trans "sign out"|capfirst %}
-                        </a>
-                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'landing:dashboard' %}" class="nav-link">
+                        {% trans "analytics"|capfirst %}
+                    </a> 
+                </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'accounts:update' user.nametag %}" class="nav-link">
+                        {% trans "profile"|capfirst %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:signout' %}" class="nav-link" style="color: #ff9800;">
+                        {% trans "sign out"|capfirst %}
+                    </a>
                 </li>
             {% else %}
                 <li class="nav-item">   
-                    <a href="{% url 'accounts:signin' %}" class="btn btn-warning btn-round">
+                    <a href="{% url 'accounts:signin' %}" class="btn btn-link btn-warning">
                         <i class="fal fa-sign-in-alt fa-lg"></i> {% trans "sign in"|capfirst %} 
                         <div class="ripple-container"></div>
                     </a>

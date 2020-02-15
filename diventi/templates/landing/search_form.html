@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<div class="card card-raised card-form-horizontal">
+    <div class="card-body">
+      <form action="{% url 'landing:search' %}" class="has-warning">
+        <div class="row">
+          <div class="col-sm-8">
+            <span class="bmd-form-group"><div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fal fa-search fa-lg"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" autofocus="autofocus" placeholder="{% trans 'e.g. First Contact' %}" name="q" aria-label="{% trans 'Search' %}" {% if 'search_query' %}value="{{ search_query }}"{% endif %}">
+            </div></span>
+          </div>
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-warning btn-block">{% trans 'Search' %}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

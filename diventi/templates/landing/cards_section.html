@@ -1,0 +1,31 @@
+{% extends 'landing/standard_section.html' %}
+{% load i18n %}
+
+{% block product_landing_card %}
+<div class="projects-2" id="projects-2">
+    <div class="container">
+      <div class="row">
+        {% for product in section.products.all %}
+            <div class="col-md-4 {{ section.get_alignment_classes }}">
+              <div class="card card-plain">
+                <a href="{{ product.get_absolute_url }}" target="_blank">
+                  <div class="card-header card-header-image">
+                    <img src="{{ product.image }}">
+                  <div class="colored-shadow" style="background-image: url(&quot;{{ product.image }}&quot;); opacity: 1;"></div></div>
+                </a>
+                <div class="card-body">
+                  <a href="{{ product.get_absolute_url }}" target="_blank">
+                    <h4 class="card-title">{{ product.title|capfirst }}</h4>
+                  </a>
+                  <h6 class="card-category">{{ product.category }}</h6>
+                  <p class="card-description">
+                    {{ product.abstract|striptags }}
+                  </p>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock product_landing_card %}

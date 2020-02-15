@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-15 23:04+0100\n"
+"POT-Creation-Date: 2020-02-15 23:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1646,7 +1646,6 @@ msgid "CP"
 msgstr "PC"
 
 #: diventi/templates/base_dashboard.html:120
-#: diventi/templates/navigation.html:45
 msgid "control panel"
 msgstr "pannello di controllo"
 
@@ -1811,7 +1810,7 @@ msgstr "Risultati"
 
 #: diventi/templates/ebooks/search_results_material.html:27
 #: diventi/templates/ebooks/search_results_web.html:19
-#: diventi/templates/landing/search_results.html:43
+#: diventi/templates/landing/search_results.html:49
 #: diventi/templates/landing/vertical_dashboard.html:87
 msgid "No items found"
 msgstr "Nessun risultato trovato"
@@ -1901,7 +1900,7 @@ msgstr "Registrati per saperne di più e accedere ai contenuti."
 msgid "e.g. First Contact"
 msgstr "es: Primo Contatto"
 
-#: diventi/templates/landing/standard_section.html:55
+#: diventi/templates/landing/standard_section.html:56
 msgid "View Project"
 msgstr "Visualizza progetto"
 
@@ -1921,19 +1920,23 @@ msgstr "copiato"
 msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
-#: diventi/templates/navigation.html:48
-msgid "admin dashboard"
-msgstr "cruscotto direzionale"
+#: diventi/templates/navigation.html:32
+msgid "admin"
+msgstr "admin"
 
-#: diventi/templates/navigation.html:53
+#: diventi/templates/navigation.html:37
+msgid "analytics"
+msgstr "analitica"
+
+#: diventi/templates/navigation.html:45
 msgid "profile"
 msgstr "profilo"
 
-#: diventi/templates/navigation.html:56
+#: diventi/templates/navigation.html:50
 msgid "sign out"
 msgstr "annulla accesso"
 
-#: diventi/templates/navigation.html:63
+#: diventi/templates/navigation.html:56
 msgid "sign in"
 msgstr "accedi"
 
@@ -2008,6 +2011,9 @@ msgstr "recensione"
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#~ msgid "admin dashboard"
+#~ msgstr "cruscotto direzionale"
 
 #~ msgid "Search contents in this website"
 #~ msgstr "Cerca contenuti in questo sito web"

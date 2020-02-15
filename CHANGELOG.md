@@ -9,10 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 
 ### Added
-- Upgraded material kit from v211 to v220
-- Upgraded django from v2.2.9 to v2.2.10
+- [core] Upgraded material kit from v2.1.1 to v2.2.0
+- [core] Upgraded django from v2.2.9 to v2.2.10
+- [landing] Introduced 'cards section': a new section template
+- [landing] Introduced 'search header': a new featured section template  
 
 ### Changed
+- [landing] Changed the ordering of search results to make products appear first
 
 ### Removed
 
@@ -24,27 +27,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0-beta.6] → 2019-12-26
 
 ### Added
-- Introduced new actions in products admin page to lock or unlock items
-- Introduced related products as new section in product detail page
-- Introduced replacement rules to better adapt universal sections in any ebook
-- Introduced a new admin page for reporting purposes
-- Introduces payments: a new app that handles real money purchases with Stripe services
+- [ebooks] Introduced replacement rules to better adapt universal sections in any ebook
+- [landing] Introduced a new admin page for reporting purposes
+- [products] Introduced new actions in products admin page to lock or unlock items
+- [products] Introduced related products as new section in product detail page
+- [payments] Introduced payments: a new app that handles real money purchases with Stripe services
 
 ### Changed
-- Ebooks: updated table of contents with parts and chapters
-          enabled sections' bookmarks 
-- Products: the courtesy message is no longer a mandatory field
-- Updated ckeditor config with custom block styles
-- Improved product page mobile responsiveness
-- Improved sizing of cards in collection page
-- Removed forced uppercase from article's label
+- [accounts] Improved sizing of cards in collection page
+- [core] Updated ckeditor config with custom block styles
+- [ebooks] Updated table of contents with parts and chapters
+- [ebooks] Enabled sections' bookmarks 
+- [products] The courtesy message is no longer a mandatory field
+- [products] Improved product page mobile responsiveness
 
 ### Removed
-- Ebooks: removed section templates and values
+- [blog] Removed forced uppercase from article's label
+- [ebooks] Removed section templates and values
 
 ### Fixed
-- Fixed a problem that prevented the first section to appear on the ebook page
-- Fixed a problem that prevented a chapter image to display in ebooks sidebar
+- [ebooks] Fixed a problem that prevented the first section to appear
+- [ebooks] Fixed a problem that prevented a chapter image to display
 
 ### Security
 

@@ -993,10 +993,8 @@ msgid "standard section"
 msgstr "sezione normale"
 
 #: diventi/landing/models.py:35
-#, fuzzy
-#| msgid "standard section"
 msgid "cards section"
-msgstr "sezione normale"
+msgstr "sezione a schede"
 
 #: diventi/landing/models.py:37
 msgid "standard template"
@@ -1007,10 +1005,8 @@ msgid "standard header"
 msgstr "testatina normale"
 
 #: diventi/landing/models.py:40
-#, fuzzy
-#| msgid "standard header"
 msgid "search header"
-msgstr "testatina normale"
+msgstr "testatina con ricerca"
 
 #: diventi/landing/models.py:42
 msgid "featured template"

@@ -8,6 +8,7 @@ from django.db.models import Sum
 from django.contrib import messages
 from django.forms import formset_factory
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 from diventi.core.views import DiventiActionMixin
 
@@ -126,6 +127,13 @@ def survey_questions(request, slug, author_name=None):
         if formset.is_valid():
             for form in formset:
                 form.save()
+            send_mail(
+                _('Diventi: %(user)s has completed %(survey)s') % {'user': author_name, 'survey': survey.title,},
+                _('Dear Diventi authors, new answers are now available for survey %(survey)s.') % {'survey': survey.title,},
+                'info@playdiventi.it',
+                ['info@playdiventi.it',],
+                fail_silently=False,
+            )
             messages.success(request, _('Your survey has been saved!'))
             return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
         else:

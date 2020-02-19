@@ -143,7 +143,7 @@ class Survey(TimeStampedModel, DiventiImageModel, FeaturedModel):
     get_question_groups.short_description = _('Question Groups')
 
 
-class Answer(models.Model):
+class Answer(TimeStampedModel):
     """
         One answer can be given for each question. If the question provides a score, the answer get it too.
     """

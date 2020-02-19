@@ -9,7 +9,8 @@ from .models import Survey, Question, Answer, QuestionGroup, QuestionChoice, Out
 
 class AnswerAdmin(DiventiTranslationAdmin):
     model = Answer
-    list_display = ['short_question', 'author', 'author_name', 'get_score', 'short_content',]
+    list_display = ['question', 'author', 'author_name', 'get_score', 'content', 'created', 'modified']
+    readonly_fields = ['created', 'modified']
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(AnswerAdmin, self).get_form(request, obj, **kwargs)
@@ -46,7 +47,7 @@ class OutcomeAdmin(DiventiTranslationAdmin):
 
 
 class SurveyAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'get_question_groups', 'published', 'publication_date', 'featured', 'public']
+    list_display = ['title', 'image_tag', 'get_question_groups', 'published', 'publication_date', 'public']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (

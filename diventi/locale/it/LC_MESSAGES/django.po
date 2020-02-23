@@ -1136,10 +1136,8 @@ msgid "Projects"
 msgstr "Progetti"
 
 #: diventi/products/models.py:73
-#, fuzzy
-#| msgid "category"
 msgid "meta category"
-msgstr "tipo"
+msgstr "meta categoria"
 
 #: diventi/products/models.py:76
 msgid "Product category"

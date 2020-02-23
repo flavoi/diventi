@@ -66,11 +66,17 @@ class ProductAdmin(DiventiTranslationAdmin):
         return form
 
 
-class CategoryAdmin(DiventiTranslationAdmin):
-    list_display = ('title', 'default')
+class ProductCategoryAdmin(DiventiTranslationAdmin):
+    list_display = ('title', 'meta_category')
+    fields = ('title', 'meta_category')
+
+
+class ChapterCategoryAdmin(DiventiTranslationAdmin):
+    list_display = ('title',)
+    fields = ('title',)
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ImagePreview, ImagePreviewAdmin)
-admin.site.register(ProductCategory, CategoryAdmin)
-admin.site.register(ChapterCategory, CategoryAdmin)
+admin.site.register(ProductCategory, ProductCategoryAdmin)
+admin.site.register(ChapterCategory, ChapterCategoryAdmin)

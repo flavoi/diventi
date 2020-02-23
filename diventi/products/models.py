@@ -56,11 +56,22 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch()
         return products
 
+    # Returns the emails of users that purchased the product
+    # It filters users by language
+    def buyers_emails(self, lan):
+        product = self.get()
+        buyers = product.buyers.all()
+        buyers = buyers.filter(language=lan)
+        buyers = buyers.values_list('email', flat=True)  
+        return buyers
+
 
 class ProductCategory(Category):
     """
         Defines the type of a product.
     """
+    meta_category = models.BooleanField(default=False, verbose_name=_('meta category'))
+
     class Meta:
         verbose_name = _('Product category')
         verbose_name_plural = _('Product categories')
@@ -117,7 +128,31 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         return results
 
     def reporting(self, *args, **kwargs):
-        results = Product.objects.none()
+        queryset = Product.objects.all().exclude(category__meta_category=True)
+        results = []
+        for product in queryset:
+            results.append({
+                'name': _('%(product)s: italian buyers') % {
+                    'product': product.title,
+                },
+                'title': product.get_buyers_emails('it').count(),
+                'description': _('price: %(price)s, status: %(status)s') % {
+                    'price': product.get_price(),
+                    'status': product.get_status(),
+                },
+                'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': product.get_buyers_emails('it')},
+            })
+            results.append({
+                'name': _('%(product)s: english buyers') % {
+                    'product': product.title,
+                },
+                'title': product.get_buyers_emails('en').count(),
+                'description': _('price: %(price)s, status: %(status)s') % {
+                    'price': product.get_price(),
+                    'status': product.get_status(),
+                },
+                'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': product.get_buyers_emails('en')},
+            })
         return results
 
     # Return True if the user has added the product to his collections
@@ -140,6 +175,19 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
             'price': self.price / 100,
         })
         return p
+
+    # Get the emails of this product buyers
+    def get_buyers_emails(self, lan):
+        p = Product.objects.filter(pk=self.pk)
+        p = p.buyers_emails(lan)
+        return p
+
+    # Returns the publishable status of the product
+    def get_status(self): 
+        if self.published:
+            return _('published')
+        else:
+            return _('draft')
 
 
 class ChapterCategory(Category):

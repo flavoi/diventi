@@ -108,5 +108,11 @@ class DashboardView(StaffRequiredMixin, ListView):
         articles = Article.reporting(self)
         products = Product.reporting(self)
         users = DiventiUser.reporting(self)
-        results = list(chain(articles, products, users))
+        results = list(chain(users,articles, products, ))
         return results
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        featured_section = Section.objects.featured()
+        context['featured_section'] = featured_section
+        return context

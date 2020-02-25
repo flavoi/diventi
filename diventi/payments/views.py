@@ -17,6 +17,7 @@ def charge(request, price, title, user):
                 description='Diventi charge for {}'.format(title),
                 source=request.POST['stripeToken'],
             )
+            outcome = 1 # Success charge
         except stripe.error.CardError as e:
             # Since it's a decline, stripe.error.CardError will be caught
             print('Status is: %s' % e.http_status)
@@ -27,25 +28,31 @@ def charge(request, price, title, user):
             print('Message is: %s' % e.error.message)
         except stripe.error.RateLimitError as e:
             # Too many requests made to the API too quickly
-            print('Rate limit error')
+            msg = _('Rate limit error')
+            outcome = 0
         except stripe.error.InvalidRequestError as e:
             # Invalid parameters were supplied to Stripe's API
-            print('Invalid request error')
+            msg = _('Invalid request error')
+            outcome = 0
         except stripe.error.AuthenticationError as e:
             # Authentication with Stripe's API failed
             # (maybe you changed API keys recently)
-            print('Api authentication error')
+            msg = _('Api authentication error')
+            outcome = 0
         except stripe.error.APIConnectionError as e:
             # Network communication with Stripe failed
-            print('Api connection error')
+            msg = _('Api connection error')
+            outcome = 0
         except stripe.error.StripeError as e:
             # Display a very generic error to the user, and maybe send
             # yourself an email
-            print('Generic error')
+            msg = _('Generic error')
+            outcome = 0
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
-            print('Unexpected error')
-        message = _('You paid %(price)s for %(title)s') % {'price': price, 'title': title,}
+            msg = _('Unexpected error')
+            outcome = 0
+        msg = _('You paid %(price)s for %(title)s') % {'price': price, 'title': title,}
         send_mail(
             _('Diventi: %(title)s purchase') % {'title': title,},
             _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {
@@ -57,9 +64,10 @@ def charge(request, price, title, user):
             [user.email],
             fail_silently=False,
         )
+        print(msg)
         payment = {
-            'outcome': 1,
-            'msg': message,
+            'outcome': outcome,
+            'msg': msg,
         }
         return payment
     else:

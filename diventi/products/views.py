@@ -64,11 +64,11 @@ class AddToUserCollectionView(ProductUpdateView):
         if not self.object.user_has_already_bought(user):
             if self.object.price > 0:
                 payment = charge(self.request, self.object.price, self.object.title, user)
+                msg = payment['msg']
                 if payment['outcome'] != 1: # Failed charge
-                    msg = payment['msg']
                     raise Http404(msg)
                 else:
-                    message.info(self.request, payment['msg'])
+                    message.info(self.request, msg)
             return self.object.customers.add(user)
         else:
             msg = _('The user has this product already.')

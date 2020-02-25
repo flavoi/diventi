@@ -52,7 +52,7 @@
                             {% if product.price %}{{ product.get_price }}{% else %}{% trans 'free'|title %}{% endif %}
                           </h3>
                             <label class="badge badge-rose">{{ product.category.title }}</label>
-                            <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fas fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>   
+                            <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fas fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
                         <div class="my-3">
                           {% render_rating for product %}
                         </div>
@@ -86,9 +86,9 @@
                             <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
                                 <div class="card-body">
                                     <ul>
-                                       {% for characteristic in product.characteristics.all %}
-                                            <li>{{ characteristic.description|striptags|capfirst }}</li>
-                                        {% endfor %}
+                                      {% for characteristic in product.characteristics.all %}
+                                        <li>{{ characteristic.description|striptags|capfirst }}</li>
+                                      {% endfor %}
                                     </ul>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                 {% include "reviews/review_button_modal.html" %}                        
                             {% else %}
                                 {% if product.price > 0 %}
-                                  {% with product as product %}
+                                  {% with url='products:add' slug=product.slug %}
                                     {% include "payments/pay_button.html" %}
                                   {% endwith %}
                                 {% else %}

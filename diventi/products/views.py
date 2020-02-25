@@ -13,6 +13,7 @@ from boto.s3.connection import S3Connection
 from logging import getLogger
 
 from diventi.core.views import DiventiActionMixin
+from diventi.payments.views import charge
 
 from .models import Product
 from .forms import UserCollectionUpdateForm
@@ -59,16 +60,30 @@ class AddToUserCollectionView(ProductUpdateView):
     success_msg = _('This product has been added to you collection')
     template_name = 'products/product_detail.html'
 
-    def add_to_user_collection(self):
-        if not self.object.user_has_already_bought(self.request.user):
-            return self.object.buyers.add(self.request.user)
+    def add_to_user_collection(self, user):
+        if not self.object.user_has_already_bought(user):
+            if self.object.price > 0:
+                payment = charge(self.request, self.object.price, self.object.title, user)
+                if payment['outcome'] != 1: # Failed charge
+                    msg = payment['msg']
+                    raise Http404(msg)
+                else:
+                    message.info(self.request, payment['msg'])
+            return self.object.customers.add(user)
         else:
             msg = _('The user has this product already.')
             raise Http404(msg)
 
     def form_valid(self, form):
-        self.add_to_user_collection()
+        self.add_to_user_collection(self.request.user)
         return super(AddToUserCollectionView, self).form_valid(form)
+
+    def get_initial(self):
+        """Return the initial data to use for forms on this view."""
+        if self.object.user_has_already_bought(self.request.user):
+            msg = _('The user has this product already.')
+            raise Http404(msg)
+        return super().get_initial()
 
 
 class DropFromUserCollectionView(ProductUpdateView):

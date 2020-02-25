@@ -1,39 +1,20 @@
 import stripe
-import unicodedata
 
 from django.conf import settings
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic.base import TemplateView
-from django.contrib import messages
+from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
-from cuser.middleware import CuserMiddleware
-
-from diventi.products.models import Product 
-from diventi.products.views import AddToUserCollectionView
 from django.core.mail import send_mail
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-
-class HomePageView(TemplateView):
-    template_name = 'payments/home.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
-        context['product'] = Product.objects.all().first()
-        return context
-
-
-def charge(request, product_slug):
-    product = get_object_or_404(Product, slug=product_slug)
+def charge(request, price, title, user):
     if request.method == 'POST':
         try:
             charge = stripe.Charge.create(
-                amount=product.price,
+                amount=price,
                 currency='eur',
-                description='Diventi charge for {}'.format(product.title),
+                description='Diventi charge for {}'.format(title),
                 source=request.POST['stripeToken'],
             )
         except stripe.error.CardError as e:
@@ -64,15 +45,22 @@ def charge(request, product_slug):
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
             print('Unexpected error')
-        user = CuserMiddleware.get_user()
-        product.buyers.add(user)
-        message = _('You paid %(price)s for %(title)s') % {'price': product.get_price(), 'title': product.title,}
+        message = _('You paid %(price)s for %(title)s') % {'price': price, 'title': title,}
         send_mail(
-            _('Diventi: %(title)s purchase') % {'title': product.title,},
-            _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {'user': user.get_short_name(), 'price': product.get_price(), 'title': product.title,},
+            _('Diventi: %(title)s purchase') % {'title': title,},
+            _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {
+                'user': user.get_short_name(), 
+                'price': price, 
+                'title': title,
+            },
             'info@playdiventi.it',
             [user.email],
             fail_silently=False,
         )
-        messages.success(request, message)
-        return redirect(product)
+        payment = {
+            'outcome': 1,
+            'msg': message,
+        }
+        return payment
+    else:
+        return None

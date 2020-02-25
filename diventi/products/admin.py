@@ -5,7 +5,7 @@ from diventi.core.admin import DiventiTranslationAdmin
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory
+from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory, Purchase
 from .forms import ProductForm
 
 
@@ -34,11 +34,18 @@ class ImagePreviewAdmin(DiventiTranslationAdmin):
     list_display = ('label', 'image_tag')
 
 
+class PurchaseInline(admin.TabularInline):
+    model = Purchase
+    readonly_fields = ['created',]
+    extra = 1
+
+
 class ProductAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'image_tag', 'published', 'price', 'category', 'publication_date', 'modified']    
     inlines = [
         ChapterInline,
         ImagePreviewInline,
+        PurchaseInline,
     ]
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']

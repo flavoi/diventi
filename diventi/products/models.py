@@ -86,6 +86,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
     featured = models.BooleanField(default=False, verbose_name=_('featured'))
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
+    customers = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Purchase', blank=True, verbose_name=_('customers'))
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
     category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default', on_delete=models.SET_NULL)
     courtesy_short_message = models.CharField(blank=True, max_length=50, verbose_name=_('short courtesy messages'))
@@ -157,7 +158,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
 
     # Return True if the user has added the product to his collections
     def user_has_already_bought(self, user):
-        return user in self.buyers.all()
+        return user in self.customers.all()
 
     # Return True if the user has authored this collection
     def user_has_authored(self, user):
@@ -216,3 +217,8 @@ class ImagePreview(DiventiImageModel):
     class Meta:
         verbose_name = _('Image')
         verbose_name_plural = _('Images')
+
+
+class Purchase(TimeStampedModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

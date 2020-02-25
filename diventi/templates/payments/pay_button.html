@@ -3,8 +3,10 @@
 {% load i18n %}
 
 {% if user.is_authenticated %}
-    <form action="{% url 'payments:charge' product.slug %}" method="post">
+    <form action="{% url url slug %}" method="post">
       {% csrf_token %}
+      {{ add_collection_form }}
+      {{ add_collection_form.errors }}
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
               data-key="{{ key }}"
               data-description="{{ product.title|capfirst }}"

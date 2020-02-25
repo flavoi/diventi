@@ -14,7 +14,7 @@ def charge(request, price, title, user):
             charge = stripe.Charge.create(
                 amount=price,
                 currency='eur',
-                description='Diventi charge for {}'.format(title),
+                description=_('Diventi charge for %(title)s') % { 'title': title },
                 source=request.POST['stripeToken'],
             )
             outcome = 1 # Success charge
@@ -64,7 +64,7 @@ def charge(request, price, title, user):
             [user.email],
             fail_silently=False,
         )
-        print(msg)
+        print('{}, outcome: {}'.format(msg, outcome))
         payment = {
             'outcome': outcome,
             'msg': msg,

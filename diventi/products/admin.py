@@ -57,15 +57,18 @@ class ProductAdmin(DiventiTranslationAdmin):
             'fields': ('price',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'buyers', 'courtesy_short_message', 'courtesy_message', 'slug'),
+            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
         (_('Related'), {
             'fields': ('related_products',),
         }),
     )
     actions = [make_published, make_unpublished]
-    raw_id_fields = ['buyers']
     form = ProductForm
+    filter_horizontal = ['buyers']
+    list_select_related = (
+        'category',
+    )
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj=None, **kwargs)

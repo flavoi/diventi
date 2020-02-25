@@ -8,6 +8,7 @@ from django.views.generic import RedirectView
 from django.http import Http404, HttpResponseGone, HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.contrib import messages
 
 from boto.s3.connection import S3Connection
 from logging import getLogger
@@ -68,7 +69,7 @@ class AddToUserCollectionView(ProductUpdateView):
                 if payment['outcome'] != 1: # Failed charge
                     raise Http404(msg)
                 else:
-                    message.info(self.request, msg)
+                    messages.add_message(self.request, messages.INFO, msg)
             return self.object.customers.add(user)
         else:
             msg = _('The user has this product already.')

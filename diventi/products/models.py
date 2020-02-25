@@ -222,3 +222,10 @@ class ImagePreview(DiventiImageModel):
 class Purchase(TimeStampedModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('Purchase')
+        verbose_name_plural = _('Purchases')
+
+    def __str__(self):
+        return _('Purchase: %(id)s') % {'id': self.id}

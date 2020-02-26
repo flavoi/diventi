@@ -41,17 +41,17 @@ class DiventiUserQuerySet(models.QuerySet):
     def emails(self):
         return self.values('language').annotate(total=Count('email')).order_by('language')
 
-    # Returns users that set "lan" as main language
-    def speakers(self, lan):
+    # Returns the users that set "lan" as main language
+    def subscribers(self, lan):
         users = self.is_active()
         users = self.filter(language=lan)
         return users
 
-    # Returns the emails of subscribers that set "lan" as main language
+    # Returns the emails of users that set "lan" as main language
     def subscribers_emails(self, lan):
-        users = self.has_agreed_gdpr()
-        users = users.filter(language=lan)
-        emails = users.values_list('email', flat=True)  
+        users = self.subscribers(lan)
+        users = users.has_agreed_gdpr()
+        emails = users.values_list('email', flat=True)
         return emails
 
     # Returns the last user that has signed up and agreed to gdpr
@@ -79,8 +79,8 @@ class DiventiUserManager(UserManager):
     def emails(self):
         return self.get_queryset().emails()
 
-    def speakers(self, lan):
-        return self.get_queryset().speakers(lan)
+    def subscribers(self, lan):
+        return self.get_queryset().subscribers(lan)
 
     def subscribers_emails(self, lan):
         return self.get_queryset().lan_emails(lan)
@@ -192,36 +192,42 @@ class DiventiUser(AbstractUser):
             results.append(row)
         return results
 
+    # Returns the description of the subscriber
+    # Or none if none is found
+    def get_description(self, prefix):
+        description = _('%(prefix)s: %(last_sub)s on %(date_joined)s (GDPR: %(gdpr)s)') % {
+            'prefix': prefix,
+            'last_sub': self.get_short_name(),
+            'date_joined': naturalday(self.date_joined),
+            'gdpr': _('Yes') if self.has_agreed_gdpr else _('No'),
+        }
+        return description
+
     def reporting(self, *args, **kwargs):
         queryset = DiventiUser.objects.all()
         results = [] 
         results.append({
             'name': _("users' count"),
             'title': queryset.count(),
-            'description': _('%(en)s english speakers, %(it)s italian speakers') % {
-                'en': queryset.speakers('en').count(),
-                'it': queryset.speakers('it').count(),
+            'description': _('%(en)s english subscribers, %(it)s italian subscribers') % {
+                'en': queryset.subscribers('en').count(),
+                'it': queryset.subscribers('it').count(),
             },
             'action': '',
         })
         last_subscriber = queryset.last_subscriber('en')
+        prefix = _('Last subscriber')
         results.append({
-            'name': _("english subscribers"),
+            'name': _("english gdpr subscribers"),
             'title': queryset.subscribers_emails('en').count(),
-            'description': _('last subscriber: %(last_sub)s on %(date_joined)s') % {
-                'last_sub': last_subscriber.get_short_name(),
-                'date_joined': naturalday(last_subscriber.date_joined),
-            },
+            'description': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('en')},
         })
         last_subscriber = queryset.last_subscriber('it')
         results.append({
-            'name': _("italian subscribers"),
+            'name': _("italian gdpr subscribers"),
             'title': queryset.subscribers_emails('it').count(),
-            'description': _('last subscriber: %(last_sub)s on %(date_joined)s') % {
-                'last_sub': last_subscriber.get_short_name(),
-                'date_joined': naturalday(last_subscriber.date_joined),
-            },
+            'description': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('it')},
         })
         return results

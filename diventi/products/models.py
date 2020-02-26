@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _, gettext
+from django.contrib.humanize.templatetags.humanize import naturalday
 
 from cuser.middleware import CuserMiddleware
 
@@ -22,6 +23,7 @@ class ProductQuerySet(models.QuerySet):
         products = self.prefetch_related('chapters')
         products = products.prefetch_related('authors')
         products = products.prefetch_related('related_products')
+        products = products.prefetch_related('customers')
         return products
 
     # Fetch the products authored or purchased by the user
@@ -56,14 +58,22 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch()
         return products
 
-    # Returns the emails of users that purchased the product
-    # It filters users by language
-    def buyers_emails(self, lan):
+    # Returns the users that purchased the product
+    # with "lan" as main language
+    def customers(self, lan):
         product = self.get()
-        buyers = product.buyers.all()
-        buyers = buyers.filter(language=lan)
-        buyers = buyers.values_list('email', flat=True)  
-        return buyers
+        customers = product.customers.all()
+        customers = customers.filter(language=lan)
+        customers = customers.is_active()
+        return customers
+
+    # Returns the emails of users that purchased the product
+    # with "lan" as main language
+    def customers_emails(self, lan):
+        customers = self.customers(lan)
+        customers = customers.has_agreed_gdpr()
+        customers = customers.values_list('email', flat=True)
+        return customers
 
 
 class ProductCategory(Category):
@@ -130,29 +140,38 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
 
     def reporting(self, *args, **kwargs):
         queryset = Product.objects.all().exclude(category__meta_category=True)
+        queryset = queryset.prefetch()
         results = []
         for product in queryset:
             results.append({
-                'name': _('%(product)s: italian buyers') % {
+                'name': _('%(product)s: total customers') % {
                     'product': product.title,
                 },
-                'title': product.get_buyers_emails('it').count(),
-                'description': _('price: %(price)s, status: %(status)s') % {
-                    'price': product.get_price(),
-                    'status': product.get_status(),
+                'title': product.customers.count(),
+                'description': _('%(en)s english customers, %(it)s italian customers') % {
+                    'en': product.get_customers_emails('it').count(),
+                    'it': product.get_customers_emails('en').count(),
                 },
-                'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': product.get_buyers_emails('it')},
+                'action': '',
             })
+            last_purchase = Purchase.objects.last_purchase(product, 'en')
+            prefix = _('Last purchase')
             results.append({
-                'name': _('%(product)s: english buyers') % {
+                'name': _('%(product)s: english gdpr customers') % {
                     'product': product.title,
                 },
-                'title': product.get_buyers_emails('en').count(),
-                'description': _('price: %(price)s, status: %(status)s') % {
-                    'price': product.get_price(),
-                    'status': product.get_status(),
+                'title': product.get_customers_emails('en').count(),
+                'description': last_purchase.get_description(prefix) if last_purchase is not None else prefix + ': -',
+                'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': product.get_customers_emails('en')},
+            })
+            last_purchase = Purchase.objects.last_purchase(product, 'it')
+            results.append({
+                'name': _('%(product)s: italian gdpr customers') % {
+                    'product': product.title,
                 },
-                'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': product.get_buyers_emails('en')},
+                'title': product.get_customers_emails('it').count(),
+                'description': last_purchase.get_description(prefix) if last_purchase is not None else prefix + ': -',
+                'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': product.get_customers_emails('it')},
             })
         return results
 
@@ -178,9 +197,9 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         return p
 
     # Get the emails of this product buyers
-    def get_buyers_emails(self, lan):
+    def get_customers_emails(self, lan):
         p = Product.objects.filter(pk=self.pk)
-        p = p.buyers_emails(lan)
+        p = p.customers_emails(lan)
         return p
 
     # Returns the publishable status of the product
@@ -219,13 +238,45 @@ class ImagePreview(DiventiImageModel):
         verbose_name_plural = _('Images')
 
 
+class PurchaseQuerySet(models.QuerySet):
+
+    # Prefetch all relevant data
+    def related(self):
+        purchases = self.select_related('customer')
+        purchases = purchases.select_related('product')
+        return purchases
+
+    # Returns the last customer that has purchased the product
+    # with "lan" as main language
+    def last_purchase(self, product, lan):
+        purchases = self.related()
+        purchases = purchases.filter(product=product)
+        purchases = purchases.filter(customer__language=lan)
+        last_purchase = purchases.order_by('-created').first()
+        return last_purchase
+
+
 class Purchase(TimeStampedModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    objects = PurchaseQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('Purchase')
         verbose_name_plural = _('Purchases')
 
+
     def __str__(self):
         return _('Purchase: %(id)s') % {'id': self.id}
+
+    # Returns the description of the purchase
+    # Or none if none is found
+    def get_description(self, prefix):
+        description = _('%(prefix)s: %(last_pur)s on %(created)s (GDPR: %(gdpr)s)') % {
+            'prefix': prefix,
+            'last_pur': self.customer.get_short_name(),
+            'created': naturalday(self.created),
+            'gdpr': _('Yes') if self.customer.has_agreed_gdpr else _('No'),
+        }
+        return description

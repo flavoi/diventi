@@ -205,30 +205,32 @@ class DiventiUser(AbstractUser):
         return description
 
     def reporting(self, *args, **kwargs):
+        
         queryset = DiventiUser.objects.all()
         results = [] 
+        last_subscriber = queryset.last_subscriber()
+        prefix = _('Last subscriber')
         results.append({
+            'columns': 6,
             'name': _("users' count"),
             'title': queryset.count(),
             'description1': _('%(en)s english subscribers, %(it)s italian subscribers') % {
                 'en': queryset.subscribers('en').count(),
                 'it': queryset.subscribers('it').count(),
             },
+            'description2': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': '',
         })
-        last_subscriber = queryset.last_subscriber('en')
-        prefix = _('Last subscriber')
         results.append({
+            'columns': 3,
             'name': _("english subscribers"),
             'title': queryset.subscribers_emails('en').count(),
-            'description1': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('en')},
         })
-        last_subscriber = queryset.last_subscriber('it')
         results.append({
+            'columns': 3,
             'name': _("italian subscribers"),
             'title': queryset.subscribers_emails('it').count(),
-            'description1': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('it')},
         })
         return results

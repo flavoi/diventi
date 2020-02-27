@@ -134,6 +134,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
             customers_it = Purchase.objects.customers(product, 'it')
             customers_it_emails = Purchase.objects.customers_emails(product, 'it')
             results.append({
+                'columns': 6,
                 'name': _('%(product)s: total customers') % {
                     'product': product.title,
                 },
@@ -147,6 +148,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
             })
 
             results.append({
+                'columns': 3,
                 'name': _('%(product)s: english subscribers') % {
                     'product': product.title,
                 },
@@ -158,6 +160,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
                 },
             })
             results.append({
+                'columns': 3,
                 'name': _('%(product)s: italian subscribers') % {
                     'product': product.title,
                 },

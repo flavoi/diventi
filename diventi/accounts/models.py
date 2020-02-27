@@ -56,9 +56,11 @@ class DiventiUserQuerySet(models.QuerySet):
 
     # Returns the last user that has signed up and agreed to gdpr
     # with "lan" as main language 
-    def last_subscriber(self, lan):
+    def last_subscriber(self, lan=None):
         users = self.is_active()
-        user = users.filter(language=lan).order_by('-date_joined').first()
+        if lan:
+            users = users.filter(language=lan)
+        user = users.order_by('-date_joined').first()
         return user
 
 
@@ -195,11 +197,10 @@ class DiventiUser(AbstractUser):
     # Returns the description of the subscriber
     # Or none if none is found
     def get_description(self, prefix):
-        description = _('%(prefix)s: %(last_sub)s on %(date_joined)s (GDPR: %(gdpr)s)') % {
+        description = _('%(prefix)s: %(last_sub)s on %(date_joined)s') % {
             'prefix': prefix,
             'last_sub': self.get_short_name(),
             'date_joined': naturalday(self.date_joined),
-            'gdpr': _('Yes') if self.has_agreed_gdpr else _('No'),
         }
         return description
 
@@ -209,7 +210,7 @@ class DiventiUser(AbstractUser):
         results.append({
             'name': _("users' count"),
             'title': queryset.count(),
-            'description': _('%(en)s english subscribers, %(it)s italian subscribers') % {
+            'description1': _('%(en)s english subscribers, %(it)s italian subscribers') % {
                 'en': queryset.subscribers('en').count(),
                 'it': queryset.subscribers('it').count(),
             },
@@ -218,16 +219,16 @@ class DiventiUser(AbstractUser):
         last_subscriber = queryset.last_subscriber('en')
         prefix = _('Last subscriber')
         results.append({
-            'name': _("english gdpr subscribers"),
+            'name': _("english subscribers"),
             'title': queryset.subscribers_emails('en').count(),
-            'description': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
+            'description1': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('en')},
         })
         last_subscriber = queryset.last_subscriber('it')
         results.append({
-            'name': _("italian gdpr subscribers"),
+            'name': _("italian subscribers"),
             'title': queryset.subscribers_emails('it').count(),
-            'description': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
+            'description1': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('it')},
         })
         return results

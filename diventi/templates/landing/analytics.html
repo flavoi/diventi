@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'dashboard'|capfirst %}{% endblock title %}
+
+{% block extrahead %}
+<style>
+.dtooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.dtooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.dtooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.dtooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+</style>
+{% endblock %}
+
+{% block bodyclass %}sections-page sidebar-collapse{% endblock bodyclass %}
+
+{% block navbarclasses %}bg-dark navbar-color-on-scroll{% endblock navbarclasses %}
+
+{% block pageheader %}
+<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ featured_section.image }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+              <h6 class="category">{% trans 'admin page' %}</h6>
+              <h2 class="title">{% trans 'analytics'|capfirst  %}</h2>
+              <h4>{% trans 'metrics and indices to best measure the performance of our projects'|capfirst %}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock pageheader %}
+
+{% block maincontainer %}
+    <div class="projects-3 section-gray" id="projects-3">
+        <div class="container">           
+          <div class="row">
+            {% for result in results %}
+                <div class="col-md-{% if result.columns %}{{ result.columns }}{% else %}3{% endif %}">
+                  <div class="card">
+                    <div class="card-body text-left">
+                      <h6 class="card-category">{{ result.name }}</h6>
+                      <h2 class="card-title">{{ result.title }}</h2>
+                      {% if result.description1 %}
+                        <p class="card-description">
+                          {{ result.description1|capfirst|add:"." }}
+                        </p>
+                      {% endif %}
+                      {% if result.description2 %}
+                        <p class="card-description">
+                          {{ result.description2|capfirst|add:"." }}
+                        </p>
+                      {% endif %}
+                    </div>
+                      {% if result.action %}
+                        <div class="card-footer">
+                            <button class="btn btn-default btn-round js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
+                                {{ result.action.label|capfirst }}
+                            </button>
+                        </div>
+                      {% endif %}
+                  </div>
+                </div>
+            {% empty %}
+
+                <div class="col-md-12">
+                    <div class="text-center text-white">
+                        <h4>{% trans "No items found" %}.</h4>
+                    </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>   
+{% endblock maincontainer %}
+
+
+{% block extrascript %}
+<script>
+// COPY TO CLIPBOARD
+// Attempts to use .execCommand('copy') on a created text field
+// Falls back to a selectable alert if not supported
+// Attempts to display status in Bootstrap tooltip
+// ------------------------------------------------------------------------------
+
+function copyToClipboard(text, el) {
+  var copyTest = document.queryCommandSupported('copy');
+  var elOriginalText = el.attr('data-original-title');
+
+  if (copyTest === true) {
+    var copyTextArea = document.createElement("textarea");
+    copyTextArea.value = text;
+    document.body.appendChild(copyTextArea);
+    copyTextArea.select();
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? '{% trans "copied"|capfirst %}!' : '{% trans "whoops, not copied"|capfirst %}!';
+      el.attr('data-original-title', msg).tooltip('show');
+    } catch (err) {
+      console.error('Oops, unable to copy');
+    }
+    document.body.removeChild(copyTextArea);
+    el.attr('data-original-title', elOriginalText);
+  } else {
+    // Fallback if browser doesn't support .execCommand('copy')
+    window.prompt("Copy to clipboard: Ctrl+C or Command+C, Enter", text);
+  }
+}
+
+$(document).ready(function() {
+  // Initialize
+  // ---------------------------------------------------------------------
+
+  // Tooltips
+  // Requires Bootstrap 3 for functionality
+  $('.js-tooltip').tooltip();
+
+  // Copy to clipboard
+  // Grab any text in the attribute 'data-copy' and pass it to the 
+  // copy function
+  $('.copy-emails').click(function() {
+    var text = $(this).attr('data-action-parameters');
+    var el = $(this);
+    copyToClipboard(text, el);
+  });
+});
+</script>
+{% endblock extrascript %}

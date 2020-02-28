@@ -64,8 +64,7 @@
   </div>
 {% endblock pageheader %}
 
-{% block main %}
-<div class="main">
+{% block maincontainer %}
     <div class="projects-3 section-gray" id="projects-3">
         <div class="container">           
           <div class="row">
@@ -88,7 +87,7 @@
                     </div>
                       {% if result.action %}
                         <div class="card-footer">
-                            <button class="btn js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
+                            <button class="btn btn-default btn-round js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
                                 {{ result.action.label|capfirst }}
                             </button>
                         </div>
@@ -106,8 +105,7 @@
           </div>
         </div>
       </div>   
-</div>
-{% endblock main %}
+{% endblock maincontainer %}
 
 
 {% block extrascript %}

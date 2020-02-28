@@ -13,7 +13,7 @@ app_name = 'landing'
 
 urlpatterns = [
     path('', landing, name='home'),
-    path(_('search'), PresentationSearchView.as_view(), name='search'),
-    path(_('survey'), landing_survey, name='survey'),
-    path(_('dashboard'), DashboardView.as_view(), name='dashboard'),   
+    path(_('search/'), PresentationSearchView.as_view(), name='search'),
+    path(_('survey/'), landing_survey, name='survey'),
+    path(_('analytics/'), DashboardView.as_view(), name='analytics'),   
 ]

@@ -212,7 +212,7 @@ class DiventiUser(AbstractUser):
         prefix = _('Last subscriber')
         results.append({
             'columns': 6,
-            'name': _("users' count"),
+            'name': _("users count"),
             'title': queryset.count(),
             'description1': _('%(en)s english subscribers, %(it)s italian subscribers') % {
                 'en': queryset.subscribers('en').count(),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-28 07:29+0100\n"
+"POT-Creation-Date: 2020-02-28 08:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,6 +228,7 @@ msgid "account"
 msgstr "profilo"
 
 #: diventi/accounts/models.py:200
+#, python-format
 msgid "%(prefix)s: %(last_sub)s on %(date_joined)s"
 msgstr "%(prefix)s: %(last_sub)s - %(date_joined)s"
 
@@ -236,10 +237,11 @@ msgid "Last subscriber"
 msgstr "Ultimo iscritto"
 
 #: diventi/accounts/models.py:215
-msgid "users' count"
+msgid "users count"
 msgstr "conteggio utenti"
 
 #: diventi/accounts/models.py:217
+#, python-format
 msgid "%(en)s english subscribers, %(it)s italian subscribers"
 msgstr "%(en)s iscritti inglesi, %(it)s iscritti italiani"
 
@@ -799,10 +801,10 @@ msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/"
 #: diventi/ebooks/urls.py:11
 msgid ""
 "<slug:book_slug>/chapter/<slug:chapter_slug>/<slug:section_slug>-<int:"
-"section_pk>"
+"section_pk>/"
 msgstr ""
 "<slug:book_slug>/capitolo/<slug:chapter_slug>/<slug:section_slug>-<int:"
-"section_pk>"
+"section_pk>/"
 
 #: diventi/ebooks/urls.py:12
 msgid "<slug:book_slug>/search/"
@@ -900,7 +902,7 @@ msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
-#: diventi/landing/models.py:52 diventi/landing/urls.py:17
+#: diventi/landing/models.py:52
 #: diventi/templates/accounts/user_collection.html:70
 msgid "survey"
 msgstr "sondaggio"
@@ -962,7 +964,9 @@ msgstr "Diventi: %(user)s ha completato %(survey)s"
 #, python-format
 msgid ""
 "Dear Diventi authors, new answers are now available for survey %(survey)s."
-msgstr "Cari autori Diventi, nuove risposte sono ora disponibili per il sondaggio %(survey)s."
+msgstr ""
+"Cari autori Diventi, nuove risposte sono ora disponibili per il sondaggio "
+"%(survey)s."
 
 #: diventi/feedbacks/views.py:137
 msgid "Your survey has been saved!"
@@ -1072,18 +1076,20 @@ msgid "features"
 msgstr "aspetti"
 
 #: diventi/landing/urls.py:16
-msgid "search"
-msgstr "ricerca"
+msgid "search/"
+msgstr "ricerca/"
+
+#: diventi/landing/urls.py:17
+msgid "survey/"
+msgstr "sondaggio/"
 
 #: diventi/landing/urls.py:18
-#: diventi/templates/landing/vertical_dashboard.html:5
-msgid "dashboard"
-msgstr "cruscotto"
+msgid "analytics/"
+msgstr "analitica/"
 
 #: diventi/landing/views.py:33
 msgid "We encountered an error while redirecting to your survey."
-msgstr ""
-"Abbiamo riscontrato un errore in fase di riindirizzamento al tuo sondaggio."
+msgstr "Abbiamo riscontrato un errore in fase di riindirizzamento al tuo sondaggio."
 
 #: diventi/landing/views.py:50
 msgid "This page is not available yet."
@@ -1098,6 +1104,7 @@ msgid "Payments"
 msgstr "Pagamenti"
 
 #: diventi/payments/views.py:17
+#, python-format
 msgid "Diventi charge for %(title)s"
 msgstr "Diventi: acquisto %(title)s"
 
@@ -1226,18 +1233,22 @@ msgid "Last purchase"
 msgstr "Ultimo acquisto"
 
 #: diventi/products/models.py:138
+#, python-format
 msgid "%(product)s: total customers"
 msgstr "%(product)s: clienti totali"
 
 #: diventi/products/models.py:142
+#, python-format
 msgid "%(en)s english customers, %(it)s italian customers"
 msgstr "%(en)s clienti inglesi, %(it)s clienti italiani"
 
 #: diventi/products/models.py:152
+#, python-format
 msgid "%(product)s: english subscribers"
 msgstr "%(product)s: iscritti inglesi"
 
 #: diventi/products/models.py:164
+#, python-format
 msgid "%(product)s: italian subscribers"
 msgstr "%(product)s: iscritti italiani"
 
@@ -1285,6 +1296,7 @@ msgid "Purchase: %(id)s"
 msgstr "Acquisto: %(id)s"
 
 #: diventi/products/models.py:289
+#, python-format
 msgid "%(prefix)s: %(last_pur)s on %(created)s"
 msgstr "%(prefix)s: %(last_pur)s - %(created)s"
 
@@ -1297,6 +1309,7 @@ msgid "^(?P<slug>[-\\w]+)/remove/$"
 msgstr "^(?P<slug>[-\\w]+)/rimuovi/$"
 
 #: diventi/products/utils.py:6
+#, python-format
 msgid "last purchase: %(last_sub)s on %(date_joined)s"
 msgstr "ultimo acquisto: %(last_sub)s - %(date_joined)s"
 
@@ -1898,8 +1911,8 @@ msgstr "Risultati"
 
 #: diventi/templates/ebooks/search_results_material.html:27
 #: diventi/templates/ebooks/search_results_web.html:19
+#: diventi/templates/landing/analytics.html:102
 #: diventi/templates/landing/search_results.html:49
-#: diventi/templates/landing/vertical_dashboard.html:102
 msgid "No items found"
 msgstr "Nessun risultato trovato"
 
@@ -1965,6 +1978,32 @@ msgstr "le tue risposte"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
+#: diventi/templates/landing/analytics.html:5
+msgid "dashboard"
+msgstr "cruscotto"
+
+#: diventi/templates/landing/analytics.html:59
+msgid "admin page"
+msgstr "pagina di amministrazione"
+
+#: diventi/templates/landing/analytics.html:60
+#: diventi/templates/navigation.html:35
+msgid "analytics"
+msgstr "analitica"
+
+#: diventi/templates/landing/analytics.html:61
+msgid "metrics and indices to best measure the performance of our projects"
+msgstr ""
+"metriche e indici per misurare al meglio le prestazioni dei nostri progetti"
+
+#: diventi/templates/landing/analytics.html:131
+msgid "copied"
+msgstr "copiato"
+
+#: diventi/templates/landing/analytics.html:131
+msgid "whoops, not copied"
+msgstr "ops, la copia è fallita"
+
 #: diventi/templates/landing/landing.html:34
 msgid "Hello"
 msgstr "Ciao"
@@ -1992,29 +2031,9 @@ msgstr "es: Primo Contatto"
 msgid "View Project"
 msgstr "Visualizza progetto"
 
-#: diventi/templates/landing/vertical_dashboard.html:59
-msgid "for admin only"
-msgstr "per gli amministratori"
-
-#: diventi/templates/landing/vertical_dashboard.html:60
-msgid "welcome to dashboard"
-msgstr "il cruscotto direzionale"
-
-#: diventi/templates/landing/vertical_dashboard.html:132
-msgid "copied"
-msgstr "copiato"
-
-#: diventi/templates/landing/vertical_dashboard.html:132
-msgid "whoops, not copied"
-msgstr "ops, la copia è fallita"
-
 #: diventi/templates/navigation.html:30
 msgid "admin"
-msgstr "admin"
-
-#: diventi/templates/navigation.html:35
-msgid "analytics"
-msgstr "analitica"
+msgstr "amministrazione"
 
 #: diventi/templates/navigation.html:42
 msgid "profile"
@@ -2095,6 +2114,17 @@ msgstr "recensione"
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#, fuzzy
+#~| msgid "analytics"
+#~ msgid "analitycs"
+#~ msgstr "analitica"
+
+#~ msgid "for admin only"
+#~ msgstr "per gli amministratori"
+
+#~ msgid "welcome to dashboard"
+#~ msgstr "il cruscotto direzionale"
 
 #~ msgid "charge/<slug:product_slug>/"
 #~ msgstr "addebita/<slug:product_slug>/"
@@ -2509,9 +2539,6 @@ msgstr "chiudi"
 
 #~ msgid "table"
 #~ msgstr "tabella"
-
-#~ msgid "new page"
-#~ msgstr "nuova pagina"
 
 #~ msgid "title page"
 #~ msgstr "titolo"

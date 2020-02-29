@@ -4,17 +4,25 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Blog{% endblock title %}
+{% block base_opengraph %}
+  <meta property="og:title" content="Diventi: {{ blogcover.title }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:image" content="{{ blogcover.image }}" />
+  <meta property="og:description" content="{{ blogcover.description }}" />
+{% endblock base_opengraph %}
+
+{% block title %}{{ blogcover.title }}{% endblock title %}
 
 {% block bodyclass %}blog-posts sidebar-collapse{% endblock bodyclass %}
 
 {% block pageheader %}
-    <div class="page-header header-filter header-small" data-parallax="true" {% if blogcover %}style="background-image: url('{{ blogcover.image }}');"{% endif %}>
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ blogcover.image }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">{% trans "Our latest stories" %}</h2>
-                    <h4>{% trans "Welcome to Diventi blog. You've reached the front page for news on roleplaying, collaborative storytelling and Diventi related announcements" %}. </h4>
+                    <h2 class="title">{{ blogcover.title }}</h2>
+                    <h4>{{ blogcover.description }}</h4>
                 </div>
             </div>
         </div>

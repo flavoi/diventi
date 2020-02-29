@@ -17,4 +17,4 @@ class ArticleTranslationOptions(TranslationOptions):
 
 @register(BlogCover)
 class BlogCoverTranslationOptions(TranslationOptions):
-    fields = ('label',)
+    fields = ('label', 'title', 'description')

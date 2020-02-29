@@ -5,15 +5,22 @@
 <html>
 
 <head>
+
     <meta charset="utf-8" />
-    <title>Diventi &middot; {{ book.title }}</title>
-    <meta content="{{ book.description }}" name="description" />
-    <meta content="{{ book.title }}" property="og:title" />
-    <meta content="{{ book.description }}" property="og:description" />
-    <meta content="{{ book.image }}" />
-    <meta content="summary" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Diventi" name="generator" />
+
+    {% block opengraph %}
+        <meta property="og:title" content="Diventi: {{ book.title }}" />
+        <meta property="og:type" content="book" />
+        <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+        <meta property="og:image" content="{{ book.image }}" />
+        <meta property="og:description" content="{{ book.description }}" />
+        <meta name="description" content="{{ book.description }}"  />
+        <meta name="twitter:card" content="Diventi: {{ book.title }}" />
+    {% endblock opengraph %}
+
+    <title>Diventi &middot; {{ book.title }}</title>
+
     <link href="{% static 'diventi/css/diventi-webbook.min.gz.css' %}" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">

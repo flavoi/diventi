@@ -29,7 +29,15 @@ class ArticleAdmin(DiventiTranslationAdmin):
 
 
 class BlogCoverAdmin(DiventiTranslationAdmin):
-    list_display= ('label', 'image_tag', 'active')
+    list_display= ('title', 'description', 'image_tag', 'active')
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('active',)
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'image', 'description',),
+        }),
+    )
     actions = [deactivate]
 
 

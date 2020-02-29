@@ -15,7 +15,6 @@ from diventi.blog.models import Article
 class SectionModelManager(FeaturedModelManager):
 
     # Get the non featured sections that appear on the landing page
-    # Pre-loads related objects to speed up the templates
     def not_featured(self):
         sections = super(SectionModelManager, self).not_featured()
         sections = sections.prefetch_related('users')

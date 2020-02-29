@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load static %}
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
 
 {% block head %}
@@ -10,7 +11,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
-  <title>Diventi {% block titleseparator %}&middot;{% endblock titleseparator %} {% block title %}{% endblock title %}</title>
+  {% block opengraph %}
+    {% block base_opengraph %}
+      <meta property="og:title" content="Diventi" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+      <meta property="og:image" content="{{ graph_section.image }}" />
+      <meta property="og:description" content="{{ graph_section.description }}" />
+    {% endblock base_opengraph %}
+    {% block lang_opengraph %}
+      {% get_current_language as LANGUAGE_CODE %}
+      {% get_language_info for LANGUAGE_CODE as lang %}
+      <meta property="og:locale" content="{{ lang.code }}" />
+    {% endblock lang_opengraph %}
+    {% block extra_opengraph %}{% endblock extra_opengraph %}
+  {% endblock opengraph %}
+
+  <title>Diventi{% block titleseparator %} &middot; {% endblock titleseparator %}{% block title %}{% endblock title %}</title>
   
   <!-- Fonts and icons -->
   <link type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" />
@@ -19,6 +36,7 @@
   <!-- Core styles CSS -->
   {% block base_css_styles %}
   <link href="{% static 'material-kit-v220/css/material-kit.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'diventi/css/diventi.min.gz.css' %}" rel="stylesheet"/>
   {% endblock base_css_styles %}
 
   <!-- Favicon -->
@@ -54,32 +72,6 @@
         font-weight: 400;
         font-style: normal
     }
-
-    .diventi-font {
-        font-family: 'Kravitz Thermal';
-        font-weight: 400;
-        font-style: normal;
-        font-size: 32px
-    }
-    
-    .dropdown-menu .dropdown-item:active, .dropdown-menu .dropdown-item:focus, .dropdown-menu .dropdown-item:hover, .dropdown-menu a.active, .dropdown-menu a:active, .dropdown-menu a:focus, .dropdown-menu a:hover {
-        box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(156,39,176,.4);
-        background-color: #ff9800!important;
-        color: #fff!important;
-    }
-
-    .form-check .form-check-label .circle .check {
-        height: 15px;
-        width: 15px;
-        border-radius: 100%;
-        background-color: #ff9800!important;
-        transform: scale3d(0,0,0);
-    }
-
-    .card-collapse .card-header a:active, .card-collapse .card-header a:hover, .card-collapse .card-header a[aria-expanded=true] {
-        color: #ff9800!important
-    }
-
   </style>
 
 </head>

@@ -48,6 +48,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'diventi.core.context.footer',
                 'diventi.accounts.context.user_preferred_language',
+                'diventi.landing.context.graph_section',
             ],
         },
     },

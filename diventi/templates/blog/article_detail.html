@@ -3,6 +3,18 @@
 {% load static %}
 {% load i18n %}
 
+{% block base_opengraph %}
+  <meta property="og:title" content="Diventi: {{ article.title }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:article:tag" content="{{ article.category }}" />
+  <meta property="og:article:author" content="{{ article.author.get_full_name }}" />
+  <meta property="og:article:published_time" content="{{ article.created|date:'c' }}" />
+  <meta property="og:article:modified_time" content="{{ article.modified|date:'c' }}" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:image" content="{{ article.image }}" />
+  <meta property="og:description" content="{{ article.description }}" />
+{% endblock base_opengraph %}
+
 {% block title %}{{ article.title}}{% endblock title %}
 
 {% block bodyclass %}blog-post{% endblock bodyclass %}

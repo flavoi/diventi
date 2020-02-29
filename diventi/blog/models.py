@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel, Category, DiventiImageModel, DiventiCoverModel
+from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel, Category, DiventiImageModel, DiventiCoverModel, Element
 
 
 class ArticleQuerySet(models.QuerySet):
@@ -54,10 +54,11 @@ class ArticleQuerySet(models.QuerySet):
         return article
 
 
-class BlogCover(DiventiCoverModel):
+class BlogCover(DiventiCoverModel, Element):
     """
         Stores cover images for the blog page.
     """
+
     class Meta:
         verbose_name = _('Blog Cover')
         verbose_name_plural = _('Blog Covers')

@@ -4,6 +4,16 @@
 {% load static %}
 {% load reviews %}
 
+{% block base_opengraph %}
+    <meta property="og:title" content="Diventi: {{ product.title|capfirst }}" />
+    <meta property="og:type" content="og:product" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ product.image }}" />
+    <meta property="og:description" content="{{ product.description }}" />
+    <meta property="product:price:amount" content="{{ product.get_price_value }}"/>
+    <meta property="product:price:currency" content="{{ product.get_currency }}"/>
+{% endblock base_opengraph %}
+
 {% block title %}{{ product.title }}{% endblock title %}
 
 {% block extrahead %}

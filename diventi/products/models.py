@@ -194,6 +194,17 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
         })
         return p
 
+    # Returns the price of the product without its currency
+    def get_price_value(self):
+        p = ('%(price).2f' % {
+            'price': self.price / 100,
+        })
+        return p
+
+    # Returns the default currency of any product
+    def get_currency(self):
+        return 'EUR'
+
     # Returns the publishable status of the product
     def get_status(self): 
         if self.published:

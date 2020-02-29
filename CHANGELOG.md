@@ -16,11 +16,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [feedbacks] Introduced created and modified dates to answers
 - [landing] Introduced 'cards section': a new section template
 - [landing] Introduced 'search header': a new featured section template
+- [products] Added support for the reporting functionality 
 
 ### Changed
 - [landing] Changed the ordering of search results to make products appear first
-- [landing] Updated dashboard visual styles with rounded buttons and card-styled sections
-- [products] Added support for the reporting functionality  
+- [landing] Updated dashboard visual styles with rounded buttons and card-styled sections 
 
 ### Removed
 - [landing] Removed nav dropdowns from navbar

@@ -11,20 +11,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - [core] Upgraded material kit from v2.1.1 to v2.2.0
 - [core] Upgraded django from v2.2.9 to v2.2.10
+- [core] Added support for Opengraph on blog, landing and product pages
 - [feedbacks] Introduced an email notification for the authors when a user completes a survey
 - [feedbacks] Introduced created and modified dates to answers
 - [landing] Introduced 'cards section': a new section template
-- [landing] Introduced 'search header': a new featured section template  
+- [landing] Introduced 'search header': a new featured section template
 
 ### Changed
 - [landing] Changed the ordering of search results to make products appear first
 - [landing] Updated dashboard visual styles with rounded buttons and card-styled sections
-- [product] Added support for the reporting functionality  
+- [products] Added support for the reporting functionality  
 
 ### Removed
 - [landing] Removed nav dropdowns from navbar
 
 ### Fixed
+- [products] Fixed a css problem taht prevented the honeypot to be hidden
 
 ### Security
 

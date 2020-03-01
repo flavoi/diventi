@@ -14,7 +14,7 @@ from cuser.middleware import CuserMiddleware
 
 from .fields import ProtectedFileField
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category
+from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category, Element
 
 
 class ProductQuerySet(models.QuerySet):
@@ -40,16 +40,6 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch()
         return products
 
-    # Get the featured products that are included in the user collection
-    def featured(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            products = self
-        else:
-            products = self.filter(featured=True) 
-            products = products.user_collection(user)
-        return products
-
     # Get all the published products 
     def published(self):
         user = CuserMiddleware.get_user()
@@ -72,13 +62,12 @@ class ProductCategory(Category):
         verbose_name_plural = _('Product categories')
 
 
-class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
+class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, max_length=200, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    featured = models.BooleanField(default=False, verbose_name=_('featured'))
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     customers = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Purchase', blank=True, verbose_name=_('customers'))
@@ -289,8 +278,8 @@ class PurchaseQuerySet(models.QuerySet):
 
 
 class Purchase(TimeStampedModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name=_('product'))
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('customer'))
 
     objects = PurchaseQuerySet.as_manager()
 

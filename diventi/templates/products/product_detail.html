@@ -22,6 +22,7 @@
 
 {% block bodyclass %}product-page{% endblock bodyclass %}
 
+{% block filtercolor %}{% if product.color %}{{ product.color }}{% endif %}{% endblock filtercolor %}
 {% block pageheaderimage %}{% if product.image %}{{ product.image }}{% endif %}{% endblock pageheaderimage %}
 
 {% block main %}

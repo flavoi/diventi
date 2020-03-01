@@ -40,25 +40,18 @@ class ImagePreviewAdmin(DiventiTranslationAdmin):
     list_display = ('label', 'image_tag')
 
 
-class PurchaseInline(admin.TabularInline):
-    model = Purchase
-    readonly_fields = ['created',]
-    extra = 1
-
-
 class ProductAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'published', 'price', 'category', 'publication_date', 'modified']    
+    list_display = ['title', 'image_tag', 'published', 'price', 'category', 'color_tag', 'publication_date', 'modified']    
     inlines = [
         ProductDetailInline,
         ChapterInline,
         ImagePreviewInline,
-        PurchaseInline,
     ]
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
         (_('Management'), {
-            'fields': ('published',)
+            'fields': ('published', 'color')
         }),
         (_('Pricing'), {
             'fields': ('price',)
@@ -72,7 +65,6 @@ class ProductAdmin(DiventiTranslationAdmin):
     )
     actions = [make_published, make_unpublished]
     form = ProductForm
-    filter_horizontal = ['buyers']
     list_select_related = (
         'category',
     )
@@ -93,7 +85,15 @@ class ChapterCategoryAdmin(DiventiTranslationAdmin):
     fields = ('title',)
 
 
+class PurchaseAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'customer', 'product', 'created')
+    readonly_fields = ['created',]
+    search_fields = ['customer__first_name']
+    list_filter = ['product',]
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ImagePreview, ImagePreviewAdmin)
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(ChapterCategory, ChapterCategoryAdmin)
+admin.site.register(Purchase, PurchaseAdmin)

@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load static %}
 {% load reviews %}
+{% load accounts_extras %}
 
 {% block base_opengraph %}
     <meta property="og:title" content="Diventi: {{ product.title|capfirst }}" />
@@ -160,7 +161,6 @@
     {% endif %}
   </div>
 </div>
-{% load accounts_extras %}
 <div class="section section-dark">
   <div class="testimonials-2">
     <div class="container">
@@ -219,40 +219,40 @@
       </div>
     </div>
   </div>
-  {% if user.is_authenticated %}
-    {% include "reviews/review_form.html" %}
-  {% endif %}
-    {% if product.related_products.all %}
-    <div class="section">
-      <div class="container">
-        <div class="related-products">
-          <h3 class="title text-center">{% trans 'related projects'|capfirst %}</h3>
-          <div class="row">
-            {% for rp in product.related_products.all %}
-            <div class="col-lg-4 col-md-6">
-              <div class="card card-product">
-                <div class="card-header card-header-image">
-                  <a href="{{ rp.get_absolute_url }}">
-                    <img class="img" src="{{ rp.image }}">
-                  </a>
-                <div class="colored-shadow" style="background-image: url(&quot;{{ rp.image }}&quot;); opacity: 1;"></div></div>
-                <div class="card-body">
-                  <h6 class="card-category text-rose">{{ rp.category }}</h6>
-                  <h4 class="card-title">
-                    <a href="{{ rp.get_absolute_url }}">{{ rp.title }}</a>
-                  </h4>
-                  <div class="card-description">
-                    {{ rp.description }}
-                  </div>
+</div>
+{% if user.is_authenticated %}
+  {% include "reviews/review_form.html" %}
+{% endif %}
+{% if product.related_products.all %}
+  <div class="section">
+    <div class="container">
+      <div class="related-products">
+        <h3 class="title text-center">{% trans 'related projects'|capfirst %}</h3>
+        <div class="row">
+          {% for rp in product.related_products.all %}
+          <div class="col-lg-4 col-md-6">
+            <div class="card card-product">
+              <div class="card-header card-header-image">
+                <a href="{{ rp.get_absolute_url }}">
+                  <img class="img" src="{{ rp.image }}">
+                </a>
+              <div class="colored-shadow" style="background-image: url(&quot;{{ rp.image }}&quot;); opacity: 1;"></div></div>
+              <div class="card-body">
+                <h6 class="card-category text-rose">{{ rp.category }}</h6>
+                <h4 class="card-title">
+                  <a href="{{ rp.get_absolute_url }}">{{ rp.title }}</a>
+                </h4>
+                <div class="card-description">
+                  {{ rp.description }}
                 </div>
-                <div class="card-footer justify-content-between"></div>
               </div>
+              <div class="card-footer justify-content-between"></div>
             </div>
-            {% endfor %}
           </div>
+          {% endfor %}
         </div>
       </div>
     </div>
-  {% endif %}
-</div>
+  </div>
+{% endif %}
 {% endblock main %}

@@ -38,9 +38,11 @@
                                     <i class="fas fa-exclamation"></i>
                                   </a>
                                 {% endif %}
+                                {% if product.published %}
                                   <a href="{{ product.get_absolute_url }}" class="btn btn-gray btn-just-icon btn-fill btn-round btn-wd" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'rewiew'|capfirst %}">
                                     <i class="fas fa-pencil"></i>
                                   </a>
+                                {% endif %}
                                 </div>
                               </div>
                             </div>

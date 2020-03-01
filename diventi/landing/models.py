@@ -5,7 +5,7 @@ from django.utils.html import mark_safe
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import Element, DiventiImageModel, FeaturedModel, FeaturedModelManager
+from diventi.core.models import Element, DiventiImageModel, FeaturedModel, FeaturedModelManager, SectionModel
 from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
 from diventi.feedbacks.models import Survey
@@ -25,7 +25,7 @@ class SectionModelManager(FeaturedModelManager):
         return sections
 
 
-class Section(DiventiImageModel, FeaturedModel):
+class Section(DiventiImageModel, FeaturedModel, SectionModel):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
@@ -40,12 +40,6 @@ class Section(DiventiImageModel, FeaturedModel):
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
     dark_mode = models.BooleanField(verbose_name=_('dark mode'))
-    ALIGNMENT_CHOICES = (
-        ('left', _('left')),
-        ('centered', _('centered')),
-        ('right', _('right')),
-    )
-    alignment = models.CharField(choices=ALIGNMENT_CHOICES, max_length=50, verbose_name=_('alignment'))
     products = models.ManyToManyField(Product, related_name='products', blank=True, verbose_name=_('products'))
     users = models.ManyToManyField(DiventiUser, related_name='users', blank=True, verbose_name=_('users'))
     section_survey = models.ForeignKey(Survey, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('survey'))
@@ -72,16 +66,6 @@ class Section(DiventiImageModel, FeaturedModel):
         return mark_safe("<br>".join([obj.title for obj in self.articles.all()]))
     get_articles.short_description = _('Articles')
 
-    def get_alignment_classes(self):     
-        if self.alignment == 'left':
-            alignment_classes = 'mr-auto text-left'
-        elif self.alignment == 'centered':
-            alignment_classes = 'ml-auto mr-auto text-center'
-        elif self.alignment == 'right':
-            alignment_classes = 'ml-auto text-right'
-        else:
-            alignment_classes = ''   
-        return alignment_classes
 
     class Meta:
         verbose_name = _('section')

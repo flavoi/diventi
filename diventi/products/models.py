@@ -14,7 +14,7 @@ from cuser.middleware import CuserMiddleware
 
 from .fields import ProtectedFileField
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category, Element
+from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category, Element, SectionModel
 
 
 class ProductQuerySet(models.QuerySet):
@@ -62,7 +62,7 @@ class ProductCategory(Category):
         verbose_name_plural = _('Product categories')
 
 
-class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element):
+class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50, verbose_name=_('title'))
     abstract = models.TextField(blank=True, max_length=200, verbose_name=_('abstract'))

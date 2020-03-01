@@ -51,7 +51,7 @@ class ProductAdmin(DiventiTranslationAdmin):
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'color')
+            'fields': ('published', 'color', 'alignment')
         }),
         (_('Pricing'), {
             'fields': ('price',)

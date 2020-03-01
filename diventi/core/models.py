@@ -273,4 +273,25 @@ class DiventiColModel(models.Model):
         abstract = True
 
 
+class SectionModel(models.Model):
+    """ Includes utility methods for content areas such as sections. """
+    ALIGNMENT_CHOICES = (
+        ('left', _('left')),
+        ('centered', _('centered')),
+        ('right', _('right')),
+    )
+    alignment = models.CharField(default='centered', choices=ALIGNMENT_CHOICES, max_length=50, verbose_name=_('alignment'))
 
+    def get_alignment_classes(self):     
+        if self.alignment == 'left':
+            alignment_classes = 'mr-auto text-left'
+        elif self.alignment == 'centered':
+            alignment_classes = 'ml-auto mr-auto text-center'
+        elif self.alignment == 'right':
+            alignment_classes = 'ml-auto text-right'
+        else:
+            alignment_classes = ''   
+        return alignment_classes
+
+    class Meta:
+        abstract = True

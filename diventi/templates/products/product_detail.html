@@ -10,7 +10,7 @@
     <meta property="og:type" content="og:product" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     <meta property="og:image" content="{{ product.image }}" />
-    <meta property="og:description" content="{{ product.description }}" />
+    <meta property="og:description" content="{{ product.abstract }}" />
     <meta property="product:price:amount" content="{{ product.get_price_value }}"/>
     <meta property="product:price:currency" content="{{ product.get_currency }}"/>
 {% endblock base_opengraph %}
@@ -161,6 +161,7 @@
     {% endif %}
   </div>
 </div>
+</div>
 <div class="section section-dark">
   <div class="testimonials-2">
     <div class="container">
@@ -225,12 +226,12 @@
 {% endif %}
 {% if product.related_products.all %}
   <div class="section">
-    <div class="container">
-      <div class="related-products">
-        <h3 class="title text-center">{% trans 'related projects'|capfirst %}</h3>
+    <div class="related-products">
+      <div class="container">
+        <h2 class="title text-center">{% trans 'related projects'|capfirst %}</h2>
         <div class="row">
           {% for rp in product.related_products.all %}
-          <div class="col-lg-4 col-md-6">
+          <div class="col-md-4 {{ product.get_alignment_classes }}">
             <div class="card card-product">
               <div class="card-header card-header-image">
                 <a href="{{ rp.get_absolute_url }}">

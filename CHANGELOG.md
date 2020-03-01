@@ -21,12 +21,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - [landing] Changed the ordering of search results to make products appear first
 - [landing] Updated dashboard visual styles with rounded buttons and card-styled sections 
+- [products] Enabled product details and colors on detail page
 
 ### Removed
 - [landing] Removed nav dropdowns from navbar
 
 ### Fixed
-- [products] Fixed a css problem taht prevented the honeypot to be hidden
+- [products] Fixed a problem that prevented the honeypot to be hidden
+- [products] Fixed a problem that displayed a product link even if the product is not published
 
 ### Security
 

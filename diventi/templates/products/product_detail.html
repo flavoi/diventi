@@ -26,120 +26,119 @@
 
 {% block main %}
   <div class="section">
-      <div class="container">
-          <div class="main main-raised">
-              <div class="md-layout">
-                  <div class="md-layout-item md-size-50 md-small-size-100">
-                     <div class="tab-content">
-                      <div class="inline-container-zoomer-box">
-                        <div class="preview-box tab-content">
-                          {% for imagepreview in product.imagepreviews.all %}
-                            <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="product-page{{ imagepreview.id }}">
-                              <img src="{{ imagepreview.image }}">
-                            </div>
-                          {% endfor %}
-                        </div>
-                        <div class="control-box">
-                           <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
-                            {% for imagepreview in product.imagepreviews.all %}
-                              <li class="nav-item {% if forloop.first %}active show{% endif %}">
-                                <a href="#product-page{{ imagepreview.id }}" class="nav-link {% if forloop.first %}active show{% endif %}" data-toggle="tab">
-                                  <img src="{{ imagepreview.image }}">
-                                </a>
-                              </li>
+    <div class="container">
+      <div class="main main-raised">
+        <div class="md-layout">
+          <div class="md-layout-item md-size-50 md-small-size-100">
+             <div class="tab-content">
+              <div class="inline-container-zoomer-box">
+                <div class="preview-box tab-content">
+                  {% for imagepreview in product.imagepreviews.all %}
+                    <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="product-page{{ imagepreview.id }}">
+                      <img src="{{ imagepreview.image }}">
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="control-box">
+                   <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
+                    {% for imagepreview in product.imagepreviews.all %}
+                      <li class="nav-item {% if forloop.first %}active show{% endif %}">
+                        <a href="#product-page{{ imagepreview.id }}" class="nav-link {% if forloop.first %}active show{% endif %}" data-toggle="tab">
+                          <img src="{{ imagepreview.image }}">
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div id="inline-container-pane-container" class="pane-container"></div>
+              </div>
+            </div>
+          </div>
+          <div class="md-layout-item md-size-50 md-small-size-100">
+            <div class="text-left">
+              <h2 class="title my-0">{{ product.title }}</h2>
+                <h3 class="main-price">
+                  {% if product.price %}{{ product.get_price }}{% else %}{% trans 'free'|title %}{% endif %}
+                </h3>
+                  <label class="badge badge-rose">{{ product.category.title }}</label>
+                  <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fas fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
+              <div class="my-3">
+                {% render_rating for product %}
+              </div>
+            <div id="accordion" role="tablist">
+              <div class="card card-collapse text-left">
+                  <div class="card-header" role="tab" id="headingOne">
+                      <h5 class="mb-0">
+                          <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              {% trans "Description" %}
+                              <i class="material-icons">keyboard_arrow_down</i>
+                          </a>
+                      </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
+                          <p>{{ product.description|striptags }}</p>
+                      </div>
+                  </div>
+              </div> 
+              {% if product.details.all %}
+              <div class="card card-collapse">
+                  <div class="card-header" role="tab" id="headingThree">
+                      <h5 class="mb-0">
+                          <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              {% trans "Details" %}
+                              <i class="material-icons">keyboard_arrow_down</i>
+                          </a>
+                      </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                      <div class="card-body">
+                          <ul>
+                            {% for detail in product.details.all %}
+                              <li>{{ detail.description|striptags|capfirst }}</li>
                             {% endfor %}
                           </ul>
-                        </div>
-                        <div id="inline-container-pane-container" class="pane-container"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="md-layout-item md-size-50 md-small-size-100">
-                    <div class="text-left">
-                      <h2 class="title my-0">{{ product.title }}</h2>
-                        <h3 class="main-price">
-                          {% if product.price %}{{ product.get_price }}{% else %}{% trans 'free'|title %}{% endif %}
-                        </h3>
-                          <label class="badge badge-rose">{{ product.category.title }}</label>
-                          <label class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}"><i class="fas fa-lg fa-clock fa-fw"></i> {{ product.modified|date:"M d, Y" }}</label>
-                      <div class="my-3">
-                        {% render_rating for product %}
-                      </div>
-                    <div id="accordion" role="tablist">
-                      <div class="card card-collapse text-left">
-                          <div class="card-header" role="tab" id="headingOne">
-                              <h5 class="mb-0">
-                                  <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                      {% trans "Description" %}
-                                      <i class="material-icons">keyboard_arrow_down</i>
-                                  </a>
-                              </h5>
-                          </div>
-                          <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                              <div class="card-body">
-                                  <p>{{ product.description|striptags }}</p>
-                              </div>
-                          </div>
-                      </div>        
-
-                      {% if product.characteristics.all %}
-                      <div class="card card-collapse">
-                          <div class="card-header" role="tab" id="headingThree">
-                              <h5 class="mb-0">
-                                  <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                      {% trans "Characteristics" %}
-                                      <i class="material-icons">keyboard_arrow_down</i>
-                                  </a>
-                              </h5>
-                          </div>
-                          <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                              <div class="card-body">
-                                  <ul>
-                                    {% for characteristic in product.characteristics.all %}
-                                      <li>{{ characteristic.description|striptags|capfirst }}</li>
-                                    {% endfor %}
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                      {% endif %}
-                  </div>    
-                  <hr> 
-                  <div class="row">
-                      <div class="col-md-12">
-                      {% if user.is_authenticated %}      
-                          <div class="text-center">                       
-                          {% if bought %}                    
-                              <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">       
-                                {% trans "View in collection" %}
-                              </a>                                
-                              {% include "reviews/review_button_modal.html" %}                        
-                          {% else %}
-                              {% if product.price > 0 %}
-                                {% with url='products:add' slug=product.slug %}
-                                  {% include "payments/pay_button.html" %}
-                                {% endwith %}
-                              {% else %}
-                                <form action="{% url 'products:add' product.slug %}" method="POST">
-                                  {% csrf_token %}
-                                  {{ add_collection_form }}
-                                  {{ add_collection_form.errors }}
-                                  <button type="submit" class="btn btn-round btn-warning">
-                                      {% trans "Add to collection" %}
-                                  </button>                                        
-                                </form>   
-                              {% endif %}                            
-                          {% endif %}     
-                          </div>                           
-                      {% else %}
-                          <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
-                          <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
-                      {% endif %}
                       </div>
                   </div>
               </div>
+              {% endif %}
+          </div>    
+          <div class="row pick-size"></div>
+          <div class="row">
+              <div class="col-md-12">
+              {% if user.is_authenticated %}      
+                  <div class="text-center">                       
+                  {% if bought %}                    
+                      <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">       
+                        {% trans "View in collection" %}
+                      </a>                                
+                      {% include "reviews/review_button_modal.html" %}                        
+                  {% else %}
+                      {% if product.price > 0 %}
+                        {% with url='products:add' slug=product.slug %}
+                          {% include "payments/pay_button.html" %}
+                        {% endwith %}
+                      {% else %}
+                        <form action="{% url 'products:add' product.slug %}" method="POST">
+                          {% csrf_token %}
+                          {{ add_collection_form }}
+                          {{ add_collection_form.errors }}
+                          <button type="submit" class="btn btn-round btn-warning">
+                              {% trans "Add to collection" %}
+                          </button>                                        
+                        </form>   
+                      {% endif %}                            
+                  {% endif %}     
+                  </div>                           
+              {% else %}
+                  <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
+                  <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
+              {% endif %}
+              </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
   <div class="features text-center">
     {% if product.chapters.all %}
@@ -160,7 +159,6 @@
     {% endif %}
   </div>
 </div>
-
 {% load accounts_extras %}
 <div class="section section-dark">
   <div class="testimonials-2">

@@ -25,6 +25,7 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch_related('authors')
         products = products.prefetch_related('related_products')
         products = products.prefetch_related('customers')
+        products = products.prefetch_related('details')
         return products
 
     # Fetch the products authored or purchased by the user
@@ -213,17 +214,24 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel):
             return _('draft')
 
 
+class ProductDetail(Element):
+    """ A specific detail of a product."""
+    product = models.ForeignKey(Product, null=True, related_name='details', verbose_name=_('product'), on_delete=models.SET_NULL)     
+
+    class Meta:
+        verbose_name = _('Detail')
+        verbose_name_plural = _('Details')
+
+
 class ChapterCategory(Category):
-    """
-        Defines the type of a chapter.
-    """
+    """ Defines the type of a chapter. """
     class Meta:
         verbose_name = _('Chapter category')
         verbose_name_plural = _('Chapter categories')
 
 
 class Chapter(Element, DiventiImageModel):
-    """ A specific detail of a product."""
+    """ A specific chapter of a product."""
     product = models.ForeignKey(Product, null=True, related_name='chapters', verbose_name=_('product'), on_delete=models.SET_NULL)     
     category = models.ForeignKey(ChapterCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)
 

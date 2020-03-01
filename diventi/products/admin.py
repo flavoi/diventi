@@ -5,7 +5,7 @@ from diventi.core.admin import DiventiTranslationAdmin
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory, Purchase
+from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory, Purchase, ProductDetail
 from .forms import ProductForm
 
 
@@ -16,6 +16,12 @@ make_published.short_description = _("Mark selected products as published")
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(published=False)
 make_unpublished.short_description = _("Mark selected products as hidden")
+
+
+class ProductDetailInline(TranslationStackedInline):
+    model = ProductDetail
+    fields = ('title', 'description',)
+    extra = 0
 
 
 class ChapterInline(TranslationStackedInline):
@@ -43,6 +49,7 @@ class PurchaseInline(admin.TabularInline):
 class ProductAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'image_tag', 'published', 'price', 'category', 'publication_date', 'modified']    
     inlines = [
+        ProductDetailInline,
         ChapterInline,
         ImagePreviewInline,
         PurchaseInline,

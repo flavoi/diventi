@@ -42,51 +42,15 @@
             {% for product in section.products.all %}
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 ml-auto">
-                          <div class="card card-background" style="background-image:url('{{ product.image }}')">
-                            <a href="{{ product.get_absolute_url }}"></a>
-                            <div class="card-body">
-                              <h6 class="card-category text-info">{{ product.category }}</h6>                      
-                                <h3 class="card-title">{{ product.title|capfirst }}</h3>
-                              <p class="card-description">
-                                 {{ product.abstract|striptags }}
-                              </p>
-                              {% if product.is_published %}
-                                <a href="{{ product.get_absolute_url }}" class="btn btn-warning btn-round">
-                                  {% trans 'View Project' %}
-                                </a>
-                              {% else %}
-                                <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
-                                  <a href="" class="btn btn-warning btn-round disabled">
-                                    {{ product.courtesy_short_message }}
-                                  </a>
-                                </span>
-                              {% endif %}
-                            </div>
-                          </div>
-                        </div>                
-                        <div class="col-md-6 mr-auto">
-                            {% for chapter in product.chapters.all %}
-                              <div class="info info-horizontal">
-                                <div class="icon icon-warning">
-                                    <i class="fal fa-2x fa-fw fa-{{ chapter.icon }}"></i>
-                                </div>
-                                <div class="description">
-                                  <h4 class="info-title {% if section.dark_mode %}text-white{% endif %}">{{ chapter.title|capfirst }}</h4>
-                                  <p class="description">
-                                    {{ chapter.description|striptags|capfirst }}
-                                  </p>
-                                </div>
-                              </div>
-                            {% endfor %}
-                        </div>
+                        {% with product as product %}
+                            {% include 'products/project_card.html' %}
+                        {% endwith %}
                     </div>
                 </div>
             {% endfor %}
         </div>
     {% endblock product_landing_card %}
 {% endif %}
-
 
 {% if section.section_survey %}
 <div class="container">

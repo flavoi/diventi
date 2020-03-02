@@ -232,23 +232,9 @@
         <div class="row">
           {% for rp in product.related_products.all %}
           <div class="col-md-4 {{ product.get_alignment_classes }}">
-            <div class="card card-product">
-              <div class="card-header card-header-image">
-                <a href="{{ rp.get_absolute_url }}">
-                  <img class="img" src="{{ rp.image }}">
-                </a>
-              <div class="colored-shadow" style="background-image: url(&quot;{{ rp.image }}&quot;); opacity: 1;"></div></div>
-              <div class="card-body">
-                <h6 class="card-category text-rose">{{ rp.category }}</h6>
-                <h4 class="card-title">
-                  <a href="{{ rp.get_absolute_url }}">{{ rp.title }}</a>
-                </h4>
-                <div class="card-description">
-                  {{ rp.description }}
-                </div>
-              </div>
-              <div class="card-footer justify-content-between"></div>
-            </div>
+            {% with rp as product %}
+              {% include 'products/product_card.html' %}
+            {% endwith %}
           </div>
           {% endfor %}
         </div>

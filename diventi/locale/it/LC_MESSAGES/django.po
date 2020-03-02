@@ -2053,7 +2053,7 @@ msgstr "acquista con carta"
 
 #: diventi/templates/products/product_detail.html:62
 msgid "free"
-msgstr "gratutito"
+msgstr "gratuito"
 
 #: diventi/templates/products/product_detail.html:74
 msgid "Description"

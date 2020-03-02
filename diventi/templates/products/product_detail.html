@@ -233,7 +233,7 @@
           {% for rp in product.related_products.all %}
           <div class="col-md-4 {{ product.get_alignment_classes }}">
             {% with rp as product %}
-              {% include 'products/product_card.html' %}
+              {% include 'products/product_card_rich.html' %}
             {% endwith %}
           </div>
           {% endfor %}

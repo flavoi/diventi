@@ -8,7 +8,7 @@
         {% for product in section.products.all %}
             <div class="col-md-4 {{ section.get_alignment_classes }}">
                 {% with product as product %}
-                  {% include 'products/standard_card.html' %}
+                  {% include 'products/product_card_plain.html' %}
                 {% endwith %}
             </div>
         {% endfor %}

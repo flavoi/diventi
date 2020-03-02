@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load reviews %}
+
+<div class="card card-product">
+  <div class="card-header card-header-image">
+    <a href="{{ product.get_absolute_url }}">
+      <img class="img" src="{{ product.image }}">
+    </a>
+  <div class="colored-shadow" style="background-image: url(&quot;{{ product.image }}&quot;); opacity: 1;"></div></div>
+  <div class="card-body">
+    <h6 class="card-category text-rose">{{ product.category }}</h6>
+    <h4 class="card-title">
+      <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+    </h4>
+    <div class="card-description">
+      {{ product.abstract }}
+    </div>
+  </div>
+  <div class="card-footer justify-content-between">
+    <div class="price">
+      <h4>{% if product.price %}{{ product.get_price }}{% else %}<small>{% trans 'free'|upper %}</small>{% endif %}</h4>
+    </div>
+    <div class="stats">
+      {% get_review_count for product as review_count %}
+      <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-info" data-original-title="{% trans 'community reviews'|capfirst %}">
+        <i class="fas fa-pencil fa-xs"></i> {{ review_count }}
+      </button>
+    </div>
+  </div>
+</div>

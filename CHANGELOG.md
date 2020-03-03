@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [products] Added support for the reporting functionality 
 
 ### Changed
+- [accounts] Updated user collection in order to separate authored products from those bought
 - [landing] Changed the ordering of search results to make products appear first
 - [landing] Updated dashboard visual styles with rounded buttons and card-styled sections 
 - [products] Enabled product details and colors on detail page

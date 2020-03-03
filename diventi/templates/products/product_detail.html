@@ -58,7 +58,7 @@
           </div>
           <div class="md-layout-item md-size-50 md-small-size-100">
             <div class="text-left">
-              <h2 class="title my-0">{{ product.title }}</h2>
+              <h2 class="title my-0">{{ product.title }} {% with product as object %}{% include "publishable_badge.html" %}{% endwith %}</h2>
                 <h3 class="main-price">
                   {% if product.price %}{{ product.get_price }}{% else %}{% trans 'free'|title %}{% endif %}
                 </h3>
@@ -211,7 +211,7 @@
             </div>
           {% endfor %}
         {% else %}
-          <div class="col-md-12 text-center">
+          <div class="col-md-12">
             <h5 class="description">
               {% trans "there are no reviews yet, be the first to post one!"|capfirst %}
             </h5>

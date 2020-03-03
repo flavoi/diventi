@@ -228,8 +228,8 @@ class FeaturedModelQuerySet(PublishableModelQuerySet):
 
     # Get the not featured object that can be selected to appear on the landing page
     def not_featured(self):
-        not_featured_model = self.published().filter(featured=False)
-        return not_featured_model
+        not_featured_models = self.published().filter(featured=False)
+        return not_featured_models
 
 
 class FeaturedModelManager(models.Manager):

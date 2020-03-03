@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-01 15:36+0100\n"
+"POT-Creation-Date: 2020-03-03 21:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,7 +218,7 @@ msgstr "ruolo"
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:157 diventi/landing/models.py:69
+#: diventi/accounts/models.py:157 diventi/landing/models.py:63
 #: diventi/templates/accounts/subscribers.html:19
 msgid "Users"
 msgstr "Utenti"
@@ -442,7 +442,7 @@ msgstr "autore"
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:92 diventi/landing/models.py:52
+#: diventi/blog/models.py:92 diventi/landing/models.py:46
 msgid "articles"
 msgstr "articoli"
 
@@ -633,6 +633,22 @@ msgstr "colonna lg"
 msgid "md column"
 msgstr "colonna md"
 
+#: diventi/core/models.py:279
+msgid "left"
+msgstr "sinistra"
+
+#: diventi/core/models.py:280
+msgid "centered"
+msgstr "centrale"
+
+#: diventi/core/models.py:281
+msgid "right"
+msgstr "destra"
+
+#: diventi/core/models.py:283
+msgid "alignment"
+msgstr "allineamento"
+
 #: diventi/ebooks/admin.py:17
 msgid "Duplicate selected section"
 msgstr "Duplica la sezione selezionata"
@@ -679,7 +695,7 @@ msgstr "prodotto"
 
 #: diventi/ebooks/models.py:63
 msgid "lead"
-msgstr ""
+msgstr "testata"
 
 #: diventi/ebooks/models.py:64
 msgid "summary"
@@ -687,11 +703,11 @@ msgstr "sommario"
 
 #: diventi/ebooks/models.py:67
 msgid "Web"
-msgstr ""
+msgstr "Web"
 
 #: diventi/ebooks/models.py:68
 msgid "Material"
-msgstr ""
+msgstr "Material"
 
 #: diventi/ebooks/models.py:71
 msgid "template"
@@ -783,11 +799,11 @@ msgstr "allineamento del testo"
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:267 diventi/landing/models.py:87
+#: diventi/ebooks/models.py:267 diventi/landing/models.py:71
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:268 diventi/landing/models.py:88
+#: diventi/ebooks/models.py:268 diventi/landing/models.py:72
 msgid "sections"
 msgstr "sezioni"
 
@@ -903,8 +919,8 @@ msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
-#: diventi/landing/models.py:51
-#: diventi/templates/accounts/user_collection.html:70
+#: diventi/landing/models.py:45
+#: diventi/templates/accounts/user_collection.html:109
 msgid "survey"
 msgstr "sondaggio"
 
@@ -1009,8 +1025,8 @@ msgid "standard section"
 msgstr "sezione normale"
 
 #: diventi/landing/models.py:34
-msgid "cards section"
-msgstr "sezione a schede"
+msgid "plain section"
+msgstr "sezione pulita"
 
 #: diventi/landing/models.py:36
 msgid "standard template"
@@ -1032,47 +1048,31 @@ msgstr "modello in primo piano"
 msgid "dark mode"
 msgstr "modalità scura"
 
-#: diventi/landing/models.py:44
-msgid "left"
-msgstr "sinistra"
-
-#: diventi/landing/models.py:45
-msgid "centered"
-msgstr "centrale"
-
-#: diventi/landing/models.py:46
-msgid "right"
-msgstr "destra"
-
-#: diventi/landing/models.py:48
-msgid "alignment"
-msgstr "allineamento"
-
-#: diventi/landing/models.py:49 diventi/products/models.py:90
+#: diventi/landing/models.py:43 diventi/products/models.py:90
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/landing/models.py:50
+#: diventi/landing/models.py:44
 msgid "users"
 msgstr "utenti"
 
-#: diventi/landing/models.py:61
+#: diventi/landing/models.py:55
 msgid "Features"
 msgstr "Aspetti"
 
-#: diventi/landing/models.py:65
+#: diventi/landing/models.py:59
 msgid "Products"
 msgstr "Prodotti"
 
-#: diventi/landing/models.py:73
+#: diventi/landing/models.py:67
 msgid "Articles"
 msgstr "Articoli"
 
-#: diventi/landing/models.py:95
+#: diventi/landing/models.py:79
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:96
+#: diventi/landing/models.py:80
 msgid "features"
 msgstr "aspetti"
 
@@ -1263,7 +1263,7 @@ msgid "Detail"
 msgstr "Dettaglio"
 
 #: diventi/products/models.py:212
-#: diventi/templates/products/product_detail.html:90
+#: diventi/templates/products/product_detail.html:91
 msgid "Details"
 msgstr "Dettagli"
 
@@ -1439,7 +1439,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
-#: diventi/templates/products/product_detail.html:136
+#: diventi/templates/products/product_detail.html:137
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -1527,7 +1527,7 @@ msgstr "Invio"
 
 #: diventi/templates/accounts/password_reset_form.html:55
 #: diventi/templates/accounts/signin.html:65
-#: diventi/templates/accounts/user.html:136
+#: diventi/templates/accounts/user.html:140
 #: diventi/templates/accounts/user_credentials.html:33
 msgid "Confirm"
 msgstr "Conferma"
@@ -1596,54 +1596,54 @@ msgstr "Contatta tutti gli utenti %(lang_code)s"
 msgid "Contact %(lang_code)s subscribers"
 msgstr "Contatta gli iscritti %(lang_code)s"
 
-#: diventi/templates/accounts/user.html:15
+#: diventi/templates/accounts/user.html:19
 msgid "Profile"
 msgstr "Profilo"
 
-#: diventi/templates/accounts/user.html:45
-#: diventi/templates/accounts/user.html:73
-#: diventi/templates/products/product_detail.html:113
+#: diventi/templates/accounts/user.html:49
+#: diventi/templates/accounts/user.html:77
+#: diventi/templates/products/product_detail.html:114
 msgid "collection"
 msgstr "collezione"
 
-#: diventi/templates/accounts/user.html:47
-#: diventi/templates/accounts/user_collection.html:4
+#: diventi/templates/accounts/user.html:51
+#: diventi/templates/accounts/user_collection.html:5
 msgid "Collection"
 msgstr "Collezione"
 
-#: diventi/templates/accounts/user.html:51
-#: diventi/templates/accounts/user.html:80
+#: diventi/templates/accounts/user.html:55
+#: diventi/templates/accounts/user.html:84
 msgid "customization"
 msgstr "personalizzazioni"
 
-#: diventi/templates/accounts/user.html:53
+#: diventi/templates/accounts/user.html:57
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:57
-#: diventi/templates/accounts/user.html:90
+#: diventi/templates/accounts/user.html:61
+#: diventi/templates/accounts/user.html:94
 msgid "credentials"
 msgstr "credenziali"
 
-#: diventi/templates/accounts/user.html:59
+#: diventi/templates/accounts/user.html:63
 msgid "Credentials"
 msgstr "Credenziali"
 
-#: diventi/templates/accounts/user.html:63
-#: diventi/templates/accounts/user.html:100
+#: diventi/templates/accounts/user.html:67
+#: diventi/templates/accounts/user.html:104
 msgid "privacy"
 msgstr "privacy"
 
-#: diventi/templates/accounts/user.html:65
+#: diventi/templates/accounts/user.html:69
 msgid "Privacy"
 msgstr "Privacy"
 
-#: diventi/templates/accounts/user.html:124
+#: diventi/templates/accounts/user.html:128
 #: diventi/templates/accounts/user_privacy.html:53
 msgid "Delete your account"
 msgstr "Cancella la tua utenza"
 
-#: diventi/templates/accounts/user.html:130
+#: diventi/templates/accounts/user.html:134
 msgid ""
 "We will immediately delete all of your data, along with all of your "
 "comments, feedbacks and upvotes."
@@ -1651,7 +1651,7 @@ msgstr ""
 "Cancelleremo immediatamente tutti i tuoi dati, i commenti e le iterazioni "
 "che hai registrato."
 
-#: diventi/templates/accounts/user.html:132
+#: diventi/templates/accounts/user.html:136
 msgid ""
 "You will no longer be contacted and your username will be available to "
 "anyone on Diventi."
@@ -1659,46 +1659,57 @@ msgstr ""
 "Non ti contatteremo più e il tuo nome utente tornerà disponibile per altri "
 "in Diventi."
 
-#: diventi/templates/accounts/user.html:135
+#: diventi/templates/accounts/user.html:139
 msgid "Rollback"
 msgstr "Annulla"
 
-#: diventi/templates/accounts/user_collection.html:30
+#: diventi/templates/accounts/user_collection.html:24
+#, fuzzy
+#| msgid "not yet available"
+msgid "not available"
+msgstr "Non ancora disponibile"
+
+#: diventi/templates/accounts/user_collection.html:27
+msgid "read book"
+msgstr "leggi il libro"
+
+#: diventi/templates/accounts/user_collection.html:36
+#: diventi/templates/accounts/user_collection.html:78
+msgid "rewiew"
+msgstr "recensisci"
+
+#: diventi/templates/accounts/user_collection.html:66
 msgid "As a user, you have shortcuts to view or review this item"
 msgstr ""
 "Come utente, puoi utilizzare queste scorciatoie per visualizzare o recensire "
 "questo oggetto"
 
-#: diventi/templates/accounts/user_collection.html:33
+#: diventi/templates/accounts/user_collection.html:69
 msgid "view"
 msgstr "visualizza"
 
-#: diventi/templates/accounts/user_collection.html:41
-msgid "rewiew"
-msgstr "recensisci"
-
-#: diventi/templates/accounts/user_collection.html:54
+#: diventi/templates/accounts/user_collection.html:93
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_collection.html:60
+#: diventi/templates/accounts/user_collection.html:99
 msgid "Surveys"
 msgstr "Sondaggi"
 
-#: diventi/templates/accounts/user_collection.html:68
+#: diventi/templates/accounts/user_collection.html:107
 msgid "not yet available"
 msgstr "Non ancora disponibile"
 
-#: diventi/templates/accounts/user_collection.html:71
-#: diventi/templates/products/product_detail.html:65
+#: diventi/templates/accounts/user_collection.html:110
+#: diventi/templates/products/product_detail.html:66
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
-#: diventi/templates/accounts/user_collection.html:76
+#: diventi/templates/accounts/user_collection.html:115
 msgid "Display"
 msgstr "Visualizza"
 
-#: diventi/templates/accounts/user_collection.html:84
+#: diventi/templates/accounts/user_collection.html:123
 msgid "There are no surveys yet."
 msgstr "Nessun sondaggio disponibile."
 
@@ -2027,10 +2038,6 @@ msgstr "Registrati per saperne di più e accedere ai contenuti."
 msgid "e.g. First Contact"
 msgstr "es: Primo Contatto"
 
-#: diventi/templates/landing/standard_section.html:56
-msgid "View Project"
-msgstr "Visualizza progetto"
-
 #: diventi/templates/navigation.html:30
 msgid "admin"
 msgstr "amministrazione"
@@ -2051,35 +2058,41 @@ msgstr "accedi"
 msgid "buy with card"
 msgstr "acquista con carta"
 
-#: diventi/templates/products/product_detail.html:62
+#: diventi/templates/products/product_card_rich.html:21
+#: diventi/templates/products/product_detail.html:63
 msgid "free"
 msgstr "gratuito"
 
-#: diventi/templates/products/product_detail.html:74
-msgid "Description"
-msgstr "Descrizione"
-
-#: diventi/templates/products/product_detail.html:114
-msgid "View in collection"
-msgstr "Visualizza collezione"
-
-#: diventi/templates/products/product_detail.html:128
-msgid "Add to collection"
-msgstr "Aggiungi alla collezione"
-
-#: diventi/templates/products/product_detail.html:136
-msgid "to add this product in your collection"
-msgstr "per aggiungere questo prodotto alla tua collezione"
-
-#: diventi/templates/products/product_detail.html:169
+#: diventi/templates/products/product_card_rich.html:25
+#: diventi/templates/products/product_detail.html:170
 msgid "community reviews"
 msgstr "Recensioni della community"
 
-#: diventi/templates/products/product_detail.html:215
+#: diventi/templates/products/product_card_wide.html:14
+msgid "View Project"
+msgstr "Visualizza progetto"
+
+#: diventi/templates/products/product_detail.html:75
+msgid "Description"
+msgstr "Descrizione"
+
+#: diventi/templates/products/product_detail.html:115
+msgid "View in collection"
+msgstr "Visualizza collezione"
+
+#: diventi/templates/products/product_detail.html:129
+msgid "Add to collection"
+msgstr "Aggiungi alla collezione"
+
+#: diventi/templates/products/product_detail.html:137
+msgid "to add this product in your collection"
+msgstr "per aggiungere questo prodotto alla tua collezione"
+
+#: diventi/templates/products/product_detail.html:216
 msgid "there are no reviews yet, be the first to post one!"
 msgstr "non c'è alcuna recensione per ora, postane una tu!"
 
-#: diventi/templates/products/product_detail.html:229
+#: diventi/templates/products/product_detail.html:231
 msgid "related projects"
 msgstr "progetti correlati"
 
@@ -2110,6 +2123,9 @@ msgstr "recensione"
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#~ msgid "cards section"
+#~ msgstr "sezione a schede"
 
 #~ msgid "Our latest stories"
 #~ msgstr "Le nostre ultime storie"

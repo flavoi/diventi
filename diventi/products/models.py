@@ -28,15 +28,21 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch_related('details')
         return products
 
-    # Fetch the products authored or purchased by the user
+    # Fetch the products purchased by the user
     def user_collection(self, user):
         if user.is_anonymous:
             products = self.none()
         else:
-            products = self.filter(buyers=user)
-        if user.is_staff:
-            authored_products = self.filter(authors=user)
-            products = products.union(authored_products)
+            products = self.filter(customers=user)
+        products = products.prefetch()
+        return products
+
+    # Fetch the products authored by the user
+    def user_authored(self, user):
+        if not user.is_staff: 
+            products = self.none()
+        else:
+            products = self.filter(authors=user)
         products = products.prefetch()
         return products
 
@@ -170,11 +176,6 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     # Return True if the user has authored this collection
     def user_has_authored(self, user):
         return user in self.authors.all()
-
-    # Check if this product can be reviewed by the user
-    def is_published(self):
-        p = Product.objects.filter(pk=self.pk)
-        return p.published().exists()
 
     # Returns the price of the product
     def get_price(self):

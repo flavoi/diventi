@@ -1,5 +1,6 @@
 {% load humanize %}
 {% load i18n %}
+{% load admin_urls %}
 
 <h4 class="title">{% trans "Collection" %}</h4>
 
@@ -9,14 +10,49 @@
             <div class="row">
                 {% for product in collection %}
                     <div class="col-md-6">
+                        <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}');"{% endif %}>
+                          <div class="card-body">
+                            <h6 class="card-category text-info">{{ product.category.title }}</h6>
+                            <a {% if product.published %}href="{{ product.get_absolute_url }}"{% else %}disabled{% endif %}>
+                              <h3 class="card-title">{{ product.title }}</h3>
+                            </a>
+                            <p class="card-description">
+                              {{ product.abstract|striptags|capfirst|truncatechars:":201"}}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {% trans "not available" as default_courtesy_short_message %}
+                                    {% if product.book.published %}
+                                        <a href="{{ product.book.get_absolute_url }}" class="btn btn-white btn-link">
+                                            <i class="fas fa-book fa-lg fa-fw"></i> {% trans "read book" %}
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-white btn-link disabled">
+                                            <i class="fas fa-exclamation-circle fa-lg fa-fw"></i> {{ product.courtesy_short_message|default:default_courtesy_short_message }}
+                                        </a>
+                                    {% endif %}                                        
+                                    {% if product.published %}
+                                        <a href="{{ product.get_absolute_url }}" class="btn btn-white btn-link">
+                                          <i class="fas fa-pencil fa-lg fa-fw"></i> {% trans 'rewiew'|capfirst %}
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-white btn-link disabled">
+                                            <i class="fas fa-exclamation-circle fa-lg fa-fw" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"></i> {{ product.courtesy_short_message }}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-md-6">
                         <div class="rotating-card-container" style="margin-bottom: 30px;">
                           <div class="card card-rotate card-background">
                             <div class="front front-background" {% if product.image %}style="background-image: url('{{ product.image }}'); width: 350px;"{% endif %}>
                               <div class="card-body">
                                 <h6 class="card-category">{{ product.category.title }}</h6>
-                                <a href="#pablo">
-                                  <h3 class="card-title">{{ product.title }}</h3>
-                                </a>
+                                <h3 class="card-title">{{ product.title }}</h3>
                                 <p class="card-description">
                                   {{ product.abstract|striptags|capfirst|truncatechars:":201"}}
                                 </p>
@@ -49,6 +85,7 @@
                           </div>
                         </div>
                     </div>
+                    -->                    
                 {% endfor %}
             </div>
         {% else %}

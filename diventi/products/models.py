@@ -61,7 +61,7 @@ class ProductCategory(Category):
     """
         Defines the type of a product.
     """
-    meta_category = models.BooleanField(default=False, verbose_name=_('meta category'))
+    meta_category = models.BooleanField(default=False, verbose_name=_('meta category'), help_text=_('Meta categories won\'t be listed in search results.'))
 
     class Meta:
         verbose_name = _('Product category')

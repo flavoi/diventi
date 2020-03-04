@@ -6,6 +6,8 @@ from django.utils.translation import gettext as _
 
 from django.core.mail import send_mail
 
+from .utils import humanize_price
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def charge(request, price, title, user):
@@ -52,7 +54,7 @@ def charge(request, price, title, user):
             # Something else happened, completely unrelated to Stripe
             msg = _('Unexpected error')
             outcome = 0
-        msg = _('You paid %(price)s for %(title)s') % {'price': price, 'title': title,}
+        msg = _('You paid %(price)s for %(title)s') % {'price': humanize_price(price), 'title': title,}
         send_mail(
             _('Diventi: %(title)s purchase') % {'title': title,},
             _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {
@@ -64,7 +66,6 @@ def charge(request, price, title, user):
             [user.email],
             fail_silently=False,
         )
-        print('{}, outcome: {}'.format(msg, outcome))
         payment = {
             'outcome': outcome,
             'msg': msg,

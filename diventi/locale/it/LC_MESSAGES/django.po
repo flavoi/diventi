@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-04 07:43+0100\n"
+"POT-Creation-Date: 2020-03-04 09:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -414,7 +414,7 @@ msgid "description"
 msgstr "descrizione"
 
 #: diventi/blog/models.py:81 diventi/ebooks/models.py:86
-#: diventi/products/models.py:81 diventi/products/models.py:226
+#: diventi/products/models.py:81 diventi/products/models.py:223
 msgid "category"
 msgstr "tipo"
 
@@ -541,7 +541,7 @@ msgid "modified"
 msgstr "modificato"
 
 #: diventi/core/models.py:40 diventi/core/models.py:59
-#: diventi/products/models.py:202 diventi/templates/publishable_badge.html:4
+#: diventi/products/models.py:199 diventi/templates/publishable_badge.html:4
 msgid "published"
 msgstr "pubblicato"
 
@@ -593,7 +593,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:152 diventi/products/models.py:238
+#: diventi/core/models.py:152 diventi/products/models.py:235
 msgid "Image"
 msgstr "Immagine"
 
@@ -688,8 +688,8 @@ msgid "short title"
 msgstr "titolo breve"
 
 #: diventi/ebooks/models.py:62 diventi/products/models.py:95
-#: diventi/products/models.py:209 diventi/products/models.py:225
-#: diventi/products/models.py:235 diventi/products/models.py:282
+#: diventi/products/models.py:206 diventi/products/models.py:222
+#: diventi/products/models.py:232 diventi/products/models.py:279
 msgid "product"
 msgstr "prodotto"
 
@@ -920,7 +920,7 @@ msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
 #: diventi/landing/models.py:45
-#: diventi/templates/accounts/user_collection.html:109
+#: diventi/templates/accounts/user_collection.html:63
 msgid "survey"
 msgstr "sondaggio"
 
@@ -968,16 +968,16 @@ msgstr "<slug:slug>/risposte/"
 msgid "<slug:slug>/answers/<str:author_name>/"
 msgstr "<slug:slug>/risposte/<str:author_name>/"
 
-#: diventi/feedbacks/views.py:105
+#: diventi/feedbacks/views.py:118
 msgid "You should sign in to access that survey."
 msgstr "Per rispondere a questo sondaggio devi prima autenticarti."
 
-#: diventi/feedbacks/views.py:131
+#: diventi/feedbacks/views.py:148
 #, python-format
 msgid "Diventi: %(user)s has completed %(survey)s"
 msgstr "Diventi: %(user)s ha completato %(survey)s"
 
-#: diventi/feedbacks/views.py:132
+#: diventi/feedbacks/views.py:149
 #, python-format
 msgid ""
 "Dear Diventi authors, new answers are now available for survey %(survey)s."
@@ -985,25 +985,29 @@ msgstr ""
 "Cari autori Diventi, nuove risposte sono ora disponibili per il sondaggio "
 "%(survey)s."
 
-#: diventi/feedbacks/views.py:137
+#: diventi/feedbacks/views.py:154
 msgid "Your survey has been saved!"
 msgstr "Il tuo sondaggio è stato salvato!"
 
-#: diventi/feedbacks/views.py:140
+#: diventi/feedbacks/views.py:157
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
 
-#: diventi/feedbacks/views.py:156
+#: diventi/feedbacks/views.py:173
 msgid "The selected survey doesn't exist or is not published yet."
 msgstr "Il sondaggio selezionato non esiste o non è ancora stato pubblicato."
 
-#: diventi/feedbacks/views.py:165
+#: diventi/feedbacks/views.py:182
 msgid "There was an error while processing your survey."
 msgstr "Si è verificato un errore mentre processavamo il tuo sondaggio."
 
-#: diventi/feedbacks/views.py:191
+#: diventi/feedbacks/views.py:208
+#, fuzzy
+#| msgid ""
+#| "An other user already picked that name and answered, please choose an "
+#| "other name."
 msgid ""
-"An other user already picked that name and answered, please choose an other "
+"An other user already picked that name and answered, please choose another "
 "name."
 msgstr ""
 "Un altro utente ha già utilizzato questo nome, per favore scegline un altro."
@@ -1105,46 +1109,46 @@ msgstr "Per favore controlla la tua email."
 msgid "Payments"
 msgstr "Pagamenti"
 
-#: diventi/payments/views.py:17
+#: diventi/payments/views.py:19
 #, python-format
 msgid "Diventi charge for %(title)s"
 msgstr "Diventi: acquisto %(title)s"
 
-#: diventi/payments/views.py:31
+#: diventi/payments/views.py:33
 msgid "Rate limit error"
 msgstr "Errore rate limit"
 
-#: diventi/payments/views.py:35
+#: diventi/payments/views.py:37
 msgid "Invalid request error"
 msgstr "Errore richiesta non valida"
 
-#: diventi/payments/views.py:40
+#: diventi/payments/views.py:42
 msgid "Api authentication error"
 msgstr "Errore autenticazione api"
 
-#: diventi/payments/views.py:44
+#: diventi/payments/views.py:46
 msgid "Api connection error"
 msgstr "Errore di connessione api"
 
-#: diventi/payments/views.py:49
+#: diventi/payments/views.py:51
 msgid "Generic error"
 msgstr "Errore generico"
 
-#: diventi/payments/views.py:53
+#: diventi/payments/views.py:55
 msgid "Unexpected error"
 msgstr "Errore inaspettato"
 
-#: diventi/payments/views.py:55
+#: diventi/payments/views.py:57
 #, python-format
 msgid "You paid %(price)s for %(title)s"
 msgstr "Hai pagato %(price)s per %(title)s"
 
-#: diventi/payments/views.py:57
+#: diventi/payments/views.py:59
 #, python-format
 msgid "Diventi: %(title)s purchase"
 msgstr "Diventi: acquisto %(title)s"
 
-#: diventi/payments/views.py:58
+#: diventi/payments/views.py:60
 #, python-format
 msgid ""
 "Dear %(user)s, you have successufully purchased %(title)s for %(price)s."
@@ -1175,8 +1179,10 @@ msgid "meta category"
 msgstr "meta categoria"
 
 #: diventi/products/models.py:64
-msgid "Meta categories won't be listed in search results."
-msgstr "Le meta categorie non vengono esposte come risultati nella funzione di ricerca."
+msgid ""
+"Meta categories won't be listed in search results, nor on reporting pages."
+msgstr ""
+"Le meta categorie non vengono esposte né nella funzione di ricerca, né nelle pagine di reportistica."
 
 #: diventi/products/models.py:67
 msgid "Product category"
@@ -1258,28 +1264,28 @@ msgstr "%(product)s: iscritti inglesi"
 msgid "%(product)s: italian subscribers"
 msgstr "%(product)s: iscritti italiani"
 
-#: diventi/products/models.py:204 diventi/templates/publishable_badge.html:6
+#: diventi/products/models.py:201 diventi/templates/publishable_badge.html:6
 msgid "draft"
 msgstr "bozza"
 
-#: diventi/products/models.py:212
+#: diventi/products/models.py:209
 msgid "Detail"
 msgstr "Dettaglio"
 
-#: diventi/products/models.py:213
+#: diventi/products/models.py:210
 #: diventi/templates/products/product_detail.html:91
 msgid "Details"
 msgstr "Dettagli"
 
-#: diventi/products/models.py:219
+#: diventi/products/models.py:216
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:220
+#: diventi/products/models.py:217
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:229
+#: diventi/products/models.py:226
 #: diventi/templates/ebooks/base_book_web.html:176
 #: diventi/templates/ebooks/base_book_web.html:208
 #: diventi/templates/ebooks/base_book_web.html:222
@@ -1288,33 +1294,33 @@ msgstr "Tipi Capitolo"
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: diventi/products/models.py:230
+#: diventi/products/models.py:227
 #: diventi/templates/ebooks/base_book_web.html:166
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:239
+#: diventi/products/models.py:236
 msgid "Images"
 msgstr "Immagini"
 
-#: diventi/products/models.py:283
+#: diventi/products/models.py:280
 msgid "customer"
 msgstr "cliente"
 
-#: diventi/products/models.py:288
+#: diventi/products/models.py:285
 msgid "Purchase"
 msgstr "Acquisto"
 
-#: diventi/products/models.py:289
+#: diventi/products/models.py:286
 msgid "Purchases"
 msgstr "Acquisti"
 
-#: diventi/products/models.py:293
+#: diventi/products/models.py:290
 #, python-format
 msgid "Purchase: %(id)s"
 msgstr "Acquisto: %(id)s"
 
-#: diventi/products/models.py:298
+#: diventi/products/models.py:295
 #, python-format
 msgid "%(prefix)s: %(last_pur)s on %(created)s"
 msgstr "%(prefix)s: %(last_pur)s - %(created)s"
@@ -1327,7 +1333,7 @@ msgstr "^(?P<slug>[-\\w]+)/aggiungi/$"
 msgid "^(?P<slug>[-\\w]+)/remove/$"
 msgstr "^(?P<slug>[-\\w]+)/rimuovi/$"
 
-#: diventi/products/utils.py:6
+#: diventi/products/utils.py:7
 #, python-format
 msgid "last purchase: %(last_sub)s on %(date_joined)s"
 msgstr "ultimo acquisto: %(last_sub)s - %(date_joined)s"
@@ -1667,53 +1673,42 @@ msgstr ""
 msgid "Rollback"
 msgstr "Annulla"
 
-#: diventi/templates/accounts/user_collection.html:24
+#: diventi/templates/accounts/user_collection.html:21
 #, fuzzy
 #| msgid "not yet available"
 msgid "not available"
 msgstr "Non ancora disponibile"
 
-#: diventi/templates/accounts/user_collection.html:27
+#: diventi/templates/accounts/user_collection.html:24
 msgid "read book"
 msgstr "leggi il libro"
 
-#: diventi/templates/accounts/user_collection.html:36
-#: diventi/templates/accounts/user_collection.html:78
+#: diventi/templates/accounts/user_collection.html:33
 msgid "rewiew"
 msgstr "recensisci"
 
-#: diventi/templates/accounts/user_collection.html:66
-msgid "As a user, you have shortcuts to view or review this item"
-msgstr ""
-"Come utente, puoi utilizzare queste scorciatoie per visualizzare o recensire "
-"questo oggetto"
-
-#: diventi/templates/accounts/user_collection.html:69
-msgid "view"
-msgstr "visualizza"
-
-#: diventi/templates/accounts/user_collection.html:93
+#: diventi/templates/accounts/user_collection.html:48
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_collection.html:99
+#: diventi/templates/accounts/user_collection.html:53
 msgid "Surveys"
 msgstr "Sondaggi"
 
-#: diventi/templates/accounts/user_collection.html:107
+#: diventi/templates/accounts/user_collection.html:61
 msgid "not yet available"
 msgstr "Non ancora disponibile"
 
-#: diventi/templates/accounts/user_collection.html:110
+#: diventi/templates/accounts/user_collection.html:64
 #: diventi/templates/products/product_detail.html:66
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
-#: diventi/templates/accounts/user_collection.html:115
+#: diventi/templates/accounts/user_collection.html:69
 msgid "Display"
 msgstr "Visualizza"
 
-#: diventi/templates/accounts/user_collection.html:123
+#: diventi/templates/accounts/user_collection.html:77
 msgid "There are no surveys yet."
 msgstr "Nessun sondaggio disponibile."
 
@@ -2127,6 +2122,14 @@ msgstr "recensione"
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#~ msgid "As a user, you have shortcuts to view or review this item"
+#~ msgstr ""
+#~ "Come utente, puoi utilizzare queste scorciatoie per visualizzare o "
+#~ "recensire questo oggetto"
+
+#~ msgid "view"
+#~ msgstr "visualizza"
 
 #~ msgid "cards section"
 #~ msgstr "sezione a schede"

@@ -1,6 +1,5 @@
 from functools import reduce
 import operator
-import unicodedata
 
 from django.db import models
 from django.db.models import Q, Count
@@ -13,6 +12,7 @@ from django.contrib.auth import get_user_model
 from cuser.middleware import CuserMiddleware
 
 from .fields import ProtectedFileField
+from .utils import humanize_price
 
 from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category, Element, SectionModel
 
@@ -61,7 +61,7 @@ class ProductCategory(Category):
     """
         Defines the type of a product.
     """
-    meta_category = models.BooleanField(default=False, verbose_name=_('meta category'), help_text=_('Meta categories won\'t be listed in search results.'))
+    meta_category = models.BooleanField(default=False, verbose_name=_('meta category'), help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.'))
 
     class Meta:
         verbose_name = _('Product category')
@@ -179,10 +179,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
 
     # Returns the price of the product
     def get_price(self):
-        p = ('%(currency)s %(price).2f' % {
-            'currency': unicodedata.lookup('EURO SIGN'), 
-            'price': self.price / 100,
-        })
+        p = humanize_price(self.price)
         return p
 
     # Returns the price of the product without its currency

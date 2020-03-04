@@ -65,7 +65,7 @@
                         {% endif %}            
                         <h3 class="card-title">{{ survey.title }}</h3>                        
                         <p class="card-description">{{ survey.description|striptags|truncatechars:250 }}</p>                    
-                        <a target="_blank" class="btn btn-warning btn-round {% if survey.published == False %}disabled{% endif %}" href="{% url 'feedbacks:questions' survey.slug %}">
+                        <a target="_blank" class="btn btn-warning btn-round {% if survey.published == False %}disabled{% endif %}" href="{% url 'feedbacks:answers-author' survey.slug user.get_full_name %}">
                             <i class="fal fa-glasses fa-lg fa-fw"></i> {% trans "Display" %}
                         </a>
                     </div>                

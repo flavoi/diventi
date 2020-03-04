@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [landing] Removed nav dropdowns from navbar
 
 ### Fixed
+- [feedbacks] Fixed a problem that displayed 'None' as username on question pages
 - [products] Fixed a problem that prevented the honeypot to be hidden
 - [products] Fixed a problem that displayed a product link even if the product is not published
 

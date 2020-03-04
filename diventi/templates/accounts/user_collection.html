@@ -3,97 +3,51 @@
 {% load admin_urls %}
 
 <h4 class="title">{% trans "Collection" %}</h4>
-
 <div class="row">
-    <div class="col-md-12 ml-auto mr-auto">
-        {% if collection %}
-            <div class="row">
-                {% for product in collection %}
-                    <div class="col-md-6">
-                        <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}');"{% endif %}>
-                          <div class="card-body">
-                            <h6 class="card-category text-info">{{ product.category.title }}</h6>
-                            <a {% if product.published %}href="{{ product.get_absolute_url }}"{% else %}disabled{% endif %}>
-                              <h3 class="card-title">{{ product.title }}</h3>
-                            </a>
-                            <p class="card-description">
-                              {{ product.abstract|striptags|capfirst|truncatechars:":201"}}
-                            </p>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {% trans "not available" as default_courtesy_short_message %}
-                                    {% if product.book.published %}
-                                        <a href="{{ product.book.get_absolute_url }}" class="btn btn-white btn-link">
-                                            <i class="fas fa-book fa-lg fa-fw"></i> {% trans "read book" %}
-                                        </a>
-                                    {% else %}
-                                        <a class="btn btn-white btn-link disabled">
-                                            <i class="fas fa-exclamation-circle fa-lg fa-fw"></i> {{ product.courtesy_short_message|default:default_courtesy_short_message }}
-                                        </a>
-                                    {% endif %}                                        
-                                    {% if product.published %}
-                                        <a href="{{ product.get_absolute_url }}" class="btn btn-white btn-link">
-                                          <i class="fas fa-pencil fa-lg fa-fw"></i> {% trans 'rewiew'|capfirst %}
-                                        </a>
-                                    {% else %}
-                                        <a class="btn btn-white btn-link disabled">
-                                            <i class="fas fa-exclamation-circle fa-lg fa-fw" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"></i> {{ product.courtesy_short_message }}
-                                        </a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                          </div>
+    {% if collection %}
+        {% for product in collection %}
+            <div class="col-md-6">
+                <div class="card card-background" {% if product.image %}style="background-image: url('{{ product.image }}');"{% endif %}>
+                  <div class="card-body">
+                    <h6 class="card-category text-info">{{ product.category.title }}</h6>
+                    <a {% if product.published %}href="{{ product.get_absolute_url }}"{% else %}disabled{% endif %}>
+                      <h3 class="card-title">{{ product.title }}</h3>
+                    </a>
+                    <p class="card-description">
+                      {{ product.abstract|striptags|capfirst|truncatechars:":201"}}
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% trans "not available" as default_courtesy_short_message %}
+                            {% if product.book.published %}
+                                <a href="{{ product.book.get_absolute_url }}" class="btn btn-white btn-link">
+                                    <i class="fas fa-book fa-lg fa-fw"></i> {% trans "read book" %}
+                                </a>
+                            {% else %}
+                                <a class="btn btn-white btn-link disabled">
+                                    <i class="fas fa-exclamation-circle fa-lg fa-fw"></i> {{ product.courtesy_short_message|default:default_courtesy_short_message }}
+                                </a>
+                            {% endif %}                                        
+                            {% if product.published %}
+                                <a href="{{ product.get_absolute_url }}" class="btn btn-white btn-link">
+                                  <i class="fas fa-pencil fa-lg fa-fw"></i> {% trans 'rewiew'|capfirst %}
+                                </a>
+                            {% else %}
+                                <a class="btn btn-white btn-link disabled">
+                                    <i class="fas fa-exclamation-circle fa-lg fa-fw" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}"></i> {{ product.courtesy_short_message }}
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
-                    <!--
-                    <div class="col-md-6">
-                        <div class="rotating-card-container" style="margin-bottom: 30px;">
-                          <div class="card card-rotate card-background">
-                            <div class="front front-background" {% if product.image %}style="background-image: url('{{ product.image }}'); width: 350px;"{% endif %}>
-                              <div class="card-body">
-                                <h6 class="card-category">{{ product.category.title }}</h6>
-                                <h3 class="card-title">{{ product.title }}</h3>
-                                <p class="card-description">
-                                  {{ product.abstract|striptags|capfirst|truncatechars:":201"}}
-                                </p>
-                              </div>
-                            </div>
-                            <div class="back back-background" {% if product.image %}style="background-image: url('{{ product.image }}'); width: 350px;"{% endif %}>
-                              <div class="card-body">
-                                <h5 class="card-title">
-                                  {{ product.title }}
-                                </h5>
-                                <p class="card-description">{% trans "As a user, you have shortcuts to view or review this item" %}.</p>
-                                <div class="footer text-center">
-                                {% if product.book.published %}
-                                  <a href="{{ product.book.get_absolute_url }}" class="btn btn-warning btn-just-icon btn-fill btn-round" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'view'|capfirst %}">
-                                    <i class="fas fa-align-center"></i>
-                                  </a>
-                                {% else %}
-                                  <a href="#" class="btn btn-danger btn-just-icon btn-fill btn-round" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
-                                    <i class="fas fa-exclamation"></i>
-                                  </a>
-                                {% endif %}
-                                {% if product.published %}
-                                  <a href="{{ product.get_absolute_url }}" class="btn btn-gray btn-just-icon btn-fill btn-round btn-wd" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'rewiew'|capfirst %}">
-                                    <i class="fas fa-pencil"></i>
-                                  </a>
-                                {% endif %}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                    -->                    
-                {% endfor %}
-            </div>
-        {% else %}
-            <div class="col-md-12">
-                <h4>{% trans "This collection is empty." %}</h4>
-            </div>
-        {% endif %}
-    </div>
+                  </div>
+                </div>
+            </div>                 
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <h4>{% trans "This collection is empty." %}</h4>
+        </div>
+    {% endif %}
 </div>
 
 <h4 class="title">{% trans "Surveys" %}</h4>

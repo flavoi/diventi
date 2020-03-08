@@ -18,7 +18,6 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^reviews/', include('reviews.urls')),
     url(r'^\.well-known/', include('letsencrypt.urls')),
-    url(r'^\.well-known/', include('diventi.brave.urls')),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -34,4 +33,5 @@ urlpatterns += i18n_patterns(
     path(_('ebooks/'), include('diventi.ebooks.urls', namespace='ebooks')),
     path(_('sheets/'), include('diventi.sheets.urls', namespace='sheets')),
     path(_('payments/'), include('diventi.payments.urls', namespace='payments')),
+    path(_('.well-known/'), include('diventi.brave.urls')),
 )

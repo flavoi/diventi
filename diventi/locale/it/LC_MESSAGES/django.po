@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-04 09:06+0100\n"
+"POT-Creation-Date: 2020-03-08 17:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:163
+#: config/settings/base.py:164
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:164
+#: config/settings/base.py:165
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:218
+#: config/settings/base.py:219
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:228
+#: config/settings/base.py:229
 msgid "Super paragraph"
 msgstr "Super paragrafo"
 
-#: config/settings/base.py:260
+#: config/settings/base.py:261
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:261
+#: config/settings/base.py:262
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:262
+#: config/settings/base.py:263
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:263
+#: config/settings/base.py:264
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:264
+#: config/settings/base.py:265
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -89,6 +89,10 @@ msgstr "schede/"
 #: config/urls.py:35
 msgid "payments/"
 msgstr "pagamenti/"
+
+#: config/urls.py:36
+msgid ".well-known/"
+msgstr ""
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -457,6 +461,14 @@ msgstr "^(?P<slug>[-\\w]+)/promuovi/$"
 #: diventi/blog/urls.py:12
 msgid "^(?P<slug>[-\\w]+)/promote/api/$"
 msgstr "^(?P<slug>[-\\w]+)/promuovi/api/$"
+
+#: diventi/brave/apps.py:7
+msgid "Brave"
+msgstr ""
+
+#: diventi/brave/urls.py:9
+msgid "brave-rewards-verification.txt/"
+msgstr ""
 
 #: diventi/comments/apps.py:7 diventi/comments/models.py:19
 msgid "comments"
@@ -1182,7 +1194,8 @@ msgstr "meta categoria"
 msgid ""
 "Meta categories won't be listed in search results, nor on reporting pages."
 msgstr ""
-"Le meta categorie non vengono esposte né nella funzione di ricerca, né nelle pagine di reportistica."
+"Le meta categorie non vengono esposte né nella funzione di ricerca, né nelle "
+"pagine di reportistica."
 
 #: diventi/products/models.py:67
 msgid "Product category"

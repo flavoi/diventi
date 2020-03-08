@@ -16,8 +16,9 @@ urlpatterns = [
     url(r'jsi18n/', JavaScriptCatalog.as_view(domain="django"), name='javascript-catalog'),
     url(r'^comments/default/', include('django_comments.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^\.well-known/', include('letsencrypt.urls')),
     url(r'^reviews/', include('reviews.urls')),
+    url(r'^\.well-known/', include('letsencrypt.urls')),
+    url(r'^\.well-known/', include('diventi.brave.urls')),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

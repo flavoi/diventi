@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-08 17:16+0100\n"
+"POT-Creation-Date: 2020-03-15 14:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,23 +34,27 @@ msgstr "Blocco base"
 msgid "Super paragraph"
 msgstr "Super paragrafo"
 
-#: config/settings/base.py:261
+#: config/settings/base.py:234
+msgid "Callout"
+msgstr "Didascalia"
+
+#: config/settings/base.py:272
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:262
+#: config/settings/base.py:273
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:263
+#: config/settings/base.py:274
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:264
+#: config/settings/base.py:275
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:265
+#: config/settings/base.py:276
 msgid "Excellent"
 msgstr "Eccellente"
 

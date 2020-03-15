@@ -226,10 +226,18 @@ CKEDITOR_CONFIGS = {
                 }
             },
             {
-                "name": _('Super paragraph'),
+                "name": _('Callout'),
                 "element": 'div',
-                "attributes": {'class': 'lede'},
-            }
+                "styles": {
+                    'padding': '0.95rem',
+                    'margin-top': '1.25rem',
+                    'margin-bottom': '1.25rem',
+                    'border-top': '1px solid #eee',
+                    'border-bottom': '1px solid #eee',
+                    'border-right': '1px solid #eee',
+                    'border-left': '.25rem solid #fd7e14',
+                }
+            },
         ],
     },    
 }

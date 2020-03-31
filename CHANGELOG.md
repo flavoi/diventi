@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [core] Upgraded material kit from v2.1.1 to v2.2.0
 - [core] Upgraded django from v2.2.9 to v2.2.10
 - [core] Added support for Opengraph on blog, landing and product pages
+- [ebooks] Added support for chapter autocompletion based on book's titles in the admin page
 - [feedbacks] Introduced an email notification for the authors when a user completes a survey
 - [feedbacks] Introduced created and modified dates to answers
 - [landing] Introduced 'cards section': a new section template

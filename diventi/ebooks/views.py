@@ -10,7 +10,9 @@ from django.http import Http404
 
 from dal import autocomplete
 
+from diventi.core.views import StaffRequiredMixin
 from diventi.products.models import Product
+
 from .models import Book, Chapter, Section
 
 
@@ -167,11 +169,14 @@ class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
         return ['ebooks/section_detail_%s.html' % book.template]
 
 
-class ChapterAutocomplete(autocomplete.Select2QuerySetView):
+class ChapterAutocomplete(autocomplete.Select2QuerySetView, StaffRequiredMixin):
     """ Returns a list of chapters to facilitate user form fill. """
   
     def get_queryset(self):
         qs = Chapter.objects.all()
+        book = self.forwarded.get('book', None)
+        if book:
+            qs = qs.filter(chapter_book=book)
         if self.q:
             qs = qs.filter(title__istartswith=self.q)
         return qs

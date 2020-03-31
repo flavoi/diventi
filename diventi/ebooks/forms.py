@@ -3,10 +3,11 @@ from django.utils.translation import gettext_lazy as _
 
 from dal import autocomplete
 
-from .models import Section, Chapter
+from .models import Section, Chapter, Book
 
 
 class SectionForm(forms.ModelForm):
+    book = forms.ModelChoiceField(queryset=Book.objects.all())
     chapter = forms.ModelChoiceField(
         queryset=Chapter.objects.all(),
         widget=autocomplete.ModelSelect2(
@@ -17,6 +18,7 @@ class SectionForm(forms.ModelForm):
                 # Only trigger autocompletion after 3 characters have been typed
                 'data-minimum-input-length': 3,
             },
+            forward=['book'],
         )
     )
 

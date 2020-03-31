@@ -33,7 +33,7 @@ class SectionAdmin(admin.ModelAdmin):
             'fields': ('universal_section', 'rules')
         }),
         (_('Table of contents'), {
-            'fields': ('chapter', 'bookmark')
+            'fields': ('book', 'chapter', 'bookmark')
         }),
         (_('Layout'), {
             'fields': ('image', 'text_alignment',)

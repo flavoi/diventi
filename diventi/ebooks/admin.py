@@ -8,6 +8,7 @@ from modeltranslation.admin import TranslationStackedInline, TranslationTabularI
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
 from .models import Book, Chapter, Section, UniversalSection, Part, ReplacementRule
+from .forms import SectionForm
 
 def duplicate_section(modeladmin, request, queryset):
     for section in queryset:
@@ -20,30 +21,13 @@ duplicate_section.short_description = _("Duplicate selected section")
 class UniversalSectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'get_universal_chapter',]
     fields = ['title', 'order_index', 'content',]
+    search_fields = ['title']
     ordering = ['order_index']
 
 
-class FilteredSectionAdminMixin(admin.options.BaseModelAdmin):
-
-    def get_form(self, request, obj=None, **kwargs):
-        form = super(FilteredSectionAdminMixin, self).get_form(request, obj, **kwargs)
-        """
-            Adjust the section queryset to cope with the following requirement:
-            A universal section should be used only one per book.            
-        """
-        if obj is not None and obj.chapter is not None:
-            book = obj.chapter.chapter_book
-            sections = Section.objects.filter(chapter__chapter_book=book)
-            q = UniversalSection.objects.all().exclude(sections__in=sections)
-            if obj.universal_section is not None: # Don't exclude the current universal section
-                universal_section = UniversalSection.objects.filter(pk=obj.universal_section.pk)
-                q = q | universal_section  
-            form.base_fields['universal_section'].queryset = q
-        return form
-
-
-class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
+class SectionAdmin(admin.ModelAdmin):
     list_display = ['title', 'order_index', 'chapter', 'image_tag', 'get_rules']
+    form = SectionForm
     fieldsets = (
         (_('Universal content'), {
             'fields': ('universal_section', 'rules')
@@ -61,10 +45,11 @@ class SectionAdmin(FilteredSectionAdminMixin, DiventiTranslationAdmin):
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['chapter__order_index', 'order_index']
     search_fields = ['chapter__chapter_book__title', 'title']
+    autocomplete_fields = ['universal_section', 'chapter']
     list_filter = ['chapter__chapter_book',]
     preserve_filters = True
     actions = [duplicate_section,]
-  
+    
 
 class PartAdmin(DiventiTranslationAdmin):
     list_display = ['title', ]

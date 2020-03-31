@@ -8,6 +8,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import Http404
 
+from dal import autocomplete
+
 from diventi.products.models import Product
 from .models import Book, Chapter, Section
 
@@ -163,3 +165,13 @@ class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
         book_slug = self.kwargs.get('book_slug', None)
         book = get_object_or_404(Book, slug=book_slug)
         return ['ebooks/section_detail_%s.html' % book.template]
+
+
+class ChapterAutocomplete(autocomplete.Select2QuerySetView):
+    """ Returns a list of chapters to facilitate user form fill. """
+  
+    def get_queryset(self):
+        qs = Chapter.objects.all()
+        if self.q:
+            qs = qs.filter(title__istartswith=self.q)
+        return qs

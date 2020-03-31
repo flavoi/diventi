@@ -3,29 +3,4 @@
 
 {% block extrahead %}
 {{ block.super }}
-<script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js" defer></script>
-{% endblock %}
-
-
-{% block after_related_objects %}
-{{ block.super }}
-<script>
-ClassicEditor
-    .create( document.querySelector( '.ckeditor5' ), {
-        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-            ]
-        }
-    })
-    .then( editor => {
-        console.log( ckeditor5 );
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
-</script>
 {% endblock %}

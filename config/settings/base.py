@@ -71,7 +71,9 @@ LOGIN_URL = reverse_lazy('accounts:signin')
 
 # Application definition
 
-TRANSLATION_APPS = [
+PREFIX_APPS = [
+    'dal',
+    'dal_select2',
     'modeltranslation',
 ]
 
@@ -114,7 +116,7 @@ THIRD_PARTY_APPS = [
     'widget_tweaks',
 ]
 
-INSTALLED_APPS = TRANSLATION_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = PREFIX_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 COMMENTS_APP = 'diventi.comments'
 
@@ -226,10 +228,18 @@ CKEDITOR_CONFIGS = {
                 }
             },
             {
-                "name": _('Super paragraph'),
+                "name": _('Callout'),
                 "element": 'div',
-                "attributes": {'class': 'lede'},
-            }
+                "styles": {
+                    'padding': '0.95rem',
+                    'margin-top': '1.25rem',
+                    'margin-bottom': '1.25rem',
+                    'border-top': '1px solid #eee',
+                    'border-bottom': '1px solid #eee',
+                    'border-right': '1px solid #eee',
+                    'border-left': '.25rem solid #fd7e14',
+                }
+            },
         ],
     },    
 }

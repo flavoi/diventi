@@ -13,7 +13,7 @@ from dal import autocomplete
 from diventi.core.views import StaffRequiredMixin
 from diventi.products.models import Product
 
-from .models import Book, Chapter, Section
+from .models import Book, Chapter, Section, UniversalSection
 
 
 class UserHasProductMixin(UserPassesTestMixin):
@@ -170,7 +170,7 @@ class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
 
 
 class ChapterAutocomplete(autocomplete.Select2QuerySetView, StaffRequiredMixin):
-    """ Returns a list of chapters to facilitate user form fill. """
+    """ Returns filtered chapters to facilitate user form fill. """
   
     def get_queryset(self):
         qs = Chapter.objects.all()
@@ -178,5 +178,5 @@ class ChapterAutocomplete(autocomplete.Select2QuerySetView, StaffRequiredMixin):
         if book:
             qs = qs.filter(chapter_book=book)
         if self.q:
-            qs = qs.filter(title__istartswith=self.q)
+            qs = qs.filter(title__icontains=self.q)
         return qs

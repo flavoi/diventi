@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-15 14:28+0100\n"
+"POT-Creation-Date: 2020-04-01 23:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:164
+#: config/settings/base.py:166
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:165
+#: config/settings/base.py:167
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:219
+#: config/settings/base.py:221
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:229
-msgid "Super paragraph"
-msgstr "Super paragrafo"
-
-#: config/settings/base.py:234
+#: config/settings/base.py:231
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:272
+#: config/settings/base.py:271
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:273
+#: config/settings/base.py:272
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:274
+#: config/settings/base.py:273
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:275
+#: config/settings/base.py:274
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:276
+#: config/settings/base.py:275
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -382,14 +378,14 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/blog/admin.py:15 diventi/blog/admin.py:34 diventi/ebooks/admin.py:82
+#: diventi/blog/admin.py:15 diventi/blog/admin.py:34 diventi/ebooks/admin.py:67
 #: diventi/feedbacks/admin.py:54 diventi/landing/admin.py:22
 #: diventi/products/admin.py:53 diventi/sheets/admin.py:20
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:18 diventi/blog/admin.py:37 diventi/ebooks/admin.py:57
-#: diventi/ebooks/admin.py:88 diventi/ebooks/admin.py:108
+#: diventi/blog/admin.py:18 diventi/blog/admin.py:37 diventi/ebooks/admin.py:41
+#: diventi/ebooks/admin.py:73 diventi/ebooks/admin.py:93
 #: diventi/feedbacks/admin.py:57 diventi/landing/admin.py:28
 #: diventi/products/admin.py:59 diventi/sheets/admin.py:23
 msgid "Editing"
@@ -665,31 +661,54 @@ msgstr "destra"
 msgid "alignment"
 msgstr "allineamento"
 
-#: diventi/ebooks/admin.py:17
+#: diventi/ebooks/admin.py:18
 msgid "Duplicate selected section"
 msgstr "Duplica la sezione selezionata"
 
-#: diventi/ebooks/admin.py:48
+#: diventi/ebooks/admin.py:32
 msgid "Universal content"
 msgstr "Contenuti universali"
 
-#: diventi/ebooks/admin.py:51
+#: diventi/ebooks/admin.py:35
 #: diventi/templates/ebooks/chapter_detail_web.html:20
 msgid "Table of contents"
 msgstr "Indice"
 
-#: diventi/ebooks/admin.py:54 diventi/ebooks/admin.py:85
-#: diventi/ebooks/admin.py:105
+#: diventi/ebooks/admin.py:38 diventi/ebooks/admin.py:70
+#: diventi/ebooks/admin.py:90
 msgid "Layout"
 msgstr "Disposizione"
 
-#: diventi/ebooks/admin.py:102
+#: diventi/ebooks/admin.py:87
 msgid "Pubblication"
 msgstr "Pubblicazione"
 
 #: diventi/ebooks/apps.py:7
 msgid "Ebooks"
 msgstr "Ebook"
+
+#: diventi/ebooks/forms.py:13
+msgid "Book"
+msgstr "Libro"
+
+#: diventi/ebooks/forms.py:14
+msgid "You can filter chapters by selecting the related book in this field."
+msgstr ""
+"Puoi filtrare la lista capitoli selezionando il libro di interesse in questo "
+"campo."
+
+#: diventi/ebooks/forms.py:22
+msgid "Autocomplete ..."
+msgstr "Completamento automatico ..."
+
+#: diventi/ebooks/forms.py:27 diventi/products/models.py:226
+#: diventi/templates/ebooks/base_book_web.html:176
+#: diventi/templates/ebooks/base_book_web.html:208
+#: diventi/templates/ebooks/base_book_web.html:222
+#: diventi/templates/ebooks/chapter_detail_web.html:9
+#: diventi/templates/ebooks/section_detail_web.html:9
+msgid "Chapter"
+msgstr "Capitolo"
 
 #: diventi/ebooks/models.py:54 diventi/ebooks/models.py:132
 msgid "part"
@@ -824,36 +843,40 @@ msgid "sections"
 msgstr "sezioni"
 
 #: diventi/ebooks/urls.py:9
-msgid "<slug:book_slug>/"
-msgstr "<slug:book_slug>/"
+msgid "book/<slug:book_slug>/"
+msgstr "libro/<slug:book_slug>/"
 
 #: diventi/ebooks/urls.py:10
-msgid "<slug:book_slug>/chapter/<slug:chapter_slug>/"
-msgstr "<slug:book_slug>/capitolo/<slug:chapter_slug>/"
+msgid "book/<slug:book_slug>/chapter/<slug:chapter_slug>/"
+msgstr "libro/<slug:book_slug>/capitolo/<slug:chapter_slug>/"
 
 #: diventi/ebooks/urls.py:11
 msgid ""
-"<slug:book_slug>/chapter/<slug:chapter_slug>/<slug:section_slug>-<int:"
+"book/<slug:book_slug>/chapter/<slug:chapter_slug>/<slug:section_slug>-<int:"
 "section_pk>/"
 msgstr ""
-"<slug:book_slug>/capitolo/<slug:chapter_slug>/<slug:section_slug>-<int:"
+"libro/<slug:book_slug>/capitolo/<slug:chapter_slug>/<slug:section_slug>-<int:"
 "section_pk>/"
 
 #: diventi/ebooks/urls.py:12
-msgid "<slug:book_slug>/search/"
-msgstr "<slug:book_slug>/ricerca/"
+msgid "book/<slug:book_slug>/search/"
+msgstr "libro/<slug:book_slug>/ricerca/"
 
-#: diventi/ebooks/views.py:23 diventi/ebooks/views.py:31
+#: diventi/ebooks/urls.py:13
+msgid "chapter-autocomplete/"
+msgstr "completamento-capitolo/"
+
+#: diventi/ebooks/views.py:27 diventi/ebooks/views.py:35
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:34
+#: diventi/ebooks/views.py:38
 msgid "This book is not yet available, please check back later."
 msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi."
 
-#: diventi/ebooks/views.py:158
+#: diventi/ebooks/views.py:162
 msgid "This book hasn't been published yet."
 msgstr "Questo libro non è stato ancora pubblicato."
 
@@ -1018,10 +1041,6 @@ msgid "There was an error while processing your survey."
 msgstr "Si è verificato un errore mentre processavamo il tuo sondaggio."
 
 #: diventi/feedbacks/views.py:208
-#, fuzzy
-#| msgid ""
-#| "An other user already picked that name and answered, please choose an "
-#| "other name."
 msgid ""
 "An other user already picked that name and answered, please choose another "
 "name."
@@ -1301,15 +1320,6 @@ msgstr "Tipo Capitolo"
 #: diventi/products/models.py:217
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
-
-#: diventi/products/models.py:226
-#: diventi/templates/ebooks/base_book_web.html:176
-#: diventi/templates/ebooks/base_book_web.html:208
-#: diventi/templates/ebooks/base_book_web.html:222
-#: diventi/templates/ebooks/chapter_detail_web.html:9
-#: diventi/templates/ebooks/section_detail_web.html:9
-msgid "Chapter"
-msgstr "Capitolo"
 
 #: diventi/products/models.py:227
 #: diventi/templates/ebooks/base_book_web.html:166
@@ -1691,10 +1701,8 @@ msgid "Rollback"
 msgstr "Annulla"
 
 #: diventi/templates/accounts/user_collection.html:21
-#, fuzzy
-#| msgid "not yet available"
 msgid "not available"
-msgstr "Non ancora disponibile"
+msgstr "non ancora disponibile"
 
 #: diventi/templates/accounts/user_collection.html:24
 msgid "read book"
@@ -2139,6 +2147,9 @@ msgstr "recensione"
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#~ msgid "Super paragraph"
+#~ msgstr "Super paragrafo"
 
 #~ msgid "As a user, you have shortcuts to view or review this item"
 #~ msgstr ""

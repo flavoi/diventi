@@ -160,7 +160,8 @@ class Chapter(Element, DiventiImageModel, TimeStampedModel, PublishableModel):
     class Meta:
         verbose_name = _('chapter')
         verbose_name_plural = _('chapters')
-
+        ordering = ['-order_index']
+        
 
 class UniversalSection(AbstractSection):
     """ A section that can be copied but not published. """

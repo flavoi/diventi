@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - [landing] Removed nav dropdowns from navbar
+- [sheets] Removed sheets app due to halted support
 
 ### Fixed
 - [accounts] Fixed color inconsistencies in user detail page

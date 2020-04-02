@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [UNRELEASED]
+### Added
+### Changed
+### Removed
+### Fixed
+### Security
+
+
+## [1.0.0-beta-7]→ 2020-04-02
 
 ### Added
 - [core] Upgraded material kit from v2.1.1 to v2.2.0

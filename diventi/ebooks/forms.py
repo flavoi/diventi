@@ -30,3 +30,16 @@ class SectionForm(forms.ModelForm):
     class Meta:
         model = Section
         fields = ('__all__')
+
+    class Media:
+        js = [
+            'https://code.jquery.com/jquery-3.4.1.min.js',
+            'autocomplete_light/jquery.init.js',
+            'vendor/select2/dist/js/select2.full.js',
+            #'vendor/select2/dist/js/i18n/en.js',
+            #'vendor/select2/dist/js/i18n/it.js',
+            'autocomplete_light/autocomplete.init.js',
+            'autocomplete_light/forward.js',
+            'autocomplete_light/select2.js',
+            'autocomplete_light/jquery.post-setup.js'
+        ]

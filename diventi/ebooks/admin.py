@@ -25,7 +25,7 @@ class UniversalSectionAdmin(DiventiTranslationAdmin):
     ordering = ['order_index']
 
 
-class SectionAdmin(admin.ModelAdmin):
+class SectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'chapter', 'image_tag', 'get_rules']
     form = SectionForm
     fieldsets = (

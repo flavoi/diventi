@@ -267,3 +267,4 @@ class Section(AbstractSection, DiventiImageModel, DiventiColModel):
     class Meta:
         verbose_name = _('section')
         verbose_name_plural = _('sections')
+        ordering = ['-order_index']

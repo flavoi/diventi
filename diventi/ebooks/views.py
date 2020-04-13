@@ -180,3 +180,18 @@ class ChapterAutocomplete(autocomplete.Select2QuerySetView, StaffRequiredMixin):
         if self.q:
             qs = qs.filter(title__icontains=self.q)
         return qs
+
+
+class SectionAutocompleteFromProduct(autocomplete.Select2QuerySetView, StaffRequiredMixin):
+    """ Returns filtered chapters to facilitate user form fill. """
+
+    def get_queryset(self):
+        qs = Section.objects.all()
+        product = self.forwarded.get('product', None)
+        if product:
+            book = Book.objects.filter(book_product=product)
+            qs = qs.filter(chapter__chapter_book=book[0])
+            print(qs)
+        if self.q:
+            qs = qs.filter(title__icontains=self.q)
+        return qs

@@ -99,6 +99,7 @@ LOCAL_APPS = [
     'diventi.ebooks',
     'diventi.payments',
     'diventi.brave',
+    'diventi.adventures',
 ]
 
 THIRD_PARTY_APPS = [

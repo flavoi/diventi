@@ -8,15 +8,13 @@
 {% endfor %}
 
 {% if section.section_survey %}
-  <a href="{% url 'feedbacks:new_answers_gate' section.section_survey.slug %}" class="btn btn-round {{ extra_style }}">
-    <span class="badge badge-pill badge-{{ badge_color }}"><i class="fas fa-{{ icon }} fa-lg"></i></span>    
+  <a href="{% url 'feedbacks:new_answers_gate' section.section_survey.slug %}" class="btn {{ extra_style }}">
     <span style="margin: 0 10px;">{{ section.section_survey.title }}</span><i class="fas fa-angle-right fa-lg"></i>
   </a>
 {% endif %}
 
 {% for article in section.articles.all %}
-    <a href="{% url 'blog:detail' article.slug %}" class="btn btn-round {{ extra_style }}">
-        <span class="badge badge-pill badge-{{ badge_color }}"><i class="fas fa-{{ icon }} fa-lg"></i></span>
+    <a href="{% url 'blog:detail' article.slug %}" class="btn {{ extra_style }}">
         <span style="margin: 0 10px;">{{ article.title }}</span><i class="fas fa-angle-rightt fa-lg"></i>
     </a>
 {% endfor %}

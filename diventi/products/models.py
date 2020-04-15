@@ -30,10 +30,7 @@ class ProductQuerySet(models.QuerySet):
 
     # Fetch the products purchased by the user
     def user_collection(self, user):
-        if user.is_anonymous:
-            products = self.none()
-        else:
-            products = self.filter(customers=user)
+        products = self.filter(customers=user)
         products = products.prefetch()
         return products
 

@@ -37,7 +37,7 @@ class AdventureForm(forms.ModelForm):
 
 class SituationCreateForm(forms.ModelForm):
     adventure = forms.ModelChoiceField(
-        queryset=Adventure.objects.all().filter(ring='first'),
+        queryset=Adventure.objects.first_rings(),
     )
     class Meta:       
         model = Situation

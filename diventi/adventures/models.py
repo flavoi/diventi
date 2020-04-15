@@ -4,6 +4,8 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from cuser.middleware import CuserMiddleware
+
 from diventi.core.models import (
     Element,
     TimeStampedModel,
@@ -14,6 +16,24 @@ from diventi.ebooks.models import (
 from diventi.products.models import (
     Product,
 )
+
+
+class AdventureQuerySet(models.QuerySet):
+
+    # Get the list of firs ring adventures that are 
+    # related to products users have in their collection.
+    def first_rings(self):
+        adventures = self.filter(ring='first')
+        user = CuserMiddleware.get_user()
+        try:
+            if user.is_staff:
+                products = Product.objects.user_authored(user)
+            else:
+                products = Product.objects.user_collection(user)
+            adventures = adventures.filter(product__in=products)
+        except AttributeError:
+            pass
+        return adventures
 
 
 class Adventure(Element):
@@ -44,6 +64,8 @@ class Adventure(Element):
         choices=RING_CHOICES, 
         verbose_name=_('ring of storytelling'),
     )
+
+    objects = AdventureQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('Adventure')

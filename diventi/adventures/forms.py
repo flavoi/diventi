@@ -7,6 +7,7 @@ from diventi.ebooks.models import Section
 
 from .models import (
     Adventure,
+    Situation,
 )
 
 
@@ -32,3 +33,12 @@ class AdventureForm(forms.ModelForm):
         js = [
             'https://code.jquery.com/jquery-3.4.1.min.js',
         ]
+
+
+class SituationCreateForm(forms.ModelForm):
+    adventure = forms.ModelChoiceField(
+        queryset=Adventure.objects.all().filter(ring='first'),
+    )
+    class Meta:       
+        model = Situation
+        fields = ['adventure',]

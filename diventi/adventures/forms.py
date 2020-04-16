@@ -7,7 +7,7 @@ from diventi.ebooks.models import Section
 
 from .models import (
     Adventure,
-    Situation,
+    Story,
 )
 
 
@@ -35,10 +35,10 @@ class AdventureForm(forms.ModelForm):
         ]
 
 
-class SituationCreateForm(forms.ModelForm):
+class StoryCreateForm(forms.ModelForm):
     adventure = forms.ModelChoiceField(
         queryset=Adventure.objects.first_rings(),
     )
     class Meta:       
-        model = Situation
+        model = Story
         fields = ['adventure',]

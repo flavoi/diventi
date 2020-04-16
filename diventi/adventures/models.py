@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 from cuser.middleware import CuserMiddleware
 
@@ -127,6 +128,18 @@ class Match(TimeStampedModel):
         return _('Match n. %(id)s') % {'id': self.id}
 
 
+class StoryQuerySet(models.QuerySet):
+
+    # Returns the story if the game master is staff or the current user
+    def game_master(self, user):
+        if user.is_staff or user == self.game_master:
+            story = self
+        else:
+            msg = _("This user is not the game master associated to this story.")
+            raise self.model.DoesNotExist(msg)
+        return story
+
+
 class Story(TimeStampedModel):
     """An adventure instance hosted by a game master."""
     adventure = models.ForeignKey(
@@ -156,9 +169,14 @@ class Story(TimeStampedModel):
         verbose_name=_('resolution')
     )
 
+    objects = StoryQuerySet.as_manager()
+
     class Meta:
         verbose_name = _('Story')
         verbose_name_plural = _('Stories')
 
     def __str__(self):
         return _('Story n. %(id)s') % {'id': self.id}
+
+    def get_absolute_url(self):
+        return reverse('adventures:story_detail', args=[self.pk,])

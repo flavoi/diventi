@@ -36,7 +36,7 @@ class AdventureQuerySet(models.QuerySet):
         return adventures
 
 
-class Adventure(Element):
+class Adventure(Element, TimeStampedModel):
     """A single piece of adventure."""
     section = models.ForeignKey(
         Section, 
@@ -144,16 +144,15 @@ class Story(TimeStampedModel):
         on_delete=models.CASCADE,
         verbose_name=_('game master'),
     )
-    DEFAULT_RESOLUTION = 'success'
     RESOLUTION_CHOICES = [
-        (DEFAULT_RESOLUTION, _('Success')),
+        ('success', _('Success')),
         ('failure', _('Failure')),
         ('mixed', _('Mixed')),
     ]
     resolution = models.CharField(
+        blank=True,
         max_length=20, 
-        choices=RESOLUTION_CHOICES,
-        default=DEFAULT_RESOLUTION, 
+        choices=RESOLUTION_CHOICES, 
         verbose_name=_('resolution')
     )
 

@@ -28,7 +28,9 @@ class StorySituationCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('adventures:landing')
 
     def form_valid(self, form):
-        # Create a situation here
+        game_master = self.request.user
+        adventure = form.cleaned_data['adventure']
+        Story.objects.create(game_master=game_master, adventure=adventure)
         return super().form_valid(form)
 
 

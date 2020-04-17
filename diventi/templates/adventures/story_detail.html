@@ -13,13 +13,27 @@
     <div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 ml-auto mr-auto">
+                <div class="col-md-12 ml-auto mr-auto">
                     <div class="card card-signup">
                         <h2 class="card-title text-center">{% trans 'Your story' %}</h2>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12 text-center">
-                                    {{ story }}
+                                <div class="col-md-8 ml-auto">
+                                    {% with story.adventure.section as section %}
+                                        {% include 'ebooks/section_content_web.html' %}
+                                    {% endwith %}
+                                </div>
+                                <div class="col-md-4 mr-auto">
+                                    {% for user_story in user_stories %}
+                                        <div class="info info-horizontal">
+                                            <div class="description">
+                                              <h4 class="info-title">{% trans 'Your open stories' %}</h4>
+                                                <a href="{{ user_story.get_absolute_url }}" class="text-info">
+                                                    {{ user_story }} &middot; {{ user_story.adventure }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

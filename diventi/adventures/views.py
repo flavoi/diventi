@@ -28,14 +28,7 @@ class StorySituationCreateView(LoginRequiredMixin, CreateView):
     fail_url = reverse_lazy('adventures:new-game')
 
     def form_valid(self, form):
-        game_master = self.request.user
-        story_already_created = Story.objects.filter(game_master=game_master, resolution='')
-        if story_already_created.exists():
-            msg = _('We have redirected you to your ongoing adventure.')
-            story_already_created = story_already_created.first()
-            messages.info(self.request, msg)
-            return HttpResponseRedirect(reverse('adventures:story_detail', args=[story_already_created.pk,]))
-        form.instance.game_master = game_master
+        form.instance.game_master = self.request.user
         adventure = form.cleaned_data['adventure']
         Situation.objects.create(adventure=adventure)
         messages.success(self.request, self.success_msg)  
@@ -52,6 +45,12 @@ class StoryDetailView(LoginRequiredMixin, DetailView):
         qs = super(StoryDetailView, self).get_queryset()
         user = self.request.user
         return qs.game_master(user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_stories = Story.objects.stories(game_master=self.request.user, exclude_story=self.object)
+        context['user_stories'] = user_stories
+        return context
 
 
 class LandingView(LoginRequiredMixin, TemplateView):

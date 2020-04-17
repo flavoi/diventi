@@ -130,6 +130,11 @@ class Match(TimeStampedModel):
 
 class StoryQuerySet(models.QuerySet):
 
+    def prefetch(self):
+        stories = self.select_related('adventure')
+        stories = self.select_related('adventure__section')
+        return stories
+
     # Returns the story if the game master is staff or the current user
     def game_master(self, user):
         if user.is_staff or user == self.game_master:
@@ -137,7 +142,17 @@ class StoryQuerySet(models.QuerySet):
         else:
             msg = _("This user is not the game master associated to this story.")
             raise self.model.DoesNotExist(msg)
+        story = story.prefetch()
         return story
+
+    # Return game master's stories and eventually exclude one from the list
+    # We usually exclude the one that has recently been created 
+    def stories(self, game_master, exclude_story=None):
+        stories = Story.objects.filter(game_master=game_master)
+        if exclude_story:
+            stories = stories.exclude(pk=exclude_story.pk) 
+        stories = stories.prefetch()
+        return stories
 
 
 class Story(TimeStampedModel):

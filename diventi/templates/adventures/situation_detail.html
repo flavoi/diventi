@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Situation' %}{% endblock title %}
+
+{% block navbarclasses %}bg-dark{% endblock navbarclasses %}
+
+{% block bodyclass %}signup-page{% endblock bodyclass %}
+
+{% block pageheader %}
+    <div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <div class="card">
+                        <h2 class="card-title text-center">{{ situation }}</h2>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ situation }}
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'footer.html' %}
+    </div>
+{% endblock pageheader %}
+
+{% block main %}{% endblock main %}
+
+{% block footer %}{% endblock footer %}

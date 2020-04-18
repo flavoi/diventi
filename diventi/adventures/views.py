@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from .models import (
     Story,
     Situation,
+    Resolution,
 )
 
 from .forms import(
@@ -30,9 +31,15 @@ class StorySituationCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.game_master = self.request.user
         adventure = form.cleaned_data['adventure']
-        Situation.objects.create(adventure=adventure)
+        form.instance.situation = Situation.objects.create()
         messages.success(self.request, self.success_msg)  
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_stories = Story.objects.stories(game_master=self.request.user, exclude_story=self.object)
+        context['user_stories'] = user_stories
+        return context
 
 
 class StoryDetailView(LoginRequiredMixin, DetailView):
@@ -48,9 +55,16 @@ class StoryDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_stories = Story.objects.stories(game_master=self.request.user, exclude_story=self.object)
-        context['user_stories'] = user_stories
+        context['resolutions'] = Resolution.objects.all()
         return context
+
+
+class SituationDetailView(LoginRequiredMixin, DetailView):
+
+    model = Situation
+    context_object_name = 'situation'
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
 
 
 class LandingView(LoginRequiredMixin, TemplateView):

@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.utils.html import mark_safe
 
 from cuser.middleware import CuserMiddleware
 
@@ -76,19 +77,6 @@ class Adventure(Element, TimeStampedModel):
 class Situation(TimeStampedModel):
     """An adventure instance that players can join."""
     uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
-    adventure = models.ForeignKey(
-        Adventure,
-        null=False,
-        blank=False,
-        on_delete=models.CASCADE,
-        related_name=_('situations'),
-    )
-    next_situation = models.ForeignKey(
-        'self',
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE,
-    )
     players = models.ManyToManyField(
         settings.AUTH_USER_MODEL, 
         through='Match', 
@@ -102,6 +90,9 @@ class Situation(TimeStampedModel):
 
     def __str__(self):
         return _('Situation n. %(id)s') % {'id': self.id}
+
+    def get_absolute_url(self):
+        return reverse('adventures:situation_detail', args=[self.uuid,])
 
 
 class Match(TimeStampedModel):
@@ -155,6 +146,17 @@ class StoryQuerySet(models.QuerySet):
         return stories
 
 
+class Resolution(Element):
+    """ Represent the resolution of a story. """
+
+    class Meta:
+        verbose_name = _('Resolution')
+        verbose_name_plural = _('Resolutions')
+
+    def __str__(self):
+        return _('%(title)s') % {'title': self.title}
+
+
 class Story(TimeStampedModel):
     """An adventure instance hosted by a game master."""
     adventure = models.ForeignKey(
@@ -163,6 +165,7 @@ class Story(TimeStampedModel):
         blank=False,
         on_delete=models.CASCADE,
         related_name=_('stories'),
+        verbose_name=_('adventure'),
     )
     game_master = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
@@ -172,16 +175,28 @@ class Story(TimeStampedModel):
         on_delete=models.CASCADE,
         verbose_name=_('game master'),
     )
-    RESOLUTION_CHOICES = [
-        ('success', _('Success')),
-        ('failure', _('Failure')),
-        ('mixed', _('Mixed')),
-    ]
-    resolution = models.CharField(
+    resolution = models.ForeignKey(
+        Resolution,
+        null=True,
         blank=True,
-        max_length=20, 
-        choices=RESOLUTION_CHOICES, 
-        verbose_name=_('resolution')
+        on_delete=models.SET_NULL,
+        related_name=_('stories'),
+        verbose_name=_('resolution'),
+    )
+    next_story = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        verbose_name=_('next story'),
+    )
+    situation = models.ForeignKey(
+        Situation,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name=_('stories'),
+        verbose_name=_('situation'),
     )
 
     objects = StoryQuerySet.as_manager()
@@ -195,3 +210,10 @@ class Story(TimeStampedModel):
 
     def get_absolute_url(self):
         return reverse('adventures:story_detail', args=[self.pk,])
+
+    def situation_tag(self):
+        if self.situation:
+            return mark_safe('<a href="{0}">{1}</a>'.format(self.situation.get_absolute_url(), self.situation.__str__()))
+        else:
+            return '-'
+    situation_tag.short_description = _('Situation')

@@ -2,12 +2,14 @@ from modeltranslation.translator import register, TranslationOptions
 
 from .models import (
     Adventure,
-    Situation,
-    Match,
-    Story,
+    Resolution,
 )
 
 
 @register(Adventure)
 class AdventureTranslationOptions(TranslationOptions):
+    fields = ('title',)
+
+@register(Resolution)
+class ResolutionTranslationOptions(TranslationOptions):
     fields = ('title',)

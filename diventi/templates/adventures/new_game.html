@@ -35,7 +35,7 @@
                         {% endif %}
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 text-center">
                                     <form class="form" method="POST" action="{% url 'adventures:new-game' %}">
                                         {% csrf_token %}
                                         {{ form }}                                        
@@ -45,6 +45,16 @@
                                             </button>
                                         </div>   
                                     </form>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <h4 class="card-title">{% trans 'Your open stories' %}</h4>
+                                    {% for user_story in user_stories %}
+                                        <p class="card-description">
+                                            <a href="{{ user_story.get_absolute_url }}" class="text-info">
+                                                {{ user_story }} &middot; {{ user_story.adventure }}
+                                            </a>
+                                        </p>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

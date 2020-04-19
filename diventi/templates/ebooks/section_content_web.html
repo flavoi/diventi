@@ -1,4 +1,16 @@
 <a style="color:#41474d" name="{{ section.slug }}"><h3>{{ section.title|capfirst }}</h3></a>
+{% with section.section_aspects.all as aspects %}
+{% if aspects %}
+    <div class="card card-2">
+        <dl class="dl-horizontal">
+          {% for aspect in aspects %}
+          {% ifchanged aspect.aspect_type %}<dt>{{ aspect.get_aspect_type_display }}:</dt>{% endifchanged %}
+          <dd>{{ aspect.title|capfirst }}</dd>
+          {% endfor %}
+        </dl>
+    </div>
+{% endif %}
+{% endwith %}
 {{ section.get_converted_content|safe }}
 {% if section.image %}
     <figure data-rt-type="image" data-rt-align="center" data-rt-max-width="50" data-rt-max-height="56.25" class="w-richtext-align-center" style="max-width: 60%;">

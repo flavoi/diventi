@@ -1,6 +1,14 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Book, Chapter, Section, UniversalSection, Part, ReplacementRule
+from .models import (
+    Book, 
+    Chapter, 
+    Section, 
+    UniversalSection, 
+    Part, 
+    ReplacementRule,
+    SectionAspect,
+)
 
 
 @register(Book)
@@ -26,3 +34,7 @@ class UniversalSectionTranslationOptions(TranslationOptions):
 @register(ReplacementRule)
 class ReplacementRuleTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'initial_string', 'result_string')
+
+@register(SectionAspect)
+class SectionAspectTranslationOptions(TranslationOptions):
+    fields = ('title',)

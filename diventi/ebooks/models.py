@@ -197,6 +197,7 @@ class SectionQuerySet(models.QuerySet):
         sections = self.select_related('universal_section')
         sections = sections.prefetch_related('rules')
         sections = sections.select_related('chapter')
+        sections = sections.prefetch_related('section_aspects')
         sections = sections.order_by('order_index')
         return sections
 
@@ -268,3 +269,28 @@ class Section(AbstractSection, DiventiImageModel, DiventiColModel):
         verbose_name = _('section')
         verbose_name_plural = _('sections')
         ordering = ['-order_index']
+
+
+class SectionAspect(Element):
+    ASPECT_TYPE_CHOICES = [
+        ('location', _('Location aspects')),
+        ('adventure', _('Adventure aspects')),
+        ('campaign', _('Campaign aspects')),
+    ]
+    aspect_type = models.CharField(
+        max_length=20, 
+        choices=ASPECT_TYPE_CHOICES, 
+        verbose_name=_('aspect type'),
+    )
+    secction = models.ForeignKey(
+        Section,
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name='section_aspects',
+        verbose_name=_('section')
+    )
+
+    class Meta:
+        verbose_name = _('section aspect')
+        verbose_name_plural = _('section aspects')

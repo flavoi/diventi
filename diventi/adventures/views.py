@@ -12,6 +12,7 @@ from .models import (
     Story,
     Situation,
     Resolution,
+    Match,
 )
 
 from .forms import(
@@ -59,12 +60,22 @@ class StoryDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class SituationDetailView(LoginRequiredMixin, DetailView):
+class SituationDetailView(DetailView):
 
     model = Situation
     context_object_name = 'situation'
     slug_field = 'uuid'
     slug_url_kwarg = 'uuid'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        is_user_game_master = Story.objects.filter(situation=self.object, game_master=self.request.user).exists()
+        if is_user_game_master:
+            messages.info(self.request, _('Hi game master, you are viewing the players\' page.')) 
+        elif self.request.user.is_authenticated:
+           match = Match.objects.get_or_create(situation=self.object, player=self.request.user)
+           messages.success(self.request, _('You have joined a new game.'))  
+        return context
 
 
 class LandingView(LoginRequiredMixin, TemplateView):

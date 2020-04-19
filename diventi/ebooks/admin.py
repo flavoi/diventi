@@ -7,7 +7,16 @@ from modeltranslation.admin import TranslationStackedInline, TranslationTabularI
 
 from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished
 
-from .models import Book, Chapter, Section, UniversalSection, Part, ReplacementRule
+from .models import (
+    Book, 
+    Chapter, 
+    Section, 
+    UniversalSection, 
+    Part, 
+    ReplacementRule,
+    SectionAspect,
+)
+
 from .forms import SectionForm
 
 def duplicate_section(modeladmin, request, queryset):
@@ -24,6 +33,11 @@ class UniversalSectionAdmin(DiventiTranslationAdmin):
     search_fields = ['title']
     ordering = ['order_index']
 
+
+class SectionAspectInline(TranslationStackedInline):
+    model = SectionAspect
+    fields = ('aspect_type', 'title',)
+    extra = 0
 
 class SectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'chapter', 'image_tag', 'get_rules']
@@ -42,6 +56,9 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('title', 'order_index', 'description', 'content', 'slug'),
         }),
     )
+    inlines = [
+        SectionAspectInline,
+    ]
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['chapter__order_index', 'order_index']
     search_fields = ['chapter__chapter_book__title', 'title']
@@ -110,5 +127,6 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Part, PartAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
+admin.site.register(SectionAspect)
 admin.site.register(UniversalSection, UniversalSectionAdmin)
 admin.site.register(ReplacementRule, ReplacementRuleAdmin)

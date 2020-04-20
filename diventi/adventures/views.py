@@ -92,16 +92,6 @@ class StoryDetailView(DetailView):
         return context
 
 
-class LandingView(LoginRequiredMixin, TemplateView):
-
-    template_name = "adventures/landing.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # Add data here
-        return context
-
-
 # Story navigation algorithm
 def situation_next(request, current_story_uuid):
     return HttpResponseRedirect(reverse('adventures:story_detail', args=[current_story_uuid,]))

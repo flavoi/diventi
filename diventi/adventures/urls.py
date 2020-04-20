@@ -5,7 +5,6 @@ from .views import (
     StorySituationCreateView,
     StoryDetailView,
     SituationDetailView,
-    LandingView,
     get_story,
     situation_next,
 )

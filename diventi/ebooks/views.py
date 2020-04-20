@@ -191,7 +191,6 @@ class SectionAutocompleteFromProduct(autocomplete.Select2QuerySetView, StaffRequ
         if product:
             book = Book.objects.filter(book_product=product)
             qs = qs.filter(chapter__chapter_book=book[0])
-            print(qs)
         if self.q:
             qs = qs.filter(title__icontains=self.q)
         return qs

@@ -74,34 +74,38 @@ class Adventure(Element, TimeStampedModel):
         verbose_name_plural = _('Adventures')
 
 
-class Situation(TimeStampedModel):
+class Story(TimeStampedModel):
     """An adventure instance that players can join."""
-    uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    uuid = models.UUIDField(
+        primary_key=True, 
+        default=uuid.uuid4, 
+        editable=False
+    )
     players = models.ManyToManyField(
         settings.AUTH_USER_MODEL, 
         through='Match', 
         blank=False,
         verbose_name=_('players')
     )
-    
+
     class Meta:
-        verbose_name = _('Situation')
-        verbose_name_plural = _('Situations')
+        verbose_name = _('Story')
+        verbose_name_plural = _('Stories')
 
     def __str__(self):
-        return _('Situation n. %(id)s') % {'id': self.id}
+        return _('Story n. %(uuid)s') % {'uuid': self.uuid}
 
     def get_absolute_url(self):
-        return reverse('adventures:situation_detail', args=[self.uuid,])
+        return reverse('adventures:story_detail', args=[self.uuid,])
 
 
 class Match(TimeStampedModel):
-    situation = models.ForeignKey(
-        Situation, 
+    story = models.ForeignKey(
+        Story, 
         null=False,
         blank=False,
         on_delete=models.CASCADE, 
-        verbose_name=_('situation')
+        verbose_name=_('story')
     )
     player = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -119,35 +123,8 @@ class Match(TimeStampedModel):
         return _('Match n. %(id)s') % {'id': self.id}
 
 
-class StoryQuerySet(models.QuerySet):
-
-    def prefetch(self):
-        stories = self.select_related('adventure')
-        stories = self.select_related('adventure__section')
-        return stories
-
-    # Returns the story if the game master is staff or the current user
-    def game_master(self, user):
-        if user.is_staff or user == self.game_master:
-            story = self
-        else:
-            msg = _("This user is not the game master associated to this story.")
-            raise self.model.DoesNotExist(msg)
-        story = story.prefetch()
-        return story
-
-    # Return game master's stories and eventually exclude one from the list
-    # We usually exclude the one that has recently been created 
-    def stories(self, game_master, exclude_story=None):
-        stories = Story.objects.filter(game_master=game_master)
-        if exclude_story:
-            stories = stories.exclude(pk=exclude_story.pk) 
-        stories = stories.prefetch()
-        return stories
-
-
 class Resolution(Element):
-    """ Represent the resolution of a story. """
+    """ Represent the resolution of a situation. """
 
     class Meta:
         verbose_name = _('Resolution')
@@ -157,19 +134,47 @@ class Resolution(Element):
         return _('%(title)s') % {'title': self.title}
 
 
-class Story(TimeStampedModel):
+class SituationQuerySet(models.QuerySet):
+
+    def prefetch(self):
+        situations = self.select_related('adventure')
+        situations = self.select_related('adventure__section')
+        situations = self.select_related('story')
+        return situations
+
+    # Returns the situation if the game master is staff or the current user
+    def game_master(self, user):
+        if user.is_staff or user == self.game_master:
+            situation = self
+        else:
+            msg = _("This user is not the game master associated to this situation.")
+            raise self.model.DoesNotExist(msg)
+        situation = situation.prefetch()
+        return situation
+
+    # Return game master's situations and eventually exclude one from the list
+    # We usually exclude the one that has recently been created 
+    def gm_situations(self, game_master, exclude_situation=None):
+        situations = Situation.objects.filter(game_master=game_master)
+        if exclude_situation:
+            situations = Situations.exclude(pk=exclude_situation.pk) 
+        situations = situations.prefetch()
+        return situations
+
+
+class Situation(TimeStampedModel):
     """An adventure instance hosted by a game master."""
     adventure = models.ForeignKey(
         Adventure,
         null=False,
         blank=False,
         on_delete=models.CASCADE,
-        related_name=_('stories'),
+        related_name=_('situations'),
         verbose_name=_('adventure'),
     )
     game_master = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
-        related_name='stories', 
+        related_name='situations', 
         null=False,
         blank=False,
         on_delete=models.CASCADE,
@@ -180,40 +185,40 @@ class Story(TimeStampedModel):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name=_('stories'),
+        related_name=_('situations'),
         verbose_name=_('resolution'),
     )
-    next_story = models.ForeignKey(
+    next_situation = models.ForeignKey(
         'self',
         null=True,
         blank=True,
         on_delete=models.CASCADE,
-        verbose_name=_('next story'),
+        verbose_name=_('next situation'),
     )
-    situation = models.ForeignKey(
-        Situation,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name=_('stories'),
-        verbose_name=_('situation'),
+    story = models.ForeignKey(
+        Story,
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name=_('situation'),
+        verbose_name=_('story'),
     )
 
-    objects = StoryQuerySet.as_manager()
+    objects = SituationQuerySet.as_manager()
 
     class Meta:
-        verbose_name = _('Story')
-        verbose_name_plural = _('Stories')
+        verbose_name = _('Situation')
+        verbose_name_plural = _('Situations')
 
     def __str__(self):
-        return _('Story n. %(id)s') % {'id': self.id}
+        return _('Situation n. %(pk)s') % {'pk': self.pk}
 
     def get_absolute_url(self):
-        return reverse('adventures:story_detail', args=[self.pk,])
+        return reverse('adventures:situation_detail', args=[self.story.uuid,])
 
-    def situation_tag(self):
-        if self.situation:
-            return mark_safe('<a href="{0}">{1}</a>'.format(self.situation.get_absolute_url(), self.situation.__str__()))
+    def story_tag(self):
+        if self.story:
+            return mark_safe('<a href="{0}">{1}</a>'.format(self.story.get_absolute_url(), self.story.__str__()))
         else:
             return '-'
-    situation_tag.short_description = _('Situation')
+    story_tag.short_description = _('Story')

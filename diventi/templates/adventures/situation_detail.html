@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans 'Situation' %}{% endblock title %}
+{% block extrahead %}{% endblock extrahead %}
+
+{% block title %}{% trans 'Story' %}{% endblock title %}
 
 {% block navbarclasses %}bg-dark{% endblock navbarclasses %}
 
@@ -14,13 +16,29 @@
                 <div class="col-md-10 ml-auto mr-auto">
                     <div class="card">
                         <h2 class="card-title text-center">{{ situation }}</h2>
+                        <h4 class="text-center"><small>{% trans "Players' link:" %} <a class="text-warning" href="{% url 'adventures:get_story' situation.story.uuid %}">{{ request.META.HTTP_HOST }}{% url 'adventures:get_story' situation.story.uuid %}</a></small></h4>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    {{ situation }}
+                                    {% with situation.adventure.section as section %}
+                                        {% include 'ebooks/section_content_web.html' %}
+                                    {% endwith %}
                                 </div> 
                             </div>
                         </div>
+                        <div class="card-footer">
+                            <div class="author">
+                                <img src="{{ situation.adventure.section.chapter.chapter_book.image }}" alt="{{ situation.adventure }}" class="avatar img-raised">
+                                <span style="margin-top:3px;">{{ situation.adventure }}</span>
+                            </div>
+                            <div class="stats ml-auto">
+                                {% for r in resolutions %}
+                                <a href="#" class="btn btn-{{ r.color }} btn-link">
+                                    <i class="fa fa-{{ r.icon }}"></i> {{ r.title }} <div class="ripple-container"></div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>

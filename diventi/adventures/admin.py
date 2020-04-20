@@ -19,12 +19,12 @@ class AdventureAdmin(DiventiTranslationAdmin):
     readonly_fields = ['created', 'modified']
 
 
-class StoryAdmin(admin.ModelAdmin):
-    list_display = ['__str__', 'adventure', 'game_master', 'created', 'situation_tag']
+class SituationAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'adventure', 'game_master', 'created', 'story_tag']
     readonly_fields = ['created', 'modified']
 
 
-class SituationAdmin(admin.ModelAdmin):
+class StoryAdmin(admin.ModelAdmin):
     list_display = ['uuid', 'created']
     readonly_fields = ['created', 'modified']
 

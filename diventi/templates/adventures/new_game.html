@@ -47,11 +47,11 @@
                                     </form>
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <h4 class="card-title">{% trans 'Your open stories' %}</h4>
-                                    {% for user_story in user_stories %}
+                                    <h4 class="card-title">{% trans 'Your open situations' %}</h4>
+                                    {% for situation in user_situations %}
                                         <p class="card-description">
-                                            <a href="{{ user_story.get_absolute_url }}" class="text-info">
-                                                {{ user_story }} &middot; {{ user_story.adventure }}
+                                            <a href="{{ situation.get_absolute_url }}" class="text-info">
+                                                {{ situation }} &middot; {{ situation.adventure }}
                                             </a>
                                         </p>
                                     {% endfor %}

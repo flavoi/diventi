@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block extrahead %}{% endblock extrahead %}
-
-{% block title %}{% trans 'Story' %}{% endblock title %}
+{% block title %}{% trans 'Situation' %}{% endblock title %}
 
 {% block navbarclasses %}bg-dark{% endblock navbarclasses %}
 
@@ -13,34 +11,27 @@
     <div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
-                <div class="col-md-10 ml-auto mr-auto">
+                <div class="col-md-8 ml-auto mr-auto">
                     <div class="card">
-                        <h2 class="card-title text-center">{{ story }}</h2>
-                        <h4 class="text-center">{% trans 'Situation link:' %} <a href="{{ story.situation.get_absolute_url }}">{{ request.META.HTTP_HOST }}{{ story.situation.get_absolute_url }}</h4></a>
+                        <h2 class="card-title text-center">{% trans "This is your adventure" %}</h2>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    {% with story.adventure.section as section %}
-                                        {% include 'ebooks/section_content_web.html' %}
-                                    {% endwith %}
+                                    {% include 'ebooks/section_aspects_web.html' %}
                                 </div> 
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="author">
-                                <a href="#">
-                                    <img src="{{ story.adventure.section.chapter.chapter_book.image }}" alt="{{ story.adventure }}" class="avatar img-raised">
-                                    <span>{{ story.adventure }}</span>
-                                </a>
+                                <img src="{{ situation.adventure.section.chapter.chapter_book.image }}" alt="{{ situation.adventure }}" class="avatar img-raised">
+                                <span style="margin-top:3px;">{{ situation.adventure }}</span>
                             </div>
                             <div class="stats ml-auto">
-                                {% for r in resolutions %}
-                                <a href="#" class="btn btn-{{ r.color }} btn-link">
-                                    <i class="fa fa-{{ r.icon }}"></i> {{ r.title }} <div class="ripple-container"></div>
+                                <a href="{{ story.get_absolute_url }}" class="btn btn-warning btn-link">
+                                    <i class="fal fa-redo"></i> {% trans "Refesh" %} <div class="ripple-container"></div>
                                 </a>
-                                {% endfor %}
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>

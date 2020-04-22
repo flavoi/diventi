@@ -16,7 +16,7 @@
                 <div class="col-md-10 ml-auto mr-auto">
                     <div class="card">
                         <h2 class="card-title text-center">{{ situation }}</h2>
-                        <h4 class="text-center"><small>{% trans "Players' link:" %} <a class="text-warning" href="{% url 'adventures:get_story' situation.story.uuid %}">{{ request.META.HTTP_HOST }}{% url 'adventures:get_story' situation.story.uuid %}</a></small></h4>
+                        <h4 class="text-center"><small>{% trans "Players' link:" %} <a class="text-warning" href="{% url 'adventures:story_get' situation.story.uuid %}">{{ request.META.HTTP_HOST }}{% url 'adventures:story_get' situation.story.uuid %}</a></small></h4>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -32,13 +32,17 @@
                                 <span style="margin-top:3px;">{{ situation.adventure }}</span>
                             </div>
                             <div class="stats ml-auto">
-                                {% for r in resolutions %}
-                                <a href="#" class="btn btn-{{ r.color }} btn-link">
-                                    <i class="fa fa-{{ r.icon }}"></i> {{ r.title }} <div class="ripple-container"></div>
-                                </a>
-                                {% endfor %}
+                                {% if situation.resolution %}
+                                    <span class="badge badge-pill badge-{{ situation.resolution.color }}">{{ situation.resolution }}</span>
+                                {% else %}
+                                    {% for r in resolutions %}
+                                    <a href="{% url 'adventures:situation_resolution' situation.story.uuid r.pk %}" class="btn btn-{{ r.color }} btn-link">
+                                        <i class="fa fa-{{ r.icon }}"></i> {{ r.title }} <div class="ripple-container"></div>
+                                    </a>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,20 +22,33 @@ from diventi.products.models import (
 
 class AdventureQuerySet(models.QuerySet):
 
-    # Get the list of firs ring adventures that are 
+    # Get the list of adventures that are 
     # related to products users have in their collection.
-    def first_rings(self):
-        adventures = self.filter(ring='first')
+    def user_adventures(self):
         user = CuserMiddleware.get_user()
         try:
             if user.is_staff:
                 products = Product.objects.user_authored(user)
             else:
                 products = Product.objects.user_collection(user)
-            adventures = adventures.filter(product__in=products)
+            return self.filter(product__in=products)
         except AttributeError:
-            pass
+            return self
+
+    # Get the list of first ring adventures that are 
+    # related to products users have in their collection.
+    def first_rings(self):
+        adventures = self.user_adventures()
+        adventures = adventures.filter(ring='first')
         return adventures
+
+    # Get a random second ring adventure that is 
+    # related to products users have in their collection.
+    def random_second_ring(self):
+        adventure = self.user_adventures()
+        adventure = adventure.filter(ring='second')
+        adventure = adventure.order_by('?').first()
+        return adventure
 
 
 class Adventure(Element, TimeStampedModel):
@@ -154,12 +167,17 @@ class SituationQuerySet(models.QuerySet):
 
     # Return game master's situations and eventually exclude one from the list
     # We usually exclude the one that has recently been created 
-    def gm_situations(self, game_master, exclude_situation=None):
+    def history(self, game_master, exclude_situation=None):
         situations = Situation.objects.filter(game_master=game_master)
         if exclude_situation:
             situations = Situations.exclude(pk=exclude_situation.pk) 
         situations = situations.prefetch()
         return situations
+
+    # Get the last situation of the story selecting by its uuid
+    def current(self, uuid):
+        situation = Situation.objects.filter(story=uuid).last()
+        return situation
 
 
 class Situation(TimeStampedModel):

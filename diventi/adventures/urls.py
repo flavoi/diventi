@@ -2,19 +2,19 @@ from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from .views import (
-    StorySituationCreateView,
+    SituationStoryCreateView,
+    SituationStoryDetailView,
     StoryDetailView,
-    SituationDetailView,
-    get_story,
-    situation_next,
+    story_get,
+    situation_resolution,
 )
 
 app_name = 'adventures'
 
 urlpatterns = [
-    path(_(''), StorySituationCreateView.as_view(), name='new-game'),
-    path(_('situation/<uuid:uuid>/'), SituationDetailView.as_view(), name='situation_detail'),
-    path(_('situation/<uuid:uuid>/next'), situation_next, name='situation_next'),
-    path(_('get_story/<uuid:story_uuid>/'), get_story, name='get_story'),
+    path(_(''), SituationStoryCreateView.as_view(), name='new-game'),
+    path(_('situation/story/<uuid:uuid>/'), SituationStoryDetailView.as_view(), name='situation_detail'),
+    path(_('situation/story/<uuid:uuid>/resolution/<int:resolution_pk>/'), situation_resolution, name='situation_resolution'),
+    path(_('story/<uuid:uuid>/get/'), story_get, name='story_get'),
     path(_('story/<uuid:uuid>/'), StoryDetailView.as_view(), name='story_detail'),   
 ]

@@ -20,7 +20,7 @@ class AdventureAdmin(DiventiTranslationAdmin):
 
 
 class SituationAdmin(admin.ModelAdmin):
-    list_display = ['__str__', 'adventure', 'game_master', 'created', 'story_tag']
+    list_display = ['__str__', 'adventure', 'resolution', 'game_master', 'created', 'story_tag']
     readonly_fields = ['created', 'modified']
 
 

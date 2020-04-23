@@ -8,6 +8,7 @@ from diventi.ebooks.models import Section
 from .models import (
     Adventure,
     Situation,
+    Resolution,
 )
 
 
@@ -23,6 +24,7 @@ class AdventureForm(forms.ModelForm):
             forward=['product'],
         ),
         label=_('Section'),
+        required=False,
     )
 
     class Meta:
@@ -39,6 +41,16 @@ class SituationCreateForm(forms.ModelForm):
     adventure = forms.ModelChoiceField(
         queryset=Adventure.objects.first_rings(),
     )
+
     class Meta:       
         model = Situation
         fields = ['adventure',]
+
+
+class AdventureNavigationForm(forms.Form):
+    enable_third_ring = forms.BooleanField(required=False)
+    resolution =  forms.ModelChoiceField(
+        queryset=Resolution.objects.all(),
+        widget=forms.RadioSelect,
+        empty_label=None,
+    )

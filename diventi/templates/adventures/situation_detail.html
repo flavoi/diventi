@@ -3,7 +3,7 @@
 
 {% block extrahead %}{% endblock extrahead %}
 
-{% block title %}{% trans 'Story' %}{% endblock title %}
+{% block title %}{% trans 'Situation' %}{% endblock title %}
 
 {% block navbarclasses %}bg-dark{% endblock navbarclasses %}
 
@@ -25,21 +25,43 @@
                                     {% endwith %}
                                 </div> 
                             </div>
+                            <div class="row">
+                                {% if adventure_navigation_form.errors %}
+                                    <div class="justify-content-center">
+                                        <div class="alert alert-danger">    
+                                            <div class="alert-icon">
+                                                <i class="material-icons">error_outline</i>
+                                            </div> 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                            </button>
+                                            <b>
+                                                {% for field, error in adventure_navigation_form.errors.items %}
+                                                    {{ field }}: {{ error|striptags }} <br>
+                                                {% endfor %}
+                                            </b>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="col-md-12">
+                                    <form method="POST" action="{% url 'adventures:situation_resolution' situation.story.uuid %}">
+                                        {% csrf_token %}
+                                        {{ adventure_navigation_form.as_p }}
+                                        <input type="submit" value="{% trans 'resolve situation'|capfirst %}">
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="author">
                                 <img src="{{ situation.adventure.section.chapter.chapter_book.image }}" alt="{{ situation.adventure }}" class="avatar img-raised">
-                                <span style="margin-top:3px;">{{ situation.adventure }}</span>
+                                <span style="margin-top:3px;">{{ situation.adventure.get_ring_display }} &middot; {{ situation.adventure }} </span>
                             </div>
                             <div class="stats ml-auto">
                                 {% if situation.resolution %}
-                                    <span class="badge badge-pill badge-{{ situation.resolution.color }}">{{ situation.resolution }}</span>
-                                {% else %}
-                                    {% for r in resolutions %}
-                                    <a href="{% url 'adventures:situation_resolution' situation.story.uuid r.pk %}" class="btn btn-{{ r.color }} btn-link">
-                                        <i class="fa fa-{{ r.icon }}"></i> {{ r.title }} <div class="ripple-container"></div>
-                                    </a>
-                                    {% endfor %}
+                                    <span class="badge badge-pill badge-{{ situation.resolution.color }}">
+                                        {{ situation.resolution }}
+                                    </span>                                   
                                 {% endif %}
                             </div>
                         </div>

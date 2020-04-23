@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -21,6 +21,7 @@ from .models import (
 
 from .forms import(
     SituationCreateForm,
+    AdventureNavigationForm,
 )
 
 
@@ -42,7 +43,7 @@ class SituationStoryCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_situations = Situation.objects.history(game_master=self.request.user, exclude_situation=self.object)
+        user_situations = Situation.objects.open(game_master=self.request.user, exclude_situation=self.object)
         context['user_situations'] = user_situations
         return context
 
@@ -54,6 +55,7 @@ class SituationDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['resolutions'] = Resolution.objects.all()
+        context['adventure_navigation_form'] = AdventureNavigationForm()
         return context
 
 
@@ -92,7 +94,7 @@ class StoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        situation = get_object_or_404(Situation, story=self.object.uuid)
+        situation = Situation.objects.current(self.object.uuid)
         section = Section.objects.filter(pk=situation.adventure.section.pk)
         section = section.usection()
         context['section'] = section.get()
@@ -100,30 +102,58 @@ class StoryDetailView(DetailView):
         return context
 
 
-# Redirect the navigation according to game master
-# preference
-def situation_resolution(request, uuid, resolution_pk):
-    current_situation = Situation.objects.current(uuid)
-    resolution = get_object_or_404(Resolution, pk=resolution_pk)
-    current_situation.resolution = resolution
-    current_situation.save()
-    next_situation, created = situation_random(current_situation=current_situation)
-    if created:
-        messages.info(request, _('You have unlocked a new situation.'))
-    return HttpResponseRedirect(reverse('adventures:situation_detail', args=[next_situation.story.uuid,]))
+class SituationStoryResolutionView(FormView):
+
+    template_name = 'adventures/situation_detail.html'
+    form_class = AdventureNavigationForm
+
+    def get_context_data(self, **kwargs):
+        if 'situation' not in kwargs:
+            kwargs['situation'] = Situation.objects.current(self.kwargs['uuid'])
+        if 'form' not in kwargs:
+            kwargs['form'] = self.get_form()
+        return super().get_context_data(**kwargs)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def form_valid(self, form):
+        # Redirect the navigation according to game master preference
+        current_situation = Situation.objects.current(self.kwargs['uuid'])
+        current_situation.resolution = form.cleaned_data['resolution']
+        current_situation.save()
+        next_situation, created = situation_random(
+            self.request, 
+            current_situation=current_situation,
+            enable_third_ring=form.cleaned_data['enable_third_ring'],
+        )
+        if current_situation != next_situation:
+            messages.info(
+                self.request, 
+                _('You have unlocked a situation of the {ring}.'.format(ring=next_situation.adventure.get_ring_display().lower()))
+            )
+        return HttpResponseRedirect(reverse('adventures:situation_detail', args=[next_situation.story.uuid,]))
 
 
 # Default navigation:
 # A loop of random second rings adventure
-def situation_random(current_situation):
+def situation_random(request, current_situation, enable_third_ring=None):
     story = get_object_or_404(Story, uuid=current_situation.story.uuid)
     adventure = Adventure.objects.random_second_ring()
-    if adventure:
+    third_ring = Adventure.objects.third_ring()
+    if enable_third_ring and third_ring:
+        next_situation = Situation.objects.get_or_create(
+            adventure=third_ring, 
+            story=story, 
+            game_master=current_situation.game_master,
+        )
+    elif adventure:
         next_situation = Situation.objects.get_or_create(
             adventure=adventure, 
             story=story, 
             game_master=current_situation.game_master,
-        )
+        )       
     else:
         next_situation = current_situation
     return next_situation

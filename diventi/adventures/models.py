@@ -50,6 +50,17 @@ class AdventureQuerySet(models.QuerySet):
         adventure = adventure.order_by('?').first()
         return adventure
 
+    # Returns the third ring of the adventure that is 
+    # related to products users have in their collection.
+    def third_ring(self):
+        adventure = self.user_adventures()
+        adventure = adventure.filter(ring='third')
+        if adventure:
+            adventure = adventure.get()
+        else:
+            adventure = adventure.none()
+        return adventure
+
 
 class Adventure(Element, TimeStampedModel):
     """A single piece of adventure."""
@@ -70,9 +81,9 @@ class Adventure(Element, TimeStampedModel):
         verbose_name=_('product'),
     ) 
     RING_CHOICES = [
-        ('first', _('First')),
-        ('second', _('Second')),
-        ('third', _('Third')),
+        ('first', _('First Ring')),
+        ('second', _('Second Ring')),
+        ('third', _('Third Ring')),
     ]
     ring = models.CharField(
         max_length=20, 
@@ -172,6 +183,12 @@ class SituationQuerySet(models.QuerySet):
         if exclude_situation:
             situations = Situations.exclude(pk=exclude_situation.pk) 
         situations = situations.prefetch()
+        return situations
+
+    # Returns game master's situations that are yet to be resolved
+    def open(self, game_master, exclude_situation=None):
+        situations = self.history(game_master, exclude_situation)
+        situations = situations.filter(resolution__isnull=True)
         return situations
 
     # Get the last situation of the story selecting by its uuid

@@ -6,7 +6,7 @@ from .views import (
     SituationStoryDetailView,
     StoryDetailView,
     story_get,
-    situation_resolution,
+    SituationStoryResolutionView,
 )
 
 app_name = 'adventures'
@@ -14,7 +14,7 @@ app_name = 'adventures'
 urlpatterns = [
     path(_(''), SituationStoryCreateView.as_view(), name='new-game'),
     path(_('situation/story/<uuid:uuid>/'), SituationStoryDetailView.as_view(), name='situation_detail'),
-    path(_('situation/story/<uuid:uuid>/resolution/<int:resolution_pk>/'), situation_resolution, name='situation_resolution'),
+    path(_('situation/story/<uuid:uuid>/resolution/'), SituationStoryResolutionView.as_view(), name='situation_resolution'),
     path(_('story/<uuid:uuid>/get/'), story_get, name='story_get'),
     path(_('story/<uuid:uuid>/'), StoryDetailView.as_view(), name='story_detail'),   
 ]

@@ -16,46 +16,39 @@
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="card card-signup">
                         <h2 class="card-title text-center">{% trans 'Start your story' %}</h2>
-                        {% if form.errors %}
-                            <div class="justify-content-center">
-                                <div class="alert alert-danger">    
-                                    <div class="alert-icon">
-                                        <i class="material-icons">error_outline</i>
-                                    </div> 
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                                    </button>
-                                    <b>
-                                        {% for field, error in form.errors.items %}
-                                            {{ field }}: {{ error|striptags }} <br>
-                                        {% endfor %}
-                                    </b>
-                                </div>
-                            </div>
-                        {% endif %}
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-12">
                                     <form class="form" method="POST" action="{% url 'adventures:new-game' %}">
                                         {% csrf_token %}
                                         {{ form }}                                        
-                                        <div class="text-center">
-                                            <button class="btn btn-warning btn-round" type="submit">
-                                                {% trans "Get Started" %} <i class="fal fa-arrow-right fa-lg"></i>
-                                            </button>
-                                        </div>   
+                                        <button class="btn btn-warning btn-round" type="submit">
+                                            {% trans "Get Started" %} <i class="fal fa-arrow-right fa-lg"></i>
+                                        </button>  
                                     </form>
                                 </div>
-                                <div class="col-md-12 text-center">
-                                    <h4 class="card-title">{% trans 'Your open situations' %}</h4>
-                                    {% for situation in user_situations %}
+                                <div class="col-md-6 ml-auto">
+                                    <h4 class="card-title">{% trans 'your open situations'|capfirst %}</h4>
+                                    {% for situation in open_situations %}
                                         <p class="card-description">
                                             <a href="{{ situation.get_absolute_url }}" class="text-info">
                                                 {{ situation }} &middot; {{ situation.adventure }}
                                             </a>
                                         </p>
                                     {% empty %}
-                                        <p class="card-description">{% trans 'You have no open situations.' %}</p>
+                                        <p class="card-description">{% trans 'you have no open situations'|capfirst %}.</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-6 mr-auto">
+                                    <h4 class="card-title">{% trans 'your solved situations'|capfirst %}</h4>
+                                    {% for situation in solved_situations %}
+                                        <p class="card-description">
+                                            <a href="{{ situation.get_absolute_url }}" class="text-info">
+                                                {{ situation }} &middot; {{ situation.adventure }}
+                                            </a>
+                                        </p>
+                                    {% empty %}
+                                        <p class="card-description">{% trans 'you have no solved situations'|capfirst %}.</p>
                                     {% endfor %}
                                 </div>
                             </div>

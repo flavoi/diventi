@@ -1,0 +1,36 @@
+{% extends 'adventures/situation_detail.html' %}
+{% load i18n %}
+
+{% block situation_extra %}
+<div class="row">
+    {% if adventure_navigation_form.errors %}
+    <div class="col-md-12">
+        <div class="justify-content-center">
+            <div class="alert alert-danger">    
+                <div class="alert-icon">
+                    <i class="material-icons">error_outline</i>
+                </div> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                </button>
+                <b>
+                    {% for field, error in adventure_navigation_form.errors.items %}
+                        {{ field }}: {{ error|striptags }} <br>
+                    {% endfor %}
+                </b>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if adventure_navigation_form %}
+    <div class="col-md-12">
+        <form method="POST" action="{% url 'adventures:situation_story_resolution' situation.story.uuid %}">
+            {% csrf_token %}
+            {{ adventure_navigation_form.as_p }}
+            <input type="submit" value="{% trans 'resolve situation'|capfirst %}">
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock situation_extra %}
+                        

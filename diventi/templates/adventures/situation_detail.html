@@ -18,6 +18,7 @@
                         <h2 class="card-title text-center">{{ situation }}</h2>
                         <h4 class="text-center"><small>{% trans "Players' link:" %} <a class="text-warning" href="{% url 'adventures:story_get' situation.story.uuid %}">{{ request.META.HTTP_HOST }}{% url 'adventures:story_get' situation.story.uuid %}</a></small></h4>
                         <div class="card-body">
+                            {% block situation_content %}
                             <div class="row">
                                 <div class="col-md-12">
                                     {% with situation.adventure.section as section %}
@@ -25,33 +26,10 @@
                                     {% endwith %}
                                 </div> 
                             </div>
-                            <div class="row">
-                                {% if adventure_navigation_form.errors %}
-                                    <div class="justify-content-center">
-                                        <div class="alert alert-danger">    
-                                            <div class="alert-icon">
-                                                <i class="material-icons">error_outline</i>
-                                            </div> 
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                                            </button>
-                                            <b>
-                                                {% for field, error in adventure_navigation_form.errors.items %}
-                                                    {{ field }}: {{ error|striptags }} <br>
-                                                {% endfor %}
-                                            </b>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                                <div class="col-md-12">
-                                    <form method="POST" action="{% url 'adventures:situation_resolution' situation.story.uuid %}">
-                                        {% csrf_token %}
-                                        {{ adventure_navigation_form.as_p }}
-                                        <input type="submit" value="{% trans 'resolve situation'|capfirst %}">
-                                    </form>
-                                </div>
-                            </div>
+                            {% endblock situation_content %}
+                            {% block situation_extra %}{% endblock situation_extra %}
                         </div>
+                        {% block situation_footer %}
                         <div class="card-footer">
                             <div class="author">
                                 <img src="{{ situation.adventure.section.chapter.chapter_book.image }}" alt="{{ situation.adventure }}" class="avatar img-raised">
@@ -65,6 +43,7 @@
                                 {% endif %}
                             </div>
                         </div>
+                        {% endblock situation_footer %}
                     </div>
                 </div>
             </div>

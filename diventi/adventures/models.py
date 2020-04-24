@@ -249,7 +249,7 @@ class Situation(TimeStampedModel):
         return _('Situation n. %(pk)s') % {'pk': self.pk}
 
     def get_absolute_url(self):
-        return reverse('adventures:situation_detail', args=[self.story.uuid,])
+        return reverse('adventures:situation_story_detail', args=[self.story.uuid,])
 
     def story_tag(self):
         if self.story:

@@ -21,7 +21,7 @@ from .models import (
 
 from .forms import(
     SituationCreateForm,
-    AdventureNavigationForm,
+    SituationStoryResolutionForm,
 )
 
 
@@ -29,7 +29,7 @@ class SituationStoryCreateView(LoginRequiredMixin, CreateView):
 
     form_class = SituationCreateForm
     model = Situation
-    template_name = 'adventures/new_game.html'
+    template_name = 'adventures/situation_story_create.html'
     success_msg = _('You have started a new game!')
     fail_msg = _('An error was found while creating you game.')
     fail_url = reverse_lazy('adventures:new-game')
@@ -43,8 +43,11 @@ class SituationStoryCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_situations = Situation.objects.open(game_master=self.request.user, exclude_situation=self.object)
-        context['user_situations'] = user_situations
+        open_situations = Situation.objects.open(game_master=self.request.user, exclude_situation=self.object)
+        past_situations = Situation.objects.history(game_master=self.request.user, exclude_situation=self.object)
+        solved_situations = past_situations.difference(open_situations)
+        context['open_situations'] = open_situations
+        context['solved_situations'] = solved_situations
         return context
 
 
@@ -54,13 +57,15 @@ class SituationDetailView(LoginRequiredMixin, DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['resolutions'] = Resolution.objects.all()
-        context['adventure_navigation_form'] = AdventureNavigationForm()
+        if not self.object.resolution:
+            context['resolutions'] = Resolution.objects.all()
+            context['adventure_navigation_form'] = SituationStoryResolutionForm(ring=self.object.adventure.ring)
         return context
 
 
 class SituationStoryDetailView(SituationDetailView):
 
+    template_name = 'adventures/situation_story_detail.html'
     slug_field = 'story'
     slug_url_kwarg = 'uuid'
 
@@ -105,7 +110,7 @@ class StoryDetailView(DetailView):
 class SituationStoryResolutionView(FormView):
 
     template_name = 'adventures/situation_detail.html'
-    form_class = AdventureNavigationForm
+    form_class = SituationStoryResolutionForm
 
     def get_context_data(self, **kwargs):
         if 'situation' not in kwargs:
@@ -129,11 +134,11 @@ class SituationStoryResolutionView(FormView):
             enable_third_ring=form.cleaned_data['enable_third_ring'],
         )
         if current_situation != next_situation:
-            messages.info(
+            messages.success(
                 self.request, 
                 _('You have unlocked a situation of the {ring}.'.format(ring=next_situation.adventure.get_ring_display().lower()))
             )
-        return HttpResponseRedirect(reverse('adventures:situation_detail', args=[next_situation.story.uuid,]))
+        return HttpResponseRedirect(reverse('adventures:situation_story_detail', args=[next_situation.story.uuid,]))
 
 
 # Default navigation:

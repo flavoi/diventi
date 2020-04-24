@@ -47,10 +47,18 @@ class SituationCreateForm(forms.ModelForm):
         fields = ['adventure',]
 
 
-class AdventureNavigationForm(forms.Form):
+class SituationStoryResolutionForm(forms.Form):
     enable_third_ring = forms.BooleanField(required=False)
     resolution =  forms.ModelChoiceField(
         queryset=Resolution.objects.all(),
         widget=forms.RadioSelect,
         empty_label=None,
     )
+
+    def __init__(self, *args, **kwargs):
+        ring = kwargs.pop('ring', False)
+        super().__init__(*args, **kwargs)
+        # Game master shouldn't be able to enable the third ring
+        # if they have just started or finished their adventure.
+        if ring == 'third' or ring == 'first':
+            self.fields.pop('enable_third_ring')

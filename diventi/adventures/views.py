@@ -43,11 +43,13 @@ class SituationStoryCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        open_situations = Situation.objects.open(game_master=self.request.user, exclude_situation=self.object)
-        past_situations = Situation.objects.history(game_master=self.request.user, exclude_situation=self.object)
-        solved_situations = past_situations.difference(open_situations)
+        open_situations = Situation.objects.open(game_master=self.request.user)
+        past_situations = Situation.objects.resolved(game_master=self.request.user)
+        past_situations_uuids = past_situations.values_list('story__uuid')
+        past_stories = Story.objects.filter(uuid__in=past_situations_uuids)
+        past_stories = past_stories.prefetch_related('situations').prefetch_related('situations__adventure')
         context['open_situations'] = open_situations
-        context['solved_situations'] = solved_situations
+        context['past_stories'] = past_stories
         return context
 
 
@@ -60,6 +62,7 @@ class SituationDetailView(LoginRequiredMixin, DetailView):
         if not self.object.resolution:
             context['resolutions'] = Resolution.objects.all()
             context['adventure_navigation_form'] = SituationStoryResolutionForm(ring=self.object.adventure.ring)
+        context['section'] = Section.objects.filter(pk=self.object.adventure.section.pk).usection().get()
         return context
 
 
@@ -128,11 +131,20 @@ class SituationStoryResolutionView(FormView):
         current_situation = Situation.objects.current(self.kwargs['uuid'])
         current_situation.resolution = form.cleaned_data['resolution']
         current_situation.save()
-        next_situation, created = situation_random(
-            self.request, 
-            current_situation=current_situation,
-            enable_third_ring=form.cleaned_data['enable_third_ring'],
-        )
+        if current_situation.adventure.ring == 'third':
+            # Game master resolves a third ring adventure
+            next_situation = current_situation
+            messages.success(
+                self.request, 
+                _('You have completed the adventure "{adventure}"!'.format(adventure=current_situation.adventure.product))
+            )
+            return HttpResponseRedirect(reverse('adventures:new-game'))
+        else:
+            next_situation, created = situation_random(
+                self.request, 
+                current_situation=current_situation,
+                enable_third_ring=form.cleaned_data['enable_third_ring'],
+            )
         if current_situation != next_situation:
             messages.success(
                 self.request, 
@@ -145,20 +157,35 @@ class SituationStoryResolutionView(FormView):
 # A loop of random second rings adventure
 def situation_random(request, current_situation, enable_third_ring=None):
     story = get_object_or_404(Story, uuid=current_situation.story.uuid)
-    adventure = Adventure.objects.random_second_ring()
+    adventures_already_played = Situation.objects.history(game_master=current_situation.game_master)
+    adventures_already_played = adventures_already_played.filter(story__uuid=current_situation.story.uuid)
+    adventures_already_played = adventures_already_played.values_list('adventure', flat=True)
+    second_ring = Adventure.objects.random_second_ring(exclude_ids=adventures_already_played)
     third_ring = Adventure.objects.third_ring()
     if enable_third_ring and third_ring:
+        # Game master forces the third ring.
         next_situation = Situation.objects.get_or_create(
             adventure=third_ring, 
             story=story, 
             game_master=current_situation.game_master,
         )
-    elif adventure:
+    elif second_ring:
+        # Game master resolves a second ring adventure.
         next_situation = Situation.objects.get_or_create(
-            adventure=adventure, 
+            adventure=second_ring, 
             story=story, 
             game_master=current_situation.game_master,
         )       
+    elif third_ring:
+        # Game master resolves a second ring adventure
+        # but there is only the conclusion left to be played.
+        next_situation = Situation.objects.get_or_create(
+            adventure=third_ring, 
+            story=story, 
+            game_master=current_situation.game_master,
+        )
     else:
-        next_situation = current_situation
+        # Game master resolves a second ring adventure
+        # but there are no other situations to be played.
+        next_situation = current_situation        
     return next_situation

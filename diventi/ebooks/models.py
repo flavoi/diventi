@@ -2,10 +2,9 @@ import operator, re
 from functools import reduce
 
 from django.db import models
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-from django.db.models import Prefetch, Q
 from django.utils.html import mark_safe
 from django.utils.text import capfirst
 from django.core.exceptions import ValidationError
@@ -197,7 +196,7 @@ class SectionQuerySet(models.QuerySet):
         sections = self.select_related('universal_section')
         sections = sections.prefetch_related('rules')
         sections = sections.select_related('chapter')
-        sections = sections.prefetch_related('section_aspects')
+        sections = sections.prefetch_related(Prefetch('section_aspects', queryset=SectionAspect.objects.order_by('aspect_type')))
         sections = sections.order_by('order_index')
         return sections
 

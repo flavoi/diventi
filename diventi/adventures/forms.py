@@ -40,6 +40,7 @@ class AdventureForm(forms.ModelForm):
 class SituationCreateForm(forms.ModelForm):
     adventure = forms.ModelChoiceField(
         queryset=Adventure.objects.first_rings(),
+        widget=forms.Select(attrs={'class': 'form-control selectpicker', 'data-style': 'btn btn-link'}),
     )
 
     class Meta:       

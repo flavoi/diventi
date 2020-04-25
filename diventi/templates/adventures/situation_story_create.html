@@ -21,7 +21,15 @@
                                 <div class="col-md-12">
                                     <form class="form" method="POST" action="{% url 'adventures:new-game' %}">
                                         {% csrf_token %}
-                                        {{ form }}                                        
+                                        {% for field in form %}
+                                            <div class="form-group">
+                                                {{ field.errors }}
+                                                {{ field.label_tag }} {{ field }}
+                                                {% if field.help_text %}
+                                                <p class="help">{{ field.help_text|safe }}</p>
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}                                       
                                         <button class="btn btn-warning btn-round" type="submit">
                                             {% trans "Get Started" %} <i class="fal fa-arrow-right fa-lg"></i>
                                         </button>  
@@ -40,15 +48,15 @@
                                     {% endfor %}
                                 </div>
                                 <div class="col-md-6 mr-auto">
-                                    <h4 class="card-title">{% trans 'your solved situations'|capfirst %}</h4>
-                                    {% for situation in solved_situations %}
+                                    <h4 class="card-title">{% trans 'your past adventures'|capfirst %}</h4>
+                                    {% for story in past_stories %}
                                         <p class="card-description">
-                                            <a href="{{ situation.get_absolute_url }}" class="text-info">
-                                                {{ situation }} &middot; {{ situation.adventure }}
+                                            <a href="{% url 'adventures:situation_story_detail' story.uuid %}" class="text-info">
+                                                {{ story }}
                                             </a>
                                         </p>
                                     {% empty %}
-                                        <p class="card-description">{% trans 'you have no solved situations'|capfirst %}.</p>
+                                        <p class="card-description">{% trans 'you have yet to complete a whole adventure'|capfirst %}.</p>
                                     {% endfor %}
                                 </div>
                             </div>

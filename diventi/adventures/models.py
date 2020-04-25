@@ -44,9 +44,12 @@ class AdventureQuerySet(models.QuerySet):
 
     # Get a random second ring adventure that is 
     # related to products users have in their collection.
-    def random_second_ring(self):
+    # We can exclude adventures that have already been player.
+    def random_second_ring(self, exclude_ids=None):
         adventure = self.user_adventures()
         adventure = adventure.filter(ring='second')
+        if exclude_ids:
+            adventure = adventure.exclude(pk__in=exclude_ids)
         adventure = adventure.order_by('?').first()
         return adventure
 
@@ -79,7 +82,7 @@ class Adventure(Element, TimeStampedModel):
         on_delete=models.SET_NULL,
         related_name=_('adventures'),
         verbose_name=_('product'),
-    ) 
+    )
     RING_CHOICES = [
         ('first', _('First Ring')),
         ('second', _('Second Ring')),
@@ -89,6 +92,7 @@ class Adventure(Element, TimeStampedModel):
         max_length=20, 
         choices=RING_CHOICES, 
         verbose_name=_('ring of storytelling'),
+        help_text=_('Any adventure should have at least one ring of each type.')
     )
 
     objects = AdventureQuerySet.as_manager()
@@ -176,19 +180,23 @@ class SituationQuerySet(models.QuerySet):
         situation = situation.prefetch()
         return situation
 
-    # Return game master's situations and eventually exclude one from the list
-    # We usually exclude the one that has recently been created 
-    def history(self, game_master, exclude_situation=None):
+    # Return game master's situations
+    def history(self, game_master):
         situations = Situation.objects.filter(game_master=game_master)
-        if exclude_situation:
-            situations = Situations.exclude(pk=exclude_situation.pk) 
         situations = situations.prefetch()
         return situations
 
     # Returns game master's situations that are yet to be resolved
-    def open(self, game_master, exclude_situation=None):
-        situations = self.history(game_master, exclude_situation)
+    def open(self, game_master):
+        situations = self.history(game_master)
         situations = situations.filter(resolution__isnull=True)
+        return situations
+
+    # Return third rings situations that the game master have played and resolved.
+    def resolved(self, game_master):
+        situations = self.filter(game_master=game_master)
+        situations = situations.filter(adventure__ring='third')
+        situations = situations.filter(resolution__isnull=False)
         return situations
 
     # Get the last situation of the story selecting by its uuid
@@ -235,7 +243,7 @@ class Situation(TimeStampedModel):
         null=False,
         blank=False,
         on_delete=models.CASCADE,
-        related_name=_('situation'),
+        related_name=_('situations'),
         verbose_name=_('story'),
     )
 

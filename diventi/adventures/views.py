@@ -1,3 +1,5 @@
+import sys
+
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
@@ -37,7 +39,8 @@ class SituationStoryCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.game_master = self.request.user
         adventure = form.cleaned_data['adventure']
-        form.instance.story = Story.objects.create()
+        navigation = form.cleaned_data['navigation']
+        form.instance.story = Story.objects.create(navigation=navigation)
         messages.success(self.request, self.success_msg)  
         return super().form_valid(form)
 
@@ -123,12 +126,12 @@ class SituationStoryResolutionView(FormView):
         return super().get_context_data(**kwargs)
 
     def form_invalid(self, form):
-        print(form.errors)
         return self.render_to_response(self.get_context_data(form=form))
 
     def form_valid(self, form):
         # Redirect the navigation according to game master preference
         current_situation = Situation.objects.current(self.kwargs['uuid'])
+        current_story = get_object_or_404(Story, uuid=current_situation.story.uuid)
         current_situation.resolution = form.cleaned_data['resolution']
         current_situation.save()
         if current_situation.adventure.ring == 'third':
@@ -140,8 +143,7 @@ class SituationStoryResolutionView(FormView):
             )
             return HttpResponseRedirect(reverse('adventures:new-game'))
         else:
-            next_situation, created = situation_random(
-                self.request, 
+            next_situation, created = getattr(self, current_story.navigation)(
                 current_situation=current_situation,
                 enable_third_ring=form.cleaned_data['enable_third_ring'],
             )
@@ -153,39 +155,39 @@ class SituationStoryResolutionView(FormView):
         return HttpResponseRedirect(reverse('adventures:situation_story_detail', args=[next_situation.story.uuid,]))
 
 
-# Default navigation:
-# A loop of random second rings adventure
-def situation_random(request, current_situation, enable_third_ring=None):
-    story = get_object_or_404(Story, uuid=current_situation.story.uuid)
-    adventures_already_played = Situation.objects.history(game_master=current_situation.game_master)
-    adventures_already_played = adventures_already_played.filter(story__uuid=current_situation.story.uuid)
-    adventures_already_played = adventures_already_played.values_list('adventure', flat=True)
-    second_ring = Adventure.objects.random_second_ring(exclude_ids=adventures_already_played)
-    third_ring = Adventure.objects.third_ring()
-    if enable_third_ring and third_ring:
-        # Game master forces the third ring.
-        next_situation = Situation.objects.get_or_create(
-            adventure=third_ring, 
-            story=story, 
-            game_master=current_situation.game_master,
-        )
-    elif second_ring:
-        # Game master resolves a second ring adventure.
-        next_situation = Situation.objects.get_or_create(
-            adventure=second_ring, 
-            story=story, 
-            game_master=current_situation.game_master,
-        )       
-    elif third_ring:
-        # Game master resolves a second ring adventure
-        # but there is only the conclusion left to be played.
-        next_situation = Situation.objects.get_or_create(
-            adventure=third_ring, 
-            story=story, 
-            game_master=current_situation.game_master,
-        )
-    else:
-        # Game master resolves a second ring adventure
-        # but there are no other situations to be played.
-        next_situation = current_situation        
-    return next_situation
+    # Default navigation:
+    # A loop of random second rings adventure
+    def situation_random(self, current_situation, enable_third_ring=None):
+        story = get_object_or_404(Story, uuid=current_situation.story.uuid)
+        adventures_already_played = Situation.objects.history(game_master=current_situation.game_master)
+        adventures_already_played = adventures_already_played.filter(story__uuid=current_situation.story.uuid)
+        adventures_already_played = adventures_already_played.values_list('adventure', flat=True)
+        second_ring = Adventure.objects.random_second_ring(exclude_ids=adventures_already_played)
+        third_ring = Adventure.objects.third_ring()
+        if enable_third_ring and third_ring:
+            # Game master forces the third ring.
+            next_situation = Situation.objects.get_or_create(
+                adventure=third_ring, 
+                story=story, 
+                game_master=current_situation.game_master,
+            )
+        elif second_ring:
+            # Game master resolves a second ring adventure.
+            next_situation = Situation.objects.get_or_create(
+                adventure=second_ring, 
+                story=story, 
+                game_master=current_situation.game_master,
+            )       
+        elif third_ring:
+            # Game master resolves a second ring adventure
+            # but there is only the conclusion left to be played.
+            next_situation = Situation.objects.get_or_create(
+                adventure=third_ring, 
+                story=story, 
+                game_master=current_situation.game_master,
+            )
+        else:
+            # Game master resolves a second ring adventure
+            # but there are no other situations to be played.
+            next_situation = current_situation        
+        return next_situation

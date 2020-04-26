@@ -20,6 +20,22 @@ from diventi.products.models import (
 )
 
 
+class Resolution(Element):
+    """ Represent the resolution of a situation. """
+
+    class Meta:
+        verbose_name = _('Resolution')
+        verbose_name_plural = _('Resolutions')
+
+
+class Antagonist(Element):
+    """ Represents a nemesis for the player characters."""
+
+    class Meta:
+        verbose_name = _('Antagonist')
+        verbose_name_plural = _('Antagonists')
+
+
 class AdventureQuerySet(models.QuerySet):
 
     # Get the list of adventures that are 
@@ -94,6 +110,15 @@ class Adventure(Element, TimeStampedModel):
         verbose_name=_('ring of storytelling'),
         help_text=_('Any adventure should have at least one ring of each type.')
     )
+    antagonist = models.ForeignKey(
+        Antagonist,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name=_('situations'),
+        verbose_name=_('antagonist'),
+    )
+
 
     objects = AdventureQuerySet.as_manager()
 
@@ -115,6 +140,18 @@ class Story(TimeStampedModel):
         blank=False,
         verbose_name=_('players')
     )
+    DEFAULT_NAVIGATION = 'situation_random'
+    NAVIGATION_CHOICES = [
+        (DEFAULT_NAVIGATION, _('Exploration')),
+    ]
+    navigation = models.CharField(
+        max_length=20,
+        choices = NAVIGATION_CHOICES,
+        blank=False,
+        default = DEFAULT_NAVIGATION,
+        verbose_name = _('navigation')        
+    )
+
 
     class Meta:
         verbose_name = _('Story')
@@ -149,17 +186,6 @@ class Match(TimeStampedModel):
 
     def __str__(self):
         return _('Match n. %(id)s') % {'id': self.id}
-
-
-class Resolution(Element):
-    """ Represent the resolution of a situation. """
-
-    class Meta:
-        verbose_name = _('Resolution')
-        verbose_name_plural = _('Resolutions')
-
-    def __str__(self):
-        return _('%(title)s') % {'title': self.title}
 
 
 class SituationQuerySet(models.QuerySet):

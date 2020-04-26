@@ -9,6 +9,7 @@ from .models import (
     Adventure,
     Situation,
     Resolution,
+    Story,
 )
 
 
@@ -41,6 +42,9 @@ class SituationCreateForm(forms.ModelForm):
     adventure = forms.ModelChoiceField(
         queryset=Adventure.objects.first_rings(),
         widget=forms.Select(attrs={'class': 'form-control selectpicker', 'data-style': 'btn btn-link'}),
+    )
+    navigation = forms.ChoiceField(
+        choices=Story.NAVIGATION_CHOICES,
     )
 
     class Meta:       

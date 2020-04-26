@@ -25,7 +25,7 @@ class SituationAdmin(admin.ModelAdmin):
 
 
 class StoryAdmin(admin.ModelAdmin):
-    list_display = ['uuid', 'created']
+    list_display = ['uuid', 'navigation', 'created']
     readonly_fields = ['created', 'modified']
 
 

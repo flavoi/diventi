@@ -45,6 +45,7 @@ class SituationCreateForm(forms.ModelForm):
     )
     navigation = forms.ChoiceField(
         choices=Story.NAVIGATION_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control selectpicker', 'data-style': 'btn btn-link'}),
     )
 
     class Meta:       

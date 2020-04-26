@@ -36,7 +36,7 @@ class UniversalSectionAdmin(DiventiTranslationAdmin):
 
 class SectionAspectInline(TranslationStackedInline):
     model = SectionAspect
-    fields = ('aspect_type', 'title',)
+    fields = ('aspect_type', 'title', 'icon')
     extra = 0
 
 class SectionAdmin(DiventiTranslationAdmin):

@@ -49,10 +49,13 @@ class SituationCreateForm(forms.ModelForm):
 
 
 class SituationStoryResolutionForm(forms.Form):
-    enable_third_ring = forms.BooleanField(required=False)
+    enable_third_ring = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input', 'type': 'checkbox'}),
+    )
     resolution =  forms.ModelChoiceField(
         queryset=Resolution.objects.all(),
-        widget=forms.RadioSelect,
+        widget=forms.RadioSelect(attrs={'class':'form-check-input', 'type': 'radio'}),
         empty_label=None,
     )
 

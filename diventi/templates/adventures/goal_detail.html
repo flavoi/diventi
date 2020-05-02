@@ -1,0 +1,17 @@
+{% load static %}
+<div class="card bg-dark">
+    <div class="card-body">
+        <h5 class="card-category card-category-social">
+            {% if goal.icon %}<i class="far fa-{{ goal.icon }}"></i>{% endif %} {{ goal.title }}
+        </h5>
+        <h4 class="card-title">
+            {{ goal.description }}
+        </h4>
+        <div class="card-stats">
+            <div class="author">
+                 <img src="{% if goal.antagonist.image %}{{ goal.antagonist.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="{{ goal.antagonist }}" class="avatar img-raised">
+                <span style="margin-top: 5px;">{{ goal.antagonist }}</span>
+            </div>
+        </div>
+    </div>
+</div>

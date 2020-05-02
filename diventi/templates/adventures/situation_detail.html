@@ -27,6 +27,15 @@
                                 </div> 
                             </div>
                             {% endblock situation_content %}
+                            <div class="row">
+                                {% for goal in antagonist_goals %}
+                                <div class="col-md-6">
+                                    {% with goal as goal %}
+                                        {% include 'adventures/goal_detail.html' %}
+                                    {% endwith %}
+                                </div> 
+                                {% endfor %}
+                            </div>
                             {% block situation_extra %}{% endblock situation_extra %}
                         </div>
                         {% block situation_footer %}

@@ -46,6 +46,15 @@
             {% endfor %}
             </div>
             <div class="row">
+            {% for goal in antagonist_goals %}
+              <div class="col-md-6">
+                  {% with goal as goal %}
+                      {% include 'adventures/goal_detail.html' %}
+                  {% endwith %}
+              </div> 
+              {% endfor %}
+            </div>
+            <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="text-center">
                         <a href="{{ story.get_absolute_url }}#story" class="btn btn-warning">

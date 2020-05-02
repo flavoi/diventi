@@ -19,6 +19,7 @@ from .models import (
     Situation,
     Resolution,
     Match,
+    AntagonistGoal,
 )
 
 from .forms import(
@@ -34,7 +35,7 @@ class SituationStoryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'adventures/situation_story_create.html'
     success_msg = _('You have started a new game!')
     fail_msg = _('An error was found while creating you game.')
-    fail_url = reverse_lazy('adventures:new-game')
+    fail_url = reverse_lazy('adventures:situation_story_create')
 
     def form_valid(self, form):
         form.instance.game_master = self.request.user
@@ -66,6 +67,7 @@ class SituationDetailView(LoginRequiredMixin, DetailView):
             context['resolutions'] = Resolution.objects.all()
             context['adventure_navigation_form'] = SituationStoryResolutionForm(ring=self.object.adventure.ring)
         context['section'] = Section.objects.filter(pk=self.object.adventure.section.pk).usection().get()
+        context['antagonist_goals'] = AntagonistGoal.objects.filter(adventure=self.object.adventure).prefetch()
         return context
 
 
@@ -110,6 +112,7 @@ class StoryDetailView(DetailView):
         section = section.usection()
         context['section'] = section.get()
         context['situation'] = situation
+        context['antagonist_goals'] = AntagonistGoal.objects.filter(adventure=situation.adventure).prefetch()
         return context
 
 
@@ -141,8 +144,11 @@ class SituationStoryResolutionView(FormView):
                 self.request, 
                 _('You have completed the adventure "{adventure}"!'.format(adventure=current_situation.adventure.product))
             )
-            return HttpResponseRedirect(reverse('adventures:new-game'))
+            return HttpResponseRedirect(reverse('adventures:situation_story_create'))
         else:
+            # Available navigations:
+            # - Exploration > situation_random
+            # -    
             next_situation, created = getattr(self, current_story.navigation)(
                 current_situation=current_situation,
                 enable_third_ring=form.cleaned_data['enable_third_ring'],

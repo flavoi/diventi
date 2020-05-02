@@ -11,6 +11,7 @@ from cuser.middleware import CuserMiddleware
 from diventi.core.models import (
     Element,
     TimeStampedModel,
+    DiventiImageModel,
 )
 from diventi.ebooks.models import (
     Section,
@@ -28,7 +29,7 @@ class Resolution(Element):
         verbose_name_plural = _('Resolutions')
 
 
-class Antagonist(Element):
+class Antagonist(Element, DiventiImageModel):
     """ Represents a nemesis for the player characters."""
 
     class Meta:
@@ -38,16 +39,23 @@ class Antagonist(Element):
 
 class AdventureQuerySet(models.QuerySet):
 
+    # Select adventure's related objects
+    def prefetch(self):
+        adventures = self.select_related('product')
+        adventures = self.prefetch_related('antagonist')
+        return adventures
+
     # Get the list of adventures that are 
     # related to products users have in their collection.
     def user_adventures(self):
         user = CuserMiddleware.get_user()
+        adventures = self.prefetch()
         try:
             if user.is_staff:
                 products = Product.objects.user_authored(user)
             else:
                 products = Product.objects.user_collection(user)
-            return self.filter(product__in=products)
+            return adventures.filter(product__in=products)
         except AttributeError:
             return self
 
@@ -110,21 +118,55 @@ class Adventure(Element, TimeStampedModel):
         verbose_name=_('ring of storytelling'),
         help_text=_('Any adventure should have at least one ring of each type.')
     )
-    antagonist = models.ForeignKey(
+    antagonist = models.ManyToManyField(
         Antagonist,
-        null=True,
+        through='AntagonistGoal',
         blank=True,
-        on_delete=models.SET_NULL,
-        related_name=_('situations'),
-        verbose_name=_('antagonist'),
+        verbose_name=_('players')
     )
-
 
     objects = AdventureQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('Adventure')
         verbose_name_plural = _('Adventures')
+
+
+class AntagonistGoalQuerySet(models.QuerySet):
+
+    # Select goal's related objects
+    def prefetch(self):
+        goals = self.select_related('adventure')
+        goals = self.select_related('antagonist')
+        return goals
+
+
+class AntagonistGoal(Element):
+    """ An objective that an antagonist can leverage to pursue his plan. """
+
+    adventure = models.ForeignKey(
+        Adventure, 
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE, 
+        verbose_name=_('adventure')
+    )
+    antagonist = models.ForeignKey(
+        Antagonist,
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE, 
+        verbose_name=_('antagonist')
+    )
+    level = models.PositiveIntegerField(
+        verbose_name=_('level')
+    )
+
+    objects = AntagonistGoalQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _('Antagonist Goal')
+        verbose_name_plural = _('Antagonist Goals')
 
 
 class Story(TimeStampedModel):

@@ -8,6 +8,7 @@ from .models import (
     Part, 
     ReplacementRule,
     SectionAspect,
+    Secret,
 )
 
 
@@ -38,3 +39,7 @@ class ReplacementRuleTranslationOptions(TranslationOptions):
 @register(SectionAspect)
 class SectionAspectTranslationOptions(TranslationOptions):
     fields = ('title',)
+
+@register(Secret)
+class SecretTranslationOptions(TranslationOptions):
+    fields = ('title', 'description')

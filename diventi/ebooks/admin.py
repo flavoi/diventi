@@ -15,6 +15,7 @@ from .models import (
     Part, 
     ReplacementRule,
     SectionAspect,
+    Secret,
 )
 
 from .forms import SectionForm
@@ -36,8 +37,15 @@ class UniversalSectionAdmin(DiventiTranslationAdmin):
 
 class SectionAspectInline(TranslationStackedInline):
     model = SectionAspect
-    fields = ('aspect_type', 'title', 'icon')
+    fields = ('aspect_type', 'title', 'icon', 'color')
     extra = 0
+
+
+class SecretInline(TranslationStackedInline):
+    model = Secret
+    fields = ('secret_type', 'title', 'description', 'icon', 'color')
+    extra = 0
+
 
 class SectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'chapter', 'image_tag', 'get_rules']
@@ -58,6 +66,7 @@ class SectionAdmin(DiventiTranslationAdmin):
     )
     inlines = [
         SectionAspectInline,
+        SecretInline,
     ]
     prepopulated_fields = {"slug": ("title",)}
     ordering = ['chapter__order_index', 'order_index']
@@ -128,5 +137,6 @@ admin.site.register(Part, PartAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(SectionAspect)
+admin.site.register(Secret)
 admin.site.register(UniversalSection, UniversalSectionAdmin)
 admin.site.register(ReplacementRule, ReplacementRuleAdmin)

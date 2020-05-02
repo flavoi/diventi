@@ -46,10 +46,13 @@
             {% endfor %}
             </div>
             <div class="row">
+              <div class="col-md-12">
+                <h3>{% trans "Adventure secrets" %}</h3>
+              </div>
             {% for goal in antagonist_goals %}
               <div class="col-md-6">
-                  {% with goal as goal %}
-                      {% include 'adventures/goal_detail.html' %}
+                  {% with goal as element %}
+                      {% include 'adventures/element_card.html' %}
                   {% endwith %}
               </div> 
               {% endfor %}

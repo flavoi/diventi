@@ -1,0 +1,19 @@
+{% load static %}
+<div class="card{% ifnotequal color 'default' %} bg-{{ color }}{% endifnotequal %}">
+    <div class="card-body">
+        <h5 class="card-category card-category-social">
+            {% if icon %}<i class="far fa-{{ icon }}"></i>{% endif %} {{ category }}
+        </h5>
+        <h4 class="card-title">
+            {{ title }}
+        </h4>
+        {% if caption %}
+        <div class="card-stats">
+            <div class="author">
+                 <img src="{% if image %}{{ image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="{{ caption }}" class="avatar img-raised">
+                <span style="margin-top: 5px;">{{ caption }}</span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

@@ -196,7 +196,8 @@ class SectionQuerySet(models.QuerySet):
         sections = self.select_related('universal_section')
         sections = sections.prefetch_related('rules')
         sections = sections.select_related('chapter')
-        sections = sections.prefetch_related(Prefetch('section_aspects', queryset=SectionAspect.objects.order_by('aspect_type')))
+        sections = sections.prefetch_related(Prefetch('aspects', queryset=SectionAspect.objects.order_by('aspect_type')))
+        sections = sections.prefetch_related(Prefetch('secrets', queryset=Secret.objects.order_by('secret_type')))
         sections = sections.order_by('order_index')
         return sections
 
@@ -281,15 +282,40 @@ class SectionAspect(Element):
         choices=ASPECT_TYPE_CHOICES, 
         verbose_name=_('aspect type'),
     )
-    secction = models.ForeignKey(
+    section = models.ForeignKey(
         Section,
         blank=False,
         null=False,
         on_delete=models.CASCADE,
-        related_name='section_aspects',
+        related_name='aspects',
         verbose_name=_('section')
     )
 
     class Meta:
         verbose_name = _('section aspect')
         verbose_name_plural = _('section aspects')
+
+
+class Secret(Element):
+    SECRET_TYPE_CHOICES = [
+        ('treasure', _('Treasure')),
+        ('trap', _('Trap')),
+        ('revelation', _('Revelation')),
+    ]
+    secret_type = models.CharField(
+        max_length=20, 
+        choices=SECRET_TYPE_CHOICES, 
+        verbose_name=_('sercret type'),
+    )
+    section = models.ForeignKey(
+        Section,
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name='secrets',
+        verbose_name=_('section')
+    )
+
+    class Meta:
+        verbose_name = _('secret')
+        verbose_name_plural = _('secrets')

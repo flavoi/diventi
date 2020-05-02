@@ -12,6 +12,8 @@ from django.http import HttpResponseRedirect
 
 from diventi.ebooks.models import (
     Section,
+    SectionAspect,
+    Secret,
 )
 from .models import (
     Adventure,
@@ -137,6 +139,8 @@ class SituationStoryResolutionView(FormView):
         current_story = get_object_or_404(Story, uuid=current_situation.story.uuid)
         current_situation.resolution = form.cleaned_data['resolution']
         current_situation.save()
+        adventures_already_played = Situation.objects.history(game_master=current_situation.game_master)
+        adventures_already_played = adventures_already_played.filter(story__uuid=current_situation.story.uuid)
         if current_situation.adventure.ring == 'third':
             # Game master resolves a third ring adventure
             next_situation = current_situation
@@ -148,9 +152,9 @@ class SituationStoryResolutionView(FormView):
         else:
             # Available navigations:
             # - Exploration > situation_random
-            # -    
             next_situation, created = getattr(self, current_story.navigation)(
                 current_situation=current_situation,
+                adventures_already_played=adventures_already_played,
                 enable_third_ring=form.cleaned_data['enable_third_ring'],
             )
         if current_situation != next_situation:
@@ -163,12 +167,11 @@ class SituationStoryResolutionView(FormView):
 
     # Default navigation:
     # A loop of random second rings adventure
-    def situation_random(self, current_situation, enable_third_ring=None):
+    def situation_random(self, current_situation, adventures_already_played=None, enable_third_ring=None):
+        if adventures_already_played:
+            adventures_already_played_ids = adventures_already_played.values_list('adventure', flat=True)
         story = get_object_or_404(Story, uuid=current_situation.story.uuid)
-        adventures_already_played = Situation.objects.history(game_master=current_situation.game_master)
-        adventures_already_played = adventures_already_played.filter(story__uuid=current_situation.story.uuid)
-        adventures_already_played = adventures_already_played.values_list('adventure', flat=True)
-        second_ring = Adventure.objects.random_second_ring(exclude_ids=adventures_already_played)
+        second_ring = Adventure.objects.random_second_ring(exclude_ids=adventures_already_played_ids)
         third_ring = Adventure.objects.third_ring()
         if enable_third_ring and third_ring:
             # Game master forces the third ring.

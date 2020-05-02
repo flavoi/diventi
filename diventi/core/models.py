@@ -17,6 +17,8 @@ COLORS_CHOICES = (
     ('warning', _('Yellow')),
     ('success', _('Green')),
     ('default', _('Gray')),
+    ('dark', _('Black')),
+    ('light', _('White')),
 )
 
 
@@ -99,7 +101,7 @@ class Element(models.Model):
     title = models.CharField(max_length=50, verbose_name=_('title'))
     icon = models.CharField(blank=True, max_length=30, verbose_name=_('icon'))
     description = models.TextField(blank=True, verbose_name=_('description'))
-    color = models.CharField(blank=True, choices=COLORS_CHOICES, max_length=30, default='warning', verbose_name=_('color'))
+    color = models.CharField(blank=True, choices=COLORS_CHOICES, max_length=30, default='default', verbose_name=_('color'))
 
     def __str__(self):
         return self.title

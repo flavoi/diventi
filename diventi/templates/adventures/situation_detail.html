@@ -21,19 +21,37 @@
                             {% block situation_content %}
                             <div class="row">
                                 <div class="col-md-12">
-                                    {% with section as section %}
-                                        {% include 'ebooks/section_content_web.html' %}
+                                    <h3>{{ section.title|capfirst }}</h3>
+                                </div>
+                                {% for aspect in section.aspects.all %}
+                                <div class="col-md-4">
+                                    {% with color=aspect.color icon=aspect.icon category=aspect.get_aspect_type_display title=aspect.title %}
+                                        {% include 'adventures/element_card.html' %}
                                     {% endwith %}
-                                </div> 
+                                </div>
+                                {% endfor %}
+                                <div class="col-md-12">
+                                    {{ section.get_converted_content|safe }}
+                                </div>
                             </div>
                             {% endblock situation_content %}
                             <div class="row">
+                                <div class="col-md-12">
+                                    <h3>{% trans "Adventure secrets" %}</h3>
+                                </div>
                                 {% for goal in antagonist_goals %}
                                 <div class="col-md-6">
-                                    {% with goal as goal %}
-                                        {% include 'adventures/goal_detail.html' %}
+                                    {% with color=goal.color icon=goal.icon category=goal.title title=goal.description caption=goal.antagonist.title image=goal.antagonist.image %}
+                                        {% include 'adventures/element_card.html' %}
                                     {% endwith %}
                                 </div> 
+                                {% endfor %}
+                                {% for secret in section.secrets.all %}
+                                <div class="col-md-6">
+                                    {% with color=secret.color icon=secret.icon category=secret.title title=secret.description %}
+                                        {% include 'adventures/element_card.html' %}
+                                    {% endwith %}
+                                </div>
                                 {% endfor %}
                             </div>
                             {% block situation_extra %}{% endblock situation_extra %}

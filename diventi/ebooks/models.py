@@ -211,8 +211,19 @@ class SectionQuerySet(models.QuerySet):
 
 class Section(AbstractSection, DiventiImageModel, DiventiColModel):
     """ A section of a chapter. """
-    order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    content = RichTextField(blank=True, verbose_name=_('content'))
+    order_index = models.PositiveIntegerField(
+        verbose_name=_('order index')
+    )
+    content = RichTextField(
+        blank=True, 
+        verbose_name=_('content'),
+        help_text=_('This content should be simple to read aloud by our fellow game masters.')
+    )
+    situation = RichTextField(
+        blank=True, 
+        verbose_name=_('situation'),
+        help_text=_('This content should be read by game master\'s eyes only.')
+    )
     chapter = models.ForeignKey(Chapter, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('chapter'))
     bookmark = models.BooleanField(default=True, verbose_name=_('bookmark'))
     universal_section = models.ForeignKey(UniversalSection, null=True, blank=True, on_delete=models.SET_NULL, related_name=('sections'), verbose_name=_('universal section'))
@@ -314,6 +325,10 @@ class Secret(Element):
         on_delete=models.CASCADE,
         related_name='secrets',
         verbose_name=_('section')
+    )
+    requires_skill_check = models.BooleanField(
+        default=True,
+        verbose_name=_('requires a skill check')
     )
 
     class Meta:

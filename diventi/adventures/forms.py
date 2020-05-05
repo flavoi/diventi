@@ -30,7 +30,7 @@ class AdventureForm(forms.ModelForm):
 
     class Meta:
         model = Adventure
-        fields = ('title', 'ring', 'product', 'section')
+        fields = ('title', 'ring', 'product', 'section', 'difficulty')
 
     class Media:
         js = [
@@ -66,8 +66,11 @@ class SituationStoryResolutionForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         ring = kwargs.pop('ring', False)
+        antagonist_goals = kwargs.pop('antagonist_goals', False)
         super().__init__(*args, **kwargs)
         # Game master shouldn't be able to enable the third ring
         # if they have just started or finished their adventure.
+        if antagonist_goals:
+            self.fields['resolution'].queryset = Resolution.objects.filter(antagonist_goals__in=antagonist_goals)
         if ring == 'third' or ring == 'first':
-            self.fields.pop('enable_third_ring')
+            self.fields.pop('enable_third_ring')            

@@ -3,6 +3,14 @@
 
 {% block situation_extra %}
 <div class="row">
+    <div class="col-md-8 mr-auto ml-auto">
+        {% if final_message %}
+            <h2 class="text-center title">{% trans "finale"|capfirst %}</h2>
+            <h5 class="text-center text-gray">{{ final_message|capfirst }}</h5>
+        {% else %}
+        <h2 class="text-center title">{% trans "Resolution" %}</h2>
+        {% endif %}
+    </div>
     {% if adventure_navigation_form.errors %}
     <div class="col-md-12">
         <div class="justify-content-center">
@@ -24,8 +32,7 @@
     {% endif %}
     {% if adventure_navigation_form %}
     {% with adventure_navigation_form as form %}
-    <div class="col-md-12">
-        <h3>{% trans "Resolution" %}</h3>
+    <div class="col-md-12 text-center">
         <form method="POST" action="{% url 'adventures:situation_story_resolution' situation.story.uuid %}">
             {% csrf_token %}
             <div class="form-group">
@@ -54,7 +61,6 @@
             </div>
             <button type="submit" class="btn btn-warning">{% trans "Submit" %}</button>           
         </form>
-        <hr />
     </div>
     {% endwith %}
     {% endif %}

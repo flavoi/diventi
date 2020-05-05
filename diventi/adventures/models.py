@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.db.models import Sum, Count
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -20,17 +21,39 @@ from diventi.products.models import (
     Product,
 )
 
+import operator
+from functools import reduce
+from django.db.models import Q
 
-class Resolution(Element):
-    """ Represent the resolution of a situation. """
 
-    class Meta:
-        verbose_name = _('Resolution')
-        verbose_name_plural = _('Resolutions')
+class AntagonistQuerySet(models.QuerySet):
+
+    def highest(self, story, antagonist_goals):
+        antagonist = self
+        situations = Situation.objects.filter(story=story).exclude(resolution__isnull=True)        
+        if antagonist_goals:
+            query = reduce(
+                operator.or_, 
+                (Q(antagonist_goals=ag, situations=st) for ag, st in zip(antagonist_goals, situations))
+            )
+            resolutions = Resolution.objects.filter(query)
+            rvalues = resolutions.values('antagonist_goals__antagonist__title')
+            rvalues = rvalues.order_by('antagonist_goals__antagonist__title')
+            rvalues = rvalues.annotate(points=Sum('story_points'))
+            rvalues = rvalues.order_by('-points')
+            antagonist = rvalues.first()
+            for rr in rvalues:
+                print(rr)
+            print('Winner: {}'.format(antagonist))
+            print('----')
+        # To do: return the winner antagonist
+        return antagonist
 
 
 class Antagonist(Element, DiventiImageModel):
     """ Represents a nemesis for the player characters."""
+
+    objects = AntagonistQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('Antagonist')
@@ -58,6 +81,21 @@ class AdventureQuerySet(models.QuerySet):
             return adventures.filter(product__in=products)
         except AttributeError:
             return self
+
+    # Returns the list of adventures that the user
+    # has played in the context of the current story.
+    def story(self, story):
+        adventures = self.user_adventures()
+        adventures = adventures.filter(situations__story=story)
+        return adventures
+
+    # Returns adventures related to situations that 
+    # have been resolved by the players.
+    def played(self, story):
+        adventures = self.user_adventures()
+        adventures = adventures.story(story)
+        adventures = adventures.exclude(situations__resolution__isnull=True)
+        return adventures
 
     # Get the list of first ring adventures that are 
     # related to products users have in their collection.
@@ -96,7 +134,7 @@ class Adventure(Element, TimeStampedModel):
         null=True, 
         blank=True, 
         on_delete=models.SET_NULL, 
-        related_name=_('adventures'), 
+        related_name='adventures', 
         verbose_name=_('section'),
     )
     product = models.ForeignKey(
@@ -104,7 +142,7 @@ class Adventure(Element, TimeStampedModel):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name=_('adventures'),
+        related_name='adventures',
         verbose_name=_('product'),
     )
     RING_CHOICES = [
@@ -123,6 +161,11 @@ class Adventure(Element, TimeStampedModel):
         through='AntagonistGoal',
         blank=True,
         verbose_name=_('players')
+    )
+    difficulty = models.PositiveIntegerField(
+        blank=True,
+        verbose_name=_('difficulty'),
+        help_text=_('1-8 is easy, 10-12 is average, 14+ is difficult.')
     )
 
     objects = AdventureQuerySet.as_manager()
@@ -149,6 +192,7 @@ class AntagonistGoal(Element):
         null=False,
         blank=False,
         on_delete=models.CASCADE, 
+        related_name='antagonist_goals',
         verbose_name=_('adventure')
     )
     antagonist = models.ForeignKey(
@@ -156,13 +200,23 @@ class AntagonistGoal(Element):
         null=False,
         blank=False,
         on_delete=models.CASCADE, 
+        related_name='antagonist_goals',
         verbose_name=_('antagonist')
     )
-    level = models.PositiveIntegerField(
-        verbose_name=_('level')
+    subject = models.CharField(
+        max_length=50,
+        blank=False,
+        verbose_name=_('subject')
     )
 
     objects = AntagonistGoalQuerySet.as_manager()
+
+    def save(self, *args, **kwargs):
+        self.subject = '{} - {} - {}: {}'.format(self.adventure.product, self.adventure.title, self.antagonist, self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.subject
 
     class Meta:
         verbose_name = _('Antagonist Goal')
@@ -230,6 +284,36 @@ class Match(TimeStampedModel):
         return _('Match n. %(id)s') % {'id': self.id}
 
 
+class ResolutionQuerySet(models.QuerySet):
+
+    # Select resolution's related objects
+    def prefetch(self):
+        resolutions = self.prefetch_related('antagonist_goals')
+        return resolutions
+
+
+class Resolution(Element):
+    """ Represent the resolution of a situation. """
+    antagonist_goals = models.ManyToManyField(
+        AntagonistGoal,
+        blank=True,
+        verbose_name=_('antagonist goal')
+    )
+    story_points = models.IntegerField(
+        verbose_name=_('story points')
+    )
+
+    objects = ResolutionQuerySet.as_manager()
+
+    def get_antagonist_goals(self):
+        return mark_safe("<br>".join([a.__str__() for a in self.antagonist_goals.all()]))
+    get_antagonist_goals.short_description = _('Antagonist goals')
+
+    class Meta:
+        verbose_name = _('Resolution')
+        verbose_name_plural = _('Resolutions')
+
+
 class SituationQuerySet(models.QuerySet):
 
     def prefetch(self):
@@ -280,7 +364,7 @@ class Situation(TimeStampedModel):
         null=False,
         blank=False,
         on_delete=models.CASCADE,
-        related_name=_('situations'),
+        related_name='situations',
         verbose_name=_('adventure'),
     )
     game_master = models.ForeignKey(
@@ -296,7 +380,7 @@ class Situation(TimeStampedModel):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name=_('situations'),
+        related_name='situations',
         verbose_name=_('resolution'),
     )
     next_situation = models.ForeignKey(
@@ -311,7 +395,7 @@ class Situation(TimeStampedModel):
         null=False,
         blank=False,
         on_delete=models.CASCADE,
-        related_name=_('situations'),
+        related_name='situations',
         verbose_name=_('story'),
     )
 

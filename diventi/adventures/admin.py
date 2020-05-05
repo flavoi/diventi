@@ -32,7 +32,8 @@ class StoryAdmin(admin.ModelAdmin):
 
 
 class ResolutionAdmin(DiventiTranslationAdmin):
-    fields = ('title', 'color', 'icon')
+    list_display = ['title', 'get_antagonist_goals', 'story_points',]
+    fields = ('title', 'antagonist_goals', 'story_points')
 
 
 class AntagonistAdmin(DiventiTranslationAdmin):
@@ -41,9 +42,10 @@ class AntagonistAdmin(DiventiTranslationAdmin):
 
 
 class AntagonistGoalAdmin(DiventiTranslationAdmin):
-    list_display = ['antagonist', 'title', 'level', 'adventure', 'icon_tag']
-    ordering = ('antagonist', 'level')
-    fields = ('title', 'description', 'level', 'adventure', 'antagonist', 'icon')
+    list_display = ['subject', 'icon_tag']
+    ordering = ('antagonist',)
+    fields = ('title', 'description', 'antagonist', 'icon', 'subject')
+    readonly_fields = ['subject']
 
 
 admin.site.register(Adventure, AdventureAdmin)

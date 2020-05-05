@@ -1,84 +1,140 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block extrahead %}{% endblock extrahead %}
 
 {% block title %}{% trans 'Situation' %}{% endblock title %}
 
-{% block navbarclasses %}bg-dark{% endblock navbarclasses %}
+{% block pageheaderextraclass %}header-small{% endblock pageheaderextraclass %}
+{% block pageheaderimage %}{{ situation.adventure.section.chapter.chapter_book.image }}{% endblock pageheaderimage %}
 
-{% block bodyclass %}signup-page{% endblock bodyclass %}
+{% block pageheadercontent %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 ml-auto mr-auto text-center">
+        <h1 class="title">{{ situation.adventure.product.title }}</h1>
+        <h4>{% trans 'you are playing the'|capfirst %} {{ situation.adventure.get_ring_display }}</h4>
+        <a href="{% url 'adventures:story_get' situation.story.uuid %}" class="text-warning"><h5><i class="fad fa-arrow-right"></i> {% trans "public link"|capfirst %}</h5></a>
+    </div>
+  </div>
+</div>
+{% endblock pageheadercontent %}
 
-{% block pageheader %}
-    <div class="page-header header-filter" filter-color="default" style="background-image: url(''); background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 ml-auto mr-auto">
-                    <div class="card">
-                        <h2 class="card-title text-center">{{ situation }}</h2>
-                        <h4 class="text-center"><small>{% trans "Players' link:" %} <a class="text-warning" href="{% url 'adventures:story_get' situation.story.uuid %}">{{ request.META.HTTP_HOST }}{% url 'adventures:story_get' situation.story.uuid %}</a></small></h4>
-                        <div class="card-body">
-                            {% block situation_content %}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3>{{ section.title|capfirst }}</h3>
-                                </div>
-                                {% for aspect in section.aspects.all %}
-                                <div class="col-md-4">
-                                    {% with color=aspect.color icon=aspect.icon category=aspect.get_aspect_type_display title=aspect.title %}
-                                        {% include 'adventures/element_card.html' %}
-                                    {% endwith %}
-                                </div>
-                                {% endfor %}
-                                <div class="col-md-12">
-                                    {{ section.get_converted_content|safe }}
-                                </div>
-                            </div>
-                            {% endblock situation_content %}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3>{% trans "Adventure secrets" %}</h3>
-                                </div>
-                                {% for goal in antagonist_goals %}
-                                <div class="col-md-6">
-                                    {% with color=goal.color icon=goal.icon category=goal.title title=goal.description caption=goal.antagonist.title image=goal.antagonist.image %}
-                                        {% include 'adventures/element_card.html' %}
-                                    {% endwith %}
-                                </div> 
-                                {% endfor %}
-                                {% for secret in section.secrets.all %}
-                                <div class="col-md-6">
-                                    {% with color=secret.color icon=secret.icon category=secret.title title=secret.description %}
-                                        {% include 'adventures/element_card.html' %}
-                                    {% endwith %}
-                                </div>
-                                {% endfor %}
-                            </div>
-                            {% block situation_extra %}{% endblock situation_extra %}
-                        </div>
-                        {% block situation_footer %}
-                        <div class="card-footer">
-                            <div class="author">
-                                <img src="{{ situation.adventure.section.chapter.chapter_book.image }}" alt="{{ situation.adventure }}" class="avatar img-raised">
-                                <span style="margin-top:3px;">{{ situation.adventure.get_ring_display }} &middot; {{ situation.adventure }} </span>
-                            </div>
-                            <div class="stats ml-auto">
-                                {% if situation.resolution %}
-                                    <span class="badge badge-pill badge-{{ situation.resolution.color }}">
-                                        {{ situation.resolution }}
-                                    </span>                                   
-                                {% endif %}
+{% block maincontainer %}
+<div class="section section-white-to-gray">
+    <div class="container">
+        {% block situation_content %}
+        <div class="row">           
+            <div class="col-lg-6 col-md-8">
+              <h2 class="title"><small>{{ section.title|capfirst }}</small></h2>
+              <ul class="nav nav-pills nav-pills-info">
+                <li class="nav-item"><a class="nav-link active show" href="#pill1" data-toggle="tab">{% trans "situation" %}</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pill3" data-toggle="tab">{% trans "interactions" %}</a></li>
+              </ul>
+              <div class="tab-content tab-space">
+                <div class="tab-pane active show" id="pill1">
+                    <div class="blockquote undefined">
+                        <p>{{ section.get_converted_content|safe }}</p>
+                    </div>
+                    {% if section.situation %}
+                    <u>{% trans "situation"|capfirst %}:</u> {{ section.situation|striptags|safe }}
+                    {% endif %}
+                </div>
+                <div class="tab-pane" id="pill3">
+                    <div class="row">
+                    {% for aspect in section.aspects.all %}
+                    <div class="col-md-6">
+                        <div class="card" style="margin-top: 0px;">
+                            <div class="card-body">
+                                <h6 class="card-category">
+                                    {{ aspect.get_aspect_type_display }}
+                                </h6>
+                                <h4 class="card-title">{{ aspect.title|capfirst }}.</h4>
                             </div>
                         </div>
-                        {% endblock situation_footer %}
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-4">
+                <div style="margin-bottom: 40px;">
+                    <h2 class="title"><small>{% trans "adventure secrets"|capfirst %}</small></h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    {% for goal in antagonist_goals %}
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <img class="img" src="{% if goal.antagonist.image %}{{ goal.antagonist.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-category text-gray">{{ goal.title }}</h6>
+                                <h4 class="card-title">
+                                    {{ goal.description }}
+                                </h4>
+                            </div>
+                            <div class="card-footer justify-content-center">
+                                <p class="text-info" style="padding-top: 15px;">{% if goal.icon %}<i class="fad fa-{{ goal.icon }} fa-2x"></i>{% endif %}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                    {% for secret in section.secrets.all %}
+                        <div class="rotating-card-container manual-flip" style="margin-bottom: 30px;">
+                          <div class="card card-rotate">
+                            <div class="front" style="width: 349.984px;">
+                              <div class="card-body">
+                                <h6 class="card-category card-category-social text-warning">
+                                  <i class="fad fa-box-alt fa-lg fa-fw"></i> {% trans "secret" %}
+                                </h6>
+                                <h4 class="card-title">
+                                  {{ secret.title }}
+                                </h4>
+                                <div class="stats text-center">
+                                  <button type="button" name="button" class="btn btn-warning btn-fill btn-round btn-rotate">
+                                  {% if secret.requires_skill_check %}<i class="fas fa-key-skeleton fa-fw"></i> {% trans "situation check:"|capfirst %} {{ situation.adventure.difficulty }}
+                                  {% else %}
+                                  <i class="fas fa-check-circle fa-fw"></i> {% trans "reveal"|capfirst %}
+                                  {% endif %}
+                                    <div class="ripple-container"></div>
+                                  </button>                        
+                                </div>
+                              </div>
+                            </div>
+                            <div class="back" style="width: 349.984px;">
+                              <div class="card-body">
+                                <br>
+                                <h6 class="card-category card-category-social text-success">
+                                  <i class="fad fa-box-open fa-3x fa-fw"></i>
+                                </h6>
+                                <p class="card-description">
+                                  {{ secret.description }}
+                                </p>
+                                <br>
+                                <div class="ripple-container"></div></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        {% include 'footer.html' %}
+        {% endblock situation_content %}
     </div>
-{% endblock pageheader %}
+</div>
+<div class="section section-white">
+    <div class="container">
+        {% block situation_extra %}{% endblock situation_extra %}
+    </div>
+</div>
+{% endblock maincontainer %}
 
-{% block main %}{% endblock main %}
-
-{% block footer %}{% endblock footer %}
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock footer %}

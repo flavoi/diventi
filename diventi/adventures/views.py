@@ -15,6 +15,7 @@ from diventi.ebooks.models import (
     SectionAspect,
     Secret,
 )
+
 from .models import (
     Adventure,
     Story,
@@ -22,8 +23,8 @@ from .models import (
     Resolution,
     Match,
     AntagonistGoal,
+    Antagonist,
 )
-
 from .forms import(
     SituationCreateForm,
     SituationStoryResolutionForm,
@@ -65,11 +66,11 @@ class SituationDetailView(LoginRequiredMixin, DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if not self.object.resolution:
-            context['resolutions'] = Resolution.objects.all()
-            context['adventure_navigation_form'] = SituationStoryResolutionForm(ring=self.object.adventure.ring)
         context['section'] = Section.objects.filter(pk=self.object.adventure.section.pk).usection().get()
         context['antagonist_goals'] = AntagonistGoal.objects.filter(adventure=self.object.adventure).prefetch()
+        if self.object.adventure.ring == 'third':
+            if self.object.resolution:
+                context['final_message'] = _('the real conclusion is the outcome of your imagination, as well as that of your players. Your adventure is now part of First Contact story.')
         return context
 
 
@@ -78,6 +79,22 @@ class SituationStoryDetailView(SituationDetailView):
     template_name = 'adventures/situation_story_detail.html'
     slug_field = 'story'
     slug_url_kwarg = 'uuid'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if not self.object.resolution:
+            context['resolutions'] = Resolution.objects.all()
+            context['adventure_navigation_form'] = SituationStoryResolutionForm(
+                ring=self.object.adventure.ring,
+                antagonist_goals=context['antagonist_goals'],
+            )
+        played_adventures = Adventure.objects.played(self.object.story)
+        played_antagonist_goals = AntagonistGoal.objects.filter(adventure__in=played_adventures)
+        highest_antagonist = Antagonist.objects.highest(
+            story=self.object.story, 
+            antagonist_goals=played_antagonist_goals
+        )
+        return context
 
     # Returns the last situation of the story 
     # if the game master is staff or the current user
@@ -148,7 +165,6 @@ class SituationStoryResolutionView(FormView):
                 self.request, 
                 _('You have completed the adventure "{adventure}"!'.format(adventure=current_situation.adventure.product))
             )
-            return HttpResponseRedirect(reverse('adventures:situation_story_create'))
         else:
             # Available navigations:
             # - Exploration > situation_random

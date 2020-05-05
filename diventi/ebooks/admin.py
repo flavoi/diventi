@@ -37,13 +37,13 @@ class UniversalSectionAdmin(DiventiTranslationAdmin):
 
 class SectionAspectInline(TranslationStackedInline):
     model = SectionAspect
-    fields = ('aspect_type', 'title', 'icon', 'color')
+    fields = ('aspect_type', 'title', 'icon')
     extra = 0
 
 
 class SecretInline(TranslationStackedInline):
     model = Secret
-    fields = ('secret_type', 'title', 'description', 'icon', 'color')
+    fields = ('secret_type', 'title', 'description', 'icon', 'requires_skill_check')
     extra = 0
 
 
@@ -61,7 +61,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('image', 'text_alignment',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'description', 'content', 'slug'),
+            'fields': ('title', 'order_index', 'content', 'situation', 'slug'),
         }),
     )
     inlines = [

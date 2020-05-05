@@ -1,6 +1,9 @@
 <a style="color:#41474d" name="{{ section.slug }}"><h3>{{ section.title|capfirst }}</h3></a>
 {% include 'ebooks/section_aspects_web.html' %}
 {{ section.get_converted_content|safe }}
+{% if section.situation %}
+<u>{% trans "situation"|capfirst %}:</u> {{ section.situation|safe }}
+{% endif %}
 {% include 'ebooks/section_secrets_web.html' %}
 {% if section.image %}
     <figure data-rt-type="image" data-rt-align="center" data-rt-max-width="50" data-rt-max-height="56.25" class="w-richtext-align-center" style="max-width: 60%;">

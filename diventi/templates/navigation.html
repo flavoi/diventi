@@ -1,60 +1,61 @@
 {% load static %}
 {% load i18n %}
-
 <div class="container">
-
-    <div class="navbar-translate">
-        <a href="{% url 'landing:home' %}" class="navbar-brand">
-            <div class="diventi-font">
-                Diventi
+   <!-- Brand and toggle get grouped for better mobile display -->
+   <div class="navbar-translate">
+      <a href="{% url 'landing:home' %}" class="navbar-brand">
+         <div class="diventi-font">
+            Diventi
+         </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+      </button>
+   </div>
+   <!-- Collect the nav links, forms, and other content for toggling -->
+   <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_staff %}
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Lab
+               <div class="ripple-container"></div>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+               <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a>
+               <a class="dropdown-item" href="{% url 'landing:analytics' %}">{% trans "analytics"|capfirst %}</a>
+               <a class="dropdown-item" href="{% url 'adventures:situation_story_create' %}">{% trans "adventures"|capfirst %}</a>
             </div>
-        </a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation-example3">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-icon"></span>
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a href="{% url 'blog:home' %}" class="nav-link">
-                    Blog
-                </a>
-            </li>
-            {% if user.is_staff %}
-                <li class="nav-item">
-                    <a href="{% url 'admin:index' %}" class="nav-link">
-                        {% trans "admin"|capfirst %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'landing:analytics' %}" class="nav-link">
-                        {% trans "analytics"|capfirst %}
-                    </a> 
-                </li>
-            {% endif %}
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="{% url 'accounts:update' user.nametag %}" class="nav-link">
-                        {% trans "profile"|capfirst %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'accounts:signout' %}" class="nav-link" style="color: #ff9800;">
-                        {% trans "sign out"|capfirst %}
-                    </a>
-                </li>
-            {% else %}
-                <li class="nav-item">   
-                    <a href="{% url 'accounts:signin' %}" class="btn btn-link btn-warning">
-                        <i class="fal fa-sign-in-alt fa-lg"></i> {% trans "sign in"|capfirst %} 
-                        <div class="ripple-container"></div>
-                    </a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
+         </li>
+        {% endif %}
+         <li class="nav-item">
+            <a href="{% url 'blog:home' %}" class="nav-link">
+            Blog
+            </a>
+         </li>
+         <li class="nav-item">
+            <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-raised btn-fab btn-round">
+               <i class="fad fa-album-collection"></i>
+               <div class="ripple-container"></div>
+            </a>
+         </li>
+         <li class="dropdown nav-item">
+            <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+               <div class="profile-photo-small">
+                  <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="rounded-circle img-fluid">
+               </div>
+               <div class="ripple-container"></div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+               <h6 class="dropdown-header">{{ user.get_full_name }} &middot; {{ user.email }}</h6>
+               <a href="{% url 'accounts:update' user.nametag %}" class="dropdown-item">{% trans "profile"|capfirst %}</a>
+               <a href="{% url 'accounts:signout' %}" class="dropdown-item text-warning">{% trans "sign out"|capfirst %}</a>
+            </div>
+         </li>
+      </ul>
+   </div>
+   <!-- /.navbar-collapse -->
 </div>

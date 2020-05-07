@@ -37,7 +37,10 @@
             </a>
          </li>
          <li class="nav-item">
-            <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-raised btn-fab btn-round">
+            <!---
+            <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Tooltip on bottom">On bottom<div class="ripple-container"></div></button>
+            -->
+            <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-raised btn-fab btn-round" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'my collection'|capfirst %}">
                <i class="fad fa-album-collection"></i>
                <div class="ripple-container"></div>
             </a>

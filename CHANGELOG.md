@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 ### Added
 ### Changed
+- [blog] Enabled category filters in the list page
+- [core] Updated navbar with grouped links
+
 ### Removed
 ### Fixed
 ### Security

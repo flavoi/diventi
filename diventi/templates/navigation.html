@@ -36,6 +36,7 @@
             Blog
             </a>
          </li>
+         {% if user.is_authenticated %}
          <li class="nav-item">
             <!---
             <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Tooltip on bottom">On bottom<div class="ripple-container"></div></button>
@@ -58,6 +59,13 @@
                <a href="{% url 'accounts:signout' %}" class="dropdown-item text-warning">{% trans "sign out"|capfirst %}</a>
             </div>
          </li>
+         {% else %}
+         <li class="nav-item">
+            <a href="{% url 'accounts:signin' %}" class="nav-link">
+            {% trans "sign in" %}
+            </a>
+         </li>
+         {% endif %}
       </ul>
    </div>
    <!-- /.navbar-collapse -->

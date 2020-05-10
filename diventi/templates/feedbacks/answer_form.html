@@ -27,9 +27,8 @@
 {% endblock pageheadercontent %}
 
 {% block content %}    
-    <div class="card card-plain">
+    <div class="section section-white">
         <form method="post">
-        <div class="card-body">
             <h3 class="card-title">{% trans 'Survey' %}</h3>
 
             <div class="form-row">
@@ -89,11 +88,9 @@
             </div>
 
             <div class="card-footer justify-content-between">
-                <div class="form-check">
-                </div>
+                <div class="form-check"></div>
                 <button type="submit" class="btn btn-warning btn-round pull-right">{% trans 'send survey' %}</button>
             </div>
-        </div>
         </form>
     </div>
 {% endblock content %}

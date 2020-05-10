@@ -13,7 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [core] Updated navbar with grouped links
 
 ### Removed
+
 ### Fixed
+- [feedbacks] Fixed a problem that caused an incorrect layout in the answer form page
+
 ### Security
 
 

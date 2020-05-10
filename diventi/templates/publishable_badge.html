@@ -1,5 +1,5 @@
 {% load i18n %}
 
 {% if request.user.is_staff and not object.published %}
-	<span class="badge badge-pill badge-warning align-middle">{% trans "draft"|title %}</span>
+	<span class="badge badge-pill badge-warning align-middle" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'a draft content can be seen only by the staff'|capfirst %}.">{% trans "draft"|title %}</span>
 {% endif %}

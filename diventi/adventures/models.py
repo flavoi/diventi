@@ -37,15 +37,12 @@ class AntagonistQuerySet(models.QuerySet):
                 (Q(antagonist_goals=ag, situations=st) for ag, st in zip(antagonist_goals, situations))
             )
             resolutions = Resolution.objects.filter(query)
-            rvalues = resolutions.values('antagonist_goals__antagonist__title')
+            rvalues = resolutions.values('antagonist_goals__antagonist__title', 'antagonist_goals__antagonist__pk')
             rvalues = rvalues.order_by('antagonist_goals__antagonist__title')
             rvalues = rvalues.annotate(points=Sum('story_points'))
             rvalues = rvalues.order_by('-points')
-            antagonist = rvalues.first()
-            for rr in rvalues:
-                print(rr)
-            print('Winner: {}'.format(antagonist))
-            print('----')
+            antagonist_pk = rvalues.first()['antagonist_goals__antagonist__pk']
+            antagonist = self.get(pk=antagonist_pk)
         # To do: return the winner antagonist
         return antagonist
 

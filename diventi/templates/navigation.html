@@ -27,7 +27,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a>
                <a class="dropdown-item" href="{% url 'landing:analytics' %}">{% trans "analytics"|capfirst %}</a>
-               <a class="dropdown-item" href="{% url 'adventures:situation_story_create' %}">{% trans "adventures"|capfirst %}</a>
+               <a class="dropdown-item" href="{% url 'adventures:situation_story_create' %}">{% trans "adventures"|capfirst %}<span class="text-info"><sup>beta</sup></span> </a>
             </div>
          </li>
         {% endif %}
@@ -38,9 +38,6 @@
          </li>
          {% if user.is_authenticated %}
          <li class="nav-item">
-            <!---
-            <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Tooltip on bottom">On bottom<div class="ripple-container"></div></button>
-            -->
             <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-raised btn-fab btn-round" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'my collection'|capfirst %}">
                <i class="fad fa-album-collection"></i>
                <div class="ripple-container"></div>

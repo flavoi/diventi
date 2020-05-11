@@ -3,12 +3,17 @@ import sys
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+
+from diventi.core.views import (
+    StaffRequiredMixin,
+)
 
 from diventi.ebooks.models import (
     Section,
@@ -31,7 +36,7 @@ from .forms import(
 )
 
 
-class SituationStoryCreateView(LoginRequiredMixin, CreateView):
+class SituationStoryCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
 
     form_class = SituationCreateForm
     model = Situation
@@ -60,7 +65,7 @@ class SituationStoryCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class SituationDetailView(LoginRequiredMixin, DetailView):
+class SituationDetailView(LoginRequiredMixin, StaffRequiredMixin, DetailView):
     model = Situation
     context_object_name = 'situation'
     
@@ -119,7 +124,32 @@ def story_get(request, uuid):
     return HttpResponseRedirect(reverse('adventures:story_detail', args=[uuid,]))
 
 
-class StoryDetailView(DetailView):
+class SituationStoryListView(StaffRequiredMixin, ListView):
+
+    model = Situation
+    context_object_name = 'situations'
+    template_name = 'adventures/situation_story_list.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Any situation of the story shares the same adventure's book image
+        adventure = self.get_queryset().first().adventure
+        context['adventure'] = adventure
+        context['adventure_image'] = adventure.section.chapter.chapter_book.image
+        return context
+
+
+    # Returns the situation related to the current story 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        user = self.request.user
+        qs = qs.game_master(user)
+        qs = qs.filter(story=self.kwargs['uuid'])
+        return qs
+
+
+class StoryDetailView(StaffRequiredMixin, DetailView):
 
     model = Story
     context_object_name = 'story'
@@ -137,7 +167,7 @@ class StoryDetailView(DetailView):
         return context
 
 
-class SituationStoryResolutionView(FormView):
+class SituationStoryResolutionView(StaffRequiredMixin, FormView):
 
     template_name = 'adventures/situation_detail.html'
     form_class = SituationStoryResolutionForm

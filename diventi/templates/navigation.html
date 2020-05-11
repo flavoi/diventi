@@ -27,7 +27,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a>
                <a class="dropdown-item" href="{% url 'landing:analytics' %}">{% trans "analytics"|capfirst %}</a>
-               <a class="dropdown-item" href="{% url 'adventures:situation_story_create' %}">{% trans "adventures"|capfirst %}<span class="text-info"><sup>beta</sup></span> </a>
+               <a class="dropdown-item" href="{% url 'adventures:situation_story_create' %}">{% trans "adventures"|capfirst %}<span class="text-rose"><sup>alpha</sup></span> </a>
             </div>
          </li>
         {% endif %}
@@ -58,8 +58,8 @@
          </li>
          {% else %}
          <li class="nav-item">
-            <a href="{% url 'accounts:signin' %}" class="nav-link">
-            {% trans "sign in" %}
+            <a href="{% url 'accounts:signin' %}" class="nav-link text-warning">
+               <i class="fad fa-sign-in-alt fa-fw fa-lg"></i> {% trans "sign in" %}
             </a>
          </li>
          {% endif %}

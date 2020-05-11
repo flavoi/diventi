@@ -30,7 +30,7 @@ class AdventureForm(forms.ModelForm):
 
     class Meta:
         model = Adventure
-        fields = ('title', 'ring', 'product', 'section', 'difficulty')
+        fields = ('title', 'description', 'ring', 'product', 'section', 'difficulty')
 
     class Media:
         js = [

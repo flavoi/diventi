@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-12 08:31+0200\n"
+"POT-Creation-Date: 2020-05-12 08:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -386,6 +386,23 @@ msgstr "Completamento automatico ..."
 msgid "Section"
 msgstr "Sezione"
 
+#: diventi/adventures/forms.py:45 diventi/adventures/models.py:171
+msgid "Adventure"
+msgstr "Avventura"
+
+#: diventi/adventures/forms.py:50
+msgid "Navigation"
+msgstr "Navigazione"
+
+#: diventi/adventures/forms.py:62
+msgid "Enable third ring"
+msgstr "Attiva il terzo anello"
+
+#: diventi/adventures/forms.py:68 diventi/adventures/models.py:310
+#: diventi/templates/adventures/situation_story_detail.html:11
+msgid "Resolution"
+msgstr "Risoluzione"
+
 #: diventi/adventures/models.py:56
 msgid "Antagonist"
 msgstr "Antagonista"
@@ -439,10 +456,6 @@ msgstr "difficoltà"
 msgid "1-8 is easy, 10-12 is average, 14+ is difficult."
 msgstr "1-8 è facile, 10-12 è medio, 14+ è difficile."
 
-#: diventi/adventures/models.py:171
-msgid "Adventure"
-msgstr "Avventura"
-
 #: diventi/adventures/models.py:193 diventi/adventures/models.py:365
 msgid "adventure"
 msgstr "avventura"
@@ -480,6 +493,7 @@ msgid "Stories"
 msgstr "Storie"
 
 #: diventi/adventures/models.py:254
+#, python-format
 msgid "Story n. %(uuid)s"
 msgstr "Storia n. %(uuid)s"
 
@@ -516,11 +530,6 @@ msgstr "punti storia"
 msgid "Antagonist goals"
 msgstr "Obiettivi dell'antagonista"
 
-#: diventi/adventures/models.py:310
-#: diventi/templates/adventures/situation_story_detail.html:11
-msgid "Resolution"
-msgstr "Risoluzione"
-
 #: diventi/adventures/models.py:311
 msgid "Resolutions"
 msgstr "Risoluzioni"
@@ -552,6 +561,7 @@ msgid "Situations"
 msgstr "Situazioni"
 
 #: diventi/adventures/models.py:406
+#, python-format
 msgid "Situation n. %(pk)s"
 msgstr "Situazione n. %(pk)s"
 
@@ -592,8 +602,8 @@ msgid ""
 "the real conclusion is the outcome of your imagination, as well as that of "
 "your players. Your adventure is now part of First Contact story."
 msgstr ""
-"la vera conclusione è il risultato della vostra immaginazione."
-"La vostra avventura è entrata a far parte della saga di Primo Contatto."
+"la vera conclusione è il risultato della vostra immaginazione. La vostra "
+"avventura è entrata a far parte della saga di Primo Contatto."
 
 #: diventi/adventures/views.py:120
 msgid "Hi game master, you are viewing the players' page."
@@ -604,14 +614,12 @@ msgid "You have joined a new game."
 msgstr "Ti sei unito ad una nuova partita."
 
 #: diventi/adventures/views.py:198
-#, python-brace-format
-msgid "You have completed the adventure \"{adventure}\"!"
-msgstr "Hai completato l'avventura \"{adventure}\"!"
+msgid "You have completed the adventure!"
+msgstr "Hai completato l'avventura!"
 
 #: diventi/adventures/views.py:211
-#, python-brace-format
-msgid "You have unlocked a situation of the {ring}."
-msgstr "Hai sbloccato una nuova situazione del {ring}"
+msgid "You have unlocked a new situation."
+msgstr "Hai sbloccato una nuova situazione."
 
 #: diventi/blog/admin.py:15 diventi/blog/admin.py:34 diventi/ebooks/admin.py:93
 #: diventi/feedbacks/admin.py:54 diventi/landing/admin.py:22
@@ -1043,7 +1051,9 @@ msgstr "regole di sostituzione"
 
 #: diventi/ebooks/models.py:220
 msgid "This content should be simple to read aloud by our fellow game masters."
-msgstr "Questo contenuto dovrebbe essere facile da leggere ad alta voce dai nostri compagni game master."
+msgstr ""
+"Questo contenuto dovrebbe essere facile da leggere ad alta voce dai nostri "
+"compagni game master."
 
 #: diventi/ebooks/models.py:224
 #: diventi/templates/adventures/situation_detail.html:39

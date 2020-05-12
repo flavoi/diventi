@@ -42,10 +42,12 @@ class SituationCreateForm(forms.ModelForm):
     adventure = forms.ModelChoiceField(
         queryset=Adventure.objects.first_rings(),
         widget=forms.Select(attrs={'class': 'form-control selectpicker', 'data-style': 'btn btn-link'}),
+        label=_('Adventure'),
     )
     navigation = forms.ChoiceField(
         choices=Story.NAVIGATION_CHOICES,
         widget=forms.Select(attrs={'class': 'form-control selectpicker', 'data-style': 'btn btn-link'}),
+        label=_('Navigation'),
     )
 
     class Meta:       
@@ -57,11 +59,13 @@ class SituationStoryResolutionForm(forms.Form):
     enable_third_ring = forms.BooleanField(
         required=False,
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input', 'type': 'checkbox'}),
+        label=_('Enable third ring'),
     )
     resolution =  forms.ModelChoiceField(
         queryset=Resolution.objects.all(),
         widget=forms.RadioSelect(attrs={'class':'form-check-input', 'type': 'radio'}),
         empty_label=None,
+        label=_('Resolution'),
     )
 
     def __init__(self, *args, **kwargs):

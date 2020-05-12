@@ -195,7 +195,7 @@ class SituationStoryResolutionView(StaffRequiredMixin, FormView):
             next_situation = current_situation
             messages.success(
                 self.request, 
-                _('You have completed the adventure "{adventure}"!'.format(adventure=current_situation.adventure.product))
+                _('You have completed the adventure!'.format(adventure=current_situation.adventure.product))
             )
         else:
             # Available navigations:
@@ -208,7 +208,7 @@ class SituationStoryResolutionView(StaffRequiredMixin, FormView):
         if current_situation != next_situation:
             messages.success(
                 self.request, 
-                _('You have unlocked a situation of the {ring}.'.format(ring=next_situation.adventure.get_ring_display().lower()))
+                _('You have unlocked a new situation.')
             )
         return HttpResponseRedirect(reverse('adventures:situation_story_detail', args=[next_situation.story.uuid,]))
 

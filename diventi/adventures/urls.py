@@ -14,7 +14,7 @@ from .views import (
 app_name = 'adventures'
 
 urlpatterns = [
-    path(_(''), SituationStoryCreateView.as_view(), name='situation_story_create'),
+    path('', SituationStoryCreateView.as_view(), name='situation_story_create'),
     path(_('situation/story/<uuid:uuid>/'), SituationStoryDetailView.as_view(), name='situation_story_detail'),
     path(_('situation/story/<uuid:uuid>/list/'), SituationStoryListView.as_view(), name='situation_story_list'),
     path(_('situation/story/<uuid:uuid>/resolution/'), SituationStoryResolutionView.as_view(), name='situation_story_resolution'),

@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <a style="color:#41474d" name="{{ section.slug }}"><h3>{{ section.title|capfirst }}</h3></a>
 {% include 'ebooks/section_aspects_web.html' %}
 {{ section.get_converted_content|safe }}

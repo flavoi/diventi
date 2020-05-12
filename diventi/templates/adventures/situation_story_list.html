@@ -21,28 +21,35 @@
 {% block maincontainer %}
 <div class="section section-white-to-gray">
     <div class="container">
-    <div class="row">
-        {% for s in situations %}
-        <div class="col-lg-4 col-md-4">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-category text-warning">
-                  {% if not s.resolution %}
-                  <span class="text-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'this situation is still open.'|capfirst %}">
-                    <i class="fad fa-spinner-third fa-lg fa-fw"></i>
-                  </span>
-                {% endif %}{{ s.adventure.get_ring_display }}
-                </h6>
-                <h4 class="card-title">
-                  <a href="{% url 'adventures:situation_detail' s.pk %}">{{ s.adventure.title }}</a>
-                </h4>
-                <p class="card-description">
-                  {{ s.adventure.description }}
-                </p>
-              </div>
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="text-info" href="{% url 'adventures:situation_story_create'%}">{% trans 'adventures'|capfirst %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ adventure.product.title }}</li>
+          </ol>
+        </nav>
+        <div class="row">
+            {% for s in situations %}
+            <div class="col-lg-4 col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-category text-warning">
+                      {% if not s.resolution %}
+                      <span class="text-info" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'this situation is still open.'|capfirst %}">
+                        <i class="fad fa-spinner-third fa-lg fa-fw"></i>
+                      </span>
+                    {% endif %}{{ s.adventure.get_ring_display }}
+                    </h6>
+                    <h4 class="card-title">
+                      <a href="{% url 'adventures:situation_detail' s.pk %}">{{ s.adventure.title }}</a>
+                    </h4>
+                    <p class="card-description">
+                      {{ s.adventure.description }}
+                    </p>
+                  </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 {% endblock maincontainer %}

@@ -24,6 +24,13 @@
 {% block maincontainer %}
 <div class="section section-white-to-gray">
     <div class="container">
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="text-info" href="{% url 'adventures:situation_story_create'%}">{% trans 'adventures'|capfirst %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a class="text-info" href="{% url 'adventures:situation_story_list' situation.story.uuid %}">{{ situation.adventure.product.title }}</a></li>
+            <li class="breadcrumb-item active" >{{ section.title|capfirst }}</li>
+          </ol>
+        </nav>
         {% block situation_content %}
         <div class="row">           
             <div class="col-lg-6 col-md-8">

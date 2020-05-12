@@ -27,7 +27,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                <a class="dropdown-item" href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a>
                <a class="dropdown-item" href="{% url 'landing:analytics' %}">{% trans "analytics"|capfirst %}</a>
-               <a class="dropdown-item" href="{% url 'adventures:situation_story_create' %}">{% trans "adventures"|capfirst %}<span class="text-rose"><sup>alpha</sup></span> </a>
+               <a class="dropdown-item" href="{% url 'adventures:situation_story_create' %}">{% trans "adventures"|capfirst %}&nbsp; <span class="badge badge-pill badge-rose">alpha</span></a>
             </div>
          </li>
         {% endif %}

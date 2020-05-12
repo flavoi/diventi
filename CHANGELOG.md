@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [UNRELEASED]
 ### Added
+-  Introduced adventures: a new app that enables game master to play with Diventi's adventures.
+
 ### Changed
 - [blog] Enabled category filters in the list page
 - [core] Updated navbar with grouped links

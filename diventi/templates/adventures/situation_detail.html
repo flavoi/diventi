@@ -78,10 +78,13 @@
                                 <img class="img" src="{% if goal.antagonist.image %}{{ goal.antagonist.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}">
                             </div>
                             <div class="card-body">
-                                <h6 class="card-category text-gray">{{ goal.title }}</h6>
+                                <h6 class="card-category text-gray">{% blocktrans with name=goal.antagonist.title %}{{ name }}'s goal{% endblocktrans %}</h6>
                                 <h4 class="card-title">
-                                    {{ goal.description }}
+                                    {{ goal.title }}
                                 </h4>
+                                <p class="description">
+                                    {{ goal.description }}
+                                </p>
                             </div>
                             <div class="card-footer justify-content-center">
                                 <p class="text-info" style="padding-top: 15px;">{% if goal.icon %}<i class="fad fa-{{ goal.icon }} fa-2x"></i>{% endif %}</p>

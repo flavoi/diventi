@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-08 09:04+0200\n"
+"POT-Creation-Date: 2020-05-12 08:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -374,7 +374,7 @@ msgstr "Avatar riservati"
 msgid "User covers"
 msgstr "Copertine utente"
 
-#: diventi/adventures/apps.py:7 diventi/adventures/models.py:175
+#: diventi/adventures/apps.py:7 diventi/adventures/models.py:172
 msgid "Adventures"
 msgstr "Avventure"
 
@@ -386,251 +386,232 @@ msgstr "Completamento automatico ..."
 msgid "Section"
 msgstr "Sezione"
 
-#: diventi/adventures/models.py:59
+#: diventi/adventures/models.py:56
 msgid "Antagonist"
-msgstr ""
+msgstr "Antagonista"
 
-#: diventi/adventures/models.py:60
+#: diventi/adventures/models.py:57
 msgid "Antagonists"
-msgstr ""
+msgstr "Antagonisti"
 
-#: diventi/adventures/models.py:138 diventi/ebooks/models.py:280
+#: diventi/adventures/models.py:135 diventi/ebooks/models.py:280
 #: diventi/ebooks/models.py:302 diventi/ebooks/models.py:327
 #: diventi/landing/models.py:71
 msgid "section"
 msgstr "sezione"
 
-#: diventi/adventures/models.py:146 diventi/ebooks/models.py:61
+#: diventi/adventures/models.py:143 diventi/ebooks/models.py:61
 #: diventi/products/models.py:92 diventi/products/models.py:203
 #: diventi/products/models.py:219 diventi/products/models.py:229
 #: diventi/products/models.py:276
 msgid "product"
 msgstr "prodotto"
 
-#: diventi/adventures/models.py:149
-#, fuzzy
-#| msgid "First"
+#: diventi/adventures/models.py:146
 msgid "First Ring"
-msgstr "Primo"
+msgstr "Primo Anello"
 
-#: diventi/adventures/models.py:150
-#, fuzzy
-#| msgid "Second"
+#: diventi/adventures/models.py:147
 msgid "Second Ring"
-msgstr "Secondo"
+msgstr "Secondo Anello"
 
-#: diventi/adventures/models.py:151
-#, fuzzy
-#| msgid "Third"
+#: diventi/adventures/models.py:148
 msgid "Third Ring"
-msgstr "Terzo"
+msgstr "Terzo Anello"
 
-#: diventi/adventures/models.py:156
+#: diventi/adventures/models.py:153
 msgid "ring of storytelling"
 msgstr "anello della narrazione"
 
-#: diventi/adventures/models.py:157
+#: diventi/adventures/models.py:154
 msgid "Any adventure should have at least one ring of each type."
-msgstr ""
+msgstr "Qualunque avventura dovrebbe avere almeno un anello per tipo."
 
-#: diventi/adventures/models.py:163 diventi/adventures/models.py:237
+#: diventi/adventures/models.py:160 diventi/adventures/models.py:234
 msgid "players"
 msgstr "giocatori"
 
-#: diventi/adventures/models.py:167
+#: diventi/adventures/models.py:164
 msgid "difficulty"
-msgstr ""
+msgstr "difficoltà"
 
-#: diventi/adventures/models.py:168
+#: diventi/adventures/models.py:165
 msgid "1-8 is easy, 10-12 is average, 14+ is difficult."
-msgstr ""
+msgstr "1-8 è facile, 10-12 è medio, 14+ è difficile."
 
-#: diventi/adventures/models.py:174
+#: diventi/adventures/models.py:171
 msgid "Adventure"
 msgstr "Avventura"
 
-#: diventi/adventures/models.py:196 diventi/adventures/models.py:368
-#, fuzzy
-#| msgid "adventures"
+#: diventi/adventures/models.py:193 diventi/adventures/models.py:365
 msgid "adventure"
-msgstr "avventure"
+msgstr "avventura"
 
-#: diventi/adventures/models.py:204
+#: diventi/adventures/models.py:201
 msgid "antagonist"
-msgstr ""
+msgstr "antagonista"
 
-#: diventi/adventures/models.py:209
+#: diventi/adventures/models.py:206
 msgid "subject"
-msgstr ""
+msgstr "soggetto"
 
-#: diventi/adventures/models.py:222
+#: diventi/adventures/models.py:219
 msgid "Antagonist Goal"
-msgstr ""
+msgstr "Obiettivo dell'antagonista"
 
-#: diventi/adventures/models.py:223
+#: diventi/adventures/models.py:220
 msgid "Antagonist Goals"
-msgstr ""
+msgstr "Obiettivi dell'antagonista"
 
-#: diventi/adventures/models.py:241
-#, fuzzy
-#| msgid "application"
+#: diventi/adventures/models.py:238
 msgid "Exploration"
-msgstr "applicazione"
+msgstr "Esplorazione"
 
-#: diventi/adventures/models.py:248
-#, fuzzy
-#| msgid "application"
+#: diventi/adventures/models.py:245
 msgid "navigation"
-msgstr "applicazione"
+msgstr "navigazione"
 
-#: diventi/adventures/models.py:253 diventi/adventures/models.py:419
+#: diventi/adventures/models.py:250 diventi/adventures/models.py:416
 msgid "Story"
 msgstr "Storia"
 
-#: diventi/adventures/models.py:254
+#: diventi/adventures/models.py:251
 msgid "Stories"
 msgstr "Storie"
 
-#: diventi/adventures/models.py:257
-#, fuzzy, python-format
-#| msgid "Story n. %(id)s"
+#: diventi/adventures/models.py:254
 msgid "Story n. %(uuid)s"
-msgstr "Storia n. %(id)s"
+msgstr "Storia n. %(uuid)s"
 
-#: diventi/adventures/models.py:269 diventi/adventures/models.py:399
-#, fuzzy
-#| msgid "Story"
+#: diventi/adventures/models.py:266 diventi/adventures/models.py:396
 msgid "story"
-msgstr "Storia"
+msgstr "storia"
 
-#: diventi/adventures/models.py:276 diventi/products/models.py:277
+#: diventi/adventures/models.py:273 diventi/products/models.py:277
 msgid "customer"
 msgstr "cliente"
 
-#: diventi/adventures/models.py:280
+#: diventi/adventures/models.py:277
 msgid "Match"
 msgstr "Partita"
 
-#: diventi/adventures/models.py:281
+#: diventi/adventures/models.py:278
 msgid "Matches"
 msgstr "Partite"
 
-#: diventi/adventures/models.py:284
+#: diventi/adventures/models.py:281
 #, python-format
 msgid "Match n. %(id)s"
 msgstr "Partita n. %(id)s"
 
-#: diventi/adventures/models.py:300
+#: diventi/adventures/models.py:297
 msgid "antagonist goal"
-msgstr ""
+msgstr "obiettivo dell'antagonista"
 
-#: diventi/adventures/models.py:303
-#, fuzzy
-#| msgid "stories"
+#: diventi/adventures/models.py:300
 msgid "story points"
-msgstr "storie"
+msgstr "punti storia"
+
+#: diventi/adventures/models.py:307
+msgid "Antagonist goals"
+msgstr "Obiettivi dell'antagonista"
 
 #: diventi/adventures/models.py:310
-msgid "Antagonist goals"
-msgstr ""
-
-#: diventi/adventures/models.py:313
 #: diventi/templates/adventures/situation_story_detail.html:11
-#, fuzzy
-#| msgid "resolution"
 msgid "Resolution"
-msgstr "risoluzione"
+msgstr "Risoluzione"
 
-#: diventi/adventures/models.py:314
-#, fuzzy
-#| msgid "resolution"
+#: diventi/adventures/models.py:311
 msgid "Resolutions"
-msgstr "risoluzione"
+msgstr "Risoluzioni"
 
-#: diventi/adventures/models.py:330
+#: diventi/adventures/models.py:327
 msgid "This user is not the game master associated to this situation."
-msgstr ""
+msgstr "Questo utente non è il game master associato a questa situazione."
 
-#: diventi/adventures/models.py:376
+#: diventi/adventures/models.py:373
 msgid "game master"
 msgstr "game master"
 
-#: diventi/adventures/models.py:384
+#: diventi/adventures/models.py:381
 msgid "resolution"
 msgstr "risoluzione"
 
-#: diventi/adventures/models.py:391
-#, fuzzy
-#| msgid "situation"
+#: diventi/adventures/models.py:388
 msgid "next situation"
-msgstr "situazione"
+msgstr "situazione successiva"
 
-#: diventi/adventures/models.py:405
+#: diventi/adventures/models.py:402
 #: diventi/templates/adventures/situation_detail.html:7
 msgid "Situation"
 msgstr "Situazione"
 
-#: diventi/adventures/models.py:406
+#: diventi/adventures/models.py:403
+#: diventi/templates/adventures/situation_story_list.html:5
 msgid "Situations"
 msgstr "Situazioni"
 
-#: diventi/adventures/models.py:409
-#, fuzzy, python-format
-#| msgid "Situation n. %(id)s"
+#: diventi/adventures/models.py:406
 msgid "Situation n. %(pk)s"
-msgstr "Situazione n. %(id)s"
-
-#: diventi/adventures/urls.py:16
-msgid "situation/story/<uuid:uuid>/"
-msgstr ""
-
-#: diventi/adventures/urls.py:17
-msgid "situation/story/<uuid:uuid>/resolution/"
-msgstr ""
+msgstr "Situazione n. %(pk)s"
 
 #: diventi/adventures/urls.py:18
-msgid "story/<uuid:uuid>/get/"
-msgstr ""
+msgid "situation/story/<uuid:uuid>/"
+msgstr "situazione/storia/<uuid:uuid>/"
 
 #: diventi/adventures/urls.py:19
+msgid "situation/story/<uuid:uuid>/list/"
+msgstr "situazione/storia/<uuid:uuid>/lista/"
+
+#: diventi/adventures/urls.py:20
+msgid "situation/story/<uuid:uuid>/resolution/"
+msgstr "situazione/storia/<uuid:uuid>/risoluzione/"
+
+#: diventi/adventures/urls.py:21
+msgid "story/<uuid:uuid>/get/"
+msgstr "storia/<uuid:uuid>/ottieni/"
+
+#: diventi/adventures/urls.py:22
 msgid "story/<uuid:uuid>/"
-msgstr ""
+msgstr "storia/<uuid:uuid>/"
 
-#: diventi/adventures/views.py:39
-#, fuzzy
-#| msgid "You have signed in!"
+#: diventi/adventures/urls.py:23
+msgid "situation/<int:pk>/"
+msgstr "situazione/<int:pk>/"
+
+#: diventi/adventures/views.py:44
 msgid "You have started a new game!"
-msgstr "Hai effettuato l'accesso!"
+msgstr "Hai cominciato una nuova partita!"
 
-#: diventi/adventures/views.py:40
+#: diventi/adventures/views.py:45
 msgid "An error was found while creating you game."
-msgstr ""
+msgstr "È stato sollevato un errore mentre creavi una nuova partita."
 
-#: diventi/adventures/views.py:73
+#: diventi/adventures/views.py:78
 msgid ""
 "the real conclusion is the outcome of your imagination, as well as that of "
 "your players. Your adventure is now part of First Contact story."
 msgstr ""
+"la vera conclusione è il risultato della vostra immaginazione."
+"La vostra avventura è entrata a far parte della saga di Primo Contatto."
 
-#: diventi/adventures/views.py:113
+#: diventi/adventures/views.py:120
 msgid "Hi game master, you are viewing the players' page."
-msgstr ""
+msgstr "Salve game master, stai visionando la pagina pubblica."
 
-#: diventi/adventures/views.py:116
-#, fuzzy
-#| msgid "You have signed in!"
+#: diventi/adventures/views.py:123
 msgid "You have joined a new game."
-msgstr "Hai effettuato l'accesso!"
+msgstr "Ti sei unito ad una nuova partita."
 
-#: diventi/adventures/views.py:166
+#: diventi/adventures/views.py:198
 #, python-brace-format
 msgid "You have completed the adventure \"{adventure}\"!"
-msgstr ""
+msgstr "Hai completato l'avventura \"{adventure}\"!"
 
-#: diventi/adventures/views.py:179
+#: diventi/adventures/views.py:211
 #, python-brace-format
 msgid "You have unlocked a situation of the {ring}."
-msgstr ""
+msgstr "Hai sbloccato una nuova situazione del {ring}"
 
 #: diventi/blog/admin.py:15 diventi/blog/admin.py:34 diventi/ebooks/admin.py:93
 #: diventi/feedbacks/admin.py:54 diventi/landing/admin.py:22
@@ -704,26 +685,20 @@ msgid "articles"
 msgstr "articoli"
 
 #: diventi/blog/urls.py:16
-#, fuzzy
-#| msgid "Chapter category"
 msgid "category/<str:category>/"
-msgstr "Tipo Capitolo"
+msgstr "categoria/<str:category>/"
 
 #: diventi/blog/urls.py:17
-#, fuzzy
-#| msgid "charge/<slug:product_slug>/"
 msgid "article/<slug:slug>/"
-msgstr "addebita/<slug:product_slug>/"
+msgstr "articolo/<slug:slug>/"
 
 #: diventi/blog/urls.py:18
 msgid "article/<slug:slug>/promote/"
-msgstr ""
+msgstr "articolo/<slug:slug>/promuovi/"
 
 #: diventi/blog/urls.py:19
-#, fuzzy
-#| msgid "^(?P<slug>[-\\w]+)/promote/api/$"
 msgid "article/<slug:slug>/promote/api/"
-msgstr "^(?P<slug>[-\\w]+)/promuovi/api/$"
+msgstr "articolo/<slug:slug>/promuovi/api/"
 
 #: diventi/brave/apps.py:7
 msgid "Brave"
@@ -809,11 +784,11 @@ msgstr "Grigio"
 
 #: diventi/core/models.py:20
 msgid "Black"
-msgstr ""
+msgstr "Nero"
 
 #: diventi/core/models.py:21
 msgid "White"
-msgstr ""
+msgstr "Bianco"
 
 #: diventi/core/models.py:30
 msgid "created"
@@ -824,7 +799,7 @@ msgid "modified"
 msgstr "modificato"
 
 #: diventi/core/models.py:42 diventi/core/models.py:61
-#: diventi/products/models.py:196 diventi/templates/publishable_badge.html:4
+#: diventi/products/models.py:196
 msgid "published"
 msgstr "pubblicato"
 
@@ -1068,18 +1043,18 @@ msgstr "regole di sostituzione"
 
 #: diventi/ebooks/models.py:220
 msgid "This content should be simple to read aloud by our fellow game masters."
-msgstr ""
+msgstr "Questo contenuto dovrebbe essere facile da leggere ad alta voce dai nostri compagni game master."
 
 #: diventi/ebooks/models.py:224
-#: diventi/templates/adventures/situation_detail.html:32
-#: diventi/templates/adventures/situation_detail.html:41
+#: diventi/templates/adventures/situation_detail.html:39
+#: diventi/templates/adventures/situation_detail.html:48
 #: diventi/templates/ebooks/section_content_web.html:5
 msgid "situation"
 msgstr "situazione"
 
 #: diventi/ebooks/models.py:225
 msgid "This content should be read by game master's eyes only."
-msgstr ""
+msgstr "Questo contenuto dovrebbe essere letto in privato dal game master."
 
 #: diventi/ebooks/models.py:228
 msgid "bookmark"
@@ -1115,70 +1090,56 @@ msgstr "sezioni"
 
 #: diventi/ebooks/models.py:287
 msgid "Location aspects"
-msgstr ""
+msgstr "Aspetti del luogo"
 
 #: diventi/ebooks/models.py:288
-#, fuzzy
-#| msgid "Adventures"
 msgid "Adventure aspects"
-msgstr "Avventure"
+msgstr "Aspetti dell'avventura"
 
 #: diventi/ebooks/models.py:289
 msgid "Campaign aspects"
-msgstr ""
+msgstr "Aspetti della campagna"
 
 #: diventi/ebooks/models.py:294
-#, fuzzy
-#| msgid "card type"
 msgid "aspect type"
-msgstr "tipo cartello"
+msgstr "tipo aspetto"
 
 #: diventi/ebooks/models.py:306
-#, fuzzy
-#| msgid "sections"
 msgid "section aspect"
-msgstr "sezioni"
+msgstr "aspetto della sezione"
 
 #: diventi/ebooks/models.py:307
-#, fuzzy
-#| msgid "sections"
 msgid "section aspects"
-msgstr "sezioni"
+msgstr "aspetti della sezione"
 
 #: diventi/ebooks/models.py:312
 msgid "Treasure"
-msgstr ""
+msgstr "Tesoro"
 
 #: diventi/ebooks/models.py:313
 msgid "Trap"
-msgstr ""
+msgstr "Trappola"
 
 #: diventi/ebooks/models.py:314
-#, fuzzy
-#| msgid "relationship"
 msgid "Revelation"
-msgstr "relazione"
+msgstr "Rivelazione"
 
 #: diventi/ebooks/models.py:319
-#, fuzzy
-#| msgid "card type"
 msgid "sercret type"
-msgstr "tipo cartello"
+msgstr "tipo di segreto"
 
 #: diventi/ebooks/models.py:331
-#, fuzzy
-#| msgid "request a reset here"
 msgid "requires a skill check"
-msgstr "richiedi un reset qui"
+msgstr "richiede una prova"
 
 #: diventi/ebooks/models.py:335
-#: diventi/templates/adventures/situation_detail.html:92
+#: diventi/templates/adventures/situation_detail.html:102
 msgid "secret"
-msgstr ""
+msgstr "segreto"
 
 #: diventi/ebooks/models.py:336
 msgid "secrets"
-msgstr ""
+msgstr "segreti"
 
 #: diventi/ebooks/urls.py:16
 msgid "book/<slug:book_slug>/"
@@ -1642,7 +1603,7 @@ msgstr "%(product)s: iscritti inglesi"
 msgid "%(product)s: italian subscribers"
 msgstr "%(product)s: iscritti italiani"
 
-#: diventi/products/models.py:198 diventi/templates/publishable_badge.html:6
+#: diventi/products/models.py:198 diventi/templates/publishable_badge.html:4
 msgid "draft"
 msgstr "bozza"
 
@@ -2092,93 +2053,88 @@ msgid ""
 msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 
 #: diventi/templates/adventures/situation_detail.html:17
-#, fuzzy
-#| msgid "You are answering as"
 msgid "you are playing the"
-msgstr "Stai rispondendo come"
+msgstr "stai giocando il"
 
 #: diventi/templates/adventures/situation_detail.html:18
-#, fuzzy
-#| msgid "public"
 msgid "public link"
-msgstr "pubblico"
+msgstr "link pubblico"
 
-#: diventi/templates/adventures/situation_detail.html:33
-#, fuzzy
-#| msgid "situations"
-msgid "interactions"
-msgstr "situazioni"
-
-#: diventi/templates/adventures/situation_detail.html:64
-#, fuzzy
-#| msgid "adventures"
-msgid "adventure secrets"
-msgstr "avventure"
-
-#: diventi/templates/adventures/situation_detail.html:99
-#, fuzzy
-#| msgid "situation"
-msgid "situation check:"
-msgstr "situazione"
-
-#: diventi/templates/adventures/situation_detail.html:101
-msgid "reveal"
-msgstr ""
-
+#: diventi/templates/adventures/situation_detail.html:29
 #: diventi/templates/adventures/situation_story_create.html:6
+#: diventi/templates/adventures/situation_story_list.html:26
 #: diventi/templates/navigation.html:30
 msgid "adventures"
 msgstr "avventure"
 
+#: diventi/templates/adventures/situation_detail.html:40
+msgid "interactions"
+msgstr "interazioni"
+
+#: diventi/templates/adventures/situation_detail.html:71
+msgid "adventure secrets"
+msgstr "segreti dell'avventura"
+
+#: diventi/templates/adventures/situation_detail.html:81
+#, python-format
+msgid "%(name)s's goal"
+msgstr "obiettivo di %(name)s"
+
+#: diventi/templates/adventures/situation_detail.html:109
+msgid "situation check:"
+msgstr "prova:"
+
+#: diventi/templates/adventures/situation_detail.html:111
+msgid "reveal"
+msgstr "rivela"
+
 #: diventi/templates/adventures/situation_story_create.html:18
-#, fuzzy
-#| msgid "adventures"
 msgid "Start your adventure"
-msgstr "avventure"
+msgstr "Inizia una nuova avventura"
 
 #: diventi/templates/adventures/situation_story_create.html:24
-#, fuzzy
-#| msgid "situations"
 msgid "your open situations"
-msgstr "situazioni"
+msgstr "le tue situazioni aperte"
 
 #: diventi/templates/adventures/situation_story_create.html:32
 msgid "you have no open situations"
-msgstr ""
+msgstr "non hai situazioni aperte"
 
 #: diventi/templates/adventures/situation_story_create.html:38
-#, fuzzy
-#| msgid "adventures"
 msgid "your past adventures"
-msgstr "avventure"
+msgstr "le tue avventure passate"
 
 #: diventi/templates/adventures/situation_story_create.html:46
 msgid "you have yet to complete a whole adventure"
-msgstr ""
+msgstr "devi ancora completare un'avventura"
 
 #: diventi/templates/adventures/situation_story_detail.html:8
 msgid "finale"
-msgstr ""
+msgstr "finale"
 
 #: diventi/templates/adventures/situation_story_detail.html:62
 msgid "Submit"
-msgstr ""
+msgstr "Invia"
+
+#: diventi/templates/adventures/situation_story_list.html:15
+msgid "the situations you played in this adventure"
+msgstr "ecco le situazioni che hai giocato in questa avventura"
+
+#: diventi/templates/adventures/situation_story_list.html:37
+msgid "this situation is still open."
+msgstr "questa situazione è ancora aperta."
 
 #: diventi/templates/adventures/story_detail.html:30
-#, fuzzy
-#| msgid "Your password"
 msgid "Your story"
-msgstr "La tua password"
+msgstr "La tua storia"
 
 #: diventi/templates/adventures/story_detail.html:50
-#, fuzzy
-#| msgid "Adventures"
 msgid "Adventure secrets"
-msgstr "Avventure"
+msgstr "Segreti dell'avventura"
 
 #: diventi/templates/adventures/story_detail.html:64
 msgid "Refesh"
-msgstr ""
+msgstr "Aggiorna"
 
 #: diventi/templates/base_dashboard.html:119
 msgid "CP"
@@ -2356,11 +2312,11 @@ msgstr "Chiudi"
 msgid "You are answering as"
 msgstr "Stai rispondendo come"
 
-#: diventi/templates/feedbacks/answer_form.html:33
+#: diventi/templates/feedbacks/answer_form.html:32
 msgid "Survey"
 msgstr "Sondaggio"
 
-#: diventi/templates/feedbacks/answer_form.html:94
+#: diventi/templates/feedbacks/answer_form.html:92
 msgid "send survey"
 msgstr "invia sondaggio"
 
@@ -2458,19 +2414,21 @@ msgstr "es: Primo Contatto"
 msgid "admin"
 msgstr "amministrazione"
 
-#: diventi/templates/navigation.html:43
-#, fuzzy
-#| msgid "collection"
+#: diventi/templates/navigation.html:41
 msgid "my collection"
-msgstr "collezione"
+msgstr "la mia collezione"
 
-#: diventi/templates/navigation.html:57
+#: diventi/templates/navigation.html:55
 msgid "profile"
 msgstr "profilo"
 
-#: diventi/templates/navigation.html:58
+#: diventi/templates/navigation.html:56
 msgid "sign out"
 msgstr "annulla accesso"
+
+#: diventi/templates/navigation.html:62
+msgid "sign in"
+msgstr "accedi"
 
 #: diventi/templates/payments/pay_button.html:17
 msgid "buy with card"
@@ -2513,6 +2471,10 @@ msgstr "non c'è alcuna recensione per ora, postane una tu!"
 #: diventi/templates/products/product_detail.html:231
 msgid "related projects"
 msgstr "progetti correlati"
+
+#: diventi/templates/publishable_badge.html:4
+msgid "a draft content can be seen only by the staff"
+msgstr ""
 
 #: diventi/templates/reviews/form.html:23
 msgid "Select a rating"
@@ -2563,9 +2525,6 @@ msgstr "relazione"
 
 #~ msgid "^(?P<slug>[-\\w]+)/promote/$"
 #~ msgstr "^(?P<slug>[-\\w]+)/promuovi/$"
-
-#~ msgid "sign in"
-#~ msgstr "accedi"
 
 #~ msgid "sheets/"
 #~ msgstr "schede/"

@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [blog] Updated hot articles layout and visuals
 - [core] Updated navbar with grouped links
 - [core] Updated draft badge visual style
+- [core] Updated ckeditor buttons to include text alignment
 
 ### Removed
 

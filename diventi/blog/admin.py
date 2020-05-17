@@ -15,6 +15,9 @@ class ArticleAdmin(DiventiTranslationAdmin):
         (_('Management'), {
             'fields': ('published', 'hot')
         }),
+        (_('Layout'), {
+            'fields': ('col_lg', 'col_md')
+        }),
         (_('Editing'), {
             'fields': ('title', 'category', 'image', 'description', 'content', 'label', 'author', 'slug', 'publication_date'),
         }),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-12 08:55+0200\n"
+"POT-Creation-Date: 2020-05-17 11:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -621,13 +621,18 @@ msgstr "Hai completato l'avventura!"
 msgid "You have unlocked a new situation."
 msgstr "Hai sbloccato una nuova situazione."
 
-#: diventi/blog/admin.py:15 diventi/blog/admin.py:34 diventi/ebooks/admin.py:93
+#: diventi/blog/admin.py:15 diventi/blog/admin.py:37 diventi/ebooks/admin.py:93
 #: diventi/feedbacks/admin.py:54 diventi/landing/admin.py:22
 #: diventi/products/admin.py:53
 msgid "Management"
 msgstr "Gestione"
 
-#: diventi/blog/admin.py:18 diventi/blog/admin.py:37 diventi/ebooks/admin.py:63
+#: diventi/blog/admin.py:18 diventi/ebooks/admin.py:60
+#: diventi/ebooks/admin.py:96 diventi/ebooks/admin.py:116
+msgid "Layout"
+msgstr "Disposizione"
+
+#: diventi/blog/admin.py:21 diventi/blog/admin.py:40 diventi/ebooks/admin.py:63
 #: diventi/ebooks/admin.py:99 diventi/ebooks/admin.py:119
 #: diventi/feedbacks/admin.py:57 diventi/landing/admin.py:28
 #: diventi/products/admin.py:59
@@ -638,57 +643,57 @@ msgstr "Contenuti"
 msgid "Blog"
 msgstr "Blog"
 
-#: diventi/blog/models.py:63
+#: diventi/blog/models.py:84
 msgid "Blog Cover"
 msgstr "Copertina del blog"
 
-#: diventi/blog/models.py:64
+#: diventi/blog/models.py:85
 msgid "Blog Covers"
 msgstr "Copertine del blog"
 
-#: diventi/blog/models.py:79 diventi/core/models.py:101
+#: diventi/blog/models.py:100 diventi/core/models.py:101
 #: diventi/feedbacks/models.py:20 diventi/feedbacks/models.py:59
 #: diventi/feedbacks/models.py:96 diventi/feedbacks/models.py:116
 #: diventi/landing/models.py:29 diventi/products/models.py:70
 msgid "title"
 msgstr "titolo"
 
-#: diventi/blog/models.py:80 diventi/core/models.py:103
+#: diventi/blog/models.py:101 diventi/core/models.py:103
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
 #: diventi/feedbacks/models.py:117 diventi/landing/models.py:30
 #: diventi/products/models.py:72
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/blog/models.py:81 diventi/ebooks/models.py:85
+#: diventi/blog/models.py:102 diventi/ebooks/models.py:85
 #: diventi/products/models.py:78 diventi/products/models.py:220
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:82 diventi/ebooks/models.py:168
+#: diventi/blog/models.py:103 diventi/ebooks/models.py:168
 #: diventi/ebooks/models.py:219 diventi/feedbacks/models.py:155
 msgid "content"
 msgstr "contenuto"
 
-#: diventi/blog/models.py:83
+#: diventi/blog/models.py:104
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:84 diventi/ebooks/models.py:60
+#: diventi/blog/models.py:105 diventi/ebooks/models.py:60
 #: diventi/ebooks/models.py:129 diventi/ebooks/models.py:238
 #: diventi/feedbacks/models.py:118 diventi/products/models.py:73
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:85 diventi/feedbacks/models.py:150
+#: diventi/blog/models.py:106 diventi/feedbacks/models.py:150
 msgid "author"
 msgstr "autore"
 
-#: diventi/blog/models.py:91 diventi/blog/models.py:116
+#: diventi/blog/models.py:112 diventi/blog/models.py:137
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:92 diventi/landing/models.py:46
+#: diventi/blog/models.py:113 diventi/landing/models.py:46
 msgid "articles"
 msgstr "articoli"
 
@@ -884,34 +889,38 @@ msgid "Wide"
 msgstr "Larga"
 
 #: diventi/core/models.py:268
+msgid "Three fourths"
+msgstr "Tre quarti"
+
+#: diventi/core/models.py:269
 msgid "Half"
 msgstr "Media"
 
-#: diventi/core/models.py:269
+#: diventi/core/models.py:270
 msgid "Narrow"
 msgstr "Stretta"
 
-#: diventi/core/models.py:271
+#: diventi/core/models.py:272
 msgid "lg column"
 msgstr "colonna lg"
 
-#: diventi/core/models.py:272
+#: diventi/core/models.py:273
 msgid "md column"
 msgstr "colonna md"
 
-#: diventi/core/models.py:281
+#: diventi/core/models.py:282
 msgid "left"
 msgstr "sinistra"
 
-#: diventi/core/models.py:282
+#: diventi/core/models.py:283
 msgid "centered"
 msgstr "centrale"
 
-#: diventi/core/models.py:283
+#: diventi/core/models.py:284
 msgid "right"
 msgstr "destra"
 
-#: diventi/core/models.py:285
+#: diventi/core/models.py:286
 msgid "alignment"
 msgstr "allineamento"
 
@@ -927,11 +936,6 @@ msgstr "Contenuti universali"
 #: diventi/templates/ebooks/chapter_detail_web.html:20
 msgid "Table of contents"
 msgstr "Indice"
-
-#: diventi/ebooks/admin.py:60 diventi/ebooks/admin.py:96
-#: diventi/ebooks/admin.py:116
-msgid "Layout"
-msgstr "Disposizione"
 
 #: diventi/ebooks/admin.py:113
 msgid "Pubblication"
@@ -1058,7 +1062,7 @@ msgstr ""
 #: diventi/ebooks/models.py:224
 #: diventi/templates/adventures/situation_detail.html:39
 #: diventi/templates/adventures/situation_detail.html:48
-#: diventi/templates/ebooks/section_content_web.html:5
+#: diventi/templates/ebooks/section_content_web.html:7
 msgid "situation"
 msgstr "situazione"
 
@@ -2187,25 +2191,25 @@ msgstr "Foto"
 msgid "all"
 msgstr "tutto"
 
-#: diventi/templates/blog/article_list.html:72
+#: diventi/templates/blog/article_list.html:94
 msgid "read article"
 msgstr "leggi articolo"
 
-#: diventi/templates/blog/article_list.html:79
+#: diventi/templates/blog/article_list.html:101
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
-#: diventi/templates/blog/article_list.html:88
-#: diventi/templates/blog/article_list.html:90
+#: diventi/templates/blog/article_list.html:110
+#: diventi/templates/blog/article_list.html:112
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list.html:94
+#: diventi/templates/blog/article_list.html:116
 msgid "current"
 msgstr "corrente"
 
-#: diventi/templates/blog/article_list.html:100
-#: diventi/templates/blog/article_list.html:102
+#: diventi/templates/blog/article_list.html:122
+#: diventi/templates/blog/article_list.html:124
 msgid "Next"
 msgstr "Successivo"
 
@@ -2648,9 +2652,6 @@ msgstr "relazione"
 
 #~ msgid "^survey/$"
 #~ msgstr "^sondaggio/$"
-
-#~ msgid "charge for"
-#~ msgstr "pagamento per"
 
 #~ msgid "You paid {} {} for {}"
 #~ msgstr "Hai pagato {} {} per {}"

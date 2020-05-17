@@ -265,6 +265,7 @@ class FeaturedModel(PublishableModel):
 class DiventiColModel(models.Model):
     COL_CHOICES = [
         (12, _('Wide')),
+        (8, _('Three fourths')),
         (6, _('Half')),
         (4, _('Narrow')),
     ]

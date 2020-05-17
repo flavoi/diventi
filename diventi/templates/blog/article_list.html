@@ -49,9 +49,34 @@
          </div>
       </div>
    </div>
+
+   <div class="row">
+      {% for article in hot_articles %}
+      <div class="col-md-{{ article.col_md }} col-lg-{{ article.col_lg }} d-flex align-items-stretch">
+         <div class="card card-raised card-background" style="background-image: url(&quot;{{ article.image }}&quot;)">
+            <div class="card-body">
+               <h6 class="card-category text-info">
+                  {{ article.category }}
+                  {% with article as object %}{% include "publishable_badge.html" %}{% endwith %}
+               </h6>
+               <a href="{% url 'blog:detail' article.slug %}">
+                  <h3 class="card-title">{{ article.title }}</h3>
+               </a>
+               <p class="card-description">
+                  {{ article.description|striptags|safe|truncatechars:200 }}
+               </p>
+               <a href="{% url 'blog:detail' article.slug %}" class="btn btn-warning btn-round">
+                  <i class="fal fa-align-left fa-fw fa-lg"></i> {% trans "read article" %}
+               </a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+
    <div class="row">
       {% for article in articles %}
-      <div class="col-md-{% if article.hot %}8{% else %}4{% endif %}">
+      <div class="col-md-4">
          <div class="card card-plain card-blog">
             <div class="card-header card-header-image">
                <a href="{% url 'blog:detail' article.slug %}">
@@ -60,8 +85,8 @@
                <div class="colored-shadow" style="background-image: url(&quot;{{ article.image }}&quot;); opacity: 1;"></div>
             </div>
             <div class="card-body">
-               <h6 class="card-category {% if article.hot %}text-danger{% else %}text-info{% endif %}">
-                  {% if article.hot %}<i class="fad fa-lg fa-dice-d20"></i> {% endif %}{{ article.category }}
+               <h6 class="card-category text-info">
+                  {{ article.category }}
                   {% with article as object %}{% include "publishable_badge.html" %}{% endwith %}
                </h6>
                <h4 class="card-title">

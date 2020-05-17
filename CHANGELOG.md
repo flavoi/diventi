@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - [blog] Enabled category filters in the list page
+- [blog] Updated hot articles layout and visuals
 - [core] Updated navbar with grouped links
 - [core] Updated draft badge visual style
 

@@ -11,12 +11,27 @@ from django.utils.translation import gettext_lazy as _
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import TimeStampedModel, PromotableModel, PublishableModel, Category, DiventiImageModel, DiventiCoverModel, Element
+from diventi.core.models import (
+    TimeStampedModel, 
+    PromotableModel, 
+    PublishableModel, 
+    Category, 
+    DiventiImageModel, 
+    DiventiCoverModel, 
+    Element,
+    DiventiColModel,
+)
 
 
 class ArticleQuerySet(models.QuerySet):
     
-    # Get the list of published articles 
+    # Selet articles' related objects
+    def prefetch(self):
+        articles = self.select_related('category')
+        articles = articles.select_related('author')
+        return articles
+
+    # Get the list of published articles f
     def published(self):
         user = CuserMiddleware.get_user()
         if user.is_superuser:
@@ -28,6 +43,7 @@ class ArticleQuerySet(models.QuerySet):
     # Get the list of published articles from the most recent to the least 
     def history(self):
         articles = self.published().order_by('-hot', '-publication_date')
+        articles = articles.prefetch()
         return articles
 
     # Get the list of published articles of a certain category
@@ -35,9 +51,14 @@ class ArticleQuerySet(models.QuerySet):
         articles = self.history().filter(category__title=category_title)
         return articles
 
+    # Get the featured articles
+    def hot(self):
+        articles = self.history().filter(hot=True)
+        return articles
+
     # Get the hottest article
     def hottest(self):
-        article = self.history().filter(hot=True).latest('publication_date')
+        article = self.hot().latest('publication_date')
         return article
 
     # Fetch all the promotions related to the article
@@ -48,7 +69,7 @@ class ArticleQuerySet(models.QuerySet):
     # Get the most recent article
     def current(self):
         try:
-            article = self.get_hottest_article()
+            article = self.hottest()
         except Article.DoesNotExist:
             article = self.published().latest('publication_date')
         return article
@@ -71,7 +92,7 @@ class ArticleCategory(Category):
     pass
 
 
-class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel):
+class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.

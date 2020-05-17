@@ -26,6 +26,7 @@ class ArticlesListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(ArticlesListView, self).get_context_data(*args, **kwargs)
         context['categories'] = ArticleCategory.objects.filter(article__in=Article.objects.history()).distinct()
+        context['hot_articles'] = Article.objects.hot()
         context['blogcover'] = BlogCover.objects.active()
         return context
 
@@ -35,6 +36,11 @@ class ArticlesListViewByCategory(ArticlesListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.category(category_title=self.kwargs['category'])
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticlesListViewByCategory, self).get_context_data(*args, **kwargs)
+        context['hot_articles'] = Article.objects.hot().category(category_title=self.kwargs['category'])
+        return context
 
 
 class ArticleDetailView(DetailView):

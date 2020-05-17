@@ -200,8 +200,7 @@ STATICFILES_DIRS = [
 NOCAPTCHA = True
 
 
-# Ckeditor config
-# https://github.com/django-ckeditor/django-ckeditor
+# C 
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -211,9 +210,8 @@ CKEDITOR_CONFIGS = {
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Table', 'HorizontalRule'],
             ['Bold', 'Italic', 'Underline', 'RemoveFormat'],
-            ['NumberedList', 'BulletedList', 'Blockquote'],
+            ['NumberedList', 'BulletedList', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',],
             ['Source',],
-            ['Maximize',],
         ],
         'toolbar': 'Basic',
         'stylesSet': [

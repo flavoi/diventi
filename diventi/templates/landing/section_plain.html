@@ -1,4 +1,4 @@
-{% extends 'landing/standard_section.html' %}
+{% extends 'landing/section_standard.html' %}
 {% load i18n %}
 
 {% block product_landing_card %}
@@ -16,3 +16,15 @@
   </div>
 </div>
 {% endblock product_landing_card %}
+
+{% block article_landing_card %}
+    <div class="container">
+      <div class="row">
+        {% for article in section.articles.all %}
+        <div class="col-md-6 {{ section.get_alignment_classes }}">
+          {% include "blog/article_card_plain.html" %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock article_landing_card %}

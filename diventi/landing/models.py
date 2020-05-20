@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.utils.html import mark_safe
+from django.db.models import Prefetch
 
 from cuser.middleware import CuserMiddleware
 
@@ -20,7 +21,7 @@ class SectionModelManager(FeaturedModelManager):
         sections = sections.prefetch_related('users')
         sections = sections.prefetch_related('products').prefetch_related('products__chapters')
         sections = sections.select_related('section_survey')
-        sections = sections.prefetch_related('articles')
+        sections = sections.prefetch_related(Prefetch('articles', queryset=Article.objects.order_by('-publication_date')))
         sections = sections.order_by('order_index')
         return sections
 

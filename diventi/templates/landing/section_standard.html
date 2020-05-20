@@ -65,15 +65,17 @@
 {% endif %}
 
 {% if section.articles.all %}
-<div class="container">
-    <div class="row">
-        {% for article in section.articles.all %}
-            <div class="col-md-4 {{ section.get_alignment_classes }}">
-                {% include "blog/article_card.html" %}
-            </div>
-        {% endfor %}
+    {% block article_landing_card %}
+    <div class="container">
+        <div class="row">
+            {% for article in section.articles.all %}
+                <div class="col-md-4 {{ section.get_alignment_classes }}">
+                    {% include "blog/article_card.html" %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
+    {% endblock article_landing_card %}
 {% endif %}
 
 {% if section.section_features.all %}

@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+<div class="card card-plain">
+  <a href="{% url 'blog:detail' article.slug %}">
+    <div class="card-header card-header-image">
+      <img src="{{ article.image }}">
+    </div>
+  </a>
+  <div class="card-body">
+    <h6 class="card-category">{{ article.category }}</h6>
+    <a href="{% url 'blog:detail' article.slug %}">
+      <h4 class="card-title">{{ article.title|capfirst }}</h4>
+    </a>
+    <p class="card-description">
+      {{ article.description|capfirst }}
+    </p>
+  </div>
+</div>

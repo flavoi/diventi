@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 ### Fixed
+- [blog] Fixed a problem that prevented article plain cards to be displayed
 - [feedbacks] Fixed a problem that caused an incorrect layout in the answer form page
 
 ### Security

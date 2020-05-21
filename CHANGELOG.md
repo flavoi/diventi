@@ -18,12 +18,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [core] Updated ckeditor buttons to include text alignment
 
 ### Removed
+- [sheets] Removed unecessary files on this legacy app
 
 ### Fixed
 - [blog] Fixed a problem that prevented article plain cards to be displayed
 - [feedbacks] Fixed a problem that caused an incorrect layout in the answer form page
+- [products] Fixed product card icons size
 
 ### Security
+- [core] Updated urllib from v0.17.0 to v0.18.0
 
 
 ## [1.0.0-beta-7]→ 2020-04-02

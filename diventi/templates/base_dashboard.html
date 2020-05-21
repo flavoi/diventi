@@ -99,9 +99,9 @@
           <div class="user">
             <div class="photo">
               {% if user.avatar.image %}
-                <img src="{{ user.avatar.image }}">
+                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ user.avatar.image }}">
               {% else %}
-                  <img src="{% static 'material-kit/img/placeholder.jpg' %}">
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% static 'material-kit/img/placeholder.jpg' %}">
               {% endif %}
             </div>
             <div class="user-info">

@@ -75,7 +75,7 @@
                     {% for goal in antagonist_goals %}
                         <div class="card card-profile">
                             <div class="card-avatar">
-                                <img class="img" src="{% if goal.antagonist.image %}{{ goal.antagonist.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}">
+                                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="img" data-src="{% if goal.antagonist.image %}{{ goal.antagonist.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}">
                             </div>
                             <div class="card-body">
                                 <h6 class="card-category text-gray">{% blocktrans with name=goal.antagonist.title %}{{ name }}'s goal{% endblocktrans %}</h6>

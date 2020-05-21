@@ -28,9 +28,9 @@
                 <div class="col-md-6 mx-auto">
                 <div class="profile">
                   <div class="avatar">
-                    <img src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="User" class="img-raised rounded-circle img-fluid">
                   </div>
-                  <div class="name" >
+                  <div class="name">
                     {% include 'accounts/user_presentation.html' %}
                   </div>
                 </div>

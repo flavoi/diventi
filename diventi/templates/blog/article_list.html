@@ -80,7 +80,7 @@
          <div class="card card-plain card-blog">
             <div class="card-header card-header-image">
                <a href="{% url 'blog:detail' article.slug %}">
-               <img class="img img-raised" src="{{ article.image }}">
+               <img class="img img-raised" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ article.image }}">
                </a>
                <div class="colored-shadow" style="background-image: url(&quot;{{ article.image }}&quot;); opacity: 1;"></div>
             </div>

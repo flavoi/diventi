@@ -5,7 +5,7 @@
 <div class="card card-plain">
   <a href="{% url 'blog:detail' article.slug %}">
     <div class="card-header card-header-image">
-      <img src="{{ article.image }}">
+      <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ article.image }}">
     </div>
   </a>
   <div class="card-body">

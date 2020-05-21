@@ -37,7 +37,7 @@
                 <div class="preview-box tab-content">
                   {% for imagepreview in product.imagepreviews.all %}
                     <div class="tab-pane {% if forloop.first %}active show{% endif %}" id="product-page{{ imagepreview.id }}">
-                      <img src="{{ imagepreview.image }}">
+                      <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ imagepreview.image }}">
                     </div>
                   {% endfor %}
                 </div>
@@ -46,7 +46,7 @@
                     {% for imagepreview in product.imagepreviews.all %}
                       <li class="nav-item {% if forloop.first %}active show{% endif %}">
                         <a href="#product-page{{ imagepreview.id }}" class="nav-link {% if forloop.first %}active show{% endif %}" data-toggle="tab">
-                          <img src="{{ imagepreview.image }}">
+                          <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ imagepreview.image }}">
                         </a>
                       </li>
                     {% endfor %}
@@ -181,7 +181,7 @@
                   <div class="col-md-2">
                     <div class="card-avatar">
                       <a href="{{ review.user.get_absolute_url }}">
-                        <img class="img" src="{% if review.user.avatar.image %}{{ review.user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}">
+                        <img class="img" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if review.user.avatar.image %}{{ review.user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}">
                       </a>
                     </div>
                   </div>

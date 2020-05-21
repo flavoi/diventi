@@ -46,7 +46,7 @@
          <li class="dropdown nav-item">
             <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                <div class="profile-photo-small">
-                  <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="rounded-circle img-fluid">
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="rounded-circle img-fluid">
                </div>
                <div class="ripple-container"></div>
             </a>

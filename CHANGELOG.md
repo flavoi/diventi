@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [core] Updated ckeditor buttons to include text alignment
 
 ### Removed
-- [sheets] Removed unecessary files on this legacy app
+- [sheets] Removed unecessary files about this legacy app
 
 ### Fixed
 - [accounts] Fixed avatars and covers image layout

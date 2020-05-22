@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [sheets] Removed unecessary files on this legacy app
 
 ### Fixed
+- [accounts] Fixed avatars and covers image layout
 - [blog] Fixed a problem that prevented article plain cards to be displayed
 - [feedbacks] Fixed a problem that caused an incorrect layout in the answer form page
 - [products] Fixed product card icons size

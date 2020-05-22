@@ -15,7 +15,7 @@ class DiventiAvatarSelect(forms.Select):
         if value and int(value) > 0:
             avatar = DiventiAvatar.objects.get(id=int(value))
             option_attrs['data-img-src'] = avatar.image
-            option_attrs['data-img-class'] = ''
+            option_attrs['data-img-class'] = 'avatar_image'
         if selected:
             option_attrs.update(self.checked_attribute)
         if 'id' in option_attrs:
@@ -43,7 +43,7 @@ class DiventiCoverSelect(forms.Select):
         if value and int(value) > 0:
             avatar = DiventiCover.objects.get(id=int(value))
             option_attrs['data-img-src'] = avatar.image
-            option_attrs['data-img-class'] = ''
+            option_attrs['data-img-class'] = 'cover_image'
         if selected:
             option_attrs.update(self.checked_attribute)
         if 'id' in option_attrs:

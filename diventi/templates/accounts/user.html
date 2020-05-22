@@ -5,14 +5,7 @@
 
 {% block extrahead %}
     <link href="{% static 'image-picker-v2/css/image-picker.css' %}" rel="stylesheet"/>
-
-    <style>
-        ul.thumbnails.image_picker_selector li .thumbnail.selected {
-      background: #00bcd4; }
-      .disabled { 
-            pointer-events: all !important; 
-        } 
-    </style>
+    <link href="{% static 'diventi/css/diventi-user.min.css' %}" rel="stylesheet"/>
 {% endblock extrahead %}
 
 {% block title %}{% trans "Profile" %}{% endblock title %}

@@ -108,10 +108,10 @@ class BookAdmin(DiventiTranslationAdmin):
 
 
 class ChapterAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'order_index', 'chapter_book', 'part', 'created', 'modified',]
+    list_display = ['title', 'image_tag', 'order_index', 'chapter_book', 'updated', 'new', 'part', 'created', 'modified',]
     fieldsets = (
         (_('Pubblication'), {
-            'fields': ('chapter_book',)
+            'fields': ('chapter_book', 'updated', 'new')
         }),
         (_('Layout'), {
             'fields': ('image',)

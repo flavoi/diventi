@@ -173,7 +173,7 @@ class ChapterAutocomplete(autocomplete.Select2QuerySetView, StaffRequiredMixin):
     """ Returns filtered chapters to facilitate user form fill. """
   
     def get_queryset(self):
-        qs = Chapter.objects.all()
+        qs = Chapter.objects.all().book()
         book = self.forwarded.get('book', None)
         if book:
             qs = qs.filter(chapter_book=book)
@@ -183,10 +183,10 @@ class ChapterAutocomplete(autocomplete.Select2QuerySetView, StaffRequiredMixin):
 
 
 class SectionAutocompleteFromProduct(autocomplete.Select2QuerySetView, StaffRequiredMixin):
-    """ Returns filtered chapters to facilitate user form fill. """
+    """ Returns filtered sections to facilitate user form fill. """
 
     def get_queryset(self):
-        qs = Section.objects.all()
+        qs = Section.objects.all().usection()
         product = self.forwarded.get('product', None)
         if product:
             book = Book.objects.filter(book_product=product)

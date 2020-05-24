@@ -103,15 +103,6 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
 
 class ChapterQuerySet(models.QuerySet):
 
-    # Get the list of published articles 
-    def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            chapters = self
-        else:
-            chapters = self.filter(chapter_book__published=True)
-        return chapters
-
     # Fetch all the sections related to the chapter
     def sections(self):
         chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.usection()))
@@ -122,13 +113,36 @@ class ChapterQuerySet(models.QuerySet):
         chapter = self.prefetch_related(Prefetch('sections', queryset=Section.objects.bookmarks()))
         return chapter
 
+    # Fetch the book related to the chapter
+    def book(self):
+        chapter = self.select_related('chapter_book')
+        return chapter
+
+    # Get the list of published articles 
+    def published(self):
+        user = CuserMiddleware.get_user()
+        if user.is_superuser:
+            chapters = self
+        else:
+            chapters = self.filter(chapter_book__published=True)
+        chapters = chapters.book() 
+        return chapters
+
 
 class Chapter(Element, DiventiImageModel, TimeStampedModel, PublishableModel):
     """ A chapter of a book. """
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
     slug = models.SlugField(verbose_name=_('slug'))
     chapter_book = models.ForeignKey(Book, null=True, blank=True, related_name='chapters', on_delete=models.SET_NULL, verbose_name=_('book'))
-    part = models.ForeignKey(Part, null=True, related_name='parts', on_delete=models.SET_NULL, verbose_name=_('part'))    
+    part = models.ForeignKey(Part, null=True, related_name='parts', on_delete=models.SET_NULL, verbose_name=_('part'))
+    updated = models.BooleanField(
+        default=False,
+        verbose_name=_('updated'),
+    )
+    new = models.BooleanField(
+        default=False,
+        verbose_name=_('new'),
+    ) 
 
     def __str__(self):
         return '({0}) {1} - {2}'.format(self.order_index, self.chapter_book, self.title)

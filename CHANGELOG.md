@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [UNRELEASED]
 ### Added
--  Introduced adventures: a new app that enables game master to play with Diventi's adventures.
+- Introduced adventures: a new app that enables game master to play with Diventi's adventures.
+- [ebooks] Added 'new' and 'updated' badges for newly edited chapters
 
 ### Changed
 - [blog] Enabled category filters in the list page
@@ -16,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [core] Updated navbar with grouped links
 - [core] Updated draft badge visual style
 - [core] Updated ckeditor buttons to include text alignment
+- [ebooks] Updated dropdown queries to be more efficient while fetching related books
 
 ### Removed
 - [sheets] Removed unecessary files about this legacy app

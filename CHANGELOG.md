@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [core] Updated draft badge visual style
 - [core] Updated ckeditor buttons to include text alignment
 - [ebooks] Updated dropdown queries to be more efficient while fetching related books
+- [ebooks] Updated tables visual styles to make the more responsive
 
 ### Removed
 - [sheets] Removed unecessary files about this legacy app
@@ -25,11 +26,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - [accounts] Fixed avatars and covers image layout
 - [blog] Fixed a problem that prevented article plain cards to be displayed
+- [ebooks] Fixed a problem that prevented the cover image to be displayed in search results
 - [feedbacks] Fixed a problem that caused an incorrect layout in the answer form page
 - [products] Fixed product card icons size
 
 ### Security
 - [core] Updated urllib from v0.17.0 to v0.18.0
+- [core] Updated django from v2.2.12 to v2.2.13
 
 
 ## [1.0.0-beta-7]→ 2020-04-02

@@ -43,3 +43,28 @@ class SectionForm(forms.ModelForm):
             'autocomplete_light/select2.js',
             'autocomplete_light/jquery.post-setup.js'
         ]
+
+
+class SectionProductForm(forms.ModelForm):
+    section = forms.ModelChoiceField(
+        queryset=Section.objects.all(),
+        widget=autocomplete.ModelSelect2(
+            url='ebooks:section-autocomplete-book',
+            attrs={
+                'data-placeholder': _('Autocomplete ...'),
+                'data-minimum-input-length': 3,
+            },
+            forward=['product'],
+        ),
+        label=_('Section'),
+        required=False,
+    )
+
+    class Meta:
+        model = Section
+        fields = ('__all__')
+
+    class Media:
+        js = [
+            'https://code.jquery.com/jquery-3.4.1.min.js',
+        ]

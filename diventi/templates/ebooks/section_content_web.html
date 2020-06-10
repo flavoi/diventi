@@ -1,8 +1,9 @@
 {% load i18n %}
+{% load tooltips_extras %}
 
 <a style="color:#41474d" name="{{ section.slug }}"><h3>{{ section.title|capfirst }}</h3></a>
 {% include 'ebooks/section_aspects_web.html' %}
-{{ section.get_converted_content|safe }}
+{{ section.get_converted_content|tooltip|safe }}
 {% if section.situation %}
 <u>{% trans "situation"|capfirst %}:</u> {{ section.situation|safe }}
 {% endif %}

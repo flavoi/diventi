@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from dal import autocomplete
 
 from diventi.ebooks.models import Section
+from diventi.ebooks.forms import SectionProductForm
 
 from .models import (
     Adventure,
@@ -13,29 +14,11 @@ from .models import (
 )
 
 
-class AdventureForm(forms.ModelForm):
-    section = forms.ModelChoiceField(
-        queryset=Section.objects.all(),
-        widget=autocomplete.ModelSelect2(
-            url='ebooks:section-autocomplete-book',
-            attrs={
-                'data-placeholder': _('Autocomplete ...'),
-                'data-minimum-input-length': 3,
-            },
-            forward=['product'],
-        ),
-        label=_('Section'),
-        required=False,
-    )
+class AdventureForm(SectionProductForm):
 
     class Meta:
         model = Adventure
         fields = ('title', 'description', 'ring', 'product', 'section', 'difficulty')
-
-    class Media:
-        js = [
-            'https://code.jquery.com/jquery-3.4.1.min.js',
-        ]
 
 
 class SituationCreateForm(forms.ModelForm):

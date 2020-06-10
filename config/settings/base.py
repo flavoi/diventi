@@ -100,6 +100,7 @@ LOCAL_APPS = [
     'diventi.payments',
     'diventi.brave',
     'diventi.adventures',
+    'diventi.tooltips'
 ]
 
 THIRD_PARTY_APPS = [

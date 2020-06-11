@@ -18,6 +18,15 @@ class Keyword(Element):
         verbose_name_plural = _('Keywords')
 
 
+class TooltipQuerySet(models.QuerySet):
+
+    # Select adventure's related objects
+    def prefetch(self):
+        tooltips = self.select_related('section')
+        tooltips = tooltips.select_related('product')
+        return tooltips
+
+
 class Tooltip(Element):
     keywords = models.ManyToManyField(
         Keyword,
@@ -40,6 +49,8 @@ class Tooltip(Element):
         verbose_name=_('product'),
     )
 
+    objects = TooltipQuerySet.as_manager()
+    
     class Meta:
         verbose_name = _('Tooltip')
         verbose_name_plural = _('Tooltips')

@@ -290,6 +290,23 @@ class Section(AbstractSection, DiventiImageModel, DiventiColModel):
             content = re.sub(r"\b%s\b" % capfirst(r.initial_string), capfirst(r.result_string), content)
         return content
 
+
+    def get_converted_description(self):
+        """
+            Replace the description of the section according
+            to the defined rules.
+        """
+        usection = ''
+        if self.universal_section:
+            usection = self.universal_section.description
+        description = usection + self.description
+        rules = self.rules.all()
+        for r in rules:
+            description = re.sub(r"\b%s\b" % r.initial_string, r.result_string, description)
+            description = re.sub(r"\b%s\b" % capfirst(r.initial_string), capfirst(r.result_string), description)
+        return description
+
+
     class Meta:
         verbose_name = _('section')
         verbose_name_plural = _('sections')

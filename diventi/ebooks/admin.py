@@ -30,7 +30,7 @@ duplicate_section.short_description = _("Duplicate selected section")
 
 class UniversalSectionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'order_index', 'get_universal_chapter',]
-    fields = ['title', 'order_index', 'content',]
+    fields = ['title', 'order_index', 'description', 'content',]
     search_fields = ['title']
     ordering = ['order_index']
 
@@ -61,7 +61,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('image', 'text_alignment',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'order_index', 'content', 'situation', 'slug'),
+            'fields': ('title', 'order_index', 'description', 'content', 'situation', 'slug'),
         }),
     )
     inlines = [

@@ -9,17 +9,23 @@ register = template.Library()
 # Aggiungere stili tooltip alle pagine ebook
 # Aggiungere ricerca maiuscole/minuscole
 # Escludere dalla ricerca i contenuti della sezione tooltip
+# Raffinare il contenuto del tooltip
 @register.filter(name='tooltip')
-def tooltip(value):
-    tooltips = Tooltip.objects.all()
+def tooltip(value, section_pk):
+    tooltips = Tooltip.objects.all().prefetch()
     for tooltip in tooltips:
-        print(tooltip.title)
-        value = value.replace(
-            tooltip.title,
-            mark_safe(
-                '<button type="button" class="btn btn-secondary" data-container="body"\
-                 data-toggle="popover" data-placement="top" data-content="Vivamus sagittis\
-                 lacus vel augue laoreet rutrum faucibus.">{}</button>'.format(tooltip.title)
+        section = tooltip.section
+        if section_pk != section.pk:   
+            value = value.replace(
+                tooltip.title,
+                mark_safe(
+                    '<button type="button" data-wenk="📰 {tooltip_content}" class="wenk-length--large">\
+                        {tooltip_title}\
+                    </button>'.format(
+                        tooltip_id=tooltip.pk,
+                        tooltip_content=strip_tags(section.get_converted_description()),
+                        tooltip_title=tooltip.title,
+                    )
+                )
             )
-        )
     return value

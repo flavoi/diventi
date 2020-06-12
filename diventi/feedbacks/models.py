@@ -35,7 +35,7 @@ class QuestionGroup(models.Model):
 
 class Question(models.Model):
     """
-        A qeustion must be part of a question group to be applied to a survey. 
+        A question must be part of a question group to be applied to a survey. 
     """
     question = models.CharField(max_length=200, verbose_name=_('question'))
     group = models.ForeignKey(QuestionGroup, related_name='questions', on_delete=models.SET_NULL, null=True, blank=True)

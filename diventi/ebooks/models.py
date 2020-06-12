@@ -290,7 +290,6 @@ class Section(AbstractSection, DiventiImageModel, DiventiColModel):
             content = re.sub(r"\b%s\b" % capfirst(r.initial_string), capfirst(r.result_string), content)
         return content
 
-
     def get_converted_description(self):
         """
             Replace the description of the section according

@@ -11,27 +11,35 @@ from diventi.products.models import (
     Product,
 )
 
-class Keyword(Element):
 
+class TooltipGroup(Element):
+    """
+        A tooltip group is a collection of tooltips centered around
+        a certain application.
+    """
     class Meta:
-        verbose_name = _('Keyword')
-        verbose_name_plural = _('Keywords')
+        verbose_name = _('tooltip group')
+        verbose_name_plural = _('tooltip groups')
 
 
 class TooltipQuerySet(models.QuerySet):
 
-    # Select adventure's related objects
+    # Select tooltip's related objects
     def prefetch(self):
         tooltips = self.select_related('section')
         tooltips = tooltips.select_related('product')
+        tooltips = tooltips.select_related('group')
         return tooltips
 
 
 class Tooltip(Element):
-    keywords = models.ManyToManyField(
-        Keyword,
+    group = models.ForeignKey(
+        TooltipGroup, 
+        null=True, 
         blank=True,
-        verbose_name=_('keyword')
+        related_name='tooltips', 
+        verbose_name=_('group'),
+        on_delete=models.SET_NULL,
     )
     section = models.ForeignKey(
         Section,

@@ -1,16 +1,15 @@
 from modeltranslation.translator import register, TranslationOptions
 
 from .models import (
-    Keyword,
     Tooltip,
+    TooltipGroup,
 )
-
-
-@register(Keyword)
-class KeywordTranslationOptions(TranslationOptions):
-    fields = ('title',)
-
 
 @register(Tooltip)
 class TooltipTranslationOptions(TranslationOptions):
+    fields = ('title',)
+
+
+@register(TooltipGroup)
+class TooltipGroupTranslationOptions(TranslationOptions):
     fields = ('title',)

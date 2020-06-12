@@ -10,4 +10,4 @@ class TooltipForm(SectionProductForm):
 
     class Meta:
         model = Tooltip
-        fields = ('title', 'product', 'section')
+        fields = ('group', 'title', 'product', 'section')

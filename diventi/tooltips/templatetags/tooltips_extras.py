@@ -31,9 +31,9 @@ def tooltip(value, section_pk):
                 value = value.replace(
                     tooltip.title,
                     mark_safe(
-                        '<button type="button" data-wenk="📰 {tooltip_content}" class="wenk-length--large">\
+                        '<a data-wenk="📰 {tooltip_content}" class="wenk-length--large">\
                             {tooltip_title}\
-                        </button>'.format(
+                        </a>'.format(
                             tooltip_id=tooltip.pk,
                             tooltip_content=strip_tags(section.get_converted_description()),
                             tooltip_title=tooltip.title,

@@ -32,7 +32,7 @@ def tooltip(value, section_pk):
                     tooltip.title,
                     mark_safe(
                         '<a data-wenk="📰 {tooltip_content}" class="wenk-length--large">\
-                            {tooltip_title}\
+                            📰 {tooltip_title}\
                         </a>'.format(
                             tooltip_id=tooltip.pk,
                             tooltip_content=strip_tags(section.get_converted_description()),

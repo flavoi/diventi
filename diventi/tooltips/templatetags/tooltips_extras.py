@@ -5,17 +5,18 @@ from diventi.tooltips.models import Tooltip
 
 register = template.Library()
 
-# Da completare: 
-# Aggiungere stili tooltip alle pagine ebook
-# Aggiungere ricerca maiuscole/minuscole
-# Escludere dalla ricerca i contenuti della sezione tooltip
-# Raffinare il contenuto del tooltip
 @register.filter(name='tooltip')
 def tooltip(value, section_pk):
+    """
+        Fetch the available tooltips and inject a short
+        description on top of the keywords. 
+        It does not inject any content to the source section.
+        It replaces the first keyword occurence only.
+    """
     tooltips = Tooltip.objects.all().prefetch()
     for tooltip in tooltips:
         section = tooltip.section
-        if section_pk != section.pk:   
+        if section_pk != section.pk:
             value = value.replace(
                 tooltip.title,
                 mark_safe(
@@ -26,6 +27,7 @@ def tooltip(value, section_pk):
                         tooltip_content=strip_tags(section.get_converted_description()),
                         tooltip_title=tooltip.title,
                     )
-                )
+                ),
+                1
             )
     return value

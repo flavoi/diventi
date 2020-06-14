@@ -12,6 +12,10 @@ from dal import autocomplete
 
 from diventi.core.views import StaffRequiredMixin
 from diventi.products.models import Product
+from diventi.tooltips.models import (
+    TooltipGroup,
+    Tooltip,
+)
 
 from .models import Book, Chapter, Section, UniversalSection
 
@@ -54,6 +58,9 @@ class EbookView(View):
         chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
         chapters = chapters.order_by('order_index', 'part').bookmark_sections()
         context['chapters'] = chapters
+        tooltip_group = TooltipGroup.objects.get(books=book)
+        tooltips = tooltip_group.tooltips.all().prefetch()
+        context['tooltips'] = tooltips
         return context
 
 

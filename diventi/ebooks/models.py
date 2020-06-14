@@ -24,6 +24,11 @@ from diventi.core.models import (
 
 
 class AbstractSection(Element, TimeStampedModel):
+    description = RichTextField(
+        blank=True, 
+        verbose_name=_('description'),
+        help_text=_('This content will appear as a brief tooltip thought the book.')
+    )
 
     class Meta:
         abstract = True

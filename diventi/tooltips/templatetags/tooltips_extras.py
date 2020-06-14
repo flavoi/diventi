@@ -12,6 +12,9 @@ from diventi.tooltips.models import (
 
 register = template.Library()
 
+# Da completare:
+# Attivare tooltip nella vista ebook
+# Attivare tooltip pk
 @register.filter(name='tooltip')
 def tooltip(value, section_pk):
     """
@@ -31,11 +34,9 @@ def tooltip(value, section_pk):
                 value = value.replace(
                     tooltip.title,
                     mark_safe(
-                        '<a data-wenk="📰 {tooltip_content}" class="wenk-length--large">\
-                            📰 {tooltip_title}\
-                        </a>'.format(
-                            tooltip_id=tooltip.pk,
-                            tooltip_content=strip_tags(section.get_converted_description()),
+                        '<a href="#" data-micromodal-trigger="modal-{tooltip_pk}">\
+                         <i class="fad fa-info-circle"></i> {tooltip_title}</a>'.format(
+                            tooltip_pk=tooltip.pk,
                             tooltip_title=tooltip.title,
                         )
                     ),

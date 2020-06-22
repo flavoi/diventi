@@ -58,9 +58,10 @@ class EbookView(View):
         chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
         chapters = chapters.order_by('order_index', 'part').bookmark_sections()
         context['chapters'] = chapters
-        tooltip_group = TooltipGroup.objects.get(books=book)
-        tooltips = tooltip_group.tooltips.all().prefetch()
-        context['tooltips'] = tooltips
+        tooltip_group = TooltipGroup.objects.filter(books=book).first()
+        if tooltip_group:
+            tooltips = tooltip_group.tooltips.all().prefetch()
+            context['tooltips'] = tooltips
         return context
 
 

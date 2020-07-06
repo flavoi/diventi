@@ -134,7 +134,7 @@
                   </div>                           
               {% else %}
                   <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
-                  <i class="fal fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
+                  <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
               {% endif %}
               </div>
           </div>
@@ -149,7 +149,7 @@
         <div class="col-md-4">
             <div class="info">
                 <div class="icon icon-warning">
-                    <i class="fal fa-4x fa-{{ chapter.icon }}"></i>
+                    <i class="fas fa-4x fa-{{ chapter.icon }}"></i>
                 </div>
                 <h4 class="info-title">{{ chapter.title|capfirst }}</h4>
                 <h6 class="card-category text-rose">{{ chapter.category }}</h6>

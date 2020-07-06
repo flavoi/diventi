@@ -23,7 +23,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('published', 'featured')
         }),
         (_('Visual style'), {
-            'fields': ('template', 'featured_template', 'alignment', 'image', 'dark_mode')
+            'fields': ('template', 'featured_template', 'alignment', 'image', 'dark_mode',)
         }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'description',),

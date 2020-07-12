@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced adventures: a new app that enables game master to play with Diventi's adventures.
 - [ebooks] Added 'new' and 'updated' badges for newly edited chapters
 - [ebooks] Added tooltip support for custom keywords
+- [machina] Introduced machina: a new forum app for diventi's subscribers
 
 ### Changed
 - [blog] Enabled category filters in the list page

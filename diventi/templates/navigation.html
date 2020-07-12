@@ -36,6 +36,11 @@
             Blog
             </a>
          </li>
+         <li class="nav-item">
+            <a href="{% url 'forum:index' %}" class="nav-link">
+            Forum
+            </a>
+         </li>
          {% if user.is_authenticated %}
          <li class="nav-item">
             <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-raised btn-fab btn-round" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'my collection'|capfirst %}">

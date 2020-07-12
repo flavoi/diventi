@@ -19,6 +19,8 @@ from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 
+from machina import MACHINA_MAIN_TEMPLATE_DIR, MACHINA_MAIN_STATIC_DIR
+
 
 PROJ_ROOT = Path(__file__).resolve().parent.parent.parent 
 BASE_DIR = PROJ_ROOT / 'diventi'
@@ -38,18 +40,25 @@ def get_env_variable(var_name):
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
+        'DIRS': [
+            BASE_DIR / 'templates',
+            MACHINA_MAIN_TEMPLATE_DIR,
+        ],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',                
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'machina.core.context_processors.metadata',
                 'diventi.core.context.footer',
                 'diventi.accounts.context.user_preferred_language',
                 'diventi.landing.context.graph_section',
             ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]
         },
     },
 ]
@@ -115,9 +124,24 @@ THIRD_PARTY_APPS = [
     'letsencrypt',
     'reviews',
     'widget_tweaks',
+    'haystack',
 ]
 
-INSTALLED_APPS = PREFIX_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+FORUM_APPS = [
+    'machina',
+    'machina.apps.forum',
+    'machina.apps.forum_conversation',
+    'machina.apps.forum_conversation.forum_attachments',
+    'machina.apps.forum_conversation.forum_polls',
+    'machina.apps.forum_feeds',
+    'machina.apps.forum_moderation',
+    'machina.apps.forum_search',
+    'machina.apps.forum_tracking',
+    'machina.apps.forum_member',
+    'machina.apps.forum_permission',
+]
+
+INSTALLED_APPS = PREFIX_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS + FORUM_APPS
 
 COMMENTS_APP = 'diventi.comments'
 
@@ -130,6 +154,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
     'cuser.middleware.CuserMiddleware', 
 ]
 
@@ -195,13 +220,27 @@ STATICFILES_DIRS = [
 ]
 
 
+# Cache config
+# https://django-machina.readthedocs.io/en/stable/getting_started.html
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'machina_attachments': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': BASE_DIR / 'cache',
+    },
+}
+
+
 # Recaptcha config
 # https://github.com/praekelt/django-recaptcha
 
 NOCAPTCHA = True
 
 
-# C 
+# Ckeditor config
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -275,3 +314,35 @@ REVIEW_RATING_CHOICES = (
 )
 
 REVIEW_PUBLISH_UNMODERATED = True
+
+
+# Haystack config
+# https://django-machina.readthedocs.io/en/stable/getting_started.html
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+
+
+# Machina config
+# https://django-machina.readthedocs.io/en/stable/settings.html
+
+MACHINA_DEFAULT_AUTHENTICATED_USER_FORUM_PERMISSIONS = [
+    'can_see_forum',
+    'can_read_forum',
+    'can_start_new_topics',
+    'can_reply_to_topics',
+    'can_edit_own_posts',
+    'can_post_without_approval',
+    'can_create_polls',
+    'can_vote_in_polls',
+    'can_download_file',
+]
+
+MACHINA_FORUM_NAME = 'Diventi'
+
+MACHINA_USER_DISPLAY_NAME_METHOD = 'get_diventi_username'
+
+MACHINA_PROFILE_AVATARS_ENABLED = False

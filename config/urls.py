@@ -9,6 +9,8 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 from django.views.i18n import JavaScriptCatalog
 
+from machina import urls as machina_urls
+
 admin.autodiscover()
 
 urlpatterns = [
@@ -34,4 +36,5 @@ urlpatterns += i18n_patterns(
     path(_('ebooks/'), include('diventi.ebooks.urls', namespace='ebooks')),
     path(_('payments/'), include('diventi.payments.urls', namespace='payments')),
     path(_('adventures/'), include('diventi.adventures.urls', namespace='adventures')),
+    path(_('forum/'), include(machina_urls)),
 )

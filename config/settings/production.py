@@ -26,9 +26,6 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 STATICFILES_LOCATION = 'static'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
 STATICFILES_STORAGE = 'diventi.core.storages.StaticStorage'
 STATIC_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 

@@ -116,3 +116,12 @@ class DashboardView(StaffRequiredMixin, ListView):
         featured_section = Section.objects.featured()
         context['featured_section'] = featured_section
         return context
+
+
+class QuickTemplateView(TemplateView):
+    """ Initial implementation of quick visual style. """
+
+    template_name = "landing/landing_quick.html"
+
+
+

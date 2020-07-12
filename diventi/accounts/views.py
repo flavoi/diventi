@@ -3,6 +3,7 @@ import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
+from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -136,13 +137,16 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
         self.request.session['show_login_form'] = 1
         return reverse_lazy('landing:home')
 
-    def form_valid(self, form):
+    def form_valid(self, form, inital_group='Community'):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
         if email and password:
             form.save()
             user = authenticate(self.request, username=email, password=password)
             if user is not None:
+                user_group, created = Group.objects.get_or_create(name=inital_group)
+                user.groups.add(user_group)
+                user.save()
                 messages.success(self.request, self.success_msg)
                 login(self.request, user)
                 return redirect(self.get_success_url())

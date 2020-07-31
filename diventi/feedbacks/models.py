@@ -147,7 +147,14 @@ class Answer(TimeStampedModel):
     """
         One answer can be given for each question. If the question provides a score, the answer get it too.
     """
-    author = models.ForeignKey(DiventiUser, verbose_name=_('author'), on_delete=models.SET_NULL, blank=True, null=True)
+    author = models.ForeignKey(
+        DiventiUser,         
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        related_name='answers',
+        verbose_name=_('author'),
+    )
     author_name = models.CharField(max_length=60, verbose_name=_('author name'))
     question = models.ForeignKey(Question, related_name='answers', verbose_name=_('question'), on_delete=models.SET_NULL, null=True)
     survey = models.ForeignKey(Survey, related_name='answers', on_delete=models.SET_NULL, null=True)

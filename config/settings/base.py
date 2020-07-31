@@ -53,7 +53,9 @@ TEMPLATES = [
                 'machina.core.context_processors.metadata',
                 'diventi.core.context.footer',
                 'diventi.accounts.context.user_preferred_language',
+                'diventi.accounts.context.user_statistics',
                 'diventi.landing.context.graph_section',
+                'diventi.landing.context.search_suggestions',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',

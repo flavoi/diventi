@@ -29,17 +29,5 @@ def duplicate(modeladmin, request, queryset):
 duplicate.short_description = _("Duplicate selected items")
 
 
-class DiventiTranslationAdmin(TranslationAdmin):
-    class Media:
-        js = (
-            'https://code.jquery.com/jquery-1.12.4.min.js',
-            'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': (
-                'modeltranslation/css/tabbed_translation_fields.css',
-                'diventi/css/diventi-admin.css',
-                'https://pro.fontawesome.com/releases/v5.8.2/css/all.css',
-            ),
-        }
+class DiventiTranslationAdmin(TabbedTranslationAdmin):
+    pass

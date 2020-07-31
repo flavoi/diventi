@@ -1,1 +1,384 @@
 {% extends 'base_quick.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block titleseparator %}{% endblock titleseparator %}
+{% block title %}{% endblock title %}
+
+{% block content %}
+<section class="slice py-5 py-lg-7">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 col-lg-6 order-md-2 mb-5 mb-md-0">
+                    <!-- Card -->
+                    <div class="card border-0 shadow-lg zindex-100 mb-0">
+                        <figure>
+                            <img alt="Image placeholder" src="../../assets/img/theme/light/img-1-1000x800.jpg" class="card-img">
+                        </figure>
+                        <div class="card-img-overlay d-flex justify-content-end">
+                            <div class="text-center">
+                                <a href="https://www.youtube.com/watch?v=zodT9bCdIiI" class="btn btn-white btn-icon-only rounded-circle shadow-sm hover-scale-110" data-fancybox="">
+                                    <span class="btn-inner--icon text-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play text-primary"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decoration -->
+                    <div class="w-75 position-absolute bottom-n5 right-n5 rotate-180">
+                        <img alt="Image placeholder" src="" class="svg-inject fill-secondary">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-6 order-md-1 pr-md-5">
+                    <!-- Surtitle -->
+                    <h6 class="">- Build like a Pro</h6>
+                    <!-- Heading -->
+                    <h1 class="h1 mb-4">
+                        Start your business with <strong>Quick</strong>.
+                    </h1>
+                    <!-- Text -->
+                    <p class="lead text-muted">
+                        Build a beautiful, modern website with flexible Bootstrap components built from scratch.
+                    </p>
+                    <!-- Buttons -->
+                    <div class="mt-5">
+                        <a href="#" class="btn btn-primary">
+                            Learn more
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=zodT9bCdIiI" class="btn btn-neutral btn-icon d-none d-lg-inline-block" data-fancybox="">
+                            <span class="btn-inner--text">Play video</span>
+                            <span class="btn-inner--icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play text-primary"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<section class="slice py-5 py-lg-7">
+    <div class="container">
+      <div class="row row-grid align-items-center">
+        <div class="col-12 col-md-6 col-lg-6 order-md-2 mb-5 mb-md-0">
+           <div class="card border-0 shadow-lg zindex-100 mb-0">
+              <figure><img alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="card-img"></figure>
+              {% if featured_section.video %}
+              <div class="card-img-overlay d-flex justify-content-end">
+                 <div class="text-center">
+                    <a href="{{ featured_section.video }}" class="btn btn-white btn-icon-only rounded-circle shadow-sm hover-scale-110" data-fancybox="">
+                       <span class="btn-inner--icon text-sm">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play text-primary">
+                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                          </svg>
+                       </span>
+                    </a>
+                 </div>
+              </div>
+              {% endif %}
+           </div>
+           <div class="w-75 position-absolute bottom-n5 right-n5 rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 463.6 616" style="enable-background:new 0 0 463.6 616;" xml:space="preserve" class="injected-svg svg-inject fill-secondary">
+                 <path d="M148.4,608.3C25.7,572.5-3.5,442.2,0.3,375.8s24.8-117,124.8-166.5s125.7-77.4,165-129.6 c43.2-57.4,96.5-94.4,127.9-73c63,43,53.9,280,14,358s-68.9,75.5-98.9,118.7S271,644,148.4,608.3z"></path>
+              </svg>
+           </div>
+        </div>
+        <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
+            <!-- Heading -->
+            <h1 class="display-4 text-center text-md-left mb-3">
+                {{ featured_section.title|capfirst }}
+            </h1>
+            <!-- Text -->
+            <p class="lead text-center text-md-left text-muted">
+                {{ featured_section.description|striptags }}
+            </p>
+
+            {% with featured_section as section %}
+            <div class="text-center text-md-left mt-5">
+                {% for product in section.products.all %}
+                  <a href="{{ product.get_absolute_url }}" class="btn btn-primary btn-icon">
+                    <span class="badge badge-pill badge-{{ badge_color }}"><i class="fas fa-{{ icon }} fa-lg"></i></span>
+                    <span class="btn-inner--text">{{ product.title }}</span><span class="btn-inner--icon">
+                    	<i class="fas fa-arrow-right fa-sm"></i>
+                  	</span>
+                  </a>
+                {% endfor %}
+                {% if section.section_survey %}
+                  <a href="{% url 'feedbacks:new_answers_gate' section.section_survey.slug %}" class="btn btn-primary btn-icon">
+                    <span class="btn-inner--text">{{ section.section_survey.title }}</span><span class="btn-inner--icon">
+                    	<i class="fas fa-arrow-right fa-sm"></i>
+                    </span>
+                  </a>
+                {% endif %}
+                {% for article in section.articles.all %}
+                  <a href="{% url 'blog:detail' article.slug %}" class="btn btn-primary btn-icon">
+                    <span class="btn-inner--text">{{ article.title }}</span><span class="btn-inner--icon">
+                    	<i class="fas fa-arrow-right fa-sm"></i>
+                    </span>
+                  </a>
+                {% endfor %}
+            </div>
+            {% endwith %}
+        </div>
+      </div>
+    </div>
+</section>
+
+{% for section in sections %}
+
+{% if section.articles.all %}
+<section class="slice slice-lg bg-section-dark pt-5 pt-lg-8">
+   <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
+      <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
+         <polygon points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+   </div>
+   <div class="container position-relative zindex-100">
+      <div class="col">
+         <div class="row justify-content-center">
+            <div class="col-md-10 text-center">
+               <div class="mt-4 mb-6">
+                  <h2 class="h1 text-white">{{ section.title|capfirst }}</h2>
+                  <h4 class="text-white mt-3">{{ section.description|safe }}</h4>
+                  {% if section.video %}
+                  <a href="https://www.youtube.com/watch?v=zodT9bCdIiI" data-fancybox="" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-warning btn-icon hover-translate-y-n10 mt-4" data-original-title="Watch video in lightbox">
+                     <span class="btn-inner--icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play">
+                           <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                     </span>
+                     <span class="btn-inner--text">{% trans "play video"|capfirst %}</span>
+                  </a>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<section class="slice pt-0">
+   <div class="container position-relative zindex-100">
+      <div class="row">
+      	{% for article in section.articles.all %}
+         <div class="col-xl-6 col-md-6 col-sm-12 mt-n7">
+           <div class="card mb-8 hover-translate-y-n10 shadow-lg bg-cover bg-size--cover" style="background-image: url({{ article.image }});">
+              <!-- Mask -->
+              <span class="mask bg-dark opacity-1"></span>              
+
+              <!-- Card body -->
+              <div class="card-body pt-10 mt-auto position-relative">
+
+                  <!-- Title -->
+                  <a href="{% url 'blog:detail' article.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ article.title }}</a>
+
+                  <!-- Text -->
+                  <p class="mb-0 text-white">
+                      {{ article.description }}
+                  </p>
+              </div>
+
+              <!-- Meta -->
+              <div class="card-body position-relative delimiter-top">
+                  <div class="d-flex align-items-center">
+                      <div>
+                          <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-sm rounded-circle d-inline-block">
+                              <img alt="{{ article.author }}" src="{{ article.author.avatar.image }}">
+                          </a>
+                      </div>
+                      <div class="pl-3">
+                          <a href="{{ article.author.get_absolute_url }}" class="h6 stretched-link text-white text-sm">{{ article.author.get_full_name }}</a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+         {% endfor %}
+      </div>
+   </div>
+</section>
+{% elif section.stories.all %}
+<section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6">
+   <div class="container">
+      <div class="row justify-content-lg-end">
+         <div class="col-lg-5 text-lg-right">
+            <h6 class="display-4 text-danger">D20+</h6>
+            <p class="lh-180 mb-3">{{ section.description }}</p>
+         </div>
+         <div class="col-lg-6">            
+            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ section.image }}" class="rounded img-fluid" alt="Diventi">                   
+         </div>
+      </div>
+      <div class="row mt-5">
+        {% for story in section.stories.all %}
+         <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card border-0 bg-soft-{{ story.color }} mt-lg-{% cycle '0' '5' '7' %}">
+               <div class="card-body pb-5">
+                  <div class="pt-4 pb-5">
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ story.image }}" class="img-fluid img-center" style="height:300px" alt="{{ story.title }}"></div>
+                  <h5 class="h4 lh-130 text-dark mb-3">{{ story.title }}</h5>
+                  <p class="text-dark opacity-6 mb-0">{{ story.description }}</p>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+</section>
+{% elif section.products.all %}
+{% for product in section.products.all %}
+<section class="slice slice-lg">
+   <div class="container">
+      <div class="row row-grid justify-content-around align-items-center">
+         <div class="col-lg-6 order-lg-2 ml-lg-auto pl-lg-6">
+            <h5 class="h2 mt-4">{{ section.title|capfirst }}</h5>
+            <p class="lead lh-190 my-4">{{ section.description|capfirst }}</p>
+            <ul class="list-unstyled">
+              {% for chapter in product.chapters.all %}
+               <li class="py-2">
+                  <div class="d-flex align-items-center">
+                     <div>
+                        <div class="icon icon-shape icon-{{ chapter.color }} icon-sm rounded-circle mr-3"><i class="fas fa-{{ chapter.icon }}"></i></div>
+                     </div>
+                     <div><span class="h6 mb-0">{{ chapter.title|capfirst }}</span></div>
+                  </div>
+               </li>
+               {% endfor %}
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <div class="card card-overlay card-hover-overlay hover-shadow-lg hover-translate-y-n10">
+            <figure class="figure"><img alt="{{ product.title }}" src="{{ product.image }}" class="img-fluid"></figure>
+            <div class="card-img-overlay d-flex flex-column align-items-center p-0">
+              <div class="overlay-text w-75 mt-auto p-4">
+                <p class="lead">{{ product.abstract }}</p>
+                <a href="{{ product.get_absolute_url }}" class="link link-underline-white font-weight-bold">{{ product.category }}</a>
+              </div>
+              <div class="overlay-actions w-100 card-footer mt-auto d-flex justify-content-between align-items-center">
+                <div><a href="{{ product.get_absolute_url }}" class="h6 mb-0">{{ product.title }}</a></div>
+                <div>
+                  <div class="actions">
+                    <a href="{{ product.get_absolute_url }}" class="action-item mr-3" data-toggle="tooltip" data-placement="bottom" title="{% trans 'visualize'|capfirst %}">
+                      <i class="fad fa-eye fa-lg fa-fw"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+</section>
+{% endfor %}
+{% elif section.features.all %}
+<section class="slice slice-lg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <span class="badge badge-primary badge-pill">{{ section.title|capfirst }}</span>
+        <h5 class="lh-180 mt-4 mb-6">{{ section.description|capfirst }}</h5>
+      </div>
+    </div>
+    <div class="row mx-lg-n4">
+      {% for feature in section.features.all %}
+      <div class="col-lg-4 col-md-6 px-lg-4">
+        <div class="card shadow-none">
+          <div class="p-3 d-flex">
+            <div>
+              <div class="icon icon-shape rounded-circle bg-{{ section.color|default:'info' }} text-white mr-4">
+                <i class="fas fa-{{ section.icon|default:'check'}}"></i>
+              </div>
+            </div>
+            <div>
+              <span class="h6">{{ feature.title|capfirst }}</span>
+              <p class="text-sm text-muted mb-0">{{ feature.description|capfirst }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="slice slice-lg delimiter-top delimiter-bottom">
+    <div class="container">
+        <div class="row mb-6 justify-content-center text-center">
+            <div class="col-lg-8 col-md-10">
+               {% if section.image %}
+			    <div class="row">
+			        <div class="col-md-8 {{ section.get_alignment_classes }}">
+			            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ section.image }}" class="rounded img-fluid" alt="Diventi">				            
+			        </div>
+			    </div>
+			    {% else %}
+				    <div class="row">
+				        <div class="col-md-8 {{ section.get_alignment_classes }}">					            
+				            <h2 class="title">
+				                {{ section.title|capfirst }}
+				            </h2>
+				        </div>
+				    </div>
+			    {% endif %}			    
+            </div>
+        </div>        
+    </div>
+</section>
+{% endif %}
+
+{% endfor %}
+
+<section class="slice slice-lg">
+  <div class="container position-relative">
+    <div class="card shadow-lg border-0 zindex-100">
+      <div class="card-body px-5 py-5 text-center text-md-left">
+        {% if not user.is_authenticated %}
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h4 class="h5 mb-2">{% trans "Join our community" %}.</h4>
+            <p class="mb-0">{% trans "Sign up to know more and start exploring." %}</p>
+          </div>
+          <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+            <a href="{% url 'accounts:signup' %}" class="btn btn-warning btn-icon rounded-pill">
+              <span class="btn-inner--icon">
+                <i class="fad fa-sign-in-alt"></i>
+              </span>
+              <span class="btn-inner--text">{% trans 'sign up'|capfirst %}</span>
+            </a>
+          </div>
+        </div>
+        {% else %}
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h4 class="h5 mb-2"></h4>
+            <p class="mb-0"></p>
+          </div>
+          <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+            <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-icon rounded-pill">
+              <span class="btn-inner--icon">
+                <i class="fad fa-user-circle fa-lg"></i>
+              </span>
+              <span class="btn-inner--text">{% trans "Manage profile" %}</span>
+            </a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="w-10 position-absolute bottom-n3 left-n5">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 361.1 384.8" style="enable-background:new 0 0 361.1 384.8;" xml:space="preserve" class="injected-svg svg-inject fill-primary">
+        <path d="M53.1,266.7C19.3,178-41,79.1,41.6,50.1S287.7-59.6,293.8,77.5c6.1,137.1,137.8,238,15.6,288.9 S86.8,355.4,53.1,266.7z"></path>
+      </svg>
+    </div>
+    <div class="w-10 position-absolute top-n5 right-n5">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 361.1 384.8" style="enable-background:new 0 0 361.1 384.8;" xml:space="preserve" class="injected-svg svg-inject fill-dark">
+        <path d="M53.1,266.7C19.3,178-41,79.1,41.6,50.1S287.7-59.6,293.8,77.5c6.1,137.1,137.8,238,15.6,288.9 S86.8,355.4,53.1,266.7z"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+

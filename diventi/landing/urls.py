@@ -13,9 +13,12 @@ from .views import (
 app_name = 'landing'
 
 urlpatterns = [
-    path('', landing, name='home'),
+    path('', QuickTemplateView.as_view(), name='home'),
+]
+
+urlpatterns += [
+    path('legacy/', landing, name='home_legacy'),
     path(_('search/'), PresentationSearchView.as_view(), name='search'),
     path(_('survey/'), landing_survey, name='survey'),
     path(_('analytics/'), DashboardView.as_view(), name='analytics'),
-    path('qq/', QuickTemplateView.as_view(), name='quick'),
 ]

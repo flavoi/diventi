@@ -34,11 +34,7 @@ def landing_survey(request):
     return redirect('landing:home')
 
 
-def landing(request):
-    """ 
-        Renders the landing page with Diventi main features and
-        team members. 
-    """
+def get_landing_context(request):
     sections = Section.objects.not_featured()
     featured_section = Section.objects.featured()
     if featured_section:
@@ -67,7 +63,15 @@ def landing(request):
         'sections': sections,
         'featured_section': featured_section,
     }
+    return context
 
+
+def landing(request):
+    """ 
+        Renders the landing page with Diventi main features and
+        team members. 
+    """  
+    context = get_landing_context(request)
     return render(request, 'landing/landing.html', context)
 
 
@@ -122,6 +126,12 @@ class QuickTemplateView(TemplateView):
     """ Initial implementation of quick visual style. """
 
     template_name = "landing/landing_quick.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(QuickTemplateView, self).get_context_data(**kwargs)
+        landing_context = get_landing_context(self.request)
+        context = {**context, **landing_context} # Merge the two dictionaries
+        return context
 
 
 

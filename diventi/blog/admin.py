@@ -8,7 +8,7 @@ from .forms import ArticleForm
 
 
 class ArticleAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'category', 'image_tag', 'hot', 'published', 'publication_date']
+    list_display = ['title', 'category', 'image_tag', 'hot', 'color_tag', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (
@@ -16,7 +16,7 @@ class ArticleAdmin(DiventiTranslationAdmin):
             'fields': ('published', 'hot')
         }),
         (_('Layout'), {
-            'fields': ('col_lg', 'col_md')
+            'fields': ('color', 'col_lg', 'col_md')
         }),
         (_('Editing'), {
             'fields': ('title', 'category', 'image', 'description', 'content', 'label', 'author', 'slug', 'publication_date'),

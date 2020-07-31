@@ -93,13 +93,11 @@ class ArticleCategory(Category):
     pass
 
 
-class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel):
+class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
     """
-    title = models.CharField(max_length=60, verbose_name=_('title'))
-    description = models.TextField(max_length=250, verbose_name=_('description'))
     category = models.ForeignKey(ArticleCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)    
     content = RichTextField(verbose_name=_('content'))
     hot = models.BooleanField(default=False, verbose_name=_('hot'))

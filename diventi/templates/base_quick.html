@@ -69,11 +69,69 @@
             font-size: 32px;
             }
     </style>
+
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+
     {% block extrahead %}{% endblock extrahead %}
 
 </head>
 
 <body>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
     <!-- User profile modal -->
     <div class="modal fade fixed-right" id="modal-profile" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-vertical" role="document">
@@ -150,7 +208,7 @@
                     </div>
                 </div>
                 <div class="modal-footer py-3 mt-auto">
-                    <a href="#" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
+                    <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
                         <span class="btn-inner--icon"><i class="fad fa-sign-out"></i></span>
                         <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
                     </a>
@@ -178,7 +236,7 @@
     <header class="" id="header-main">
         <!-- Navbar -->
         {% block navbar %}
-        <nav class="navbar navbar-main navbar-expand-lg shadow navbar-light" id="navbar-main">
+        <nav class="navbar navbar-main navbar-expand-lg navbar-light" id="navbar-main">
             {% if user.is_authenticated %}
             <div class="container">
                 <!-- Toggler -->
@@ -186,7 +244,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- Brand -->
-                <a class="nav-link order-lg-1 diventi-font" href="{% trans 'landing:home' %}">
+                <a class="nav-link order-lg-1 diventi-font" href="{% url 'landing:home' %}">
                     Diventi
                 </a>
                 <!-- Collapse -->
@@ -199,8 +257,34 @@
                     </div>
                     <!-- Main navigation -->
                     <ul class="navbar-nav ml-lg-auto mr-3">
-                        <li class="nav-item nav-item-spaced d-none d-lg-block">
-                            <a class="nav-link" href="#">{% trans "projects"|capfirst %}</a>
+                        <!-- Projects menu -->
+                        <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                           <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "projects"|capfirst %}</a>
+                           <div class="dropdown-menu dropdown-menu-md p-0">
+                              <div class="row no-gutters">
+                                 <div class="col-12">
+                                    <div class="dropdown-body dropdown-body-right bg-dropdown-secondary h-100">
+                                       {% for category in projects %}
+                                       <h6 class="dropdown-header text-info mb-2 mt-2">{{ category.title|capfirst }}</h6>
+                                       <div class="list-group list-group-flush">
+                                          {% for project in category.projects.all %}
+                                          <div class="list-group-item bg-transparent border-0 px-0 py-2">
+                                             <div class="media d-flex">
+                                                <span class="h6">
+                                                   <i class="fad fa-{{ category.icon|default:'box' }} fa-fw"></i>
+                                                </span>
+                                                <div class="media-body ml-2">
+                                                    <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
+                                                    {{ project.title|capfirst }}</a> <small class="text-sm text-muted mb-0">{{ project.abstract|capfirst }}</small></div>
+                                             </div>
+                                          </div>
+                                          {% endfor %}
+                                       </div>
+                                       {% endfor %}
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                         </li>
                         <!-- Community menu -->
                         <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
@@ -361,11 +445,34 @@
                     </div>
                     <!-- Main navigation -->
                     <ul class="navbar-nav ml-lg-auto">
-                        <!-- Overview -->
-                        <li class="nav-item nav-item-spaced d-none d-lg-block">
-                            <a class="nav-link" href="#">
-                                {% trans "projects"|capfirst %}
-                            </a>
+                        <!-- Projects menu -->
+                        <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                           <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "projects"|capfirst %}</a>
+                           <div class="dropdown-menu dropdown-menu-md p-0">
+                              <div class="row no-gutters">
+                                 <div class="col-12">
+                                    <div class="dropdown-body dropdown-body-right bg-dropdown-secondary h-100">
+                                       {% for category in projects %}
+                                       <h6 class="dropdown-header text-info mb-2 mt-2">{{ category.title|capfirst }}</h6>
+                                       <div class="list-group list-group-flush">
+                                          {% for project in category.projects.all %}
+                                          <div class="list-group-item bg-transparent border-0 px-0 py-2">
+                                             <div class="media d-flex">
+                                                <span class="h6">
+                                                   <i class="fad fa-{{ category.icon|default:'box' }} fa-fw"></i>
+                                                </span>
+                                                <div class="media-body ml-2">
+                                                    <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
+                                                    {{ project.title|capfirst }}</a> <small class="text-sm text-muted mb-0">{{ project.abstract|capfirst }}</small></div>
+                                             </div>
+                                          </div>
+                                          {% endfor %}
+                                       </div>
+                                       {% endfor %}
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                         </li>
                         <!-- Community menu -->
                         <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
@@ -376,7 +483,7 @@
                                         <div class="d-flex">
                                             <!-- SVG icon -->
                                             <span class="h6">
-                                                <i class="fad fa-quote-left"></i>
+                                                <i class="fad fa-quote-left fa-fw"></i>
                                             </span>
                                             <!-- Media body -->
                                             <div class="ml-3">
@@ -389,7 +496,7 @@
                                         <div class="d-flex">
                                             <!-- SVG icon -->
                                             <span class="h6">
-                                                <i class="fad fa-align-center"></i>
+                                                <i class="fad fa-align-center fa-fw"></i>
                                             </span>
                                             <!-- Media body -->
                                             <div class="ml-3">
@@ -462,7 +569,7 @@
             </div>
         </div>
     </div>
-    <!-- Main content -->
+    <!-- Main content -->    
     {% block content %}{% endblock content %}
 
     {% block footer %}
@@ -470,7 +577,7 @@
         <div class="footer pt-lg-7 footer-dark bg-dark">
             <!-- SVG shape -->
             <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
-                <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class=" fill-section-secondary">
+                <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="fill-section-secondary">
                     <polygon points="2560 0 2560 100 0 100"></polygon>
                 </svg>
             </div>
@@ -486,11 +593,11 @@
                                 </p>
                             </div>
                             <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">
-                                <a href="#" class="btn btn-white btn-icon my-2" target="_blank">
+                                <a href="{% url 'forum:index' %}" class="btn btn-white btn-icon my-2">
                                     <span class="btn-inner--icon">
-                                        <i class="far fa-books"></i>
+                                        <i class="far fa-portal-enter"></i>
                                     </span>
-                                    <span class="btn-inner--text">{% trans "our projects"|capfirst %}</span>
+                                    <span class="btn-inner--text">{% trans "explore"|capfirst %}</span>
                                 </a>
                             </div>
                         </div>
@@ -530,29 +637,30 @@
                         </ul>
                     </div>
                     <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
-                        <h6 class="heading mb-3">Account</h6>
+                        <h6 class="heading mb-3">{% trans "account"|capfirst %}</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">Billing</a></li>
-                            <li><a href="#">Notifications</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="#">{% trans "profile"|capfirst %}</a></li>
+                            <li><a href="#">{% trans "collection"|capfirst %}</a></li>
+                            <li><a href="#">{% trans "settings"|capfirst %}</a></li>
+                            {% else %}
+                            <li><a href="#">{% trans "sign in"|capfirst %}</a></li>
+                            <li><a href="#">{% trans "sign up"|capfirst %}</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                     <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-                        <h6 class="heading mb-3">About</h6>
+                        <h6 class="heading mb-3">{% trans "about"|capfirst %}</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">{% trans "what is Diventi"|capfirst %}</a></li>
+                            <li><a href="#">{% trans "our mission"|capfirst %}</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-                        <h6 class="heading mb-3">Company</h6>
+                        <h6 class="heading mb-3">{% trans "community"|capfirst %}</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#">Community</a></li>
-                            <li><a href="#">Help center</a></li>
-                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Forum</a></li>
                         </ul>
                     </div>
                 </div>
@@ -584,9 +692,10 @@
     <script src="{% static 'quick-v110/libs/svg-injector/dist/svg-injector.min.js' %}"></script>
     <script src="{% static 'quick-v110/libs/feather-icons/dist/feather.min.js' %}"></script>
     <!-- Optional JS -->
-    <script src="{‰ static 'quick-v110/libs/in-view/dist/in-view.min.js' %}"></script>
-    <script src="{‰ static 'quick-v110/libs/sticky-kit/dist/sticky-kit.min.js' %}"></script>
-    <script src="{‰ static 'quick-v110/libs/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/typed.js/lib/typed.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/in-view/dist/in-view.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/sticky-kit/dist/sticky-kit.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
     <!-- Page JS -->
     <script src="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js' %}"></script>
     <!-- Quick JS -->

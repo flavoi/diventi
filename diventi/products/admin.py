@@ -76,8 +76,18 @@ class ProductAdmin(DiventiTranslationAdmin):
 
 
 class ProductCategoryAdmin(DiventiTranslationAdmin):
-    list_display = ('title', 'meta_category')
-    fields = ('title', 'meta_category')
+    list_display = ('title', 'icon_tag', 'meta_category')
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('meta_category',)
+        }),
+        (_('Multimedia'), {
+            'fields': ('icon',),
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'description',),
+        }),
+    )
 
 
 class ChapterCategoryAdmin(DiventiTranslationAdmin):

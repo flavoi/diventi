@@ -56,6 +56,7 @@ TEMPLATES = [
                 'diventi.accounts.context.user_statistics',
                 'diventi.landing.context.graph_section',
                 'diventi.landing.context.search_suggestions',
+                'diventi.products.context.projects',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',

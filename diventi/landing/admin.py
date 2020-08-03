@@ -12,7 +12,6 @@ from diventi.core.admin import DiventiTranslationAdmin, deactivate, make_publish
 from .models import (
     Feature, 
     Section,
-    Story,
     SearchSuggestion
 )
 from .forms import SectionForm
@@ -24,12 +23,6 @@ class FeatureInline(TranslationStackedInline):
     extra = 0
 
 
-class StoryInline(TranslationStackedInline):
-    model = Story
-    fields = ('title', 'icon', 'color', 'description', 'image')
-    extra = 0
-
-
 class SectionAdmin(DiventiTranslationAdmin):
     list_display = [
         'title', 
@@ -38,8 +31,7 @@ class SectionAdmin(DiventiTranslationAdmin):
         'get_features', 
         'get_products', 
         'get_users', 
-        'get_articles', 
-        'get_stories', 
+        'get_articles',
         'section_survey', 
         'published', 
         'featured',
@@ -48,19 +40,18 @@ class SectionAdmin(DiventiTranslationAdmin):
         (_('Management'), {
             'fields': ('published', 'featured')
         }),
-        (_('Visual style'), {
-            'fields': ('template', 'featured_template', 'alignment', 'image', 'dark_mode',)
+        (_('Multimedia'), {
+            'fields': ('image', 'video',)
         }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'description',),
         }),
         (_('Additionals'), {
-            'fields': ('video', 'products', 'users', 'section_survey', 'articles',),
+            'fields': ('products', 'users', 'section_survey', 'articles',),
         }),
     )
     inlines = [        
         FeatureInline,
-        StoryInline,
     ]
     actions = [make_published, make_unpublished]
     form = SectionForm

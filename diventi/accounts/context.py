@@ -8,7 +8,7 @@ from django.utils.translation import get_language
 
 from reviews.models import Review
 
-from diventi.accounts.models import Achievement
+from .models import Achievement
 
 
 def user_preferred_language(request):
@@ -22,6 +22,7 @@ def user_preferred_language(request):
 
 
 def user_statistics(request):
+	context = {}
 	if request.user.is_authenticated:
 		projects_count = request.user.collection.count
 		survey_answers_count = request.user.answers.count

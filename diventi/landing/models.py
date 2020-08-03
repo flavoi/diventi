@@ -23,7 +23,6 @@ class SectionModelManager(FeaturedModelManager):
         sections = sections.select_related('section_survey')
         sections = sections.prefetch_related(Prefetch('articles', queryset=Article.objects.order_by('-publication_date')))
         sections = sections.prefetch_related('features')
-        sections = sections.prefetch_related('stories')
         sections = sections.order_by('order_index')
         return sections
 
@@ -73,10 +72,6 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         return mark_safe("<br>".join([obj.title for obj in self.articles.all()]))
     get_articles.short_description = _('Articles')
 
-    def get_stories(self):
-        return mark_safe("<br>".join([obj.title for obj in self.stories.all()]))
-    get_stories.short_description = _('Stories')
-
 
     class Meta:
         verbose_name = _('section')
@@ -89,14 +84,6 @@ class Feature(Element):
     class Meta:
         verbose_name = _('feature')
         verbose_name_plural = _('features')
-
-
-class Story(Element, DiventiImageModel):
-    section = models.ForeignKey(Section, null=True, related_name='stories', on_delete=models.SET_NULL)
-
-    class Meta:
-        verbose_name = _('story')
-        verbose_name_plural = _('stories')
 
 
 class SearchSuggestion(Element):

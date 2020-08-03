@@ -26,6 +26,7 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch_related('related_products')
         products = products.prefetch_related('customers')
         products = products.prefetch_related('details')
+        products = products.select_related('category')
         return products
 
     # Fetch the products purchased by the user
@@ -45,20 +46,29 @@ class ProductQuerySet(models.QuerySet):
 
     # Get all the published products 
     def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            products = self
-        else:
-            products = self.filter(published=True)
+        products = self.filter(published=True)
         products = products.prefetch()
         return products
 
 
-class ProductCategory(Category):
+class ProductCategoryQuerySet(models.QuerySet):
+
+    # Meta categories won\'t be listed in search results, nor on reporting pages.
+    # In addition, we show categories that are related to published projects only.
+    def visible(self):
+        categories = self.exclude(meta_category=True)
+        published_projects = Product.objects.published()
+        categories = categories.filter(projects__pk__in=published_projects)
+        return categories
+
+
+class ProductCategory(Element):
     """
         Defines the type of a product.
     """
     meta_category = models.BooleanField(default=False, verbose_name=_('meta category'), help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.'))
+
+    objects = ProductCategoryQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('Product category')
@@ -75,7 +85,15 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
     customers = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Purchase', blank=True, verbose_name=_('customers'))
     file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
-    category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default', on_delete=models.SET_NULL)
+    category = models.ForeignKey(
+        ProductCategory, 
+        null=True, 
+        blank=True,     
+        default='default',
+        related_name='projects',
+        on_delete=models.SET_NULL,
+        verbose_name=_('category'), 
+    )
     courtesy_short_message = models.CharField(blank=True, max_length=50, verbose_name=_('short courtesy messages'))
     courtesy_message = models.TextField(blank=True, verbose_name=_('courtesy message')) # Explains why the product is under maintenance
     related_products = models.ManyToManyField(

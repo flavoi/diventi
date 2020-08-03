@@ -3,7 +3,6 @@ from modeltranslation.translator import register, TranslationOptions
 from .models import (
 	Feature, 
 	Section, 
-	Story,
 	SearchSuggestion,
 )
 
@@ -15,11 +14,6 @@ class FeatureTranslationOptions(TranslationOptions):
 
 @register(Section)
 class SectionTranslationOptions(TranslationOptions):
-    fields = ('title', 'description',)
-
-
-@register(Story)
-class StoryTranslationOptions(TranslationOptions):
     fields = ('title', 'description',)
 
 

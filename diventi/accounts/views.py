@@ -26,36 +26,34 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from braces.views import AnonymousRequiredMixin
 
-from .models import DiventiUser, DiventiAvatar, Achievement
-from .forms import DiventiUserCreationForm, DiventiUserUpdateForm, DiventiUserPrivacyChangeForm
-from .utils import get_user_data
 from diventi.core.views import DiventiActionMixin, StaffRequiredMixin
 from diventi.products.models import Product
 from diventi.comments.models import DiventiComment
 from diventi.landing.models import Section
 
+from .models import DiventiUser, DiventiAvatar, Achievement
+from .forms import (
+    DiventiAuthenticationForm,
+    DiventiPasswordResetForm,
+    DiventiUserCreationForm, 
+    DiventiUserUpdateForm, 
+    DiventiUserPrivacyChangeForm,
+    DiventiSetPasswordForm,
+)
+from .utils import get_user_data
 
-class DiventiLoginView(AnonymousRequiredMixin, LoginView):
 
-    template_name = "accounts/signin.html"
+class DiventiLoginView(LoginView):
+
+    authentication_form = DiventiAuthenticationForm
+    form_class = DiventiAuthenticationForm
+    template_name = "accounts/signin_quick.html"
     success_msg = _('You have signed in!')
     fail_msg = _('Your sign in has failed.')
 
     def form_valid(self, form):
         messages.success(self.request, self.success_msg)        
         return super(DiventiLoginView, self).form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        sections = Section.objects.not_featured()
-        featured_section = Section.objects.featured()
-        if featured_section: # Get the featured section to display the image on the login page
-            pass
-        elif sections.exists():
-            featured_section = sections.first()
-            sections = sections.exclude(id=featured_section.id)
-        context['featured_section'] = featured_section
-        return context
 
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):
@@ -118,7 +116,7 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 
     form_class = DiventiUserCreationForm
     model = DiventiUser
-    template_name = 'accounts/signup.html'
+    template_name = 'accounts/signup_quick.html'
     success_msg = _('You have signed up!')
     fail_msg = _('Your sign up has failed.')
     fail_url = reverse_lazy('accounts:signup')
@@ -159,7 +157,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
     form_class = DiventiUserUpdateForm
     model = DiventiUser
-    template_name = "accounts/user.html"
+    template_name = "accounts/user_update_quick.html"
     success_msg = _('Profile updated!')
     fail_msg = _('Profile has not been updated.')
     slug_field = 'nametag'
@@ -189,7 +187,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 class DiventiUserDetailView(DetailView):
 
     model = DiventiUser
-    template_name = "accounts/detail.html"
+    template_name = "accounts/user_detail_quick.html"
     slug_field = 'nametag'
     slug_url_kwarg = 'nametag'
 
@@ -250,24 +248,26 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
 
 class DiventiPasswordResetView(PasswordResetView):
     
-    template_name = 'accounts/password_reset_form.html'
+    form_class = DiventiPasswordResetForm
+    template_name = 'accounts/password_reset_form_quick.html'
     email_template_name = 'accounts/password_reset_email.html'
     success_url = reverse_lazy('accounts:password_reset_done')
 
 
 class DiventiPasswordResetDoneView(PasswordResetDoneView):
 
-    template_name = 'accounts/password_reset_done.html'
+    template_name = 'accounts/password_reset_done_quick.html'
 
 
 class DiventiPasswordResetConfirmView(PasswordResetConfirmView):
 
-    template_name='accounts/password_reset_confirm.html'
+    form_class = DiventiSetPasswordForm
+    template_name='accounts/password_reset_confirm_quick.html'
     success_url = reverse_lazy('accounts:password_reset_complete')
 
 
 class DiventiPasswordResetCompleteView(PasswordResetCompleteView):
 
-    template_name='accounts/password_reset_complete.html'
+    template_name='accounts/password_reset_complete_quick.html'
 
     

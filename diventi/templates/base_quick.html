@@ -62,12 +62,19 @@
             font-weight: 400;
             font-style: normal
         }
+
         .diventi-font {
             font-family: 'Kravitz Thermal';
             font-weight: 400;
             font-style: normal;
             font-size: 32px;
             }
+
+        .diventi-font-awesome::after
+        {
+            font-family: 'Font Awesome 5 Pro';
+        }
+
     </style>
 
     <!-- Preloader -->
@@ -110,6 +117,12 @@
         body.loaded>div.preloader {
             animation: hidePreloader .5s linear .5s forwards;
         }
+        body.modal-open {
+            overflow: visible;
+        }
+        .modal-open[style] {
+            padding-right: 0px !important;
+        }
     </style>
     <script>
         window.addEventListener("load", function() {
@@ -124,98 +137,16 @@
 </head>
 
 <body>
-
+    {% block preloadermodal %}
     <!-- Preloader -->
     <div class="preloader">
         <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
+            <span class="sr-only">{% trans 'loading'|capfirst %}...</span>
         </div>
-    </div>
+    </div>    
+    {% endblock preloadermodal %}
 
-    <!-- User profile modal -->
-    <div class="modal fade fixed-right" id="modal-profile" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-vertical" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <!-- Close button -->
-                    <div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <!-- Modal content -->
-                    <div class="px-4">
-                        <!-- Avatar -->
-                        <div class="d-flex my-4">
-                            <div class="avatar-parent-child mx-auto">
-                                <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle">
-                                <span class="avatar-child avatar-badge bg-success"></span>
-                            </div>
-                        </div>
-                        <div class="text-center mb-4">
-                            <h6 class="h5 mb-0">{{ user.get_full_name }}</h6>
-                            <span class="d-block text-muted">{{ user.email }}</span>
-                        </div>
-                        <!-- Profile stats -->
-                        <div class="d-flex mb-5">
-                            <div class="col-4 text-center">
-                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ projects_count }}</a>
-                                <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
-                            </div>
-                            <div class="col-4 text-center">
-                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ ratings_count }}</a>
-                                <span class="d-block text-sm">{% trans "reviews"|capfirst %}</span>
-                            </div>
-                            <div class="col-4 text-center">
-                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ survey_answers_count }}</a>
-                                <span class="d-block text-sm">{% trans "feedbacks"|capfirst %}</span>
-                            </div>
-                        </div>
-                        <!-- Performance chart -->
-                        <div class="mb-5">
-                            <div class="text-center mb-3">
-                                <span class="d-block h6 mb-1">{% trans "achievements"|capfirst %}</span>
-                                <a href="#" class="h6 text-muted text-sm">{{ achievements_count }}/{{ achievements_total_count }} A</a>
-                            </div>
-                            <div class="mt-4 pt-4 border-top">
-                                {% for a in user_achievements %}
-                                    <div class="row align-items-center mb-3">
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-soft-{{ a.color }} text-{{ a.color }}">
-                                                <i class="fas fa-{{ a.icon }}"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col pl-0">
-                                            <span class="d-block h6 text-sm mb-0">{{ a.title|capfirst }}</span>
-                                            <p class="mb-0 text-sm">{{ a.description }}</p>
-                                        </div>                                    
-                                    </div>
-                                 {% endfor %}
-                                 {% for a in locked_achievements %}
-                                    <div class="row align-items-center mb-3">
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-soft-secondary text-secondary">
-                                                <i class="fas fa-lock"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col pl-0">
-                                            <span class="d-block h6 text-sm mb-0 text-muted">{{ a.title|capfirst }}</span>
-                                        </div>                                    
-                                    </div>
-                                {% endfor %}                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer py-3 mt-auto">
-                    <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
-                        <span class="btn-inner--icon"><i class="fad fa-sign-out"></i></span>
-                        <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% block cookiesmodal %}
     <!-- Cookies modal -->
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-cookies" data-backdrop="false" aria-labelledby="modal-cookies" aria-hidden="true">
         <div class="modal-dialog modal-dialog-aside left-4 right-4 bottom-4">
@@ -223,21 +154,28 @@
                 <div class="modal-body">
                     <!-- Text -->
                     <p class="text-sm text-white mb-3">
-                        We use cookies so that our themes work for you. By using our website, you agree to our use of cookies.
+                        {% trans "we use cookies so that our themes work for you. By using our website, you agree to our use of cookies"|capfirst %}.
                     </p>
                     <!-- Buttons -->
-                    <a href="../../pages/utility/terms.html" class="btn btn-sm btn-white" target="_blank">Learn more</a>
+                    <!--<a href="." class="btn btn-sm btn-white" target="_blank">Learn more</a>-->
                     <button type="button" class="btn btn-sm btn-primary mr-2" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
     </div>
+    {% endblock cookiesmodal %}
+
+    {% block usermodal %}
+    <!-- User profile modal -->
+    {% include 'accounts/user_detail_quick_modal.html' %}
+    {% endblock usermodal %}
+    
+    {% block header %}
     <!-- Header -->
     <header class="" id="header-main">
         <!-- Navbar -->
         {% block navbar %}
         <nav class="navbar navbar-main navbar-expand-lg navbar-light" id="navbar-main">
-            {% if user.is_authenticated %}
             <div class="container">
                 <!-- Toggler -->
                 <button class="navbar-toggler order-lg-2 ml-n3 ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -271,7 +209,7 @@
                                           <div class="list-group-item bg-transparent border-0 px-0 py-2">
                                              <div class="media d-flex">
                                                 <span class="h6">
-                                                   <i class="fad fa-{{ category.icon|default:'box' }} fa-fw"></i>
+                                                   <i class="far fa-{{ category.icon|default:'box' }} fa-fw"></i>
                                                 </span>
                                                 <div class="media-body ml-2">
                                                     <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
@@ -295,7 +233,7 @@
                                         <div class="d-flex">
                                             <!-- SVG icon -->
                                             <span class="h6">
-                                                <i class="fad fa-quote-left"></i>
+                                                <i class="far fa-quote-left"></i>
                                             </span>
                                             <!-- Media body -->
                                             <div class="ml-3">
@@ -308,7 +246,7 @@
                                         <div class="d-flex">
                                             <!-- SVG icon -->
                                             <span class="h6">
-                                                <i class="fad fa-align-center"></i>
+                                                <i class="far fa-align-center"></i>
                                             </span>
                                             <!-- Media body -->
                                             <div class="ml-3">
@@ -330,7 +268,7 @@
                                         <div class="d-flex">
                                             <!-- SVG icon -->
                                             <span class="h6">
-                                                <i class="fad fa-cog"></i>
+                                                <i class="far fa-cog"></i>
                                             </span>
                                             <!-- Media body -->
                                             <div class="ml-3">
@@ -359,7 +297,7 @@
                                         <div class="d-flex">
                                             <!-- SVG icon -->
                                             <span class="h6">
-                                                <i class="fad fa-chart-bar"></i>
+                                                <i class="far fa-chart-bar"></i>
                                             </span>
                                             <!-- Media body -->
                                             <div class="ml-3">
@@ -372,7 +310,7 @@
                                         <div class="d-flex">
                                             <!-- SVG icon -->
                                             <span class="h6">
-                                                <i class="fad fa-vial"></i>
+                                                <i class="far fa-vial"></i>
                                             </span>
                                             <!-- Media body -->
                                             <div class="ml-3">
@@ -387,153 +325,67 @@
                     {% endif %}
                     </ul>
                     <!-- Right navigation -->
+                    {% if user.is_authenticated %}
                     <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                         <li class="nav-item">
                             <a href="#" data-action="omnisearch-open" data-target="#omnisearch" class="nav-link nav-link-icon px-2">
                                 <i class="far fa-search fa-sm fa-fw"></i>
                             </a>
-                        </li>
+                        </li>                        
                         <li class="nav-item dropdown dropdown-animate">
                             <a class="nav-link nav-link-icon px-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-cog fa-sm fa-fw"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow p-3">
                                 <h6 class="dropdown-header px-0 mb-2 text-primary">{% trans "hi"|capfirst %}, {{ user.get_full_name }}!</h6>
-                                <a href="{% url 'accounts:update' user.nametag %}" class="dropdown-item">
+                                <a href="{% url 'accounts:detail' user.nametag %}" class="dropdown-item">
                                     <i class="far fa-user fa-sm fa-fw"></i>
                                     <span>{% trans "my profile"|capfirst %}</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="{% url 'accounts:signout' %}" class="dropdown-item">
-                                    <i class="fad fa-sign-out fa-sm fa-fw"></i>
+                                    <i class="far fa-sign-out fa-sm fa-fw"></i>
                                     <span>{% trans "sign out"|capfirst %}</span>
                                 </a>
                             </div>
-                        </li>
+                        </li>                        
                     </ul>
+                    {% else %}
+                    <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+                    </ul>
+                    {% endif %}    
                     <!-- Mobile button -->
                     <div class="d-lg-none px-4 text-center">
-                        <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-block btn-sm btn-warning" target="_blank">{% trans "my collection"|capfirst %}</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-block btn-sm btn-warning" target="_blank">{% trans "my collection"|capfirst %}</a>
+                        {% else %}
+                            <a href="{% url 'accounts:signin' %}" class="btn btn-block btn-sm btn-primary">{% trans "sign in"|capfirst %}</a>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- Avatar menu -->
+                {% if user.is_authenticated %}
                 <div class="order-lg-4 ml-lg-3">
                     <a class="" href="#modal-profile" role="button" data-toggle="modal">
                         <span class="avatar rounded-circle">
-                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'material-kit/img/placeholder.jpg' %}{% endif %}" alt="{{ user.get_full_name }}">
+                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">
                         </span>
                     </a>
                 </div>
-            </div>
-            {% else %}
-            <div class="container">
-                <!-- Brand -->
-                <a class="nav-link diventi-font" href="{% url 'landing:home' %}">
-                    Diventi
-                </a>
-                <!-- Toggler -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!-- Collapse -->
-                <div class="collapse navbar-collapse navbar-collapse-overlay" id="navbar-main-collapse">
-                    <!-- Toggler -->
-                    <div class="position-relative">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <!-- Main navigation -->
-                    <ul class="navbar-nav ml-lg-auto">
-                        <!-- Projects menu -->
-                        <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
-                           <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "projects"|capfirst %}</a>
-                           <div class="dropdown-menu dropdown-menu-md p-0">
-                              <div class="row no-gutters">
-                                 <div class="col-12">
-                                    <div class="dropdown-body dropdown-body-right bg-dropdown-secondary h-100">
-                                       {% for category in projects %}
-                                       <h6 class="dropdown-header text-info mb-2 mt-2">{{ category.title|capfirst }}</h6>
-                                       <div class="list-group list-group-flush">
-                                          {% for project in category.projects.all %}
-                                          <div class="list-group-item bg-transparent border-0 px-0 py-2">
-                                             <div class="media d-flex">
-                                                <span class="h6">
-                                                   <i class="fad fa-{{ category.icon|default:'box' }} fa-fw"></i>
-                                                </span>
-                                                <div class="media-body ml-2">
-                                                    <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
-                                                    {{ project.title|capfirst }}</a> <small class="text-sm text-muted mb-0">{{ project.abstract|capfirst }}</small></div>
-                                             </div>
-                                          </div>
-                                          {% endfor %}
-                                       </div>
-                                       {% endfor %}
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </li>
-                        <!-- Community menu -->
-                        <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
-                            <div class="dropdown-menu dropdown-menu-md p-0">
-                                <div class="list-group list-group-flush px-lg-4">
-                                    <a href="{% url 'forum:index' %}" class="list-group-item list-group-item-action" role="button">
-                                        <div class="d-flex">
-                                            <!-- SVG icon -->
-                                            <span class="h6">
-                                                <i class="fad fa-quote-left fa-fw"></i>
-                                            </span>
-                                            <!-- Media body -->
-                                            <div class="ml-3">
-                                                <h6 class="heading mb-0">Forum</h6>
-                                                <small class="text-sm">{% trans "a place to discuss adventures and developments"|capfirst %}</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="{% url 'blog:home' %}" class="list-group-item list-group-item-action" role="button">
-                                        <div class="d-flex">
-                                            <!-- SVG icon -->
-                                            <span class="h6">
-                                                <i class="fad fa-align-center fa-fw"></i>
-                                            </span>
-                                            <!-- Media body -->
-                                            <div class="ml-3">
-                                                <h6 class="heading mb-0">Blog</h6>
-                                                <small class="text-sm">{% trans "find our latest news"|capfirst %}</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- Right navigation -->
-                    <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
-                        <!-- Auth -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accounts:signup' %}">
-                                {% trans "sign up"|capfirst %}
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{% url 'accounts:signin' %}" class="btn btn-sm btn-primary btn-icon ml-3">
-                                <span class="btn-inner--icon"><i class="far fa-sign-in"></i></span>
-                                <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Mobile button -->
-                    <div class="d-lg-none px-4 text-center">
-                        <a href="{% url 'accounts:signin' %}" class="btn btn-block btn-sm btn-primary">{% trans "sign in"|capfirst %}</a>
-                    </div>
+                {% else %}
+                <div class="align-items-lg-center order-lg-4 ml-lg-3">
+                    <a href="{% url 'accounts:signin' %}" class="nav-link nav-link-icon px-2" data-toggle="tooltip" data-placement="left" title="{% trans 'sign in'|capfirst %}">
+                        <i class="fal fa-sign-in-alt fa-fw font-weight-400 opacity-6" style="font-size: 1.66em;"></i>
+                    </a>
                 </div>
+                {% endif %}
             </div>
-            {% endif %}
         </nav>
         {% endblock navbar %}
     </header>
+    {% endblock header %}
+    
+    {% block omnisearch %}
     <!-- Omnisearch -->
     <div id="omnisearch" class="omnisearch">
         <div class="container">
@@ -569,6 +421,31 @@
             </div>
         </div>
     </div>
+    {% endblock omnisearch %}
+
+    {% if messages %}
+    <!-- Messages -->
+    {% for message in messages %}
+    <div class="container">
+        <div class="alert-messages">
+            <div class="alert alert-group alert-{{ message.tags|default:'info' }} alert-icon" role="alert">
+            <div class="alert-group-prepend">
+                <span class="alert-group-icon text-">
+                    <i class="far fa-{% if message.level == 25 %}thumbs-up{% elif message.level >= 25 %}exclamation-triangle{% else %}info-circle{% endif%}"></i>
+                </span>
+            </div>
+            <div class="alert-content">
+                {{ message.message }}
+            </div>
+            <div class="alert-action">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div> 
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
     <!-- Main content -->    
     {% block content %}{% endblock content %}
 
@@ -608,7 +485,7 @@
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <!-- Theme's logo -->
                         <a href="{% url 'landing:home' %}">
-                            <img alt="Diventi" src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" class="img-fluid" style="width: 228px;" id="footer-logo">
+                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" alt="Diventi" src="" class="img-fluid" style="width: 228px;" id="footer-logo">
                         </a>
                         <!-- Webpixels' mission -->
                         <p class="mt-4 text-sm opacity-8 pr-lg-4">{% trans "Diventi is a role-playing game that embraces fun, encourages storytelling and helps game masters to prepare their fantastic adventures" %}.</p>
@@ -687,7 +564,7 @@
     {% endblock footer %}
 
     <!-- Core JS  -->
-    <script src="{% static 'quick-v110/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/jquery/dist/jquery.min.js' %}"></script>    
     <script src="{% static 'quick-v110/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'quick-v110/libs/svg-injector/dist/svg-injector.min.js' %}"></script>
     <script src="{% static 'quick-v110/libs/feather-icons/dist/feather.min.js' %}"></script>
@@ -702,7 +579,7 @@
     <script src="{% static 'quick-v110/js/quick-website.js' %}"></script>
     <script src="{% static 'diventi/js/diventi-defer-img.min.gz.js' %}"></script>
     <!-- Feather Icons -->
-    <script>
+    <script type="text/javascript">
         feather.replace({
             'width': '1em',
             'height': '1em'
@@ -716,6 +593,12 @@
             $('#search_text').focus()
         });
     });
+    </script>
+    <!-- Popovers -->
+    <script type="text/javascript">
+        $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
     </script>
 </body>
 

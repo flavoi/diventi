@@ -1,0 +1,122 @@
+{% load i18n %}
+{% load static %}
+
+<div class="modal fade fixed-right" id="modal-profile" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-vertical" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Close button -->
+                <div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal content -->
+                <div class="px-4">
+                    <!-- Avatar -->
+                    <div class="d-flex my-4">
+                        <div class="avatar-parent-child mx-auto">
+                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle">
+                            <span class="avatar-child avatar-badge bg-success"></span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <h6 class="h5 mb-0">{{ user.get_full_name }}</h6>
+                        <span class="d-block text-muted">{{ user.email }}</span>
+                    </div>
+                    <!-- Profile stats -->
+                    <div class="d-flex mb-5">
+                        <div class="col-4 text-center">
+                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_comments_count }}</a>
+                            <span class="d-block text-sm">{% trans "comments"|capfirst %}</span>
+                        </div>
+                        <div class="col-4 text-center">
+                            {% if has_user_authored %}
+                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_projects_count }}</a>
+                                <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
+                            {% else %}
+                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_ratings_count }}</a>
+                                <span class="d-block text-sm">{% trans "reviews"|capfirst %}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_survey_answers_count }}</a>
+                            <span class="d-block text-sm">{% trans "feedbacks"|capfirst %}</span>
+                        </div>
+                    </div>
+                    <!-- Collection -->
+                    <div class="mb-5">
+                        <div class="text-center mb-3">
+                            <span class="d-block h6 mb-1">{% trans "collection"|capfirst %}</span>
+                        </div>
+                        <div class="mt-4 pt-4 border-top">
+                            {% for product in user_collection %}
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-auto">                                        
+                                        <div class="icon icon-shape {% if product.book.published and product.published %}bg-soft-{{ product.category.color }} text-{{ product.category.color }}{% else %}bg-soft-secondary text-secondary{% endif%}">
+                                            <i class="fas fa-{{ product.category.icon }}"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col pl-0">
+                                        {% if product.book.published and product.published %}
+                                        <span class="d-block h6 text-sm mb-0">
+                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a></span>
+                                        <p class="mb-0 text-sm">{{ product.category }}</p>
+                                        {% else %}
+                                        <span class="d-block h6 text-sm mb-0" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
+                                            <a tabindex="0" href="{{ product.book.get_absolute_url }}" class="btn-link disabled">{{ product.title|capfirst }}</a></span>
+                                        <p class="mb-0 text-sm">{{ product.category }}</p>
+                                        {% endif %}
+                                    </div>                                    
+                                </div>
+                            {% endfor %}
+                            <hr class="my-3" />
+                        </div>
+                    </div>
+                    <!-- Achievements -->
+                    <div>
+                        <div class="text-center">
+                            <span class="d-block h6 mb-1">{% trans "achievements"|capfirst %}</span>
+                            <a href="#" class="h6 text-muted text-sm">{{ user_achievements_count }}/{{ achievements_total_count }} A</a>
+                        </div>
+                        <div class="mt-4 pt-4 border-top">
+                            <div class="row justify-content-center">
+                            {% for a in user_achievements %}
+                                <div class="col-auto text-center mb-0 px-2 pb-0">
+                                    <div class="d-block">
+                                        <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" role="button" data-toggle="popover"  data-placement="top" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
+                                            <span class="btn-inner--icon pt-1">
+                                                <i class="far fa-{{ a.icon }} fa-lg fa-fw text-white"></i>
+                                            </span>
+                                        </a>
+                                        <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
+                                    </div>
+                                </div>
+                            {% endfor %}                            
+                            {% for a in user_locked_achievements %}
+                                <div class="col-auto text-center mb-0 px-2 pb-0">
+                                    <div class="d-block stretched-link">
+                                        <button type="button" class="btn btn-secondary rounded-circle btn-icon-only">
+                                            <span class="btn-inner--icon pt-1">
+                                                <i class="far fa-lock fa-lg fa-fw text-white"></i>
+                                            </span>
+                                        </button>
+                                        <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
+                                    </div>
+                                  </div>                            
+                            {% endfor %}
+                            </div>                        
+                            <hr class="my-3" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-3 mt-auto">
+                <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
+                    <span class="btn-inner--icon"><i class="far fa-sign-out"></i></span>
+                    <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

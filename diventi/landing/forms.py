@@ -15,4 +15,4 @@ class SectionForm(forms.ModelForm):
         for choice in users:
             choices.append((choice.id, choice))
         w.choices = choices     
-        self.fields['section_survey'].queryset = Survey.objects.strictly_published()
+        self.fields['section_survey'].queryset = Survey.objects.published()

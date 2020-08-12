@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from diventi.core.admin import DiventiTranslationAdmin
+from diventi.core.admin import (
+    DiventiIconAdmin,
+    DiventiTranslationAdmin,
+)
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
@@ -75,14 +78,14 @@ class ProductAdmin(DiventiTranslationAdmin):
         return form
 
 
-class ProductCategoryAdmin(DiventiTranslationAdmin):
-    list_display = ('title', 'icon_tag', 'meta_category')
+class ProductCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
+    list_display = ('title', 'icon_tag', 'color_tag', 'meta_category')
     fieldsets = (
         (_('Management'), {
             'fields': ('meta_category',)
         }),
         (_('Multimedia'), {
-            'fields': ('icon',),
+            'fields': ('icon', 'color'),
         }),
         (_('Editing'), {
             'fields': ('title', 'description',),

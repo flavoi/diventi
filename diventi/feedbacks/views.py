@@ -201,7 +201,7 @@ def new_answers_gate(request, slug):
     if request.user.is_authenticated:
         user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
         if user_has_answered:
-            return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
+            return redirect(reverse('feedbacks:answers-author', args=[slug, request.user.first_name]))
     else:    
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
         if user_has_answered:

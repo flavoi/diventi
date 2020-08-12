@@ -210,8 +210,7 @@ class DiventiUser(AbstractUser):
         }
         return description
 
-    def reporting(self, *args, **kwargs):
-        
+    def reporting(self, *args, **kwargs):    
         queryset = DiventiUser.objects.all()
         results = [] 
         last_subscriber = queryset.last_subscriber()

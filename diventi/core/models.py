@@ -198,17 +198,8 @@ class DiventiCoverModel(DiventiImageModel):
 
 class PublishableModelQuerySet(models.QuerySet):
 
-    # Get self for super users or the published objects for everyone else
-    def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            published_model = self
-        else:
-            published_model = self.filter(published=True)
-        return published_model
-
     # Get just the published objects for everyone
-    def strictly_published(self):
+    def published(self):
         published_model = self.filter(published=True) 
         return published_model
 
@@ -219,7 +210,7 @@ class FeaturedModelQuerySet(PublishableModelQuerySet):
     # Even super users should not see featured objects if they are not strictly published
     def featured(self):
         try:
-            featured_model = self.strictly_published().get(featured=True)            
+            featured_model = self.published().get(featured=True)            
         except self.model.DoesNotExist:
             # Fail silently, return nothing
             featured_model = self.none() 
@@ -283,18 +274,22 @@ class SectionModel(models.Model):
         ('centered', _('centered')),
         ('right', _('right')),
     )
-    alignment = models.CharField(default='centered', choices=ALIGNMENT_CHOICES, max_length=50, verbose_name=_('alignment'))
-
-    def get_alignment_classes(self):     
-        if self.alignment == 'left':
-            alignment_classes = 'mr-auto text-left'
-        elif self.alignment == 'centered':
-            alignment_classes = 'ml-auto mr-auto text-center'
-        elif self.alignment == 'right':
-            alignment_classes = 'ml-auto text-right'
-        else:
-            alignment_classes = ''   
-        return alignment_classes
+    alignment = models.CharField(
+        default='centered', 
+        choices=ALIGNMENT_CHOICES, 
+        max_length=50, 
+        verbose_name=_('alignment')
+    )
+    POSITION_CHOICES = (
+        (1, _('text first')),
+        (3, _('test second')),
+    )
+    position = models.PositiveIntegerField(
+        default=1, 
+        choices=POSITION_CHOICES,
+        verbose_name=_('text position')
+    )
 
     class Meta:
         abstract = True
+

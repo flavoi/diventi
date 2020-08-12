@@ -31,3 +31,9 @@ duplicate.short_description = _("Duplicate selected items")
 
 class DiventiTranslationAdmin(TabbedTranslationAdmin):
     pass
+
+
+class DiventiIconAdmin(admin.ModelAdmin):
+    
+    class Media:
+        js = ('https://kit.fontawesome.com/27968f469b.js', )

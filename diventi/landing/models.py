@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.utils.html import mark_safe
+from django.urls import reverse
 from django.db.models import Prefetch
 
 from cuser.middleware import CuserMiddleware
@@ -41,7 +42,10 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         ('header_search.html', _('search header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
-    dark_mode = models.BooleanField(verbose_name=_('dark mode'))
+    dark_mode = models.BooleanField(
+        default=False,
+        verbose_name=_('dark mode')
+    )
     video = models.URLField(
         blank=True,
         verbose_name=_('video')
@@ -71,7 +75,6 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
     def get_articles(self):
         return mark_safe("<br>".join([obj.title for obj in self.articles.all()]))
     get_articles.short_description = _('Articles')
-
 
     class Meta:
         verbose_name = _('section')

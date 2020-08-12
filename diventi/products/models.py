@@ -37,12 +37,13 @@ class ProductQuerySet(models.QuerySet):
 
     # Fetch the products authored by the user
     def user_authored(self, user):
-        if not user.is_staff: 
-            products = self.none()
-        else:
-            products = self.filter(authors=user)
+        products = self.filter(authors=user)
         products = products.prefetch()
         return products
+
+    # Return true if the user has authored at least one product
+    def has_user_authored(self, user):
+        return self.user_authored(user).exists()
 
     # Get all the published products 
     def published(self):

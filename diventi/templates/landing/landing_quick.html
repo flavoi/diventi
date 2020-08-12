@@ -126,177 +126,175 @@
 </section>
 
 {% for section in sections %}
-
-{% if section.articles.all %}
-<section class="slice slice-lg bg-section-dark pt-5 pt-lg-8">
-   <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
-      <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
-         <polygon points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-   </div>
-   <div class="container position-relative zindex-100">
-      <div class="col">
-         <div class="row justify-content-center">
-            <div class="col-md-10 text-center">
-               <div class="mt-4 mb-6">
-                  <h2 class="h1 text-white">{{ section.title|capfirst }}</h2>
-                  <h4 class="text-white mt-3">{{ section.description|safe }}</h4>
-                  {% if section.video %}
-                  <a href="https://www.youtube.com/watch?v=zodT9bCdIiI" data-fancybox="" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-warning btn-icon hover-translate-y-n10 mt-4" data-original-title="Watch video in lightbox">
-                     <span class="btn-inner--icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play">
-                           <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                        </svg>
-                     </span>
-                     <span class="btn-inner--text">{% trans "play video"|capfirst %}</span>
-                  </a>
-                  {% endif %}
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<section class="slice pt-0">
-   <div class="container position-relative zindex-100">
-      <div class="row">
-      	{% for article in section.articles.all %}
-         <div class="col-xl-6 col-md-6 col-sm-12 mt-n7">
-           <div class="card mb-8 hover-translate-y-n10 shadow-lg bg-cover bg-size--cover" style="background-image: url({{ article.image }});">
-              <!-- Mask -->
-              <span class="mask bg-dark opacity-1"></span>              
-              <!-- Card body -->
-              <div class="card-body pt-10 mt-auto position-relative">
-                  <!-- Title -->
-                  <a href="{% url 'blog:detail' article.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ article.title }}</a>
-                  <!-- Text -->
-                  <p class="mb-0 text-white">
-                      {{ article.description }}
-                  </p>
-              </div>
-              <!-- Meta -->
-              <div class="card-body position-relative delimiter-top">
-                  <div class="d-flex align-items-center">
-                      <div>
-                          <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-sm rounded-circle d-inline-block">
-                              <img alt="{{ article.author }}" src="{{ article.author.avatar.image }}">
-                          </a>
-                      </div>
-                      <div class="pl-3">
-                          <a href="{{ article.author.get_absolute_url }}" class="h6 stretched-link text-white text-sm">{{ article.author.get_full_name }}</a>
+  {% if section.articles.all %}
+    <section class="slice slice-lg bg-section-dark pt-5 pt-lg-8">
+       <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
+          <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
+             <polygon points="2560 0 2560 100 0 100"></polygon>
+          </svg>
+       </div>
+       <div class="container position-relative zindex-100">
+          <div class="col">
+             <div class="row justify-content-center">
+                <div class="col-md-10 text-center">
+                   <div class="mt-4 mb-6">
+                      <h2 class="h1 text-white">{{ section.title|capfirst }}</h2>
+                      <h4 class="text-white mt-3">{{ section.description|safe }}</h4>
+                      {% if section.video %}
+                      <a href="https://www.youtube.com/watch?v=zodT9bCdIiI" data-fancybox="" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-warning btn-icon hover-translate-y-n10 mt-4" data-original-title="Watch video in lightbox">
+                         <span class="btn-inner--icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play">
+                               <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                         </span>
+                         <span class="btn-inner--text">{% trans "play video"|capfirst %}</span>
+                      </a>
+                      {% endif %}
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section class="slice pt-0">
+       <div class="container position-relative zindex-100">
+          <div class="row">
+          	{% for article in section.articles.all %}
+             <div class="col-xl-6 col-md-6 col-sm-12 mt-n7">
+               <div class="card mb-8 hover-translate-y-n10 shadow-lg bg-cover bg-size--cover" style="background-image: url({{ article.image }});">
+                  <!-- Mask -->
+                  <span class="mask bg-dark opacity-1"></span>              
+                  <!-- Card body -->
+                  <div class="card-body pt-10 mt-auto position-relative">
+                      <!-- Title -->
+                      <a href="{% url 'blog:detail' article.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ article.title }}</a>
+                      <!-- Text -->
+                      <p class="mb-0 text-white">
+                          {{ article.description }}
+                      </p>
+                  </div>
+                  <!-- Meta -->
+                  <div class="card-body position-relative delimiter-top">
+                      <div class="d-flex align-items-center">
+                          <div>
+                              <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-sm rounded-circle d-inline-block">
+                                  <img alt="{{ article.author }}" src="{{ article.author.avatar.image }}">
+                              </a>
+                          </div>
+                          <div class="pl-3">
+                              <a href="{{ article.author.get_absolute_url }}" class="h6 stretched-link text-white text-sm">{{ article.author.get_full_name }}</a>
+                          </div>
                       </div>
                   </div>
+                </div>
               </div>
-            </div>
+             {% endfor %}
           </div>
-         {% endfor %}
-      </div>
-   </div>
-</section>
-{% elif section.products.all %}
-{% for product in section.products.all %}
-<section class="slice slice-lg">
-   <div class="container">
-      <div class="row row-grid justify-content-around align-items-center">
-         <div class="col-lg-6 order-lg-2 ml-lg-auto pl-lg-6">
-            <h5 class="h2 mt-4">{{ section.title|capfirst }}</h5>
-            <p class="lead lh-190 my-4">{{ section.description|capfirst }}</p>
-            <ul class="list-unstyled">
-              {% for chapter in product.chapters.all %}
-               <li class="py-2">
-                  <div class="d-flex align-items-center">
-                     <div>
-                        <div class="icon icon-shape icon-{{ chapter.color }} icon-sm rounded-circle mr-3"><i class="fas fa-{{ chapter.icon }}"></i></div>
-                     </div>
-                     <div><span class="h6 mb-0">{{ chapter.title|capfirst }}</span></div>
+       </div>
+    </section>
+  {% elif section.products.all %}
+  {% for product in section.products.all %}
+    <section class="slice slice-lg">
+       <div class="container">
+          <div class="row row-grid justify-content-around align-items-center">
+             <div class="col-lg-6 order-lg-2 ml-lg-auto pl-lg-6">
+                <h5 class="h2 mt-4">{{ section.title|capfirst }}</h5>
+                <p class="lead lh-190 my-4">{{ section.description|capfirst }}</p>
+                <ul class="list-unstyled">
+                  {% for chapter in product.chapters.all %}
+                   <li class="py-2">
+                      <div class="d-flex align-items-center">
+                         <div>
+                            <div class="icon icon-shape icon-{{ chapter.color }} icon-sm rounded-circle mr-3"><i class="fas fa-{{ chapter.icon }}"></i></div>
+                         </div>
+                         <div><span class="h6 mb-0">{{ chapter.title|capfirst }}</span></div>
+                      </div>
+                   </li>
+                   {% endfor %}
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <div class="card card-overlay card-hover-overlay hover-shadow-lg hover-translate-y-n10">
+                <figure class="figure"><img alt="{{ product.title }}" src="{{ product.image }}" class="img-fluid"></figure>
+                <div class="card-img-overlay d-flex flex-column align-items-center p-0">
+                  <div class="overlay-text w-75 mt-auto p-4">
+                    <p class="lead">{{ product.abstract }}</p>
+                    <a href="{{ product.get_absolute_url }}" class="link link-underline-white font-weight-bold">{{ product.category }}</a>
                   </div>
-               </li>
-               {% endfor %}
-            </ul>
-          </div>
-          <div class="col-lg-6">
-            <div class="card card-overlay card-hover-overlay hover-shadow-lg hover-translate-y-n10">
-            <figure class="figure"><img alt="{{ product.title }}" src="{{ product.image }}" class="img-fluid"></figure>
-            <div class="card-img-overlay d-flex flex-column align-items-center p-0">
-              <div class="overlay-text w-75 mt-auto p-4">
-                <p class="lead">{{ product.abstract }}</p>
-                <a href="{{ product.get_absolute_url }}" class="link link-underline-white font-weight-bold">{{ product.category }}</a>
-              </div>
-              <div class="overlay-actions w-100 card-footer mt-auto d-flex justify-content-between align-items-center">
-                <div><a href="{{ product.get_absolute_url }}" class="h6 mb-0">{{ product.title }}</a></div>
-                <div>
-                  <div class="actions">
-                    <a href="{{ product.get_absolute_url }}" class="action-item mr-3" data-toggle="tooltip" data-placement="bottom" title="{% trans 'visualize'|capfirst %}">
-                      <i class="fad fa-eye fa-lg fa-fw"></i>
-                    </a>
+                  <div class="overlay-actions w-100 card-footer mt-auto d-flex justify-content-between align-items-center">
+                    <div><a href="{{ product.get_absolute_url }}" class="h6 mb-0">{{ product.title }}</a></div>
+                    <div>
+                      <div class="actions">
+                        <a href="{{ product.get_absolute_url }}" class="action-item mr-3" data-toggle="tooltip" data-placement="bottom" title="{% trans 'visualize'|capfirst %}">
+                          <i class="fad fa-eye fa-lg fa-fw"></i>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-   </div>
-</section>
-{% endfor %}
-{% elif section.features.all %}
-<section class="slice slice-lg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <span class="badge badge-primary badge-pill">{{ section.title|capfirst }}</span>
-        <h5 class="lh-180 mt-4 mb-6">{{ section.description|capfirst }}</h5>
-      </div>
-    </div>
-    <div class="row mx-lg-n4">
-      {% for feature in section.features.all %}
-      <div class="col-lg-4 col-md-6 px-lg-4">
-        <div class="card shadow-none">
-          <div class="p-3 d-flex">
-            <div>
-              <div class="icon icon-shape rounded-circle bg-{{ section.color|default:'info' }} text-white mr-4">
-                <i class="fas fa-{{ section.icon|default:'check'}}"></i>
-              </div>
-            </div>
-            <div>
-              <span class="h6">{{ feature.title|capfirst }}</span>
-              <p class="text-sm text-muted mb-0">{{ feature.description|capfirst }}</p>
-            </div>
+       </div>
+    </section>
+  {% endfor %}
+  {% elif section.features.all %}
+    <section class="slice slice-lg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <span class="badge badge-primary badge-pill">{{ section.title|capfirst }}</span>
+            <h5 class="lh-180 mt-4 mb-6">{{ section.description|capfirst }}</h5>
           </div>
         </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-{% else %}
-<section class="slice slice-lg delimiter-top delimiter-bottom">
-    <div class="container">
-      <div class="row row-grid align-items-center justify-content-between">
-       <div class="col-md-6 col-lg-5 order-md-1 mr-md-auto">
-          <div class="py-lg-5 text-lg-left">
-             <h3 class="h2 mb-3">{{ section.title|capfirst }}</h3>
-             <p class="lead lh-180">{{ section.description|capfirst }}</p>
-             {% if section.video %}
-             <a href="{{ section.video }}" class="link link-underline-primary font-weight-bold">{% trans 'play video'|capfirst %}</a>
-             {% endif %}
-          </div>
-       </div>
-       {% if section.image %}
-       <div class="col-md-6 order-md-2">
-          <div class="row mx-n2">
-             <div class="col-10 mr-auto ml-auto px-2">
-                <img alt="{{ section.title }}" src="{{ section.image }}" class="img-fluid mb-3 rounded">
+        <div class="row mx-lg-n4">
+          {% for feature in section.features.all %}
+          <div class="col-lg-4 col-md-6 px-lg-4">
+            <div class="card shadow-none">
+              <div class="p-3 d-flex">
+                <div>
+                  <div class="icon icon-shape rounded-circle bg-{{ section.color|default:'info' }} text-white mr-4">
+                    <i class="fas fa-{{ section.icon|default:'check'}}"></i>
+                  </div>
+                </div>
+                <div>
+                  <span class="h6">{{ feature.title|capfirst }}</span>
+                  <p class="text-sm text-muted mb-0">{{ feature.description|capfirst }}</p>
+                </div>
               </div>
+            </div>
           </div>
-       </div>
-       {% endif %}
+          {% endfor %}
+        </div>
       </div>
-  </div>
-</section>
-{% endif %}
-
+    </section>
+  {% else %}
+    <section class="slice slice-lg delimiter-top delimiter-bottom">
+        <div class="container">
+          <div class="row row-grid align-items-center justify-content-between">
+           <div class="col-md-6 col-lg-5 order-md-{{ section.position }} mr-md-auto">
+              <div class="py-lg-5 text-lg-{{ section.alignment }}">
+                 <h3 class="h2 mb-3">{{ section.title|capfirst }}</h3>
+                 <p class="lead lh-180">{{ section.description|capfirst }}</p>
+                 {% if section.video %}
+                 <a href="{{ section.video }}" class="link link-underline-primary font-weight-bold" target="_blank">{% trans 'play video'|capfirst %}</a>
+                 {% endif %}
+              </div>
+           </div>
+           {% if section.image %}
+           <div class="col-md-6 order-md-2">
+              <div class="row mx-n2">
+                 <div class="col-12 mr-auto ml-auto px-0">
+                    <img alt="{{ section.title }}" src="{{ section.image }}" class="img-fluid mb-3 rounded">
+                  </div>
+              </div>
+           </div>
+           {% endif %}
+          </div>
+      </div>
+    </section>
+  {% endif %}
 {% endfor %}
 
 <section class="slice slice-lg pt-md-9 bg-section-secondary">
@@ -325,7 +323,7 @@
             <p class="mb-0">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</p>
           </div>
           <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
-            <a href="{% url 'accounts:update' user.nametag %}" class="btn btn-warning btn-icon rounded-pill">
+            <a href="{% url 'accounts:detail' user.nametag %}" class="btn btn-warning btn-icon rounded-pill">
               <span class="btn-inner--icon">
                 <i class="fad fa-user-circle fa-lg"></i>
               </span>

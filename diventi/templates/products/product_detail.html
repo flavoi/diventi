@@ -114,7 +114,7 @@
                       <a class="btn btn-round btn-warning" href="{% url 'accounts:update' user.nametag %}#{% trans 'collection' %}">       
                         {% trans "View in collection" %}
                       </a>                                
-                      {% include "reviews/review_button_modal.html" %}                        
+                      {% include "reviews/review_button_modal.html" %}
                   {% else %}
                       {% if product.price > 0 %}
                         {% with url='products:add' slug=product.slug %}

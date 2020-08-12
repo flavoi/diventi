@@ -68,26 +68,6 @@ class QuestionChoice(models.Model):
     def __str__(self):
         return self.title
 
-
-class SurveyQuerySet(FeaturedModelQuerySet):
-    
-    # Get the list of published surveys from the most recent to the least 
-    def history(self):
-        surveys = self.published().order_by('-publication_date')
-        return surveys
-
-    # Fetch all answers related to a survey
-    def answers(self):
-        survey = self.prefetch_related('answers')
-        return survey
-
-    # Fetch the surveys authored by the user
-    def user_collection(self, user):
-        surveys = self.filter(answers__author=user)
-        surveys = surveys.distinct()
-        return surveys
-
-
 class Outcome(models.Model):
     """
         An outcome take in account the sum of the answers scores and produces 
@@ -107,6 +87,25 @@ class Outcome(models.Model):
 
     def __str__(self):
         return self.title
+
+        
+class SurveyQuerySet(FeaturedModelQuerySet):
+    
+    # Get the list of published surveys from the most recent to the least 
+    def history(self):
+        surveys = self.published().order_by('-publication_date')
+        return surveys
+
+    # Fetch all answers related to a survey
+    def answers(self):
+        survey = self.prefetch_related('answers')
+        return survey
+
+    # Fetch the surveys authored by the user
+    def user_collection(self, user):
+        surveys = self.filter(answers__author=user)
+        surveys = surveys.distinct()
+        return surveys
 
 
 class Survey(TimeStampedModel, DiventiImageModel, FeaturedModel):

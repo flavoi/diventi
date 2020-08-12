@@ -1,0 +1,30 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+{% load reviews %}
+
+{% block title %}{{ object.get_full_name }} &middot; {% trans 'settings'|capfirst %}{% endblock title %}
+
+{% block content %}
+<section class="pt-5 bg-section-secondary">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-9">
+            <div class="row align-items-center">
+               <div class="col">
+                  <span class="surtitle">{% trans 'my account'|capfirst %}</span>
+                  <h1 class="h2 mb-0">{% trans 'settings'|capfirst %}</h1>
+               </div>
+            </div>
+            <div class="row align-items-center mt-4">
+               <div class="col">
+                  {% include 'accounts/user_nav_quick_snippet.html' with user_settings_active=1 %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

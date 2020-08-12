@@ -7,7 +7,13 @@ from modeltranslation.admin import (
     TranslationStackedInline,
 )
 
-from diventi.core.admin import DiventiTranslationAdmin, deactivate, make_published, make_unpublished
+from diventi.core.admin import (
+    DiventiTranslationAdmin,
+    DiventiIconAdmin,
+    deactivate, 
+    make_published, 
+    make_unpublished,
+)
 
 from .models import (
     Feature, 
@@ -43,6 +49,9 @@ class SectionAdmin(DiventiTranslationAdmin):
         (_('Multimedia'), {
             'fields': ('image', 'video',)
         }),
+        (_('Layout'), {
+            'fields': ('alignment', 'position',),
+        }),
         (_('Editing'), {
             'fields': ('title', 'order_index', 'description',),
         }),
@@ -58,12 +67,9 @@ class SectionAdmin(DiventiTranslationAdmin):
     ordering = ['-featured', 'order_index']
 
 
-class SearchSuggestionAdmin(DiventiTranslationAdmin):
+class SearchSuggestionAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     list_display = ('title', 'icon_tag', 'description',)
     fields = ('title', 'icon', 'description',)
-
-    class Media:
-        js = ('https://kit.fontawesome.com/27968f469b.js', )
 
 
 admin.site.register(Section, SectionAdmin)

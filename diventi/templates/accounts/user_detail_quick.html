@@ -1,0 +1,274 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+{% load reviews %}
+
+{% block title %}{{ object.get_full_name }}{% endblock title %}
+
+{% block content %}
+<section class="pt-5 bg-section-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <!-- Avatar -->
+                        <img alt="{{ object.first_name|title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" class="avatar avatar-xl rounded-circle" />
+                    </div>
+                    <div class="col ml-n3 ml-md-n2">
+                        <!-- Title -->
+                        <h2 class="mb-0">
+                            {{ object.first_name|title }}
+                        </h2>
+                        <!-- Subtitle -->
+                        <span class="text-muted d-block">{{ object.role.title|capfirst }}</span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    {% include 'accounts/user_nav_quick_snippet.html' with user_profile_active=1 %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="slice slice-sm bg-section-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="mb-4">
+                   <div class="row align-items-center mb-3">
+                      <div class="col">
+                         <h6 class="mb-0">{% trans "achievements"|capfirst %}</h6>
+                      </div>
+                   </div>
+                   <div class="row mx-n2">
+                    {% for a in achievements %}
+                      <div class="col-auto text-center mb-3 px-2">
+                        <div class="d-block">
+                            <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
+                                <span class="btn-inner--icon pt-1">
+                                    <i class="far fa-{{ a.icon }} fa-lg fa-fw text-white"></i>
+                                </span>
+                            </a>
+                            <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                    {% for a in locked_achievements %}
+                      <div class="col-auto text-center mb-3 px-2">
+                        <div class="d-block stretched-link">
+                            <button type="button" class="btn btn-secondary rounded-circle btn-icon-only">
+                                <span class="btn-inner--icon pt-1">
+                                    <i class="far fa-lock fa-lg fa-fw text-white"></i>
+                                </span>
+                            </button>
+                            <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                   </div>
+                </div>
+                <!-- Quick stats -->
+                <div>
+                    <!-- Title -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col">
+                            <h6 class="mb-0">{% trans "quick stats"|capfirst %}</h6>
+                        </div>
+                    </div>
+                    <!-- Quick stats -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card card-fluid">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <!-- Avatar -->
+                                            <a href="#" class="avatar rounded-circle">
+                                                <img alt="{{ object.first_name|title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}">
+                                            </a>
+                                        </div>
+                                        <div class="col ml-md-n2">
+                                            <a href="#!" class="d-block h6 mb-0">{{ object.first_name|title }}</a>
+                                            <small class="d-block text-muted">{{ object.role.title|capfirst }}</small>
+                                        </div>
+                                        {% if request.user == object %}
+                                        <div class="col-auto">
+                                            <a href="{% url 'accounts:update' object.nametag %}" class="btn btn-xs btn-primary btn-icon rounded-pill">
+                                                <span class="btn-inner--icon"><i class="far fa-edit"></i></span>
+                                                <span class="btn-inner--text">{% trans "edit"|capfirst %}</span>
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-4 text-center">
+                                            <span class="h5 mb-0">{{ user_comments_count }}</span>
+                                            <span class="d-block text-sm">{% trans "comments"|capfirst %}</span>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            {% if has_user_authored %}
+                                                <span class="h5 mb-0">{{ user_projects_count }}</span>
+                                                <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
+                                            {% else %}
+                                                <span class="h5 mb-0">{{ user_ratings_count }}</span>
+                                                <span class="d-block text-sm">{% trans "reviews"|capfirst %}</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <span class="h5 mb-0">{{ user_survey_answers_count }}</span>
+                                            <span class="d-block text-sm">{% trans "feedbacks"|capfirst %}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <a href="{% url 'landing:home' %}">
+                            <div class="card card-fluid bg-section-dark hover-translate-y-n10">
+                                <div class="card-body px-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="d-flex align-items-center align-items-center mb-3">
+                                                <div>
+                                                    <div class="icon icon-sm icon-shape bg-warning text-white rounded-circle mr-3">
+                                                        <i class="far fa-gem pt-1"></i>
+                                                    </div>
+                                                </div>
+                                                <span class="h6 text-white mb-0">{% trans 'featured content'|capfirst %}</span>
+                                            </div>           
+                                            <h5 class="text-white pt-0">{{ graph_section.title|capfirst }}</h5>            
+                                            <p class="text-white opacity-8">
+                                                {{ graph_section.description|capfirst }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Collection -->
+                <div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <h6 class="mb-0">{% trans "collection"|capfirst %}</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                       <div class="col-md-6">
+                          <div class="row mx-n2">                        
+                            {% for product in collection %}
+                             <div class="col-lg-12 px-2">
+                                <div class="card {% if not forloop.last %}mb-3{% endif %}">
+                                <!-- Card body -->
+                                <div class="card-body pt-3">
+                                    <!-- App logo + status -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>                                            
+                                            <i class="fad fa-2x fa-{{ product.category.icon }} {% if product.book.published and product.published %}text-primary{% endif %}"></i>
+                                        </div>
+                                        {% if request.user == object %}                                
+                                        <div class="text-right">
+                                            {% trans "not available" as default_courtesy_short_message %}
+                                            {% if product.book.published and product.published %} 
+                                                {% get_review_by_user for product as review %}
+                                                {% with object=product %}
+                                                    {% include "reviews/review_button_modal_quick.html" %}
+                                                {% endwith %}
+                                                <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill ml-0">
+                                                    <span class="btn-inner--icon">
+                                                        <i class="far fa-book-open"></i>
+                                                    </span>
+                                                    <span class="btn-inner--text">{% trans "open"|capfirst %}</span>
+                                                </a>
+                                            {% else %}
+                                                <div class="d-block stretched-link" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
+                                                    <a href="" tabindex="0" class="btn btn-xs btn-secondary btn-icon rounded-pill ml-0">
+                                                        <span class="btn-inner--icon">
+                                                            <i class="far fa-do-not-enter"></i>
+                                                        </span>
+                                                        <span class="btn-inner--text">{{ product.courtesy_short_message|default:default_courtesy_short_message }}</span>
+                                                    </a>                                                
+                                                </div> 
+                                            {% endif %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <!-- App title -->
+                                    <div class="mt-3">
+                                        <h6 class="mb-0">
+                                            <a {% if product.book.published and product.published %}href="{{ product.get_absolute_url }}" class="btn-link"{% else %}class="btn-link disabled"{% endif %}>{{ product.title|capfirst }}</a>
+                                        </h6>
+                                        <p class="mb-0 text-sm text-muted">
+                                            {{ product.abstract|capfirst }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                             </div>
+                             {% empty %}
+                             <div class="col-lg-12 px-2">
+                                <div class="card rounded-lg border-0">
+                                    <div class="p-4 text-center text-sm-left">
+                                        <h6 class="mb-0">
+                                            {% trans "This collection is empty." %}        
+                                        </h6>                                        
+                                    </div>
+                                </div>
+                             </div>                            
+                            {% endfor %}                            
+                          </div>
+                       </div>
+                       <div class="col-md-6">
+                        <div class="card card-fluid">
+                           <div class="card-header pb-2">
+                              <div class="d-flex justify-content-between align-items-center">
+                                 <div>
+                                    <span class="h6">{% trans 'surveys'|capfirst %}</span>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="card-body">
+                            {% for survey in surveys %}
+                                <div class="row align-items-center mb-3 shadow-none">
+                                  <div class="col-auto">
+                                    <img alt="{{ survey.title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if survey.image %}{{ survey.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" class="avatar avatar-lg">
+                                  </div>
+                                  <div class="col pl-0">
+                                    <span class="d-block h6 text-sm mb-0">
+                                        <a {% if survey.published %}href="{% url 'feedbacks:answers' survey.slug %}" class="btn-link"{% else %}tabindex="0" class="btn-link disabled"{% endif %}>
+                                            {{ survey.title|capfirst }}
+                                        </a>
+                                    </span>
+                                    <p class="mb-0 text-xs">{{ survey.description|capfirst }}</p>
+                                  </div>                                
+                                </div>
+                            {% if not forloop.last %}
+                                <hr class="my-3" />
+                            {% endif %} 
+                            {% empty %}
+                                <div class="col-lg-12 px-2">
+                                    <div class="card rounded-lg border-0">
+                                        <div class="p-4 text-center text-sm-left">
+                                            <h6 class="mb-0">
+                                                {% trans "There are no surveys yet." %}        
+                                            </h6>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                           </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

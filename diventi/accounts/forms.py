@@ -7,6 +7,7 @@ from django.contrib.auth.forms import (
     AuthenticationForm,
     PasswordResetForm,
     SetPasswordForm,
+    PasswordChangeForm,
 )
 from django.conf import settings
 
@@ -28,6 +29,22 @@ from .widgets import (
 
 
 BOOL_CHOICES = ((True, _("Yes, I'm interested.")), (False, _("No, don't send me emails.")))
+
+
+class DiventiPasswordChangeForm(PasswordChangeForm):
+
+    def __init__(self, *args, **kwargs):
+        super(DiventiPasswordChangeForm, self).__init__(*args, **kwargs)
+        """ Somehow the widgets for the password fields must be managed in the constructor. """
+        self.fields['old_password'].widget = forms.PasswordInput(attrs={
+            'class': 'form-control',
+            })
+        self.fields['new_password1'].widget = forms.PasswordInput(attrs={
+            'class': 'form-control',
+            })
+        self.fields['new_password2'].widget = forms.PasswordInput(attrs={
+            'class': 'form-control',
+            })
 
 
 class DiventiSetPasswordForm(SetPasswordForm):
@@ -145,10 +162,20 @@ class DiventiUserUpdateForm(forms.ModelForm):
         model = DiventiUser
         fields = ['first_name', 'avatar', 'cover', 'bio', 'role', 'language']
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control',}),
-            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows':4,}),
-            'role': forms.Select(attrs={'class': 'selectpicker show-tick', 'data-style': 'select-with-transition', 'title': _('Your favourite role')}),
-            'language': forms.Select(attrs={'class': 'selectpicker show-tick', 'data-style':'select-with-transition', 'title': _('Your favourite language')}),
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control',
+            }),
+            'bio': forms.Textarea(attrs={
+                'class': 'form-control', 
+                'rows': 1,
+                'data-toggle': 'autosize',
+            }),
+            'role': forms.Select(attrs={
+                'class': 'custom-select',
+            }),
+            'language': forms.Select(attrs={
+                'class': 'custom-select',
+            }),
         }
 
     def get_avatar_queryset():

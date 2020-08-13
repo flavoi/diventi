@@ -94,7 +94,7 @@
                                         </div>
                                         {% if request.user == object %}
                                         <div class="col-auto">
-                                            <a href="{% url 'accounts:update' object.nametag %}" class="btn btn-xs btn-primary btn-icon rounded-pill">
+                                            <a href="{% url 'accounts:settings' object.nametag %}" class="btn btn-xs btn-primary btn-icon rounded-pill">
                                                 <span class="btn-inner--icon"><i class="far fa-edit"></i></span>
                                                 <span class="btn-inner--text">{% trans "edit"|capfirst %}</span>
                                             </a>
@@ -174,7 +174,7 @@
                                         {% if request.user == object %}                                
                                         <div class="text-right">
                                             {% trans "not available" as default_courtesy_short_message %}
-                                            {% if product.book.published and product.published %} 
+                                            {% if product.book.published and product.published %}
                                                 {% get_review_by_user for product as review %}
                                                 {% with object=product %}
                                                     {% include "reviews/review_button_modal_quick.html" %}

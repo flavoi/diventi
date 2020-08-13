@@ -14,9 +14,10 @@ from django.contrib.auth.views import (
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
-    PasswordResetCompleteView
+    PasswordResetCompleteView,
+    PasswordChangeView,
 )
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
@@ -39,6 +40,7 @@ from .forms import (
     DiventiUserUpdateForm, 
     DiventiUserPrivacyChangeForm,
     DiventiSetPasswordForm,
+    DiventiPasswordChangeForm,
 )
 from .utils import get_user_data
 
@@ -70,7 +72,7 @@ def change_password_ajax(request):
     message = ''
     error_message = ''
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = DiventiPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
@@ -157,7 +159,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
     form_class = DiventiUserUpdateForm
     model = DiventiUser
-    template_name = "accounts/user_update_quick.html"
+    template_name = "accounts/user_settings_quick.html"
     success_msg = _('Profile updated!')
     fail_msg = _('Profile has not been updated.')
     slug_field = 'nametag'
@@ -168,6 +170,9 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         if self.object.pk == self.request.user.pk:
             return 1
         return 0
+
+    def get_success_url(self):        
+        return reverse('accounts:settings', kwargs={'nametag': self.object.nametag})
 
     def get_form_kwargs(self):
         """ Inject form with additional keyword arguments. """
@@ -182,6 +187,22 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         privacy_form = DiventiUserPrivacyChangeForm(instance=self.request.user)
         context['privacy_form'] = privacy_form
         return context
+
+
+class DiventiUserPasswordChangeView(LoginRequiredMixin, DiventiActionMixin, PasswordChangeView):
+
+    model = DiventiUser
+    form_class = DiventiPasswordChangeForm
+    template_name = "accounts/user_change_password_quick.html"
+
+
+class DiventiUserPrivacyChangeView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
+
+    model = DiventiUser
+    form_class = DiventiUserPrivacyChangeForm
+    template_name = "accounts/user_change_privacy_quick.html"
+    slug_field = 'nametag'
+    slug_url_kwarg = 'nametag'
 
 
 class DiventiUserDetailView(DetailView):

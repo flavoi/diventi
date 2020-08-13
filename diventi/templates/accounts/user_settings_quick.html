@@ -1,0 +1,116 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block extrahead %}
+    <link href="{% static 'image-picker-v2/css/image-picker.css' %}" rel="stylesheet"/>
+    <link href="{% static 'diventi/css/diventi-user.min.css' %}" rel="stylesheet"/>
+{% endblock extrahead %}
+
+{% block title %}{{ object.get_full_name }} &middot; {% trans 'settings'|capfirst %}{% endblock title %}
+
+{% block content %}
+<section class="pt-5 bg-section-secondary">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-9">
+            <div class="row align-items-center">
+               <div class="col">
+                  <span class="surtitle">{% trans 'my account'|capfirst %}</span>
+                  <h1 class="h2 mb-0">{% trans 'settings'|capfirst %}</h1>
+               </div>
+            </div>
+            <div class="row align-items-center mt-4">
+               <div class="col">
+                  {% include 'accounts/user_nav_quick_snippet.html' with user_settings_active=1 %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<div class="slice slice-sm bg-section-secondary">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-9">
+            <div class="row">
+               <div class="col-lg-12">                  
+                  <div>
+                     <h5 class="mb-3">{% trans 'general information'|capfirst %}</h5>
+                     <form method="POST" action="{% url 'accounts:settings' object.nametag %}">
+                        {% csrf_token %}
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="form-control-label">{{ form.language.label }}</label> 
+                                 {{ form.language }}
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="form-control-label">{{ form.role.label }}</label>
+                                 {{ form.role }}
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row align-items-center">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="form-control-label">{{ form.first_name.label }}</label> 
+                                 {{ form.first_name }}
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="form-control-label">{{ form.bio.label }}</label> 
+                                 {{ form.bio }}
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12">
+                              <div class="form-group mt-2">
+                                 <div id="accordion-2" class="accordion accordion-spaced">
+                                    <div class="card">
+                                      <div class="card-header py-4" id="heading-2-1" data-toggle="collapse" role="button" data-target="#collapse-2-1" aria-expanded="false" aria-controls="collapse-2-1">
+                                          <h6 class="mb-0">
+                                             <i class="far fa-user-circle mr-3"></i>
+                                             {{ form.avatar.label }}
+                                          </h6>
+                                      </div>
+                                      <div id="collapse-2-1" class="collapse" aria-labelledby="heading-2-1" data-parent="#accordion-2">
+                                          <div class="card-body">
+                                              {{ form.avatar }}
+                                          </div>
+                                      </div>
+                                    </div>
+                                 </div>                     
+                              </div>
+                           </div>
+                        </div>
+                        <div class="mt-3">
+                           <button type="submit" class="btn btn-sm btn-primary">{% trans 'save'|capfirst %}</button>
+                        </div>
+                     </form>
+                  </div>
+                  <hr>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}
+
+{% block extrascript %}
+<script src="{% static 'image-picker-v2/js/image-picker.min.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(".image-picker").imagepicker({
+          hide_select : true,
+          show_label  : true,
+        })
+</script>
+{% endblock extrascript %}

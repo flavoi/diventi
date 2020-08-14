@@ -178,16 +178,8 @@ class DiventiUserUpdateForm(forms.ModelForm):
             }),
         }
 
-    def get_avatar_queryset():
-        """ Fetch special avatars if the user is an admin."""
-        user = CuserMiddleware.get_user()
-        avatar_queryset = DiventiAvatar.objects.all().order_by('-staff_only')
-        if user and not user.is_staff:
-            avatar_queryset = avatar_queryset.filter(staff_only=False)        
-        return avatar_queryset
-
     avatar = DiventiAvatarChoiceField(
-        queryset = get_avatar_queryset(),
+        queryset = DiventiAvatar.objects.all(),
         widget = DiventiAvatarSelect(attrs = {
             'class': 'image-picker show-labels show-html'
         }),
@@ -202,6 +194,18 @@ class DiventiUserUpdateForm(forms.ModelForm):
         required = False,
     )
 
+    def get_avatar_queryset(self):
+        """ Fetch special avatars if the user is an admin."""
+        user = CuserMiddleware.get_user()
+        avatar_queryset = DiventiAvatar.objects.all().order_by('-staff_only')
+        if not user or not user.is_staff:
+            avatar_queryset = avatar_queryset.filter(staff_only=False)  
+        return avatar_queryset
+
+    def __init__(self, *args, **kwargs):
+        super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['avatar'].queryset = self.get_avatar_queryset()
+
 
 class DiventiUserPrivacyChangeForm(forms.ModelForm):
 
@@ -212,5 +216,9 @@ class DiventiUserPrivacyChangeForm(forms.ModelForm):
             'has_agreed_gdpr': _("Can we send you emails?"),
         }
         widgets = {
-            'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={'class': 'form-check-input',}),
+            'has_agreed_gdpr': forms.RadioSelect(
+                choices=BOOL_CHOICES, 
+                attrs={
+                    'class': 'custom-control-input',
+                }),
         }

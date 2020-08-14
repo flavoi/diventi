@@ -69,6 +69,8 @@
                                         {% endif %}
                                     </div>                                    
                                 </div>
+                                {% empty %}
+                                <p class="text-sm text-black-50 text-center">{% trans "This collection is empty." %}</p>
                             {% endfor %}
                             <hr class="my-3" />
                         </div>

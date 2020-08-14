@@ -60,7 +60,7 @@ class DiventiLoginView(LoginView):
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 
-	template_name = "accounts/signout.html"
+	template_name = "accounts/signout_quick.html"
 
 
 @login_required

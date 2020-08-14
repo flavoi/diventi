@@ -17,6 +17,7 @@ from .models import (
 class ArticlesListView(ListView):
 
     model = Article
+    template_name = 'blog/article_list_quick.html'
     context_object_name = 'articles'
     paginate_by = 6
 

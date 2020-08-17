@@ -4,14 +4,13 @@
 """
 
 from django.utils import translation
-from django.utils.translation import get_language
+from django.utils.translation import (
+        get_language, 
+        gettext_lazy as _,
+)
+from django.urls import reverse_lazy
 
-from reviews.models import Review
-
-from diventi.comments.models import DiventiComment
-from diventi.products.models import Product
-
-from .models import Achievement
+from .utils import get_user_data
 
 
 def user_preferred_language(request):
@@ -27,27 +26,32 @@ def user_preferred_language(request):
 def user_statistics(request):
     context = {}
     if request.user.is_authenticated:
-        projects_count = request.user.collection.count
-        user_collection = Product.objects.user_collection(user=request.user)
-        survey_answers_count = request.user.answers.count
-        ratings_count = Review.objects.filter(user=request.user).count()
-        achievements_total_count = Achievement.objects.all().count()
-        achievements_count = request.user.achievements.count
-        user_achievements = Achievement.objects.filter(users=request.user)
-        locked_achievements = Achievement.objects.all().exclude(pk__in=user_achievements)
-        comments_count = DiventiComment.objects.filter(user=request.user).count()
-        has_user_authored = Product.objects.has_user_authored(user=request.user)        
+        context['authenticated_user_data'] = get_user_data(request.user)
+    return context
+
+
+class UserLink(object):
+    label = ""
+    icon = ""
+    url = ""
+
+    def __init__(self, label, icon, url):
+        self.label = label
+        self.icon = icon
+        self.url = url
+
+def user_menu(request):
+    context = {}
+    if request.user.is_authenticated:
+        user_links = [
+            UserLink(label=_('my profile'), icon='user', url=reverse_lazy('accounts:detail', args=(request.user.nametag,))),
+            UserLink(label=_('settings'), icon='tools', url=reverse_lazy('accounts:settings', args=(request.user.nametag,))),
+            UserLink(label=_('credentials'), icon='key', url=reverse_lazy('accounts:change_password', args=(request.user.nametag,))),
+            UserLink(label=_('privacy'), icon='user-secret', url=reverse_lazy('accounts:change_privacy', args=(request.user.nametag,))),
+        ]
         context = {
-            'user_projects_count': projects_count,
-            'user_survey_answers_count':  survey_answers_count,
-            'user_ratings_count': ratings_count,
-            'achievements_total_count': achievements_total_count,
-            'user_achievements_count': achievements_count,
-            'user_achievements': user_achievements,
-            'user_locked_achievements': locked_achievements,
-            'user_comments_count': comments_count,
-            'has_user_authored': has_user_authored,
-            'user_collection': user_collection,
+            'user_links': user_links, 
         }
     return context
+
 

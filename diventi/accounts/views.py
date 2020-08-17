@@ -182,10 +182,11 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)        
-        context = get_user_data(context, self.request.user)
-        privacy_form = DiventiUserPrivacyChangeForm(instance=self.request.user)
-        context['privacy_form'] = privacy_form
+        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)
+        """
+            User related objects will be available at name_data dict.
+        """
+        context['user_data'] = get_user_data(self.object)
         return context
 
 
@@ -214,7 +215,7 @@ class DiventiUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
-        context = get_user_data(context, self.object, self.request.user)
+        context['user_data'] = get_user_data(self.object)
         return context
 
 

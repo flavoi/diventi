@@ -48,6 +48,7 @@ class ArticleDetailView(DetailView):
 
     model = Article
     context_object_name = 'article'
+    template_name = 'blog/article_detail_quick.html'
 
     # Returns only published articles
     def get_queryset(self):

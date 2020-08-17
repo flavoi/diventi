@@ -3,45 +3,12 @@
 {% load comment_extras %}
 {% load i18n %}
 
-<h3 class="title text-center">
-    <a name="comments">{% trans "Take part in the discussion" %}</a>
-</h3>
-
-{% if user.is_authenticated %}
-    {% get_comment_form for object as form %}
-    <form id="live-preview-form" action="{% comment_form_target %}" method="POST">
-        {% csrf_token %}
-        <div class="media media-post">
-            <div class="media-body">
-                <div class="form-group label-floating has-warning">
-                    <textarea placeholder="{% trans 'Write your comment' %}" class="form-control" rows="5"  name="comment" required></textarea>
-                    {{ form.content_type }}
-                    {{ form.object_pk }}
-                    {{ form.timestamp }}
-                    {{ form.security_hash }}
-                    {{ form.honeypot }}
-                    {{ form.parent }}
-                </div>
-                <div class="media-footer">
-                    <input class="btn btn-warning btn-wd float-right btn-round" type="submit" value="{% trans 'Post' %}" />
-                </div>
-            </div>
-        </div>
-    </form>
-{% else %}
-    <h4 class="text-center">
-        {% trans "Please sign in to leave a comment" %}
-    </h4>
-    <br>
-{% endif %}
-
 {% get_comment_count for object as comment_count %}
 {% get_comment_list for object as comments %}
 
 <div class="media-area">
-    <h3 class="title text-center">{{ comment_count }} {% trans "Comments" %}</h3>
-
-    <ul class="nav nav-pills nav-pills-info">
+    <h6 class="mb-4">{% trans "Comments" %}</h6>
+    <ul class="nav nav-pills mb-0">
         <li class="nav-item">
             <a class="nav-link active" href="#pill1" data-toggle="tab">{% trans "Best" %}</a>
         </li>
@@ -49,6 +16,11 @@
             <a class="nav-link" href="#pill2" data-toggle="tab">{% trans "Recent" %}</a>
         </li>
     </ul>
+    <hr class="my-4" />
+
+    <div class="my-2">
+        {% include "comments/comment_form.html" %}
+    </div>
 
     <div class="tab-content tab-space">
         <div class="tab-pane active" id="pill1">
@@ -75,7 +47,7 @@
 
     function updateText(btn, newCount, verb){
         btn.attr("data-promotions", newCount)
-        icon = "<i class='fal fa-thumbs-up fa-lg'></i>"
+        icon = "<i class='far fa-thumbs-up mr-1'></i>"
         suffix = newCount
         btn.html(icon + " " + suffix)        
     }
@@ -97,10 +69,12 @@
                 var newLabel;
                 if (data.promoted){
                     updateText(this_, addPromotion, "{% trans 'Demote' %}")
-                    this_.addClass("btn-warning")
+                    this_.removeClass("text-muted")
+                    this_.addClass("text-primary")
                 } else {
                     updateText(this_, removePromotion, "{% trans 'Promote' %}")
-                    this_.removeClass("btn-warning")
+                    this_.removeClass("text-primary")
+                    this_.addClass("text-muted")
                 }            
             }, error: function(error){
                 console.log(error)

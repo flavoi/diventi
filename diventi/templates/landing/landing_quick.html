@@ -160,12 +160,12 @@
        <div class="container position-relative zindex-100">
           <div class="row">
           	{% for article in section.articles.all %}
-             <div class="col-xl-6 col-md-6 col-sm-12 mt-n7">
+             <div class="col-xl-6 col-md-6 col-sm-12 mt-n7 d-flex align-items-stretch">
                <div class="card mb-8 hover-translate-y-n10 shadow-lg bg-cover bg-size--cover" style="background-image: url({{ article.image }});">
                   <!-- Mask -->
                   <span class="mask bg-dark opacity-1"></span>              
                   <!-- Card body -->
-                  <div class="card-body pt-10 mt-auto position-relative">
+                  <div class="card-body pt-6 mt-auto position-relative">
                       <!-- Title -->
                       <a href="{% url 'blog:detail' article.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ article.title }}</a>
                       <!-- Text -->

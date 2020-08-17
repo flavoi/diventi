@@ -35,6 +35,7 @@ urlpatterns = [
     url(_(r'^subscribers/$'), EmailPageView.as_view(), name='subscribers'),
     path(_('<slug:nametag>/'), DiventiUserDetailView.as_view(), name='detail'),
     path(_('<slug:nametag>/settings/'), DiventiUserUpdateView.as_view(), name='settings'),
+    path(_('<slug:nametag>/update/'), DiventiUserUpdateView.as_view(), name='update'),
     path(_('<slug:nametag>/change-password/'), DiventiUserPasswordChangeView.as_view(), name='change_password'),
     path(_('<slug:nametag>/change-privacy/'), DiventiUserPrivacyChangeView.as_view(), name='change_privacy'),
     path(_('<slug:nametag>/delete/'), DiventiUserDeleteView.as_view(), name='delete'),

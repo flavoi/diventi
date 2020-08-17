@@ -75,6 +75,10 @@
             font-family: 'Font Awesome 5 Pro';
         }
 
+        .honeypot 
+            {
+                display: none;
+            }
     </style>
 
     <!-- Preloader -->
@@ -210,27 +214,19 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow p-3">
                                         <h6 class="dropdown-header px-0 mb-2 text-primary">{% trans "hi"|capfirst %}, {{ user.get_full_name }}!</h6>
-                                        <a href="{% url 'accounts:detail' user.nametag %}" class="dropdown-item">
-                                            <i class="far fa-user fa-sm fa-fw"></i>
-                                            <span>{% trans "my profile"|capfirst %}</span>
-                                        </a>
-                                        <a href="{% url 'accounts:settings' user.nametag %}" class="dropdown-item">
-                                            <i class="far fa-tools fa-sm fa-fw"></i>
-                                            <span>{% trans "settings"|capfirst %}</span>
-                                        </a>
-                                        <a href="{% url 'accounts:change_password' user.nametag %}" class="dropdown-item">
-                                            <i class="far fa-key fa-sm fa-fw"></i>
-                                            <span>{% trans "credentials"|capfirst %}</span>
-                                        </a>
-                                        <a href="{% url 'accounts:change_privacy' user.nametag %}" class="dropdown-item">
-                                            <i class="far fa-user-secret fa-sm fa-fw"></i>
-                                            <span>{% trans "privacy"|capfirst %}</span>
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="{% url 'accounts:signout' %}" class="dropdown-item">
-                                            <i class="far fa-sign-out fa-sm fa-fw"></i>
-                                            <span>{% trans "sign out"|capfirst %}</span>
-                                        </a>
+                                        {% for link in user_links %}
+                                            <a href="{{ link.url }}" class="dropdown-item">
+                                                <i class="far fa-{{ link.icon }} fa-sm fa-fw"></i>
+                                                <span>{{ link.label|capfirst }}</span>
+                                            </a>
+                                            {% if forloop.last %}
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{% url 'accounts:signout' %}" class="dropdown-item">
+                                                <i class="far fa-sign-out fa-sm fa-fw"></i>
+                                                <span>{% trans "sign out"|capfirst %}</span>
+                                            </a>
+                                            {% endif %}
+                                        {% endfor %}                 
                                     </div>
                                 </li>                        
                             </ul>
@@ -373,36 +369,12 @@
             </div>
             <!-- Footer -->
             <div class="container pt-4">
-                <div class="row justify-content-center">
-                    <div class="col-lg-12">
-                        <div class="row align-items-center">
-                            <div class="col-lg-7">
-                                <h3 class="text-secondary mb-2">{{ graph_section.title|capfirst }}</h3>
-                                <p class="lead mb-0 text-white opacity-8">
-                                    {{ graph_section.description|capfirst }}
-                                </p>
-                            </div>
-                            <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">
-                                <a href="{% url 'forum:index' %}" class="btn btn-white btn-icon my-2">
-                                    <span class="btn-inner--icon">
-                                        <i class="far fa-portal-enter"></i>
-                                    </span>
-                                    <span class="btn-inner--text">{% trans "explore"|capfirst %}</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="divider divider-fade divider-dark my-5">
                 <div class="row">
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <!-- Theme's logo -->
                         <a href="{% url 'landing:home' %}">
                             <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" alt="Diventi" src="" class="img-fluid" style="width: 228px;" id="footer-logo">
                         </a>
-                        <!-- Webpixels' mission -->
                         <p class="mt-4 text-sm opacity-8 pr-lg-4">{% trans "Diventi is a role-playing game that embraces fun, encourages storytelling and helps game masters to prepare their fantastic adventures" %}.</p>
-                        <!-- Social -->
                         <ul class="nav mt-4">
                             <li class="nav-item">
                                 <a class="nav-link pl-0" href="https://www.youtube.com/feed/my_videos" target="_blank">
@@ -430,12 +402,16 @@
                         <h6 class="heading mb-3">{% trans "account"|capfirst %}</h6>
                         <ul class="list-unstyled">
                             {% if user.is_authenticated %}
-                            <li><a href="#">{% trans "profile"|capfirst %}</a></li>
-                            <li><a href="#">{% trans "collection"|capfirst %}</a></li>
-                            <li><a href="#">{% trans "settings"|capfirst %}</a></li>
+                                {% for link in user_links %}
+                                    <li>
+                                        <a href="{{ link.url }}">                                    
+                                            {{ link.label|capfirst }}
+                                        </a>
+                                    </li>
+                                {% endfor %}                            
                             {% else %}
-                            <li><a href="#">{% trans "sign in"|capfirst %}</a></li>
-                            <li><a href="#">{% trans "sign up"|capfirst %}</a></li>
+                            <li><a href="{% url 'accounts:signin' %}">{% trans "sign in"|capfirst %}</a></li>
+                            <li><a href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a></li>
                             {% endif %}
                         </ul>
                     </div>
@@ -449,8 +425,8 @@
                     <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
                         <h6 class="heading mb-3">{% trans "community"|capfirst %}</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Forum</a></li>
+                            <li><a href="{% url 'blog:home' %}">Blog</a></li>
+                            <li><a href="ì{% url 'forum:index' %}">Forum</a></li>
                         </ul>
                     </div>
                 </div>

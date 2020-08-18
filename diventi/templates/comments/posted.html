@@ -10,7 +10,7 @@
 {% block omnisearch %}{% endblock omnisearch %}
 
 {% block content %}
-<a href="{{ request.META.HTTP_REFERER }}#comments" class="btn btn-neutral btn-icon-only rounded-circle position-absolute left-4 top-4 d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="right" title="" data-original-title="{% trans 'go back'|capfirst %}">
+<a href="{{ request.META.HTTP_REFERER }}" class="btn btn-neutral btn-icon-only rounded-circle position-absolute left-4 top-4 d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="right" title="" data-original-title="{% trans 'go back'|capfirst %}">
     <span class="btn-inner--icon">
       <i class="far fa-arrow-left"></i>
     </span>
@@ -24,11 +24,11 @@
          <div class="col-12 col-md-6 col-xl-5 order-md-1 text-center text-md-left">
             <h6 class="display-3 mb-3 font-weight-600 text-success">{% trans "comment posted!"|capfirst %}</h6>
             <p class="mb-5">{% trans "You can return home or go back to the previous page" %}.</p>
-            <a href="{% url 'landing:home' %}" class="btn btn-dark btn-icon hover-translate-y-n3">
+            <a href="{{ request.META.HTTP_REFERER }}#comments" class="btn btn-dark btn-icon hover-translate-y-n3">
                <span class="btn-inner--icon">
-                  <i class="far fa-home"></i>
+                  <i class="far fa-arrow-left"></i>
                </span>
-               <span class="btn-inner--text">{% trans "return home"|capfirst %}</span>
+               <span class="btn-inner--text">{% trans "back to the article"|capfirst %}</span>
             </a>
          </div>
       </div>

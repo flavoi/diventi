@@ -21,6 +21,9 @@ class ArticleAdmin(DiventiTranslationAdmin):
         (_('Editing'), {
             'fields': ('title', 'category', 'image', 'description', 'content', 'label', 'author', 'slug', 'publication_date'),
         }),
+        (_('Related'), {
+            'fields': ('related_articles',),
+        }),
     )
     form = ArticleForm
     actions = [make_published, make_unpublished]

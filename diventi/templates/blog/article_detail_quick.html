@@ -1,6 +1,7 @@
 {% extends 'base_quick.html' %}
 {% load i18n %}
 {% load static %}
+{% load comments %}
 
 {% block base_opengraph %}
   <meta property="og:title" content="Diventi: {{ article.title }}" />
@@ -75,40 +76,54 @@
         </svg>
     </div>
 </section>
+
+{% if related_articles %}
 <section class="slice slice-lg bg-section-secondary">
     <div class="container">
         <div class="row align-items-center mb-5">
             <div class="col-12 col-md">
-                <h3 class="h4 mb-0">Keep reading</h3>
-                <p class="mb-0 text-muted">Even more stories from Quick</p>
+                <h3 class="h4 mb-0">{% trans "keep reading"|capfirst %}</h3>
+                <p class="mb-0 text-muted">{% trans "more stories from Diventi"|capfirst %}</p>
             </div>
-            <div class="col-12 col-md-auto"><a href="#!" class="btn btn-sm btn-neutral d-none d-md-inline">View all</a></div>
+            <div class="col-12 col-md-auto">
+                <a href="{% url 'blog:home' %}" class="btn btn-sm btn-neutral d-none d-md-inline">{% trans "view all"|capfirst %}</a>
+            </div>
         </div>
         <div class="row">
+            {% for article in related_articles %}
             <div class="col-xl-4 col-md-6">
-                <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden">
-                    <div class="position-relative overflow-hidden"><a href="#" class="d-block"><img alt="Image placeholder" src="../../assets/img/theme/light/blog-1-800x600.jpg" class="card-img-top"></a></div>
+                <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
+                    <div class="position-relative overflow-hidden">
+                        <a href="{{ article.get_absolute_url }}" class="d-block">
+                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ article.image }}" class="card-img-top">
+                        </a>
+                    </div>
                     <div class="card-body py-4">
-                        <small class="d-block text-sm mb-2">25 April, 2020</small> <a href="#" class="h5 stretched-link lh-150">Choose the best solution for your business</a>
-                        <p class="mt-3 mb-0 lh-170">No matter what he does, every person on earth plays a central role in the history.</p>
+                        <small class="d-block text-sm mb-2">{{ article.category }}</small> 
+                            <a href="{{ article.get_absolute_url }}" class="h5 stretched-link lh-150">
+                                {{ article.title|capfirst }}
+                            </a>
+                        <p class="mt-3 mb-0 lh-170">
+                            {{ article.description|truncatechars:200 }}
+                        </p>
                     </div>
                     <div class="card-footer border-0 delimiter-top">
                         <div class="row align-items-center">
-                            <div class="col-auto"><span class="avatar avatar-sm bg-primary rounded-circle">JD</span> <span class="text-sm mb-0 avatar-content">David Wally</span></div>
+                            <div class="col-auto">                                
+                                <span class="avatar avatar-sm bg-primary rounded-circle">
+                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}">
+                                </span> <span class="text-sm mb-0 avatar-content">{{ related_article.author.get_full_name }}</span>
+                            </div>
                             <div class="col text-right text-right">
                                 <div class="actions">
                                     <a href="#" class="action-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart mr-1">
-                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                        </svg>
-                                        50
+                                        <i class="far fa-thumbs-up mr-1"></i>                                        
+                                        {{ article.promotions.count }}
                                     </a>
                                     <a href="#" class="action-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye mr-1">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                        250
+                                        <i class="far fa-comments mr-1"></i>
+                                        {% get_comment_count for article as comment_count %}
+                                        {{ comment_count }}
                                     </a>
                                 </div>
                             </div>
@@ -116,70 +131,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden">
-                    <div class="position-relative overflow-hidden"><a href="#" class="d-block"><img alt="Image placeholder" src="../../assets/img/theme/light/blog-2-800x600.jpg" class="card-img-top"></a></div>
-                    <div class="card-body py-4">
-                        <small class="d-block text-sm mb-2">25 April, 2020</small> <a href="#" class="h5 stretched-link lh-150">How to find the right design for your specific product</a>
-                        <p class="mt-3 mb-0 lh-170">No matter what he does, every person on earth plays a central role in the history.</p>
-                    </div>
-                    <div class="card-footer border-0 delimiter-top">
-                        <div class="row align-items-center">
-                            <div class="col-auto"><span class="avatar avatar-sm bg-primary rounded-circle">JD</span> <span class="text-sm mb-0 avatar-content">David Wally</span></div>
-                            <div class="col text-right text-right">
-                                <div class="actions">
-                                    <a href="#" class="action-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart mr-1">
-                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                        </svg>
-                                        50
-                                    </a>
-                                    <a href="#" class="action-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye mr-1">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                        250
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden">
-                    <div class="position-relative overflow-hidden"><a href="#" class="d-block"><img alt="Image placeholder" src="../../assets/img/theme/light/blog-3-800x600.jpg" class="card-img-top"></a></div>
-                    <div class="card-body py-4">
-                        <small class="d-block text-sm mb-2">25 April, 2020</small> <a href="#" class="h5 stretched-link lh-150">Win buyers and influence sales with marketing</a>
-                        <p class="mt-3 mb-0 lh-170">No matter what he does, every person on earth plays a central role in the history.</p>
-                    </div>
-                    <div class="card-footer border-0 delimiter-top">
-                        <div class="row align-items-center">
-                            <div class="col-auto"><span class="avatar avatar-sm bg-primary rounded-circle">JD</span> <span class="text-sm mb-0 avatar-content">David Wally</span></div>
-                            <div class="col text-right text-right">
-                                <div class="actions">
-                                    <a href="#" class="action-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart mr-1">
-                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                        </svg>
-                                        50
-                                    </a>
-                                    <a href="#" class="action-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye mr-1">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                        250
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
+{% endif %}
+
 {% endblock content %}
 

@@ -55,6 +55,11 @@ class ArticleDetailView(DetailView):
         qs = super(ArticleDetailView, self).get_queryset()
         return qs.published().promotions()
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context['related_articles'] = self.object.related_articles.prefetch()
+        return context
+
 
 class ArticlePromoteToggleView(RedirectView):
 

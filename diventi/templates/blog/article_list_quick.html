@@ -1,6 +1,7 @@
 {% extends 'base_quick.html' %}
 {% load i18n %}
 {% load static %}
+{% load comments %}
 
 {% block base_opengraph %}
 <meta property="og:title" content="Diventi: {{ blogcover.title }}" />
@@ -56,7 +57,7 @@
         <div class="row">
             {% for article in hot_articles %}
             <div class="col-md-{{ article.col_md }} col-lg-{{ article.col_lg }} d-flex align-items-stretch">
-                <div class="card shadow-lg bg-cover bg-size--cover hover-translate-y-n10 hover-shadow-lg" style="background-image: url({{ article.image }});">
+                <div class="card shadow-lg bg-cover bg-size--cover hover-shadow-lg hover-translate-y-n3" style="background-image: url({{ article.image }});">
                     <!-- Mask -->
                     <span class="mask bg-dark opacity-5"></span>
                     <div class="card-header">
@@ -74,7 +75,7 @@
                         <a href="{% url 'blog:detail' article.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ article.title }}</a>
                         <!-- Text -->
                         <p class="mb-0 text-white">
-                            {{ article.description|striptags|safe|truncatechars:200 }}
+                            {{ article.description|truncatechars:200 }}
                         </p>
                     </div>
                     <!-- Meta -->
@@ -86,7 +87,7 @@
                                 </a>
                             </div>
                             <div class="pl-3">
-                                <a href="#" class="h6 stretched-link text-white text-sm">{{ article.author.get_full_name }}</a>
+                                <a href="{{ article.author.get_absolute_url }}" class="h6 stretched-link text-white text-sm">{{ article.author.get_full_name }}</a>
                             </div>
                         </div>
                     </div>
@@ -115,6 +116,19 @@
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <span class="avatar avatar-sm bg-primary rounded-circle"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}"></span> <span class="text-sm mb-0 avatar-content">{{ article.author.first_name }}</span>
+                            </div>
+                            <div class="col text-right text-right">
+                                <div class="actions">
+                                    <a href="#" class="action-item">
+                                        <i class="far fa-thumbs-up mr-1"></i>                                        
+                                        {{ article.promotions.count }}
+                                    </a>
+                                    <a href="#" class="action-item">
+                                        <i class="far fa-comments mr-1"></i>
+                                        {% get_comment_count for article as comment_count %}
+                                        {{ comment_count }}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -29,22 +29,24 @@ class ArticleQuerySet(models.QuerySet):
     def prefetch(self):
         articles = self.select_related('category')
         articles = articles.select_related('author')
+        articles = articles.prefetch_related('related_articles')
+        articles = articles.prefetch_related('promotions')
         return articles
 
-    # Get the list of published articles f
+    # Get the list of published articles
     def published(self):
         user = CuserMiddleware.get_user()
         if user.is_superuser:
             articles = self
         else:
             articles = self.filter(published=True)
+        articles = articles.prefetch()
         return articles
 
     # Get the list of published articles from the most recent to the least 
     def history(self):
         articles = self.published()
         articles = articles.order_by('-publication_date')
-        articles = articles.prefetch()
         return articles
 
     # Get the list of published articles of a certain category
@@ -103,6 +105,12 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
     hot = models.BooleanField(default=False, verbose_name=_('hot'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='articles', verbose_name=_('author'), on_delete=models.SET_NULL)
+    related_articles = models.ManyToManyField(
+        'self',
+        related_name='related_articles', 
+        blank=True, 
+        verbose_name=_('related articles'),
+    ) # Connect this article to others
 
     objects = ArticleQuerySet.as_manager()
     

@@ -1,8 +1,0 @@
-{% load forum_member_tags %}
-{% if profile.user.avatar.image %}
-<img class="avatar" src="{{ profile.user.avatar.image }}" alt="{{ profile.user|forum_member_display_name }}" />
-{% else %}
-<span class="avatar empty">
-  <i class="fas fa-dice-d20 fa-4x"></i>
-</span>
-{% endif %}

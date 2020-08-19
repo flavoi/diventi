@@ -31,13 +31,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}?v=3">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}?v=3">
     <link rel="manifest" href="{% static 'favicons/manifest.json' %}?v=3">
-    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}?v=3" color="#5bbad5">
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/27968f469b.js" crossorigin="anonymous"></script>
+    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}?v=3" color="#5bbad5">    
     <!-- Quick CSS -->
     <link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}" id="stylesheet">
-
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/27968f469b.js" crossorigin="anonymous"></script>
     <style>
         @font-face {
             font-family: Kravitz;
@@ -355,8 +354,10 @@
         {% endfor %}
     {% endif %}
 
-    <!-- Main content -->    
+    <!-- Main content -->
+    {% block basecontent %}
     {% block content %}{% endblock content %}
+    {% endblock basecontent %}
 
     {% block footer %}
     <footer class="position-relative" id="footer-main">

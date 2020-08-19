@@ -42,6 +42,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'templates',
+            BASE_DIR / 'templates/machina',
             MACHINA_MAIN_TEMPLATE_DIR,
         ],
         'OPTIONS': {
@@ -350,3 +351,6 @@ MACHINA_FORUM_NAME = 'Diventi'
 MACHINA_USER_DISPLAY_NAME_METHOD = 'get_diventi_username'
 
 MACHINA_PROFILE_AVATARS_ENABLED = False
+
+MACHINA_MARKUP_LANGUAGE = None
+MACHINA_MARKUP_WIDGET = 'ckeditor.widgets.CKEditorWidget'

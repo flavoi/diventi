@@ -29,6 +29,7 @@ class ProductDetailView(DetailView):
     """
     model = Product
     context_object_name = 'product'
+    template_name = 'products/product_detail_quick.html'
 
     # Returns only published products
     def get_queryset(self):
@@ -42,6 +43,7 @@ class ProductDetailView(DetailView):
         context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['bought'] = self.object.user_has_already_bought(user) or self.object.user_has_authored(user)
         context['key'] = settings.STRIPE_PUBLISHABLE_KEY
+        context['featured_detail'] = self.object.details.highlighted_or_first()
         return context
 
 
@@ -59,7 +61,7 @@ class AddToUserCollectionView(ProductUpdateView):
     """
     form_class = UserCollectionUpdateForm
     success_msg = _('This product has been added to you collection')
-    template_name = 'products/product_detail.html'
+    template_name = 'products/product_detail_quick.html'
 
     def add_to_user_collection(self, user):
         if not self.object.user_has_already_bought(user):
@@ -93,7 +95,7 @@ class DropFromUserCollectionView(ProductUpdateView):
     """
     form_class = UserCollectionUpdateForm
     success_msg = _('This product has been dropped from your collection')
-    template_name = 'products/product_detail.html'
+    template_name = 'products/product_detail_quick.html'
 
     def drop_from_user_collection(self):
         if self.object.user_has_already_bought(self.request.user):

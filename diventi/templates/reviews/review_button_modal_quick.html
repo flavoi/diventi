@@ -1,11 +1,11 @@
 {% load i18n %}
 {% load reviews %}
 
-<button class="btn btn-xs btn-secondary rounded-circle btn-icon-only" data-toggle="modal" data-target="#reviewModalQuick-{{ object.pk }}">
+<a class="{{ review_btn_class|default:'btn btn-xs btn-secondary rounded-circle btn-icon-only' }}" data-toggle="modal" data-target="#reviewModalQuick-{{ object.pk }}">
     <span class="btn-inner--icon" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% if review %}{% trans 'check review'|capfirst %}{% else %}{% trans 'leave a review'|capfirst %}{% endif %}">
-        <i class="far fa-{% if review %}stars{% else %}pencil{% endif%}"></i>
+        <i class="far fa-{% if review %}stars{% else %}pencil{% endif%}"></i>{{ review_label }}
     </span>
-</button>
+</a>
 
 <!-- Reviews modal -->
 <div class="modal fade pl-3" id="reviewModalQuick-{{ object.pk }}" tabindex="-1" role="dialog" aria-labelledby="reviewModalQuick" aria-hidden="true">
@@ -23,8 +23,8 @@
                 {% render_review_form for object %}                
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "close"|capfirst %}</button>
-            <button type="submit" name="post" class="btn btn-primary">{% trans "save changes"|capfirst %}</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{% trans "close"|capfirst %}</button>
+            <button type="submit" name="post" class="btn btn-primary btn-sm">{% trans "save changes"|capfirst %}</button>
           </div>
       </form>
     </div>

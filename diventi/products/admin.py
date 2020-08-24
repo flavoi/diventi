@@ -8,7 +8,16 @@ from diventi.core.admin import (
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory, Purchase, ProductDetail
+from .models import (
+    Product, 
+    Chapter, 
+    ImagePreview, 
+    ProductCategory, 
+    ChapterCategory, 
+    Purchase, 
+    ProductDetail, 
+    ProductFormat,
+)
 from .forms import ProductForm
 
 
@@ -23,24 +32,32 @@ make_unpublished.short_description = _("Mark selected products as hidden")
 
 class ProductDetailInline(TranslationStackedInline):
     model = ProductDetail
-    fields = ('title', 'description',)
+    fields = ('title', 'description', 'highlighted')
+    extra = 0
+
+
+class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
+    model = ProductFormat
+    list_display = ['title', 'icon_tag', 'color_tag']
+    fields = ('title', 'description', 'icon', 'icon_style', 'color')    
     extra = 0
 
 
 class ChapterInline(TranslationStackedInline):
     model = Chapter
-    fields = ('title', 'description', 'category', 'icon')
+    fields = ('title', 'description', 'icon', 'icon_style')
     extra = 0
 
 
 class ImagePreviewInline(TranslationStackedInline):
     model = ImagePreview
-    fields = ( 'label', 'image')
+    fields = ('title', 'description', 'image')
     extra = 0
 
 
 class ImagePreviewAdmin(DiventiTranslationAdmin):
-    list_display = ('label', 'image_tag')
+    list_display = ('title', 'image_tag', 'product')
+    fields = ('title', 'description', 'image', 'product')
 
 
 class ProductAdmin(DiventiTranslationAdmin):
@@ -49,18 +66,19 @@ class ProductAdmin(DiventiTranslationAdmin):
         ProductDetailInline,
         ChapterInline,
         ImagePreviewInline,
+        ChapterInline,
     ]
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'color', 'alignment')
+            'fields': ('published', 'color',)
         }),
         (_('Pricing'), {
             'fields': ('price',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'courtesy_short_message', 'courtesy_message', 'slug'),
+            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
         (_('Related'), {
             'fields': ('related_products',),
@@ -108,5 +126,5 @@ class PurchaseAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ImagePreview, ImagePreviewAdmin)
 admin.site.register(ProductCategory, ProductCategoryAdmin)
-admin.site.register(ChapterCategory, ChapterCategoryAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
+admin.site.register(ProductFormat, ProductFormatAdmin)

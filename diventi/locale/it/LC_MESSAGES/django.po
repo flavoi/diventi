@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 07:57+0200\n"
+"POT-Creation-Date: 2020-08-19 11:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:195
+#: config/settings/base.py:197
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:196
+#: config/settings/base.py:198
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:262
+#: config/settings/base.py:264
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:272
+#: config/settings/base.py:274
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:312
+#: config/settings/base.py:314
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:313
+#: config/settings/base.py:315
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:314
+#: config/settings/base.py:316
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:315
+#: config/settings/base.py:317
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:316
+#: config/settings/base.py:318
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -91,54 +91,77 @@ msgid "adventures/"
 msgstr "avventure/"
 
 #: config/urls.py:39
-msgid "forum/"
-msgstr ""
+#, fuzzy
+#| msgid "community"
+msgid "community/"
+msgstr "community"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
 msgstr "Profili"
 
-#: diventi/accounts/forms.py:14
+#: diventi/accounts/context.py:47
+msgid "my profile"
+msgstr "il mio profilo"
+
+#: diventi/accounts/context.py:48
+#: diventi/templates/accounts/user_settings_quick.html:10
+#: diventi/templates/accounts/user_settings_quick.html:20
+msgid "settings"
+msgstr "impostazioni"
+
+#: diventi/accounts/context.py:49 diventi/templates/accounts/user.html:53
+#: diventi/templates/accounts/user.html:86
+#: diventi/templates/accounts/user_change_password_quick.html:5
+#: diventi/templates/accounts/user_change_password_quick.html:15
+msgid "credentials"
+msgstr "credenziali"
+
+#: diventi/accounts/context.py:50 diventi/templates/accounts/user.html:59
+#: diventi/templates/accounts/user.html:96
+#: diventi/templates/accounts/user_change_privacy_quick.html:5
+#: diventi/templates/accounts/user_change_privacy_quick.html:15
+msgid "privacy"
+msgstr "privacy"
+
+#: diventi/accounts/forms.py:31
 msgid "Yes, I'm interested."
 msgstr "Si, mi interessa."
 
-#: diventi/accounts/forms.py:14
+#: diventi/accounts/forms.py:31
 msgid "No, don't send me emails."
 msgstr "No, non inviarmi email."
 
-#: diventi/accounts/forms.py:29 diventi/accounts/forms.py:112
+#: diventi/accounts/forms.py:68
+msgid "Email address"
+msgstr ""
+
+#: diventi/accounts/forms.py:71 diventi/accounts/forms.py:83
+#: diventi/accounts/forms.py:112
+msgid "name@example.com"
+msgstr ""
+
+#: diventi/accounts/forms.py:103 diventi/accounts/forms.py:216
 msgid "Can we send you emails?"
 msgstr "Possiamo inviarti email?"
 
-#: diventi/accounts/forms.py:32 diventi/accounts/forms.py:61
-msgid "Your name"
-msgstr "Il tuo nome"
+#: diventi/accounts/forms.py:108
+msgid "Mario Rossi"
+msgstr ""
 
-#: diventi/accounts/forms.py:33 diventi/accounts/forms.py:65
-#: diventi/templates/accounts/password_reset_form.html:50
-#: diventi/templates/accounts/signin.html:42
-msgid "Your email"
-msgstr "La tua email"
-
-#: diventi/accounts/forms.py:43 diventi/templates/accounts/signin.html:52
-msgid "Your password"
-msgstr "La tua password"
-
-#: diventi/accounts/forms.py:47
-msgid "Repeat your password"
-msgstr "Ripeti la tua password"
-
-#: diventi/accounts/forms.py:54
+#: diventi/accounts/forms.py:138
 msgid "This email has already been used."
 msgstr "Questa email è già stata usata."
 
-#: diventi/accounts/forms.py:77
-msgid "Your favourite role"
-msgstr "Il tuo ruolo preferito"
+#: diventi/accounts/forms.py:147
+msgid "Your name"
+msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:78
-msgid "Your favourite language"
-msgstr "La tua lingua preferita"
+#: diventi/accounts/forms.py:154
+#: diventi/templates/accounts/password_reset_form.html:65
+#: diventi/templates/accounts/signin.html:42
+msgid "Your email"
+msgstr "La tua email"
 
 #: diventi/accounts/models.py:103
 msgid "staff_only"
@@ -222,12 +245,12 @@ msgstr "ruolo"
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:157 diventi/landing/models.py:69
+#: diventi/accounts/models.py:157 diventi/landing/models.py:73
 #: diventi/templates/accounts/subscribers.html:19
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:169 diventi/templates/base_quick.html:640
+#: diventi/accounts/models.py:169 diventi/templates/base_quick.html:403
 msgid "account"
 msgstr "profilo"
 
@@ -236,61 +259,63 @@ msgstr "profilo"
 msgid "%(prefix)s: %(last_sub)s on %(date_joined)s"
 msgstr "%(prefix)s: %(last_sub)s - %(date_joined)s"
 
-#: diventi/accounts/models.py:218
+#: diventi/accounts/models.py:217
 msgid "Last subscriber"
 msgstr "Ultimo iscritto"
 
-#: diventi/accounts/models.py:221
+#: diventi/accounts/models.py:220
 msgid "users count"
 msgstr "conteggio utenti"
 
-#: diventi/accounts/models.py:223
+#: diventi/accounts/models.py:222
 #, python-format
 msgid "%(en)s english subscribers, %(it)s italian subscribers"
 msgstr "%(en)s iscritti inglesi, %(it)s iscritti italiani"
 
-#: diventi/accounts/models.py:232
+#: diventi/accounts/models.py:231
 msgid "english subscribers"
 msgstr "iscritti inglesi"
 
-#: diventi/accounts/models.py:234 diventi/accounts/models.py:240
-#: diventi/products/models.py:168 diventi/products/models.py:180
+#: diventi/accounts/models.py:233 diventi/accounts/models.py:239
+#: diventi/products/models.py:169 diventi/products/models.py:181
 msgid "copy emails"
 msgstr "copia le email"
 
-#: diventi/accounts/models.py:238
+#: diventi/accounts/models.py:237
 msgid "italian subscribers"
 msgstr "iscritti italiani"
 
-#: diventi/accounts/urls.py:24
+#: diventi/accounts/urls.py:26
 msgid "^signin/$"
 msgstr "^accedi/$"
 
-#: diventi/accounts/urls.py:25
+#: diventi/accounts/urls.py:27
 msgid "^signout/$"
 msgstr "^annulla-accesso/$"
 
-#: diventi/accounts/urls.py:26
-msgid "^password-change/ajax/$"
-msgstr "^modifica-password/ajax/$"
-
-#: diventi/accounts/urls.py:27
+#: diventi/accounts/urls.py:28
 msgid "^signup/$"
 msgstr "^registrati/$"
 
-#: diventi/accounts/urls.py:28
+#: diventi/accounts/urls.py:29
+#, fuzzy
+#| msgid "^password-change/ajax/$"
+msgid "^change-password/ajax/$"
+msgstr "^modifica-password/ajax/$"
+
+#: diventi/accounts/urls.py:30
 msgid "^privacy-change/ajax/$"
 msgstr "^modifica-privacy/ajax/$"
 
-#: diventi/accounts/urls.py:29
+#: diventi/accounts/urls.py:31
 msgid "^password-reset/$"
 msgstr "^password-reset/$"
 
-#: diventi/accounts/urls.py:30
+#: diventi/accounts/urls.py:32
 msgid "^password-reset/done/$"
 msgstr "^password-reset/completato/$"
 
-#: diventi/accounts/urls.py:31
+#: diventi/accounts/urls.py:33
 msgid ""
 "^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
 "{1,20})/$"
@@ -298,31 +323,49 @@ msgstr ""
 "^reset/(?P<uidb64>[0-9A-Za-z_\\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]"
 "{1,20})/$"
 
-#: diventi/accounts/urls.py:32
+#: diventi/accounts/urls.py:34
 msgid "^reset/done/$"
 msgstr "^reset/completato/$"
 
-#: diventi/accounts/urls.py:33
+#: diventi/accounts/urls.py:35
 msgid "^subscribers/$"
 msgstr "^iscritti/$"
 
-#: diventi/accounts/urls.py:34
+#: diventi/accounts/urls.py:36
 msgid "<slug:nametag>/"
 msgstr "<slug:nametag>/"
 
-#: diventi/accounts/urls.py:35
+#: diventi/accounts/urls.py:37
+#, fuzzy
+#| msgid "<slug:nametag>/delete/"
+msgid "<slug:nametag>/settings/"
+msgstr "<slug:nametag>/cancella/"
+
+#: diventi/accounts/urls.py:38
 msgid "<slug:nametag>/update/"
 msgstr "<slug:nametag>/aggiorna/"
 
-#: diventi/accounts/urls.py:36
+#: diventi/accounts/urls.py:39
+#, fuzzy
+#| msgid "<slug:nametag>/update/"
+msgid "<slug:nametag>/change-password/"
+msgstr "<slug:nametag>/aggiorna/"
+
+#: diventi/accounts/urls.py:40
+#, fuzzy
+#| msgid "<slug:nametag>/update/"
+msgid "<slug:nametag>/change-privacy/"
+msgstr "<slug:nametag>/aggiorna/"
+
+#: diventi/accounts/urls.py:41
 msgid "<slug:nametag>/delete/"
 msgstr "<slug:nametag>/cancella/"
 
-#: diventi/accounts/views.py:41
+#: diventi/accounts/views.py:53
 msgid "You have signed in!"
 msgstr "Hai effettuato l'accesso!"
 
-#: diventi/accounts/views.py:42
+#: diventi/accounts/views.py:54
 msgid "Your sign in has failed."
 msgstr "Accesso fallito."
 
@@ -350,19 +393,19 @@ msgstr "Profilo aggiornato!"
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:178
+#: diventi/accounts/views.py:181
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:208
+#: diventi/accounts/views.py:228
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
-#: diventi/accounts/views.py:246
+#: diventi/accounts/views.py:266
 msgid "The email addresses have been copied to clipboard."
 msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#: diventi/accounts/views.py:247
+#: diventi/accounts/views.py:267
 msgid "Something went wrong with the copy."
 msgstr "La copia degli indirizzi email è fallita."
 
@@ -409,14 +452,14 @@ msgstr "Antagonisti"
 
 #: diventi/adventures/models.py:135 diventi/ebooks/models.py:315
 #: diventi/ebooks/models.py:337 diventi/ebooks/models.py:362
-#: diventi/landing/models.py:77 diventi/tooltips/models.py:57
+#: diventi/landing/models.py:80 diventi/tooltips/models.py:57
 msgid "section"
 msgstr "sezione"
 
 #: diventi/adventures/models.py:143 diventi/ebooks/models.py:66
-#: diventi/products/models.py:110 diventi/products/models.py:221
-#: diventi/products/models.py:237 diventi/products/models.py:247
-#: diventi/products/models.py:294 diventi/tooltips/models.py:65
+#: diventi/products/models.py:111 diventi/products/models.py:222
+#: diventi/products/models.py:238 diventi/products/models.py:248
+#: diventi/products/models.py:295 diventi/tooltips/models.py:65
 msgid "product"
 msgstr "prodotto"
 
@@ -497,7 +540,7 @@ msgstr "Storia n. %(uuid)s"
 msgid "story"
 msgstr "storia"
 
-#: diventi/adventures/models.py:273 diventi/products/models.py:295
+#: diventi/adventures/models.py:273 diventi/products/models.py:296
 msgid "customer"
 msgstr "cliente"
 
@@ -617,66 +660,77 @@ msgstr "Hai completato l'avventura!"
 msgid "You have unlocked a new situation."
 msgstr "Hai sbloccato una nuova situazione."
 
-#: diventi/blog/admin.py:15 diventi/blog/admin.py:37 diventi/ebooks/admin.py:93
-#: diventi/feedbacks/admin.py:54 diventi/landing/admin.py:40
-#: diventi/products/admin.py:53 diventi/products/admin.py:81
+#: diventi/blog/admin.py:15 diventi/blog/admin.py:40 diventi/ebooks/admin.py:93
+#: diventi/feedbacks/admin.py:54 diventi/landing/admin.py:46
+#: diventi/products/admin.py:56 diventi/products/admin.py:84
 msgid "Management"
 msgstr "Gestione"
 
 #: diventi/blog/admin.py:18 diventi/ebooks/admin.py:60
 #: diventi/ebooks/admin.py:96 diventi/ebooks/admin.py:116
+#: diventi/landing/admin.py:52
 msgid "Layout"
 msgstr "Disposizione"
 
-#: diventi/blog/admin.py:21 diventi/blog/admin.py:40 diventi/ebooks/admin.py:63
+#: diventi/blog/admin.py:21 diventi/blog/admin.py:43 diventi/ebooks/admin.py:63
 #: diventi/ebooks/admin.py:99 diventi/ebooks/admin.py:119
-#: diventi/feedbacks/admin.py:57 diventi/landing/admin.py:46
-#: diventi/products/admin.py:59 diventi/products/admin.py:87
+#: diventi/feedbacks/admin.py:57 diventi/landing/admin.py:55
+#: diventi/products/admin.py:62 diventi/products/admin.py:90
 msgid "Editing"
 msgstr "Contenuti"
+
+#: diventi/blog/admin.py:24 diventi/products/admin.py:65
+msgid "Related"
+msgstr "Correlato"
 
 #: diventi/blog/apps.py:7
 msgid "Blog"
 msgstr "Blog"
 
-#: diventi/blog/models.py:85
+#: diventi/blog/models.py:87
 msgid "Blog Cover"
 msgstr "Copertina del blog"
 
-#: diventi/blog/models.py:86
+#: diventi/blog/models.py:88
 msgid "Blog Covers"
 msgstr "Copertine del blog"
 
-#: diventi/blog/models.py:101 diventi/ebooks/models.py:90
-#: diventi/products/models.py:95 diventi/products/models.py:238
+#: diventi/blog/models.py:103 diventi/ebooks/models.py:90
+#: diventi/products/models.py:96 diventi/products/models.py:239
 msgid "category"
 msgstr "tipo"
 
-#: diventi/blog/models.py:102 diventi/ebooks/models.py:187
-#: diventi/ebooks/models.py:238 diventi/feedbacks/models.py:162
+#: diventi/blog/models.py:104 diventi/ebooks/models.py:187
+#: diventi/ebooks/models.py:238 diventi/feedbacks/models.py:161
 msgid "content"
 msgstr "contenuto"
 
-#: diventi/blog/models.py:103
+#: diventi/blog/models.py:105
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:104 diventi/ebooks/models.py:65
+#: diventi/blog/models.py:106 diventi/ebooks/models.py:65
 #: diventi/ebooks/models.py:140 diventi/ebooks/models.py:257
-#: diventi/feedbacks/models.py:118 diventi/products/models.py:83
+#: diventi/feedbacks/models.py:117 diventi/products/models.py:84
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:105 diventi/feedbacks/models.py:156
+#: diventi/blog/models.py:107 diventi/feedbacks/models.py:155
 msgid "author"
 msgstr "autore"
 
-#: diventi/blog/models.py:111 diventi/blog/models.py:136
+#: diventi/blog/models.py:112
+#, fuzzy
+#| msgid "read article"
+msgid "related articles"
+msgstr "leggi articolo"
+
+#: diventi/blog/models.py:119 diventi/blog/models.py:144
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:112 diventi/landing/models.py:52
-#: diventi/templates/base_quick.html:345
+#: diventi/blog/models.py:120 diventi/landing/models.py:56
+#: diventi/templates/navigation_quick.html:87
 msgid "articles"
 msgstr "articoli"
 
@@ -705,9 +759,15 @@ msgid "brave-rewards-verification.txt/"
 msgstr ""
 
 #: diventi/comments/apps.py:7 diventi/comments/models.py:19
-#: diventi/templates/base_quick.html:352
+#: diventi/templates/accounts/user_detail_quick.html:109
+#: diventi/templates/accounts/user_detail_quick_modal.html:31
+#: diventi/templates/navigation_quick.html:94
 msgid "comments"
 msgstr "commenti"
+
+#: diventi/comments/forms.py:21 diventi/templates/comments/tree.html:44
+msgid "Write your comment"
+msgstr "Scrivi il tuo commento"
 
 #: diventi/comments/models.py:12
 msgid "parent"
@@ -796,7 +856,7 @@ msgid "modified"
 msgstr "modificato"
 
 #: diventi/core/models.py:42 diventi/core/models.py:61
-#: diventi/products/models.py:214
+#: diventi/products/models.py:215
 msgid "published"
 msgstr "pubblicato"
 
@@ -809,9 +869,9 @@ msgid "promotions"
 msgstr "promozioni"
 
 #: diventi/core/models.py:101 diventi/feedbacks/models.py:20
-#: diventi/feedbacks/models.py:59 diventi/feedbacks/models.py:96
-#: diventi/feedbacks/models.py:116 diventi/landing/models.py:31
-#: diventi/products/models.py:80
+#: diventi/feedbacks/models.py:59 diventi/feedbacks/models.py:76
+#: diventi/feedbacks/models.py:115 diventi/landing/models.py:32
+#: diventi/products/models.py:81
 msgid "title"
 msgstr "titolo"
 
@@ -821,8 +881,8 @@ msgstr "icona"
 
 #: diventi/core/models.py:103 diventi/ebooks/models.py:29
 #: diventi/feedbacks/models.py:21 diventi/feedbacks/models.py:60
-#: diventi/feedbacks/models.py:117 diventi/landing/models.py:32
-#: diventi/products/models.py:82
+#: diventi/feedbacks/models.py:116 diventi/landing/models.py:33
+#: diventi/products/models.py:83
 msgid "description"
 msgstr "descrizione"
 
@@ -862,7 +922,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:154 diventi/products/models.py:250
+#: diventi/core/models.py:154 diventi/products/models.py:251
 msgid "Image"
 msgstr "Immagine"
 
@@ -874,53 +934,69 @@ msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 msgid "active"
 msgstr "attiva"
 
-#: diventi/core/models.py:227
+#: diventi/core/models.py:218
 msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
-#: diventi/core/models.py:257
+#: diventi/core/models.py:248
 msgid "featured"
 msgstr "in primo piano"
 
-#: diventi/core/models.py:267
+#: diventi/core/models.py:258
 msgid "Wide"
 msgstr "Larga"
 
-#: diventi/core/models.py:268
+#: diventi/core/models.py:259
 msgid "Three fourths"
 msgstr "Tre quarti"
 
-#: diventi/core/models.py:269
+#: diventi/core/models.py:260
 msgid "Half"
 msgstr "Media"
 
-#: diventi/core/models.py:270
+#: diventi/core/models.py:261
 msgid "Narrow"
 msgstr "Stretta"
 
-#: diventi/core/models.py:272
+#: diventi/core/models.py:263
 msgid "lg column"
 msgstr "colonna lg"
 
-#: diventi/core/models.py:273
+#: diventi/core/models.py:264
 msgid "md column"
 msgstr "colonna md"
 
-#: diventi/core/models.py:282
+#: diventi/core/models.py:273
 msgid "left"
 msgstr "sinistra"
 
-#: diventi/core/models.py:283
+#: diventi/core/models.py:274
 msgid "centered"
 msgstr "centrale"
 
-#: diventi/core/models.py:284
+#: diventi/core/models.py:275
 msgid "right"
 msgstr "destra"
 
-#: diventi/core/models.py:286
+#: diventi/core/models.py:281
 msgid "alignment"
 msgstr "allineamento"
+
+#: diventi/core/models.py:284
+#, fuzzy
+#| msgid "first"
+msgid "text first"
+msgstr "subito"
+
+#: diventi/core/models.py:285
+msgid "test second"
+msgstr ""
+
+#: diventi/core/models.py:290
+#, fuzzy
+#| msgid "next situation"
+msgid "text position"
+msgstr "situazione successiva"
 
 #: diventi/ebooks/admin.py:28
 msgid "Duplicate selected section"
@@ -957,7 +1033,7 @@ msgstr ""
 msgid "Autocomplete ..."
 msgstr "Completamento automatico ..."
 
-#: diventi/ebooks/forms.py:27 diventi/products/models.py:241
+#: diventi/ebooks/forms.py:27 diventi/products/models.py:242
 #: diventi/templates/ebooks/base_book_web.html:91
 #: diventi/templates/ebooks/base_book_web.html:125
 #: diventi/templates/ebooks/base_book_web.html:139
@@ -1017,7 +1093,7 @@ msgstr "libri"
 
 #: diventi/ebooks/models.py:139 diventi/ebooks/models.py:186
 #: diventi/ebooks/models.py:234 diventi/feedbacks/models.py:22
-#: diventi/landing/models.py:33
+#: diventi/landing/models.py:34
 msgid "order index"
 msgstr "id ordinamento"
 
@@ -1119,7 +1195,7 @@ msgstr "allineamento del testo"
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:316 diventi/landing/models.py:78
+#: diventi/ebooks/models.py:316 diventi/landing/models.py:81
 msgid "sections"
 msgstr "sezioni"
 
@@ -1230,7 +1306,7 @@ msgstr "Nome"
 msgid "question group"
 msgstr "gruppo di domande"
 
-#: diventi/feedbacks/models.py:29 diventi/feedbacks/models.py:119
+#: diventi/feedbacks/models.py:29 diventi/feedbacks/models.py:118
 msgid "question groups"
 msgstr "gruppi di domande"
 
@@ -1239,7 +1315,7 @@ msgid "Questions"
 msgstr "Domande"
 
 #: diventi/feedbacks/models.py:40 diventi/feedbacks/models.py:44
-#: diventi/feedbacks/models.py:159
+#: diventi/feedbacks/models.py:158
 msgid "question"
 msgstr "domanda"
 
@@ -1259,69 +1335,72 @@ msgstr "scelta"
 msgid "choices"
 msgstr "scelte"
 
-#: diventi/feedbacks/models.py:97
+#: diventi/feedbacks/models.py:77
 msgid "upper score"
 msgstr "esito superiore"
 
-#: diventi/feedbacks/models.py:98
+#: diventi/feedbacks/models.py:78
 msgid "upper outcome"
 msgstr "esito superiore"
 
-#: diventi/feedbacks/models.py:99
+#: diventi/feedbacks/models.py:79
 msgid "medium score"
 msgstr "punteggio medio"
 
-#: diventi/feedbacks/models.py:100
+#: diventi/feedbacks/models.py:80
 msgid "medium outcome"
 msgstr "esito medio"
 
-#: diventi/feedbacks/models.py:101
+#: diventi/feedbacks/models.py:81
 msgid "lower score"
 msgstr "punteggio inferiore"
 
-#: diventi/feedbacks/models.py:102
+#: diventi/feedbacks/models.py:82
 msgid "lower outcome"
 msgstr "esito inferiore"
 
-#: diventi/feedbacks/models.py:105 diventi/feedbacks/models.py:120
+#: diventi/feedbacks/models.py:85 diventi/feedbacks/models.py:119
 msgid "outcome"
 msgstr "esito"
 
-#: diventi/feedbacks/models.py:106
+#: diventi/feedbacks/models.py:86
 msgid "outcomes"
 msgstr "esiti"
 
-#: diventi/feedbacks/models.py:121
+#: diventi/feedbacks/models.py:120
 msgid "public"
 msgstr "pubblico"
 
-#: diventi/feedbacks/models.py:126 diventi/feedbacks/models.py:133
-#: diventi/landing/models.py:51
+#: diventi/feedbacks/models.py:125 diventi/feedbacks/models.py:132
+#: diventi/landing/models.py:55
 #: diventi/templates/accounts/user_collection.html:63
 msgid "survey"
 msgstr "sondaggio"
 
-#: diventi/feedbacks/models.py:127 diventi/templates/base_quick.html:349
+#: diventi/feedbacks/models.py:126
+#: diventi/templates/accounts/user_detail_quick.html:230
+#: diventi/templates/accounts/user_detail_quick.html:263
+#: diventi/templates/navigation_quick.html:91
 msgid "surveys"
 msgstr "sondaggi"
 
-#: diventi/feedbacks/models.py:143
+#: diventi/feedbacks/models.py:142
 msgid "Question Groups"
 msgstr "Gruppi di domande"
 
-#: diventi/feedbacks/models.py:158
+#: diventi/feedbacks/models.py:157
 msgid "author name"
 msgstr "nome dell'autore"
 
-#: diventi/feedbacks/models.py:165
+#: diventi/feedbacks/models.py:164
 msgid "answer"
 msgstr "risposta"
 
-#: diventi/feedbacks/models.py:166 diventi/templates/base_quick.html:354
+#: diventi/feedbacks/models.py:165 diventi/templates/navigation_quick.html:96
 msgid "answers"
 msgstr "risposte"
 
-#: diventi/feedbacks/models.py:175
+#: diventi/feedbacks/models.py:174
 msgid "Score"
 msgstr "Punteggio"
 
@@ -1385,11 +1464,11 @@ msgid ""
 msgstr ""
 "Un altro utente ha già utilizzato questo nome, per favore scegline un altro."
 
-#: diventi/landing/admin.py:43 diventi/products/admin.py:84
+#: diventi/landing/admin.py:49 diventi/products/admin.py:87
 msgid "Multimedia"
 msgstr "Contenuti multimediali"
 
-#: diventi/landing/admin.py:49
+#: diventi/landing/admin.py:58
 msgid "Additionals"
 msgstr "Extra"
 
@@ -1397,71 +1476,71 @@ msgstr "Extra"
 msgid "Landing"
 msgstr "Pagina di destinazione"
 
-#: diventi/landing/models.py:35
+#: diventi/landing/models.py:36
 msgid "standard section"
 msgstr "sezione normale"
 
-#: diventi/landing/models.py:36
+#: diventi/landing/models.py:37
 msgid "plain section"
 msgstr "sezione pulita"
 
-#: diventi/landing/models.py:38
+#: diventi/landing/models.py:39
 msgid "standard template"
 msgstr "modello normale"
 
-#: diventi/landing/models.py:40
+#: diventi/landing/models.py:41
 msgid "standard header"
 msgstr "testatina normale"
 
-#: diventi/landing/models.py:41
+#: diventi/landing/models.py:42
 msgid "search header"
 msgstr "testatina con ricerca"
 
-#: diventi/landing/models.py:43
+#: diventi/landing/models.py:44
 msgid "featured template"
 msgstr "modello in primo piano"
 
-#: diventi/landing/models.py:44
+#: diventi/landing/models.py:47
 msgid "dark mode"
 msgstr "modalità scura"
 
-#: diventi/landing/models.py:47
+#: diventi/landing/models.py:51
 msgid "video"
 msgstr "video"
 
-#: diventi/landing/models.py:49 diventi/products/models.py:111
+#: diventi/landing/models.py:53 diventi/products/models.py:112
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/landing/models.py:50 diventi/templates/base_quick.html:346
+#: diventi/landing/models.py:54 diventi/templates/navigation_quick.html:88
 msgid "users"
 msgstr "utenti"
 
-#: diventi/landing/models.py:61
+#: diventi/landing/models.py:65
 msgid "Features"
 msgstr "Aspetti"
 
-#: diventi/landing/models.py:65
+#: diventi/landing/models.py:69
 msgid "Products"
 msgstr "Prodotti"
 
-#: diventi/landing/models.py:73
+#: diventi/landing/models.py:77
 msgid "Articles"
 msgstr "Articoli"
 
-#: diventi/landing/models.py:85
+#: diventi/landing/models.py:88
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:86
+#: diventi/landing/models.py:89
 msgid "features"
 msgstr "aspetti"
 
-#: diventi/landing/models.py:92
+#: diventi/landing/models.py:95
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:93 diventi/templates/base_quick.html:553
+#: diventi/landing/models.py:96 diventi/templates/base_quick.html:309
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -1539,82 +1618,78 @@ msgid ""
 "Dear %(user)s, you have successufully purchased %(title)s for %(price)s."
 msgstr "Caro %(user)s, hai acquistato con successo %(title)s per %(price)s."
 
-#: diventi/products/admin.py:14
+#: diventi/products/admin.py:17
 msgid "Mark selected products as published"
 msgstr "Pubblica i prodotti selezionati"
 
-#: diventi/products/admin.py:18
+#: diventi/products/admin.py:21
 msgid "Mark selected products as hidden"
 msgstr "Nascondi i prodotti selezionati"
 
-#: diventi/products/admin.py:56
+#: diventi/products/admin.py:59
 msgid "Pricing"
 msgstr "Prezzatura"
-
-#: diventi/products/admin.py:62
-msgid "Related"
-msgstr "Correlato"
 
 #: diventi/products/apps.py:7
 msgid "Projects"
 msgstr "Progetti"
 
-#: diventi/products/models.py:69
+#: diventi/products/models.py:70
 msgid "meta category"
 msgstr "meta categoria"
 
-#: diventi/products/models.py:69
+#: diventi/products/models.py:70
 msgid ""
 "Meta categories won't be listed in search results, nor on reporting pages."
 msgstr ""
 "Le meta categorie non vengono esposte né nella funzione di ricerca, né nelle "
 "pagine di reportistica."
 
-#: diventi/products/models.py:74
+#: diventi/products/models.py:75
 msgid "Product category"
 msgstr "Tipo Prodotto"
 
-#: diventi/products/models.py:75
+#: diventi/products/models.py:76
 msgid "Product categories"
 msgstr "Tipi Prodotto"
 
-#: diventi/products/models.py:81
+#: diventi/products/models.py:82
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/products/models.py:84 diventi/templates/base_quick.html:326
+#: diventi/products/models.py:85 diventi/templates/navigation_quick.html:70
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:85
+#: diventi/products/models.py:86
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:86
+#: diventi/products/models.py:87
 msgid "customers"
 msgstr "clienti"
 
-#: diventi/products/models.py:87
+#: diventi/products/models.py:88
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:97
+#: diventi/products/models.py:98
 msgid "short courtesy messages"
 msgstr "breve messaggio di cortesia"
 
-#: diventi/products/models.py:98
+#: diventi/products/models.py:99
 msgid "courtesy message"
 msgstr "messaggio di cortesia"
 
-#: diventi/products/models.py:103
+#: diventi/products/models.py:104
 msgid "related products"
 msgstr "prodotti correlati"
 
-#: diventi/products/models.py:105
+#: diventi/products/models.py:106
 msgid "price"
 msgstr "prezzo"
 
-#: diventi/products/models.py:105
+#: diventi/products/models.py:106
 msgid ""
 "This price must be valued in euro cents. For example: 500 for 5.00€, 120 for "
 "1.20€ etc."
@@ -1622,78 +1697,78 @@ msgstr ""
 "Questo prezzo deve essere valorizzato in centesimi di euro. Per esempio: 500 "
 "per 5.00€, 120 per 1.20€ eccetera."
 
-#: diventi/products/models.py:117
+#: diventi/products/models.py:118
 msgid "application"
 msgstr "applicazione"
 
-#: diventi/products/models.py:142
+#: diventi/products/models.py:143
 msgid "Last purchase"
 msgstr "Ultimo acquisto"
 
-#: diventi/products/models.py:149
+#: diventi/products/models.py:150
 #, python-format
 msgid "%(product)s: total customers"
 msgstr "%(product)s: clienti totali"
 
-#: diventi/products/models.py:153
+#: diventi/products/models.py:154
 #, python-format
 msgid "%(en)s english customers, %(it)s italian customers"
 msgstr "%(en)s clienti inglesi, %(it)s clienti italiani"
 
-#: diventi/products/models.py:163
+#: diventi/products/models.py:164
 #, python-format
 msgid "%(product)s: english subscribers"
 msgstr "%(product)s: iscritti inglesi"
 
-#: diventi/products/models.py:175
+#: diventi/products/models.py:176
 #, python-format
 msgid "%(product)s: italian subscribers"
 msgstr "%(product)s: iscritti italiani"
 
-#: diventi/products/models.py:216 diventi/templates/publishable_badge.html:4
+#: diventi/products/models.py:217 diventi/templates/publishable_badge.html:4
 msgid "draft"
 msgstr "bozza"
 
-#: diventi/products/models.py:224
+#: diventi/products/models.py:225
 msgid "Detail"
 msgstr "Dettaglio"
 
-#: diventi/products/models.py:225
+#: diventi/products/models.py:226
 #: diventi/templates/products/product_detail.html:91
 msgid "Details"
 msgstr "Dettagli"
 
-#: diventi/products/models.py:231
+#: diventi/products/models.py:232
 msgid "Chapter category"
 msgstr "Tipo Capitolo"
 
-#: diventi/products/models.py:232
+#: diventi/products/models.py:233
 msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
-#: diventi/products/models.py:242
+#: diventi/products/models.py:243
 #: diventi/templates/ebooks/base_book_web.html:81
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:251
+#: diventi/products/models.py:252
 msgid "Images"
 msgstr "Immagini"
 
-#: diventi/products/models.py:300
+#: diventi/products/models.py:301
 msgid "Purchase"
 msgstr "Acquisto"
 
-#: diventi/products/models.py:301
+#: diventi/products/models.py:302
 msgid "Purchases"
 msgstr "Acquisti"
 
-#: diventi/products/models.py:305
+#: diventi/products/models.py:306
 #, python-format
 msgid "Purchase: %(id)s"
 msgstr "Acquisto: %(id)s"
 
-#: diventi/products/models.py:310
+#: diventi/products/models.py:311
 #, python-format
 msgid "%(prefix)s: %(last_pur)s on %(created)s"
 msgstr "%(prefix)s: %(last_pur)s - %(created)s"
@@ -1767,7 +1842,7 @@ msgstr ""
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/base_dashboard.html:127
 #: diventi/templates/landing/landing.html:37
-#: diventi/templates/landing/landing_quick.html:332
+#: diventi/templates/landing/landing_quick.html:330
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1777,6 +1852,7 @@ msgid "Password reset"
 msgstr "Reset password"
 
 #: diventi/templates/accounts/password_reset_complete.html:12
+#: diventi/templates/accounts/password_reset_complete_quick.html:26
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 
@@ -1786,6 +1862,28 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/products/product_detail.html:137
 msgid "Sign in"
 msgstr "Accedi"
+
+#: diventi/templates/accounts/password_reset_complete_quick.html:23
+#, fuzzy
+#| msgid "You have signed in!"
+msgid "you have signed in"
+msgstr "Hai effettuato l'accesso!"
+
+#: diventi/templates/accounts/password_reset_complete_quick.html:25
+#, fuzzy
+#| msgid "Success"
+msgid "success"
+msgstr "Successo"
+
+#: diventi/templates/accounts/password_reset_complete_quick.html:31
+#: diventi/templates/accounts/signin_quick.html:5
+#: diventi/templates/accounts/signin_quick.html:22
+#: diventi/templates/accounts/signin_quick.html:67
+#: diventi/templates/accounts/signup_quick.html:118
+#: diventi/templates/base_quick.html:268 diventi/templates/base_quick.html:282
+#: diventi/templates/base_quick.html:414 diventi/templates/navigation.html:203
+msgid "sign in"
+msgstr "accedi"
 
 #: diventi/templates/accounts/password_reset_confirm.html:38
 msgid ""
@@ -1808,6 +1906,7 @@ msgid "Change my password"
 msgstr "Modifica la mia password"
 
 #: diventi/templates/accounts/password_reset_confirm.html:73
+#: diventi/templates/accounts/password_reset_confirm_quick.html:85
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
@@ -1815,7 +1914,44 @@ msgstr ""
 "Il link al reset password non è valido, probabilmente è già stato usato. Per "
 "favore richiedi un nuovo reset password."
 
+#: diventi/templates/accounts/password_reset_confirm_quick.html:5
+#: diventi/templates/accounts/signin.html:59
+#: diventi/templates/accounts/signup_quick.html:5
+#: diventi/templates/base_quick.html:276 diventi/templates/base_quick.html:415
+#: diventi/templates/landing/landing_quick.html:315
+msgid "sign up"
+msgstr "registrati"
+
+#: diventi/templates/accounts/password_reset_confirm_quick.html:24
+#, fuzzy
+#| msgid ""
+#| "Please enter your new password twice so we can verify you typed it in "
+#| "correctly."
+msgid ""
+"please enter your new password twice so we can verify you typed it in "
+"correctly"
+msgstr ""
+"Per favore riporta la tua nuova password due volte cosicché possiamo "
+"verificarne la correttezza."
+
+#: diventi/templates/accounts/password_reset_confirm_quick.html:51
+#: diventi/templates/accounts/password_reset_confirm_quick.html:67
+#: diventi/templates/accounts/signin_quick.html:58
+#: diventi/templates/accounts/signup_quick.html:68
+#: diventi/templates/accounts/signup_quick.html:84
+#, fuzzy
+#| msgid "New password"
+msgid "show password"
+msgstr "Nuova password"
+
+#: diventi/templates/accounts/password_reset_confirm_quick.html:78
+#, fuzzy
+#| msgid "Change my password"
+msgid "change my password"
+msgstr "Modifica la mia password"
+
 #: diventi/templates/accounts/password_reset_done.html:9
+#: diventi/templates/accounts/password_reset_done_quick.html:28
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
@@ -1824,12 +1960,37 @@ msgstr ""
 "Dovresti riceverla a breve."
 
 #: diventi/templates/accounts/password_reset_done.html:10
+#: diventi/templates/accounts/password_reset_done_quick.html:29
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
 msgstr ""
 "Se non ricevi alcuna email, per favore assicurati di aver digitato "
 "correttamente la tua email e di aver verificato la cartella spam."
+
+#: diventi/templates/accounts/password_reset_done_quick.html:5
+#, fuzzy
+#| msgid "^password-reset/done/$"
+msgid "password reset done"
+msgstr "^password-reset/completato/$"
+
+#: diventi/templates/accounts/password_reset_done_quick.html:15
+#: diventi/templates/comments/posted.html:13
+#, fuzzy
+#| msgid "Rollback"
+msgid "go back"
+msgstr "Annulla"
+
+#: diventi/templates/accounts/password_reset_done_quick.html:27
+#, fuzzy
+#| msgid "email"
+msgid "email sent!"
+msgstr "email"
+
+#: diventi/templates/accounts/password_reset_done_quick.html:34
+#: diventi/templates/accounts/signout_quick.html:28
+msgid "return home"
+msgstr ""
 
 #: diventi/templates/accounts/password_reset_email.html:2
 #, python-format
@@ -1857,7 +2018,7 @@ msgstr "Grazie per aver navigato con noi!"
 msgid "The %(site_name)s team"
 msgstr "Il team %(site_name)s"
 
-#: diventi/templates/accounts/password_reset_form.html:39
+#: diventi/templates/accounts/password_reset_form.html:54
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
@@ -1865,26 +2026,37 @@ msgstr ""
 "Hai dimenticato la password? Digita la tua email qui sotto, ti invieremo le "
 "istruzioni per crearne una nuova."
 
-#: diventi/templates/accounts/password_reset_form.html:54
+#: diventi/templates/accounts/password_reset_form.html:69
 msgid "Sending"
 msgstr "Invio"
 
-#: diventi/templates/accounts/password_reset_form.html:55
+#: diventi/templates/accounts/password_reset_form.html:70
 #: diventi/templates/accounts/signin.html:65
 #: diventi/templates/accounts/user.html:132
+#: diventi/templates/accounts/user_change_privacy_quick.html:129
 #: diventi/templates/accounts/user_credentials.html:33
 msgid "Confirm"
 msgstr "Conferma"
 
+#: diventi/templates/accounts/password_reset_form_quick.html:22
+#, fuzzy
+#| msgid "Repeat your password"
+msgid "enter your email to reset your password"
+msgstr "Ripeti la tua password"
+
+#: diventi/templates/accounts/password_reset_form_quick.html:55
+#, fuzzy
+#| msgid "Current password"
+msgid "reset password"
+msgstr "Password corrente"
+
+#: diventi/templates/accounts/signin.html:52
+msgid "Your password"
+msgstr "La tua password"
+
 #: diventi/templates/accounts/signin.html:59
 msgid "No account yet? Then"
 msgstr "Non hai ancora un profilo? Allora"
-
-#: diventi/templates/accounts/signin.html:59
-#: diventi/templates/base_quick.html:517 diventi/templates/base_quick.html:648
-#: diventi/templates/landing/landing_quick.html:317
-msgid "sign up"
-msgstr "registrati"
 
 #: diventi/templates/accounts/signin.html:59
 msgid "first"
@@ -1898,7 +2070,37 @@ msgstr "Hai perso la tua password? Allora"
 msgid "request a reset here"
 msgstr "richiedi un reset qui"
 
+#: diventi/templates/accounts/signin_quick.html:23
+msgid "sign in to your account to continue"
+msgstr ""
+
+#: diventi/templates/accounts/signin_quick.html:70
+#, fuzzy
+#| msgid "not rated"
+msgid "not registered?"
+msgstr "nessun voto rilevato"
+
+#: diventi/templates/accounts/signin_quick.html:70
+#: diventi/templates/accounts/signup_quick.html:22
+#, fuzzy
+#| msgid "Delete your account"
+msgid "create your account"
+msgstr "Cancella la tua utenza"
+
+#: diventi/templates/accounts/signin_quick.html:72
+#, fuzzy
+#| msgid "Lost your password? Then"
+msgid "lost your password?"
+msgstr "Hai perso la tua password? Allora"
+
+#: diventi/templates/accounts/signin_quick.html:72
+#, fuzzy
+#| msgid "request a reset here"
+msgid "request a reset"
+msgstr "richiedi un reset qui"
+
 #: diventi/templates/accounts/signout.html:10
+#: diventi/templates/accounts/signout_quick.html:22
 msgid "Sign out completed"
 msgstr "Accesso annullato"
 
@@ -1910,6 +2112,18 @@ msgstr "Ora puoi lasciare la pagina oppure ritornare"
 msgid "to the homepage"
 msgstr "alla pagina iniziale"
 
+#: diventi/templates/accounts/signout_quick.html:5
+#: diventi/templates/accounts/user_detail_quick_modal.html:119
+#: diventi/templates/base_quick.html:225 diventi/templates/navigation.html:197
+msgid "sign out"
+msgstr "annulla accesso"
+
+#: diventi/templates/accounts/signout_quick.html:23
+#, fuzzy
+#| msgid "You can now leave the page or return"
+msgid "You can now leave the page or return home"
+msgstr "Ora puoi lasciare la pagina oppure ritornare"
+
 #: diventi/templates/accounts/signup.html:20
 #: diventi/templates/accounts/signup.html:32
 #: diventi/templates/landing/landing.html:61
@@ -1917,6 +2131,8 @@ msgid "Sign up"
 msgstr "Registrati"
 
 #: diventi/templates/accounts/signup.html:110
+#: diventi/templates/accounts/signup_quick.html:101
+#: diventi/templates/accounts/user_change_privacy_quick.html:43
 #: diventi/templates/accounts/user_privacy.html:19
 msgid ""
 "We send an average of 2 emails each month, covering faq and new content."
@@ -1928,6 +2144,20 @@ msgstr ""
 #: diventi/templates/adventures/situation_story_create.html:65
 msgid "Get Started"
 msgstr "Iniziamo"
+
+#: diventi/templates/accounts/signup_quick.html:23
+msgid "Let the adventure begin"
+msgstr ""
+
+#: diventi/templates/accounts/signup_quick.html:113
+#, fuzzy
+#| msgid "Delete your account"
+msgid "create my account"
+msgstr "Cancella la tua utenza"
+
+#: diventi/templates/accounts/signup_quick.html:117
+msgid "already have an account?"
+msgstr ""
 
 #: diventi/templates/accounts/subscribers.html:7
 msgid "Subscribers"
@@ -1949,7 +2179,8 @@ msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
-#: diventi/templates/base_quick.html:644
+#: diventi/templates/accounts/user_detail_quick.html:158
+#: diventi/templates/accounts/user_detail_quick_modal.html:50
 #: diventi/templates/products/product_detail.html:114
 msgid "collection"
 msgstr "collezione"
@@ -1968,30 +2199,22 @@ msgstr "personalizzazioni"
 msgid "Customization"
 msgstr "Personalizzazioni"
 
-#: diventi/templates/accounts/user.html:53
-#: diventi/templates/accounts/user.html:86
-msgid "credentials"
-msgstr "credenziali"
-
 #: diventi/templates/accounts/user.html:55
 msgid "Credentials"
 msgstr "Credenziali"
-
-#: diventi/templates/accounts/user.html:59
-#: diventi/templates/accounts/user.html:96
-msgid "privacy"
-msgstr "privacy"
 
 #: diventi/templates/accounts/user.html:61
 msgid "Privacy"
 msgstr "Privacy"
 
 #: diventi/templates/accounts/user.html:120
+#: diventi/templates/accounts/user_change_privacy_quick.html:116
 #: diventi/templates/accounts/user_privacy.html:53
 msgid "Delete your account"
 msgstr "Cancella la tua utenza"
 
 #: diventi/templates/accounts/user.html:126
+#: diventi/templates/accounts/user_change_privacy_quick.html:123
 msgid ""
 "We will immediately delete all of your data, along with all of your "
 "comments, feedbacks and upvotes."
@@ -2000,6 +2223,7 @@ msgstr ""
 "che hai registrato."
 
 #: diventi/templates/accounts/user.html:128
+#: diventi/templates/accounts/user_change_privacy_quick.html:124
 msgid ""
 "You will no longer be contacted and your username will be available to "
 "anyone on Diventi."
@@ -2008,10 +2232,95 @@ msgstr ""
 "in Diventi."
 
 #: diventi/templates/accounts/user.html:131
+#: diventi/templates/accounts/user_change_privacy_quick.html:128
 msgid "Rollback"
 msgstr "Annulla"
 
+#: diventi/templates/accounts/user_change_password_quick.html:14
+#: diventi/templates/accounts/user_change_privacy_quick.html:14
+#: diventi/templates/accounts/user_settings_quick.html:19
+#, fuzzy
+#| msgid "account"
+msgid "my account"
+msgstr "profilo"
+
+#: diventi/templates/accounts/user_change_password_quick.html:36
+#, fuzzy
+#| msgid "Change password"
+msgid "change password"
+msgstr "Modifica password"
+
+#: diventi/templates/accounts/user_change_password_quick.html:61
+#, fuzzy
+#| msgid "Change my password"
+msgid "I forgot my password"
+msgstr "Modifica la mia password"
+
+#: diventi/templates/accounts/user_change_password_quick.html:62
+#: diventi/templates/accounts/user_change_privacy_quick.html:55
+#: diventi/templates/accounts/user_settings_quick.html:93
+msgid "save"
+msgstr ""
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:36
+#: diventi/templates/accounts/user_privacy.html:3
+msgid "Privacy settings"
+msgstr "Impostazioni sulla privacy"
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:63
+msgid "danger zone"
+msgstr ""
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:68
+#, fuzzy
+#| msgid "Delete your account"
+msgid "delete this account"
+msgstr "Cancella la tua utenza"
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:69
+#: diventi/templates/accounts/user_privacy.html:48
+msgid ""
+"Do you wish to delete your account? There is no going back. Please be "
+"certain."
+msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:72
+#, fuzzy
+#| msgid "Delete your account"
+msgid "Delete my account"
+msgstr "Cancella la tua utenza"
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:84
+msgid "your information is safe"
+msgstr ""
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:85
+msgid ""
+"we will not sell or rent your personal contact information for any marketing "
+"purposes whatsoever"
+msgstr ""
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:91
+msgid "we don't sell your data to others"
+msgstr ""
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:92
+msgid "because it's not our business nor in our team culture"
+msgstr ""
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:98
+#, fuzzy
+#| msgid "you are playing the"
+msgid "you are in control"
+msgstr "stai giocando il"
+
+#: diventi/templates/accounts/user_change_privacy_quick.html:99
+msgid ""
+"feel free to reach to us for any question or clarification on the matter"
+msgstr ""
+
 #: diventi/templates/accounts/user_collection.html:21
+#: diventi/templates/accounts/user_detail_quick.html:190
 msgid "not available"
 msgstr "non ancora disponibile"
 
@@ -2024,6 +2333,9 @@ msgid "rewiew"
 msgstr "recensisci"
 
 #: diventi/templates/accounts/user_collection.html:48
+#: diventi/templates/accounts/user_detail_quick.html:218
+#: diventi/templates/accounts/user_detail_quick.html:252
+#: diventi/templates/accounts/user_detail_quick_modal.html:73
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
@@ -2045,6 +2357,7 @@ msgid "Display"
 msgstr "Visualizza"
 
 #: diventi/templates/accounts/user_collection.html:77
+#: diventi/templates/accounts/user_detail_quick.html:288
 msgid "There are no surveys yet."
 msgstr "Nessun sondaggio disponibile."
 
@@ -2072,9 +2385,46 @@ msgstr "Aggiornamento profilo"
 msgid "Update profile"
 msgstr "Aggiorna profilo"
 
-#: diventi/templates/accounts/user_privacy.html:3
-msgid "Privacy settings"
-msgstr "Impostazioni sulla privacy"
+#: diventi/templates/accounts/user_detail_quick.html:41
+#: diventi/templates/accounts/user_detail_quick_modal.html:81
+msgid "achievements"
+msgstr "riconoscimenti"
+
+#: diventi/templates/accounts/user_detail_quick.html:76
+msgid "quick stats"
+msgstr ""
+
+#: diventi/templates/accounts/user_detail_quick.html:99
+msgid "edit"
+msgstr ""
+
+#: diventi/templates/accounts/user_detail_quick.html:114
+#: diventi/templates/accounts/user_detail_quick_modal.html:36
+#: diventi/templates/navigation_quick.html:6
+#: diventi/templates/navigation_quick.html:89
+msgid "projects"
+msgstr "progetti"
+
+#: diventi/templates/accounts/user_detail_quick.html:117
+#: diventi/templates/accounts/user_detail_quick_modal.html:39
+#: diventi/templates/navigation_quick.html:95
+msgid "reviews"
+msgstr "recensioni"
+
+#: diventi/templates/accounts/user_detail_quick.html:122
+#: diventi/templates/accounts/user_detail_quick_modal.html:44
+msgid "feedbacks"
+msgstr "riscontri"
+
+#: diventi/templates/accounts/user_detail_quick.html:140
+#, fuzzy
+#| msgid "featured template"
+msgid "featured content"
+msgstr "modello in primo piano"
+
+#: diventi/templates/accounts/user_detail_quick.html:186
+msgid "open"
+msgstr ""
 
 #: diventi/templates/accounts/user_privacy.html:8
 msgid ""
@@ -2097,11 +2447,9 @@ msgstr ""
 msgid "Update preference"
 msgstr "Aggiorna preferenza"
 
-#: diventi/templates/accounts/user_privacy.html:48
-msgid ""
-"Do you wish to delete your account? There is no going back. Please be "
-"certain."
-msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
+#: diventi/templates/accounts/user_settings_quick.html:40
+msgid "general information"
+msgstr ""
 
 #: diventi/templates/adventures/situation_detail.html:17
 msgid "you are playing the"
@@ -2114,7 +2462,8 @@ msgstr "link pubblico"
 #: diventi/templates/adventures/situation_detail.html:29
 #: diventi/templates/adventures/situation_story_create.html:6
 #: diventi/templates/adventures/situation_story_list.html:26
-#: diventi/templates/base_quick.html:379 diventi/templates/navigation.html:166
+#: diventi/templates/navigation.html:166
+#: diventi/templates/navigation_quick.html:117
 msgid "adventures"
 msgstr "avventure"
 
@@ -2164,6 +2513,11 @@ msgid "finale"
 msgstr "finale"
 
 #: diventi/templates/adventures/situation_story_detail.html:62
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_vote_form.html:35
+#: diventi/templates/machina/forum_conversation/partials/topic_form.html:100
+#: diventi/templates/machina/forum_conversation/post_create.html:28
+#: diventi/templates/machina/forum_conversation/post_update.html:27
+#: diventi/templates/machina/forum_member/forum_profile_update.html:35
 msgid "Submit"
 msgstr "Invia"
 
@@ -2216,85 +2570,27 @@ msgstr "Schede personaggio"
 msgid "GM sheets"
 msgstr "Schede del GM"
 
-#: diventi/templates/base_quick.html:163 diventi/templates/base_quick.html:262
-#: diventi/templates/base_quick.html:347 diventi/templates/base_quick.html:450
-msgid "projects"
-msgstr "progetti"
+#: diventi/templates/base_quick.html:147
+#, fuzzy
+#| msgid "Landing"
+msgid "loading"
+msgstr "Pagina di destinazione"
 
-#: diventi/templates/base_quick.html:167 diventi/templates/base_quick.html:353
-msgid "reviews"
-msgstr "recensioni"
+#: diventi/templates/base_quick.html:160
+msgid ""
+"we use cookies so that our themes work for you. By using our website, you "
+"agree to our use of cookies"
+msgstr ""
 
-#: diventi/templates/base_quick.html:171
-msgid "feedbacks"
-msgstr "riscontri"
-
-#: diventi/templates/base_quick.html:177
-msgid "achievements"
-msgstr "riconoscimenti"
-
-#: diventi/templates/base_quick.html:213 diventi/templates/base_quick.html:409
-#: diventi/templates/navigation.html:197
-msgid "sign out"
-msgstr "annulla accesso"
-
-#: diventi/templates/base_quick.html:303 diventi/templates/base_quick.html:491
-msgid "a place to discuss adventures and developments"
-msgstr "uno spazio in cui parlare di avventure e sviluppi futuri"
-
-#: diventi/templates/base_quick.html:316 diventi/templates/base_quick.html:504
-msgid "find our latest news"
-msgstr "Le nostre ultime notizie"
-
-#: diventi/templates/base_quick.html:338
-msgid "the control panel, suitable for authors only."
-msgstr "il pannello di controllo, riservato agli autori"
-
-#: diventi/templates/base_quick.html:348
-msgid "ebook sections"
-msgstr "sezioni degli ebook"
-
-#: diventi/templates/base_quick.html:366
-#: diventi/templates/landing/analytics.html:5
-#: diventi/templates/landing/analytics.html:60
-#: diventi/templates/navigation.html:165
-msgid "analytics"
-msgstr "analitica"
-
-#: diventi/templates/base_quick.html:367
-msgid "a tool to measure the website performance."
-msgstr "uno strumento per misurare le prestazioni del sito."
-
-#: diventi/templates/base_quick.html:380
-msgid "our experimental adventure book."
-msgstr "il nostro libro avventura sperimentale."
-
-#: diventi/templates/base_quick.html:401
+#: diventi/templates/base_quick.html:215
 msgid "hi"
 msgstr "ciao"
 
-#: diventi/templates/base_quick.html:404
-msgid "my profile"
-msgstr "il mio profilo"
-
-#: diventi/templates/base_quick.html:416 diventi/templates/navigation.html:182
-msgid "my collection"
-msgstr "la mia collezione"
-
-#: diventi/templates/base_quick.html:523 diventi/templates/base_quick.html:529
-#: diventi/templates/base_quick.html:647 diventi/templates/navigation.html:203
-msgid "sign in"
-msgstr "accedi"
-
-#: diventi/templates/base_quick.html:548
+#: diventi/templates/base_quick.html:304
 msgid "type and hit enter"
 msgstr "scrivi e premi invio"
 
-#: diventi/templates/base_quick.html:600
-msgid "explore"
-msgstr "esplora"
-
-#: diventi/templates/base_quick.html:614
+#: diventi/templates/base_quick.html:378
 msgid ""
 "Diventi is a role-playing game that embraces fun, encourages storytelling "
 "and helps game masters to prepare their fantastic adventures"
@@ -2302,31 +2598,23 @@ msgstr ""
 "Diventi è un gioco di ruolo che abbraccia il divertimento, incoraggia "
 "l'interpretazione e aiuta i game master a preparare fantastiche avventure"
 
-#: diventi/templates/base_quick.html:643 diventi/templates/navigation.html:196
-msgid "profile"
-msgstr "profilo"
-
-#: diventi/templates/base_quick.html:645
-msgid "settings"
-msgstr "impostazioni"
-
-#: diventi/templates/base_quick.html:653
+#: diventi/templates/base_quick.html:420
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:655
+#: diventi/templates/base_quick.html:422
 msgid "what is Diventi"
 msgstr "cos'è Diventi"
 
-#: diventi/templates/base_quick.html:656
+#: diventi/templates/base_quick.html:423
 msgid "our mission"
 msgstr "la nostra missione"
 
-#: diventi/templates/base_quick.html:660
+#: diventi/templates/base_quick.html:427
 msgid "community"
 msgstr "community"
 
-#: diventi/templates/base_quick.html:671 diventi/templates/footer.html:6
+#: diventi/templates/base_quick.html:438 diventi/templates/footer.html:6
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -2335,10 +2623,26 @@ msgid "read the story"
 msgstr "leggi la storia"
 
 #: diventi/templates/blog/article_detail.html:41
+#: diventi/templates/blog/article_detail_quick.html:44
 msgid "Photo"
 msgstr "Foto"
 
+#: diventi/templates/blog/article_detail_quick.html:85
+msgid "keep reading"
+msgstr ""
+
+#: diventi/templates/blog/article_detail_quick.html:86
+msgid "more stories from Diventi"
+msgstr ""
+
+#: diventi/templates/blog/article_detail_quick.html:89
+#, fuzzy
+#| msgid "View all"
+msgid "view all"
+msgstr "Visualizza tutto"
+
 #: diventi/templates/blog/article_list.html:34
+#: diventi/templates/blog/article_list_quick.html:42
 msgid "all"
 msgstr "tutto"
 
@@ -2348,89 +2652,78 @@ msgid "read article"
 msgstr "leggi articolo"
 
 #: diventi/templates/blog/article_list.html:104
+#: diventi/templates/blog/article_list_quick.html:139
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato pubblicato"
 
 #: diventi/templates/blog/article_list.html:113
 #: diventi/templates/blog/article_list.html:115
+#: diventi/templates/blog/article_list_quick.html:146
+#: diventi/templates/blog/article_list_quick.html:148
 msgid "Previous"
 msgstr "Precedente"
 
 #: diventi/templates/blog/article_list.html:119
+#: diventi/templates/blog/article_list_quick.html:152
 msgid "current"
 msgstr "corrente"
 
 #: diventi/templates/blog/article_list.html:125
 #: diventi/templates/blog/article_list.html:127
+#: diventi/templates/blog/article_list_quick.html:158
+#: diventi/templates/blog/article_list_quick.html:160
 msgid "Next"
 msgstr "Successivo"
 
-#: diventi/templates/board_base.html:67
-msgid "Subscriptions"
-msgstr "Iscrizioni"
-
-#: diventi/templates/board_base.html:68
-msgid "View my posts"
-msgstr "Visualzza i miei post"
-
-#: diventi/templates/board_base.html:72
-msgid "Moderation queue"
-msgstr "Coda di moderazione"
-
-#: diventi/templates/comments/comments.html:7
-msgid "Take part in the discussion"
-msgstr "Partecipa alla discussione"
-
-#: diventi/templates/comments/comments.html:17
-#: diventi/templates/comments/tree.html:53
-msgid "Write your comment"
-msgstr "Scrivi il tuo commento"
-
-#: diventi/templates/comments/comments.html:26
+#: diventi/templates/comments/comment_form.html:29
+#: diventi/templates/comments/tree.html:55
 #: diventi/templates/reviews/review_form.html:18
 msgid "Post"
 msgstr "Pubblica"
 
-#: diventi/templates/comments/comments.html:33
+#: diventi/templates/comments/comment_form.html:37
 msgid "Please sign in to leave a comment"
 msgstr "Effettua l'accesso per pubblicare un commento."
 
-#: diventi/templates/comments/comments.html:42
+#: diventi/templates/comments/comments.html:10
 msgid "Comments"
 msgstr "Commenti"
 
-#: diventi/templates/comments/comments.html:46
+#: diventi/templates/comments/comments.html:13
 msgid "Best"
 msgstr "Migliori"
 
-#: diventi/templates/comments/comments.html:49
+#: diventi/templates/comments/comments.html:16
 msgid "Recent"
 msgstr "Recenti"
 
-#: diventi/templates/comments/comments.html:99
+#: diventi/templates/comments/comments.html:71
 msgid "Demote"
 msgstr "Degrada"
 
-#: diventi/templates/comments/comments.html:102
+#: diventi/templates/comments/comments.html:75
 msgid "Promote"
 msgstr "Promuovi"
 
 #: diventi/templates/comments/posted.html:5
-#: diventi/templates/comments/posted.html:8
 msgid "Comment posted"
 msgstr "Commento pubblicato"
 
-#: diventi/templates/comments/posted.html:12
-#: diventi/templates/reviews/posted.html:13
-msgid "You can leave the page or go back"
-msgstr "Ora puoi lasciare la pagina oppure ritornare"
+#: diventi/templates/comments/posted.html:25
+#, fuzzy
+#| msgid "Comment posted"
+msgid "comment posted!"
+msgstr "Commento pubblicato"
 
-#: diventi/templates/comments/posted.html:12
-#: diventi/templates/reviews/posted.html:13
-msgid "to the previous page"
-msgstr "alla pagina precedente"
+#: diventi/templates/comments/posted.html:26
+msgid "You can return home or go back to the previous page"
+msgstr ""
 
-#: diventi/templates/comments/tree.html:37
+#: diventi/templates/comments/posted.html:31
+msgid "back to the article"
+msgstr ""
+
+#: diventi/templates/comments/tree.html:27
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
@@ -2438,6 +2731,10 @@ msgstr "Mostra le risposte"
 #: diventi/templates/ebooks/base_book_web.html:178
 #: diventi/templates/landing/search_form.html:14
 #: diventi/templates/landing/search_form.html:18
+#: diventi/templates/machina/forum_search/search.html:5
+#: diventi/templates/machina/forum_search/search.html:11
+#: diventi/templates/machina/forum_search/search.html:32
+#: diventi/templates/machina/forum_search/search.html:42
 msgid "Search"
 msgstr "Ricerca"
 
@@ -2539,29 +2836,12 @@ msgstr "Accedi al sondaggio"
 msgid "your answers"
 msgstr "le tue risposte"
 
-#: diventi/templates/forum/index.html:6
-msgid "Forum"
-msgstr "Forum"
-
-#: diventi/templates/forum/index.html:13
-msgid "Mark forums read"
-msgstr "Marchia i forum come letti"
-
-#: diventi/templates/forum/index.html:15
-msgid "View unread topics"
-msgstr "Visualizza argomenti da leggere"
-
-#: diventi/templates/forum/index.html:22
-msgid "Statistics"
-msgstr "Statistiche"
-
-#: diventi/templates/forum/index.html:23
-msgid "Total posts:"
-msgstr "Post totali:"
-
-#: diventi/templates/forum/index.html:23
-msgid "Total topics:"
-msgstr "Argomenti totali:"
+#: diventi/templates/landing/analytics.html:5
+#: diventi/templates/landing/analytics.html:60
+#: diventi/templates/navigation.html:165
+#: diventi/templates/navigation_quick.html:106
+msgid "analytics"
+msgstr "analitica"
 
 #: diventi/templates/landing/analytics.html:59
 msgid "admin page"
@@ -2581,12 +2861,12 @@ msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
 #: diventi/templates/landing/landing.html:34
-#: diventi/templates/landing/landing_quick.html:324
+#: diventi/templates/landing/landing_quick.html:322
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:35
-#: diventi/templates/landing/landing_quick.html:325
+#: diventi/templates/landing/landing_quick.html:323
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -2594,18 +2874,18 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:41
-#: diventi/templates/landing/landing_quick.html:309
+#: diventi/templates/landing/landing_quick.html:307
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing.html:42
-#: diventi/templates/landing/landing_quick.html:310
+#: diventi/templates/landing/landing_quick.html:308
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
 #: diventi/templates/landing/landing_quick.html:45
-#: diventi/templates/landing/landing_quick.html:151
-#: diventi/templates/landing/landing_quick.html:282
+#: diventi/templates/landing/landing_quick.html:150
+#: diventi/templates/landing/landing_quick.html:281
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2637,7 +2917,7 @@ msgstr "ottimizzato per funzionare sulla maggior parte dei dispositivi"
 msgid "modular components for any storytelling style"
 msgstr "componenti modulari per qualunque stile di narrazione"
 
-#: diventi/templates/landing/landing_quick.html:229
+#: diventi/templates/landing/landing_quick.html:228
 msgid "visualize"
 msgstr "visualizza"
 
@@ -2645,17 +2925,686 @@ msgstr "visualizza"
 msgid "e.g. First Contact"
 msgstr "es: Primo Contatto"
 
+#: diventi/templates/machina/board_base.html:17
+msgid "Subscriptions"
+msgstr "Iscrizioni"
+
+#: diventi/templates/machina/board_base.html:18
+msgid "View my posts"
+msgstr "Visualzza i miei post"
+
+#: diventi/templates/machina/board_base.html:22
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:5
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:10
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:5
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:10
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:33
+msgid "Moderation queue"
+msgstr "Coda di moderazione"
+
+#: diventi/templates/machina/forum/forum_detail.html:22
+msgid "Mark subforums read"
+msgstr "Marchia i sotto-forum come letti"
+
+#: diventi/templates/machina/forum/forum_detail.html:34
+#: diventi/templates/machina/forum/forum_detail.html:59
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:19
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:67
+msgid "New topic"
+msgstr "Nuovo argomento"
+
+#: diventi/templates/machina/forum/forum_detail.html:40
+#: diventi/templates/machina/forum/forum_detail.html:65
+#: diventi/templates/machina/forum_tracking/mark_topics_read.html:5
+#: diventi/templates/machina/forum_tracking/mark_topics_read.html:11
+msgid "Mark topics read"
+msgstr "Marchia gli argomenti come letti"
+
+#: diventi/templates/machina/forum/forum_detail.html:48
+msgid "Announcements"
+msgstr "Annunci"
+
+#: diventi/templates/machina/forum/forum_detail.html:52
+#: diventi/templates/machina/forum/forum_list.html:20
+#: diventi/templates/machina/forum/forum_list.html:38
+#: diventi/templates/machina/forum/forum_list.html:206
+msgid "Topics"
+msgstr "Argomenti"
+
+#: diventi/templates/machina/forum/forum_list.html:21
+#: diventi/templates/machina/forum/forum_list.html:39
+#: diventi/templates/machina/forum/forum_list.html:207
+msgid "Posts"
+msgstr "Post"
+
+#: diventi/templates/machina/forum/forum_list.html:22
+#: diventi/templates/machina/forum/forum_list.html:40
+#: diventi/templates/machina/forum/forum_list.html:208
+#: diventi/templates/machina/forum_conversation/topic_list.html:15
+msgid "Last post"
+msgstr "Ultimo post"
+
+#: diventi/templates/machina/forum/forum_list.html:36
+#: diventi/templates/machina/forum/forum_list.html:204
+msgid "Forums"
+msgstr "Forum"
+
+#: diventi/templates/machina/forum/forum_list.html:70
+#: diventi/templates/machina/forum/forum_list.html:143
+msgid "RSS feed"
+msgstr "feed RSS"
+
+#: diventi/templates/machina/forum/forum_list.html:77
+#: diventi/templates/machina/forum/forum_list.html:150
+#: diventi/templates/machina/forum_conversation/topic_list.html:54
+#, python-format
+msgid "By: <a href=\"%(poster_url)s\">%(username)s</a>"
+msgstr "By: <a href=\"%(poster_url)s\">%(username)s</a>"
+
+#: diventi/templates/machina/forum/forum_list.html:81
+#: diventi/templates/machina/forum/forum_list.html:154
+#: diventi/templates/machina/forum_conversation/topic_list.html:58
+#, python-format
+msgid "By: %(poster_username)s"
+msgstr "By: %(poster_username)s"
+
+#: diventi/templates/machina/forum/forum_list.html:89
+#: diventi/templates/machina/forum/forum_list.html:162
+msgid "No posts"
+msgstr "Nessun post"
+
+#: diventi/templates/machina/forum/forum_list.html:108
+#: diventi/templates/machina/forum/forum_list.html:181
+msgid "Total redirects:"
+msgstr "Redirezionamenti totali:"
+
+#: diventi/templates/machina/forum/forum_list.html:188
+#: diventi/templates/machina/forum/forum_list.html:194
+msgid "Subforums:"
+msgstr "Sotto-forum:"
+
+#: diventi/templates/machina/forum/forum_list.html:213
+msgid "No forums."
+msgstr "Nessun forum."
+
+#: diventi/templates/machina/forum/index.html:6
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:36
+msgid "Forum"
+msgstr "Forum"
+
+#: diventi/templates/machina/forum/index.html:14
+#: diventi/templates/machina/forum_tracking/mark_forums_read.html:5
+#: diventi/templates/machina/forum_tracking/mark_forums_read.html:11
+msgid "Mark forums read"
+msgstr "Marchia i forum come letti"
+
+#: diventi/templates/machina/forum/index.html:17
+#: diventi/templates/machina/forum_tracking/unread_topic_list.html:4
+#: diventi/templates/machina/forum_tracking/unread_topic_list.html:8
+msgid "View unread topics"
+msgstr "Visualizza argomenti da leggere"
+
+#: diventi/templates/machina/forum/index.html:24
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:34
+msgid "Statistics"
+msgstr "Statistiche"
+
+#: diventi/templates/machina/forum/index.html:25
+msgid "Total posts:"
+msgstr "Post totali:"
+
+#: diventi/templates/machina/forum/index.html:25
+msgid "Total topics:"
+msgstr "Argomenti totali:"
+
+#: diventi/templates/machina/forum_conversation/forum_attachments/attachment_formset.html:28
+#: diventi/templates/machina/forum_member/forum_profile_update.html:19
+#: diventi/templates/machina/partials/form_field.html:6
+msgid "(optional)"
+msgstr "(opzionale)"
+
+#: diventi/templates/machina/forum_conversation/forum_attachments/attachment_formset.html:41
+msgid "Add another file"
+msgstr "Aggiunti un altro file"
+
+#: diventi/templates/machina/forum_conversation/forum_attachments/attachments_detail.html:8
+#: diventi/templates/machina/forum_conversation/forum_attachments/attachments_preview.html:7
+#: diventi/templates/machina/forum_conversation/partials/post_form.html:22
+#: diventi/templates/machina/forum_conversation/partials/post_form.html:60
+#: diventi/templates/machina/forum_conversation/partials/topic_form.html:24
+msgid "Attachments"
+msgstr "Allegati"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_detail.html:17
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_preview.html:13
+msgid "You may select <b>1</b> option"
+msgstr "Puoi selezionare <b>1</b> opzione"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_detail.html:21
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_preview.html:17
+#, python-format
+msgid "You may select up to <b>%(max_options)s</b> options"
+msgstr "Puoi selezionare un massimo di <b>%(max_options)s</b> opzioni."
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_detail.html:40
+msgid "Vote"
+msgstr "Vota"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_detail.html:45
+msgid "Change your vote"
+msgstr "Cambia il tuo voto"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_option_formset.html:3
+msgid "Poll options"
+msgstr "Opzioni del sondaggio"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_option_formset.html:26
+msgid "Add a poll option"
+msgstr "Aggiungi un'opzione al sondaggio"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_option_formset.html:30
+msgid ""
+"<b>Note:</b>&nbsp;Deleting poll options of an existing poll will delete the "
+"associated votes."
+msgstr ""
+"<b>Nota:</b> Cancellare un'opzione da un sondaggio esistente ne cancellerà i "
+"relativi voti."
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_preview.html:9
+#: diventi/templates/machina/forum_conversation/post_preview.html:10
+msgid "Preview:"
+msgstr "Anteprima:"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_results.html:19
+msgid "Total votes:"
+msgstr "Voti totali:"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_vote_form.html:36
+msgid "View results"
+msgstr "Visualizza i risultati"
+
+#: diventi/templates/machina/forum_conversation/partials/post_form.html:21
+#: diventi/templates/machina/forum_conversation/partials/topic_form.html:22
+msgid "Options"
+msgstr "Opzioni"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:16
+msgid "Post reply"
+msgstr "Risposta"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:21
+msgid "Subscribe"
+msgstr "Iscriviti"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:25
+msgid "Unsubscribe"
+msgstr "Disiscriviti"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:34
+#: diventi/templates/machina/forum_moderation/topic_lock.html:5
+#: diventi/templates/machina/forum_moderation/topic_lock.html:12
+msgid "Lock topic"
+msgstr "Blocca l'argomento"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:35
+#: diventi/templates/machina/forum_moderation/topic_unlock.html:5
+#: diventi/templates/machina/forum_moderation/topic_unlock.html:12
+msgid "Unlock topic"
+msgstr "Sblocca l'argomento"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:36
+#: diventi/templates/machina/forum_moderation/topic_delete.html:5
+#: diventi/templates/machina/forum_moderation/topic_delete.html:12
+msgid "Delete topic"
+msgstr "Cancella l'argomento"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:37
+#: diventi/templates/machina/forum_moderation/topic_move.html:5
+#: diventi/templates/machina/forum_moderation/topic_move.html:12
+msgid "Move topic"
+msgstr "Sposta l'argomento"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:39
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:46
+msgid "Change to sticky topic"
+msgstr "Metti in evidenza l'argomento"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:40
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:43
+msgid "Change to announce"
+msgstr "Cambia in annuncio"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:42
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:45
+msgid "Change to standard topic"
+msgstr "Cambia in argomento normale"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_form.html:23
+msgid "Poll"
+msgstr "Sondaggio"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_form.html:99
+#: diventi/templates/machina/forum_conversation/post_create.html:27
+#: diventi/templates/machina/forum_conversation/post_update.html:26
+msgid "Preview"
+msgstr "Anteprima"
+
+#: diventi/templates/machina/forum_conversation/post_create.html:6
+#: diventi/templates/machina/forum_conversation/post_create.html:21
+msgid "Post a reply"
+msgstr "Rispondi"
+
+#: diventi/templates/machina/forum_conversation/post_create.html:39
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:133
+msgid "Topic review"
+msgstr "Recensione dell'argomento"
+
+#: diventi/templates/machina/forum_conversation/post_create.html:51
+#: diventi/templates/machina/forum_conversation/topic_detail.html:53
+#: diventi/templates/machina/forum_conversation/topic_list.html:34
+#: diventi/templates/machina/forum_member/user_posts_list.html:50
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:86
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:145
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:51
+#: diventi/templates/machina/forum_search/search.html:83
+#, python-format
+msgid "By: <a href=\"%(poster_url)s\">%(username)s</a> on %(creation_date)s"
+msgstr "By: <a href=\"%(poster_url)s\">%(username)s</a> on %(creation_date)s"
+
+#: diventi/templates/machina/forum_conversation/post_create.html:55
+#: diventi/templates/machina/forum_conversation/topic_detail.html:57
+#: diventi/templates/machina/forum_conversation/topic_list.html:38
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:90
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:149
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:55
+#: diventi/templates/machina/forum_search/search.html:87
+#, python-format
+msgid "By: %(poster_username)s on %(creation_date)s"
+msgstr "By: %(poster_username)s on %(creation_date)s"
+
+#: diventi/templates/machina/forum_conversation/post_delete.html:5
+#: diventi/templates/machina/forum_conversation/post_delete.html:12
+msgid "Delete post"
+msgstr "Cancella il post"
+
+#: diventi/templates/machina/forum_conversation/post_delete.html:15
+msgid "Are you sure you want to delete this post?"
+msgstr "Confermi di voler cancellare questo post"
+
+#: diventi/templates/machina/forum_conversation/post_delete.html:18
+#: diventi/templates/machina/forum_member/topic_subscribe.html:18
+#: diventi/templates/machina/forum_member/topic_unsubscribe.html:18
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_approve.html:18
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_disapprove.html:18
+#: diventi/templates/machina/forum_moderation/topic_delete.html:18
+#: diventi/templates/machina/forum_moderation/topic_lock.html:18
+#: diventi/templates/machina/forum_moderation/topic_move.html:23
+#: diventi/templates/machina/forum_moderation/topic_unlock.html:18
+#: diventi/templates/machina/forum_moderation/topic_update_type.html:18
+#: diventi/templates/machina/forum_tracking/mark_forums_read.html:16
+#: diventi/templates/machina/forum_tracking/mark_topics_read.html:16
+msgid "Yes, I'm sure"
+msgstr "Si, confermo."
+
+#: diventi/templates/machina/forum_conversation/post_delete.html:19
+#: diventi/templates/machina/forum_member/topic_subscribe.html:19
+#: diventi/templates/machina/forum_member/topic_unsubscribe.html:19
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_approve.html:19
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_disapprove.html:19
+#: diventi/templates/machina/forum_moderation/topic_delete.html:19
+#: diventi/templates/machina/forum_moderation/topic_lock.html:19
+#: diventi/templates/machina/forum_moderation/topic_move.html:24
+#: diventi/templates/machina/forum_moderation/topic_unlock.html:19
+#: diventi/templates/machina/forum_moderation/topic_update_type.html:19
+#: diventi/templates/machina/forum_tracking/mark_forums_read.html:17
+#: diventi/templates/machina/forum_tracking/mark_topics_read.html:17
+msgid "No, take me back"
+msgstr "No, torna indietro"
+
+#: diventi/templates/machina/forum_conversation/post_update.html:5
+#: diventi/templates/machina/forum_conversation/post_update.html:20
+#: diventi/templates/machina/forum_conversation/topic_update.html:5
+#: diventi/templates/machina/forum_conversation/topic_update.html:23
+msgid "Edit post"
+msgstr "Modifica il post"
+
+#: diventi/templates/machina/forum_conversation/topic_create.html:5
+#: diventi/templates/machina/forum_conversation/topic_create.html:23
+msgid "Post a new topic"
+msgstr "Posta una nuovo argomento"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:34
+msgid "Edit"
+msgstr "Modifica"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:38
+msgid "Delete"
+msgstr "Cancella"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:76
+msgid "Last edited by:"
+msgstr "Ultima modifica di:"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:76
+msgid "Updated"
+msgstr "Aggiornato"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:76
+msgid "on"
+msgstr "su"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:76
+#, python-format
+msgid "edited %(counter)s time in total."
+msgid_plural "edited %(counter)s times in total."
+msgstr[0] "modificato %(counter)s volta in totale."
+msgstr[1] "modificato %(counter)s volte in totale."
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:81
+msgid "Reason:"
+msgstr "Causale:"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:95
+#: diventi/templates/machina/forum_member/user_posts_list.html:67
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:117
+msgid "Posts:"
+msgstr "Post:"
+
+#: diventi/templates/machina/forum_conversation/topic_detail.html:98
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:120
+msgid "Anonymous user"
+msgstr "Utente anonimo"
+
+#: diventi/templates/machina/forum_conversation/topic_list.html:13
+msgid "Replies"
+msgstr "Risposte"
+
+#: diventi/templates/machina/forum_conversation/topic_list.html:14
+msgid "Views"
+msgstr "Visite"
+
+#: diventi/templates/machina/forum_conversation/topic_list.html:29
+msgid "This topic is locked"
+msgstr "Questo argomento è bloccato"
+
+#: diventi/templates/machina/forum_conversation/topic_list.html:74
+msgid "There are no topics in this forum."
+msgstr "Non ci sono argomenti in questo forum."
+
+#: diventi/templates/machina/forum_conversation/topic_pages_inline_list.html:5
+msgid "Go to the page:"
+msgstr "Vai alla pagina:"
+
+#: diventi/templates/machina/forum_feeds/topics_description.html:7
+#: diventi/templates/machina/forum_feeds/topics_description.html:9
+msgid "Posted by"
+msgstr "Autore"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:5
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:10
+#, python-format
+msgid "%(username)s profile"
+msgstr "profilo di %(username)s"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:26
+msgid "Edit profile"
+msgstr "Aggiorna profilo"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:40
+#, python-format
+msgid ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p><small>Post</small></p>"
+msgid_plural ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p class=\"mb-1\"><small>Posts</small></p>"
+msgstr[0] ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p><small>Post</small></p>"
+msgstr[1] ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p><small>Post</small></p>"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:45
+#, python-format
+msgid ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p><small>Topic</small></p>"
+msgid_plural ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p class=\"mb-1\"><small>Topics</small></p>"
+msgstr[0] ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p><small>Argomento</small></p>"
+msgstr[1] ""
+"<h2><strong>%(counter)s</strong></h2>\n"
+"                      <p><small>Argomenti</small></p>"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:60
+msgid "Recent posts"
+msgstr "Post recenti"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:60
+msgid "View all"
+msgstr "Visualizza tutto"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:70
+#, python-format
+msgid "On %(creation_date)s"
+msgstr "il %(creation_date)s"
+
+#: diventi/templates/machina/forum_member/forum_profile_update.html:4
+#: diventi/templates/machina/forum_member/forum_profile_update.html:11
+msgid "Edit forum profile"
+msgstr "Aggiorna profilo del forum"
+
+#: diventi/templates/machina/forum_member/subscription_topic_list.html:4
+#: diventi/templates/machina/forum_member/subscription_topic_list.html:10
+msgid "Topics that you are subscribed to"
+msgstr "Argomenti sottoscritti"
+
+#: diventi/templates/machina/forum_member/subscription_topic_list.html:17
+#, python-format
+msgid "%(counter)s topic found"
+msgid_plural "%(counter)s topics found"
+msgstr[0] "%(counter)s argomento trovato"
+msgstr[1] "%(counter)s argomenti trovati"
+
+#: diventi/templates/machina/forum_member/subscription_topic_list.html:31
+msgid "Not topics found."
+msgstr "Nessun risultato trovato"
+
+#: diventi/templates/machina/forum_member/topic_subscribe.html:5
+#: diventi/templates/machina/forum_member/topic_subscribe.html:12
+msgid "Subscribe to topic"
+msgstr "Iscriviti all'argomento"
+
+#: diventi/templates/machina/forum_member/topic_subscribe.html:15
+msgid "Would you like to subscribe to this topic?"
+msgstr "Vorresti iscriverti a questo argomento?"
+
+#: diventi/templates/machina/forum_member/topic_unsubscribe.html:5
+#: diventi/templates/machina/forum_member/topic_unsubscribe.html:12
+msgid "Unsubscribe from topic"
+msgstr "Disiscriviti dall'argomento"
+
+#: diventi/templates/machina/forum_member/topic_unsubscribe.html:15
+msgid "Would you like to unsubscribe from this topic?"
+msgstr "Vuoi disiscriverti dall'argomento?"
+
+#: diventi/templates/machina/forum_member/user_posts_list.html:5
+#: diventi/templates/machina/forum_member/user_posts_list.html:10
+msgid "My messages"
+msgstr "I miei messaggi"
+
+#: diventi/templates/machina/forum_member/user_posts_list.html:5
+#: diventi/templates/machina/forum_member/user_posts_list.html:10
+#, python-format
+msgid "%(username)s's posts"
+msgstr "post di %(username)s"
+
+#: diventi/templates/machina/forum_member/user_posts_list.html:17
+#, python-format
+msgid "%(counter)s post found"
+msgid_plural "%(counter)s posts found"
+msgstr[0] "%(counter)s post trovato"
+msgstr[1] "%(counter)s post trovati"
+
+#: diventi/templates/machina/forum_member/user_posts_list.html:24
+msgid "No posts found"
+msgstr "Nessun post trovato"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:15
+msgid "Disapprove"
+msgstr "Respingi"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:16
+msgid "Approve"
+msgstr "Approva"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:19
+msgid "New post"
+msgstr "Nuovo post"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:32
+msgid "<b>1</b> option may be selected"
+msgstr "Può essere selezionata <b>1</b> opzione"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:36
+#, python-format
+msgid "Up to <b>%(max_options)s</b> options may be selected"
+msgstr "Possono essere selezionate al massimo <b>%(max_options)s</b> opzioni"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:17
+#, python-format
+msgid "%(topic_length)s posts found"
+msgstr "%(topic_length)s post trovati"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:35
+msgid "Topic"
+msgstr "Argomento"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/list.html:79
+msgid "No posts awaiting approval."
+msgstr "Nessun post in attesa di essere approvato."
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_approve.html:5
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_approve.html:12
+msgid "Approve post"
+msgstr "Approva post"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_approve.html:15
+msgid "Are you sure you want to approve this post?"
+msgstr "Confermi di voler approvare questo post?"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_disapprove.html:5
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_disapprove.html:12
+msgid "Disapprove post"
+msgstr "Respingi post"
+
+#: diventi/templates/machina/forum_moderation/moderation_queue/post_disapprove.html:15
+msgid ""
+"Are you sure you want to disapprove this post? This post will be deleted."
+msgstr "Confermi di voler respingere questo post? Il post verrà cancellato."
+
+#: diventi/templates/machina/forum_moderation/topic_delete.html:15
+msgid "Are you sure you want to delete this topic?"
+msgstr "Confermi di voler cancellare questo argomento?"
+
+#: diventi/templates/machina/forum_moderation/topic_lock.html:15
+msgid "Are you sure you want to lock this topic?"
+msgstr "Confermi di voler bloccare questo argomento?"
+
+#: diventi/templates/machina/forum_moderation/topic_unlock.html:15
+msgid "Are you sure you want to unlock this topic?"
+msgstr "Confermi di voler sbloccare questo argomento?"
+
+#: diventi/templates/machina/forum_moderation/topic_update_type.html:5
+#: diventi/templates/machina/forum_moderation/topic_update_type.html:12
+msgid "Change topic type"
+msgstr "Cambio il tipo di argomento"
+
+#: diventi/templates/machina/forum_search/search.html:18
+msgid "Search forums"
+msgstr "Cerca forum"
+
+#: diventi/templates/machina/forum_search/search.html:44
+msgid "New search"
+msgstr "Nuova ricerca"
+
+#: diventi/templates/machina/forum_search/search.html:50
+#, python-format
+msgid "Your search has returned <b>%(number_of_results)s</b> result"
+msgid_plural "Your search has returned <b>%(number_of_results)s</b> results"
+msgstr[0] "La tua ricerca ha restituito <b>%(number_of_results)s</b> risultato"
+msgstr[1] "La tua ricerca ha restituito <b>%(number_of_results)s risultati</b>"
+
+#: diventi/templates/machina/forum_search/search.html:70
+msgid "Results"
+msgstr "Risultati"
+
+#: diventi/templates/machina/forum_search/search.html:101
+msgid "No results."
+msgstr "Nessun risultato."
+
+#: diventi/templates/machina/forum_tracking/mark_forums_read.html:13
+msgid "Are you sure you want to mark forums read?"
+msgstr "Confermi di voler marchiare i forum come letti?"
+
+#: diventi/templates/machina/forum_tracking/mark_topics_read.html:13
+msgid "Are you sure you want to mark topics read?"
+msgstr "Confermi di voler marchiare gli argomenti come letti?"
+
+#: diventi/templates/machina/forum_tracking/unread_topic_list.html:13
+#, python-format
+msgid "%(topic_length)s unread topic found"
+msgid_plural "%(topic_length)s unread topics found"
+msgstr[0] "trovato %(topic_length)s argomento non letto"
+msgstr[1] "trovati %(topic_length)s argomenti non letti"
+
+#: diventi/templates/machina/forum_tracking/unread_topic_list.html:25
+msgid "There are no unread topics."
+msgstr "Non ci sono argomenti non letti."
+
+#: diventi/templates/machina/partials/breadcrumb.html:5
+msgid "Forum index"
+msgstr "Pagina iniziale"
+
 #: diventi/templates/navigation.html:164
 msgid "admin"
 msgstr "amministrazione"
 
-#: diventi/templates/partials/breadcrumb.html:5
-msgid "Forum index"
-msgstr "Pagina iniziale"
+#: diventi/templates/navigation.html:182
+msgid "my collection"
+msgstr "la mia collezione"
 
-#: diventi/templates/partials/form_field.html:6
-msgid "(optional)"
-msgstr "(opzionale)"
+#: diventi/templates/navigation.html:196
+msgid "profile"
+msgstr "profilo"
+
+#: diventi/templates/navigation_quick.html:47
+msgid "a place to discuss adventures and developments"
+msgstr "uno spazio in cui parlare di avventure e sviluppi futuri"
+
+#: diventi/templates/navigation_quick.html:60
+msgid "find our latest news"
+msgstr "Le nostre ultime notizie"
+
+#: diventi/templates/navigation_quick.html:80
+msgid "the control panel, suitable for authors only."
+msgstr "il pannello di controllo, riservato agli autori"
+
+#: diventi/templates/navigation_quick.html:90
+msgid "ebook sections"
+msgstr "sezioni degli ebook"
+
+#: diventi/templates/navigation_quick.html:107
+msgid "a tool to measure the website performance."
+msgstr "uno strumento per misurare le prestazioni del sito."
+
+#: diventi/templates/navigation_quick.html:118
+msgid "our experimental adventure book."
+msgstr "il nostro libro avventura sperimentale."
 
 #: diventi/templates/payments/pay_button.html:17
 msgid "buy with card"
@@ -2712,6 +3661,14 @@ msgstr "Seleziona un punteggio"
 msgid "Thank you for your review"
 msgstr "Grazie per la tua recensione"
 
+#: diventi/templates/reviews/posted.html:13
+msgid "You can leave the page or go back"
+msgstr "Ora puoi lasciare la pagina oppure ritornare"
+
+#: diventi/templates/reviews/posted.html:13
+msgid "to the previous page"
+msgstr "alla pagina precedente"
+
 #: diventi/templates/reviews/rating_average.html:22
 #, python-format
 msgid "%(review_count)s review"
@@ -2720,16 +3677,29 @@ msgstr[0] "%(review_count)s recensione"
 msgstr[1] "%(review_count)s recensioni"
 
 #: diventi/templates/reviews/review_button_modal.html:4
+#: diventi/templates/reviews/review_button_modal_quick.html:5
 msgid "leave a review"
 msgstr "lascia una recensione"
 
+#: diventi/templates/reviews/review_button_modal_quick.html:5
+#, fuzzy
+#| msgid "Topic review"
+msgid "check review"
+msgstr "Recensione dell'argomento"
+
+#: diventi/templates/reviews/review_button_modal_quick.html:15
 #: diventi/templates/reviews/review_form.html:9
 msgid "review"
 msgstr "recensione"
 
+#: diventi/templates/reviews/review_button_modal_quick.html:26
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
 msgstr "chiudi"
+
+#: diventi/templates/reviews/review_button_modal_quick.html:27
+msgid "save changes"
+msgstr ""
 
 #: diventi/tooltips/apps.py:7 diventi/tooltips/models.py:73
 msgid "Tooltips"
@@ -2751,6 +3721,18 @@ msgstr "gruppo"
 msgid "Tooltip"
 msgstr "Suggerimento"
 
+#~ msgid "Your favourite role"
+#~ msgstr "Il tuo ruolo preferito"
+
+#~ msgid "Your favourite language"
+#~ msgstr "La tua lingua preferita"
+
+#~ msgid "explore"
+#~ msgstr "esplora"
+
+#~ msgid "Take part in the discussion"
+#~ msgstr "Partecipa alla discussione"
+
 #, fuzzy
 #~| msgid "Landing"
 #~ msgid "landing:home"
@@ -2762,391 +3744,8 @@ msgstr "Suggerimento"
 #~ msgid "Advanced search"
 #~ msgstr "Ricerca avanzata"
 
-#~ msgid "Mark subforums read"
-#~ msgstr "Marchia i sotto-forum come letti"
-
-#~ msgid "New topic"
-#~ msgstr "Nuovo argomento"
-
-#~ msgid "Mark topics read"
-#~ msgstr "Marchia gli argomenti come letti"
-
-#~ msgid "Announcements"
-#~ msgstr "Annunci"
-
-#~ msgid "Topics"
-#~ msgstr "Argomenti"
-
-#~ msgid "Posts"
-#~ msgstr "Post"
-
-#~ msgid "Last post"
-#~ msgstr "Ultimo post"
-
-#~ msgid "Forums"
-#~ msgstr "Forum"
-
-#~ msgid "RSS feed"
-#~ msgstr "feed RSS"
-
-#, python-format
-#~ msgid "By: <a href=\"%(poster_url)s\">%(username)s</a>"
-#~ msgstr "By: <a href=\"%(poster_url)s\">%(username)s</a>"
-
-#, python-format
-#~ msgid "By: %(poster_username)s"
-#~ msgstr "By: %(poster_username)s"
-
-#~ msgid "No posts"
-#~ msgstr "Nessun post"
-
-#~ msgid "Total redirects:"
-#~ msgstr "Redirezionamenti totali:"
-
-#~ msgid "Subforums:"
-#~ msgstr "Sotto-forum:"
-
-#~ msgid "No forums."
-#~ msgstr "Nessun forum."
-
 #~ msgid "Index"
 #~ msgstr "Pagina iniziale"
-
-#~ msgid "Add another file"
-#~ msgstr "Aggiunti un altro file"
-
-#~ msgid "Attachments"
-#~ msgstr "Allegati"
-
-#~ msgid "You may select <b>1</b> option"
-#~ msgstr "Puoi selezionare <b>1</b> opzione"
-
-#, python-format
-#~ msgid "You may select up to <b>%(max_options)s</b> options"
-#~ msgstr "Puoi selezionare un massimo di <b>%(max_options)s</b> opzioni."
-
-#~ msgid "Vote"
-#~ msgstr "Vota"
-
-#~ msgid "Change your vote"
-#~ msgstr "Cambia il tuo voto"
-
-#~ msgid "Poll options"
-#~ msgstr "Opzioni del sondaggio"
-
-#~ msgid "Add a poll option"
-#~ msgstr "Aggiungi un'opzione al sondaggio"
-
-#~ msgid ""
-#~ "<b>Note:</b>&nbsp;Deleting poll options of an existing poll will delete "
-#~ "the associated votes."
-#~ msgstr ""
-#~ "<b>Nota:</b> Cancellare un'opzione da un sondaggio esistente ne "
-#~ "cancellerà i relativi voti."
-
-#~ msgid "Preview:"
-#~ msgstr "Anteprima:"
-
-#~ msgid "Total votes:"
-#~ msgstr "Voti totali:"
-
-#~ msgid "View results"
-#~ msgstr "Visualizza i risultati"
-
-#~ msgid "Options"
-#~ msgstr "Opzioni"
-
-#~ msgid "Post reply"
-#~ msgstr "Risposta"
-
-#~ msgid "Subscribe"
-#~ msgstr "Iscriviti"
-
-#~ msgid "Unsubscribe"
-#~ msgstr "Disiscriviti"
-
-#~ msgid "Lock topic"
-#~ msgstr "Blocca l'argomento"
-
-#~ msgid "Unlock topic"
-#~ msgstr "Sblocca l'argomento"
-
-#~ msgid "Delete topic"
-#~ msgstr "Cancella l'argomento"
-
-#~ msgid "Move topic"
-#~ msgstr "Sposta l'argomento"
-
-#~ msgid "Change to sticky topic"
-#~ msgstr "Metti in evidenza l'argomento"
-
-#~ msgid "Change to announce"
-#~ msgstr "Cambia in annuncio"
-
-#~ msgid "Change to standard topic"
-#~ msgstr "Cambia in argomento normale"
-
-#~ msgid "Poll"
-#~ msgstr "Sondaggio"
-
-#~ msgid "Preview"
-#~ msgstr "Anteprima"
-
-#~ msgid "Post a reply"
-#~ msgstr "Rispondi"
-
-#~ msgid "Topic review"
-#~ msgstr "Recensione dell'argomento"
-
-#, python-format
-#~ msgid "By: <a href=\"%(poster_url)s\">%(username)s</a> on %(creation_date)s"
-#~ msgstr ""
-#~ "By: <a href=\"%(poster_url)s\">%(username)s</a> on %(creation_date)s"
-
-#, python-format
-#~ msgid "By: %(poster_username)s on %(creation_date)s"
-#~ msgstr "By: %(poster_username)s on %(creation_date)s"
-
-#~ msgid "Delete post"
-#~ msgstr "Cancella il post"
-
-#~ msgid "Are you sure you want to delete this post?"
-#~ msgstr "Confermi di voler cancellare questo post"
-
-#~ msgid "Yes, I'm sure"
-#~ msgstr "Si, confermo."
-
-#~ msgid "No, take me back"
-#~ msgstr "No, torna indietro"
-
-#~ msgid "Edit post"
-#~ msgstr "Modifica il post"
-
-#~ msgid "Post a new topic"
-#~ msgstr "Posta una nuovo argomento"
-
-#~ msgid "Edit"
-#~ msgstr "Modifica"
-
-#~ msgid "Delete"
-#~ msgstr "Cancella"
-
-#~ msgid "Last edited by:"
-#~ msgstr "Ultima modifica di:"
-
-#~ msgid "Updated"
-#~ msgstr "Aggiornato"
-
-#~ msgid "on"
-#~ msgstr "su"
-
-#, python-format
-#~ msgid "edited %(counter)s time in total."
-#~ msgid_plural "edited %(counter)s times in total."
-#~ msgstr[0] "modificato %(counter)s volta in totale."
-#~ msgstr[1] "modificato %(counter)s volte in totale."
-
-#~ msgid "Reason:"
-#~ msgstr "Causale:"
-
-#~ msgid "Posts:"
-#~ msgstr "Post:"
-
-#~ msgid "Anonymous user"
-#~ msgstr "Utente anonimo"
-
-#~ msgid "Replies"
-#~ msgstr "Risposte"
-
-#~ msgid "Views"
-#~ msgstr "Visite"
-
-#~ msgid "This topic is locked"
-#~ msgstr "Questo argomento è bloccato"
-
-#~ msgid "There are no topics in this forum."
-#~ msgstr "Non ci sono argomenti in questo forum."
-
-#~ msgid "Go to the page:"
-#~ msgstr "Vai alla pagina:"
-
-#~ msgid "Posted by"
-#~ msgstr "Autore"
-
-#, python-format
-#~ msgid "%(username)s profile"
-#~ msgstr "profilo di %(username)s"
-
-#~ msgid "Edit profile"
-#~ msgstr "Aggiorna profilo"
-
-#, python-format
-#~ msgid ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p><small>Post</small></p>"
-#~ msgid_plural ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p class=\"mb-1\"><small>Posts</small></p>"
-#~ msgstr[0] ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p><small>Post</small></p>"
-#~ msgstr[1] ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p><small>Post</small></p>"
-
-#, python-format
-#~ msgid ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p><small>Topic</small></p>"
-#~ msgid_plural ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p class=\"mb-1\"><small>Topics</small></p>"
-#~ msgstr[0] ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p><small>Argomento</small></p>"
-#~ msgstr[1] ""
-#~ "<h2><strong>%(counter)s</strong></h2>\n"
-#~ "                      <p><small>Argomenti</small></p>"
-
-#~ msgid "Recent posts"
-#~ msgstr "Post recenti"
-
-#~ msgid "View all"
-#~ msgstr "Visualizza tutto"
-
-#, python-format
-#~ msgid "On %(creation_date)s"
-#~ msgstr "il %(creation_date)s"
-
-#~ msgid "Edit forum profile"
-#~ msgstr "Aggiorna profilo del forum"
-
-#~ msgid "Topics that you are subscribed to"
-#~ msgstr "Argomenti sottoscritti"
-
-#, python-format
-#~ msgid "%(counter)s topic found"
-#~ msgid_plural "%(counter)s topics found"
-#~ msgstr[0] "%(counter)s argomento trovato"
-#~ msgstr[1] "%(counter)s argomenti trovati"
-
-#~ msgid "Not topics found."
-#~ msgstr "Nessun risultato trovato"
-
-#~ msgid "Subscribe to topic"
-#~ msgstr "Iscriviti all'argomento"
-
-#~ msgid "Would you like to subscribe to this topic?"
-#~ msgstr "Vorresti iscriverti a questo argomento?"
-
-#~ msgid "Unsubscribe from topic"
-#~ msgstr "Disiscriviti dall'argomento"
-
-#~ msgid "Would you like to unsubscribe from this topic?"
-#~ msgstr "Vuoi disiscriverti dall'argomento?"
-
-#~ msgid "My messages"
-#~ msgstr "I miei messaggi"
-
-#, python-format
-#~ msgid "%(username)s's posts"
-#~ msgstr "post di %(username)s"
-
-#, python-format
-#~ msgid "%(counter)s post found"
-#~ msgid_plural "%(counter)s posts found"
-#~ msgstr[0] "%(counter)s post trovato"
-#~ msgstr[1] "%(counter)s post trovati"
-
-#~ msgid "No posts found"
-#~ msgstr "Nessun post trovato"
-
-#~ msgid "Disapprove"
-#~ msgstr "Respingi"
-
-#~ msgid "Approve"
-#~ msgstr "Approva"
-
-#~ msgid "New post"
-#~ msgstr "Nuovo post"
-
-#~ msgid "<b>1</b> option may be selected"
-#~ msgstr "Può essere selezionata <b>1</b> opzione"
-
-#, python-format
-#~ msgid "Up to <b>%(max_options)s</b> options may be selected"
-#~ msgstr ""
-#~ "Possono essere selezionate al massimo <b>%(max_options)s</b> opzioni"
-
-#, python-format
-#~ msgid "%(topic_length)s posts found"
-#~ msgstr "%(topic_length)s post trovati"
-
-#~ msgid "Topic"
-#~ msgstr "Argomento"
-
-#~ msgid "No posts awaiting approval."
-#~ msgstr "Nessun post in attesa di essere approvato."
-
-#~ msgid "Approve post"
-#~ msgstr "Approva post"
-
-#~ msgid "Are you sure you want to approve this post?"
-#~ msgstr "Confermi di voler approvare questo post?"
-
-#~ msgid "Disapprove post"
-#~ msgstr "Respingi post"
-
-#~ msgid ""
-#~ "Are you sure you want to disapprove this post? This post will be deleted."
-#~ msgstr "Confermi di voler respingere questo post? Il post verrà cancellato."
-
-#~ msgid "Are you sure you want to delete this topic?"
-#~ msgstr "Confermi di voler cancellare questo argomento?"
-
-#~ msgid "Are you sure you want to lock this topic?"
-#~ msgstr "Confermi di voler bloccare questo argomento?"
-
-#~ msgid "Are you sure you want to unlock this topic?"
-#~ msgstr "Confermi di voler sbloccare questo argomento?"
-
-#~ msgid "Change topic type"
-#~ msgstr "Cambio il tipo di argomento"
-
-#~ msgid "Search forums"
-#~ msgstr "Cerca forum"
-
-#~ msgid "New search"
-#~ msgstr "Nuova ricerca"
-
-#, python-format
-#~ msgid "Your search has returned <b>%(number_of_results)s</b> result"
-#~ msgid_plural "Your search has returned <b>%(number_of_results)s</b> results"
-#~ msgstr[0] ""
-#~ "La tua ricerca ha restituito <b>%(number_of_results)s</b> risultato"
-#~ msgstr[1] ""
-#~ "La tua ricerca ha restituito <b>%(number_of_results)s risultati</b>"
-
-#~ msgid "Results"
-#~ msgstr "Risultati"
-
-#~ msgid "No results."
-#~ msgstr "Nessun risultato."
-
-#~ msgid "Are you sure you want to mark forums read?"
-#~ msgstr "Confermi di voler marchiare i forum come letti?"
-
-#~ msgid "Are you sure you want to mark topics read?"
-#~ msgstr "Confermi di voler marchiare gli argomenti come letti?"
-
-#, python-format
-#~ msgid "%(topic_length)s unread topic found"
-#~ msgid_plural "%(topic_length)s unread topics found"
-#~ msgstr[0] "trovato %(topic_length)s argomento non letto"
-#~ msgstr[1] "trovati %(topic_length)s argomenti non letti"
-
-#~ msgid "There are no unread topics."
-#~ msgstr "Non ci sono argomenti non letti."
 
 #~ msgid "Subject"
 #~ msgstr "Oggetto"
@@ -3168,9 +3767,6 @@ msgstr "Suggerimento"
 
 #~ msgid "relationship"
 #~ msgstr "relazione"
-
-#~ msgid "Success"
-#~ msgstr "Successo"
 
 #~ msgid "Failure"
 #~ msgstr "Fallimento"
@@ -3330,9 +3926,6 @@ msgstr "Suggerimento"
 #~ msgid "You Rated: "
 #~ msgstr "Il tuo voto: "
 
-#~ msgid "not rated"
-#~ msgstr "nessun voto rilevato"
-
 #~ msgid "This product is in your collection"
 #~ msgstr "Questo prodotto è nella tua collezione"
 
@@ -3450,9 +4043,6 @@ msgstr "Suggerimento"
 
 #~ msgid "Superuser must have is_superuser=True."
 #~ msgstr "Un amministratore deve essere impostato come is_superuser=True."
-
-#~ msgid "email"
-#~ msgstr "email"
 
 #~ msgid "survey cover"
 #~ msgstr "copertina del sondaggio"

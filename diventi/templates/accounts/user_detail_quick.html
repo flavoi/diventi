@@ -47,7 +47,7 @@
                         <div class="d-block">
                             <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
                                 <span class="btn-inner--icon pt-1">
-                                    <i class="far fa-{{ a.icon }} fa-lg fa-fw text-white"></i>
+                                    <i class="fas fa-{{ a.icon }} fa-lg fa-fw text-white"></i>
                                 </span>
                             </a>
                             <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
@@ -155,7 +155,7 @@
                 <div class="mb-4">
                     <div class="row mb-3">
                         <div class="col">
-                            <h6 class="mb-0">{% trans "collection"|capfirst %}</h6>
+                            <h6 class="mb-0"><a name="{% trans 'collection' %}">{% trans "collection"|capfirst %}</a></h6>
                         </div>
                     </div>
                     <div class="row">
@@ -168,7 +168,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <div class="icon bg-dark text-white rounded-circle icon-shape shadow">
-                                                <i class="fal fa-{{ product.category.icon }}"></i>
+                                                <i class="far fa-{{ product.category.icon }}"></i>
                                             </div>
                                         </div>
                                         {% if request.user == object %}
@@ -185,7 +185,7 @@
                                                     <span class="btn-inner--text ml-1">
                                                         {% trans "open"|capfirst %}
                                                     </span>
-                                                </a>                                            
+                                                </a>
                                             {% else %}
                                                 {% trans "not available" as default_courtesy_short_message %}
                                                 <div class="d-block stretched-link" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
@@ -231,7 +231,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-12">
+                        <div class="col-xl-12 px-2">
                             <div class="list-group">
                                 {% for survey in user_data.surveys %}
                                     {% if request.user == object %}

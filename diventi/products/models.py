@@ -14,7 +14,16 @@ from cuser.middleware import CuserMiddleware
 from .fields import ProtectedFileField
 from .utils import humanize_price
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category, Element, SectionModel
+from diventi.core.models import (
+    Element,
+    DiventiImageModel,
+    TimeStampedModel,
+    PublishableModel,
+    Category,
+    Element,
+    SectionModel,
+    HighlightedModel,
+)
 
 
 class ProductQuerySet(models.QuerySet):
@@ -27,6 +36,7 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch_related('customers')
         products = products.prefetch_related('details')
         products = products.select_related('category')
+        products = products.prefetch_related('formats')
         return products
 
     # Fetch the products purchased by the user
@@ -76,6 +86,14 @@ class ProductCategory(Element):
         verbose_name_plural = _('Product categories')
 
 
+class ProductFormat(Element):
+    """ A specific format of a product."""
+
+    class Meta:
+        verbose_name = _('Format')
+        verbose_name_plural = _('Formats')
+
+
 class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50, verbose_name=_('title'))
@@ -99,11 +117,17 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     courtesy_message = models.TextField(blank=True, verbose_name=_('courtesy message')) # Explains why the product is under maintenance
     related_products = models.ManyToManyField(
         'self',
-        related_name='related_products', 
+        related_name='products', 
         blank=True, 
         verbose_name=_('related products'),
     ) # Connect this product to others
     price = models.PositiveIntegerField(default=0, verbose_name=_('price'), help_text=_('This price must be valued in euro cents. For example: 500 for 5.00€, 120 for 1.20€ etc.'))
+    formats = models.ManyToManyField(
+        ProductFormat, 
+        blank = True, 
+        related_name = 'products', 
+        verbose_name = _('formats'),
+    )
 
     objects = ProductQuerySet.as_manager()
 
@@ -217,9 +241,15 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
             return _('draft')
 
 
-class ProductDetail(Element):
+class ProductDetail(Element, HighlightedModel):
     """ A specific detail of a product."""
-    product = models.ForeignKey(Product, null=True, related_name='details', verbose_name=_('product'), on_delete=models.SET_NULL)     
+    product = models.ForeignKey(
+        Product, 
+        null = True, 
+        related_name = 'details', 
+        verbose_name = _('product'), 
+        on_delete = models.SET_NULL,
+    )
 
     class Meta:
         verbose_name = _('Detail')
@@ -243,7 +273,7 @@ class Chapter(Element, DiventiImageModel):
         verbose_name_plural = _('Chapters')
 
 
-class ImagePreview(DiventiImageModel):    
+class ImagePreview(Element, DiventiImageModel):    
     """A list of cool images of the product."""
     product = models.ForeignKey(Product, null=True, related_name='imagepreviews', verbose_name=_('product'), on_delete=models.SET_NULL)
 

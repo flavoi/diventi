@@ -100,6 +100,22 @@ class Element(models.Model):
     """
     title = models.CharField(max_length=50, verbose_name=_('title'))
     icon = models.CharField(blank=True, max_length=30, verbose_name=_('icon'))
+    ICON_STYLE_CHOICES = (
+        ('r', 'r - regular'),
+        ('s', 's - solid'),
+        ('l', 'l - light'),
+        ('d', 'd - duotone'),
+        ('b', 'b - brand'),
+
+    )
+    ICON_STYLE_DEFAULT = 'r'
+    icon_style = models.CharField(
+        blank = False,
+        choices = ICON_STYLE_CHOICES,
+        default = ICON_STYLE_DEFAULT,
+        max_length = 1,
+        verbose_name = _('icon style')
+    )
     description = models.TextField(blank=True, verbose_name=_('description'))
     color = models.CharField(blank=True, choices=COLORS_CHOICES, max_length=30, default='default', verbose_name=_('color'))
 
@@ -108,14 +124,14 @@ class Element(models.Model):
 
     def icon_tag(self):
         if self.icon:
-            return mark_safe('<i class="far fa-{0} fa-2x"></i>'.format(self.icon))
+            return mark_safe('<i class="fa{0} fa-{1} fa-2x fa-fw"></i>'.format(self.icon_style, self.icon))
         else:
             return _('No icon')    
     icon_tag.short_description = _('Icon')
 
     def color_tag(self):
         if self.color:
-            return mark_safe('<i class="fas fa-square fa-2x color-{0}"></i>'.format(self.color))
+            return mark_safe('<i class="fas fa-square fa-2x text-{0} fa-fw"></i>'.format(self.color))
         else:
             return _('No color')    
     color_tag.short_description = _('Color')
@@ -242,12 +258,49 @@ class FeaturedModelManager(models.Manager):
 
 class FeaturedModel(PublishableModel):
     """
-    An abstract base class that includes a featured boolean field that
+    An abstract base class that includes a featured boolean field
     
     """
     featured = models.BooleanField(default=False, verbose_name=_('featured'))
 
     objects = FeaturedModelManager()
+
+    class Meta:
+        abstract = True
+
+
+class HighlightedModelQuerySet(models.QuerySet):
+
+    # Get the highlighted object or the first item of the queryset
+    def highlighted_or_first(self):
+        try:
+            highlighted_model = self.get(highlighted=True)            
+        except self.model.DoesNotExist:
+            # Fail silently and return the first item
+            highlighted_model = self.first()
+        except self.model.MultipleObjectsReturned:
+            msg = _('Multiple highlighted objects returned. Please fix!')
+            raise self.model.MultipleObjectsReturned(msg)  
+        return highlighted_model
+
+
+class HighlightedModelManager(models.Manager):
+
+    def get_queryset(self):
+        return HighlightedModelQuerySet(self.model, using=self._db)
+
+    def highlighted_or_first(self):
+        return self.get_queryset().highlighted_or_first()    
+
+
+class HighlightedModel(models.Model):
+    """
+        An abstract bae class that includes a featured boolean field
+        without the publishable functionality.
+    """
+    highlighted = models.BooleanField(default=False, verbose_name=_('highlighted'))
+
+    objects = HighlightedModelManager()
 
     class Meta:
         abstract = True

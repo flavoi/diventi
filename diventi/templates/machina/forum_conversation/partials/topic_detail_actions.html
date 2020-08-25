@@ -27,9 +27,10 @@
 {% if user_can_lock_topics and not topic.is_locked or user_can_move_topics or user_can_delete_topics %}
 
 <div class="dropdown moderation-dropdown">
-    <button id="id_dropdown_moderation_menu_button" class="btn btn-warning btn-xs dropdown-toggle diventi-font-awesome" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fas fa-gavel"></i>
+    <button id="id_dropdown_moderation_menu_button" class="btn btn-warning btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-gavel"></i> {% trans "Moderate" %}
     </button>
+
     <div class="dropdown-menu dropdown-menu-dark bg-dark-warning" aria-labelledby="id_dropdown_moderation_menu_button">
         {% if user_can_lock_topics and not topic.is_locked %}<a href="{% url 'forum_moderation:topic_lock' slug=topic.slug pk=topic.pk %}" class="dropdown-item">{% trans "Lock topic" %}</a>{% endif %}
         {% if user_can_lock_topics and topic.is_locked %}<a href="{% url 'forum_moderation:topic_unlock' slug=topic.slug pk=topic.pk %}" class="dropdown-item">{% trans "Unlock topic" %}</a>{% endif %}
@@ -46,6 +47,7 @@
         {% if user_can_change_to_sticky_topics %}<a href="{% url 'forum_moderation:topic_update_to_sticky' slug=topic.slug pk=topic.pk %}" class="dropdown-item">{% trans "Change to sticky topic" %}</a>{% endif %}
         {% endif %}
     </div>
+
 </div>
 
 {% endif %}

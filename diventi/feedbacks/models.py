@@ -68,26 +68,6 @@ class QuestionChoice(models.Model):
     def __str__(self):
         return self.title
 
-class Outcome(models.Model):
-    """
-        An outcome take in account the sum of the answers scores and produces 
-        an authomatic result based on certain indexes.
-    """
-    title = models.CharField(max_length=60, verbose_name=_('title'))
-    upper_score = models.PositiveIntegerField(default=0, verbose_name=_('upper score'))
-    upper_outcome = models.TextField(verbose_name=_('upper outcome'))
-    medium_score = models.PositiveIntegerField(default=0, verbose_name=_('medium score'))
-    medium_outcome = models.TextField(verbose_name=_('medium outcome'))
-    lower_score = models.PositiveIntegerField(default=0, verbose_name=_('lower score'))
-    lower_outcome = models.TextField(verbose_name=_('lower outcome'))
-
-    class Meta:
-        verbose_name = _('outcome')
-        verbose_name_plural = _('outcomes')
-
-    def __str__(self):
-        return self.title
-
         
 class SurveyQuerySet(FeaturedModelQuerySet):
     
@@ -108,7 +88,7 @@ class SurveyQuerySet(FeaturedModelQuerySet):
         return surveys
 
 
-class Survey(TimeStampedModel, DiventiImageModel, FeaturedModel):
+class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
     """
         A collection of questions and answers centered around a specifi title.
     """
@@ -116,7 +96,6 @@ class Survey(TimeStampedModel, DiventiImageModel, FeaturedModel):
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys', verbose_name=_('question groups'))
-    outcome = models.OneToOneField(Outcome, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('outcome'))
     public = models.BooleanField(verbose_name=_('public'))
     
     objects = SurveyQuerySet.as_manager()

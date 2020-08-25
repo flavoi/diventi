@@ -1,0 +1,38 @@
+{% load i18n %}
+
+{% if user.is_authenticated %}                           
+    {% if bought %}
+        <div class="mt-1">
+            <a class="btn {{ button_disabled_class|default:'btn-warning' }}  btn-sm btn-icon disabled">
+                <i class="far fa-check-circle mr-1"></i>
+                {% trans "you've already got this item"|capfirst %}
+            </a>
+            <div class="mt-1">
+            <small>
+                {% trans "this content is available in"|capfirst %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "your collection" %}</a>.
+            </small>
+            </div>
+        </div>                                                             
+    {% else %}
+        {% if product.price > 0 %}
+          {% with url='products:add' slug=product.slug %}
+            {% include "payments/pay_button.html" %}
+          {% endwith %}
+        {% else %}
+          <form action="{% url 'products:add' product.slug %}" method="POST">
+            {% csrf_token %}
+            {{ add_collection_form }}
+            {{ add_collection_form.errors }}
+            <button type="submit" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
+                <span class="btn-inner--icon">
+                    <i class="far fa-plus"></i>
+                </span>
+                <span class="btn-inner--text">{% trans "Add to collection" %}</span>
+            </button>               
+          </form>   
+        {% endif %}                            
+    {% endif %}                         
+{% else %}
+    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
+    <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
+{% endif %}

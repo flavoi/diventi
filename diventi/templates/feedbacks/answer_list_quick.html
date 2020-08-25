@@ -1,0 +1,66 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ survey.title}}{% endblock title %}
+
+{% block headerclass %}header-transparent{% endblock headerclass %}
+
+{% block navbarclass %}navbar-light{% endblock navbarclass %}
+
+{% block content %}
+
+<!-- Title section -->
+<section class="slice mt-5 pt-7 bg-light-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="col text-center">
+                    <h1 class="mb-0">
+                        {{ survey.title }}
+                    </h1>
+                    <span class="lead opacity-8">{% trans "You have answered as" %} <strong>{{ author_name }}</strong>.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Answer form section -->
+<section class="slice slice-lg bg-section-secondary">
+    <div class="container">
+        <div class="row">
+            {% for answer in answers %}
+            <div class="col-xl-6">
+                <div id="accordion-2" class="accordion accordion-spaced">                            
+                    <div class="card card-fluid">
+                        <div class="card-header py-4" id="heading-{{ answer.pk }}" data-toggle="collapse" role="button" data-target="#collapse-{{ answer.pk }}" aria-expanded="false" aria-controls="collapse-{{ answer.pk }}">
+                            <div class="media align-items-center">
+                                <div>
+                                    <span class="mr-3">
+                                        <i class="far fa-folder"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="h6 mb-0">
+                                        {{ answer.question }}
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="collapse-{{ answer.pk }}" class="collapse" aria-labelledby="heading-{{ answer.pk }}" data-parent="#accordion-2">
+                            <div class="card-body row align-items-center">
+                                <p>{{ answer.content|capfirst }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <h6 class="text-center">{% trans 'you have not answered this survey, yet.'|capfirst %}</h6>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

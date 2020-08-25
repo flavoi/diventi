@@ -19,7 +19,11 @@ class AnswerForm(forms.ModelForm):
             'question': forms.HiddenInput(),
             'author': forms.HiddenInput(), 
             'author_name': forms.HiddenInput(),    
-            'content': forms.Textarea(attrs={'class':'form-control'},),
+            'content': forms.Textarea(attrs={
+                'class': 'form-control',
+                'data-toggle': 'autosize',
+                'rows': '1',
+            },),
         }
 
     def __init__(self, *args, **kwargs):
@@ -30,7 +34,7 @@ class AnswerForm(forms.ModelForm):
             if choices:
                 self.set_closed(closed=True)
                 self.fields['content'] = forms.ModelChoiceField(
-                        queryset=choices, widget=forms.RadioSelect(attrs={'class':'form-check-input'},), 
+                        queryset=choices, widget=forms.RadioSelect(attrs={'class':'custom-control-input'},), 
                         empty_label=None, required=True, label=self.question)
             else:
                 self.set_closed(closed=False)

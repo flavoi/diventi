@@ -19,7 +19,7 @@
   <div class="forumlist-top-controls col-12">
     {% if request.user.is_authenticated %}
     <div class="float-right">
-      <a href="{% url 'forum_tracking:mark_subforums_read' forum.pk %}" class="d-inline-block"><i class="fa fa-check-circle-o">&nbsp;</i>{% trans "Mark subforums read" %}</a>
+      <a href="{% url 'forum_tracking:mark_subforums_read' forum.pk %}" class="d-inline-block"><i class="fa fa-check-circle-o mr-1"></i>{% trans "Mark subforums read" %}</a>
     </div>
     {% endif %}
   </div>
@@ -31,7 +31,7 @@
   <div class="col-6 col-md-4 forum-actions-block">
     {% get_permission 'can_add_topic' forum request.user as user_can_add_topic %}
     {% if user_can_add_topic %}
-    <a href="{% url 'forum_conversation:topic_create' forum.slug forum.pk %}" class="btn btn-primary btn-xs"><i class="fa fa-comments fa-lg"></i>&nbsp;{% trans "New topic" %}</a>
+    <a href="{% url 'forum_conversation:topic_create' forum.slug forum.pk %}" class="btn btn-primary btn-xs"><i class="fa fa-comments fa-lg mr-1"></i>{% trans "New topic" %}</a>
     {% endif %}
   </div>
   <div class="col-12 col-md-8">

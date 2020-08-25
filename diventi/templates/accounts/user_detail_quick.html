@@ -249,50 +249,12 @@
                                     <div class="card rounded-lg border-0">
                                         <div class="p-4 text-center text-sm-left">
                                             <h6 class="mb-0 text-muted">
-                                                {% trans "This collection is empty." %}   
+                                                {% trans "There are no surveys yet." %}
                                             </h6>
                                         </div>
                                     </div>
                                 {% endfor %}
                             </div>
-                            <!--
-                            <div class="card">
-                               <div class="card-header pb-2">
-                                  <div class="d-flex justify-content-between align-items-center">
-                                     <div>
-                                        <span class="h6">{% trans 'surveys'|capfirst %}</span>
-                                     </div>
-                                  </div>
-                               </div>
-                               <div class="card-body">
-                                {% for survey in user_data.surveys %}
-                                    <div class="row align-items-center mb-3 shadow-none">
-                                      <div class="col-auto">
-                                        <img alt="{{ survey.title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if survey.image %}{{ survey.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" class="avatar avatar-lg">
-                                      </div>
-                                      <div class="col pl-0">
-                                        <span class="d-block h6 text-sm mb-0">
-                                            <a {% if survey.published %}href="{% url 'feedbacks:answers' survey.slug %}" class="btn-link"{% else %}tabindex="0" class="btn-link disabled"{% endif %}>
-                                                {{ survey.title|capfirst }}
-                                            </a>
-                                        </span>
-                                        <p class="mb-0 text-xs">{{ survey.description|capfirst }}</p>
-                                      </div>                                
-                                    </div>
-                                {% if not forloop.last %}
-                                    <hr class="my-3" />
-                                {% endif %} 
-                                {% empty %}
-                                    <div class="text-sm-left">
-                                        <h6 class="mb-0 text-muted">
-                                            {% trans "There are no surveys yet." %}        
-                                        </h6>                                        
-                                    </div>                                  
-                                {% endfor %}
-                               </div>
-                                </div>
-                            </div>
-                            -->
                         </div>
                     </div>
                 </div>

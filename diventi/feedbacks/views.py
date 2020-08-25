@@ -1,4 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import (
+    render, 
+    redirect,
+    get_object_or_404,
+)
+from django.http import Http404
 from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -18,26 +23,17 @@ from .forms import AnswerForm, FeaturedSurveyInitForm
 from cuser.middleware import CuserMiddleware
 
 
-class SurveyListView(ListView):
-
-    model = Survey
-    context_object_name = 'surveys'
-    paginate_by = 6
-
-    def get_queryset(self):
-        return Survey.objects.history()
-
-
 class AnswerListView(ListView):
 
     model = Answer
     context_object_name = 'answers'
+    template_name = 'feedbacks/answer_list_quick.html'
         
     def get_queryset(self):
         qs = super(AnswerListView, self).get_queryset()
         user = CuserMiddleware.get_user()
         slug = self.kwargs.get('slug', None)
-        survey = Survey.objects.published().get(slug=slug)
+        survey = get_object_or_404(Survey.objects.published(), slug=slug)
         qs = qs.filter(survey=survey)
         if user.is_authenticated:
             qs = qs.filter(author=user)
@@ -63,27 +59,8 @@ class AnswerListView(ListView):
         context = super(AnswerListView, self).get_context_data(**kwargs)
         slug = self.kwargs.get('slug', None)
         author_name = self.kwargs.get('author_name', None)
-        survey = Survey.objects.published().get(slug=slug)    
-        outcome = survey.outcome
-        if outcome is not None:
-            answers_outcome = self.get_queryset().aggregate(Sum('choice__score'))
-            # Generic calculation of the survey outcome
-            # @myself: consider to improve the algorithm
-            answers_score_value = answers_outcome['choice__score__sum']
-            if answers_score_value:
-                if answers_score_value >= outcome.upper_score - outcome.upper_score / 10:
-                    answers_outcome['result'] = outcome.upper_outcome
-                elif answers_score_value >= outcome.lower_score:
-                    answers_outcome['result'] = outcome.medium_outcome
-                elif answers_score_value < outcome.lower_score:
-                    answers_outcome['result'] = outcome.lower_outcome
-                answers_outcome['lower_score'] = outcome.lower_score
-                answers_outcome['upper_score'] = outcome.upper_score
-                answers_outcome['progress'] = answers_score_value / outcome.upper_score * 100
-        else:
-            answers_outcome = None
+        survey = get_object_or_404(Survey.objects.published(), slug=slug)   
         context['survey'] = survey
-        context['answers_outcome'] = answers_outcome
         context['author_name'] = author_name
         return context
 
@@ -94,7 +71,7 @@ class AnswerListViewByName(AnswerListView):
         qs = super(AnswerListView, self).get_queryset()
         slug = self.kwargs.get('slug', None)
         author_name = self.kwargs.get('author_name', None)
-        survey = Survey.objects.published().get(slug=slug)
+        survey = get_object_or_404(Survey.objects.published(), slug=slug)
         qs = qs.filter(survey=survey)
         qs = qs.filter(author_name=author_name)
         return qs
@@ -106,7 +83,7 @@ class AnswerListViewByName(AnswerListView):
 
 def survey_questions(request, slug, author_name=None):
 
-    survey = Survey.objects.published().get(slug=slug)
+    survey = get_object_or_404(Survey.objects.published(), slug=slug)
 
     if request.user.is_authenticated:
         author_name = request.user.get_full_name()
@@ -114,9 +91,7 @@ def survey_questions(request, slug, author_name=None):
     elif survey.public:
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
     else: 
-        request.session['show_login_form'] = 1
-        messages.warning(request, _('You should sign in to access that survey.'))
-        return redirect(reverse('landing:home'))
+        raise Http404(_("This survey is not open to public, sorry."))
 
     if user_has_answered:
         return redirect(reverse('feedbacks:answers-author', args=[slug, author_name]))
@@ -156,7 +131,7 @@ def survey_questions(request, slug, author_name=None):
         else:
             messages.warning(request, _('Please, double check your answers below.'))
 
-    template_name = 'feedbacks/answer_form.html'
+    template_name = 'feedbacks/survey_form_quick.html'
     context = {
         'survey': survey,
         'formset': formset,
@@ -167,17 +142,17 @@ def survey_questions(request, slug, author_name=None):
 
 def new_answers_gate(request, slug):
 
-    try:
-        survey = Survey.objects.published().get(slug=slug)
-    except Survey.DoesNotExist:
-        messages.warning(request, _('The selected survey doesn\'t exist or is not published yet.'))
-        return redirect(reverse('landing:home'))
+    survey = get_object_or_404(Survey.objects.published(), slug=slug)
     
     if survey.public:
         if request.method == 'POST':
             survey_form = FeaturedSurveyInitForm(request.POST)
             if survey_form.is_valid():
                 author_name = survey_form.cleaned_data['author_name']
+                user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
+                if user_has_answered:
+                    messages.warning(request, _('An other user already picked that name and answered, please choose another name.'))
+                    return redirect(reverse('feedbacks:new_answers_gate', args=[survey.slug,]))
             else:
                 messages.warning(request, _('There was an error while processing your survey.'))
                 return redirect(reverse('feedbacks:new_answers_gate', args=[survey.slug,]))
@@ -193,21 +168,16 @@ def new_answers_gate(request, slug):
             }
             return render(request, template_name, context)
     else:
-        pass
+        user_has_answered = False
+        user_can_submit = False
 
-    user_has_answered = False
-    user_can_submit = False
-
-    if request.user.is_authenticated:
-        user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
-        if user_has_answered:
-            return redirect(reverse('feedbacks:answers-author', args=[slug, request.user.first_name]))
-    else:    
-        user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
-        if user_has_answered:
-            messages.warning(request, _('An other user already picked that name and answered, please choose another name.'))
-            return redirect(reverse('feedbacks:new_answers_gate', args=[survey.slug,]))
-
-    return redirect(reverse('feedbacks:questions-author', args=[slug, author_name]))
+        if request.user.is_authenticated:
+            user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
+            if user_has_answered:
+                return redirect(reverse('feedbacks:answers', args=[slug,]))
+            else:
+                return redirect(reverse('feedbacks:questions', args=[slug,]))
+       
+    raise Http404(_("This survey is not open to public, sorry."))
 
 

@@ -1,0 +1,128 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ survey.title}}{% endblock title %}
+
+{% block headerclass %}header-transparent{% endblock headerclass %}
+
+{% block navbarclass %}navbar-light{% endblock navbarclass %}
+
+{% block content %}
+
+<!-- Title section -->
+<section class="slice pt-6 mt-5 bg-light-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <span class="fa-stack fa-2x">
+                          <i class="fas fa-circle fa-stack-2x text-danger"></i>
+                          <i class="far fa-poll fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="col ml-n3 ml-md-n2">
+                        <h1 class="mb-0">
+                            {{ survey.title }}
+                        </h1>
+                        <span class="lead opacity-8">{% trans "You are answering as" %} <strong>{{ author_name }}</strong>.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Answer form section -->
+<section class="slice slice-sm bg-section-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                {% if formset.non_form_errors %}
+                    <div class="alert-messages">         
+                        {% for error in formset.non_form_errors %}
+                          <div class="alert alert-group alert-danger alert-icon" role="alert">
+                              <div class="alert-group-prepend">
+                                  <span class="alert-group-icon text-">
+                                      <i class="far fa-exclamation-triangle"></i>
+                                  </span>
+                              </div>
+                              <div class="alert-content">
+                                  {{ error|striptags }}
+                              </div>
+                          </div>
+                        {% endfor %}
+                    </div> 
+                {% endif %}
+                <form method="post">
+                    <div class="row my-3">                    
+                        {% csrf_token %}
+                        {{ formset.management_form }}
+                        {% for form in formset %}
+                            {% ifchanged form.group_title.value %}
+                            <div class="col-lg-12 px-2">
+                                <h3 class="h5 mb-3 mt-2">{{ form.group_title.value }}</h3>
+                            </div>
+                            {% endifchanged %}
+                            <div class="col-lg-4 px-2">
+                                {% if form.is_closed %}
+                                <div class="card card-fluid">
+                                    <div class="list-group list-group-flush">
+                                        <div class="list-group-item d-flex w-100 justify-content-between">
+                                            <div>                                                
+                                                 <h6 class="font-weight-light mb-1">{{ form.content.label }}</h6>
+                                                {% if form.content.errors %}
+                                                    <div class="text-danger">
+                                                        {% for error in form.content.errors %}
+                                                            {{ error|escape }}
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                                <div class="text-sm text-muted">               
+                                                    {% for choice in form.content %}
+                                                    <div class="custom-control custom-radio">
+                                                        {{ choice.tag }}
+                                                        <label class="custom-control-label" for="{{ choice.id_for_label }}">
+                                                            {{ choice.choice_label }}
+                                                        </label>
+                                                    </div>
+                                                    {% endfor %}                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="form-group mb-4">
+                                    <label class="form-control-label">{{ form.content.label }}</label>
+                                    {% if form.content.errors %}
+                                        <div class="text-danger">
+                                            {% for error in form.content.errors %}
+                                                {{ error|escape }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    {{ form.content }}
+                                </div>                        
+                                {% endif %}
+                                {{ form.author_name }}
+                                {{ form.group_title }}
+                                {{ form.group_description }}
+                                {{ form.survey }}
+                                {{ form.question }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-left">
+                        <button type="submit" class="btn btn-sm btn-primary">{% trans 'save'|capfirst %}</button>
+                    </div>
+                    <hr>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

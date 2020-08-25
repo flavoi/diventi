@@ -23,6 +23,7 @@
 
 {% block content %}
 
+<!-- Title section -->
 <section class="slice pt-6 mt-5 bg-light-secondary">
     <div class="container">
         <div class="row justify-content-center">
@@ -46,6 +47,7 @@
     </div>
 </section>
 
+<!-- Product summary section -->
 <section class="slice bg-section-secondary">
     <div class="container">
         <div class="row justify-content-center">
@@ -58,42 +60,7 @@
                             </span>
                             <h3 class="h2 mt-4"><strong class="text-primary">{{ product.title|capfirst }}</strong> {% trans "in short" %}</h3>
                             <p class="my-4 lh-190">{{ product.description }}</p>
-                            {% if user.is_authenticated %}                           
-                                {% if bought %}
-                                    <div class="mt-1">
-                                        <a class="btn btn-warning btn-icon btn-sm disabled">
-                                            <i class="far fa-check-circle mr-1"></i>                                        
-                                            {% trans "you've already got this item"|capfirst %}
-                                        </a>
-                                        <div class="mt-1">
-                                        <small>
-                                            {% trans "this content is available in"|capfirst %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "your collection" %}</a>.
-                                        </small>
-                                        </div>
-                                    </div>                                                             
-                                {% else %}
-                                    {% if product.price > 0 %}
-                                      {% with url='products:add' slug=product.slug %}
-                                        {% include "payments/pay_button.html" %}
-                                      {% endwith %}
-                                    {% else %}
-                                      <form action="{% url 'products:add' product.slug %}" method="POST">
-                                        {% csrf_token %}
-                                        {{ add_collection_form }}
-                                        {{ add_collection_form.errors }}
-                                        <button type="submit" class="btn btn-primary btn-icon-label btn-sm">
-                                            <span class="btn-inner--icon">
-                                                <i class="far fa-plus"></i>
-                                            </span>
-                                            <span class="btn-inner--text">{% trans "Add to collection" %}</span>
-                                        </button>               
-                                      </form>   
-                                    {% endif %}                            
-                                {% endif %}                         
-                            {% else %}
-                                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
-                                <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
-                            {% endif %}                            
+                            {% include "products/partials/product_detail_actions.html" %}                    
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 order-lg-1">
@@ -204,6 +171,7 @@
     <div class="shape-container shape-line shape-position-bottom"><svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class=""><polygon points="2560 0 2560 100 0 100"></polygon></svg></div>
 </section>
 
+<!-- Features section -->
 <section class="slice delimiter-bottom">
     <div class="container">
         <div class="row">
@@ -238,10 +206,12 @@
     </div>
 </section>
 
+<!-- Image preview section -->
+{% if product.imagepreviews.all %}
 <section class="slice delimiter-bottom">
     <div class="container">
         {% for image in product.imagepreviews.all %}
-        <div class="section-process-step">
+        <div class="section-process-step {% if forloop.first %}pt-0{% elif forloop.last %}pb-0{% endif %}">
             <div class="row row-grid justify-content-between align-items-center">
                 <div class="col-lg-5 order-lg-2">
                     <h5 class="h3">{{ image.title|capfirst }}</h5>
@@ -261,7 +231,9 @@
         {% endfor %}
     </div>
 </section>
+{% endif %}
 
+<!-- Details section -->
 <section class="slice">
     <div class="container pt-md-5">
         <div class="row">
@@ -296,10 +268,9 @@
     </div>
 </section>
 
+<!-- Reviews section -->
 <section class="slice bg-section-secondary">
-    <!-- Container -->
     <div class="container">
-        <!-- Section title -->
         <div class="row mb-5 justify-content-center text-center">
             <div class="col-lg-8 col-md-10">
                 <h2 class=" mt-4">{% trans "community reviews"|capfirst %}</h2>
@@ -308,7 +279,6 @@
                 </div>
             </div>
         </div>
-        <!-- Entries -->
         <div id="accordion-2" class="accordion accordion-spaced">
             {% get_review_list for product as review_list %}
             {% for review in review_list %}
@@ -368,3 +338,22 @@
 </section>
 
 {% endblock content %}
+
+{% block extrafooter %}
+<div class="row justify-content-center">
+    <div class="col-lg-12">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h3 class="text-secondary mb-2">{{ product.title|capfirst }}</h3>
+                <p class="lead mb-0 text-white opacity-8">{{ product.abstract|capfirst }}</p>
+            </div>
+            <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">
+                {% with button_disabled_class="btn-white" button_action_class="btn-primary" %}
+                    {% include "products/partials/product_detail_actions.html" %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="divider divider-fade divider-dark my-5">
+{% endblock extrafooter %}

@@ -121,6 +121,20 @@ class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
     get_question_groups.short_description = _('Question Groups')
 
 
+class AnswerQuerySet(models.QuerySet):
+
+    def prefetch(self):
+        answers = self.select_related('question__group')
+        return answers
+
+    # Fetch all answers related to a survey
+    def user_survey(self, user, survey):
+        answers = self.filter(author=user)
+        answers = answers.filter(survey=survey)
+        answers = answers.prefetch()
+        return answers
+
+
 class Answer(TimeStampedModel):
     """
         One answer can be given for each question. If the question provides a score, the answer get it too.
@@ -133,12 +147,35 @@ class Answer(TimeStampedModel):
         related_name='answers',
         verbose_name=_('author'),
     )
-    author_name = models.CharField(max_length=60, verbose_name=_('author name'))
-    question = models.ForeignKey(Question, related_name='answers', verbose_name=_('question'), on_delete=models.SET_NULL, null=True)
-    survey = models.ForeignKey(Survey, related_name='answers', on_delete=models.SET_NULL, null=True)
-    choice = models.ForeignKey(QuestionChoice, related_name='answers', on_delete=models.SET_NULL, null=True)
-    content = models.TextField(verbose_name=_('content'))
+    author_name = models.CharField(
+        max_length=60, 
+        verbose_name=_('author name'),
+    )
+    question = models.ForeignKey(
+        Question, 
+        related_name='answers', 
+        verbose_name=_('question'), 
+        on_delete=models.SET_NULL, 
+        null=True,
+    )
+    survey = models.ForeignKey(
+        Survey, 
+        related_name='answers', 
+        on_delete=models.SET_NULL, 
+        null=True,
+    )
+    choice = models.ForeignKey(
+        QuestionChoice, 
+        related_name='answers', 
+        on_delete=models.SET_NULL, 
+        null=True,
+    )
+    content = models.TextField(
+        verbose_name=_('content'),
+    )
 
+    objects = AnswerQuerySet.as_manager()
+    
     class Meta:
         verbose_name = _('answer')
         verbose_name_plural = _('answers')

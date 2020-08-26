@@ -41,7 +41,7 @@ class ProductDetailView(DetailView):
         user = self.request.user
         context['add_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
-        context['bought'] = self.object.user_has_already_bought(user) or self.object.user_has_authored(user)
+        context['bought'] = self.object.user_has_already_bought(user)
         context['key'] = settings.STRIPE_PUBLISHABLE_KEY
         context['featured_detail'] = self.object.details.highlighted_or_first()
         return context

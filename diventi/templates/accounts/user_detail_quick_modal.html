@@ -27,30 +27,30 @@
                     <!-- Profile stats -->
                     <div class="d-flex mb-5">
                         <div class="col-4 text-center">
-                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_comments_count }}</a>
+                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.comments_count }}</a>
                             <span class="d-block text-sm">{% trans "comments"|capfirst %}</span>
                         </div>
                         <div class="col-4 text-center">
                             {% if has_user_authored %}
-                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_projects_count }}</a>
+                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.projects_count }}</a>
                                 <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
                             {% else %}
-                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_ratings_count }}</a>
+                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.ratings_count }}</a>
                                 <span class="d-block text-sm">{% trans "reviews"|capfirst %}</span>
                             {% endif %}
                         </div>
                         <div class="col-4 text-center">
-                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ user_survey_answers_count }}</a>
-                            <span class="d-block text-sm">{% trans "feedbacks"|capfirst %}</span>
+                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.forum_posts }}</a>
+                            <span class="d-block text-sm">{% trans "posts"|capfirst %}</span>
                         </div>
                     </div>
                     <!-- Collection -->
-                    <div class="mb-5">
-                        <div class="text-center mb-3">
-                            <span class="d-block h6 mb-1">{% trans "collection"|capfirst %}</span>
+                    <div>
+                        <div class="text-center mb-1">
+                            <span class="d-block h6 mb-4">{% trans "collection"|capfirst %}</span>
                         </div>
-                        <div class="mt-4 pt-4 border-top">
-                            {% for product in user_collection %}
+                        <div class="mt-2 pt-4 border-top">
+                            {% for product in authenticated_user_data.collection %}
                                 <div class="row align-items-center mb-4">
                                     <div class="col-auto">                                        
                                         <div class="icon icon-shape {% if product.book.published and product.published %}bg-soft-{{ product.category.color }} text-{{ product.category.color }}{% else %}bg-soft-secondary text-secondary{% endif%}">
@@ -59,56 +59,18 @@
                                     </div>
                                     <div class="col pl-0">
                                         {% if product.book.published and product.published %}
-                                        <span class="d-block h6 text-sm mb-0">
-                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a></span>
-                                        <p class="mb-0 text-sm">{{ product.category }}</p>
+                                        <span class="h6 text-sm mb-0">
+                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a></span>                                        
                                         {% else %}
-                                        <span class="d-block h6 text-sm mb-0" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
+                                        <span class="h6 text-sm mb-0" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
                                             <a tabindex="0" href="{{ product.book.get_absolute_url }}" class="btn-link disabled">{{ product.title|capfirst }}</a></span>
-                                        <p class="mb-0 text-sm">{{ product.category }}</p>
                                         {% endif %}
+                                        <p class="mb-0 text-sm">{{ product.category }}</p>
                                     </div>                                    
                                 </div>
                                 {% empty %}
                                 <p class="text-sm text-black-50 text-center">{% trans "This collection is empty." %}</p>
-                            {% endfor %}
-                            <hr class="my-3" />
-                        </div>
-                    </div>
-                    <!-- Achievements -->
-                    <div>
-                        <div class="text-center">
-                            <span class="d-block h6 mb-1">{% trans "achievements"|capfirst %}</span>
-                            <a href="#" class="h6 text-muted text-sm">{{ user_achievements_count }}/{{ achievements_total_count }} A</a>
-                        </div>
-                        <div class="mt-4 pt-4 border-top">
-                            <div class="row justify-content-center">
-                            {% for a in user_achievements %}
-                                <div class="col-auto text-center mb-0 px-2 pb-0">
-                                    <div class="d-block">
-                                        <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" role="button" data-toggle="popover"  data-placement="top" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
-                                            <span class="btn-inner--icon pt-1">
-                                                <i class="far fa-{{ a.icon }} fa-lg fa-fw text-white"></i>
-                                            </span>
-                                        </a>
-                                        <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
-                                    </div>
-                                </div>
                             {% endfor %}                            
-                            {% for a in user_locked_achievements %}
-                                <div class="col-auto text-center mb-0 px-2 pb-0">
-                                    <div class="d-block stretched-link">
-                                        <button type="button" class="btn btn-secondary rounded-circle btn-icon-only">
-                                            <span class="btn-inner--icon pt-1">
-                                                <i class="far fa-lock fa-lg fa-fw text-white"></i>
-                                            </span>
-                                        </button>
-                                        <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
-                                    </div>
-                                  </div>                            
-                            {% endfor %}
-                            </div>                        
-                            <hr class="my-3" />
                         </div>
                     </div>
                 </div>

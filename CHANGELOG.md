@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [UNRELEASED]
 ### Added
-- Introduced adventures: a new app that enables game master to play with Diventi's adventures.
+- Introduced adventures: a new app that enables game master to play with Diventi's adventures
+- Introduced the Quick visual style across all core apps
 - [ebooks] Added 'new' and 'updated' badges for newly edited chapters
 - [ebooks] Added tooltip support for custom keywords
 - [machina] Introduced machina: a new forum app for Diventi's subscribers

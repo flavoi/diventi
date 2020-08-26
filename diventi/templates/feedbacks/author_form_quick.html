@@ -1,0 +1,62 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'sign in'|capfirst %}{% endblock title %}
+
+{% block preloadermodal %}{% endblock preloadermodal %}
+{% block usermodal %}{% endblock usermodal %}
+{% block header %}{% endblock header %}
+{% block omnisearch %}{% endblock omnisearch %}
+
+{% block content %}
+<section>
+   <div class="container d-flex flex-column">
+      <div class="row align-items-center justify-content-center min-vh-100">
+         <div class="col-md-6 col-lg-5 col-xl-4 py-6 py-md-0">
+            <div>
+               <div class="mb-5 text-center">
+                  <a href="{% url 'landing:home' %}"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% static 'brand/diventi-logo-2.png' %}" alt="Diventi" class="avatar avatar-lg"></a>
+                  <h6 class="h3 mb-1">{{ survey.title }}</h6>
+                  <p class="text-muted mb-0">{{ survey.description }}</p>
+               </div>
+               {% if form.non_field_errors %}
+                   <div class="alert-messages">         
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-group alert-danger alert-icon" role="alert">
+                            <div class="alert-group-prepend">
+                                <span class="alert-group-icon text-">
+                                    <i class="far fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            <div class="alert-content">
+                                {{ error|striptags }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                   </div> 
+                {% endif %}
+               <span class="clearfix"></span>
+               <form class="form" method="POST" action="{% url 'feedbacks:new_answers_gate' survey.slug %}">
+                  {% csrf_token %}
+                  <div class="form-group">
+                  {{ form.survey }}                  
+                  <div class="form-group mb-0">
+                     <label class="form-control-label">{{ form.author_name.label }}</label>
+                     <div class="input-group input-group-merge">
+                        {{ form.author_name }}
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="far fa-clipboard-user fa-lg"></i></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="mt-4"><button type="submit" class="btn btn-block btn-primary">{% trans "Confirm username" %}</button></div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}
+
+{% block footer %}{% endblock footer %}

@@ -335,7 +335,7 @@ class SectionModel(models.Model):
     )
     POSITION_CHOICES = (
         (1, _('text first')),
-        (3, _('test second')),
+        (3, _('text second')),
     )
     position = models.PositiveIntegerField(
         default=1, 

@@ -28,7 +28,7 @@ django-js-asset==1.1.0
 django-letsencrypt==3.0.1
 django-machina==1.1.1
 django-model-utils==3.1.2
-django-modeltranslation==0.15
+django-modeltranslation==0.15.1
 django-mptt==0.11.0
 django-rated-reviews==0.3.0
 django-recaptcha==1.4.0
@@ -59,7 +59,7 @@ oauthlib==3.1.0
 olefile==0.46
 parsedatetime==2.4
 pbr==4.2.0
-Pillow==7.0.0
+Pillow==7.2.0
 prompt-toolkit==2.0.4
 pyasn1==0.4.8
 pyasn1-modules==0.2.8

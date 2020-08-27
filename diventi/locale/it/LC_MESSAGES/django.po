@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-26 17:10+0200\n"
+"POT-Creation-Date: 2020-08-26 19:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1416,7 +1416,8 @@ msgstr "Per favore controlla le tue risposte qui sotto."
 
 #: diventi/feedbacks/views.py:121
 msgid "No survey found, please go back and redo your survey."
-msgstr "Non è stato trovato alcun sondaggio, per favore torna indietro e riprova."
+msgstr ""
+"Non è stato trovato alcun sondaggio, per favore torna indietro e riprova."
 
 #: diventi/feedbacks/views.py:139
 msgid "There was an error while processing your survey."
@@ -1828,7 +1829,7 @@ msgstr ""
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/base_dashboard.html:127
 #: diventi/templates/landing/landing.html:37
-#: diventi/templates/landing/landing_quick.html:330
+#: diventi/templates/landing/landing_quick.html:324
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1903,7 +1904,7 @@ msgstr ""
 #: diventi/templates/accounts/signin.html:59
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:277 diventi/templates/base_quick.html:417
-#: diventi/templates/landing/landing_quick.html:315
+#: diventi/templates/landing/landing_quick.html:309
 msgid "sign up"
 msgstr "registrati"
 
@@ -2243,7 +2244,8 @@ msgstr "noi non vendiamo i tuoi dati ad altri"
 
 #: diventi/templates/accounts/user_change_privacy_quick.html:92
 msgid "because it's not our business nor in our team culture"
-msgstr "perché non è nel nostro interesse e non fa parte del nostro modo di essere"
+msgstr ""
+"perché non è nel nostro interesse e non fa parte del nostro modo di essere"
 
 #: diventi/templates/accounts/user_change_privacy_quick.html:98
 msgid "you are in control"
@@ -2252,7 +2254,8 @@ msgstr "hai tu il controllo"
 #: diventi/templates/accounts/user_change_privacy_quick.html:99
 msgid ""
 "feel free to reach to us for any question or clarification on the matter"
-msgstr "siamo a disposizione per qualunque domanda o chiarimento sull'argomento"
+msgstr ""
+"siamo a disposizione per qualunque domanda o chiarimento sull'argomento"
 
 #: diventi/templates/accounts/user_collection.html:21
 #: diventi/templates/accounts/user_detail_quick.html:190
@@ -2514,7 +2517,9 @@ msgstr "caricamento"
 msgid ""
 "we use cookies so that our themes work for you. By using our website, you "
 "agree to our use of cookies"
-msgstr "usiamo i cookie per ottimizzare il funzionamento di questo sito web. Utilizzandolo accetti l'utilizzo dei nostri cookie."
+msgstr ""
+"usiamo i cookie per ottimizzare il funzionamento di questo sito web. "
+"Utilizzandolo accetti l'utilizzo dei nostri cookie."
 
 #: diventi/templates/base_quick.html:216
 msgid "hi"
@@ -2780,7 +2785,9 @@ msgstr "sondaggio completato!"
 #: diventi/templates/feedbacks/survey_done_quick.html:28
 msgid ""
 "Your answers have been recorded, you can now leave the page or return home."
-msgstr "Le tue risposte sono state registrate, ora puoi lasciare la pagina o tronare a quella iniziale."
+msgstr ""
+"Le tue risposte sono state registrate, ora puoi lasciare la pagina o tronare "
+"a quella iniziale."
 
 #: diventi/templates/feedbacks/survey_done_quick.html:40
 msgid "check answers"
@@ -2811,12 +2818,12 @@ msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
 #: diventi/templates/landing/landing.html:34
-#: diventi/templates/landing/landing_quick.html:322
+#: diventi/templates/landing/landing_quick.html:316
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:35
-#: diventi/templates/landing/landing_quick.html:323
+#: diventi/templates/landing/landing_quick.html:317
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -2824,22 +2831,26 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:41
-#: diventi/templates/landing/landing_quick.html:307
+#: diventi/templates/landing/landing_quick.html:301
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing.html:42
-#: diventi/templates/landing/landing_quick.html:308
+#: diventi/templates/landing/landing_quick.html:302
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/landing_quick.html:45
-#: diventi/templates/landing/landing_quick.html:150
-#: diventi/templates/landing/landing_quick.html:281
+#: diventi/templates/landing/landing_quick.html:24
+msgid "learn more"
+msgstr "scopri di più"
+
+#: diventi/templates/landing/landing_quick.html:39
+#: diventi/templates/landing/landing_quick.html:142
+#: diventi/templates/landing/landing_quick.html:274
 msgid "play video"
 msgstr "avvia il video"
 
-#: diventi/templates/landing/landing_quick.html:66
+#: diventi/templates/landing/landing_quick.html:60
 msgid ""
 "Diventi is our vision of the best hobby in the world. We strongly believe "
 "that many styles of play exist and that each one of them is valid."
@@ -2847,27 +2858,27 @@ msgstr ""
 "Diventi è la nostra visione di uno dei migliori hobby al mondo. Crediamo "
 "fortemente che ci siano diversi stili di gioco e che ciascuno sia valido."
 
-#: diventi/templates/landing/landing_quick.html:80
+#: diventi/templates/landing/landing_quick.html:74
 msgid "complete package for any kind of player"
 msgstr "un pacchetto completo per qualunque tipo di giocatore"
 
-#: diventi/templates/landing/landing_quick.html:82
+#: diventi/templates/landing/landing_quick.html:76
 msgid "ongoing playtest"
 msgstr "playtest in corso"
 
-#: diventi/templates/landing/landing_quick.html:93
+#: diventi/templates/landing/landing_quick.html:87
 msgid "character customization options"
 msgstr "opzioni di personalizzazione del personaggio"
 
-#: diventi/templates/landing/landing_quick.html:105
+#: diventi/templates/landing/landing_quick.html:99
 msgid "optimized to work for most devices"
 msgstr "ottimizzato per funzionare sulla maggior parte dei dispositivi"
 
-#: diventi/templates/landing/landing_quick.html:117
+#: diventi/templates/landing/landing_quick.html:111
 msgid "modular components for any storytelling style"
 msgstr "componenti modulari per qualunque stile di narrazione"
 
-#: diventi/templates/landing/landing_quick.html:228
+#: diventi/templates/landing/landing_quick.html:220
 msgid "visualize"
 msgstr "visualizza"
 
@@ -3652,7 +3663,9 @@ msgstr "caratteristiche chiave"
 msgid ""
 "any piece of content is modular and easy to pick up or discard depending on "
 "your playstyle"
-msgstr "tutti i contenuti sono modulari e facili da selezionare o scartare a seconda del vostro stile di gioco"
+msgstr ""
+"tutti i contenuti sono modulari e facili da selezionare o scartare a seconda "
+"del vostro stile di gioco"
 
 #: diventi/templates/products/product_detail_quick.html:202
 msgid "there are no key features to show for now"
@@ -3664,7 +3677,7 @@ msgstr "dettagli"
 
 #: diventi/templates/products/product_detail_quick.html:243
 msgid "here's a roundown of what you can expect from"
-msgstr "ecco una carrellata di cosa puoi aspettarti da"
+msgstr "ecco cosa puoi aspettarti da"
 
 #: diventi/templates/products/product_detail_quick.html:278
 msgid "find out what others say about us"

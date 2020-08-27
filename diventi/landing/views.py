@@ -78,7 +78,7 @@ def landing(request):
 class PresentationSearchView(ListView):
     """ Search for every content in the project. """
 
-    template_name = "landing/search_results.html"
+    template_name = "landing/search_results_quick.html"
     context_object_name = 'results'
     model = Section
 

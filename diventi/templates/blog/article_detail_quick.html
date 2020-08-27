@@ -22,14 +22,17 @@
 {% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
 
 {% block content %}
-<div class="min-vh-100 py-9 py-lg-0 bg-cover bg-size--cover" style="background-image:url({{ article.image }})"></div>
-<section class="section-half-rounded bg-transparent pt-6 pb-10 mt-n17 zindex-100">
-    <div class="jumbotron section-inner left-0 rounded-top-right bg-translucent-dark overflow-hidden col-xl-10 col-lg-11"></div>
+<div class="min-vh-100 py-9 py-lg-0 bg-cover bg-size--cover" style="background-image:url({{ article.image }})">
+    <span class="mask bg-dark opacity-5"></span>
+</div>
+<section class="section-half-rounded bg-transparent pt-5 pb-10 mt-n17 zindex-100">
+    <div class="jumbotron section-inner left-0 rounded-top-right bg-primary overflow-hidden col-xl-10 col-lg-11"></div>
     <div class="container">
         <div class="row row-grid align-items-center">
             <div class="col-xl-9 col-lg-11 offset-lg-1 offset-xl-2">
                 <span class="badge badge-secondary badge-pill">{{ article.category }}</span>
-                <h1 class="h2 text-white mt-3 mb-6 pr-5">{{ article.title|capfirst }}</h1>
+                <h1 class="h2 text-white mt-3 mb-1 pr-5">{{ article.title|capfirst }}</h1>
+                <p class="lead text-white mb-1 pb-4 pr-5">{{ article.description|capfirst }}</p>
             </div>
         </div>
     </div>

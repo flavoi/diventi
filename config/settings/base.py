@@ -58,6 +58,7 @@ TEMPLATES = [
                 'diventi.accounts.context.user_menu',
                 'diventi.landing.context.graph_section',
                 'diventi.landing.context.search_suggestions',
+                'diventi.landing.context.about_us_articles',
                 'diventi.products.context.projects',
             ],
             'loaders': [

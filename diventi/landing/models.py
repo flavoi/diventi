@@ -6,8 +6,19 @@ from django.urls import reverse
 from django.db.models import Prefetch
 
 from cuser.middleware import CuserMiddleware
+from ckeditor.fields import RichTextField
 
-from diventi.core.models import Element, DiventiImageModel, FeaturedModel, FeaturedModelManager, SectionModel
+from diventi.core.models import (
+    Element, 
+    DiventiImageModel, 
+    FeaturedModel, 
+    FeaturedModelManager, 
+    SectionModel,
+    PublishableModel,
+    TimeStampedModel,
+    PromotableModel,
+)
+
 from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
 from diventi.feedbacks.models import Survey
@@ -94,3 +105,17 @@ class SearchSuggestion(Element):
     class Meta:
         verbose_name = _('search suggestion')
         verbose_name_plural = _('search suggestions')
+
+
+class AboutArticle(TimeStampedModel, PromotableModel, PublishableModel, Element):
+    content = RichTextField(verbose_name=_('content'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+
+    def get_absolute_url(self):
+        return reverse('landing:about', args=[str(self.slug,)])
+
+    class Meta:
+        verbose_name = _('about article')
+        verbose_name_plural = _('about article')
+
+

@@ -34,6 +34,23 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
+class PublishableModelQuerySet(models.QuerySet):
+
+    # Get the list of published objects
+    def published(self):
+        qs = self.filter(published=True)
+        return qs
+
+
+class PublishableModelManager(models.Manager):
+
+    def get_queryset(self):
+        return PublishableModelQuerySet(self.model, using=self._db)
+
+    def published(self):
+        return self.get_queryset().published()
+
+
 class PublishableModel(models.Model):
     """
     A concrete base class model that updates the publication
@@ -41,6 +58,8 @@ class PublishableModel(models.Model):
     """
     published = models.BooleanField(default=False, verbose_name=_('published'))
     publication_date = models.DateTimeField(blank=True, null=True, verbose_name=_('publication_date'))
+
+    objects = PublishableModelManager()
 
     # Pubblication date is updated if published has been modified from False to True
     def __init__(self, *args, **kwargs):

@@ -35,11 +35,7 @@ class ArticleQuerySet(models.QuerySet):
 
     # Get the list of published articles
     def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            articles = self
-        else:
-            articles = self.filter(published=True)
+        articles = self.filter(published=True)
         articles = articles.prefetch()
         return articles
 

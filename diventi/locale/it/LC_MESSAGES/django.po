@@ -2518,8 +2518,8 @@ msgid ""
 "we use cookies so that our themes work for you. By using our website, you "
 "agree to our use of cookies"
 msgstr ""
-"usiamo i cookie per ottimizzare il funzionamento di questo sito web. "
-"Utilizzandolo accetti l'utilizzo dei nostri cookie."
+"in questo sito web usiamo i cookie per ottimizzarne il funzionamento. "
+"Utilizzandolo accetti l'utilizzo dei nostri cookie"
 
 #: diventi/templates/base_quick.html:216
 msgid "hi"

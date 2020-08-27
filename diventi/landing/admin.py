@@ -18,7 +18,8 @@ from diventi.core.admin import (
 from .models import (
     Feature, 
     Section,
-    SearchSuggestion
+    SearchSuggestion,
+    AboutArticle,
 )
 from .forms import SectionForm
 
@@ -72,5 +73,21 @@ class SearchSuggestionAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     fields = ('title', 'icon', 'description',)
 
 
+class AboutArticleAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'published', 'publication_date']
+    readonly_fields = ['created', 'modified', 'publication_date']
+    prepopulated_fields = {"slug": ("title",)} 
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('published',)
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'content', 'slug', 'publication_date'),
+        }),
+    )
+    actions = [make_published, make_unpublished]
+
+
 admin.site.register(Section, SectionAdmin)
 admin.site.register(SearchSuggestion, SearchSuggestionAdmin)
+admin.site.register(AboutArticle, AboutArticleAdmin)

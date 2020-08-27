@@ -5,6 +5,7 @@
 from .models import (
 	Section,
 	SearchSuggestion,
+    AboutArticle,
 )
 
 def graph_section(request):
@@ -22,3 +23,11 @@ def search_suggestions(request):
 		'search_suggestions': search_suggestions,
 	}
 	return context
+
+def about_us_articles(request):
+    """ Returns the articles 'about us' listed in the footer. """
+    about_us_articles = AboutArticle.objects.published()
+    context = {
+        'about_us_articles': about_us_articles,
+    }
+    return context

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Introduced the Quick visual style across all core apps
 - [ebooks] Added 'new' and 'updated' badges for newly edited chapters
 - [ebooks] Added tooltip support for custom keywords
+- [landing] Added 'about articles' pages
 - [machina] Introduced machina: a new forum app for Diventi's subscribers
 
 ### Changed

@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load humanize %}
 
-{% block title %}{% trans "search results"|capfirst %}{% endblock title %}
+{% block title %}{{ object.title|capfirst }}{% endblock title %}
 
 {% block content %}
 <section>

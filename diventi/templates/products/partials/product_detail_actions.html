@@ -34,5 +34,5 @@
     {% endif %}                         
 {% else %}
     <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
-    <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this product in your collection' %}.
+    <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
 {% endif %}

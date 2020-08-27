@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-27 15:20+0200\n"
+"POT-Creation-Date: 2020-08-27 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2785,12 +2785,6 @@ msgstr ""
 msgid "check answers"
 msgstr "visualizza risposte"
 
-#: diventi/templates/landing/about_article_quick.html:5
-#: diventi/templates/landing/search_results_quick.html:4
-#: diventi/templates/landing/search_results_quick.html:15
-msgid "search results"
-msgstr "risultati della ricerca"
-
 #: diventi/templates/landing/about_article_quick.html:14
 msgid "last updated"
 msgstr "ultimo aggiornamento"
@@ -2883,6 +2877,11 @@ msgstr "componenti modulari per qualunque stile di narrazione"
 #: diventi/templates/landing/search_form.html:14
 msgid "e.g. First Contact"
 msgstr "es: Primo Contatto"
+
+#: diventi/templates/landing/search_results_quick.html:4
+#: diventi/templates/landing/search_results_quick.html:15
+msgid "search results"
+msgstr "risultati della ricerca"
 
 #: diventi/templates/landing/search_results_quick.html:16
 msgid "query"
@@ -3595,9 +3594,8 @@ msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
 #: diventi/templates/products/partials/product_detail_actions.html:37
-#: diventi/templates/products/product_detail.html:137
-msgid "to add this product in your collection"
-msgstr "per aggiungere questo prodotto alla tua collezione"
+msgid "to add this object in your collection"
+msgstr "per aggiungere questo oggetto alla tua collezione"
 
 #: diventi/templates/products/product_card_rich.html:21
 #: diventi/templates/products/product_detail.html:63
@@ -3621,6 +3619,10 @@ msgstr "Descrizione"
 #: diventi/templates/products/product_detail.html:115
 msgid "View in collection"
 msgstr "Visualizza collezione"
+
+#: diventi/templates/products/product_detail.html:137
+msgid "to add this product in your collection"
+msgstr "per aggiungere questo prodotto alla tua collezione"
 
 #: diventi/templates/products/product_detail.html:217
 #: diventi/templates/products/product_detail_quick.html:334

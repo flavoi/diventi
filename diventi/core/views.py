@@ -18,7 +18,7 @@ class DiventiActionMixin:
         return super(DiventiActionMixin, self).form_valid(form)
 
 
-class StaffRequiredMixin(UserPassesTestMixin):
+class StaffRequiredMixin:
     """ Restrict the access of a page to admins only. """
 
     def test_func(self):

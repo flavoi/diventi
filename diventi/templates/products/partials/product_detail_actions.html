@@ -14,9 +14,9 @@
             </div>
         </div>                                                             
     {% else %}
-        {% if product.price > 0 %}
-          {% with url='products:add' slug=product.slug %}
-            {% include "payments/pay_button.html" %}
+        {% if product.at_a_premium %}
+          {% with object=product %}
+            {% include "products/partials/pay_button.html" %}
           {% endwith %}
         {% else %}
           <form action="{% url 'products:add' product.slug %}" method="POST">

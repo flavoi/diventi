@@ -121,12 +121,23 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         blank=True, 
         verbose_name=_('related products'),
     ) # Connect this product to others
-    price = models.PositiveIntegerField(default=0, verbose_name=_('price'), help_text=_('This price must be valued in euro cents. For example: 500 for 5.00€, 120 for 1.20€ etc.'))
     formats = models.ManyToManyField(
         ProductFormat, 
         blank = True, 
         related_name = 'products', 
         verbose_name = _('formats'),
+    )
+    stripe_price = models.CharField(
+        blank=True,
+        max_length=50,
+        verbose_name=_('stripe price')
+    )
+    stripe_product = models.CharField(
+        unique=True,
+        null=True,
+        blank=True,
+        max_length=50,
+        verbose_name=_('stripe product')
     )
 
     objects = ProductQuerySet.as_manager()
@@ -217,18 +228,6 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     def user_has_authored(self, user):
         return user in self.authors.all()
 
-    # Returns the price of the product
-    def get_price(self):
-        p = humanize_price(self.price)
-        return p
-
-    # Returns the price of the product without its currency
-    def get_price_value(self):
-        p = ('%(price).2f' % {
-            'price': self.price / 100,
-        })
-        return p
-
     # Returns the default currency of any product
     def get_currency(self):
         return 'EUR'
@@ -239,6 +238,16 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
             return _('published')
         else:
             return _('draft')
+
+    # Returns true if the product is free
+    def _at_a_premium(self):
+        if self.stripe_product and self.stripe_price:
+            return True
+        else:
+            return False
+    _at_a_premium.boolean = True
+    _at_a_premium.short_description = _('at a premium')
+    at_a_premium = property(_at_a_premium)
 
 
 class ProductDetail(Element, HighlightedModel):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-27 15:27+0200\n"
+"POT-Creation-Date: 2020-08-27 16:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3572,7 +3572,8 @@ msgstr "uno strumento per misurare le prestazioni del sito."
 msgid "our experimental adventure book."
 msgstr "il nostro libro avventura sperimentale."
 
-#: diventi/templates/payments/pay_button.html:17
+#: diventi/templates/payments/pay_button.html:18
+#: diventi/templates/payments/pay_button.html:22
 msgid "buy with card"
 msgstr "acquista con carta"
 
@@ -3646,8 +3647,10 @@ msgid "from"
 msgstr "da"
 
 #: diventi/templates/products/product_detail_quick.html:120
-msgid " review"
-msgid_plural " reviews"
+#: diventi/templates/reviews/review_button_modal_quick.html:15
+#: diventi/templates/reviews/review_form.html:9
+msgid "review"
+msgid_plural "reviews"
 msgstr[0] "recensione"
 msgstr[1] "recensioni"
 
@@ -3724,11 +3727,6 @@ msgstr "lascia una recensione"
 msgid "check review"
 msgstr "controlla la recensione"
 
-#: diventi/templates/reviews/review_button_modal_quick.html:15
-#: diventi/templates/reviews/review_form.html:9
-msgid "review"
-msgstr "recensione"
-
 #: diventi/templates/reviews/review_button_modal_quick.html:26
 #: diventi/templates/reviews/review_form.html:19
 msgid "close"
@@ -3757,6 +3755,11 @@ msgstr "gruppo"
 #: diventi/tooltips/models.py:72
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid " review"
+#~ msgid_plural " reviews"
+#~ msgstr[0] "recensione"
+#~ msgstr[1] "recensioni"
 
 #~ msgid "survey/"
 #~ msgstr "sondaggio/"

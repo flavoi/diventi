@@ -107,7 +107,7 @@ class SearchSuggestion(Element):
         verbose_name_plural = _('search suggestions')
 
 
-class AboutArticle(TimeStampedModel, PromotableModel, PublishableModel, Element):
+class AboutArticle(TimeStampedModel, PublishableModel, Element):
     content = RichTextField(verbose_name=_('content'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
 

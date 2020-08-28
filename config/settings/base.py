@@ -112,7 +112,6 @@ LOCAL_APPS = [
     'diventi.products',
     'diventi.feedbacks',
     'diventi.ebooks',
-    'diventi.payments',
     'diventi.brave',
     'diventi.adventures',
     'diventi.tooltips'
@@ -131,6 +130,7 @@ THIRD_PARTY_APPS = [
     'reviews',
     'widget_tweaks',
     'haystack',
+    'fullurl',
 ]
 
 FORUM_APPS = [

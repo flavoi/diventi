@@ -1,14 +1,24 @@
-import stripe
+import stripe, json
 
 from django.conf import settings
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from django.core.mail import send_mail
 
 from .utils import humanize_price
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+# Set your secret key. Remember to switch to your live secret key in production!
+# See your keys here: https://dashboard.stripe.com/account/apikeys
+stripe.api_key = 'pk_test_ien1NqbAQfLtyz5PP7PWs15U00Rl8V9d74'
+
+# You can find your endpoint's secret in your webhook settings
+endpoint_secret = 'whsec_NoUa3aBmRfbFvcr8w4fogFf2WfKwGw3E'
+
 
 def charge(request, price, title, user):
     if request.method == 'POST':

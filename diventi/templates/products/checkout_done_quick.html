@@ -1,0 +1,40 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'checkout done'|capfirst %}{% endblock title %}
+
+{% block preloadermodal %}{% endblock preloadermodal %}
+{% block usermodal %}{% endblock usermodal %}
+{% block header %}{% endblock header %}
+{% block omnisearch %}{% endblock omnisearch %}
+
+{% block content %}
+<section>
+   <div class="container d-flex flex-column">
+      <div class="row align-items-center justify-content-between min-vh-100">
+         <div class="col-12 col-md-6 col-xl-7 order-md-2">
+            <img alt="{{ title }}" src="{% static 'quick-v110/img/svg/illustrations/illustration-5.svg' %}" class="img-fluid">
+        </div>
+         <div class="col-12 col-md-6 col-xl-5 order-md-1 text-center text-md-left">
+            <h6 class="display-3 mb-3 font-weight-600 text-success">{% trans "checkout done"|capfirst %}!</h6>
+            <p class="lead text-lg mb-5">{% trans "Your purchase has been finalized. You can check your collection or return home." %}</p>            
+            <a href="{% url 'landing:home' %}" class="btn btn-dark btn-icon hover-translate-y-n3">
+               <span class="btn-inner--icon">
+                  <i class="far fa-home"></i>
+               </span>
+               <span class="btn-inner--text">{% trans "return home"|capfirst %}</span>
+            </a>
+            <a href="{% url 'accounts:detail' request.user.nametag %}#collection" class="btn btn-secondary btn-icon hover-translate-y-n3">
+               <span class="btn-inner--icon">
+                  <i class="far fa-album-collection"></i>
+               </span>
+               <span class="btn-inner--text">{% trans "collection"|capfirst %}</span>
+            </a>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

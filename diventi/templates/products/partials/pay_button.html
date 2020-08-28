@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load fullurl %}
+
+{% if user.is_authenticated %}
+  <script src="https://js.stripe.com/v3"></script>
+  <button class="btn btn-primary btn-sm" id="checkout-button">{% trans 'buy with card'|capfirst %}</button>
+  <script>
+    var stripe = Stripe('pk_test_ien1NqbAQfLtyz5PP7PWs15U00Rl8V9d74');
+
+    var checkoutButton = document.querySelector('#checkout-button');
+    checkoutButton.addEventListener('click', function () {
+      stripe.redirectToCheckout({
+        lineItems: [{
+          // Define the product and price in the Dashboard first, and use the price
+          // ID in your client-side code.
+          price: '{{ product.stripe_price }}',
+          quantity: 1,          
+        }],
+        customerEmail: '{{ request.user.email }}',
+        clientReferenceId: '{{ request.user.nametag }}',
+        mode: 'payment',
+        successUrl: '{% fullurl "products:checkout_done" product.slug %}',
+        cancelUrl: '{% fullurl "products:checkout_failed" product.slug %}',
+      });
+    });
+  </script>
+{% endif %}

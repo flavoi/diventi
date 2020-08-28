@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Added tooltip support for custom keywords
 - [landing] Added 'about articles' pages
 - [machina] Introduced machina: a new forum app for Diventi's subscribers
+- [products] Integrated stripe v3 to manage online payments
 
 ### Changed
 - [blog] Enabled category filters in the list page
@@ -27,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - [sheets] Removed unecessary files about this legacy app
+- [payments] Removed the payments app since it's been integrated in products'
 
 ### Fixed
 - [accounts] Fixed avatars and covers image layout

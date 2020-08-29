@@ -51,7 +51,7 @@ class LandingSearchView(ListView):
 class DashboardView(StaffRequiredMixin, ListView):
     """ Report relevant piece of contents of any supported app. """
 
-    template_name = "landing/analytics.html"
+    template_name = "landing/analytics_quick.html"
     context_object_name = 'results'
     model = Section
 

@@ -12,7 +12,6 @@ from django.contrib.auth import get_user_model
 from cuser.middleware import CuserMiddleware
 
 from .fields import ProtectedFileField
-from .utils import humanize_price
 
 from diventi.core.models import (
     Element,

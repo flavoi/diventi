@@ -10,6 +10,11 @@
 {% block omnisearch %}{% endblock omnisearch %}
 
 {% block content %}
+<a href="{% url 'products:detail' view.kwargs.slug %}" class="btn btn-neutral btn-icon-only rounded-circle position-absolute left-4 top-4 d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="right" title="" data-original-title="{% trans 'back to the project'|capfirst %}">
+   <span class="btn-inner--icon">
+      <i class="far fa-arrow-left"></i>
+   </span>
+</a>
 <section>
    <div class="container d-flex flex-column">
       <div class="row align-items-center justify-content-between min-vh-100">
@@ -27,7 +32,7 @@
             </a>
             <a href="{% url 'accounts:detail' request.user.nametag %}#collection" class="btn btn-secondary btn-icon hover-translate-y-n3">
                <span class="btn-inner--icon">
-                  <i class="far fa-album-collection"></i>
+                  <i class="far fa-user-alt"></i>
                </span>
                <span class="btn-inner--text">{% trans "collection"|capfirst %}</span>
             </a>

@@ -7,7 +7,6 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.views.generic import RedirectView, TemplateView
 from django.views.decorators.csrf import csrf_exempt
-
 from django.http import (
     HttpResponse,
     Http404, 
@@ -16,9 +15,11 @@ from django.http import (
     HttpResponseRedirect,
 )
 from django.utils.translation import ugettext_lazy as _
+from django.utils import translation
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
+from django.core.mail import send_mail
 
 from boto.s3.connection import S3Connection
 from logging import getLogger
@@ -29,6 +30,7 @@ from .models import Product
 from .forms import UserCollectionUpdateForm
 from .utils import (
     add_product_to_user_collection,
+    humanize_price,
 )
 
 
@@ -53,6 +55,10 @@ class ProductDetailView(DetailView):
         context['bought'] = self.object.user_has_already_bought(user)
         context['key'] = settings.STRIPE_PUBLISHABLE_KEY
         context['featured_detail'] = self.object.details.highlighted_or_first()
+        if self.object.at_a_premium:
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            stripe_price = stripe.Price.retrieve(self.object.stripe_price)
+            context['price'] = humanize_price(float(stripe_price['unit_amount_decimal']))
         return context
 
 
@@ -196,8 +202,21 @@ def stripe_webhook(request):
         Product, 
         stripe_product=item['price']['product'],
     )
+    translation.activate(user.language)
+    request.LANGUAGE_CODE = translation.get_language()
     add_product_to_user_collection(product, user)
-
+    price = humanize_price(float(session['amount_total']))
+    send_mail(
+        _('Diventi: %(title)s purchase') % {'title': product.title,},
+        _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {
+            'user': user.first_name,
+            'price': price,
+            'title': product.title,
+        },
+        'info@playdiventi.it',
+        [user.email],
+        fail_silently=False,
+    )
   return HttpResponse(status=200)
 
 

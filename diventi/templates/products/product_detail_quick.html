@@ -116,7 +116,7 @@
                                                 {% include 'reviews/rating_star.html' %}
                                             {% endwith %}
                                         </span>
-                                        <h5 class="h6 mt-4 mb-1">{{ average_rating|floatformat:1 }} {% trans "out of 5 stars" %}</h5>
+                                        <h5 class="h6 mt-4 mb-1">{{ average_rating|floatformat:1|default:'-' }} {% trans "out of 5 stars" %}</h5>
                                         <p class="text-muted text-sm mb-0">{% trans "from" %} {{ rating_count }} {% blocktrans count counter=rating_count %}review{% plural %}reviews{% endblocktrans %}</p>
                                     </div>
                                 </div>

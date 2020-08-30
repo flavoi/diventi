@@ -26,7 +26,7 @@ from .forms import SectionForm
 
 class FeatureInline(TranslationStackedInline):
     model = Feature
-    fields = ('title', 'icon', 'color', 'description',)
+    fields = ('title', 'icon', 'icon_style', 'color', 'description',)
     extra = 0
 
 

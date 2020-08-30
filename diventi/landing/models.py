@@ -92,7 +92,7 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         verbose_name_plural = _('sections')
 
 
-class Feature(Element):    
+class Feature(Element): 
     section = models.ForeignKey(Section, null=True, related_name='features', on_delete=models.SET_NULL)
 
     class Meta:

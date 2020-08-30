@@ -25,8 +25,8 @@
                   </a>
                 {% endfor %}
                 {% if featured_section.section_survey %}
-                  <a href="{% url 'feedbacks:new_answers_gate' section.section_survey.slug %}" class="btn btn-primary btn-icon">
-                    <span class="btn-inner--text">{{ section.section_survey.title }}</span>
+                  <a href="{% url 'feedbacks:new_answers_gate' featured_section.section_survey.slug %}" class="btn btn-primary btn-icon">
+                    <span class="btn-inner--text">{{ featured_section.section_survey.title }}</span>
                   </a>
                 {% endif %}
                 {% for article in featured_section.articles.all %}
@@ -243,7 +243,7 @@
               <div class="p-3 d-flex">
                 <div>
                   <div class="icon icon-shape rounded-circle bg-{{ section.color|default:'info' }} text-white mr-4">
-                    <i class="fas fa-{{ section.icon|default:'check'}}"></i>
+                    <i class="fa{{ feature.icon_style|default:'r' }} fa-{{ feature.icon|default:'check'}}"></i>
                   </div>
                 </div>
                 <div>

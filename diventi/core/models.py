@@ -11,12 +11,12 @@ from cuser.middleware import CuserMiddleware
 
 
 COLORS_CHOICES = (
-    ('info', _('Blue')),
-    ('primary', _('Rose')),
+    ('info', _('Light blue')),
+    ('primary', _('Blue')),
     ('danger', _('Red')),
     ('warning', _('Yellow')),
     ('success', _('Green')),
-    ('default', _('Gray')),
+    ('secondary', _('Gray')),
     ('dark', _('Black')),
     ('light', _('White')),
 )
@@ -117,8 +117,15 @@ class Element(models.Model):
     """
     An abstract base class model that represents a single piece of content.
     """
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    icon = models.CharField(blank=True, max_length=30, verbose_name=_('icon'))
+    title = models.CharField(
+        max_length = 50,
+        verbose_name = _('title'),
+    )
+    icon = models.CharField(
+        blank = True,
+        max_length = 30, 
+        verbose_name = _('icon'),
+    )
     ICON_STYLE_CHOICES = (
         ('r', 'r - regular'),
         ('s', 's - solid'),
@@ -129,7 +136,7 @@ class Element(models.Model):
     )
     ICON_STYLE_DEFAULT = 'r'
     icon_style = models.CharField(
-        blank = False,
+        blank = True,
         choices = ICON_STYLE_CHOICES,
         default = ICON_STYLE_DEFAULT,
         max_length = 1,

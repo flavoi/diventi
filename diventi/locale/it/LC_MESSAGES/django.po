@@ -1640,7 +1640,7 @@ msgstr "bozza"
 
 #: diventi/products/models.py:248
 msgid "at a premium"
-msgstr ""
+msgstr "a pagamento"
 
 #: diventi/products/models.py:263
 msgid "Detail"

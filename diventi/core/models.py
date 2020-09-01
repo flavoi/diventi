@@ -118,7 +118,7 @@ class Element(models.Model):
     An abstract base class model that represents a single piece of content.
     """
     title = models.CharField(
-        max_length = 50,
+        max_length = 80,
         verbose_name = _('title'),
     )
     icon = models.CharField(

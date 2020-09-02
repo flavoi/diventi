@@ -18,6 +18,7 @@ from .views import (
     DiventiPasswordResetDoneView,
     DiventiPasswordResetConfirmView,
     DiventiPasswordResetCompleteView,
+    DiventiUserDetailRedirectView,
 )
 
 app_name = 'accounts'
@@ -33,6 +34,7 @@ urlpatterns = [
     url(_(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'), DiventiPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     url(_(r'^reset/done/$'), DiventiPasswordResetCompleteView.as_view(), name='password_reset_complete'),
     url(_(r'^subscribers/$'), EmailPageView.as_view(), name='subscribers'),
+    path(_('<int:pk>/'), DiventiUserDetailRedirectView.as_view(), name='redirect'),
     path(_('<slug:nametag>/'), DiventiUserDetailView.as_view(), name='detail'),
     path(_('<slug:nametag>/settings/'), DiventiUserUpdateView.as_view(), name='settings'),
     path(_('<slug:nametag>/update/'), DiventiUserUpdateView.as_view(), name='update'),

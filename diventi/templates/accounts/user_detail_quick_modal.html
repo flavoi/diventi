@@ -31,7 +31,7 @@
                             <span class="d-block text-sm">{% trans "comments"|capfirst %}</span>
                         </div>
                         <div class="col-4 text-center">
-                            {% if has_user_authored %}
+                            {% if authenticated_user_data.has_user_authored %}
                                 <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.projects_count }}</a>
                                 <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
                             {% else %}

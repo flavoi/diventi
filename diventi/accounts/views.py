@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
@@ -215,7 +215,7 @@ class DiventiUserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
-        context['user_data'] = get_user_data(self.object)
+        context['user_data'] = get_user_data(self.object, self)
         return context
 
 
@@ -291,5 +291,16 @@ class DiventiPasswordResetConfirmView(PasswordResetConfirmView):
 class DiventiPasswordResetCompleteView(PasswordResetCompleteView):
 
     template_name='accounts/password_reset_complete_quick.html'
+
+
+class DiventiUserDetailRedirectView(RedirectView):
+
+    permanent = False
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        user = get_object_or_404(DiventiUser, pk=kwargs['pk'])
+        return reverse_lazy('accounts:detail', args=(user.nametag,))
+
 
     

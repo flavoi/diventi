@@ -23,7 +23,7 @@
       </div>
     </div>
     {% if profile.user == request.user %}
-      <a href="{% url 'forum_member:profile_update' %}" class="btn btn-block btn-primary">{% trans "Edit profile" %}</a>
+      <a href="{% url 'accounts:redirect_update' %}" class="btn btn-block btn-primary">{% trans "Edit profile" %}</a>
     {% endif %}
   </div>
   <div class="col-md-9">

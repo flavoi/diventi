@@ -6,15 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta-7-rc] → 2020-09-02
+## [1.0.0-beta-8-rc] → 2020-09-02
 ### Added
 - Introduced adventures: a new experimental app that enables game master to play with Diventi's adventures
 - Introduced the Quick visual style across all core apps
 - [ebooks] Added 'new' and 'updated' badges for newly edited chapters
 - [ebooks] Added tooltip support for custom keywords
-- [landing] Added 'about articles' pages
+- [landing] Added 'about' pages
 - [machina] Introduced machina: a new forum app for Diventi's subscribers
 - [products] Integrated stripe v3 to manage online payments
+- [tooltips] Introduced tooltips: a new app that integrates with ebook that displays piece on contents in a rich tooltip
 
 ### Changed
 - [blog] Enabled category filters in the list page
@@ -25,11 +26,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Updated dropdown queries to be more efficient while fetching related books
 - [ebooks] Updated tables visual styles to make the more responsive
 - [ebooks] Enabled section descriptions to populated custom tooltips
-- [payments] Upgraded stripe to v3 with a refreshed payment page
 
 ### Removed
 - [sheets] Removed unecessary files about this legacy app
 - [payments] Removed the payments app since it's been integrated in products'
+- [readme] Removed Creative Tim from the technology section
 
 ### Fixed
 - [accounts] Fixed avatars and covers image layout

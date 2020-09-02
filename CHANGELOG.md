@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [1.0.0-beta-8-rc] → 2020-09-02
+
 ### Added
 - Introduced adventures: a new experimental app that enables game master to play with Diventi's adventures
 - Introduced the Quick visual style across all core apps

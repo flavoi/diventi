@@ -96,6 +96,7 @@ class ProductFormat(Element):
 class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(max_length=50, verbose_name=_('title'))
+    short_description = models.TextField(blank=True, max_length=50, verbose_name=_('short description'))
     abstract = models.TextField(blank=True, max_length=200, verbose_name=_('abstract'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))

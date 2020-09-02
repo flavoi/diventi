@@ -78,7 +78,7 @@ class ProductAdmin(DiventiTranslationAdmin):
             'fields': ('stripe_product', 'stripe_price',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
+            'fields': ('title', 'short_description', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
         (_('Related'), {
             'fields': ('related_products',),

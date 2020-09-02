@@ -19,7 +19,7 @@
                         </span>
                         <div class="media-body ml-2">
                             <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
-                            {{ project.title|capfirst }}</a> <small class="text-sm text-muted mb-0">{{ project.abstract|capfirst }}</small></div>
+                            {{ project.title|capfirst }}</a> <small class="text-sm text-muted mb-0">{{ project.short_description|capfirst }}</small></div>
                      </div>
                   </div>
                   {% endfor %}
@@ -44,7 +44,7 @@
                     <!-- Media body -->
                     <div class="ml-3">
                         <h6 class="heading mb-0">Forum</h6>
-                        <small class="text-sm">{% trans "a place to discuss adventures and developments"|capfirst %}</small>
+                        <small class="text-sm">{% trans "a place to discuss adventures and developments"|capfirst %}.</small>
                     </div>
                 </div>
             </a>
@@ -57,7 +57,7 @@
                     <!-- Media body -->
                     <div class="ml-3">
                         <h6 class="heading mb-0">Blog</h6>
-                        <small class="text-sm">{% trans "find our latest news"|capfirst %}</small>
+                        <small class="text-sm">{% trans "find our latest news"|capfirst %}.</small>
                     </div>
                 </div>
             </a>

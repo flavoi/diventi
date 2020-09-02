@@ -6,9 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [UNRELEASED]
+## [1.0.0-beta-7-rc] → 2020-09-02
 ### Added
-- Introduced adventures: a new app that enables game master to play with Diventi's adventures
+- Introduced adventures: a new experimental app that enables game master to play with Diventi's adventures
 - Introduced the Quick visual style across all core apps
 - [ebooks] Added 'new' and 'updated' badges for newly edited chapters
 - [ebooks] Added tooltip support for custom keywords
@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Updated dropdown queries to be more efficient while fetching related books
 - [ebooks] Updated tables visual styles to make the more responsive
 - [ebooks] Enabled section descriptions to populated custom tooltips
+- [payments] Upgraded stripe to v3 with a refreshed payment page
 
 ### Removed
 - [sheets] Removed unecessary files about this legacy app
@@ -39,10 +40,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Security
 - [core] Updated urllib from v0.17.0 to v0.18.0
-- [core] Updated django from v2.2.12 to v2.2.13
+- [core] Updated django from v2.2.12 to v2.2.16
 
 
-## [1.0.0-beta-7]→ 2020-04-02
+## [1.0.0-beta-7] → 2020-04-02
 
 ### Added
 - [core] Upgraded material kit from v2.1.1 to v2.2.0

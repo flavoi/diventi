@@ -14,6 +14,17 @@
       <div class="row row-grid align-items-center">
          <div class="col-12 col-md-5 col-lg-6 order-md-2">
             <figure class="w-100"><img alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="img-fluid mw-md-100"></figure>
+            {% if featured_section.video %}
+            <div class="card-img-overlay d-flex justify-content-end">
+              <div class="text-center">
+                <a href="{{ featured_section.video }}" class="btn btn-neutral btn-icon-only rounded-circle shadow-sm hover-scale-110" data-fancybox="">
+                  <span class="btn-inner--icon">
+                    <i class="far fa-play text-primary fa-fw fa-sm"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+            {% endif %}
          </div>
          <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
             <h1 class="display-4 text-center text-md-left mb-3">{{ featured_section.title|capfirst }}</h1>
@@ -35,12 +46,12 @@
                   </a>
                 {% endfor %}
                 {% if featured_section.video %}
-                  <a href="{{ featured_section.video }}" class="btn btn-neutral btn-icon" data-fancybox="">
+                  <a href="{{ featured_section.video }}" class="btn btn-neutral btn-icon d-none d-lg-inline-block" data-fancybox="">
                     <span class="btn-inner--text">{% trans 'play video'|capfirst %}</span>
                     <span class="btn-inner--icon">
                       <i class="far fa-play"></i>
                     </span>
-                  </a>
+                  </a>     
                 {% endif %}
             </div>
          </div>

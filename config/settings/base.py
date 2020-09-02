@@ -355,3 +355,10 @@ MACHINA_PROFILE_AVATARS_ENABLED = False
 
 MACHINA_MARKUP_LANGUAGE = None
 MACHINA_MARKUP_WIDGET = 'ckeditor.widgets.CKEditorWidget'
+
+
+# Stripe payments
+# https://dashboard.stripe.com/test/apikeys
+
+STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')

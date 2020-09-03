@@ -13,7 +13,7 @@
    <div class="container">
       <div class="row row-grid align-items-center">
          <div class="col-12 col-md-5 col-lg-6 order-md-2">
-            <figure class="w-100"><img alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="img-fluid mw-md-100"></figure>
+            <figure class="w-100"><img alt="{{ featured_section.title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ featured_section.image }}" class="img-fluid mw-md-100"></figure>
             {% if featured_section.video %}
             <div class="card-img-overlay d-flex justify-content-end">
               <div class="text-center">
@@ -178,7 +178,7 @@
                       <div class="d-flex align-items-center">
                           <div>
                               <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-sm rounded-circle d-inline-block">
-                                  <img alt="{{ article.author }}" src="{{ article.author.avatar.image }}">
+                                  <img alt="{{ article.author }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ article.author.avatar.image }}">
                               </a>
                           </div>
                           <div class="pl-3">
@@ -196,10 +196,11 @@
   {% for product in section.products.all %}
     <section class="slice slice-lg">
        <div class="container">
-          <div class="row row-grid justify-content-around align-items-center">
-             <div class="col-lg-6 order-lg-2 ml-lg-auto pl-lg-6">
-                <h5 class="h2 mt-4">{{ section.title|capfirst }}</h5>
-                <p class="lead lh-190 my-4">{{ section.description|capfirst }}</p>
+          <div class="row row-grid align-items-center">
+             <div class="col-lg-5">
+                <span class="badge badge-primary badge-pill">{{ product.category }}</span>
+                <h3 class="h2 mt-4"><a href="{{ product.get_absolute_url }}">{{ section.title|capfirst }}</a></h3>
+                <p class="lh-190 mb-4">{{ section.description|capfirst }}</p>
                 <ul class="list-unstyled">
                   {% for chapter in product.chapters.all %}
                    <li class="py-2">
@@ -212,26 +213,52 @@
                    </li>
                    {% endfor %}
                 </ul>
-              </div>
-              <div class="col-lg-6">
-                <div class="card card-overlay card-hover-overlay hover-shadow-lg hover-translate-y-n10">
-                <figure class="figure"><img alt="{{ product.title }}" src="{{ product.image }}" class="img-fluid"></figure>
-                <div class="card-img-overlay d-flex flex-column align-items-center p-0">
-                  <div class="overlay-text w-75 mt-auto p-4">
-                    <p class="lead">{{ product.abstract }}</p>
-                    <a href="{{ product.get_absolute_url }}" class="link link-underline-white font-weight-bold">{{ product.category }}</a>
-                  </div>
-                  <div class="overlay-actions w-100 card-footer mt-auto text-center">
-                    <a href="{{ product.get_absolute_url }}" class="h6 mb-0">
-                      <span class="fa-stack" style="vertical-align: middle;">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fa{{ product.category.icon_style }} fa-{{ product.category.icon }} fa-stack-1x fa-inverse"></i>
-                      </span>
-                      {{ product.title }}
-                    </a>
-                  </div>
+              </div>            
+              <div class="col-lg-6 ml-lg-auto">
+                <div class="position-relative pt-md-5 pr-md-5 pt-lg-5 pt-xl-7 pr-xl-5">
+                    <div class="card border-0 shadow-lg zindex-100 col-md-8 px-0 position-md-absolute top-md-0 right-md-n0 right-lg-n3 right-xl-n5 zindex-100">
+                        <a href="{{ product.get_absolute_url }}">
+                          <figure>
+                            <img alt="{{ product.title|capfirst }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ product.image }}" class="card-img">
+                          </figure>
+                        </a>
+                        {% if section.video %}
+                        <div class="card-img-overlay d-flex">
+                            <div class="text-center">
+                                <a href="{{ section.video }}" class="btn btn-xs btn-warning btn-icon" data-fancybox="">
+                                    <span class="btn-inner--text">{% trans "play video" %}</span> 
+                                    <span class="btn-inner--icon">
+                                        <i class="far fa-play ml-1"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card">
+                        <div class="card-header pt-4 px-5">
+                            <h6 class="h5 mb-0">{% trans "top details"|capfirst %}</h6>
+                        </div>
+                        <div class="card-body pt-0 px-5">
+                            <div class="list-group list-group-flush">
+                                {% for detail in product.details.all|slice:":3" %}
+                                <div class="list-group-item py-4 px-0">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <div>
+                                            <h6 class="progress-text mb-1 d-block">{{ detail.title|capfirst }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="progress progress-xs mb-0">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width:100%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+            </div>
+
             </div>
           </div>
         </div>

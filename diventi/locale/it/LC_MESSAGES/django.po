@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-02 22:14+0200\n"
+"POT-Creation-Date: 2020-09-03 22:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1804,7 +1804,7 @@ msgstr ""
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/base_dashboard.html:127
 #: diventi/templates/landing/landing.html:37
-#: diventi/templates/landing/landing_quick.html:331
+#: diventi/templates/landing/landing_quick.html:358
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1879,7 +1879,7 @@ msgstr ""
 #: diventi/templates/accounts/signin.html:59
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:277 diventi/templates/base_quick.html:417
-#: diventi/templates/landing/landing_quick.html:316
+#: diventi/templates/landing/landing_quick.html:343
 msgid "sign up"
 msgstr "registrati"
 
@@ -2176,7 +2176,7 @@ msgstr "Ho dimenticato la mia password"
 #: diventi/templates/accounts/user_change_password_quick.html:62
 #: diventi/templates/accounts/user_change_privacy_quick.html:55
 #: diventi/templates/accounts/user_settings_quick.html:93
-#: diventi/templates/feedbacks/survey_form_quick.html:118
+#: diventi/templates/feedbacks/survey_form_quick.html:119
 msgid "save"
 msgstr "salva"
 
@@ -2808,12 +2808,12 @@ msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
 #: diventi/templates/landing/landing.html:34
-#: diventi/templates/landing/landing_quick.html:323
+#: diventi/templates/landing/landing_quick.html:350
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:35
-#: diventi/templates/landing/landing_quick.html:324
+#: diventi/templates/landing/landing_quick.html:351
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -2821,12 +2821,12 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:41
-#: diventi/templates/landing/landing_quick.html:308
+#: diventi/templates/landing/landing_quick.html:335
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing.html:42
-#: diventi/templates/landing/landing_quick.html:309
+#: diventi/templates/landing/landing_quick.html:336
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
@@ -2836,7 +2836,8 @@ msgstr "scopri di più"
 
 #: diventi/templates/landing/landing_quick.html:50
 #: diventi/templates/landing/landing_quick.html:150
-#: diventi/templates/landing/landing_quick.html:281
+#: diventi/templates/landing/landing_quick.html:229
+#: diventi/templates/landing/landing_quick.html:308
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2867,6 +2868,10 @@ msgstr "ottimizzato per funzionare sulla maggior parte dei dispositivi"
 #: diventi/templates/landing/landing_quick.html:119
 msgid "modular components for any storytelling style"
 msgstr "componenti modulari per qualunque stile di narrazione"
+
+#: diventi/templates/landing/landing_quick.html:240
+msgid "top details"
+msgstr "primi dettagli"
 
 #: diventi/templates/landing/search_form.html:14
 msgid "e.g. First Contact"

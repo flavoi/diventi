@@ -45,7 +45,7 @@ class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
 
 class ChapterInline(TranslationStackedInline):
     model = Chapter
-    fields = ('title', 'description', 'icon', 'icon_style')
+    fields = ('title', 'description', 'icon', 'icon_style', 'color')
     extra = 0
 
 
@@ -63,10 +63,9 @@ class ImagePreviewAdmin(DiventiTranslationAdmin):
 class ProductAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'image_tag', 'published', '_at_a_premium', 'category', 'color_tag', 'publication_date', 'modified']    
     inlines = [
-        ProductDetailInline,
         ChapterInline,
         ImagePreviewInline,
-        ChapterInline,
+        ProductDetailInline,        
     ]
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']

@@ -61,7 +61,7 @@ class ImagePreviewAdmin(DiventiTranslationAdmin):
 
 
 class ProductAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'published', '_at_a_premium', 'category', 'color_tag', 'publication_date', 'modified']    
+    list_display = ['title', 'image_tag', 'published', 'unfolded', '_at_a_premium', 'category', 'publication_date', 'modified']    
     inlines = [
         ChapterInline,
         ImagePreviewInline,
@@ -71,7 +71,7 @@ class ProductAdmin(DiventiTranslationAdmin):
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'color',)
+            'fields': ('published', 'unfolded')
         }),
         (_('Pricing'), {
             'fields': ('stripe_product', 'stripe_price',)
@@ -88,6 +88,7 @@ class ProductAdmin(DiventiTranslationAdmin):
     list_select_related = (
         'category',
     )
+    ordering = ('-published', '-unfolded',)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj=None, **kwargs)

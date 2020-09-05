@@ -149,12 +149,21 @@
                                                 </a>
                                                 {% else %}
                                                 <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
-                                                    <span class="btn-inner--icon">
-                                                        <i class="far fa-coffee-pot fa-lg"></i>
-                                                    </span>
-                                                    <span class="btn-inner--text ml-1">
-                                                        {% trans "add this item to your collection to access its contents"|capfirst %}.
-                                                    </span>
+                                                    {% if product.unfolded %}
+                                                        <span class="btn-inner--icon">
+                                                            <i class="far fa-coffee-pot fa-lg"></i>
+                                                        </span>
+                                                        <span class="btn-inner--text ml-1">
+                                                            {% trans "add this item to your collection to access its contents"|capfirst %}.
+                                                        </span>
+                                                    {% else %}
+                                                        <span class="btn-inner--icon">
+                                                            <i class="far fa-balance-scale fa-lg"></i>
+                                                        </span>
+                                                        <span class="btn-inner--text ml-1">
+                                                            {{ product.courtesy_message }}
+                                                        </span>
+                                                    {% endif %}
                                                 </a>
                                                 {% endif %}
                                             </div>

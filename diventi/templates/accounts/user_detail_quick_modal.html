@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="text-center mb-4">
-                        <h6 class="h5 mb-0">{{ user.get_full_name }}</h6>
+                        <h6 class="h5 mb-0"><a href="{% url 'accounts:detail' user.nametag %}">{{ user.get_full_name }}</a></h6>
                         <span class="d-block text-muted">{{ user.email }}</span>
                     </div>
                     <!-- Profile stats -->

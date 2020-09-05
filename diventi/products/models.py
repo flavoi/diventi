@@ -95,15 +95,50 @@ class ProductFormat(Element):
 
 class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel):
     """ An adventure or a module published by Diventi. """
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    short_description = models.TextField(blank=True, max_length=50, verbose_name=_('short description'))
-    abstract = models.TextField(blank=True, max_length=200, verbose_name=_('abstract'))
-    description = models.TextField(blank=True, verbose_name=_('description'))
-    slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
-    buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
-    customers = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Purchase', blank=True, verbose_name=_('customers'))
-    file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
+    title = models.CharField(
+        max_length=50, 
+        verbose_name=_('title')
+    )
+    short_description = models.TextField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('short description')
+    )
+    abstract = models.TextField(
+        blank=True, 
+        max_length=200, 
+        verbose_name=_('abstract')
+    )
+    description = models.TextField(
+        blank=True, 
+        verbose_name=_('description')
+    )
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug')
+    )
+    authors = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        related_name='products', 
+        verbose_name=_('authors')
+    )
+    buyers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        related_name='collection',
+        blank=True, 
+        verbose_name=_('buyers')
+    )
+    customers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        through='Purchase', 
+        blank=True, 
+        verbose_name=_('customers')
+    )
+    file = ProtectedFileField(
+        upload_to='products/files/', 
+        blank=True, 
+        verbose_name=_('file')
+    )
     category = models.ForeignKey(
         ProductCategory, 
         null=True, 
@@ -113,8 +148,19 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         on_delete=models.SET_NULL,
         verbose_name=_('category'), 
     )
-    courtesy_short_message = models.CharField(blank=True, max_length=50, verbose_name=_('short courtesy messages'))
-    courtesy_message = models.TextField(blank=True, verbose_name=_('courtesy message')) # Explains why the product is under maintenance
+    unfolded = models.BooleanField(
+        default = False,
+        verbose_name = _('unfolded'),
+    ) # Unfolded products can be bought by users
+    courtesy_short_message = models.CharField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('short courtesy messages')
+    )
+    courtesy_message = models.TextField(
+        blank=True, 
+        verbose_name=_('courtesy message')
+    ) # folded products returns this message to users
     related_products = models.ManyToManyField(
         'self',
         related_name='products', 

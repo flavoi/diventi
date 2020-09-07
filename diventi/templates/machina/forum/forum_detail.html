@@ -48,6 +48,7 @@
 {% trans "Announcements" as announcements_title_trans %}
 {% with topic_list_title=announcements_title_trans topics=announces hide_if_empty=True unread_topics=unread_topics %}
 {% include "forum_conversation/topic_list.html" %}
+<div class="mb-2"></div>
 {% endwith %}
 {% trans "Topics" as topics_title_trans %}
 {% with topic_list_title=topics_title_trans unread_topics=unread_topics%}

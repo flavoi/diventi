@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-05 10:23+0200\n"
+"POT-Creation-Date: 2020-09-07 10:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -748,7 +748,7 @@ msgstr "brave-rewards-verification.txt/"
 
 #: diventi/comments/apps.py:7 diventi/comments/models.py:19
 #: diventi/templates/accounts/user_detail_quick.html:109
-#: diventi/templates/accounts/user_detail_quick_modal.html:31
+#: diventi/templates/accounts/user_detail_quick_modal.html:32
 #: diventi/templates/navigation_quick.html:94
 msgid "comments"
 msgstr "commenti"
@@ -1825,7 +1825,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
-#: diventi/templates/products/partials/product_detail_actions.html:37
+#: diventi/templates/products/partials/product_detail_actions.html:42
 #: diventi/templates/products/product_detail.html:137
 msgid "Sign in"
 msgstr "Accedi"
@@ -2042,7 +2042,7 @@ msgid "to the homepage"
 msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signout_quick.html:5
-#: diventi/templates/accounts/user_detail_quick_modal.html:81
+#: diventi/templates/accounts/user_detail_quick_modal.html:82
 #: diventi/templates/base_quick.html:226 diventi/templates/navigation.html:197
 msgid "sign out"
 msgstr "annulla accesso"
@@ -2105,7 +2105,7 @@ msgstr "Profilo"
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
 #: diventi/templates/accounts/user_detail_quick.html:158
-#: diventi/templates/accounts/user_detail_quick_modal.html:50
+#: diventi/templates/accounts/user_detail_quick_modal.html:51
 #: diventi/templates/products/checkout_done_quick.html:37
 #: diventi/templates/products/partials/product_detail_actions.html:12
 #: diventi/templates/products/product_detail.html:114
@@ -2252,7 +2252,7 @@ msgstr "recensisci"
 
 #: diventi/templates/accounts/user_collection.html:48
 #: diventi/templates/accounts/user_detail_quick.html:218
-#: diventi/templates/accounts/user_detail_quick_modal.html:72
+#: diventi/templates/accounts/user_detail_quick_modal.html:73
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
@@ -2316,20 +2316,19 @@ msgid "edit"
 msgstr "modifica"
 
 #: diventi/templates/accounts/user_detail_quick.html:114
-#: diventi/templates/accounts/user_detail_quick_modal.html:36
-#: diventi/templates/navigation_quick.html:6
+#: diventi/templates/accounts/user_detail_quick_modal.html:37
 #: diventi/templates/navigation_quick.html:89
 msgid "projects"
 msgstr "progetti"
 
 #: diventi/templates/accounts/user_detail_quick.html:117
-#: diventi/templates/accounts/user_detail_quick_modal.html:39
+#: diventi/templates/accounts/user_detail_quick_modal.html:40
 #: diventi/templates/navigation_quick.html:95
 msgid "reviews"
 msgstr "recensioni"
 
 #: diventi/templates/accounts/user_detail_quick.html:122
-#: diventi/templates/accounts/user_detail_quick_modal.html:44
+#: diventi/templates/accounts/user_detail_quick_modal.html:45
 msgid "posts"
 msgstr "post"
 
@@ -3538,6 +3537,10 @@ msgstr "la mia collezione"
 msgid "profile"
 msgstr "profilo"
 
+#: diventi/templates/navigation_quick.html:6
+msgid "games"
+msgstr "giochi"
+
 #: diventi/templates/navigation_quick.html:47
 msgid "a place to discuss adventures and developments"
 msgstr "uno spazio in cui parlare di avventure e sviluppi futuri"
@@ -3617,7 +3620,7 @@ msgstr "la tua collezione"
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/products/partials/product_detail_actions.html:37
+#: diventi/templates/products/partials/product_detail_actions.html:42
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
 
@@ -3628,7 +3631,7 @@ msgstr "gratuito"
 
 #: diventi/templates/products/product_card_rich.html:25
 #: diventi/templates/products/product_detail.html:171
-#: diventi/templates/products/product_detail_quick.html:276
+#: diventi/templates/products/product_detail_quick.html:285
 msgid "community reviews"
 msgstr "Recensioni della community"
 
@@ -3649,7 +3652,7 @@ msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
 #: diventi/templates/products/product_detail.html:217
-#: diventi/templates/products/product_detail_quick.html:334
+#: diventi/templates/products/product_detail_quick.html:343
 msgid "there are no reviews yet, be the first to post one!"
 msgstr "non c'è alcuna recensione per ora, postane una tu!"
 
@@ -3681,15 +3684,15 @@ msgstr[1] "recensioni"
 msgid "available formats"
 msgstr "formati disponibili"
 
-#: diventi/templates/products/product_detail_quick.html:156
+#: diventi/templates/products/product_detail_quick.html:157
 msgid "add this item to your collection to access its contents"
 msgstr "aggiungi questo oggetto alla tua collezione per accedere ai contenuti"
 
-#: diventi/templates/products/product_detail_quick.html:179
+#: diventi/templates/products/product_detail_quick.html:188
 msgid "key features"
 msgstr "caratteristiche chiave"
 
-#: diventi/templates/products/product_detail_quick.html:180
+#: diventi/templates/products/product_detail_quick.html:189
 msgid ""
 "any piece of content is modular and easy to pick up or discard depending on "
 "your playstyle"
@@ -3697,19 +3700,19 @@ msgstr ""
 "tutti i contenuti sono modulari e facili da selezionare o scartare a seconda "
 "del vostro stile di gioco"
 
-#: diventi/templates/products/product_detail_quick.html:202
+#: diventi/templates/products/product_detail_quick.html:211
 msgid "there are no key features to show for now"
 msgstr "non ci sono cratteristiche chiave da mostrare, per ora"
 
-#: diventi/templates/products/product_detail_quick.html:241
+#: diventi/templates/products/product_detail_quick.html:250
 msgid "details"
 msgstr "dettagli"
 
-#: diventi/templates/products/product_detail_quick.html:243
+#: diventi/templates/products/product_detail_quick.html:252
 msgid "here's a roundown of what you can expect from"
 msgstr "ecco cosa puoi aspettarti da"
 
-#: diventi/templates/products/product_detail_quick.html:278
+#: diventi/templates/products/product_detail_quick.html:287
 msgid "find out what others say about us"
 msgstr "scopri cosa gli altri dicono di noi"
 

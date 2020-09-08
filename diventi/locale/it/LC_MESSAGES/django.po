@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-07 10:18+0200\n"
+"POT-Creation-Date: 2020-09-08 12:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1825,7 +1825,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
-#: diventi/templates/products/partials/product_detail_actions.html:42
+#: diventi/templates/products/partials/product_detail_actions.html:43
 #: diventi/templates/products/product_detail.html:137
 msgid "Sign in"
 msgstr "Accedi"
@@ -2356,6 +2356,10 @@ msgstr "Visualizza tutto"
 #, python-format
 msgid "On %(creation_date)s"
 msgstr "il %(creation_date)s"
+
+#: diventi/templates/accounts/user_detail_quick.html:288
+msgid "There are no posts yet."
+msgstr "Nessun post disponibile."
 
 #: diventi/templates/accounts/user_privacy.html:8
 msgid ""
@@ -2911,14 +2915,14 @@ msgid "Mark subforums read"
 msgstr "Marchia i sotto-forum come letti"
 
 #: diventi/templates/machina/forum/forum_detail.html:34
-#: diventi/templates/machina/forum/forum_detail.html:59
+#: diventi/templates/machina/forum/forum_detail.html:60
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:19
 #: diventi/templates/machina/forum_moderation/moderation_queue/list.html:67
 msgid "New topic"
 msgstr "Nuovo argomento"
 
 #: diventi/templates/machina/forum/forum_detail.html:40
-#: diventi/templates/machina/forum/forum_detail.html:65
+#: diventi/templates/machina/forum/forum_detail.html:66
 #: diventi/templates/machina/forum_tracking/mark_topics_read.html:5
 #: diventi/templates/machina/forum_tracking/mark_topics_read.html:11
 msgid "Mark topics read"
@@ -2928,7 +2932,7 @@ msgstr "Marchia gli argomenti come letti"
 msgid "Announcements"
 msgstr "Annunci"
 
-#: diventi/templates/machina/forum/forum_detail.html:52
+#: diventi/templates/machina/forum/forum_detail.html:53
 #: diventi/templates/machina/forum/forum_list.html:20
 #: diventi/templates/machina/forum/forum_list.html:38
 #: diventi/templates/machina/forum/forum_list.html:206
@@ -3620,7 +3624,7 @@ msgstr "la tua collezione"
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/products/partials/product_detail_actions.html:42
+#: diventi/templates/products/partials/product_detail_actions.html:43
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
 

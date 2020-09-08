@@ -31,7 +31,10 @@ def get_user_data(user, self=None):
     locked_achievements = Achievement.objects.all().exclude(pk__in=achievements)
     comments_count = DiventiComment.objects.filter(user=user).count()
     has_user_authored = Product.objects.has_user_authored(user=user)
-    forum_posts = ForumProfile.objects.get(user=user).posts_count
+    try:
+        forum_posts = ForumProfile.objects.get(user=user).posts_count
+    except ForumProfile.DoesNotExist:
+        forum_posts = 0
     recent_posts = Post.objects.none()
     if self:
         forums = self.request.forum_permission_handler.get_readable_forums(

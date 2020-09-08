@@ -2,7 +2,7 @@ from functools import reduce
 import operator
 
 from django.db import models
-from django.db.models import Q, Count
+from django.db.models import Prefetch, Q, Count
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _, gettext
@@ -71,7 +71,8 @@ class ProductCategoryQuerySet(models.QuerySet):
     def visible(self):
         categories = self.exclude(meta_category=True)
         published_projects = Product.objects.published()
-        categories = categories.filter(projects__pk__in=published_projects)
+        categories = categories.filter(projects__pk__in=published_projects) # Exclude empty categories
+        categories = categories.prefetch_related(Prefetch('projects', queryset=published_projects))
         return categories
 
 
@@ -79,7 +80,11 @@ class ProductCategory(Element):
     """
         Defines the type of a product.
     """
-    meta_category = models.BooleanField(default=False, verbose_name=_('meta category'), help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.'))
+    meta_category = models.BooleanField(
+        default=False, 
+        verbose_name=_('meta category'), 
+        help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.')
+    )
 
     objects = ProductCategoryQuerySet.as_manager()
 

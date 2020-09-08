@@ -14,6 +14,5 @@ from .models import (
 def projects(request):
     context = {}
     projects = ProductCategory.objects.visible()
-    projects = projects.prefetch_related('projects')
     context['projects'] = projects
     return context

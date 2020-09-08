@@ -202,7 +202,7 @@
                                     </div>
                                     <!-- App title -->
                                     <div class="mt-3">
-                                        <h6 class="mb-0"><a href="{{ product.get_absolute_url }}">{{ product.title|capfirst }}</a></h6>
+                                        <h6 class="mb-0"><a {% if product.book.published and product.published %}href="{{ product.get_absolute_url }}"{% else %}class="disabled"{% endif %}>{{ product.title|capfirst }}</a></h6>
                                         <p class="mb-0 text-sm text-muted">
                                             {{ product.abstract|capfirst }}
                                         </p>

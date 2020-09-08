@@ -40,7 +40,10 @@ class ProductQuerySet(models.QuerySet):
 
     # Fetch the products purchased by the user
     def user_collection(self, user):
+        current_user = CuserMiddleware.get_user() # The user that is operating in the session
         products = self.filter(customers=user)
+        if current_user != user: # Hide non-published products if the user is not visiting his own profile
+            products = products.published()
         products = products.prefetch()
         return products
 

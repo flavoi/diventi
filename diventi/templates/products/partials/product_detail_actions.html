@@ -38,6 +38,13 @@
         {% endif %}                            
     {% endif %}                         
 {% else %}
-    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
-    <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
+    {% if product.unfolded %}
+        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
+        <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
+    {% else %}
+        <a class="btn {{ button_disabled_class|default:'btn-dark' }} btn-sm btn-icon disabled">
+            <i class="far fa-lock-alt mr-1"></i>
+            {{ product.courtesy_short_message }}
+        </a>
+    {% endif %}
 {% endif %}

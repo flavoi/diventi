@@ -4953,13 +4953,25 @@
 {% endblock extrahead %}
 
 {% block content %}
-<section>
-    <div class="container d-flex align-items-center text-center text-lg-left py-5 py-lg-6 border-bottom">
-        <div class="col px-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <h2 class="h1 mb-2">{{ paper_title }}</h2>                    
-                    <h6 class="font-weight-light text-muted">{{ paper }}</h6>
+
+<section class="section-half-rounded">
+    <div class="jumbotron section-inner left-0 rounded-right bg-primary overflow-hidden col-lg-5">
+        <img alt="{{ book.title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.image }}" class="img-as-bg">        
+    </div>
+    <div class="container text-center text-lg-left py-5">
+        <div class="row">
+            <div class="col-lg-7 ml-auto">
+                <div class="card bg-dark shadow-lg border-0 mb-0">
+                    <div class="px-5 py-6">
+                        <a href="#" class="badge badge-primary badge-pill">{{ book.book_product.category }}</a>
+                        <h2 class="h2 lh-180 text-white font-weight-bold mt-3 mb-3">{{ book.title|capfirst }}</h2>
+                        <p class="lead text-muted">{{ book.description|capfirst }}</p>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                     <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
+                        {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
+                    </span>
                 </div>
             </div>
         </div>
@@ -4995,3 +5007,15 @@
 {% endblock content %}
 
 {% block footercolor %}{% endblock footercolor %}
+
+{% block extrascript %}
+{% load static %}
+<script src="{% static 'readingtime/readingtime.js' %}"></script>
+<script>
+    
+    $('article').readingTime({
+        readingTimeTarget: '.eta',
+        wordCountTarget: '.words',
+    });
+</script>
+{% endblock extrascript %}

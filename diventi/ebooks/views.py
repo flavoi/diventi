@@ -112,7 +112,7 @@ class PaperEbookView(BookDetailView):
         r = requests.post(url, headers=headers)
         soup = BeautifulSoup(r.content, 'html.parser')
         context['paper'] = r
-        context['paper_title'] = soup.select_one('.ace-line').extract().string        
+        soup.select_one('.ace-line').extract()
         toc = []
         for title in soup.find_all(['h1', 'h2']):
             title['id'] = title['data-usually-unique-id']

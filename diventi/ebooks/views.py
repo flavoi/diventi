@@ -7,6 +7,7 @@ from django.views import View
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import Http404
+from django.conf import settings
 
 from dal import autocomplete
 
@@ -83,6 +84,47 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
         context = super().get_context_data(**kwargs)
         first_chapter = self.object.chapters.order_by('order_index').first()
         context['next_chapter'] = first_chapter
+        return context
+
+
+import requests, json, dropbox
+from bs4 import BeautifulSoup
+class PaperEbookView(BookDetailView):
+    """ Renders an ebook from a paper document """
+   
+    def get_object(self, queryset=None):
+        obj = super(PaperEbookView, self).get_object(queryset)
+        if not obj.paper_id:
+            raise Http404(_('This book is not linked to a paper, please contact the authors.'))
+        return obj
+
+    def get_template_names(self):
+        return ['ebooks/book_detail_quick.html', ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paper_id = self.object.paper_id    
+        url = "https://content.dropboxapi.com/2/files/export"
+        headers = {
+            "Authorization": "Bearer {}".format(settings.DROPBOX_ACCESS_TOKEN),
+            "Dropbox-API-Arg": "{{\"path\":\"{}\"}}".format(paper_id)
+        }
+        r = requests.post(url, headers=headers)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        context['paper'] = r
+        context['paper_title'] = soup.select_one('.ace-line').extract().string        
+        toc = []
+        for title in soup.find_all(['h1', 'h2']):
+            title['id'] = title['data-usually-unique-id']
+            toc.append(
+                { 
+                    'string': title.string,
+                    'anchor': title['id'],
+                    'name': title.name,
+                }
+            )
+        context['paper_toc'] = toc
+        context['paper_content'] = soup.select_one('.ace-editor').prettify()
         return context
 
 

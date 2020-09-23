@@ -66,13 +66,21 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
     book_product = models.OneToOneField(Product, null=True, blank=True, related_name='book', on_delete=models.SET_NULL, verbose_name=_('product'))
     lead = models.TextField(blank=True, verbose_name=_('lead'))
     summary = RichTextField(verbose_name=_('summary'))
-    DEFAULT_TEMPLATE = 'web'
+    DEFAULT_TEMPLATE = 'quick'
     TEMPLATE_CHOICES = (
-        (DEFAULT_TEMPLATE, _('Web')),
+        (DEFAULT_TEMPLATE, _('Quick')),
+        ('web', _('Web')),
         ('material', _('Material')),
     )
     # The template adds a suffix to the template name relative to this object
     template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('template'))
+    # The unique ID that points to the dropbox paper document
+    paper_id = models.CharField(
+        max_length = 50,
+        blank = True,
+        null = True,
+        verbose_name = _('paper id')
+    )
 
     objects = BookQuerySet.as_manager()
 

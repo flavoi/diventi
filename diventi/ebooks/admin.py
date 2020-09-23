@@ -88,13 +88,16 @@ class ReplacementRuleAdmin(DiventiTranslationAdmin):
 
 
 class BookAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'get_product_category', 'template', 'created', 'modified', 'published', 'publication_date']
-    fieldsets = (
+    list_display = ['title', 'paper_id', 'image_tag', 'get_product_category', 'template', 'created', 'modified', 'published', 'publication_date']
+    fieldsets = (        
         (_('Management'), {
-            'fields': ('published', 'book_product')
+            'fields': ('published', 'book_product'),
         }),
+        (_('Paper data'), {
+            'fields': ('paper_id',),
+        }),        
         (_('Layout'), {
-            'fields': ('template', 'image')
+            'fields': ('template', 'image'),
         }),
         (_('Editing'), {
             'fields': ('title', 'description', 'lead', 'summary', 'slug', 'created', 'modified', 'publication_date'),
@@ -133,10 +136,3 @@ class SectionCategoryadmin(DiventiTranslationAdmin):
 
 
 admin.site.register(Book, BookAdmin)
-admin.site.register(Part, PartAdmin)
-admin.site.register(Chapter, ChapterAdmin)
-admin.site.register(Section, SectionAdmin)
-admin.site.register(SectionAspect)
-admin.site.register(Secret)
-admin.site.register(UniversalSection, UniversalSectionAdmin)
-admin.site.register(ReplacementRule, ReplacementRuleAdmin)

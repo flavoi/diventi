@@ -366,6 +366,6 @@ STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')
 # Dropbox paper
 # https://www.dropbox.com/developers/apps/info/xdrh4eoh3bpppnv
 DROPBOX_ACCESS_TOKEN = get_env_variable('DROPBOX_ACCESS_TOKEN')
-
+DIVENTI_UNIVERSALE_PAPER_ID = get_env_variable('DIVENTI_UNIVERSALE_PAPER_ID')
 
 

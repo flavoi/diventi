@@ -18,8 +18,17 @@ from diventi.tooltips.models import (
     Tooltip,
 )
 
-from .models import Book, Chapter, Section, UniversalSection
-
+from .models import (
+    Book, 
+    Chapter, 
+    Section, 
+    UniversalSection,
+)
+from .utils import (
+    get_dropbox_paper_soup,
+    make_paper_toc,
+    render_diventi_snippets,
+)
 
 class UserHasProductMixin(UserPassesTestMixin):
     """ 
@@ -87,8 +96,6 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
         return context
 
 
-import requests, json, dropbox
-from bs4 import BeautifulSoup
 class PaperEbookView(BookDetailView):
     """ Renders an ebook from a paper document """
    
@@ -103,28 +110,13 @@ class PaperEbookView(BookDetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paper_id = self.object.paper_id    
-        url = "https://content.dropboxapi.com/2/files/export"
-        headers = {
-            "Authorization": "Bearer {}".format(settings.DROPBOX_ACCESS_TOKEN),
-            "Dropbox-API-Arg": "{{\"path\":\"{}\"}}".format(paper_id)
-        }
-        r = requests.post(url, headers=headers)
-        soup = BeautifulSoup(r.content, 'html.parser')
-        context['paper'] = r
-        soup.select_one('.ace-line').extract()
-        toc = []
-        for title in soup.find_all(['h1', 'h2']):
-            title['id'] = title['data-usually-unique-id']
-            toc.append(
-                { 
-                    'string': title.string,
-                    'anchor': title['id'],
-                    'name': title.name,
-                }
-            )
-        context['paper_toc'] = toc
-        context['paper_content'] = soup.select_one('.ace-editor').prettify()
+        paper_id = self.object.paper_id        
+        paper_soup = get_dropbox_paper_soup(paper_id)
+        diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
+        context['paper_title'] = paper_soup.select_one('.ace-line').extract().string
+        context['paper_toc'] = make_paper_toc(paper_soup)
+        render_diventi_snippets(paper_soup, diventi_universale_soup)
+        context['paper_content'] = str(paper_soup.select_one('.ace-editor'))
         return context
 
 

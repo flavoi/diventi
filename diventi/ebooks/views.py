@@ -12,6 +12,7 @@ from django.conf import settings
 from dal import autocomplete
 
 from diventi.core.views import StaffRequiredMixin
+from diventi.core.utils import get_dropbox_paper_soup
 from diventi.products.models import Product
 from diventi.tooltips.models import (
     TooltipGroup,
@@ -24,8 +25,8 @@ from .models import (
     Section, 
     UniversalSection,
 )
-from .utils import (
-    get_dropbox_paper_soup,
+
+from .utils import (    
     make_paper_toc,
     render_diventi_snippets,
 )

@@ -12,15 +12,13 @@ from diventi.tooltips.models import (
 
 register = template.Library()
 
-# Da completare:
-# Attivare tooltip nella vista ebook
-# Attivare tooltip pk
+
 @register.filter(name='tooltip')
 def tooltip(value, section_pk):
     """
-        Fetch the available tooltips and inject a short
+        This method fetches the available tooltips and injects a short
         description on top of the keywords. 
-        It does not inject any content to the source section.
+        It does not injects any content to the source section.
         It replaces the first keyword occurence only.
     """
     try:

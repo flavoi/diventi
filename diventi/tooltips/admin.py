@@ -18,7 +18,7 @@ from .forms import TooltipForm
 
 
 class TooltipAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'group', 'product', 'section']
+    list_display = ['title', 'group', 'paper_mention_link']
     form = TooltipForm
     list_filter = ['group',]
 

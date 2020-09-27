@@ -18,6 +18,7 @@ def get_dropbox_paper_soup(paper_id):
     soup = BeautifulSoup(paper.content, 'html.parser')
     return soup
 
+
 def extract_diventi_content(mention_link, diventi_universale_soup):
     """
         Extract the paragraph between two titles in Diventi Universale.
@@ -46,3 +47,10 @@ def extract_diventi_content(mention_link, diventi_universale_soup):
         return diventi_title
     else:
         return ''
+
+
+def adjust_paper_visual_styles(paper_soup):
+    paper_soup = paper_soup.select('table')
+    for table in paper_soup:
+        table['class'] = 'my-2'
+

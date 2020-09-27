@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-26 19:00+0200\n"
+"POT-Creation-Date: 2020-09-27 17:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1291,21 +1291,22 @@ msgstr "completamento-capitolo/"
 msgid "section-autocomplete-book/"
 msgstr "completamento-sezione-libro/"
 
-#: diventi/ebooks/views.py:41 diventi/ebooks/views.py:49
+#: diventi/ebooks/views.py:45 diventi/ebooks/views.py:53
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:52
+#: diventi/ebooks/views.py:56
 msgid "This book is not yet available, please check back later."
 msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi."
 
-#: diventi/ebooks/views.py:105
+#: diventi/ebooks/views.py:109
 msgid "This book is not linked to a paper, please contact the authors."
-msgstr "Questo libro non è collegato ad un paper, per favore contatta gli autori."
+msgstr ""
+"Questo libro non è collegato ad un paper, per favore contatta gli autori."
 
-#: diventi/ebooks/views.py:204
+#: diventi/ebooks/views.py:209
 msgid "This book hasn't been published yet."
 msgstr "Questo libro non è stato ancora pubblicato."
 
@@ -2531,11 +2532,8 @@ msgstr "caricamento"
 
 #: diventi/templates/base_quick.html:161
 msgid ""
-"we use cookies so that our themes work for you. By using our website, you "
-"agree to our use of cookies"
-msgstr ""
-"in questo sito web usiamo i cookie per ottimizzarne il funzionamento. "
-"Utilizzandolo accetti l'utilizzo dei nostri cookie"
+"we uses cookies to ensure we give you the best experience on our website."
+msgstr "usiamo i cookie per ottimizzare la tua esperienza nel nostro sito web."
 
 #: diventi/templates/base_quick.html:216
 msgid "hi"
@@ -3790,7 +3788,7 @@ msgstr "chiudi"
 msgid "save changes"
 msgstr "salva le modifiche"
 
-#: diventi/tooltips/apps.py:7 diventi/tooltips/models.py:73
+#: diventi/tooltips/apps.py:7 diventi/tooltips/models.py:77
 msgid "Tooltips"
 msgstr "Suggerimenti"
 
@@ -3806,9 +3804,20 @@ msgstr "gruppi di suggerimenti"
 msgid "group"
 msgstr "gruppo"
 
-#: diventi/tooltips/models.py:72
+#: diventi/tooltips/models.py:70
+msgid "mention link"
+msgstr "link della menzione"
+
+#: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid ""
+#~ "we use cookies so that our themes work for you. By using our website, you "
+#~ "agree to our use of cookies"
+#~ msgstr ""
+#~ "in questo sito web usiamo i cookie per ottimizzarne il funzionamento. "
+#~ "Utilizzandolo accetti l'utilizzo dei nostri cookie"
 
 #~ msgid "ebook sections"
 #~ msgstr "sezioni degli ebook"

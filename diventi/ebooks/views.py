@@ -12,7 +12,10 @@ from django.conf import settings
 from dal import autocomplete
 
 from diventi.core.views import StaffRequiredMixin
-from diventi.core.utils import get_dropbox_paper_soup
+from diventi.core.utils import (
+    get_dropbox_paper_soup, 
+    adjust_paper_visual_styles,
+)
 from diventi.products.models import Product
 from diventi.tooltips.models import (
     TooltipGroup,
@@ -114,9 +117,10 @@ class PaperEbookView(BookDetailView):
         paper_id = self.object.paper_id        
         paper_soup = get_dropbox_paper_soup(paper_id)
         diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
-        context['paper_title'] = paper_soup.select_one('.ace-line').extract().string
+        context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_toc'] = make_paper_toc(paper_soup)
         render_diventi_snippets(paper_soup, diventi_universale_soup)
+        adjust_paper_visual_styles(paper_soup)
         context['paper_content'] = str(paper_soup.select_one('.ace-editor'))
         return context
 

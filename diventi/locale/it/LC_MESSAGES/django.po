@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-27 17:53+0200\n"
+"POT-Creation-Date: 2020-10-02 08:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1291,22 +1291,22 @@ msgstr "completamento-capitolo/"
 msgid "section-autocomplete-book/"
 msgstr "completamento-sezione-libro/"
 
-#: diventi/ebooks/views.py:45 diventi/ebooks/views.py:53
+#: diventi/ebooks/views.py:46 diventi/ebooks/views.py:54
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:56
+#: diventi/ebooks/views.py:57
 msgid "This book is not yet available, please check back later."
 msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi."
 
-#: diventi/ebooks/views.py:109
+#: diventi/ebooks/views.py:110
 msgid "This book is not linked to a paper, please contact the authors."
 msgstr ""
 "Questo libro non è collegato ad un paper, per favore contatta gli autori."
 
-#: diventi/ebooks/views.py:209
+#: diventi/ebooks/views.py:211
 msgid "This book hasn't been published yet."
 msgstr "Questo libro non è stato ancora pubblicato."
 
@@ -2713,6 +2713,10 @@ msgstr "tempo di lettura"
 #: diventi/templates/ebooks/book_detail_quick.html:30
 msgid "words"
 msgstr "parole"
+
+#: diventi/templates/ebooks/book_detail_quick.html:72
+msgid "jump to top"
+msgstr "salta in cima"
 
 #: diventi/templates/ebooks/book_detail_web.html:10
 msgid "First Chapter"

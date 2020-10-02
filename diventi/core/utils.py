@@ -50,7 +50,30 @@ def extract_diventi_content(mention_link, diventi_universale_soup):
 
 
 def adjust_paper_visual_styles(paper_soup):
+    """
+        Adds vertical spacing to tables.
+    """
     paper_soup = paper_soup.select('table')
-    for table in paper_soup:
+    for table in paper_soup: 
         table['class'] = 'my-2'
+    return paper_soup
+
+
+def adjust_paper_image_styles(paper_soup):
+    """
+        Adds center position and deferred loading to images.
+        In addition, it removes complex gallery tags with bootstrap styled images.
+    """
+    paper_soup = paper_soup.select('img')
+    for image in paper_soup: 
+        image_link = image.get('src')
+        if image_link:
+            image['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+            image['data-src'] = image_link
+        big_tag = image.find_parent('span', class_='gallery')
+        if big_tag:
+            image['class'] = 'w-50 p-1 mx-auto d-block'
+            big_tag.replace_with(image)
+    return paper_soup
+
 

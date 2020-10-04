@@ -70,7 +70,7 @@ def adjust_paper_image_styles(paper_soup):
         if image_link:
             image['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
             image['data-src'] = image_link   
-        big_tag = image.find_parent('span', class_='gallery')        
+        big_tag = image.find_parent('span', class_='gallery')     
         if image.find_parent('table') and not image.get('data-emoji-ch'):
             image['class'] = 'img-fluid rounded mx-auto'
             big_tag.replace_with(image)
@@ -85,21 +85,51 @@ def render_paper_images_by_direct_url(paper_soup):
         Substitutes direct links in tables with the rendered image.
         Image links should be hosted in dropbox and written with "raw=1" parameter.
     """
-    paper_soup = paper_soup.select('table')
-    for table in paper_soup:
-        links = table.find_all('a')
-        for link_tag in links:
-            image_link = link_tag.get('href')
-            if '.png?raw=1' in image_link:
-                link_tag = link_tag.find_parent('span', class_='url')
-                image_soup = BeautifulSoup('', 'html.parser')
-                image_tag = image_soup.new_tag('img')
-                image_tag['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
-                image_tag['data-src'] = image_link
+    links = paper_soup.find_all('a')
+    for link_tag in links:
+        image_link = link_tag.get('href')
+        whitelist_links = [
+            '.png?raw=1',
+            '.jpg?raw=1',
+        ]
+        if [link for link in whitelist_links if(link in image_link)]:            
+            image_soup = BeautifulSoup('', 'html.parser')
+            image_tag = image_soup.new_tag('img')
+            image_tag['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+            image_tag['data-src'] = image_link            
+            image_tag['class'] = 'img-fluid rounded mx-auto'
+            is_table_link = image_tag.find_parent('table')
+            if is_table_link:
                 image_tag['class'] = 'img-fluid rounded mx-auto'
-                link_tag.replace_with(image_tag)
+            else:
+                image_tag['class'] = 'w-50 d-block p-2 img-fluid rounded mx-auto'
+            link_tag = link_tag.find_parent('span')            
+            link_tag.replace_with(image_tag)
     return paper_soup
 
+
+def remove_dropbox_placeholders(paper_soup):
+    """
+        Removes dropbox image previews from the document. 
+    """
+    images = paper_soup.find_all('img')
+    blacklist_links = [
+        '2753.png',
+        '?dl=0',
+    ]
+    for image_tag in images:
+        image_target = image_tag.get('data-src')
+        if image_target and [link for link in blacklist_links if(link in image_target)]:
+            image_tag.extract()
+    links = paper_soup.find_all('a')
+    for link_tag in links:        
+        link_target = link_tag.get('data-target-href')
+        if link_target and [link for link in blacklist_links if(link in link_target)]:
+            link_tag.extract()    
+    dropbox_galleries = paper_soup.find_all('span', class_='gallery')
+    for gallery_tag in dropbox_galleries:
+        gallery_tag.extract()
+    return paper_soup
 
 
 

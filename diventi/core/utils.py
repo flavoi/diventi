@@ -98,7 +98,7 @@ def render_paper_images_by_direct_url(paper_soup):
             image_tag['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
             image_tag['data-src'] = image_link            
             image_tag['class'] = 'img-fluid rounded mx-auto'
-            is_table_link = image_tag.find_parent('table')
+            is_table_link = link_tag.find_parent('table')
             if is_table_link:
                 image_tag['class'] = 'img-fluid rounded mx-auto'
             else:

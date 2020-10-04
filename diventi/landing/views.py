@@ -20,6 +20,7 @@ from diventi.core.views import StaffRequiredMixin
 from .models import (
     Section,
     AboutArticle,
+    PolicyArticle,
 )
 
 
@@ -104,6 +105,14 @@ class AboutArticleDetailView(DetailView):
     
     model = AboutArticle
     template_name  = "landing/about_article_quick.html"
+
+
+class PolicyArticleDetailView(DetailView):
+    """ Renders the policy article and the content related to it. """
+    
+    model = PolicyArticle
+    template_name  = "landing/about_article_quick.html"
+
 
 
 

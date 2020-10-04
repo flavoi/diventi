@@ -16,6 +16,7 @@ from diventi.core.utils import (
     get_dropbox_paper_soup, 
     adjust_paper_visual_styles,
     adjust_paper_image_styles,
+    render_paper_images_by_direct_url,
 )
 from diventi.products.models import Product
 from diventi.tooltips.models import (
@@ -123,6 +124,7 @@ class PaperEbookView(BookDetailView):
         render_diventi_snippets(paper_soup, diventi_universale_soup)
         adjust_paper_visual_styles(paper_soup)
         adjust_paper_image_styles(paper_soup)
+        render_paper_images_by_direct_url(paper_soup)
         context['paper_content'] = str(paper_soup.select_one('.ace-editor'))
         return context
 

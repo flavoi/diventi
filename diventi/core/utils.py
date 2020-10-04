@@ -1,6 +1,6 @@
 import requests
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from django.conf import settings
 
@@ -69,11 +69,36 @@ def adjust_paper_image_styles(paper_soup):
         image_link = image.get('src')
         if image_link:
             image['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
-            image['data-src'] = image_link
-        big_tag = image.find_parent('span', class_='gallery')
-        if big_tag:
-            image['class'] = 'w-50 p-1 mx-auto d-block'
+            image['data-src'] = image_link   
+        big_tag = image.find_parent('span', class_='gallery')        
+        if image.find_parent('table') and not image.get('data-emoji-ch'):
+            image['class'] = 'img-fluid rounded mx-auto'
+            big_tag.replace_with(image)
+        elif big_tag:
+            image['class'] = 'w-50 p-1 mx-auto d-block img-fluid rounded'
             big_tag.replace_with(image)
     return paper_soup
+
+
+def render_paper_images_by_direct_url(paper_soup):
+    """
+        Substitutes direct links in tables with the rendered image.
+        Image links should be hosted in dropbox and written with "raw=1" parameter.
+    """
+    paper_soup = paper_soup.select('table')
+    for table in paper_soup:
+        links = table.find_all('a')
+        for link_tag in links:
+            image_link = link_tag.get('href')
+            if '.png?raw=1' in image_link:
+                link_tag = link_tag.find_parent('span', class_='url')
+                image_soup = BeautifulSoup('', 'html.parser')
+                image_tag = image_soup.new_tag('img')
+                image_tag['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+                image_tag['data-src'] = image_link
+                image_tag['class'] = 'img-fluid rounded mx-auto'
+                link_tag.replace_with(image_tag)
+
+
 
 

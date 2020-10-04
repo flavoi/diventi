@@ -98,6 +98,7 @@ def render_paper_images_by_direct_url(paper_soup):
                 image_tag['data-src'] = image_link
                 image_tag['class'] = 'img-fluid rounded mx-auto'
                 link_tag.replace_with(image_tag)
+    return paper_soup
 
 
 

@@ -87,9 +87,27 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
     )
     DEFAULT_BACKGROUND = 'secondary'
     BACKGROUND_CHOICES = [
-        (DEFAULT_BACKGROUND, _('Secondary')),
-        ('primary', _('Primary')),
-        ('dark', _('Dark')),
+        ('light-secondary', 'dark-secondary'),
+        (DEFAULT_BACKGROUND, 'secondary'),
+        ('dark-secondary', 'dark-secondary'),
+        ('light-primary', 'light-primary'), 
+        ('primary', 'primary'),
+        ('dark-primary', 'dark-primary'),        
+        ('light-dark', 'light-dark'),
+        ('dark', 'dark'),
+        ('dark-dark', 'dark-dark'),
+        ('light-success', 'light-success'),
+        ('success', 'success'),
+        ('dark-success', 'dark-success'),
+        ('light-danger', 'light-danger'),
+        ('danger', 'danger'),
+        ('dark-danger', 'dark-danger'),
+        ('light-warning', 'light-warning'), 
+        ('warning', 'warning'),
+        ('dark-warning', 'dark-warning'),
+        ('light-info', 'light-info'),
+        ('info', 'info'),
+        ('dark-info', 'dark-info'),
     ]    
     logo_background = models.CharField(
         blank = False,

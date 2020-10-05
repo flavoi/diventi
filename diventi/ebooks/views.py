@@ -124,7 +124,6 @@ class PaperEbookView(BookDetailView):
         context['paper_toc'] = make_paper_toc(paper_soup)
         render_diventi_snippets(paper_soup, diventi_universale_soup)
         adjust_paper_visual_styles(paper_soup)
-        #adjust_paper_image_styles(paper_soup)
         render_paper_images_by_direct_url(paper_soup)
         remove_dropbox_placeholders(paper_soup)
         context['paper_content'] = str(paper_soup.select_one('.ace-editor'))

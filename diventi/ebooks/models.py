@@ -81,7 +81,24 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
         null = True,
         verbose_name = _('paper id')
     )
-
+    logo = models.URLField(
+        blank=True, 
+        verbose_name = _('logo'),
+    )
+    DEFAULT_BACKGROUND = 'secondary'
+    BACKGROUND_CHOICES = [
+        (DEFAULT_BACKGROUND, _('Secondary')),
+        ('primary', _('Primary')),
+        ('dark', _('Dark')),
+    ]    
+    logo_background = models.CharField(
+        blank = False,
+        choices = BACKGROUND_CHOICES, 
+        default = DEFAULT_BACKGROUND,
+        verbose_name = _('logo background'),
+        max_length = 30,
+    )
+    
     objects = BookQuerySet.as_manager()
 
     def __str__(self):
@@ -103,6 +120,13 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
         else:
             return None
     get_product_image.short_description = _('image')
+
+    def get_logo_image(self):
+        if self.logo:
+            return mark_safe('<img style="max-width:250px;" src="{0}" />'.format(self.logo))
+        else:
+            return _('No image')
+    get_logo_image.short_description = _('logo')
 
     # Check if this book can be read by the user
     def is_published(self):

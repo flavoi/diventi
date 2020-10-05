@@ -59,7 +59,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 mx-auto" id="top">    
+            <div class="col-lg-8 mx-auto" id="top">
+                {% if book.logo %}
+                <div class="card bg-{{ book.logo_background }} hover-shadow-lg hover-translate-y-n3">
+                    <div class="card-body text-center h-100">
+                        <img class="w-100 d-block p-0 img-fluid rounded mx-auto" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.logo }}" data-src="">
+                    </div>
+                </div>
+                {% endif %}
                 <article>
                     {{ paper_content|safe }}                    
                 </article>

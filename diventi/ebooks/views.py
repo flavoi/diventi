@@ -102,7 +102,7 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
         context['next_chapter'] = first_chapter
         return context
 
-
+from django.utils.safestring import mark_safe
 class PaperEbookView(BookDetailView):
     """ Renders an ebook from a paper document """
    
@@ -126,7 +126,11 @@ class PaperEbookView(BookDetailView):
         adjust_paper_visual_styles(paper_soup)
         render_paper_images_by_direct_url(paper_soup)
         remove_dropbox_placeholders(paper_soup)
-        context['paper_content'] = str(paper_soup.select_one('.ace-editor'))
+        output_soup = paper_soup.select_one('.ace-editor')
+        context['paper_content'] = str(output_soup)
+        f = open("./test_soup.html", "a")
+        f.write(mark_safe(str(output_soup)))
+        f.close()
         return context
 
 

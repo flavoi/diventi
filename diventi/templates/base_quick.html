@@ -158,7 +158,7 @@
                 <div class="modal-body">
                     <!-- Text -->
                     <p class="text-sm text-white mb-3">
-                        {% trans "we uses cookies to ensure we give you the best experience on our website."|capfirst %}.
+                        {% trans "we uses cookies to ensure we give you the best experience on our website."|capfirst %}
                     </p>
                     <!-- Buttons -->
                     <!--<a href="." class="btn btn-sm btn-white" target="_blank">Learn more</a>-->
@@ -470,7 +470,9 @@
     <!-- Page JS -->
     <script src="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js' %}"></script>
     <!-- Quick JS -->
+    {% block quick_js %}
     <script src="{% static 'quick-v110/js/quick-website.js' %}"></script>
+    {% endblock quick_js %}
     <script src="{% static 'diventi/js/diventi-defer-img.min.gz.js' %}"></script>
     <!-- Feather Icons -->
     <script type="text/javascript">

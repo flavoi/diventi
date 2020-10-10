@@ -101,7 +101,7 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
     )
     DEFAULT_BACKGROUND = 'secondary'
     BACKGROUND_CHOICES = [
-        ('light-secondary', 'dark-secondary'),
+        ('light-secondary', 'light-secondary'),
         (DEFAULT_BACKGROUND, 'secondary'),
         ('dark-secondary', 'dark-secondary'),
         ('light-primary', 'light-primary'), 

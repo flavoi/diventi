@@ -3,22 +3,20 @@
 {% load humanize %}
 {% load static %}
 
+{% block opengraph %}
+    <meta property="og:title" content="Diventi: {{ book.title }}" />
+    <meta property="og:type" content="book" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ book.image }}" />
+    <meta property="og:description" content="{{ book.description }}" />
+    <meta name="description" content="{{ book.description }}"  />
+    <meta name="twitter:card" content="Diventi: {{ book.title }}" />
+{% endblock opengraph %}
+
 {% block title %}{{ object.title|capfirst }}{% endblock title %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'diventi/css/diventi-ebook-quick.min.gz.css' %}">
-<style>
-    /* This is what we are focused on */
-    .table-wrapper{
-      overflow-y: scroll;
-      flex-grow: 1;
-    }
-
-    .table-title {
-        position: sticky;
-        top: 0;
-    }
-</style>
 {% endblock extrahead %}
 
 {% block content %}

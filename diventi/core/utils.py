@@ -53,9 +53,13 @@ def adjust_paper_visual_styles(paper_soup):
     """
         Adds vertical spacing to tables.
     """
-    paper_soup = paper_soup.select('table')
-    for table in paper_soup: 
+    tables = paper_soup.find_all('table')
+    for table in tables: 
         table['class'] = 'my-2'
+        table['style'] = ''
+    table_columns = paper_soup.find_all('td')
+    for td in table_columns:
+        td['style'] = ''    
     return paper_soup
 
 

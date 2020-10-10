@@ -4,6 +4,7 @@
 
 from django.utils import translation
 from django.utils.translation import get_language
+from django.db.models import Prefetch
 
 from .models import (
 	Product,
@@ -13,6 +14,7 @@ from .models import (
 
 def projects(request):
     context = {}
-    projects = ProductCategory.objects.visible()
-    context['projects'] = projects
+    project_categories = ProductCategory.objects.prefetch_related(Prefetch('projects', queryset=Product.objects.published()))
+    project_categories = ProductCategory.objects.visible()
+    context['project_categories'] = project_categories
     return context

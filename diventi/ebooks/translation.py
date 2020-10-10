@@ -14,7 +14,7 @@ from .models import (
 
 @register(Book)
 class BookTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'lead', 'summary', 'slug')
+    fields = ('title', 'paper_id', 'description', 'summary', 'slug')
 
 @register(Part)
 class PartTranslationOptions(TranslationOptions):

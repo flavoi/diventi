@@ -8,14 +8,14 @@
       <div class="row no-gutters">
          <div class="col-12">
             <div class="dropdown-body dropdown-body-right bg-dropdown-secondary h-100">
-               {% for category in projects %}
+               {% for category in project_categories %}
                <h6 class="dropdown-header text-info mb-1 mt-2">{{ category.title|capfirst }}</h6>
                <div class="list-group list-group-flush">
                   {% for project in category.projects.all %}
                   <div class="list-group-item bg-transparent border-0 px-0 py-2">
                      <div class="media d-flex">
                         <span class="h6">
-                           <i class="far fa-{{ category.icon|default:'box' }} fa-fw"></i>
+                           <i class="fal fa-{{ category.icon|default:'box' }} fa-fw"></i>
                         </span>
                         <div class="media-body ml-2">
                             <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
@@ -87,12 +87,12 @@
                         <a href="{% url 'admin:blog_article_changelist' %}" class="dropdown-item">{% trans "articles"|capfirst %}</a>
                         <a href="{% url 'admin:accounts_diventiuser_changelist' %}" class="dropdown-item">{% trans "users"|capfirst %}</a>
                         <a href="{% url 'admin:products_product_changelist' %}" class="dropdown-item">{% trans "projects"|capfirst %}</a>
-                        <a href="{% url 'admin:ebooks_section_changelist' %}" class="dropdown-item">{% trans "ebook sections"|capfirst %}</a>
                         <a href="{% url 'admin:feedbacks_survey_changelist' %}" class="dropdown-item">{% trans "surveys"|capfirst %}</a>
                     </div>
                     <div class="col-sm-6">
+                        <a href="{% url 'admin:ebooks_book_changelist' %}" class="dropdown-item">{% trans "books"|capfirst %}</a>
                         <a href="{% url 'admin:comments_diventicomment_changelist' %}" class="dropdown-item">{% trans "comments"|capfirst %}</a>
-                        <a href="{% url 'admin:reviews_review_changelist' %}" class="dropdown-item">{% trans "reviews"|capfirst %}</a>
+                        <a href="{% url 'admin:reviews_review_changelist' %}" class="dropdown-item">{% trans "reviews"|capfirst %}</a>                        
                         <a href="{% url 'admin:feedbacks_answer_changelist' %}" class="dropdown-item">{% trans "answers"|capfirst %}</a>
                     </div>
                 </div>

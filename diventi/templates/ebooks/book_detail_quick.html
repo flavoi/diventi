@@ -1,0 +1,112 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}{{ object.title|capfirst }}{% endblock title %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'diventi/css/diventi-ebook-quick.min.gz.css' %}">
+<style>
+    /* This is what we are focused on */
+    .table-wrapper{
+      overflow-y: scroll;
+      flex-grow: 1;
+    }
+
+    .table-title {
+        position: sticky;
+        top: 0;
+    }
+</style>
+{% endblock extrahead %}
+
+{% block content %}
+
+<section class="section-half-rounded">
+    <div class="jumbotron section-inner left-0 rounded-right bg-primary overflow-hidden col-lg-5">
+        <img alt="{{ book.title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.image }}" class="img-as-bg">        
+    </div>
+    <div class="container text-center text-lg-left py-5">
+        <div class="row">
+            <div class="col-lg-7 ml-auto">
+                <div class="card bg-dark shadow-lg border-0 mb-0">
+                    <div class="px-5 py-6">
+                        <a href="#" class="badge badge-primary badge-pill">{{ book.book_product.category }}</a>
+                        <h2 class="h2 lh-180 text-white font-weight-bold mt-3 mb-3">{{ paper_title|capfirst }}</h2>
+                        <p class="lead text-muted">{{ book.description|capfirst }}</p>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                     <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
+                        {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="slice">
+    <div class="container">
+        <div class="row row-grid justify-content-between">
+            <div class="col-lg-3">
+               <div data-toggle="sticky" data-sticky-offset="50">
+                    <div class="card">
+                        <div class="card-body">
+                            <nav class="nav nav-pills flex-column" id="nav-terms">
+                                {% for title in paper_toc %}
+                                    <a class="nav-link text-sm {% if title.name == 'h1'%}{% if not forloop.first %}pt-3{% endif %} text-dark{% endif %} align-middle" href="#{{ title.anchor }}" data-scroll-to="" data-scroll-to-offset="130">
+                                        {% if title.name == 'h1'%}
+                                        <b>
+                                            {{ title.string }}
+                                        </b>
+                                        {% else %}
+                                            {{ title.string }}
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}                                 
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 mx-auto" id="top">
+                {% if book.logo %}
+                <div class="card bg-{{ book.logo_background }} hover-shadow-lg hover-translate-y-n3">
+                    <div class="card-body text-center h-100">
+                        <img class="w-100 d-block p-0 img-fluid rounded mx-auto" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.logo }}" data-src="">
+                    </div>
+                </div>
+                {% endif %}
+                <article>
+                    {{ paper_content|safe }}                    
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="customizer">
+    <a href="#top" class="btn btn-sm btn-primary btn-icon-only rounded-circle hover-scale-110 shadow" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'jump to top'|capfirst %}">
+        <span class="btn-inner--icon"><i class="fas fa-heading"></i></span>
+    </a>
+</div>
+
+{% endblock content %}
+
+{% block footercolor %}{% endblock footercolor %}
+
+{% block quick_js %}{% endblock quick_js %}
+
+{% block extrascript %}
+{% load static %}
+<script src="{% static 'readingtime/readingtime.js' %}"></script>
+<script>
+    
+    $('article').readingTime({
+        readingTimeTarget: '.eta',
+        wordCountTarget: '.words',
+    });
+</script>
+{% endblock extrascript %}

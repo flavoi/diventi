@@ -7,18 +7,35 @@ from django.views import View
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import Http404
+from django.conf import settings
 
 from dal import autocomplete
 
 from diventi.core.views import StaffRequiredMixin
+from diventi.core.utils import (
+    get_dropbox_paper_soup, 
+    adjust_paper_visual_styles,
+    adjust_paper_image_styles,
+    render_paper_images_by_direct_url,
+    remove_dropbox_placeholders,
+)
 from diventi.products.models import Product
 from diventi.tooltips.models import (
     TooltipGroup,
     Tooltip,
 )
 
-from .models import Book, Chapter, Section, UniversalSection
+from .models import (
+    Book, 
+    Chapter, 
+    Section, 
+    UniversalSection,
+)
 
+from .utils import (    
+    make_paper_toc,
+    render_diventi_snippets,
+)
 
 class UserHasProductMixin(UserPassesTestMixin):
     """ 
@@ -83,6 +100,37 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
         context = super().get_context_data(**kwargs)
         first_chapter = self.object.chapters.order_by('order_index').first()
         context['next_chapter'] = first_chapter
+        return context
+
+from django.utils.safestring import mark_safe
+class PaperEbookView(BookDetailView):
+    """ Renders an ebook from a paper document """
+   
+    def get_object(self, queryset=None):
+        obj = super(PaperEbookView, self).get_object(queryset)
+        if not obj.paper_id:
+            raise Http404(_('This book is not linked to a paper, please contact the authors.'))
+        return obj
+
+    def get_template_names(self):
+        return ['ebooks/book_detail_quick.html', ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paper_id = self.object.paper_id        
+        paper_soup = get_dropbox_paper_soup(paper_id)
+        diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
+        context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
+        context['paper_toc'] = make_paper_toc(paper_soup)
+        render_diventi_snippets(paper_soup, diventi_universale_soup)
+        adjust_paper_visual_styles(paper_soup)
+        render_paper_images_by_direct_url(paper_soup)
+        remove_dropbox_placeholders(paper_soup)
+        output_soup = paper_soup.select_one('.ace-editor')
+        context['paper_content'] = str(output_soup)
+        f = open("./test_soup.html", "a")
+        f.write(mark_safe(str(output_soup)))
+        f.close()
         return context
 
 

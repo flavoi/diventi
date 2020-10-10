@@ -5,6 +5,7 @@ from .models import (
 	Section, 
 	SearchSuggestion,
     AboutArticle,
+    PolicyArticle,
 )
 
 
@@ -22,6 +23,12 @@ class SectionTranslationOptions(TranslationOptions):
 class SearchSuggestionOptions(TranslationOptions):
     fields = ('title', 'description',)
 
+
 @register(AboutArticle)
+class AboutArticleOptions(TranslationOptions):
+    fields = ('title', 'content', 'slug')
+
+
+@register(PolicyArticle)
 class AboutArticleOptions(TranslationOptions):
     fields = ('title', 'content', 'slug')

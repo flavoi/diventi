@@ -119,3 +119,17 @@ class AboutArticle(TimeStampedModel, PublishableModel, Element):
         verbose_name_plural = _('about article')
 
 
+class PolicyArticle(TimeStampedModel, PublishableModel, Element):
+    content = RichTextField(verbose_name=_('content'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+
+    def get_absolute_url(self):
+        return reverse('landing:policy', args=[str(self.slug,)])
+
+    class Meta:
+        verbose_name = _('policy article')
+        verbose_name_plural = _('policy article')    
+
+
+
+

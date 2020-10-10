@@ -63,17 +63,74 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
     """ A collection of chapters that constitutes a product. """
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    book_product = models.OneToOneField(Product, null=True, blank=True, related_name='book', on_delete=models.SET_NULL, verbose_name=_('product'))
-    lead = models.TextField(blank=True, verbose_name=_('lead'))
-    summary = RichTextField(verbose_name=_('summary'))
-    DEFAULT_TEMPLATE = 'web'
+    book_product = models.OneToOneField(
+        Product, 
+        null = True, 
+        blank = True, 
+        related_name = 'book', 
+        on_delete = models.SET_NULL, 
+        verbose_name = _('product'),
+    )
+    summary = RichTextField(
+        blank = True,
+        verbose_name = _('summary'),
+    )
+    DEFAULT_TEMPLATE = 'quick'
     TEMPLATE_CHOICES = (
-        (DEFAULT_TEMPLATE, _('Web')),
+        (DEFAULT_TEMPLATE, _('Quick')),
+        ('web', _('Web')),
         ('material', _('Material')),
     )
     # The template adds a suffix to the template name relative to this object
-    template = models.CharField(max_length=50, choices=TEMPLATE_CHOICES, default=DEFAULT_TEMPLATE, verbose_name=_('template'))
-
+    template = models.CharField(
+        max_length=50, 
+        choices=TEMPLATE_CHOICES, 
+        default=DEFAULT_TEMPLATE, 
+        verbose_name=_('template'),
+    )
+    # The unique ID that points to the dropbox paper document
+    paper_id = models.CharField(
+        max_length = 50,
+        blank = True,
+        null = True,
+        verbose_name = _('paper id')
+    )
+    logo = models.URLField(
+        blank=True, 
+        verbose_name = _('logo'),
+    )
+    DEFAULT_BACKGROUND = 'secondary'
+    BACKGROUND_CHOICES = [
+        ('light-secondary', 'dark-secondary'),
+        (DEFAULT_BACKGROUND, 'secondary'),
+        ('dark-secondary', 'dark-secondary'),
+        ('light-primary', 'light-primary'), 
+        ('primary', 'primary'),
+        ('dark-primary', 'dark-primary'),        
+        ('light-dark', 'light-dark'),
+        ('dark', 'dark'),
+        ('dark-dark', 'dark-dark'),
+        ('light-success', 'light-success'),
+        ('success', 'success'),
+        ('dark-success', 'dark-success'),
+        ('light-danger', 'light-danger'),
+        ('danger', 'danger'),
+        ('dark-danger', 'dark-danger'),
+        ('light-warning', 'light-warning'), 
+        ('warning', 'warning'),
+        ('dark-warning', 'dark-warning'),
+        ('light-info', 'light-info'),
+        ('info', 'info'),
+        ('dark-info', 'dark-info'),
+    ]    
+    logo_background = models.CharField(
+        blank = False,
+        choices = BACKGROUND_CHOICES, 
+        default = DEFAULT_BACKGROUND,
+        verbose_name = _('logo background'),
+        max_length = 30,
+    )
+    
     objects = BookQuerySet.as_manager()
 
     def __str__(self):
@@ -95,6 +152,13 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
         else:
             return None
     get_product_image.short_description = _('image')
+
+    def get_logo_image(self):
+        if self.logo:
+            return mark_safe('<img style="max-width:250px;" src="{0}" />'.format(self.logo))
+        else:
+            return _('No image')
+    get_logo_image.short_description = _('logo')
 
     # Check if this book can be read by the user
     def is_published(self):

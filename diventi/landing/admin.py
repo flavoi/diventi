@@ -20,6 +20,7 @@ from .models import (
     Section,
     SearchSuggestion,
     AboutArticle,
+    PolicyArticle,
 )
 from .forms import SectionForm
 
@@ -73,7 +74,7 @@ class SearchSuggestionAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     fields = ('title', 'icon', 'description',)
 
 
-class AboutArticleAdmin(DiventiTranslationAdmin):
+class GenericArticleAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
@@ -90,4 +91,5 @@ class AboutArticleAdmin(DiventiTranslationAdmin):
 
 admin.site.register(Section, SectionAdmin)
 admin.site.register(SearchSuggestion, SearchSuggestionAdmin)
-admin.site.register(AboutArticle, AboutArticleAdmin)
+admin.site.register(AboutArticle, GenericArticleAdmin)
+admin.site.register(PolicyArticle, GenericArticleAdmin)

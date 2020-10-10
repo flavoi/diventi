@@ -15,7 +15,6 @@ from diventi.core.views import StaffRequiredMixin
 from diventi.core.utils import (
     get_dropbox_paper_soup, 
     adjust_paper_visual_styles,
-    adjust_paper_image_styles,
     render_paper_images_by_direct_url,
     remove_dropbox_placeholders,
 )

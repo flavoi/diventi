@@ -104,9 +104,9 @@ def render_paper_images_by_direct_url(paper_soup):
             image_tag['class'] = 'img-fluid rounded mx-auto'
             is_table_link = link_tag.find_parent('table')
             if is_table_link:
-                image_tag['class'] = 'img-fluid rounded mx-auto'
+                image_tag['class'] = 'rounded mx-auto'
             else:
-                image_tag['class'] = 'w-75 d-block p-2 img-fluid rounded mx-auto'
+                image_tag['class'] = 'w-75 d-block p-2 rounded mx-auto'
             link_tag = link_tag.find_parent('span')            
             link_tag.replace_with(image_tag)
     return paper_soup

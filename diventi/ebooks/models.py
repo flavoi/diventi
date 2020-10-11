@@ -36,10 +36,11 @@ class AbstractSection(Element, TimeStampedModel):
 
 class BookQuerySet(models.QuerySet):
 
-    # Get the list of published articles 
+    # Get the list of published articles
+    # It always returns the book if the user is super or author.
     def published(self):
         user = CuserMiddleware.get_user()
-        if user.is_superuser:
+        if user.is_superuser or self.book_product.has_user_authored(user):
             books = self
         else:
             books = self.filter(published=True)

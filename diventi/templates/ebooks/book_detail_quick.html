@@ -31,7 +31,10 @@
             <div class="col-lg-7 ml-auto">
                 <div class="card bg-dark shadow-lg border-0 mb-0">
                     <div class="px-5 py-6">
-                        <a href="#" class="badge badge-primary badge-pill">{{ book.book_product.category }}</a>
+                        <span class="badge badge-primary badge-pill">{{ book.book_product.category }}</span>
+                        {% with book as object %}
+                            {% include 'publishable_badge.html' %}
+                        {% endwith %}
                         <h2 class="h2 lh-180 text-white font-weight-bold mt-3 mb-3">{{ paper_title|capfirst }}</h2>
                         <p class="lead text-muted">{{ book.description|capfirst }}</p>
                     </div>
@@ -102,10 +105,12 @@
 {% load static %}
 <script src="{% static 'readingtime/readingtime.js' %}"></script>
 <script>
-    
     $('article').readingTime({
         readingTimeTarget: '.eta',
         wordCountTarget: '.words',
+    });
+    $(document).ready(function() { 
+        $('[data-toggle="tooltip"]').tooltip();    
     });
 </script>
 {% endblock extrascript %}

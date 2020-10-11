@@ -138,7 +138,7 @@
                                         <span class="clearfix"></span>
                                         <div class="mt-3 pt-3 delimiter-top">
                                             <div class="actions">
-                                                {% if bought %}
+                                                {% if bought and product.book.published %}
                                                 <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
                                                     <span class="btn-inner--icon">
                                                         <i class="far fa-book-open"></i>
@@ -149,7 +149,7 @@
                                                 </a>
                                                 {% else %}
                                                 <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
-                                                    {% if product.unfolded %}
+                                                    {% if product.unfolded and product.book.published %}
                                                         <span class="btn-inner--icon">
                                                             <i class="far fa-coffee-pot fa-lg"></i>
                                                         </span>

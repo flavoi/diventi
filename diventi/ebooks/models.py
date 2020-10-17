@@ -40,7 +40,7 @@ class BookQuerySet(models.QuerySet):
     # It always returns the book if the user is super or author.
     def published(self):
         user = CuserMiddleware.get_user()
-        if user.is_superuser or self.book_product.has_user_authored(user):
+        if user.is_superuser:
             books = self
         else:
             books = self.filter(published=True)

@@ -80,7 +80,7 @@
                                             <div class="ml-auto">
                                                 <div class="actions">
                                                     <small>
-                                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}: {{ product.modified|date:"M d, Y" }}">
+                                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}: {{ product.modified|date:'M d, Y' }}">
                                                         <i class="far fa-lg fa-clock mr-1"></i>
                                                     </span>
                                                     </small>
@@ -138,32 +138,32 @@
                                         <span class="clearfix"></span>
                                         <div class="mt-3 pt-3 delimiter-top">
                                             <div class="actions">
-                                                {% if bought and product.book.published %}
-                                                <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
-                                                    <span class="btn-inner--icon">
-                                                        <i class="far fa-book-open"></i>
-                                                    </span>
-                                                    <span class="btn-inner--text ml-1">
-                                                        {% trans "open"|capfirst %}
-                                                    </span>
-                                                </a>
-                                                {% else %}
-                                                <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
-                                                    {% if product.unfolded and product.book.published %}
+                                                {% if product.book.published and bought %}
+                                                    <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
                                                         <span class="btn-inner--icon">
-                                                            <i class="far fa-coffee-pot fa-lg"></i>
+                                                            <i class="far fa-book-open"></i>
                                                         </span>
                                                         <span class="btn-inner--text ml-1">
-                                                            {% trans "add this item to your collection to access its contents"|capfirst %}.
+                                                            {% trans "open"|capfirst %}
                                                         </span>
-                                                    {% else %}
+                                                    </a>
+                                                {% elif product.book.published and product.unfolded %}
+                                                    <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
                                                         <span class="btn-inner--icon">
                                                             <i class="far fa-balance-scale fa-lg"></i>
                                                         </span>
                                                         <span class="btn-inner--text ml-1">
-                                                            {{ product.courtesy_message }}
+                                                            {% trans "add this item to your collection to access its contents"|capfirst %}.
                                                         </span>
-                                                    {% endif %}
+                                                    </a>
+                                                {% else %}
+                                                <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
+                                                    <span class="btn-inner--icon">
+                                                        <i class="far fa-coffee-pot fa-lg"></i>                     
+                                                    </span>
+                                                    <span class="btn-inner--text ml-1">
+                                                        {{ product.courtesy_message }}
+                                                    </span>
                                                 </a>
                                                 {% endif %}
                                             </div>
@@ -176,8 +176,9 @@
                 </div>
             </div>
         </div>
+        <div class="shape-container shape-line shape-position-bottom"><svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class=""><polygon points="2560 0 2560 100 0 100"></polygon></svg>
+        </div>
     </div>
-    <div class="shape-container shape-line shape-position-bottom"><svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class=""><polygon points="2560 0 2560 100 0 100"></polygon></svg></div>
 </section>
 
 <!-- Features section -->

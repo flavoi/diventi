@@ -52,13 +52,15 @@ class ProductDetailView(DetailView):
         user = self.request.user
         context['add_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
-        context['bought'] = self.object.user_has_already_bought(user)
+        context['bought'] = self.object.user_has_already_bought(user)        
         context['key'] = settings.STRIPE_PUBLISHABLE_KEY
         context['featured_detail'] = self.object.details.highlighted_or_first()
         if self.object.at_a_premium:
             stripe.api_key = settings.STRIPE_SECRET_KEY
             stripe_price = stripe.Price.retrieve(self.object.stripe_price)
             context['price'] = humanize_price(float(stripe_price['unit_amount_decimal']))
+        if user.is_authenticated and self.object.product_survey:
+            context['survey_answered'] = self.object.product_survey.user_has_answered(user)
         return context
 
 

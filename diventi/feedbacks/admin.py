@@ -49,7 +49,7 @@ class QuestionGroupAdmin(DiventiTranslationAdmin):
 
 
 class SurveyAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'public', 'get_question_groups', 'published', 'publication_date',]
+    list_display = ['title', 'published',  'public', 'get_question_groups', 'publication_date',]
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (

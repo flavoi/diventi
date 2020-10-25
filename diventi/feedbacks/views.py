@@ -57,7 +57,7 @@ def survey_questions(request, slug, author_name=None):
         user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
     elif survey.public:
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
-        if user_has_answered:
+        if user_has_answered and author_name != request.user.get_full_name():
             messages.warning(request, _('An other user already picked that name and answered, please choose another name.'))
             return redirect(reverse('feedbacks:new_answers_gate', args=[survey.slug,]))
         elif author_name is None:
@@ -124,7 +124,13 @@ def new_answers_gate(request, slug):
 
     survey = get_object_or_404(Survey.objects.published(), slug=slug)
     
-    if survey.public:
+    if request.user.is_authenticated:
+        user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
+        if user_has_answered:
+            return redirect(reverse('feedbacks:answers', args=[slug,]))
+        else:
+            return redirect(reverse('feedbacks:questions', args=[slug,]))
+    elif survey.public:
         if request.method == 'POST':
             form = FeaturedSurveyInitForm(request.POST)
             if form.is_valid():
@@ -150,16 +156,4 @@ def new_answers_gate(request, slug):
             }
             return render(request, template_name, context)
     else:
-        user_has_answered = False
-        user_can_submit = False
-
-        if request.user.is_authenticated:
-            user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
-            if user_has_answered:
-                return redirect(reverse('feedbacks:answers', args=[slug,]))
-            else:
-                return redirect(reverse('feedbacks:questions', args=[slug,]))
-       
-    raise Http404(_("This survey is not open to public, sorry."))
-
-
+        raise Http404(_("This survey is not open to public, sorry."))

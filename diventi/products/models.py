@@ -13,6 +13,8 @@ from cuser.middleware import CuserMiddleware
 
 from .fields import ProtectedFileField
 
+from diventi.feedbacks.models import Survey
+
 from diventi.core.models import (
     Element,
     DiventiImageModel,
@@ -36,6 +38,7 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch_related('details')
         products = products.select_related('category')
         products = products.prefetch_related('formats')
+        products = products.select_related('product_survey')
         return products
 
     # Fetch the products purchased by the user
@@ -182,16 +185,24 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         verbose_name = _('formats'),
     )
     stripe_price = models.CharField(
-        blank=True,
-        max_length=50,
-        verbose_name=_('stripe price')
+        blank = True,
+        max_length = 50,
+        verbose_name = _('stripe price')
     )
     stripe_product = models.CharField(
-        unique=True,
-        null=True,
-        blank=True,
-        max_length=50,
-        verbose_name=_('stripe product')
+        unique = True,
+        null = True,
+        blank = True,
+        max_length = 50,
+        verbose_name = _('stripe product')
+    )
+    product_survey = models.ForeignKey(
+        Survey, 
+        related_name = 'product', 
+        on_delete = models.SET_NULL, 
+        null = True, 
+        blank = True, 
+        verbose_name = _('survey')
     )
 
     objects = ProductQuerySet.as_manager()

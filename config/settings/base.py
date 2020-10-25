@@ -254,12 +254,28 @@ CKEDITOR_CONFIGS = {
             ['Undo', 'Redo'],
             ['Styles', 'Format'],
             ['Link', 'Unlink', 'Anchor'],
-            ['Image', 'Table', 'HorizontalRule'],
+            ['Image', 'Table', 'HorizontalRule', 'customEmbed'],
             ['Bold', 'Italic', 'Underline', 'RemoveFormat'],
             ['NumberedList', 'BulletedList', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',],
             ['Source',],
         ],
         'toolbar': 'Basic',
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
         'stylesSet': [
             {
                 "name": _('Base block'),

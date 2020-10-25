@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import mark_safe
 from django.urls import reverse, reverse_lazy
@@ -6,9 +7,14 @@ from django.template.defaultfilters import truncatechars
 
 from cuser.middleware import CuserMiddleware
 
-from diventi.core.models import TimeStampedModel, PublishableModel, DiventiCoverModel, DiventiImageModel, FeaturedModel, FeaturedModelQuerySet
-from diventi.accounts.models import DiventiUser
-
+from diventi.core.models import (
+    TimeStampedModel, 
+    PublishableModel, 
+    DiventiCoverModel, 
+    DiventiImageModel, 
+    FeaturedModel, 
+    FeaturedModelQuerySet
+)
 
 SHORT_STRINGS_LENGTH = 60
 
@@ -120,6 +126,10 @@ class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
         return mark_safe("<br>".join([s.__str__() for s in self.question_groups.all()]))
     get_question_groups.short_description = _('Question Groups')
 
+    # Returns true if the user has answered this survey
+    def user_has_answered(self, user):
+        return self.answers.filter(author=user).exists()
+
 
 class AnswerQuerySet(models.QuerySet):
 
@@ -140,7 +150,7 @@ class Answer(TimeStampedModel):
         One answer can be given for each question. If the question provides a score, the answer get it too.
     """
     author = models.ForeignKey(
-        DiventiUser,         
+        settings.AUTH_USER_MODEL,         
         on_delete=models.SET_NULL, 
         blank=True, 
         null=True,

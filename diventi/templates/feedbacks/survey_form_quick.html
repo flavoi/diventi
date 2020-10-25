@@ -14,20 +14,18 @@
 <section class="slice pt-6 mt-5 bg-light-secondary">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <span class="fa-stack fa-2x">
-                          <i class="fas fa-circle fa-stack-2x text-danger"></i>
-                          <i class="far fa-poll fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="col ml-n3 ml-md-n2" >
-                        <h1 class="mb-0">
-                            {{ survey.title }}
-                        </h1>
-                        <span class="lead opacity-8">{% trans "You are answering as" %} <strong>{{ author_name }}</strong>.</span>
-                    </div>
+            <div class="row">
+                <div class="col-auto">
+                    <span class="fa-stack fa-2x">
+                      <i class="fas fa-circle fa-stack-2x text-danger"></i>
+                      <i class="far fa-poll fa-stack-1x fa-inverse"></i>
+                    </span>
+                </div>
+                <div class="col ml-n3 ml-md-n2" >
+                    <h1 class="mb-0">
+                        {{ survey.title }}
+                    </h1>
+                    <span class="lead opacity-8">{% trans "You are answering as" %} <strong>{{ author_name }}</strong>.</span>
                 </div>
             </div>
         </div>

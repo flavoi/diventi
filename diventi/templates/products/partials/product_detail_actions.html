@@ -9,7 +9,7 @@
             </a>
             <div class="mt-1">
             <small>
-                {% trans "this content is available in"|capfirst %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "your collection" %}</a>.
+                {% trans "this content is available"|capfirst %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "in your collection" %}</a>.
             </small>
             </div>
         </div>                                                             
@@ -40,14 +40,14 @@
                 <span class="btn-inner--text">{{ product.product_survey.title }}</span>
             </a>
         {% else %}
-            <a class="btn {{ button_disabled_class|default:'btn-info' }}  btn-sm btn-icon disabled">
+            <a class="btn {{ button_disabled_class|default:'btn-success' }} btn-sm btn-icon disabled">
                 <i class="far fa-thumbs-up mr-1"></i>
                 <span class="btn-inner--text">{% trans "you've already answered"|capfirst %}!</span>
             </a>
-            <div class="pt-2">
-                <a href="{% url 'feedbacks:answers' product.product_survey.slug %}" class="badge badge-soft-dark">
-                    {% trans "check your answers"|capfirst %} <i class="far fa-chevron-circle-right fa-fw"></i>
-                </a>
+            <div class="mt-1">
+                <small>
+                    {% trans "you can"|capfirst %} <a href="{% url 'feedbacks:answers' product.product_survey.slug %}"> {% trans "check your answers here" %}</a> {% trans 'or' %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "in your collection" %}</a>.
+                </small>
             </div>
         {% endif %}
     {% else %}

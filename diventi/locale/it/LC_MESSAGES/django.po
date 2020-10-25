@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-25 10:31+0100\n"
+"POT-Creation-Date: 2020-10-25 10:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1764,28 +1764,28 @@ msgstr "<slug:slug>/check-out/fallito/"
 msgid "last purchase: %(last_sub)s on %(date_joined)s"
 msgstr "ultimo acquisto: %(last_sub)s - %(date_joined)s"
 
-#: diventi/products/utils.py:30 diventi/products/views.py:100
+#: diventi/products/utils.py:30 diventi/products/views.py:101
 msgid "The user has this product already."
 msgstr "L'utente possiede già questo prodotto."
 
-#: diventi/products/views.py:89
+#: diventi/products/views.py:90
 msgid "This item has been added to you collection"
 msgstr "Questo oggetto è stato aggiunto alla tua collezione"
 
-#: diventi/products/views.py:110
+#: diventi/products/views.py:111
 msgid "This product has been dropped from your collection"
 msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 
-#: diventi/products/views.py:117
+#: diventi/products/views.py:118
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
-#: diventi/products/views.py:211
+#: diventi/products/views.py:212
 #, python-format
 msgid "Diventi: %(title)s purchase"
 msgstr "Diventi: acquisto %(title)s"
 
-#: diventi/products/views.py:212
+#: diventi/products/views.py:213
 #, python-format
 msgid ""
 "Dear %(user)s, you have successufully purchased %(title)s for %(price)s."
@@ -3654,12 +3654,12 @@ msgid "you've already got this item"
 msgstr "possiedi già questo oggetto"
 
 #: diventi/templates/products/partials/product_detail_actions.html:12
-msgid "this content is available in"
-msgstr "questo contenuto è disponibile in"
+msgid "this content is available"
+msgstr "questo contenuto è disponibile"
 
 #: diventi/templates/products/partials/product_detail_actions.html:12
-msgid "your collection"
-msgstr "la tua collezione"
+msgid "in your collection"
+msgstr "nella tua collezione"
 
 #: diventi/templates/products/partials/product_detail_actions.html:30
 #: diventi/templates/products/product_detail.html:129
@@ -3671,8 +3671,12 @@ msgid "you've already answered"
 msgstr "hai già risposto, grazie"
 
 #: diventi/templates/products/partials/product_detail_actions.html:49
-msgid "check your answers"
-msgstr "visualizza le tue risposte"
+msgid "you can"
+msgstr "puoi"
+
+#: diventi/templates/products/partials/product_detail_actions.html:49
+msgid "check your answers here"
+msgstr "visualizzare le tue risposte qui"
 
 #: diventi/templates/products/partials/product_detail_actions.html:62
 msgid "to add this object in your collection"

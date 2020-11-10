@@ -108,8 +108,7 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         verbose_name=_('related articles'),
     ) # Connect this article to others
 
-    objects = ArticleQuerySet.as_manager()
-    
+    objects = ArticleQuerySet.as_manager()   
 
     class Meta:
         verbose_name = _('article')
@@ -138,3 +137,5 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
 
     def class_name(self):
         return _('article')
+
+Article._meta.get_field('color').help_text = _('This color will be displayed in search results.')

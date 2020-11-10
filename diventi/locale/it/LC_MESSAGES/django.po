@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-25 10:52+0100\n"
+"POT-Creation-Date: 2020-11-10 08:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -674,6 +674,10 @@ msgstr "Correlato"
 #: diventi/blog/apps.py:7
 msgid "Blog"
 msgstr "Blog"
+
+#: diventi/blog/forms.py:12
+msgid "This color will be displayed in search results."
+msgstr ""
 
 #: diventi/blog/models.py:83
 msgid "Blog Cover"
@@ -2145,6 +2149,7 @@ msgstr "Profilo"
 #: diventi/templates/accounts/user_detail_quick_modal.html:51
 #: diventi/templates/products/checkout_done_quick.html:37
 #: diventi/templates/products/partials/product_detail_actions.html:12
+#: diventi/templates/products/partials/product_detail_actions.html:49
 #: diventi/templates/products/product_detail.html:114
 msgid "collection"
 msgstr "collezione"
@@ -2217,7 +2222,7 @@ msgstr "Ho dimenticato la mia password"
 #: diventi/templates/accounts/user_change_password_quick.html:62
 #: diventi/templates/accounts/user_change_privacy_quick.html:55
 #: diventi/templates/accounts/user_settings_quick.html:93
-#: diventi/templates/feedbacks/survey_form_quick.html:119
+#: diventi/templates/feedbacks/survey_form_quick.html:117
 msgid "save"
 msgstr "salva"
 
@@ -2755,7 +2760,7 @@ msgstr "Nessun risultato trovato"
 
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
-#: diventi/templates/feedbacks/survey_form_quick.html:29
+#: diventi/templates/feedbacks/survey_form_quick.html:28
 msgid "You are answering as"
 msgstr "Stai rispondendo come"
 
@@ -3658,6 +3663,7 @@ msgid "this content is available"
 msgstr "questo contenuto è disponibile"
 
 #: diventi/templates/products/partials/product_detail_actions.html:12
+#: diventi/templates/products/partials/product_detail_actions.html:49
 msgid "in your collection"
 msgstr "nella tua collezione"
 
@@ -3677,6 +3683,12 @@ msgstr "puoi"
 #: diventi/templates/products/partials/product_detail_actions.html:49
 msgid "check your answers here"
 msgstr "visualizzare le tue risposte qui"
+
+#: diventi/templates/products/partials/product_detail_actions.html:49
+#, fuzzy
+#| msgid "Poor"
+msgid "or"
+msgstr "Scarso"
 
 #: diventi/templates/products/partials/product_detail_actions.html:62
 msgid "to add this object in your collection"
@@ -4558,3 +4570,4 @@ msgstr "Suggerimento"
 #~| msgid "Italian"
 #~ msgid "tan"
 #~ msgstr "Italiano"
+                                                             

@@ -45,6 +45,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Security
 - [core] Updated urllib from v0.17.0 to v0.18.0
 - [core] Updated django from v2.2.12 to v2.2.16
+- [core] Updated cryptography from v2.3.0 to v3.2.0
 
 
 ## [1.0.0-beta-7] → 2020-04-02

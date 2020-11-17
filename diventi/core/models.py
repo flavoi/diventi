@@ -11,12 +11,12 @@ from cuser.middleware import CuserMiddleware
 
 
 COLORS_CHOICES = (
-    ('info', _('Blue')),
-    ('primary', _('Rose')),
+    ('info', _('Light blue')),
+    ('primary', _('Blue')),
     ('danger', _('Red')),
     ('warning', _('Yellow')),
     ('success', _('Green')),
-    ('default', _('Gray')),
+    ('secondary', _('Gray')),
     ('dark', _('Black')),
     ('light', _('White')),
 )
@@ -34,6 +34,23 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
+class PublishableModelQuerySet(models.QuerySet):
+
+    # Get the list of published objects
+    def published(self):
+        qs = self.filter(published=True)
+        return qs
+
+
+class PublishableModelManager(models.Manager):
+
+    def get_queryset(self):
+        return PublishableModelQuerySet(self.model, using=self._db)
+
+    def published(self):
+        return self.get_queryset().published()
+
+
 class PublishableModel(models.Model):
     """
     A concrete base class model that updates the publication
@@ -41,6 +58,8 @@ class PublishableModel(models.Model):
     """
     published = models.BooleanField(default=False, verbose_name=_('published'))
     publication_date = models.DateTimeField(blank=True, null=True, verbose_name=_('publication_date'))
+
+    objects = PublishableModelManager()
 
     # Pubblication date is updated if published has been modified from False to True
     def __init__(self, *args, **kwargs):
@@ -98,8 +117,31 @@ class Element(models.Model):
     """
     An abstract base class model that represents a single piece of content.
     """
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    icon = models.CharField(blank=True, max_length=30, verbose_name=_('icon'))
+    title = models.CharField(
+        max_length = 80,
+        verbose_name = _('title'),
+    )
+    icon = models.CharField(
+        blank = True,
+        max_length = 30, 
+        verbose_name = _('icon'),
+    )
+    ICON_STYLE_CHOICES = (
+        ('r', 'r - regular'),
+        ('s', 's - solid'),
+        ('l', 'l - light'),
+        ('d', 'd - duotone'),
+        ('b', 'b - brand'),
+
+    )
+    ICON_STYLE_DEFAULT = 'r'
+    icon_style = models.CharField(
+        blank = True,
+        choices = ICON_STYLE_CHOICES,
+        default = ICON_STYLE_DEFAULT,
+        max_length = 1,
+        verbose_name = _('icon style')
+    )
     description = models.TextField(blank=True, verbose_name=_('description'))
     color = models.CharField(blank=True, choices=COLORS_CHOICES, max_length=30, default='default', verbose_name=_('color'))
 
@@ -108,14 +150,14 @@ class Element(models.Model):
 
     def icon_tag(self):
         if self.icon:
-            return mark_safe('<i class="fal fa-{0} fa-2x"></i>'.format(self.icon))
+            return mark_safe('<i class="fa{0} fa-{1} fa-2x fa-fw"></i>'.format(self.icon_style, self.icon))
         else:
             return _('No icon')    
     icon_tag.short_description = _('Icon')
 
     def color_tag(self):
         if self.color:
-            return mark_safe('<i class="fas fa-square fa-2x color-{0}"></i>'.format(self.color))
+            return mark_safe('<i class="fas fa-square fa-2x text-{0} fa-fw"></i>'.format(self.color))
         else:
             return _('No color')    
     color_tag.short_description = _('Color')
@@ -198,17 +240,8 @@ class DiventiCoverModel(DiventiImageModel):
 
 class PublishableModelQuerySet(models.QuerySet):
 
-    # Get self for super users or the published objects for everyone else
-    def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            published_model = self
-        else:
-            published_model = self.filter(published=True)
-        return published_model
-
     # Get just the published objects for everyone
-    def strictly_published(self):
+    def published(self):
         published_model = self.filter(published=True) 
         return published_model
 
@@ -219,7 +252,7 @@ class FeaturedModelQuerySet(PublishableModelQuerySet):
     # Even super users should not see featured objects if they are not strictly published
     def featured(self):
         try:
-            featured_model = self.strictly_published().get(featured=True)            
+            featured_model = self.published().get(featured=True)            
         except self.model.DoesNotExist:
             # Fail silently, return nothing
             featured_model = self.none() 
@@ -251,12 +284,49 @@ class FeaturedModelManager(models.Manager):
 
 class FeaturedModel(PublishableModel):
     """
-    An abstract base class that includes a featured boolean field that
+    An abstract base class that includes a featured boolean field
     
     """
     featured = models.BooleanField(default=False, verbose_name=_('featured'))
 
     objects = FeaturedModelManager()
+
+    class Meta:
+        abstract = True
+
+
+class HighlightedModelQuerySet(models.QuerySet):
+
+    # Get the highlighted object or the first item of the queryset
+    def highlighted_or_first(self):
+        try:
+            highlighted_model = self.get(highlighted=True)            
+        except self.model.DoesNotExist:
+            # Fail silently and return the first item
+            highlighted_model = self.first()
+        except self.model.MultipleObjectsReturned:
+            msg = _('Multiple highlighted objects returned. Please fix!')
+            raise self.model.MultipleObjectsReturned(msg)  
+        return highlighted_model
+
+
+class HighlightedModelManager(models.Manager):
+
+    def get_queryset(self):
+        return HighlightedModelQuerySet(self.model, using=self._db)
+
+    def highlighted_or_first(self):
+        return self.get_queryset().highlighted_or_first()    
+
+
+class HighlightedModel(models.Model):
+    """
+        An abstract bae class that includes a featured boolean field
+        without the publishable functionality.
+    """
+    highlighted = models.BooleanField(default=False, verbose_name=_('highlighted'))
+
+    objects = HighlightedModelManager()
 
     class Meta:
         abstract = True
@@ -283,18 +353,22 @@ class SectionModel(models.Model):
         ('centered', _('centered')),
         ('right', _('right')),
     )
-    alignment = models.CharField(default='centered', choices=ALIGNMENT_CHOICES, max_length=50, verbose_name=_('alignment'))
-
-    def get_alignment_classes(self):     
-        if self.alignment == 'left':
-            alignment_classes = 'mr-auto text-left'
-        elif self.alignment == 'centered':
-            alignment_classes = 'ml-auto mr-auto text-center'
-        elif self.alignment == 'right':
-            alignment_classes = 'ml-auto text-right'
-        else:
-            alignment_classes = ''   
-        return alignment_classes
+    alignment = models.CharField(
+        default='centered', 
+        choices=ALIGNMENT_CHOICES, 
+        max_length=50, 
+        verbose_name=_('alignment')
+    )
+    POSITION_CHOICES = (
+        (1, _('text first')),
+        (3, _('text second')),
+    )
+    position = models.PositiveIntegerField(
+        default=1, 
+        choices=POSITION_CHOICES,
+        verbose_name=_('text position')
+    )
 
     class Meta:
         abstract = True
+

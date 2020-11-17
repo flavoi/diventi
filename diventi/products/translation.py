@@ -1,7 +1,19 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory, ProductDetail
+from .models import (
+    Product, 
+    Chapter, 
+    ImagePreview, 
+    ProductCategory, 
+    ChapterCategory, 
+    ProductDetail,
+    ProductFormat,
+)
 
+
+@register(ProductFormat)
+class ProductFormatOptions(TranslationOptions):
+    fields = ('title', 'description',)
 
 @register(ProductDetail)
 class ProductTranslationOptions(TranslationOptions):
@@ -15,11 +27,11 @@ class ProductTranslationOptions(TranslationOptions):
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'abstract', 'description', 'file', 'slug', 'courtesy_short_message', 'courtesy_message')
+    fields = ('title', 'short_description', 'abstract', 'description', 'file', 'slug', 'courtesy_short_message', 'courtesy_message')
 
 
 @register(ChapterCategory)
-class ProductTranslationOptions(TranslationOptions):
+class ChapterCategoryTranslationOptions(TranslationOptions):
     fields = ('title',)
 
 
@@ -30,4 +42,4 @@ class ChapterTranslationOptions(TranslationOptions):
 
 @register(ImagePreview)
 class ImagePreviewTranslationOptions(TranslationOptions):
-    fields = ('label', 'image') # A preview can cointain text that has to be translated
+    fields = ('title', 'description', 'image')

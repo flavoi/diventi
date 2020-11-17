@@ -1,0 +1,10 @@
+{% load i18n %}
+<ul class="nav nav-tabs overflow-x">
+    {% for link in user_links %}
+    <li class="nav-item">
+        <a href="{{ link.url }}" class="nav-link {% ifequal link.url request.get_full_path %}active{% endifequal %}">
+            {{ link.label|capfirst }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>

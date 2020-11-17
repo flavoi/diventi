@@ -64,7 +64,11 @@ class Tooltip(Element):
         related_name='tooltips',
         verbose_name=_('product'),
     )
-
+    paper_mention_link = models.URLField(
+        null=False,
+        blank=False,
+        verbose_name=_('mention link')
+    )
 
     objects = TooltipQuerySet.as_manager()
     

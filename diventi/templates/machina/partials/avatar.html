@@ -1,0 +1,5 @@
+{% load forum_member_tags %}
+{% load static %}
+<div class="my-4 w-100">
+    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if profile.user.avatar.image %}{{ profile.user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ profile.user.get_full_name }}" class="w-100">
+</div>

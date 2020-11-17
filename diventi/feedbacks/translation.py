@@ -1,6 +1,12 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import Survey, Question, Answer, QuestionGroup, QuestionChoice, Outcome
+from .models import (
+    Survey, 
+    Question, 
+    Answer, 
+    QuestionGroup, 
+    QuestionChoice,
+)
 
 
 @register(Survey)
@@ -26,8 +32,3 @@ class AnswerTranslationOptions(TranslationOptions):
 @register(QuestionChoice)
 class QuestionChoiceTranslationOptions(TranslationOptions):
     fields = ('title', )
-
-
-@register(Outcome)
-class QuestionChoiceTranslationOptions(TranslationOptions):
-    fields = ('title', 'upper_outcome', 'medium_outcome', 'lower_outcome')

@@ -77,12 +77,12 @@
                       <h2 class="card-title">{{ result.title }}</h2>
                       {% if result.description1 %}
                         <p class="card-description">
-                          {{ result.description1|capfirst|add:"." }}
+                          {{ result.description1|capfirst }}
                         </p>
                       {% endif %}
                       {% if result.description2 %}
                         <p class="card-description">
-                          {{ result.description2|capfirst|add:"." }}
+                          {{ result.description2|capfirst }}
                         </p>
                       {% endif %}
                     </div>
@@ -96,7 +96,6 @@
                   </div>
                 </div>
             {% empty %}
-
                 <div class="col-md-12">
                     <div class="text-center text-white">
                         <h4>{% trans "No items found" %}.</h4>

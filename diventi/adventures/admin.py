@@ -47,11 +47,3 @@ class AntagonistGoalAdmin(DiventiTranslationAdmin):
     fields = ('title', 'description', 'antagonist', 'icon', 'subject')
     readonly_fields = ['subject']
 
-
-admin.site.register(Adventure, AdventureAdmin)
-admin.site.register(Situation, SituationAdmin)
-admin.site.register(Match)
-admin.site.register(Resolution, ResolutionAdmin)
-admin.site.register(Story, StoryAdmin)
-admin.site.register(Antagonist, AntagonistAdmin)
-admin.site.register(AntagonistGoal, AntagonistGoalAdmin)

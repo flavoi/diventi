@@ -1,0 +1,167 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ object.get_full_name }} &middot; {% trans 'privacy'|capfirst %}{% endblock title %}
+
+{% block content %}
+<section class="pt-5 bg-section-secondary">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-9">
+            <div class="row align-items-center">
+               <div class="col">
+                  <span class="surtitle">{% trans 'my account'|capfirst %}</span>
+                  <h1 class="h2 mb-0">{% trans 'privacy'|capfirst %}</h1>
+               </div>
+            </div>
+            <div class="row align-items-center mt-4">
+               <div class="col">
+                  {% include 'accounts/user_nav_quick_snippet.html' with user_privacy_active=1 %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<div class="slice slice-sm bg-section-secondary">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-9">
+            <div class="row">
+               <div class="col-lg-12">
+                  <form method="POST" action="{% url 'accounts:change_privacy_ajax' %}" id="frmChangePrivacy">
+                     {% csrf_token %}
+                     <h5 class="mb-3">{% trans "Privacy settings" %}</h5>
+                     <div id="respprivacy"></div>
+                     <div class="form-group">
+                        <div class="card">
+                           <div class="list-group list-group-flush">
+                              <div class="list-group-item d-flex w-100 justify-content-between">
+                                 <div>
+                                    <h6 class="font-weight-light mb-1">{{ form.has_agreed_gdpr.label }} <span data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}"><i class="far fa-info-circle"></i></span></h6>
+                                    <span class="text-sm text-muted">{% for choice in form.has_agreed_gdpr %}
+                                       <div class="custom-control custom-radio">
+                                       {{ choice.tag }}
+                                          <label class="custom-control-label" for="{{ choice.id_for_label }}">
+                                             {{ choice.choice_label }}
+                                          </label>
+                                       </div>
+                                       {% endfor %}
+                                    </span>
+                                 </div>
+                                 <div>
+                                    <button type="submit" class="btn btn-sm btn-primary">{% trans 'save'|capfirst %}</button>
+                                 </div>
+                              </div>                     
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+                  <div class="mt-5">
+                     <h5 class="mb-3">{% trans "danger zone"|capfirst %}</h5>
+                     <div class="card">
+                        <div class="list-group list-group-flush">
+                           <div class="list-group-item d-flex w-100 justify-content-between">
+                              <div>
+                                 <h6 class="font-weight-light mb-1">{% trans 'delete this account'|capfirst %}</h6>
+                                 <span class="text-sm text-muted">{% blocktrans %}Do you wish to delete your account? There is no going back. Please be certain.{% endblocktrans %}</span>
+                              </div>
+                              <div>
+                                 <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal">{% trans "Delete my account" %}</button>
+                              </div>
+                           </div>                     
+                        </div>
+                     </div>
+                  </div>
+                  <hr class="my-5">
+                  <div class="row justify-content-between">
+                      <div class="col-md-4">
+                          <div class="text-xl mb-2">
+                              <i class="far fa-lock-alt text-success"></i>
+                          </div>
+                          <h4 class="h6 mb-1">{% trans "your information is safe"|capfirst %}</h4>
+                          <p class="text-muted text-sm ">{% trans "we will not sell or rent your personal contact information for any marketing purposes whatsoever"|capfirst %}.</p>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="text-xl mb-2">
+                              <i class="far fa-shield text-success"></i>
+                          </div>
+                          <h4 class="h6 mb-1">{% trans "we don't sell your data to others"|capfirst %}</h4>
+                          <p class="text-muted text-sm">{% trans "because it's not our business nor in our team culture"|capfirst %}.</p>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="text-xl mb-2">
+                              <i class="far fa-sliders-v text-success"></i>
+                          </div>
+                          <h4 class="h6 mb-1">{% trans "you are in control"|capfirst %}</h4>
+                          <p class="text-muted text-sm">{% trans "feel free to reach to us for any question or clarification on the matter" %}.</p>
+                      </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- User deletion modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{% url 'accounts:delete' object.nametag %}">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalTitle">{% trans "Delete your account" %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                     {% blocktrans %}We will immediately delete all of your data, along with all of your comments, feedbacks and upvotes.{% endblocktrans %}
+                     {% blocktrans %}You will no longer be contacted and your username will be available to anyone on Diventi.{% endblocktrans %}
+                  </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{% trans "Rollback" %}</button>
+                    <button type="submit" class="btn btn-danger btn-sm">{% trans "Confirm" %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}
+
+{% block extrascript %}
+<script type="text/javascript">
+    var frmPrivacy = $('#frmChangePrivacy');
+    frmPrivacy.submit(function() {
+      $.ajax({
+        type: frmPrivacy.attr('method'),
+        url: frmPrivacy.attr('action'),
+        data: frmPrivacy.serialize(),
+        success: function(resp) {          
+          if (resp['message_type'] === 'success') {
+            $("#respprivacy").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + resp ['message'] + '</div>').show();
+          }
+          else {
+            console.log(resp.error_message)
+            for (var key in resp.error_message) {
+                error = resp.error_message[key];
+                $("#respprivacy").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + key + ': ' + error + '</div>').show();
+            }
+          }
+        },
+        error: function() {
+          $("#respprivacy").html('<strong><p class="text-danger">Error!</p></strong>').show().fadeOut(3000);
+        }
+      });
+      return false;
+    });
+</script>
+{% endblock extrascript %}

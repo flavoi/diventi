@@ -29,22 +29,20 @@ class ArticleQuerySet(models.QuerySet):
     def prefetch(self):
         articles = self.select_related('category')
         articles = articles.select_related('author')
+        articles = articles.prefetch_related('related_articles')
+        articles = articles.prefetch_related('promotions')
         return articles
 
-    # Get the list of published articles f
+    # Get the list of published articles
     def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            articles = self
-        else:
-            articles = self.filter(published=True)
+        articles = self.filter(published=True)
+        articles = articles.prefetch()
         return articles
 
     # Get the list of published articles from the most recent to the least 
     def history(self):
         articles = self.published()
         articles = articles.order_by('-publication_date')
-        articles = articles.prefetch()
         return articles
 
     # Get the list of published articles of a certain category
@@ -93,21 +91,24 @@ class ArticleCategory(Category):
     pass
 
 
-class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel):
+class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
     """
-    title = models.CharField(max_length=60, verbose_name=_('title'))
-    description = models.TextField(max_length=250, verbose_name=_('description'))
     category = models.ForeignKey(ArticleCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)    
     content = RichTextField(verbose_name=_('content'))
     hot = models.BooleanField(default=False, verbose_name=_('hot'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='articles', verbose_name=_('author'), on_delete=models.SET_NULL)
+    related_articles = models.ManyToManyField(
+        'self',
+        related_name='related_articles', 
+        blank=True, 
+        verbose_name=_('related articles'),
+    ) # Connect this article to others
 
-    objects = ArticleQuerySet.as_manager()
-    
+    objects = ArticleQuerySet.as_manager()   
 
     class Meta:
         verbose_name = _('article')
@@ -136,3 +137,5 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
 
     def class_name(self):
         return _('article')
+
+Article._meta.get_field('color').help_text = _('This color will be displayed in search results.')

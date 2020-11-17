@@ -13,7 +13,6 @@ In Diventi we give space and importance to the creativity of the players, who ca
 ### Built With
 * [Django](https://www.djangoproject.com/) - The web framework;
 * [Bootstrap](http://getbootstrap.com) - The front end library;
-* [Creative Tim](https://www.creative-tim.com/) - The template of the website;
 * [Font Awesome](https://fontawesome.com/) - The best icons on the internet.
 
 ### License

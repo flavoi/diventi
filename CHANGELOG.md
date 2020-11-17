@@ -6,15 +6,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [UNRELEASED]
+## [1.0.0-beta-8-rc] → 2020-09-02
+
 ### Added
-- Introduced adventures: a new app that enables game master to play with Diventi's adventures.
+- Introduced adventures: a new experimental app that enables game master to play with Diventi's adventures
+- Introduced the Quick visual style across all core apps
 - [ebooks] Added 'new' and 'updated' badges for newly edited chapters
 - [ebooks] Added tooltip support for custom keywords
+- [landing] Added 'about' pages
+- [machina] Introduced machina: a new forum app for Diventi's subscribers
+- [products] Integrated stripe v3 to manage online payments
+- [tooltips] Introduced tooltips: a new app that integrates with ebook that displays piece on contents in a rich tooltip
 
 ### Changed
 - [blog] Enabled category filters in the list page
 - [blog] Updated hot articles layout and visuals
+- [blog] Updated help text to clarify the use of the color field
 - [core] Updated navbar with grouped links
 - [core] Updated draft badge visual style
 - [core] Updated ckeditor buttons to include text alignment
@@ -24,9 +31,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - [sheets] Removed unecessary files about this legacy app
+- [payments] Removed the payments app since it's been integrated in products'
+- [readme] Removed Creative Tim from the technology section
 
 ### Fixed
 - [accounts] Fixed avatars and covers image layout
+- [accounts] Fixed a translation string that corrupted the url of the settings page
 - [blog] Fixed a problem that prevented article plain cards to be displayed
 - [ebooks] Fixed a problem that prevented the cover image to be displayed in search results
 - [feedbacks] Fixed a problem that caused an incorrect layout in the answer form page
@@ -34,10 +44,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Security
 - [core] Updated urllib from v0.17.0 to v0.18.0
-- [core] Updated django from v2.2.12 to v2.2.13
+- [core] Updated django from v2.2.12 to v2.2.16
+- [core] Updated cryptography from v2.3.0 to v3.2.0
 
 
-## [1.0.0-beta-7]→ 2020-04-02
+## [1.0.0-beta-7] → 2020-04-02
 
 ### Added
 - [core] Upgraded material kit from v2.1.1 to v2.2.0

@@ -2,7 +2,7 @@ from functools import reduce
 import operator
 
 from django.db import models
-from django.db.models import Q, Count
+from django.db.models import Prefetch, Q, Count
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _, gettext
@@ -12,9 +12,19 @@ from django.contrib.auth import get_user_model
 from cuser.middleware import CuserMiddleware
 
 from .fields import ProtectedFileField
-from .utils import humanize_price
 
-from diventi.core.models import Element, DiventiImageModel, TimeStampedModel, PublishableModel, Category, Element, SectionModel
+from diventi.feedbacks.models import Survey
+
+from diventi.core.models import (
+    Element,
+    DiventiImageModel,
+    TimeStampedModel,
+    PublishableModel,
+    Category,
+    Element,
+    SectionModel,
+    HighlightedModel,
+)
 
 
 class ProductQuerySet(models.QuerySet):
@@ -26,65 +36,174 @@ class ProductQuerySet(models.QuerySet):
         products = products.prefetch_related('related_products')
         products = products.prefetch_related('customers')
         products = products.prefetch_related('details')
+        products = products.select_related('category')
+        products = products.prefetch_related('formats')
+        products = products.select_related('product_survey')
         return products
 
     # Fetch the products purchased by the user
     def user_collection(self, user):
+        current_user = CuserMiddleware.get_user() # The user that is operating in the session
         products = self.filter(customers=user)
+        if current_user != user: # Hide non-published products if the user is not visiting his own profile
+            products = products.published()
         products = products.prefetch()
         return products
 
     # Fetch the products authored by the user
     def user_authored(self, user):
-        if not user.is_staff: 
-            products = self.none()
-        else:
-            products = self.filter(authors=user)
+        products = self.filter(authors=user)
         products = products.prefetch()
         return products
+
+    # Return true if the user has authored at least one product
+    def has_user_authored(self, user):
+        return self.user_authored(user).exists()
 
     # Get all the published products 
     def published(self):
-        user = CuserMiddleware.get_user()
-        if user.is_superuser:
-            products = self
-        else:
-            products = self.filter(published=True)
+        products = self.filter(published=True)
         products = products.prefetch()
         return products
 
 
-class ProductCategory(Category):
+class ProductCategoryQuerySet(models.QuerySet):
+
+    # Meta categories won\'t be listed in search results, nor on reporting pages.
+    # In addition, we show categories that are related to published projects only.
+    def visible(self):
+        categories = self.exclude(meta_category=True)
+        published_projects = Product.objects.published()
+        categories = categories.filter(projects__pk__in=published_projects) # Exclude empty categories
+        categories = categories.prefetch_related(Prefetch('projects', queryset=published_projects))
+        return categories
+
+
+class ProductCategory(Element):
     """
         Defines the type of a product.
     """
-    meta_category = models.BooleanField(default=False, verbose_name=_('meta category'), help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.'))
+    meta_category = models.BooleanField(
+        default=False, 
+        verbose_name=_('meta category'), 
+        help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.')
+    )
+
+    objects = ProductCategoryQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('Product category')
         verbose_name_plural = _('Product categories')
 
 
+class ProductFormat(Element):
+    """ A specific format of a product."""
+
+    class Meta:
+        verbose_name = _('Format')
+        verbose_name_plural = _('Formats')
+
+
 class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel):
     """ An adventure or a module published by Diventi. """
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    abstract = models.TextField(blank=True, max_length=200, verbose_name=_('abstract'))
-    description = models.TextField(blank=True, verbose_name=_('description'))
-    slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='products', verbose_name=_('authors'))
-    buyers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='collection', blank=True, verbose_name=_('buyers'))
-    customers = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Purchase', blank=True, verbose_name=_('customers'))
-    file = ProtectedFileField(upload_to='products/files/', blank=True, verbose_name=_('file'))
-    category = models.ForeignKey(ProductCategory, null=True, blank=True, verbose_name=_('category'), default='default', on_delete=models.SET_NULL)
-    courtesy_short_message = models.CharField(blank=True, max_length=50, verbose_name=_('short courtesy messages'))
-    courtesy_message = models.TextField(blank=True, verbose_name=_('courtesy message')) # Explains why the product is under maintenance
+    title = models.CharField(
+        max_length=50, 
+        verbose_name=_('title')
+    )
+    short_description = models.TextField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('short description')
+    )
+    abstract = models.TextField(
+        blank=True, 
+        max_length=200, 
+        verbose_name=_('abstract')
+    )
+    description = models.TextField(
+        blank=True, 
+        verbose_name=_('description')
+    )
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug')
+    )
+    authors = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        related_name='products', 
+        verbose_name=_('authors')
+    )
+    buyers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        related_name='collection',
+        blank=True, 
+        verbose_name=_('buyers')
+    )
+    customers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        through='Purchase', 
+        blank=True, 
+        verbose_name=_('customers')
+    )
+    file = ProtectedFileField(
+        upload_to='products/files/', 
+        blank=True, 
+        verbose_name=_('file')
+    )
+    category = models.ForeignKey(
+        ProductCategory, 
+        null=True, 
+        blank=True,     
+        default='default',
+        related_name='projects',
+        on_delete=models.SET_NULL,
+        verbose_name=_('category'), 
+    )
+    unfolded = models.BooleanField(
+        default = False,
+        verbose_name = _('unfolded'),
+    ) # Unfolded products can be bought by users
+    courtesy_short_message = models.CharField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('short courtesy messages')
+    )
+    courtesy_message = models.TextField(
+        blank=True, 
+        verbose_name=_('courtesy message')
+    ) # folded products returns this message to users
     related_products = models.ManyToManyField(
         'self',
-        related_name='related_products', 
+        related_name='products', 
         blank=True, 
         verbose_name=_('related products'),
     ) # Connect this product to others
-    price = models.PositiveIntegerField(default=0, verbose_name=_('price'), help_text=_('This price must be valued in euro cents. For example: 500 for 5.00€, 120 for 1.20€ etc.'))
+    formats = models.ManyToManyField(
+        ProductFormat, 
+        blank = True, 
+        related_name = 'products', 
+        verbose_name = _('formats'),
+    )
+    stripe_price = models.CharField(
+        blank = True,
+        max_length = 50,
+        verbose_name = _('stripe price')
+    )
+    stripe_product = models.CharField(
+        unique = True,
+        null = True,
+        blank = True,
+        max_length = 50,
+        verbose_name = _('stripe product')
+    )
+    product_survey = models.ForeignKey(
+        Survey, 
+        related_name = 'product', 
+        on_delete = models.SET_NULL, 
+        null = True, 
+        blank = True, 
+        verbose_name = _('survey')
+    )
 
     objects = ProductQuerySet.as_manager()
 
@@ -174,18 +293,6 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     def user_has_authored(self, user):
         return user in self.authors.all()
 
-    # Returns the price of the product
-    def get_price(self):
-        p = humanize_price(self.price)
-        return p
-
-    # Returns the price of the product without its currency
-    def get_price_value(self):
-        p = ('%(price).2f' % {
-            'price': self.price / 100,
-        })
-        return p
-
     # Returns the default currency of any product
     def get_currency(self):
         return 'EUR'
@@ -197,10 +304,26 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         else:
             return _('draft')
 
+    # Returns true if the product is free
+    def _at_a_premium(self):
+        if self.stripe_product and self.stripe_price:
+            return True
+        else:
+            return False
+    _at_a_premium.boolean = True
+    _at_a_premium.short_description = _('at a premium')
+    at_a_premium = property(_at_a_premium)
 
-class ProductDetail(Element):
+
+class ProductDetail(Element, HighlightedModel):
     """ A specific detail of a product."""
-    product = models.ForeignKey(Product, null=True, related_name='details', verbose_name=_('product'), on_delete=models.SET_NULL)     
+    product = models.ForeignKey(
+        Product, 
+        null = True, 
+        related_name = 'details', 
+        verbose_name = _('product'), 
+        on_delete = models.SET_NULL,
+    )
 
     class Meta:
         verbose_name = _('Detail')
@@ -224,7 +347,7 @@ class Chapter(Element, DiventiImageModel):
         verbose_name_plural = _('Chapters')
 
 
-class ImagePreview(DiventiImageModel):    
+class ImagePreview(Element, DiventiImageModel):    
     """A list of cool images of the product."""
     product = models.ForeignKey(Product, null=True, related_name='imagepreviews', verbose_name=_('product'), on_delete=models.SET_NULL)
 

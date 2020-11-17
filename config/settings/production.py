@@ -26,9 +26,6 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 STATICFILES_LOCATION = 'static'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
 STATICFILES_STORAGE = 'diventi.core.storages.StaticStorage'
 STATIC_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 
@@ -60,8 +57,3 @@ EMAIL_HOST_USER = EMAIL_HOST_USER_KEY # email id
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD_KEY # password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-# Stripe payments
-# https://dashboard.stripe.com/test/apikeys
-STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')

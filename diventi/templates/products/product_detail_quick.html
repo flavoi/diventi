@@ -1,0 +1,369 @@
+{% extends 'base_quick.html' %}
+{% load core_extras %}
+{% load i18n %}
+{% load static %}
+{% load reviews %}
+{% load humanize %}
+
+{% block base_opengraph %}
+    <meta property="og:title" content="Diventi: {{ product.title|capfirst }}" />
+    <meta property="og:type" content="og:product" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ product.image }}" />
+    <meta property="og:description" content="{{ product.abstract }}" />
+    <meta property="product:price:amount" content="{{ product.get_price_value }}"/>
+    <meta property="product:price:currency" content="{{ product.get_currency }}"/>
+{% endblock base_opengraph %}
+
+{% block title %}{{ product.title }}{% endblock title %}
+
+{% block headerclass %}header-transparent{% endblock headerclass %}
+
+{% block navbarclass %}navbar-light{% endblock navbarclass %}
+
+{% block content %}
+
+<!-- Title section -->
+<section class="slice pt-6 mt-5 bg-light-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <span class="fa-stack fa-2x">
+                          <i class="fas fa-circle fa-stack-2x text-dark"></i>
+                          <i class="far fa-{{ product.category.icon }} fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="col ml-n3 ml-md-n2">
+                        <h1 class="mb-0">
+                            {{ product.title|title }}
+                        </h1>
+                        <span class="lead opacity-8">{{ product.abstract|capfirst }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product summary section -->
+<section class="slice bg-section-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="row row-grid align-items-center justify-content-between">
+                    <div class="col-xl-5 col-lg-6 order-lg-2">
+                        <div class="pr-md-4">
+                            <span class="badge badge-{{ product.category.color }} badge-pill">
+                                {{ product.category }}
+                            </span>
+                            <h3 class="h2 mt-4"><strong class="text-primary">{{ product.title|capfirst }}</strong> {% trans "in short" %}</h3>
+                            <p class="my-4 lh-190">{{ product.description }}</p>
+                            {% include "products/partials/product_detail_actions.html" %}                    
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 order-lg-1">
+                        <div class="row mx-n2">
+                            <div class="col-sm-6 mt-sm-6 px-sm-2">
+                                <div class="card mb-3">
+                                    <div class="h-100">
+                                        <img class="card-img-top" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ product.image }}" style="width:100%;" alt="{{ product.title|capfirst }}"></div>
+                                    <div class="card-body p-3">
+                                        <div class="d-flex align-items-center">
+                                            <span class="fa-stack">
+                                              <i class="fas fa-circle fa-stack-2x text-dark"></i>
+                                              <i class="far fa-{{ product.category.icon }} fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <div class="pl-2">
+                                                <span class="h6 text-sm mb-0">{{ product.title|capfirst }}</span></div>
+                                            <div class="ml-auto">
+                                                <div class="actions">
+                                                    <small>
+                                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}: {{ product.modified|date:'M d, Y' }}">
+                                                        <i class="far fa-lg fa-clock mr-1"></i>
+                                                    </span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card shadow-none mb-3">
+                                    <div class="p-3 d-flex">
+                                        <div>
+                                            <div class="icon icon-shape rounded-circle bg-success text-white mr-4">
+                                                <i class="far fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="h6">{{ featured_detail.title }}</span>
+                                            <p class="text-sm text-muted mb-0">{{ featured_detail.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 px-sm-2">
+                                <div class="card mb-3">
+                                    <div class="card-body py-5 text-center h-100">
+                                        <div class="img-fluid mb-4 w-70 mx-auto">
+                                            <img alt="Diventi" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://diventi-assets.s3.amazonaws.com/media/diventi-logo.jpg" style="width:100%;">
+                                        </div>
+                                        <span class="static-rating d-block">
+                                            {% get_rating for product as average_rating %}
+                                            {% get_review_count for product as rating_count %}
+                                            {% with average_rating|to_float as rating %}
+                                                {% include 'reviews/rating_star.html' %}
+                                            {% endwith %}
+                                        </span>
+                                        <h5 class="h6 mt-4 mb-1">{{ average_rating|floatformat:1|default:'-' }} {% trans "out of 5 stars" %}</h5>
+                                        <p class="text-muted text-sm mb-0">{% trans "from" %} {{ rating_count }} {% blocktrans count counter=rating_count %}review{% plural %}reviews{% endblocktrans %}</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body text-center">             
+                                        <span class="avatar rounded-circle avatar-lg hover-translate-y-n3">   <img alt="Image placeholder" src="{% static 'brand/diventi-logo-2.png' %}"> </span>                                                
+                                        <span class="d-block h6 mt-3 mb-4">{% trans "available formats"|capfirst %}</span>
+                                        <div class="avatar-group hover-avatar-ungroup mb-2">
+                                            {% for format in product.formats.all %}
+                                                <a tabindex="0" role="button" class="avatar bg-{{ format.color }} avatar-sm rounded-circle" data-container="body" data-toggle="popover" data-placement="top" title="{{ format.title }}" data-content="{{ format.description }}">
+                                                    <i class="fa{{ format.icon_style }} fa-{{ format.icon }} fa-2x text-white"></i>
+                                                </a>
+                                            {% empty %}
+                                                <span class="avatar bg-secondary text-black-50 avatar-sm rounded-circle">
+                                                    <i class="far fa-empty-set fa-lg"></i>
+                                                </span>
+                                            {% endfor %}
+                                        </div>
+                                        <span class="clearfix"></span>
+                                        <div class="mt-3 pt-3 delimiter-top">
+                                            <div class="actions">
+                                                {% if product.book.published and bought %}
+                                                    <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
+                                                        <span class="btn-inner--icon">
+                                                            <i class="far fa-book-open"></i>
+                                                        </span>
+                                                        <span class="btn-inner--text ml-1">
+                                                            {% trans "open"|capfirst %}
+                                                        </span>
+                                                    </a>
+                                                {% elif product.book.published and product.unfolded %}
+                                                    <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
+                                                        <span class="btn-inner--icon">
+                                                            <i class="far fa-balance-scale fa-lg"></i>
+                                                        </span>
+                                                        <span class="btn-inner--text ml-1">
+                                                            {% trans "add this item to your collection to access its contents"|capfirst %}.
+                                                        </span>
+                                                    </a>
+                                                {% else %}
+                                                <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
+                                                    <span class="btn-inner--icon">
+                                                        <i class="far fa-coffee-pot fa-lg"></i>                     
+                                                    </span>
+                                                    <span class="btn-inner--text ml-1">
+                                                        {{ product.courtesy_message }}
+                                                    </span>
+                                                </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shape-container shape-line shape-position-bottom"><svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class=""><polygon points="2560 0 2560 100 0 100"></polygon></svg>
+        </div>
+    </div>
+</section>
+
+<!-- Features section -->
+<section class="slice delimiter-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-10">
+                <span class="badge badge-primary badge-pill">{% trans "key features"|capfirst %}</span>
+                <h5 class="h5 lh-180 mt-4 mb-6">{% trans "any piece of content is modular and easy to pick up or discard depending on your playstyle"|capfirst %}.</h5>
+            </div>
+        </div>
+        <div class="row">
+            {% for chapter in product.chapters.all %}
+            <div class="col-lg-4 col-sm-6 mb-lg-0">
+                <div class="card card-fluid hover-translate-y-n10 hover-shadow-lg">
+                    <div class="card-body">
+                        <div class="pb-4">
+                            <i class="far fa-{{ chapter.icon }}" style="height: 50px; width: 50px;"></i>
+                        </div>
+                        <div class="pt-2 pb-3">
+                            <h5>{{ chapter.title|capfirst }}</h5>
+                            <p class="text-muted mb-0">
+                                {{ chapter.description|capfirst }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-lg-3 col-sm-6 mb-lg-0">
+                <h6>{% trans "there are no key features to show for now"|capfirst %}.</h6>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Image preview section -->
+{% if product.imagepreviews.all %}
+<section class="slice delimiter-bottom">
+    <div class="container">
+        {% for image in product.imagepreviews.all %}
+        <div class="section-process-step {% if forloop.first %}pt-0{% elif forloop.last %}pb-0{% endif %}">
+            <div class="row row-grid justify-content-between align-items-center">
+                <div class="col-lg-5 order-lg-2">
+                    <h5 class="h3">{{ image.title|capfirst }}</h5>
+                    <p class="lead my-4">
+                        {{ image.description|capfirst }}
+                    </p>
+                </div>
+                <div class="col-lg-6 order-lg-{% if forloop.counter|divisibleby:2 %}3{% else %}1{% endif %}">
+                    <div class="card mb-0 mr-lg-5">
+                        <div class="card-body p-2">
+                            <img alt="{{ image.title|capfirst }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ image.image }}" class="img-fluid shadow rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Details section -->
+<section class="slice">
+    <div class="container pt-md-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-10">
+                <span class="badge badge-primary badge-pill">{% trans "details"|capfirst %}</span>
+                <h5 class="h5 lh-180 mt-4 mb-6">
+                    {% trans "here's a roundown of what you can expect from"|capfirst %} <strong class="text-primary">{{ product.title }}</strong>.
+                </h5>
+            </div>
+        </div>
+        <div class="row mx-lg-n4">
+            {% for detail in product.details.all %}
+            <div class="col-lg-4 col-md-6 px-lg-4">
+                <div class="card card-fluid">
+                    <div class="p-3 d-flex">
+                        <div>
+                            <div class="icon icon-shape rounded-circle bg-info text-white mr-4">
+                                <i class="far fa-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="h6">{{ detail.title|capfirst }}</span>
+                            <p class="text-sm text-muted mb-0">
+                                {{ detail.description|capfirst }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Reviews section -->
+<section class="slice bg-section-secondary">
+    <div class="container">
+        <div class="row mb-5 justify-content-center text-center">
+            <div class="col-lg-8 col-md-10">
+                <h2 class=" mt-4">{% trans "community reviews"|capfirst %}</h2>
+                <div class="mt-2">
+                    <p class="lead lh-180">{% trans "find out what others say about us"|capfirst %}.</p>
+                </div>
+            </div>
+        </div>
+        <div id="accordion-2" class="accordion accordion-spaced">
+            {% get_review_list for product as review_list %}
+            {% for review in review_list %}
+            <div class="card">
+                <div class="card-header py-4" id="heading-{{ review.pk }}" data-toggle="collapse" role="button" data-target="#collapse-{{ review.pk }}" aria-expanded="false" aria-controls="collapse-{{ review.pk }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="media align-items-center">
+                                <div>
+                                    <span class="mr-3">
+                                        <img class="avatar" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if review.user.avatar.image %}{{ review.user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}">
+                                    </span>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="h6 mb-0">
+                                        {{ review.user.get_full_name|title }}
+                                        {% for a in review.user.achievements.all %}
+                                            <span class="fa-stack text-{{ a.color }} fa-sm" style="vertical-align: middle;" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ a.title }}: {{ a.description|lower }}">
+                                              <i class="fas fa-circle fa-stack-2x"></i>
+                                              <i class="fas fa-{{ a.icon }} fa-stack-1x fa-inverse fa-fw fa-sm"></i>
+                                            </span>
+                                        {% endfor %}
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <!-- Delimiter (for small resolutions) -->
+                            <hr class="mt-3 mb-4 d-md-none" />
+                            <!-- Topic info -->
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <small>
+                                    {% with review.rating as rating %}
+                                        {% include 'reviews/rating_star.html' %}
+                                    {% endwith %}
+                                    </small>
+                                </div>
+                                <div class="col-auto mr-md-4">                                    
+                                    <i class="far fa-clock mr-2"></i><span class="h6 text-sm">{{ review.submit_date|naturalday }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="collapse-{{ review.pk }}" class="collapse" aria-labelledby="heading-{{ review.pk }}" data-parent="#accordion-2">
+                    <div class="card-body row align-items-center">
+                        <p>{{ review.comment|capfirst }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <h6 class="text-center">{% trans "there are no reviews yet, be the first to post one!"|capfirst %}</h6>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block extrafooter %}
+<div class="row justify-content-center">
+    <div class="col-lg-12">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h3 class="text-secondary mb-2">{{ product.title|capfirst }}</h3>
+                <p class="lead mb-0 text-white opacity-8">{{ product.abstract|capfirst }}</p>
+            </div>
+            <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">
+                {% with button_disabled_class="btn-white" button_action_class="btn-primary" %}
+                    {% include "products/partials/product_detail_actions.html" %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="divider divider-fade divider-dark my-5">
+{% endblock extrafooter %}

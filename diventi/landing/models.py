@@ -2,11 +2,23 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.utils.html import mark_safe
+from django.urls import reverse
 from django.db.models import Prefetch
 
 from cuser.middleware import CuserMiddleware
+from ckeditor.fields import RichTextField
 
-from diventi.core.models import Element, DiventiImageModel, FeaturedModel, FeaturedModelManager, SectionModel
+from diventi.core.models import (
+    Element, 
+    DiventiImageModel, 
+    FeaturedModel, 
+    FeaturedModelManager, 
+    SectionModel,
+    PublishableModel,
+    TimeStampedModel,
+    PromotableModel,
+)
+
 from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
 from diventi.feedbacks.models import Survey
@@ -22,6 +34,7 @@ class SectionModelManager(FeaturedModelManager):
         sections = sections.prefetch_related('products').prefetch_related('products__chapters')
         sections = sections.select_related('section_survey')
         sections = sections.prefetch_related(Prefetch('articles', queryset=Article.objects.order_by('-publication_date')))
+        sections = sections.prefetch_related('features')
         sections = sections.order_by('order_index')
         return sections
 
@@ -40,7 +53,14 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         ('header_search.html', _('search header')),
     )
     featured_template = models.CharField(choices=FEATURED_TEMPLATE_CHOICES, max_length=50, verbose_name=_('featured template'))
-    dark_mode = models.BooleanField(verbose_name=_('dark mode'))
+    dark_mode = models.BooleanField(
+        default=False,
+        verbose_name=_('dark mode')
+    )
+    video = models.URLField(
+        blank=True,
+        verbose_name=_('video')
+    )
     products = models.ManyToManyField(Product, related_name='products', blank=True, verbose_name=_('products'))
     users = models.ManyToManyField(DiventiUser, related_name='users', blank=True, verbose_name=_('users'))
     section_survey = models.ForeignKey(Survey, related_name='survey', on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('survey'))
@@ -52,7 +72,7 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         return '(%s) %s' % (self.order_index, self.title)
 
     def get_features(self):
-        return mark_safe("<br>".join([obj.title for obj in self.section_features.all()]))
+        return mark_safe("<br>".join([obj.title for obj in self.features.all()]))
     get_features.short_description = _('Features')
 
     def get_products(self):
@@ -67,16 +87,49 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         return mark_safe("<br>".join([obj.title for obj in self.articles.all()]))
     get_articles.short_description = _('Articles')
 
-
     class Meta:
         verbose_name = _('section')
         verbose_name_plural = _('sections')
 
 
-class Feature(Element):    
-    section = models.ForeignKey(Section, null=True, related_name='section_features', on_delete=models.SET_NULL)
+class Feature(Element): 
+    section = models.ForeignKey(Section, null=True, related_name='features', on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _('feature')
         verbose_name_plural = _('features')
-        
+
+
+class SearchSuggestion(Element):
+
+    class Meta:
+        verbose_name = _('search suggestion')
+        verbose_name_plural = _('search suggestions')
+
+
+class AboutArticle(TimeStampedModel, PublishableModel, Element):
+    content = RichTextField(verbose_name=_('content'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+
+    def get_absolute_url(self):
+        return reverse('landing:about', args=[str(self.slug,)])
+
+    class Meta:
+        verbose_name = _('about article')
+        verbose_name_plural = _('about article')
+
+
+class PolicyArticle(TimeStampedModel, PublishableModel, Element):
+    content = RichTextField(verbose_name=_('content'))
+    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+
+    def get_absolute_url(self):
+        return reverse('landing:policy', args=[str(self.slug,)])
+
+    class Meta:
+        verbose_name = _('policy article')
+        verbose_name_plural = _('policy article')    
+
+
+
+

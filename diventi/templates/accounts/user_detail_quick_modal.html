@@ -1,0 +1,88 @@
+{% load i18n %}
+{% load static %}
+
+{% if user.is_authenticated %}
+<div class="modal fade fixed-right" id="modal-profile" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-vertical" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Close button -->
+                <div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal content -->
+                <div class="px-4">
+                    <!-- Avatar -->
+                    <div class="d-flex my-4">
+                        <div class="avatar-parent-child mx-auto">
+                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle">
+                            <span class="avatar-child avatar-badge bg-success"></span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <h6 class="h5 mb-0"><a href="{% url 'accounts:detail' user.nametag %}">{{ user.get_full_name }}</a></h6>
+                        <span class="d-block text-muted">{{ user.email }}</span>
+                    </div>
+                    <!-- Profile stats -->
+                    <div class="d-flex mb-5">
+                        <div class="col-4 text-center">
+                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.comments_count }}</a>
+                            <span class="d-block text-sm">{% trans "comments"|capfirst %}</span>
+                        </div>
+                        <div class="col-4 text-center">
+                            {% if authenticated_user_data.has_user_authored %}
+                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.projects_count }}</a>
+                                <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
+                            {% else %}
+                                <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.ratings_count }}</a>
+                                <span class="d-block text-sm">{% trans "reviews"|capfirst %}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="#" class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.forum_posts }}</a>
+                            <span class="d-block text-sm">{% trans "posts"|capfirst %}</span>
+                        </div>
+                    </div>
+                    <!-- Collection -->
+                    <div>
+                        <div class="text-center mb-1">
+                            <span class="d-block h6 mb-4">{% trans "collection"|capfirst %}</span>
+                        </div>
+                        <div class="mt-2 pt-4 border-top">
+                            {% for product in authenticated_user_data.collection %}
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-auto">                                        
+                                        <div class="icon icon-shape {% if product.book.published and product.published %}bg-soft-{{ product.category.color }} text-{{ product.category.color }}{% else %}bg-soft-secondary text-secondary{% endif%}">
+                                            <i class="fas fa-{{ product.category.icon }}"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col pl-0">
+                                        {% if product.book.published and product.published %}
+                                        <span class="h6 text-sm mb-0">
+                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a></span>                                        
+                                        {% else %}
+                                        <span class="h6 text-sm mb-0" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
+                                            <a tabindex="0" href="{{ product.book.get_absolute_url }}" class="btn-link disabled">{{ product.title|capfirst }}</a></span>
+                                        {% endif %}
+                                        <p class="mb-0 text-sm">{{ product.category }}</p>
+                                    </div>                                    
+                                </div>
+                                {% empty %}
+                                <p class="text-sm text-black-50 text-center">{% trans "This collection is empty." %}</p>
+                            {% endfor %}                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-3 mt-auto">
+                <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
+                    <span class="btn-inner--icon"><i class="far fa-sign-out"></i></span>
+                    <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

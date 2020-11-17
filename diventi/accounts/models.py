@@ -172,6 +172,12 @@ class DiventiUser(AbstractUser):
         # Set the email as username
         self.username = self.email
 
+    def get_diventi_username(self):
+        if self.first_name: 
+            return self.get_full_name()
+        else:
+            return self.get_username()
+
     def search(self, query, *args, **kwargs):
         results = DiventiUser.objects.all()
         query_list = query.split()
@@ -204,9 +210,8 @@ class DiventiUser(AbstractUser):
         }
         return description
 
-    def reporting(self, *args, **kwargs):
-        
-        queryset = DiventiUser.objects.all()
+    def reporting(self, *args, **kwargs):    
+        queryset = DiventiUser.objects.all().is_active()
         results = [] 
         last_subscriber = queryset.last_subscriber()
         prefix = _('Last subscriber')

@@ -1,0 +1,76 @@
+{% load i18n %}
+
+{% if user.is_authenticated %}                           
+    {% if product.book.published and bought %}
+        <div class="mt-1">
+            <a class="btn {{ button_disabled_class|default:'btn-warning' }}  btn-sm btn-icon disabled">
+                <i class="far fa-check-circle mr-1"></i>
+                {% trans "you've already got this item"|capfirst %}
+            </a>
+            <div class="mt-1">
+            <small>
+                {% trans "this content is available"|capfirst %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "in your collection" %}</a>.
+            </small>
+            </div>
+        </div>                                                             
+    {% elif product.book.published and product.unfolded %}
+        {% if product.at_a_premium %}
+          {% with object=product %}
+            {% include "products/partials/pay_button.html" %}
+          {% endwith %}
+        {% else %}
+          <form action="{% url 'products:add' product.slug %}" method="POST">
+            {% csrf_token %}
+            {{ add_collection_form }}
+            {{ add_collection_form.errors }}
+            <button type="submit" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
+                <span class="btn-inner--icon">
+                    <i class="far fa-plus"></i>
+                </span>
+                <span class="btn-inner--text">{% trans "Add to collection" %}</span>
+            </button>               
+          </form>
+        {% endif %}
+    {% elif product.book.published and not product.unfolded and product.product_survey %}
+        {% if not survey_answered %}
+            <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
+                <span class="btn-inner--icon">
+                    <i class="far fa-poll-h"></i>
+                </span>
+                <span class="btn-inner--text">{{ product.product_survey.title }}</span>
+            </a>
+        {% else %}
+            <a class="btn {{ button_disabled_class|default:'btn-success' }} btn-sm btn-icon disabled">
+                <i class="far fa-thumbs-up mr-1"></i>
+                <span class="btn-inner--text">{% trans "you've already answered"|capfirst %}!</span>
+            </a>
+            <div class="mt-1">
+                <small>
+                    {% trans "you can"|capfirst %} <a href="{% url 'feedbacks:answers' product.product_survey.slug %}"> {% trans "check your answers here" %}</a> {% trans 'or' %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "in your collection" %}</a>.
+                </small>
+            </div>
+        {% endif %}
+    {% else %}
+        <a class="btn {{ button_disabled_class|default:'btn-dark' }} btn-sm btn-icon disabled">
+            <i class="far fa-lock-alt mr-1"></i>
+            {{ product.courtesy_short_message }}
+        </a>
+    {% endif %}
+{% else %}
+    {% if product.book.published and product.unfolded %}
+        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-warning">
+        <i class="fad fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
+    {% elif product.book.published and not product.unfolded and product.product_survey and product.product_survey.public %}
+        <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
+            <span class="btn-inner--icon">
+                <i class="far fa-poll-h"></i>
+            </span>
+            <span class="btn-inner--text">{{ product.product_survey.title }}</span>
+        </a>
+    {% else %}
+        <a class="btn {{ button_disabled_class|default:'btn-dark' }} btn-sm btn-icon disabled">
+            <i class="far fa-lock-alt mr-1"></i>
+            {{ product.courtesy_short_message }}
+        </a>
+    {% endif %}
+{% endif %}

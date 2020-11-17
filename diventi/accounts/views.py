@@ -3,8 +3,9 @@ import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, login, authenticate, REDIRECT_FIELD_NAME
+from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
@@ -13,9 +14,10 @@ from django.contrib.auth.views import (
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
-    PasswordResetCompleteView
+    PasswordResetCompleteView,
+    PasswordChangeView,
 )
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
@@ -25,18 +27,29 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from braces.views import AnonymousRequiredMixin
 
-from .models import DiventiUser, DiventiAvatar, Achievement
-from .forms import DiventiUserCreationForm, DiventiUserUpdateForm, DiventiUserPrivacyChangeForm
-from .utils import get_user_data
 from diventi.core.views import DiventiActionMixin, StaffRequiredMixin
 from diventi.products.models import Product
 from diventi.comments.models import DiventiComment
 from diventi.landing.models import Section
 
+from .models import DiventiUser, DiventiAvatar, Achievement
+from .forms import (
+    DiventiAuthenticationForm,
+    DiventiPasswordResetForm,
+    DiventiUserCreationForm, 
+    DiventiUserUpdateForm, 
+    DiventiUserPrivacyChangeForm,
+    DiventiSetPasswordForm,
+    DiventiPasswordChangeForm,
+)
+from .utils import get_user_data
 
-class DiventiLoginView(AnonymousRequiredMixin, LoginView):
 
-    template_name = "accounts/signin.html"
+class DiventiLoginView(LoginView):
+
+    authentication_form = DiventiAuthenticationForm
+    form_class = DiventiAuthenticationForm
+    template_name = "accounts/signin_quick.html"
     success_msg = _('You have signed in!')
     fail_msg = _('Your sign in has failed.')
 
@@ -44,22 +57,10 @@ class DiventiLoginView(AnonymousRequiredMixin, LoginView):
         messages.success(self.request, self.success_msg)        
         return super(DiventiLoginView, self).form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        sections = Section.objects.not_featured()
-        featured_section = Section.objects.featured()
-        if featured_section: # Get the featured section to display the image on the login page
-            pass
-        elif sections.exists():
-            featured_section = sections.first()
-            sections = sections.exclude(id=featured_section.id)
-        context['featured_section'] = featured_section
-        return context
-
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 
-	template_name = "accounts/signout.html"
+	template_name = "accounts/signout_quick.html"
 
 
 @login_required
@@ -71,7 +72,7 @@ def change_password_ajax(request):
     message = ''
     error_message = ''
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = DiventiPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
@@ -117,7 +118,7 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 
     form_class = DiventiUserCreationForm
     model = DiventiUser
-    template_name = 'accounts/signup.html'
+    template_name = 'accounts/signup_quick.html'
     success_msg = _('You have signed up!')
     fail_msg = _('Your sign up has failed.')
     fail_url = reverse_lazy('accounts:signup')
@@ -136,13 +137,16 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
         self.request.session['show_login_form'] = 1
         return reverse_lazy('landing:home')
 
-    def form_valid(self, form):
+    def form_valid(self, form, inital_group='Community'):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
         if email and password:
             form.save()
             user = authenticate(self.request, username=email, password=password)
             if user is not None:
+                user_group, created = Group.objects.get_or_create(name=inital_group)
+                user.groups.add(user_group)
+                user.save()
                 messages.success(self.request, self.success_msg)
                 login(self.request, user)
                 return redirect(self.get_success_url())
@@ -155,7 +159,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 
     form_class = DiventiUserUpdateForm
     model = DiventiUser
-    template_name = "accounts/user.html"
+    template_name = "accounts/user_settings_quick.html"
     success_msg = _('Profile updated!')
     fail_msg = _('Profile has not been updated.')
     slug_field = 'nametag'
@@ -167,6 +171,9 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
             return 1
         return 0
 
+    def get_success_url(self):        
+        return reverse('accounts:settings', kwargs={'nametag': self.object.nametag})
+
     def get_form_kwargs(self):
         """ Inject form with additional keyword arguments. """
         kwargs = super(DiventiUserUpdateView, self).get_form_kwargs()
@@ -175,23 +182,40 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)        
-        context = get_user_data(context, self.request.user)
-        privacy_form = DiventiUserPrivacyChangeForm(instance=self.request.user)
-        context['privacy_form'] = privacy_form
+        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)
+        """
+            User related objects will be available at name_data dict.
+        """
+        context['user_data'] = get_user_data(self.object)
         return context
+
+
+class DiventiUserPasswordChangeView(LoginRequiredMixin, DiventiActionMixin, PasswordChangeView):
+
+    model = DiventiUser
+    form_class = DiventiPasswordChangeForm
+    template_name = "accounts/user_change_password_quick.html"
+
+
+class DiventiUserPrivacyChangeView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
+
+    model = DiventiUser
+    form_class = DiventiUserPrivacyChangeForm
+    template_name = "accounts/user_change_privacy_quick.html"
+    slug_field = 'nametag'
+    slug_url_kwarg = 'nametag'
 
 
 class DiventiUserDetailView(DetailView):
 
     model = DiventiUser
-    template_name = "accounts/detail.html"
+    template_name = "accounts/user_detail_quick.html"
     slug_field = 'nametag'
     slug_url_kwarg = 'nametag'
 
     def get_context_data(self, **kwargs):
         context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
-        context = get_user_data(context, self.object, self.request.user)
+        context['user_data'] = get_user_data(self.object, self)
         return context
 
 
@@ -246,24 +270,37 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
 
 class DiventiPasswordResetView(PasswordResetView):
     
-    template_name = 'accounts/password_reset_form.html'
+    form_class = DiventiPasswordResetForm
+    template_name = 'accounts/password_reset_form_quick.html'
     email_template_name = 'accounts/password_reset_email.html'
     success_url = reverse_lazy('accounts:password_reset_done')
 
 
 class DiventiPasswordResetDoneView(PasswordResetDoneView):
 
-    template_name = 'accounts/password_reset_done.html'
+    template_name = 'accounts/password_reset_done_quick.html'
 
 
 class DiventiPasswordResetConfirmView(PasswordResetConfirmView):
 
-    template_name='accounts/password_reset_confirm.html'
+    form_class = DiventiSetPasswordForm
+    template_name='accounts/password_reset_confirm_quick.html'
     success_url = reverse_lazy('accounts:password_reset_complete')
 
 
 class DiventiPasswordResetCompleteView(PasswordResetCompleteView):
 
-    template_name='accounts/password_reset_complete.html'
+    template_name='accounts/password_reset_complete_quick.html'
+
+
+class DiventiUserDetailRedirectView(RedirectView):
+
+    permanent = False
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        user = get_object_or_404(DiventiUser, pk=kwargs['pk'])
+        return reverse_lazy('accounts:detail', args=(user.nametag,))
+
 
     

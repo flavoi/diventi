@@ -66,6 +66,5 @@ class RoleAdmin(DiventiTranslationAdmin):
 admin.site.register(DiventiUser, DiventiUserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)
 admin.site.register(DiventiProfilePic, DiventiProfilePicAdmin)
-admin.site.register(DiventiCover, DiventiCoverAdmin)
 admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(Role, RoleAdmin)

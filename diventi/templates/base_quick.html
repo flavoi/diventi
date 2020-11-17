@@ -1,0 +1,503 @@
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as lang %}
+
+<!DOCTYPE html>
+<html lang="{{ lang.code }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    {% block opengraph %}
+        {% block base_opengraph %}
+          <meta property="og:title" content="Diventi" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+          <meta property="og:image" content="{{ graph_section.image }}" />
+          <meta property="og:description" content="{{ graph_section.description }}" />
+        {% endblock base_opengraph %}
+        {% block lang_opengraph %}
+            <meta property="og:locale" content="{{ lang.code }}" />
+        {% endblock lang_opengraph %}
+        {% block extra_opengraph %}{% endblock extra_opengraph %}
+    {% endblock opengraph %}
+
+    <title>Diventi{% block titleseparator %} &middot; {% endblock titleseparator %}{% block title %}{% endblock title %}</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}?v=3">
+    <link rel="manifest" href="{% static 'favicons/manifest.json' %}?v=3">
+    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}?v=3" color="#5bbad5">    
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}" id="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/27968f469b.js" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: Kravitz;
+            src:url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
+            url('{% static "fonts/Kravitz.woff" %}') format('woff');
+            font-weight: 400;
+            font-style: normal
+        }
+
+        @font-face {
+            font-family: 'Kravitz Extra Thermal';
+            src:url('{ % static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
+            url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
+            font-weight: 400;
+            font-style: normal
+        }
+
+        @font-face {
+            font-family: 'Kravitz Thermal';
+            src:url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
+            url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
+            font-weight: 400;
+            font-style: normal
+        }
+
+        .diventi-font {
+            font-family: 'Kravitz Thermal';
+            font-weight: 400;
+            font-style: normal;
+            font-size: 32px;
+            }
+
+        .diventi-font-awesome::after {
+            font-family: "Font Awesome 5 Pro"; 
+            font-weight: 900; 
+            content: "\f007";
+          }
+
+        .honeypot 
+            {
+                display: none;
+            }
+    </style>
+
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+        body.modal-open {
+            overflow: visible;
+        }
+        .modal-open[style] {
+            padding-right: 0px !important;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+
+    {% block extrahead %}{% endblock extrahead %}
+
+</head>
+
+<body>
+    {% block preloadermodal %}
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">{% trans 'loading'|capfirst %}...</span>
+        </div>
+    </div>    
+    {% endblock preloadermodal %}
+
+    {% block cookiesmodal %}
+    <!-- Cookies modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-cookies" data-backdrop="false" aria-labelledby="modal-cookies" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-aside left-4 right-4 bottom-4">
+            <div class="modal-content bg-dark-dark">
+                <div class="modal-body">
+                    <!-- Text -->
+                    <p class="text-sm text-white mb-3">
+                        {% trans "we uses cookies to ensure we give you the best experience on our website."|capfirst %}
+                    </p>
+                    <!-- Buttons -->
+                    <!--<a href="." class="btn btn-sm btn-white" target="_blank">Learn more</a>-->
+                    <button type="button" class="btn btn-sm btn-primary mr-2" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock cookiesmodal %}
+
+    {% block usermodal %}
+    <!-- User profile modal -->
+    {% include 'accounts/user_detail_quick_modal.html' %}
+    {% endblock usermodal %}
+    
+    {% block header %}
+    <!-- Header -->
+    <header class="{% block headerclass %}{% endblock headerclass %}" id="header-main">
+        <!-- Navbar -->
+        {% block navbar %}        
+            <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main">
+                {% if user.is_authenticated %}
+                    <div class="container">
+                        <!-- Toggler -->
+                        <button class="navbar-toggler order-lg-2 ml-n3 ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <!-- Brand -->                        
+                        <a class="navbar-brand diventi-font order-lg-1" href="{% url 'landing:home' %}">
+                            Diventi
+                        </a>
+                        <!-- Collapse -->
+                        <div class="collapse navbar-collapse navbar-collapse-overlay order-lg-3" id="navbar-main-collapse">
+                            <!-- Toggler -->
+                            <div class="position-relative">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i data-feather="x"></i>
+                                </button>
+                            </div>
+                            <!-- Main navigation -->
+                            <ul class="navbar-nav ml-lg-auto mr-3">
+                                {% include 'navigation_quick.html' %}
+                            </ul>
+                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+                                <li class="nav-item">
+                                    <a href="#" data-action="omnisearch-open" data-target="#omnisearch" class="nav-link nav-link-icon px-2">
+                                        <i class="far fa-search fa-sm fa-fw"></i>
+                                    </a>
+                                </li>                        
+                                <li class="nav-item dropdown dropdown-animate">
+                                    <a class="nav-link nav-link-icon px-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="far fa-cog fa-sm fa-fw"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow p-3">
+                                        <h6 class="dropdown-header px-0 mb-2 text-primary">{% trans "hi"|capfirst %}, {{ user.get_full_name }}!</h6>
+                                        {% for link in user_links %}
+                                            <a href="{{ link.url }}" class="dropdown-item">
+                                                <i class="far fa-{{ link.icon }} fa-sm fa-fw"></i>
+                                                <span>{{ link.label|capfirst }}</span>
+                                            </a>
+                                            {% if forloop.last %}
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{% url 'accounts:signout' %}" class="dropdown-item">
+                                                <i class="far fa-sign-out fa-sm fa-fw"></i>
+                                                <span>{% trans "sign out"|capfirst %}</span>
+                                            </a>
+                                            {% endif %}
+                                        {% endfor %}             
+                                    </div>
+                                </li>                        
+                            </ul>
+                        </div>
+                        <div class="order-lg-4 ml-lg-3">
+                            <a class="" href="#modal-profile" role="button" data-toggle="modal">
+                                <span class="avatar rounded-circle">
+                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="container">
+                        <!-- Brand -->
+                        <a class="navbar-brand diventi-font" href="{% url 'landing:home' %}">
+                            Diventi
+                        </a>
+                        <!-- Toggler -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <!-- Collapse -->
+                        <div class="collapse navbar-collapse navbar-collapse-overlay" id="navbar-main-collapse">
+                            <!-- Toggler --> 
+                            <div class="position-relative">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                                <i data-feather="x"></i>
+                                </button>
+                            </div>
+                            <!-- Main navigation -->
+                            <ul class="navbar-nav ml-lg-auto">
+                                {% include 'navigation_quick.html' %}
+                            </ul>
+                            <!-- Right navigation -->
+                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+                                <!-- Auth -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'accounts:signin' %}">
+                                        {% trans "sign in"|capfirst %}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'accounts:signup' %}" class="btn btn-sm btn-primary btn-icon ml-3">
+                                    <span class="btn-inner--icon">
+                                        <i class="far fa-sign-in-alt"></i>
+                                    </span>
+                                    <span class="btn-inner--text">{% trans 'sign up'|capfirst %}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- Mobile button -->
+                            <div class="d-lg-none px-4 text-center">
+                                <a href="{% url 'accounts:signin' %}" class="btn btn-block btn-sm btn-primary">{% trans "sign in"|capfirst %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </nav>
+        {% endblock navbar %}
+    </header>
+    {% endblock header %}
+    
+    {% block omnisearch %}
+    <!-- Omnisearch -->
+    <div id="omnisearch" class="omnisearch">
+        <div class="container">
+            <div class="omnisearch-container">
+                <!-- Search form -->
+                <form action="{% url 'landing:search' %}" class="omnisearch-form">
+                    <div class="form-group">
+                        <div class="input-group input-group-merge input-group-flush">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="far fa-search"></i></span>
+                            </div>                            
+                            <input type="text" class="form-control" id="search_text" placeholder="{% trans 'type and hit enter'|capfirst %}..." name="q" {% if search_query %}value='{{ search_query }}'{% endif %}>
+                        </div>
+                    </div>
+                </form>
+                <div class="omnisearch-suggestions">
+                    <h6 class="heading">{% trans "search suggestions"|capfirst %}</h6>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="list-unstyled mb-0">
+                                {% for ss in search_suggestions %}                                
+                                <li>
+                                    <a class="list-link searchs" href="#" data-value="{{ ss.title|capfirst }}">
+                                    <i class="far fa-{{ ss.icon|default:'circle' }} fa-fw"></i>
+                                    <span>{{ ss.title|capfirst }}</span> &middot; {{ ss.description }}
+                                    </a>
+                                </li>  
+                                {% endfor %}                              
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock omnisearch %}
+
+    {% if messages %}
+        <!-- Messages -->
+        {% for message in messages %}
+        <div class="fixed-top">
+            <div class="col-lg-6 col-md-6 mx-auto">
+                <div class="alert-messages">
+                    <div class="alert alert-group alert-{{ message.tags|default:'info' }} alert-icon" role="alert">
+                        <div class="alert-group-prepend">
+                            <span class="alert-group-icon text-">
+                                <i class="far fa-{% if message.level == 25 %}thumbs-up{% elif message.level >= 25 %}exclamation-triangle{% else %}info-circle{% endif%}"></i>
+                            </span>
+                        </div>
+                        <div class="alert-content">
+                            {{ message.message }}
+                        </div>
+                        <div class="alert-action">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Main content -->
+    {% block basecontent %}
+    {% block content %}{% endblock content %}
+    {% endblock basecontent %}
+
+    {% block footer %}
+    <footer class="position-relative" id="footer-main">
+        <div class="footer pt-lg-7 footer-dark bg-dark">
+            <!-- SVG shape -->
+            <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
+                <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="{% block footercolor %}fill-section-secondary{% endblock footercolor %}">
+                    <polygon points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
+            <!-- Footer -->
+            <div class="container pt-4">
+                {% block extrafooter %}{% endblock extrafooter %}
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <a href="{% url 'landing:home' %}">
+                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" alt="Diventi" src="" class="img-fluid" style="width: 228px;" id="footer-logo">
+                        </a>
+                        <p class="mt-4 text-sm opacity-8 pr-lg-4">{% trans "Diventi is a role-playing game that embraces fun, encourages storytelling and helps game masters to prepare their fantastic adventures" %}.</p>
+                        <ul class="nav mt-4">
+                            <li class="nav-item">
+                                <a class="nav-link pl-0" href="https://www.youtube.com/feed/my_videos" target="_blank">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/flavoi/diventi" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.instagram.com/playdiventi/" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.facebook.com/playdiventi" target="_blank">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">{% trans "account"|capfirst %}</h6>
+                        <ul class="list-unstyled">
+                            {% if user.is_authenticated %}
+                                {% for link in user_links %}
+                                    <li>
+                                        <a href="{{ link.url }}">                                    
+                                            {{ link.label|capfirst }}
+                                        </a>
+                                    </li>
+                                {% endfor %}                            
+                            {% else %}
+                            <li><a href="{% url 'accounts:signin' %}">{% trans "sign in"|capfirst %}</a></li>
+                            <li><a href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">{% trans "about"|capfirst %}</h6>
+                        <ul class="list-unstyled">
+                            {% for article in about_us_articles %}
+                            <li><a href="{{ article.get_absolute_url }}">{{ article.title|capfirst }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">{% trans "community"|capfirst %}</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'blog:home' %}">Blog</a></li>
+                            <li><a href="{% url 'forum:index' %}">Forum</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="divider divider-fade divider-dark my-4">
+                <div class="row align-items-center justify-content-md-between pb-4">
+                    <div class="col-md-6">
+                        <div class="copyright text-sm font-weight-bold text-center text-md-left">
+                            &copy; {{ copy }}. {% trans "Made with passion by Diventi's team" %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="mailto:info@playdiventi.it">
+                                    <i class="far fa-envelope-open fa-sm"></i> info@playdiventi.it
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock footer %}
+
+    <!-- Core JS  -->
+    <script src="{% static 'quick-v110/libs/jquery/dist/jquery.min.js' %}"></script>    
+    <script src="{% static 'quick-v110/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/svg-injector/dist/svg-injector.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/feather-icons/dist/feather.min.js' %}"></script>
+    <!-- Optional JS -->
+    <script src="{% static 'quick-v110/libs/typed.js/lib/typed.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/in-view/dist/in-view.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/sticky-kit/dist/sticky-kit.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'quick-v110/libs/autosize/dist/autosize.min.js' %}"></script>
+    <!-- Page JS -->
+    <script src="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js' %}"></script>
+    <!-- Quick JS -->
+    {% block quick_js %}
+    <script src="{% static 'quick-v110/js/quick-website.js' %}"></script>
+    {% endblock quick_js %}
+    <script src="{% static 'diventi/js/diventi-defer-img.min.gz.js' %}"></script>
+    <!-- Feather Icons -->
+    <script type="text/javascript">
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+    <script type="text/javascript">
+    $(function () {
+        $('.searchs').on('click', function () {
+            var text = $('#search_text');
+            text.val($(this).attr('data-value'));
+            $('#search_text').focus()
+        });
+    });
+    </script>
+    <!-- Popovers -->
+    <script type="text/javascript">
+        $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+    </script>
+
+    {% block extrascript %}{% endblock extrascript %}
+</body>
+
+</html>

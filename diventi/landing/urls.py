@@ -3,17 +3,19 @@ from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from .views import (
-    landing, 
-    PresentationSearchView, 
-    landing_survey,
+    LandingSearchView,
     DashboardView,
+    LandingTemplateView,
+    AboutArticleDetailView,
+    PolicyArticleDetailView,
 )
 
 app_name = 'landing'
 
 urlpatterns = [
-    path('', landing, name='home'),
-    path(_('search/'), PresentationSearchView.as_view(), name='search'),
-    path(_('survey/'), landing_survey, name='survey'),
-    path(_('analytics/'), DashboardView.as_view(), name='analytics'),   
+    path('', LandingTemplateView.as_view(), name='home'),
+    path(_('search/'), LandingSearchView.as_view(), name='search'),
+    path(_('analytics/'), DashboardView.as_view(), name='analytics'),
+    path(_('about/<slug:slug>/'), AboutArticleDetailView.as_view(), name='about'),
+    path(_('policy/<slug:slug>/'), PolicyArticleDetailView.as_view(), name='policy'),
 ]

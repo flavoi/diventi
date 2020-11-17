@@ -1,11 +1,23 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from diventi.core.admin import DiventiTranslationAdmin
+from diventi.core.admin import (
+    DiventiIconAdmin,
+    DiventiTranslationAdmin,
+)
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 
-from .models import Product, Chapter, ImagePreview, ProductCategory, ChapterCategory, Purchase, ProductDetail
+from .models import (
+    Product, 
+    Chapter, 
+    ImagePreview, 
+    ProductCategory, 
+    ChapterCategory, 
+    Purchase, 
+    ProductDetail, 
+    ProductFormat,
+)
 from .forms import ProductForm
 
 
@@ -20,44 +32,52 @@ make_unpublished.short_description = _("Mark selected products as hidden")
 
 class ProductDetailInline(TranslationStackedInline):
     model = ProductDetail
-    fields = ('title', 'description',)
+    fields = ('title', 'description', 'highlighted')
+    extra = 0
+
+
+class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
+    model = ProductFormat
+    list_display = ['title', 'icon_tag', 'color_tag']
+    fields = ('title', 'description', 'icon', 'icon_style', 'color')    
     extra = 0
 
 
 class ChapterInline(TranslationStackedInline):
     model = Chapter
-    fields = ('title', 'description', 'category', 'icon')
+    fields = ('title', 'description', 'icon', 'icon_style', 'color')
     extra = 0
 
 
 class ImagePreviewInline(TranslationStackedInline):
     model = ImagePreview
-    fields = ( 'label', 'image')
+    fields = ('title', 'description', 'image')
     extra = 0
 
 
 class ImagePreviewAdmin(DiventiTranslationAdmin):
-    list_display = ('label', 'image_tag')
+    list_display = ('title', 'image_tag', 'product')
+    fields = ('title', 'description', 'image', 'product')
 
 
 class ProductAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'published', 'price', 'category', 'color_tag', 'publication_date', 'modified']    
+    list_display = ['title', 'image_tag', 'published', 'unfolded', '_at_a_premium', 'product_survey', 'category', 'publication_date', 'modified']    
     inlines = [
-        ProductDetailInline,
         ChapterInline,
         ImagePreviewInline,
+        ProductDetailInline,        
     ]
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'color', 'alignment')
+            'fields': ('published', 'unfolded', 'product_survey')
         }),
         (_('Pricing'), {
-            'fields': ('price',)
+            'fields': ('stripe_product', 'stripe_price',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'courtesy_short_message', 'courtesy_message', 'slug'),
+            'fields': ('title', 'short_description', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
         (_('Related'), {
             'fields': ('related_products',),
@@ -68,6 +88,7 @@ class ProductAdmin(DiventiTranslationAdmin):
     list_select_related = (
         'category',
     )
+    ordering = ('-published', '-unfolded',)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj=None, **kwargs)
@@ -75,9 +96,19 @@ class ProductAdmin(DiventiTranslationAdmin):
         return form
 
 
-class ProductCategoryAdmin(DiventiTranslationAdmin):
-    list_display = ('title', 'meta_category')
-    fields = ('title', 'meta_category')
+class ProductCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
+    list_display = ('title', 'icon_tag', 'color_tag', 'meta_category')
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('meta_category',)
+        }),
+        (_('Multimedia'), {
+            'fields': ('icon', 'color'),
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'description',),
+        }),
+    )
 
 
 class ChapterCategoryAdmin(DiventiTranslationAdmin):
@@ -95,5 +126,5 @@ class PurchaseAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ImagePreview, ImagePreviewAdmin)
 admin.site.register(ProductCategory, ProductCategoryAdmin)
-admin.site.register(ChapterCategory, ChapterCategoryAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
+admin.site.register(ProductFormat, ProductFormatAdmin)

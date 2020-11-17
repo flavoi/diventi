@@ -1,0 +1,38 @@
+{% load comments %}
+{% load mptt_tags %}
+{% load comment_extras %}
+{% load i18n %}
+{% load static %}
+
+{% if user.is_authenticated %}
+    {% get_comment_form for object as form %}
+    <div class="media media-comment align-items-center">
+        <img alt="{{ request.user.get_full_name }}" class="rounded-circle shadow mr-4" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if request.user.image %}{{ request.user.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" style="width:58px">
+        <div class="media-body">
+          <form id="live-preview-form" action="{% comment_form_target %}" method="POST" class="rounded-lg border">
+             {% csrf_token %}
+             <div class="input-group input-group-lg input-group-merge">
+                <div class="input-group-prepend">
+                   <span class="input-group-text border-0 pr-2">
+                      <i class="far fa-pencil"></i>
+                   </span>
+                </div>
+                {{ form.comment }}
+                {{ form.content_type }}
+                {{ form.object_pk }}
+                {{ form.timestamp }}
+                {{ form.security_hash }}
+                {{ form.honeypot }}
+                {{ form.parent }}
+                <div class="input-group-append">
+                    <span class="input-group-text border-0 py-0 pl-2 pr-2">
+                        <button type="submit" class="btn btn-sm btn-primary">{% trans 'Post' %}</button>
+                    </span>
+                </div>
+             </div>
+          </form>
+        </div>
+    </div>
+{% else %}
+    <h6 class="my-4">{% trans "Please sign in to leave a comment" %}</h6>
+{% endif %}

@@ -17,6 +17,7 @@ from .models import (
 class ArticlesListView(ListView):
 
     model = Article
+    template_name = 'blog/article_list_quick.html'
     context_object_name = 'articles'
     paginate_by = 6
 
@@ -47,11 +48,17 @@ class ArticleDetailView(DetailView):
 
     model = Article
     context_object_name = 'article'
+    template_name = 'blog/article_detail_quick.html'
 
     # Returns only published articles
     def get_queryset(self):
         qs = super(ArticleDetailView, self).get_queryset()
         return qs.published().promotions()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context['related_articles'] = self.object.related_articles.prefetch()
+        return context
 
 
 class ArticlePromoteToggleView(RedirectView):

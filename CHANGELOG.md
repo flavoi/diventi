@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Fixed a problem that prevented the cover image to be displayed in search results
 - [feedbacks] Fixed a problem that caused an incorrect layout in the answer form page
 - [products] Fixed product card icons size
+- [products] Fixed a problem that sometimes doubled the project items in the navbar 
 
 ### Security
 - [core] Updated urllib from v0.17.0 to v0.18.0

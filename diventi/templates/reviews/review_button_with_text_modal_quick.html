@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load reviews %}
+
+<a href='.' class="btn btn-secondary btn-sm btn-icon bg-light-warning" data-toggle="modal" data-target="#reviewModalQuick-{{ object.pk }}">
+    <i class="far fa-pencil mr-1"></i>
+    {% trans "your review"|capfirst %}
+</a>
+
+<!-- Reviews modal -->
+{% include 'reviews/review_modal_quick.html' %}

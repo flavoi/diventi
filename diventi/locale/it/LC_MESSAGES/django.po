@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 08:01+0100\n"
+"POT-Creation-Date: 2020-12-12 18:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -675,10 +675,6 @@ msgstr "Correlato"
 msgid "Blog"
 msgstr "Blog"
 
-#: diventi/blog/forms.py:12
-msgid "This color will be displayed in search results."
-msgstr ""
-
 #: diventi/blog/models.py:83
 msgid "Blog Cover"
 msgstr "Copertina del blog"
@@ -717,14 +713,18 @@ msgstr "autore"
 msgid "related articles"
 msgstr "articoli correlati"
 
-#: diventi/blog/models.py:115 diventi/blog/models.py:140
+#: diventi/blog/models.py:114 diventi/blog/models.py:139
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:116 diventi/landing/models.py:67
+#: diventi/blog/models.py:115 diventi/landing/models.py:67
 #: diventi/templates/navigation_quick.html:87
 msgid "articles"
 msgstr "articoli"
+
+#: diventi/blog/models.py:141
+msgid "This color will be displayed in search results."
+msgstr ""
 
 #: diventi/blog/urls.py:16
 msgid "category/<str:category>/"
@@ -1784,12 +1784,12 @@ msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
-#: diventi/products/views.py:212
+#: diventi/products/views.py:207
 #, python-format
 msgid "Diventi: %(title)s purchase"
 msgstr "Diventi: acquisto %(title)s"
 
-#: diventi/products/views.py:213
+#: diventi/products/views.py:208
 #, python-format
 msgid ""
 "Dear %(user)s, you have successufully purchased %(title)s for %(price)s."
@@ -1866,7 +1866,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
-#: diventi/templates/products/partials/product_detail_actions.html:62
+#: diventi/templates/products/partials/product_detail_actions.html:61
 #: diventi/templates/products/product_detail.html:137
 msgid "Sign in"
 msgstr "Accedi"
@@ -2148,8 +2148,8 @@ msgstr "Profilo"
 #: diventi/templates/accounts/user_detail_quick.html:158
 #: diventi/templates/accounts/user_detail_quick_modal.html:51
 #: diventi/templates/products/checkout_done_quick.html:37
-#: diventi/templates/products/partials/product_detail_actions.html:12
-#: diventi/templates/products/partials/product_detail_actions.html:49
+#: diventi/templates/products/partials/product_detail_actions.html:11
+#: diventi/templates/products/partials/product_detail_actions.html:48
 #: diventi/templates/products/product_detail.html:114
 msgid "collection"
 msgstr "collezione"
@@ -3654,43 +3654,39 @@ msgstr "prova di nuovo"
 msgid "buy for"
 msgstr "acquista per"
 
-#: diventi/templates/products/partials/product_detail_actions.html:8
-msgid "you've already got this item"
-msgstr "possiedi già questo oggetto"
-
-#: diventi/templates/products/partials/product_detail_actions.html:12
+#: diventi/templates/products/partials/product_detail_actions.html:11
 msgid "this content is available"
 msgstr "questo contenuto è disponibile"
 
-#: diventi/templates/products/partials/product_detail_actions.html:12
-#: diventi/templates/products/partials/product_detail_actions.html:49
+#: diventi/templates/products/partials/product_detail_actions.html:11
+#: diventi/templates/products/partials/product_detail_actions.html:48
 msgid "in your collection"
 msgstr "nella tua collezione"
 
-#: diventi/templates/products/partials/product_detail_actions.html:30
+#: diventi/templates/products/partials/product_detail_actions.html:29
 #: diventi/templates/products/product_detail.html:129
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/products/partials/product_detail_actions.html:45
+#: diventi/templates/products/partials/product_detail_actions.html:44
 msgid "you've already answered"
 msgstr "hai già risposto, grazie"
 
-#: diventi/templates/products/partials/product_detail_actions.html:49
+#: diventi/templates/products/partials/product_detail_actions.html:48
 msgid "you can"
 msgstr "puoi"
 
-#: diventi/templates/products/partials/product_detail_actions.html:49
+#: diventi/templates/products/partials/product_detail_actions.html:48
 msgid "check your answers here"
 msgstr "visualizzare le tue risposte qui"
 
-#: diventi/templates/products/partials/product_detail_actions.html:49
+#: diventi/templates/products/partials/product_detail_actions.html:48
 #, fuzzy
 #| msgid "Poor"
 msgid "or"
 msgstr "Scarso"
 
-#: diventi/templates/products/partials/product_detail_actions.html:62
+#: diventi/templates/products/partials/product_detail_actions.html:61
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
 
@@ -3743,8 +3739,8 @@ msgid "from"
 msgstr "da"
 
 #: diventi/templates/products/product_detail_quick.html:120
-#: diventi/templates/reviews/review_button_modal_quick.html:15
 #: diventi/templates/reviews/review_form.html:9
+#: diventi/templates/reviews/review_modal_quick.html:9
 msgid "review"
 msgid_plural "reviews"
 msgstr[0] "recensione"
@@ -3801,7 +3797,7 @@ msgstr "Grazie per la tua recensione"
 
 #: diventi/templates/reviews/posted.html:13
 msgid "You can leave the page or go back"
-msgstr "Ora puoi lasciare la pagina oppure ritornare"
+msgstr "Ora puoi lasciare la pagina o tornare indietro"
 
 #: diventi/templates/reviews/posted.html:13
 msgid "to the previous page"
@@ -3823,12 +3819,16 @@ msgstr "lascia una recensione"
 msgid "check review"
 msgstr "controlla la recensione"
 
-#: diventi/templates/reviews/review_button_modal_quick.html:26
+#: diventi/templates/reviews/review_button_with_text_modal_quick.html:6
+msgid "your review"
+msgstr "la tua recensione"
+
 #: diventi/templates/reviews/review_form.html:19
+#: diventi/templates/reviews/review_modal_quick.html:20
 msgid "close"
 msgstr "chiudi"
 
-#: diventi/templates/reviews/review_button_modal_quick.html:27
+#: diventi/templates/reviews/review_modal_quick.html:21
 msgid "save changes"
 msgstr "salva le modifiche"
 
@@ -3856,718 +3856,5 @@ msgstr "link della menzione"
 msgid "Tooltip"
 msgstr "Suggerimento"
 
-#~ msgid "we have received your answers"
-#~ msgstr "abbiamo recepito le tue risposte"
-
-#~ msgid "lead"
-#~ msgstr "testata"
-
-#~ msgid "Secondary"
-#~ msgstr "Secondario"
-
-#~ msgid "Primary"
-#~ msgstr "Primario"
-
-#~ msgid "Dark"
-#~ msgstr "Scuro"
-
-#~ msgid ""
-#~ "we use cookies so that our themes work for you. By using our website, you "
-#~ "agree to our use of cookies"
-#~ msgstr ""
-#~ "in questo sito web usiamo i cookie per ottimizzarne il funzionamento. "
-#~ "Utilizzandolo accetti l'utilizzo dei nostri cookie"
-
-#~ msgid "ebook sections"
-#~ msgstr "sezioni degli ebook"
-
-#~ msgid "Rose"
-#~ msgstr "Rosa"
-
-#~ msgid "feedbacks"
-#~ msgstr "riscontri"
-
-#~ msgid "applications/"
-#~ msgstr "applicazioni/"
-
-#~ msgid "payments/"
-#~ msgstr "pagamenti/"
-
-#~ msgid "Payments"
-#~ msgstr "Pagamenti"
-
-#, python-format
-#~ msgid "Diventi charge for %(title)s"
-#~ msgstr "Diventi: acquisto %(title)s"
-
-#~ msgid "Rate limit error"
-#~ msgstr "Errore rate limit"
-
-#~ msgid "Invalid request error"
-#~ msgstr "Errore richiesta non valida"
-
-#~ msgid "Api authentication error"
-#~ msgstr "Errore autenticazione api"
-
-#~ msgid "Api connection error"
-#~ msgstr "Errore di connessione api"
-
-#~ msgid "Generic error"
-#~ msgstr "Errore generico"
-
-#~ msgid "Unexpected error"
-#~ msgstr "Errore inaspettato"
-
-#, python-format
-#~ msgid "You paid %(price)s for %(title)s"
-#~ msgstr "Hai pagato %(price)s per %(title)s"
-
-#~ msgid "price"
-#~ msgstr "prezzo"
-
-#~ msgid ""
-#~ "This price must be valued in euro cents. For example: 500 for 5.00€, 120 "
-#~ "for 1.20€ etc."
-#~ msgstr ""
-#~ "Questo prezzo deve essere valorizzato in centesimi di euro. Per esempio: "
-#~ "500 per 5.00€, 120 per 1.20€ eccetera."
-
-#~ msgid "^(?P<slug>[-\\w]+)/$"
-#~ msgstr "^(?P<slug>[-\\w]+)/$"
-
-#~ msgid "^(?P<slug>[-\\w]+)/add/$"
-#~ msgstr "^(?P<slug>[-\\w]+)/aggiungi/$"
-
-#~ msgid "^(?P<slug>[-\\w]+)/remove/$"
-#~ msgstr "^(?P<slug>[-\\w]+)/rimuovi/$"
-
-#~ msgid "buy with card"
-#~ msgstr "acquista con carta"
-
-#~ msgid " review"
-#~ msgid_plural " reviews"
-#~ msgstr[0] "recensione"
-#~ msgstr[1] "recensioni"
-
-#~ msgid "survey/"
-#~ msgstr "sondaggio/"
-
-#~ msgid "We encountered an error while redirecting to your survey."
-#~ msgstr ""
-#~ "Abbiamo riscontrato un errore in fase di riindirizzamento al tuo "
-#~ "sondaggio."
-
-#~ msgid "Please double check your email."
-#~ msgstr "Per favore controlla la tua email."
-
-#~ msgid "what is Diventi"
-#~ msgstr "cos'è Diventi"
-
-#~ msgid "our mission"
-#~ msgstr "la nostra missione"
-
-#~ msgid "visualize"
-#~ msgstr "visualizza"
-
-#~ msgid "upper score"
-#~ msgstr "esito superiore"
-
-#~ msgid "upper outcome"
-#~ msgstr "esito superiore"
-
-#~ msgid "medium score"
-#~ msgstr "punteggio medio"
-
-#~ msgid "medium outcome"
-#~ msgstr "esito medio"
-
-#~ msgid "lower score"
-#~ msgstr "punteggio inferiore"
-
-#~ msgid "lower outcome"
-#~ msgstr "esito inferiore"
-
-#~ msgid "outcome"
-#~ msgstr "esito"
-
-#~ msgid "outcomes"
-#~ msgstr "esiti"
-
-#~ msgid "<slug:slug>/answers/<str:author_name>/"
-#~ msgstr "<slug:slug>/risposte/<str:author_name>/"
-
-#~ msgid "You should sign in to access that survey."
-#~ msgstr "Per rispondere a questo sondaggio devi prima autenticarti."
-
-#~ msgid "Your survey has been saved!"
-#~ msgstr "Il tuo sondaggio è stato salvato!"
-
-#~ msgid "The selected survey doesn't exist or is not published yet."
-#~ msgstr ""
-#~ "Il sondaggio selezionato non esiste o non è ancora stato pubblicato."
-
-#~ msgid "your answers"
-#~ msgstr "le tue risposte"
-
-#~ msgid "Your favourite role"
-#~ msgstr "Il tuo ruolo preferito"
-
-#~ msgid "Your favourite language"
-#~ msgstr "La tua lingua preferita"
-
-#~ msgid "explore"
-#~ msgstr "esplora"
-
-#~ msgid "Take part in the discussion"
-#~ msgstr "Partecipa alla discussione"
-
-#, fuzzy
-#~| msgid "Landing"
-#~ msgid "landing:home"
-#~ msgstr "Pagina di destinazione"
-
-#~ msgid "Advanced search"
-#~ msgstr "Ricerca avanzata"
-
-#~ msgid "Index"
-#~ msgstr "Pagina iniziale"
-
-#~ msgid "Subject"
-#~ msgstr "Oggetto"
-
-#~ msgid "Enter your message"
-#~ msgstr "Scrivi il tuo messaggio"
-
-#~ msgid "Attach a signature"
-#~ msgstr "Aggiungi una firma"
-
-#~ msgid "Enter your subject"
-#~ msgstr "Aggiungi il tuo oggetto"
-
-#~ msgid "Signature"
-#~ msgstr "Firma"
-
-#~ msgid "relationships"
-#~ msgstr "relazioni"
-
-#~ msgid "relationship"
-#~ msgstr "relazione"
-
-#~ msgid "Failure"
-#~ msgstr "Fallimento"
-
-#~ msgid "Mixed"
-#~ msgstr "Misto"
-
-#~ msgid "^(?P<slug>[-\\w]+)/promote/$"
-#~ msgstr "^(?P<slug>[-\\w]+)/promuovi/$"
-
-#~ msgid "sheets/"
-#~ msgstr "schede/"
-
-#~ msgid "Sheets"
-#~ msgstr "Schede"
-
-#~ msgid "name"
-#~ msgstr "nome"
-
-#~ msgid "origin"
-#~ msgstr "origine"
-
-#~ msgid "predisposition"
-#~ msgstr "predisposizione"
-
-#~ msgid "character sheet"
-#~ msgstr "scheda del personaggio"
-
-#~ msgid "character sheets"
-#~ msgstr "schede del personaggio"
-
-#~ msgid "character/<slug:character_slug>/book/<slug:book_slug>"
-#~ msgstr "personaggio/<slug:character_slug>/book/<slug:book_slug>"
-
-#~ msgid "Super paragraph"
-#~ msgstr "Super paragrafo"
-
-#~ msgid "As a user, you have shortcuts to view or review this item"
-#~ msgstr ""
-#~ "Come utente, puoi utilizzare queste scorciatoie per visualizzare o "
-#~ "recensire questo oggetto"
-
-#~ msgid "view"
-#~ msgstr "visualizza"
-
-#~ msgid "cards section"
-#~ msgstr "sezione a schede"
-
-#~ msgid ""
-#~ "Welcome to Diventi blog. You've reached the front page for news on "
-#~ "roleplaying, collaborative storytelling and Diventi related announcements"
-#~ msgstr ""
-#~ "Benvenuti nel blog Diventi. Avete raggiunto la prima pagina per notizie "
-#~ "su giochi di ruolo, narrazione collaborativa e annunci relativi a Diventi"
-
-#~ msgid "dashboard"
-#~ msgstr "cruscotto"
-
-#, fuzzy
-#~| msgid "analytics"
-#~ msgid "analitycs"
-#~ msgstr "analitica"
-
-#~ msgid "for admin only"
-#~ msgstr "per gli amministratori"
-
-#~ msgid "welcome to dashboard"
-#~ msgstr "il cruscotto direzionale"
-
-#~ msgid "price: %(price)s, status: %(status)s"
-#~ msgstr "prezzo: %(price)s, stato: %(status)s"
-
-#~ msgid "product price: %(price)s"
-#~ msgstr "prezzo prodotto: %(price)s"
-
-#~ msgid "admin dashboard"
-#~ msgstr "cruscotto direzionale"
-
-#~ msgid "Search contents in this website"
-#~ msgstr "Cerca contenuti in questo sito web"
-
-#~ msgid "Find out more"
-#~ msgstr "Scopri di più"
-
-#~ msgid "Read the story"
-#~ msgstr "Leggi il racconto"
-
-#~ msgid "contact them with the button below"
-#~ msgstr "contattali tramite il bottone qui sotto"
-
-#~ msgid "Enter the control panel"
-#~ msgstr "Accedi al pannello di controllo"
-
-#~ msgid "Contact the subscribers"
-#~ msgstr "Contatta gli iscritti"
-
-#~ msgid "reporting"
-#~ msgstr "reportistica"
-
-#~ msgid "Mark selected products as available"
-#~ msgstr "Rendi disponibili i prodotti selezionati"
-
-#~ msgid "Mark selected products as unavailable"
-#~ msgstr "Blocca i prodotti selezionati"
-
-#~ msgid "Open"
-#~ msgstr "Apri"
-
-#~ msgid "^search/$"
-#~ msgstr "^ricerca/$"
-
-#~ msgid "^survey/$"
-#~ msgstr "^sondaggio/$"
-
-#~ msgid "You paid {} {} for {}"
-#~ msgstr "Hai pagato {} {} per {}"
-
-#~ msgid "Multiple featured products returned. Please fix!"
-#~ msgstr "Trovati molteplici prodotti sponsorizzati. Sistemare!"
-
-#~ msgid "previous"
-#~ msgstr "precedente"
-
-#~ msgid "next"
-#~ msgstr "successivo"
-
-#~ msgid "Show the selected items in the table of contents"
-#~ msgstr "Mostra nell'indice gli oggetti selezionati"
-
-#~ msgid "Hide the selected items from the table of contents"
-#~ msgstr "Nascondi dall'indice gli oggetti selezionati"
-
-#~ msgid "Standard"
-#~ msgstr "Normale"
-
-#~ msgid "With icon"
-#~ msgstr "Con icona"
-
-#~ msgid "With image"
-#~ msgstr "Con immagine"
-
-#~ msgid "Log in to rate"
-#~ msgstr "Accedi per votare"
-
-#~ msgid "Average: "
-#~ msgstr "Media: "
-
-#~ msgid "Rating Count: "
-#~ msgstr "Conteggio dei voti: "
-
-#~ msgid "You Rated: "
-#~ msgstr "Il tuo voto: "
-
-#~ msgid "This product is in your collection"
-#~ msgstr "Questo prodotto è nella tua collezione"
-
-#~ msgid ""
-#~ "you need more information? Check what others are saying about this app."
-#~ msgstr ""
-#~ "hai bisogno di più informazioni? Dai un'occhiata a cosa gli altri utenti "
-#~ "dicono di questa app."
-
-#~ msgid "Remove this product from your collection"
-#~ msgstr "Rimuovi questo prodotto dalla tua collezione"
-
-#~ msgid "Our authors"
-#~ msgstr "I nostri autori"
-
-#~ msgid "plain"
-#~ msgstr "pulito"
-
-#~ msgid "testimonial"
-#~ msgstr "testimonial"
-
-#, fuzzy
-#~| msgid "There must be only one object at a time. Please fix!"
-#~ msgid "There must be only one default category. Please fix!"
-#~ msgstr "Può esistere un solo oggetto per volta. Sistemare!"
-
-#~ msgid "Section category"
-#~ msgstr "Tipo Sezione"
-
-#~ msgid "Section categories"
-#~ msgstr "Tipi Sezione"
-
-#~ msgid "super title"
-#~ msgstr "super titolo"
-
-#~ msgid "Full"
-#~ msgstr "Intero"
-
-#~ msgid "Quarter"
-#~ msgstr "Un quarto"
-
-#~ msgid "internal order index"
-#~ msgstr "id ordinamento"
-
-#~ msgid "^(?P<pk>\\d+)/delete/$"
-#~ msgstr "^(?P<pk>\\d+)/cancella/$"
-
-#~ msgid "Download"
-#~ msgstr "Scarica"
-
-#~ msgid "^(?P<pk>\\d+)/update/$"
-#~ msgstr "^(?P<pk>\\d+)/aggiorna/$"
-
-#~ msgid "^(?P<pk>\\d+)/$"
-#~ msgstr "^(?P<pk>\\d+)/$"
-
-#~ msgid "project"
-#~ msgstr "progetto"
-
-#~ msgid "^login/$"
-#~ msgstr "^accedi/$"
-
-#, fuzzy
-#~| msgid "content"
-#~ msgid "Content"
-#~ msgstr "contenuto"
-
-#~ msgid "prototype"
-#~ msgstr "prototipo"
-
-#~ msgid "Characteristic"
-#~ msgstr "Caratteristica"
-
-#~ msgid "standard centered section"
-#~ msgstr "testatina centrale normale"
-
-#~ msgid "standard centered header"
-#~ msgstr "testatina centrale normale"
-
-#~ msgid "There is no active landing page."
-#~ msgstr "Non risulta attiva alcuna pagina di destinazione"
-
-#~ msgid "There must be only one landing page at a time. Please fix!"
-#~ msgstr "Può esistere una sola pagina di destinazione per volta."
-
-#~ msgid "projects description"
-#~ msgstr "descrizione progetti"
-
-#~ msgid "featured link"
-#~ msgstr "link in primo piano"
-
-#~ msgid "survey centered header"
-#~ msgstr "testatina con sondaggio centrale"
-
-#~ msgid "^presentation/(?P<pk>\\d+)/$"
-#~ msgstr "^presentazione/(?P<pk>\\d+)/$"
-
-#~ msgid "Update details"
-#~ msgstr "Aggiorna dettagli"
-
-#~ msgid "under maintenance"
-#~ msgstr "in manutenzione"
-
-#~ msgid "The email must be set"
-#~ msgstr "L'email deve essere valorizzata"
-
-#~ msgid "Superuser must have is_staff=True."
-#~ msgstr "Un amministratore deve essere impostato come is_staff=True."
-
-#~ msgid "Superuser must have is_superuser=True."
-#~ msgstr "Un amministratore deve essere impostato come is_superuser=True."
-
-#~ msgid "survey covers"
-#~ msgstr "copertine del sondaggio"
-
-#~ msgid "Our content creators"
-#~ msgstr "I nostri autori"
-
-#, fuzzy
-#~| msgid "author"
-#~ msgid "Authors"
-#~ msgstr "autore"
-
-#~ msgid "Content creators"
-#~ msgstr "Autori"
-
-#~ msgid "Creator"
-#~ msgstr "Autore"
-
-#~ msgid "What's your story?"
-#~ msgstr "Qual è la tua storia?"
-
-#~ msgid "^homebrew/"
-#~ msgstr "^autoproduzione/"
-
-#~ msgid "Staff"
-#~ msgstr "Staff"
-
-#~ msgid "Homebrew"
-#~ msgstr "Autoproduzione"
-
-#~ msgid "diventi book - A4"
-#~ msgstr "libro diventi - A4"
-
-#~ msgid "diventi book - A5"
-#~ msgstr "libro diventi - A5"
-
-#~ msgid "diventi card - A4"
-#~ msgstr "carta diventi - A4"
-
-#~ msgid "papers"
-#~ msgstr "documenti"
-
-#~ msgid "dice"
-#~ msgstr "dado"
-
-#~ msgid "dice table"
-#~ msgstr "tabella dado"
-
-#~ msgid "dice tables"
-#~ msgstr "tabelle dado"
-
-#~ msgid "face"
-#~ msgstr "faccia"
-
-#~ msgid "dice table row"
-#~ msgstr "riga di tabella dado"
-
-#~ msgid "dice table rows"
-#~ msgstr "righe di tabella dado"
-
-#~ msgid "list"
-#~ msgstr "lista"
-
-#~ msgid "lists"
-#~ msgstr "liste"
-
-#~ msgid "list item"
-#~ msgstr "elemento della lista"
-
-#~ msgid "list items"
-#~ msgstr "elementi della lista"
-
-#~ msgid "character blocks"
-#~ msgstr "caselle personaggio"
-
-#~ msgid "flavortext"
-#~ msgstr "desc"
-
-#~ msgid "cards"
-#~ msgstr "carte"
-
-#~ msgid "subsection"
-#~ msgstr "sottosezione"
-
-#~ msgid "subsubsection"
-#~ msgstr "sotto-sottosezione"
-
-#~ msgid "commentbox"
-#~ msgstr "casella commento"
-
-#~ msgid "quotebox"
-#~ msgstr "casella citazione"
-
-#~ msgid "paperbox"
-#~ msgstr "casella evidenziata"
-
-#~ msgid "phantom"
-#~ msgstr "fittizio"
-
-#~ msgid "green"
-#~ msgstr "verde"
-
-#~ msgid "yellow"
-#~ msgstr "giallo"
-
-#~ msgid "orange"
-#~ msgstr "arancione"
-
-#~ msgid "gray"
-#~ msgstr "grigio"
-
-#~ msgid "theme"
-#~ msgstr "tema"
-
-#~ msgid "placeholder"
-#~ msgstr "segnaposto"
-
-#~ msgid "parassite"
-#~ msgstr "parassita"
-
-#~ msgid "parassite (lineart)"
-#~ msgstr "parassita (tratto)"
-
-#~ msgid "dama electra"
-#~ msgstr "dama electra"
-
-#~ msgid "dama electra (lineart)"
-#~ msgstr "dama electra (tratto)"
-
-#~ msgid "xarieth"
-#~ msgstr "xarieth"
-
-#~ msgid "xarieth (lineart)"
-#~ msgstr "xarieth (tratto)"
-
-#~ msgid "tiara"
-#~ msgstr "tiara"
-
-#~ msgid "tiara (lineart)"
-#~ msgstr "tiara (tratto)"
-
-#~ msgid "armory"
-#~ msgstr "armeria"
-
-#~ msgid "crystal1"
-#~ msgstr "cristallo1"
-
-#~ msgid "crystal2"
-#~ msgstr "cristallo2"
-
-#~ msgid "crystal3"
-#~ msgstr "cristallo3"
-
-#~ msgid "entrance"
-#~ msgstr "entrata"
-
-#~ msgid "core"
-#~ msgstr "nucleo"
-
-#~ msgid "portal"
-#~ msgstr "portale"
-
-#~ msgid "silos"
-#~ msgstr "silos"
-
-#~ msgid "throne"
-#~ msgstr "trono"
-
-#~ msgid "table"
-#~ msgstr "tabella"
-
-#~ msgid "title page"
-#~ msgstr "titolo"
-
-#~ msgid "pages"
-#~ msgstr "pagine"
-
-#~ msgid "figure name"
-#~ msgstr "nome della figura"
-
-#~ msgid "watermark"
-#~ msgstr "filigrana"
-
-#~ msgid "watermarks"
-#~ msgstr "filigrane"
-
-#~ msgid "This paper requires a template.'"
-#~ msgstr "Questo documento richiede un modello"
-
-#~ msgid "This is what we do"
-#~ msgstr "Ecco ciò che facciamo"
-
-#~ msgid "About Cover"
-#~ msgstr "Copertina Su di Noi"
-
-#~ msgid "About Covers"
-#~ msgstr "Copertine Su di Noi"
-
-#~ msgid "^about/$"
-#~ msgstr "^su-di-noi/$"
-
-#~ msgid "About"
-#~ msgstr "Su di noi"
-
-#~ msgid "About Us"
-#~ msgstr "Su di noi"
-
-#~ msgid ""
-#~ "Meet the team behind this project and find out more about how we work."
-#~ msgstr ""
-#~ "Incontra la squadra che ci cela dietro questo progetto e scopri di più su "
-#~ "come lavoriamo."
-
-#~ msgid "Tell us what you think!"
-#~ msgstr "Dicci che ne pensi!"
-
-#~ msgid "feedback"
-#~ msgstr "feedback"
-
-#~ msgid "You feedback has been sent!"
-#~ msgstr "Il tuo feedback è stato inviato!"
-
-#, fuzzy
-#~| msgid "Our latest stories"
-#~ msgid "Our Latest Stories"
-#~ msgstr "Le nostre ultime storie"
-
-#~ msgid ""
-#~ "\n"
-#~ "                    Hi %(user_name)s, we thank you for your time. Please "
-#~ "feel free to leave a feedback, this text won't be published.\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "                    Ciao %(user_name)s, grazie per il tuo tempo. Lasciaci "
-#~ "pure un riscontro, non lo pubblicheremo.\n"
-#~ "                "
-
-#~ msgid "feedback count"
-#~ msgstr "feedback inviati"
-
-#~ msgid "Send"
-#~ msgstr "Invia"
-
-#~ msgid "Leave a private feedback"
-#~ msgstr "Lascia un feedback privato"
-
-#~ msgid "Photo credit"
-#~ msgstr "Illustrazione di"
-
-#, fuzzy
-#~| msgid "Italian"
-#~ msgid "tan"
-#~ msgstr "Italiano"
-                                                             
+#~ msgid "you've already got this item"
+#~ msgstr "possiedi già questo oggetto"

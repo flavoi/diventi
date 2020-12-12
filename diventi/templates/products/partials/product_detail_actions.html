@@ -3,14 +3,13 @@
 {% if user.is_authenticated %}                           
     {% if product.book.published and bought %}
         <div class="mt-1">
-            <a class="btn {{ button_disabled_class|default:'btn-warning' }}  btn-sm btn-icon disabled">
-                <i class="far fa-check-circle mr-1"></i>
-                {% trans "you've already got this item"|capfirst %}
-            </a>
+            {% with object=product %}
+                {% include "reviews/review_button_with_text_modal_quick.html" %}
+            {% endwith %} 
             <div class="mt-1">
-            <small>
-                {% trans "this content is available"|capfirst %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "in your collection" %}</a>.
-            </small>
+                <small>
+                    {% trans "this content is available"|capfirst %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "in your collection" %}</a>.
+                </small>
             </div>
         </div>                                                             
     {% elif product.book.published and product.unfolded %}

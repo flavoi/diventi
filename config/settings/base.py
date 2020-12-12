@@ -378,6 +378,7 @@ MACHINA_MARKUP_WIDGET = 'ckeditor.widgets.CKEditorWidget'
 
 STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')
+STRIPE_ENDPOINT_SECRET_KEY = get_env_variable('STRIPE_ENDPOINT_SECRET_KEY')
 
 # Dropbox paper
 # https://www.dropbox.com/developers/apps/info/xdrh4eoh3bpppnv

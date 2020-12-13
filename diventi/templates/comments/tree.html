@@ -11,10 +11,7 @@
                 <a href="{{ node.user.get_absolute_url }}">
                     <h6 class="mt-0">{{ node.user.first_name }}
                         {% for a in node.user.achievements.all %}
-                            <span class="fa-stack text-{{ a.color }} fa-xs" style="vertical-align: middle;" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ a.title }}: {{ a.description|lower }}">
-                              <i class="fas fa-circle fa-stack-2x"></i>
-                              <i class="fas fa-{{ a.icon }} fa-stack-1x fa-inverse fa-fw fa-sm"></i>
-                            </span>
+                            {% include 'accounts/partials/achievement_badge.html' %}
                         {% endfor %}
                         <small>&middot; {{ node.submit_date|naturaltime }}</small>
                     </h6>

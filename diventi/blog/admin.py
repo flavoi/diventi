@@ -1,13 +1,24 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from diventi.core.admin import DiventiTranslationAdmin, make_published, make_unpublished, deactivate
+from diventi.core.admin import (
+    DiventiTranslationAdmin,
+    DiventiIconAdmin,
+    make_published,
+    make_unpublished,
+    deactivate,
+)
 
-from .models import Article, ArticleCategory, BlogCover
+from .models import (
+    Article, 
+    ArticleCategory, 
+    BlogCover,
+)
+
 from .forms import ArticleForm
 
 
-class ArticleAdmin(DiventiTranslationAdmin):
+class ArticleAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     list_display = ['title', 'category', 'image_tag', 'hot', 'color_tag', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 

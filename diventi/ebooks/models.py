@@ -17,7 +17,6 @@ from diventi.core.models import (
     Element, 
     TimeStampedModel, 
     PublishableModel, 
-    DisclosableModel, 
     DiventiImageModel, 
     DiventiColModel
 )

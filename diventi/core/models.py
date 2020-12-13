@@ -43,9 +43,9 @@ class PublishableModelQuerySet(models.QuerySet):
         even if they are not published, yet.
         """
         user = CuserMiddleware.get_user()
-        print(user)
-        if not user.is_staff():
-            qs = self.filter(published=True)
+        qs = self
+        if not user.is_staff:
+            qs = qs.filter(published=True)
         return qs
 
 
@@ -221,14 +221,6 @@ class DiventiCoverModel(DiventiImageModel):
 
     class Meta:
         abstract = True
-
-
-class PublishableModelQuerySet(models.QuerySet):
-
-    # Get just the published objects for everyone
-    def published(self):
-        published_model = self.filter(published=True) 
-        return published_model
 
 
 class FeaturedModelQuerySet(PublishableModelQuerySet):

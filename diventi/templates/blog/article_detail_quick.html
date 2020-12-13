@@ -30,7 +30,12 @@
     <div class="container">
         <div class="row row-grid align-items-center">
             <div class="col-xl-9 col-lg-11 offset-lg-1 offset-xl-2">
-                <span class="badge badge-secondary badge-pill">{{ article.category }}</span>
+                <span class="badge badge-secondary badge-pill">
+                    {{ article.category }}
+                    {% with article as object %}
+                    {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
+                    {% endwith %}
+                </span>
                 <h1 class="h2 text-white mt-3 mb-1 pr-5">{{ article.title|capfirst }}</h1>
                 <p class="lead text-white mb-1 pb-4 pr-5">{{ article.description|capfirst }}</p>
             </div>

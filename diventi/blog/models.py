@@ -14,7 +14,9 @@ from cuser.middleware import CuserMiddleware
 from diventi.core.models import (
     TimeStampedModel, 
     PromotableModel, 
-    PublishableModel, 
+    PublishableModel,
+    PublishableModelManager,
+    PublishableModelQuerySet,
     Category, 
     DiventiImageModel, 
     DiventiCoverModel, 
@@ -23,7 +25,24 @@ from diventi.core.models import (
 )
 
 
-class ArticleQuerySet(models.QuerySet):
+class BlogCover(DiventiCoverModel, Element):
+    """
+        Stores cover images for the blog page.
+    """
+
+    class Meta:
+        verbose_name = _('Blog Cover')
+        verbose_name_plural = _('Blog Covers')
+
+
+class ArticleCategory(Category):
+    """
+        Defines the main argument of any article.
+    """
+    pass
+
+
+class ArticleQuerySet(PublishableModelQuerySet):
     
     # Selet articles' related objects
     def prefetch(self):
@@ -31,12 +50,6 @@ class ArticleQuerySet(models.QuerySet):
         articles = articles.select_related('author')
         articles = articles.prefetch_related('related_articles')
         articles = articles.prefetch_related('promotions')
-        return articles
-
-    # Get the list of published articles
-    def published(self):
-        articles = self.filter(published=True)
-        articles = articles.prefetch()
         return articles
 
     # Get the list of published articles from the most recent to the least 
@@ -74,23 +87,6 @@ class ArticleQuerySet(models.QuerySet):
         return article
 
 
-class BlogCover(DiventiCoverModel, Element):
-    """
-        Stores cover images for the blog page.
-    """
-
-    class Meta:
-        verbose_name = _('Blog Cover')
-        verbose_name_plural = _('Blog Covers')
-
-
-class ArticleCategory(Category):
-    """
-        Defines the main argument of any article.
-    """
-    pass
-
-
 class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element):
     """
         Blog posts are built upon a specific category and are always 
@@ -108,7 +104,7 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         verbose_name=_('related articles'),
     ) # Connect this article to others
 
-    objects = ArticleQuerySet.as_manager()   
+    objects = ArticleQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('article')

@@ -22,7 +22,7 @@ class ArticlesListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Article.objects.history().promotions()
+        return Article.objects.history().prefetch()
 
     def get_context_data(self, *args, **kwargs):
         context = super(ArticlesListView, self).get_context_data(*args, **kwargs)
@@ -53,7 +53,7 @@ class ArticleDetailView(DetailView):
     # Returns only published articles
     def get_queryset(self):
         qs = super(ArticleDetailView, self).get_queryset()
-        return qs.published().promotions()
+        return qs.published().prefetch()
 
     def get_context_data(self, *args, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)

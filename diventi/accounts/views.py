@@ -55,7 +55,7 @@ class DiventiLoginView(LoginView):
 
     def form_valid(self, form):
         messages.success(self.request, self.success_msg)        
-        return super(DiventiLoginView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class DiventiLogoutView(LoginRequiredMixin, LogoutView):

@@ -37,7 +37,7 @@
                    </div> 
                 {% endif %}
                <span class="clearfix"></span>
-               <form class="form" method="POST" action="{% url 'accounts:signin' %}">
+               <form class="form" method="POST">
                   {% csrf_token %}
                   <div class="form-group">
                      <label class="form-control-label">{{ form.username.label }}</label>

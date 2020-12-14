@@ -265,7 +265,7 @@
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                                 <!-- Auth -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'accounts:signin' %}">
+                                    <a class="nav-link" href="{% url 'accounts:signin' %}?next={{ request.path }}">
                                         {% trans "sign in"|capfirst %}
                                     </a>
                                 </li>

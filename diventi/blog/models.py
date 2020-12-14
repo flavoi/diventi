@@ -15,7 +15,6 @@ from diventi.core.models import (
     TimeStampedModel, 
     PromotableModel, 
     PublishableModel,
-    PublishableModelManager,
     PublishableModelQuerySet,
     Category, 
     DiventiImageModel, 

@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [UNRELEASED]
+
+### Added
+### Changed
+### Removed
+### Fixed
+- [accounts] Fixed a problem that always redirected the user to the home page after signin in.
+
 ## [1.0.0-beta-8-rc] → 2020-09-02
 
 ### Added

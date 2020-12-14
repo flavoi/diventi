@@ -20,6 +20,7 @@ from diventi.core.models import (
     DiventiImageModel,
     TimeStampedModel,
     PublishableModel,
+    PublishableModelQuerySet,
     Category,
     Element,
     SectionModel,
@@ -27,7 +28,7 @@ from diventi.core.models import (
 )
 
 
-class ProductQuerySet(models.QuerySet):
+class ProductQuerySet(PublishableModelQuerySet):
 
     # Prefetch all relevant data
     def prefetch(self):
@@ -59,12 +60,6 @@ class ProductQuerySet(models.QuerySet):
     # Return true if the user has authored at least one product
     def has_user_authored(self, user):
         return self.user_authored(user).exists()
-
-    # Get all the published products 
-    def published(self):
-        products = self.filter(published=True)
-        products = products.prefetch()
-        return products
 
 
 class ProductCategoryQuerySet(models.QuerySet):

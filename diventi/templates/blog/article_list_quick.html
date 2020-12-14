@@ -65,10 +65,10 @@
                             <div class="col">
                                 <span class="badge badge-secondary badge-pill">
                                     {{ article.category }} 
-                                    {% with article as object %}
-                                    {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
-                                    {% endwith %}
                                 </span>
+                                {% with article as object %}
+                                    {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                {% endwith %}
                             </div>
                         </div>
                     </div>

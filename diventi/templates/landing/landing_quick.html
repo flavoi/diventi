@@ -140,7 +140,12 @@
              <div class="row justify-content-center">
                 <div class="col-md-10 text-center">
                    <div class="mt-4 mb-6">
-                      <h2 class="h1 text-white">{{ section.title|capfirst }}</h2>
+                      {% with section as object %} 
+                          {% if user.is_staff %}<span class="text-center">{% include 'publishable_badge.html' %}</span>{% endif %}
+                      {% endwith %}
+                      <h2 class="h1 text-white">
+                        {{ section.title|capfirst }}
+                      </h2>
                       <h4 class="text-white mt-3">{{ section.description|safe }}</h4>
                       {% if section.video %}
                       <a href="{{ section.video }}" data-fancybox="" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-warning btn-icon hover-translate-y-n10 mt-4" data-original-title="Watch video in lightbox">
@@ -199,6 +204,9 @@
           <div class="row row-grid align-items-center">
              <div class="col-lg-5">
                 <span class="badge badge-primary badge-pill">{{ product.category }}</span>
+                {% with section as object %} 
+                    {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                {% endwith %}
                 <h3 class="h2 mt-4"><a href="{{ product.get_absolute_url }}">{{ section.title|capfirst }}</a></h3>
                 <p class="lh-190 mb-4">{{ section.description|capfirst }}</p>
                 <ul class="list-unstyled">
@@ -271,6 +279,9 @@
         <div class="row">
           <div class="col-lg-6">
             <span class="badge badge-primary badge-pill">{{ section.title|capfirst }}</span>
+            {% with section as object %} 
+              {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
+            {% endwith %}
             <h5 class="lh-180 mt-4 mb-6">{{ section.description|capfirst }}</h5>
           </div>
         </div>
@@ -300,7 +311,10 @@
         <div class="container">
           <div class="row row-grid align-items-center justify-content-between">
            <div class="col-md-6 col-lg-5 order-md-{{ section.position }} mr-md-auto">
-              <div class="py-lg-5 text-lg-{{ section.alignment }}">
+              {% with section as object %} 
+                {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
+              {% endwith %}
+              <div class="py-lg-5 text-lg-{{ section.alignment }}">                
                  <h3 class="h2 mb-3">{{ section.title|capfirst }}</h3>
                  <p class="lead lh-180">{{ section.description|capfirst }}</p>
                  {% if section.video %}

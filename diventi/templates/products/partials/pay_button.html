@@ -10,14 +10,12 @@
       <span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
   </button>  
   <script>
-    var stripe = Stripe('pk_test_ien1NqbAQfLtyz5PP7PWs15U00Rl8V9d74');
+    var stripe = Stripe('{{ stripe_publishable_key }}');
 
     var checkoutButton = document.querySelector('#checkout-button');
     checkoutButton.addEventListener('click', function () {
       stripe.redirectToCheckout({
         lineItems: [{
-          // Define the product and price in the Dashboard first, and use the price
-          // ID in your client-side code.
           price: '{{ product.stripe_price }}',
           quantity: 1,          
         }],

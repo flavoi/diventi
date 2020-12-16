@@ -329,7 +329,7 @@ msgstr "<slug:nametag>/"
 
 #: diventi/accounts/urls.py:39
 msgid "<slug:nametag>/settings/"
-msgstr "<slug:nametag>/cancella/"
+msgstr "<slug:nametag>/impostazioni/"
 
 #: diventi/accounts/urls.py:40
 msgid "<slug:nametag>/update/"

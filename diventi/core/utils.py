@@ -91,6 +91,24 @@ def render_paper_images_by_direct_url(paper_soup):
     return paper_soup
 
 
+def render_paper_code_blocks(paper_soup):
+    """
+        Substitutes code blocks with quick's style alerts.
+    """
+    codes = paper_soup.find_all('code')
+    for code_tag in codes:
+        code_content = code_tag.findChildren()
+        alert_soup = BeautifulSoup('', 'html.parser')
+        alert_tag = alert_soup.new_tag('div')
+        alert_tag['role'] = 'alert'
+        alert_tag['class'] = 'alert alert-outline-primary my-1'
+        for child in code_content:
+            alert_tag.append(child)
+        code_tag = code_tag.find_parent('div')
+        code_tag.replace_with(alert_tag)
+    return paper_soup
+
+
 def remove_dropbox_placeholders(paper_soup):
     """
         Removes dropbox image previews from the document. 

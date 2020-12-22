@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 ### Changed
 - [blog] Activated special badge for unpublished contents (for staff only)
+- [ebooks] Updated code blocks visual style
 - [landing] Activated special badge for unpublished contents (for staff only)
 - [products] Activated special badge for unpublished contents (for staff only)
 - [survey] Activated special badge for unpublished contents (for staff only)

@@ -101,9 +101,10 @@ def render_paper_code_blocks(paper_soup):
         alert_soup = BeautifulSoup('', 'html.parser')
         alert_tag = alert_soup.new_tag('div')
         alert_tag['role'] = 'alert'
-        alert_tag['class'] = 'alert alert-outline-primary my-1'
+        alert_tag['class'] = 'alert bg-translucent-secondary my-0 py-1'
         for child in code_content:
-            alert_tag.append(child)
+            if child.string:
+                alert_tag.append(child.string)
         code_tag = code_tag.find_parent('div')
         code_tag.replace_with(alert_tag)
     return paper_soup

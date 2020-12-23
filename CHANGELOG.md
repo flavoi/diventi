@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 ### Fixed
 - [accounts] Fixed a problem that always redirected the user to the home page after signin in.
+- [ebooks] Fixed a problem that prevented paper adventures without Diventi Univerale to be rendered.
 
 ## [1.0.0-beta-8-rc] → 2020-09-02
 

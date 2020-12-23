@@ -26,13 +26,14 @@ def make_paper_toc(paper_soup):
 def render_diventi_snippets(paper_soup, diventi_universale_soup):
     """
         Substitutes paper links inside the main paper with
-        linked conteents in Diventi Universale.
+        linked contents in Diventi Universale.
     """
     paper_mentions = paper_soup.select('.mention-content') 
     for p in paper_mentions:
         mentioned_text = p['data-mentiontext']
-        mentioned_uuid = p['data-mentionpadid']
-        diventi_title = extract_diventi_content(mentioned_uuid, diventi_universale_soup)
-        if diventi_title:
-            p.parent.parent.replace_with(diventi_title)
+        mentioned_uuid = p.get('data-mentionpadid', None)
+        if mentioned_uuid:
+            diventi_title = extract_diventi_content(mentioned_uuid, diventi_universale_soup)
+            if diventi_title:
+                p.parent.parent.replace_with(diventi_title)
 

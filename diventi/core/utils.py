@@ -79,13 +79,16 @@ def render_paper_images_by_direct_url(paper_soup):
             image_soup = BeautifulSoup('', 'html.parser')
             image_tag = image_soup.new_tag('img')
             image_tag['src'] = 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
-            image_tag['data-src'] = image_link            
-            image_tag['class'] = 'img-fluid rounded mx-auto'
+            image_tag['data-src'] = image_link                       
             is_table_link = link_tag.find_parent('table')
             if is_table_link:
                 image_tag['class'] = 'rounded mx-auto'
             else:
-                image_tag['class'] = 'w-75 d-block p-2 rounded mx-auto'
+                image_tag['class'] = 'img-fluid rounded shadow-lg'
+                figure_tag = image_soup.new_tag('figure')
+                figure_tag['class'] = 'figure'
+                figure_tag.append(image_tag)
+                image_tag = figure_tag
             link_tag = link_tag.find_parent('span')            
             link_tag.replace_with(image_tag)
     return paper_soup

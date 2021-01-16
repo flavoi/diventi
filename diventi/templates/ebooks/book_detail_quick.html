@@ -16,9 +16,12 @@
 {% block title %}{{ object.title|capfirst }}{% endblock title %}
 
 {% block extrahead %}
+
 <link rel="stylesheet" href="{% static 'diventi/css/diventi-ebook-quick.min.gz.css' %}">
 <link rel="stylesheet" href="{% static 'diventi/css/diventi-ebook-adjustments.min.css' %}" />
+
 {% endblock extrahead %}
+
 
 {% block content %}
 
@@ -51,39 +54,47 @@
 
 <section class="slice">
     <div class="container">
-        <div class="row row-grid justify-content-between">
-            <div class="col-lg-3">
-               <div data-toggle="sticky" data-sticky-offset="50">
-                    <div class="card">
-                        <div class="card-body">
-                            <nav class="nav nav-pills flex-column" id="nav-terms">
-                                {% for title in paper_toc %}
-                                    <a class="nav-link text-sm {% if title.name == 'h1'%}{% if not forloop.first %}pt-3{% endif %} text-dark{% endif %} align-middle" href="#{{ title.anchor }}" data-scroll-to="" data-scroll-to-offset="130">
-                                        {% if title.name == 'h1'%}
-                                        <b>
-                                            {{ title.string }}
-                                        </b>
-                                        {% else %}
-                                            {{ title.string }}
-                                        {% endif %}
-                                    </a>
-                                {% endfor %}                                 
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 mx-auto" id="top">
+        <div class="row">
+            <div class="col-lg-7 mb-5 mb-lg-0">
                 {% if book.logo %}
-                <div class="card bg-{{ book.logo_background }} hover-shadow-lg hover-translate-y-n3">
-                    <div class="card-body text-center h-100">
-                        <img class="w-100 d-block p-0 img-fluid rounded mx-auto" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.logo }}" data-src="">
-                    </div>
+                <div class="mb-4">
+                    <figure class="figure">
+                        <img class="img-fluid rounded shadow-lg p-3" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.logo }}" data-src="">
+                    </figure>
                 </div>
                 {% endif %}
                 <article>
-                    {{ paper_content|safe }}                    
+                    {{ paper_content|safe }}
                 </article>
+                <hr>
+            </div>
+            <div class="col-lg-4 ml-lg-auto">
+                <div data-toggle="sticky" data-sticky-offset="50">
+                    {% for part in paper_toc %}
+                    <div class="card {% if not forloop.first %}mt-4{% endif %}">
+                        {% for title, subheadings in part.items %}
+                            <div class="card-header">
+                                <span class="h6 mb-0">{{ title }}</span>
+                            </div>
+                            <div class="list-group list-group-flush">
+                                {% for h in subheadings %}
+                                    {% if not forloop.first %}
+                                    <a href="#{{ h.anchor }}" data-scroll-to data-scroll-to-offset="50" class="list-group-item list-group-item-action d-flex justify-content-between px-4">
+                                        <div>
+                                            <i class="fas fa-bookmark mr-2"></i>
+                                            <span>{{ h.string }}</span>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-angle-double-right"></i>
+                                        </div>
+                                    </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}                
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -98,8 +109,6 @@
 {% endblock content %}
 
 {% block footercolor %}{% endblock footercolor %}
-
-{% block quick_js %}{% endblock quick_js %}
 
 {% block extrascript %}
 {% load static %}

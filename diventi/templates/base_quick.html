@@ -1,4 +1,4 @@
-{% load i18n %}
+    {% load i18n %}
 {% load static %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_language_info for LANGUAGE_CODE as lang %}
@@ -470,9 +470,7 @@
     <!-- Page JS -->
     <script src="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js' %}"></script>
     <!-- Quick JS -->
-    {% block quick_js %}
     <script src="{% static 'quick-v110/js/quick-website.js' %}"></script>
-    {% endblock quick_js %}
     <script src="{% static 'diventi/js/diventi-defer-img.min.gz.js' %}"></script>
     <!-- Feather Icons -->
     <script type="text/javascript">

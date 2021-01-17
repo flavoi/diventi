@@ -55,7 +55,7 @@
 <section class="slice">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 mb-5 mb-lg-0">
+            <div class="col-lg-7 mb-5 mb-lg-0 order-last order-lg-first">
                 {% if book.logo %}
                 <div class="mb-4">
                     <figure class="figure">
@@ -68,7 +68,7 @@
                 </article>
                 <hr>
             </div>
-            <div class="col-lg-4 ml-lg-auto">
+            <div class="col-lg-4 ml-lg-auto order-first order-lg-last">
                 <div data-toggle="sticky" data-sticky-offset="50">
                     {% for part in paper_toc %}
                     <div class="card {% if not forloop.first %}mt-4{% endif %}">

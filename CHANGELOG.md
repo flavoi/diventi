@@ -9,17 +9,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 
 ### Added
+- [payments] Introducts a dedicated app for the management of stripe payments
+
 ### Changed
 - [blog] Activated special badge for unpublished contents (for staff only)
 - [ebooks] Updated code blocks visual style
 - [landing] Activated special badge for unpublished contents (for staff only)
 - [products] Activated special badge for unpublished contents (for staff only)
+- [products] Changed products url prefix from 'apps' to 'games'
 - [survey] Activated special badge for unpublished contents (for staff only)
 
 ### Removed
+- [landing] Removed adventures links from the main navbar
+
 ### Fixed
-- [accounts] Fixed a problem that always redirected the user to the home page after signin in.
-- [ebooks] Fixed a problem that prevented paper adventures without Diventi Univerale to be rendered.
+- [accounts] Fixed a problem that always redirected the user to the home page after signin in
+- [ebooks] Fixed a problem that prevented paper adventures without Diventi Univerale to be rendered
+- [locale] Fixed a handful of fuzzy translations on products, policy and landing pages
 
 ## [1.0.0-beta-8-rc] → 2020-09-02
 

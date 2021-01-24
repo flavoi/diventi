@@ -25,7 +25,8 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
-    path('apps/', include('diventi.products.urls', namespace='products')),
+    path('payments/', include('diventi.payments.urls', namespace='payments')),
+    path('apps/', include('diventi.products.urls', namespace='products_retro')), # Duplicated to preserve past shared links
 ]
 
 urlpatterns += i18n_patterns(
@@ -38,4 +39,5 @@ urlpatterns += i18n_patterns(
     path(_('ebooks/'), include('diventi.ebooks.urls', namespace='ebooks')),
     path(_('adventures/'), include('diventi.adventures.urls', namespace='adventures')),
     path(_('community/'), include(machina_urls)),
+    path(_('games/'), include('diventi.products.urls', namespace='products')),
 )

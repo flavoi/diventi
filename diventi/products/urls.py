@@ -6,7 +6,6 @@ from .views import (
     AddToUserCollectionView, 
     DropFromUserCollectionView, 
     SecretFileView,
-    stripe_webhook,
     CheckoutDoneTemplateView,
     CheckoutFailedTemplateView,
 )
@@ -14,8 +13,8 @@ from .views import (
 app_name = 'products'
 
 urlpatterns = [
-    path('stripe_webhook/', stripe_webhook, name='stripe_webhook'),
-    path(_('<slug:slug>/detail/'), ProductDetailView.as_view(), name='detail'),
+    path(_('<slug:slug>/'), ProductDetailView.as_view(), name='detail'),
+    path(_('<slug:slug>/detail/'), ProductDetailView.as_view(), name='detail_retro'), # Duplicated to preserve past shared links
     path(_('<slug:slug>/add/'), AddToUserCollectionView.as_view(), name='add'),
     path(_('<slug:slug>/remove/'), DropFromUserCollectionView.as_view(), name='drop'),
     path(_('<slug:slug>/secretfile/'), SecretFileView.as_view(), name='secretfile'),

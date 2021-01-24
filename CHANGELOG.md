@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Fixed a problem that prevented paper adventures without Diventi Univerale to be rendered
 - [locale] Fixed a handful of fuzzy translations on products, policy and landing pages
 
+
 ## [1.0.0-beta-8-rc] → 2020-09-02
 
 ### Added

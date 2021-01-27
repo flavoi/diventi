@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 18:26+0100\n"
+"POT-Creation-Date: 2021-01-27 10:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -999,6 +999,10 @@ msgstr "test alla fine"
 #: diventi/core/models.py:346
 msgid "text position"
 msgstr "posizione del testo"
+
+#: diventi/core/utils.py:75
+msgid "Discover"
+msgstr "Scopri"
 
 #: diventi/ebooks/admin.py:28
 msgid "Duplicate selected section"

@@ -81,3 +81,4 @@ def render_diventi_snippets(paper_soup, diventi_universale_soup):
             if diventi_title:
                 p.parent.parent.replace_with(diventi_title)
 
+

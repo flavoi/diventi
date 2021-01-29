@@ -57,8 +57,7 @@ def adjust_paper_visual_styles(paper_soup):
     """
     tables = paper_soup.find_all('table')
     collapse_counter = 1
-    for table in tables: 
-        # table['class'] = 'my-2'
+    for table in tables:
         table['style'] = ''
 
         collapse_soup = BeautifulSoup('', 'html.parser')
@@ -91,7 +90,7 @@ def adjust_paper_visual_styles(paper_soup):
         collapse_wrapper_tag = collapse_wrapper_tag.find_parent('div')
         collapse_wrapper_tag.name = 'div'
         collapse_wrapper_tag['id'] = 'accordion-{}'.format(collapse_counter)
-        collapse_wrapper_tag['class'] = 'accordion my-2'       
+        collapse_wrapper_tag['class'] = 'accordion mt-2 mb-4'       
 
         collapse_counter += 1
     table_columns = paper_soup.find_all('td')

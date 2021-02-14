@@ -73,12 +73,16 @@ def render_diventi_snippets(paper_soup, diventi_universale_soup):
         linked contents in Diventi Universale.
     """
     paper_mentions = paper_soup.select('.mention-content') 
-    for p in paper_mentions:
-        mentioned_text = p['data-mentiontext']
+    for p in paper_mentions:    
         mentioned_uuid = p.get('data-mentionpadid', None)
+        mentioned_href = p.get('href', None)
         if mentioned_uuid:
-            diventi_title = extract_diventi_content(mentioned_uuid, diventi_universale_soup)
+            mention = mentioned_uuid
+        elif mentioned_href:
+            mention = mentioned_href
+        else:
+            mention = None        
+        if mention:
+            diventi_title = extract_diventi_content(mention, diventi_universale_soup)
             if diventi_title:
-                p.parent.parent.replace_with(diventi_title)
-
-
+                p.parent.parent.parent.replace_with(diventi_title)

@@ -41,10 +41,10 @@ def extract_diventi_content(mention_link, diventi_universale_soup):
             if diventi_paragraph:
                 if diventi_paragraph.h1 or diventi_paragraph.h2:
                     break
-                else:                        
+                else:
                     diventi_title.append(diventi_paragraph)
             else:
-                break    
+                break
         return diventi_title
     else:
         return ''

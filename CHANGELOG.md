@@ -9,11 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 
 ### Added
-- [payments] Introducts a dedicated app for the management of stripe payments
+- [machina] Integrated open graph support for forum list and detail pages
+- [payments] Introduced a dedicated app for the management of stripe payments
 
 ### Changed
 - [blog] Activated special badge for unpublished contents (for staff only)
 - [ebooks] Updated code blocks visual style
+- [ebooks] Updated Diventi Universale's engine to cope with 2021 dropbox API
 - [landing] Activated special badge for unpublished contents (for staff only)
 - [products] Activated special badge for unpublished contents (for staff only)
 - [products] Changed products url prefix from 'apps' to 'games'

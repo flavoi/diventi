@@ -76,13 +76,11 @@ def render_diventi_snippets(paper_soup, diventi_universale_soup):
     for p in paper_mentions:    
         mentioned_uuid = p.get('data-mentionpadid', None)
         mentioned_href = p.get('href', None)
-        if mentioned_uuid:
-            mention = mentioned_uuid
-        elif mentioned_href:
-            mention = mentioned_href
-        else:
-            mention = None        
-        if mention:
-            diventi_title = extract_diventi_content(mention, diventi_universale_soup)
+        if mentioned_uuid: # Dropbox meta 2020
+            diventi_title = extract_diventi_content(mentioned_uuid, diventi_universale_soup)
+            if diventi_title:
+                p.parent.parent.replace_with(diventi_title)
+        elif mentioned_href: # Dropbox meta 2021
+            diventi_title = extract_diventi_content(mentioned_href, diventi_universale_soup)
             if diventi_title:
                 p.parent.parent.parent.replace_with(diventi_title)

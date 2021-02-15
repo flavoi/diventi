@@ -16,7 +16,9 @@
           <meta property="og:type" content="website" />
           <meta property="og:url" content="{{ request.build_absolute_uri }}" />
           <meta property="og:image" content="{{ graph_section.image }}" />
-          <meta property="og:description" content="{{ graph_section.description }}" />
+          {% block desc_opengraph %}
+            <meta property="og:description" content="{{ graph_section.description }}" />
+          {% endblock desc_opengraph %}
         {% endblock base_opengraph %}
         {% block lang_opengraph %}
             <meta property="og:locale" content="{{ lang.code }}" />

@@ -6,6 +6,10 @@
 {% load forum_permission_tags %}
 {% load forum_tracking_tags %}
 
+{% block desc_opengraph %}
+  <meta property="og:description" content="{{ forum.name }}" />
+{% endblock desc_opengraph %}
+
 {% block sub_title %}{{ forum.name }}{% endblock sub_title %}
 
 {% block content %}

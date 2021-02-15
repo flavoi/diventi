@@ -3,6 +3,16 @@
 {% load i18n %}
 {% load forum_permission_tags %}
 
+{% block base_opengraph %}
+  <meta property="og:title" content="Diventi: Forum" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:image" content="https://i.imgur.com/dA7nSVV.png" />
+  {% block desc_opengraph %}
+    <meta property="og:description" content="{% trans 'a place to discuss adventures and developments'|capfirst %}" />
+  {% endblock desc_opengraph %}
+{% endblock base_opengraph %}
+
 {% block title %}{% block sub_title %}{% endblock sub_title %}{% endblock title %}
 
 {% block basecontent %}

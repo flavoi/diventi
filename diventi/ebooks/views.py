@@ -12,13 +12,7 @@ from django.conf import settings
 from dal import autocomplete
 
 from diventi.core.views import StaffRequiredMixin
-from diventi.core.utils import (
-    get_dropbox_paper_soup, 
-    adjust_paper_visual_styles,
-    render_paper_images_by_direct_url,
-    render_paper_code_blocks,
-    remove_dropbox_placeholders,
-)
+
 from diventi.products.models import Product
 from diventi.tooltips.models import (
     TooltipGroup,
@@ -32,9 +26,15 @@ from .models import (
     UniversalSection,
 )
 
-from .utils import (    
-    make_paper_toc,
+from .utils import (
+    get_dropbox_paper_soup, 
+    render_paper_tables,
+    render_paper_images_by_direct_url,
+    render_paper_code_blocks,
+    remove_dropbox_placeholders,
+    render_paper_hr,
     render_diventi_snippets,
+    make_paper_toc,
 )
 
 class UserHasProductMixin(UserPassesTestMixin):
@@ -123,15 +123,12 @@ class PaperEbookView(BookDetailView):
         context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_toc'] = make_paper_toc(paper_soup)
         render_diventi_snippets(paper_soup, diventi_universale_soup)
-        adjust_paper_visual_styles(paper_soup)
+        render_paper_tables(paper_soup)
         render_paper_images_by_direct_url(paper_soup)
         render_paper_code_blocks(paper_soup)
         remove_dropbox_placeholders(paper_soup)
-        output_soup = paper_soup.select_one('.ace-editor')
-        context['paper_content'] = str(output_soup)
-        f = open("./test_soup.html", "a")
-        f.write(mark_safe(str(output_soup)))
-        f.close()
+        render_paper_hr(paper_soup)
+        context['paper_content'] = str(paper_soup)
         return context
 
 

@@ -182,6 +182,29 @@ def remove_dropbox_placeholders(paper_soup):
     return paper_soup
 
 
+def render_paper_headings(paper_soup):
+    """
+        Remove dropbox paper styles from the headings and adjust
+        the visual style to improve readability as much as possibile.
+    """
+    for title in paper_soup.find_all('h1'):
+        title['style'] = ''
+        title['class'] = 'h1 text-black-50 mt-5 mb-4'
+
+    for title in paper_soup.find_all('h2'):
+        title['style'] = ''
+        title['class'] = 'h2 text-primary mt-4 mb-1'
+
+    for title in paper_soup.find_all(class_='ace-all-bold-hthree'):
+        title_soup = BeautifulSoup('', 'html.parser')
+        title_tag = title_soup.new_tag('h4')
+        title_tag['class'] = 'h5 mb-1'
+        title_tag.string = title.text
+        title.replace_with(title_tag)
+
+    return paper_soup
+
+
 def make_paper_toc_cards(paper_soup):
     """
         Extracts H1 and H2 elements from the page and writes 

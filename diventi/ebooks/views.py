@@ -33,6 +33,7 @@ from .utils import (
     render_paper_code_blocks,
     remove_dropbox_placeholders,
     render_paper_hr,
+    render_paper_headings,
     render_diventi_snippets,
     make_paper_toc,
 )
@@ -128,6 +129,7 @@ class PaperEbookView(BookDetailView):
         render_paper_code_blocks(paper_soup)
         remove_dropbox_placeholders(paper_soup)
         render_paper_hr(paper_soup)
+        render_paper_headings(paper_soup)
         context['paper_content'] = str(paper_soup)
         return context
 

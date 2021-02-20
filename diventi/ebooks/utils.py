@@ -189,11 +189,11 @@ def render_paper_headings(paper_soup):
     """
     for title in paper_soup.find_all('h1'):
         title['style'] = ''
-        title['class'] = 'h1 text-black-50 mt-5 mb-4'
+        title['class'] = 'h1 font-weight-normal mt-5 mb-4 pr-8'
 
     for title in paper_soup.find_all('h2'):
         title['style'] = ''
-        title['class'] = 'h2 text-primary mt-4 mb-1'
+        title['class'] = 'h2 font-weight-light mt-4 mb-1'
 
     for title in paper_soup.find_all(class_='ace-all-bold-hthree'):
         title_soup = BeautifulSoup('', 'html.parser')

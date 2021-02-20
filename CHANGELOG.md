@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [blog] Activated special badge for unpublished contents (for staff only)
 - [ebooks] Updated code blocks visual style
 - [ebooks] Updated Diventi Universale's engine to cope with 2021 dropbox API
+- [ebooks] Updated headings visual style for better readability
 - [landing] Activated special badge for unpublished contents (for staff only)
 - [products] Activated special badge for unpublished contents (for staff only)
 - [products] Changed products url prefix from 'apps' to 'games'

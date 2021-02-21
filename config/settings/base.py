@@ -256,8 +256,8 @@ CKEDITOR_CONFIGS = {
             ['Styles', 'Format'],
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Table', 'HorizontalRule', 'customEmbed'],
-            ['Bold', 'Italic', 'Underline', 'RemoveFormat'],
-            ['NumberedList', 'BulletedList', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',],
             ['Source',],
         ],
         'toolbar': 'Basic',
@@ -381,8 +381,10 @@ STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')
 STRIPE_ENDPOINT_SECRET_KEY = get_env_variable('STRIPE_ENDPOINT_SECRET_KEY')
 
+
 # Dropbox paper
 # https://www.dropbox.com/developers/apps/info/xdrh4eoh3bpppnv
+
 DROPBOX_ACCESS_TOKEN = get_env_variable('DROPBOX_ACCESS_TOKEN')
 DIVENTI_UNIVERSALE_PAPER_ID = get_env_variable('DIVENTI_UNIVERSALE_PAPER_ID')
 

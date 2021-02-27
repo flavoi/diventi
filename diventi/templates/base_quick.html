@@ -181,9 +181,8 @@
     <header class="{% block headerclass %}{% endblock headerclass %}" id="header-main">
         <!-- Navbar -->
         {% block navbar %}        
-            <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main">
-                {% if user.is_authenticated %}
-                    <div class="container">
+            <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main">                
+                <div class="container">
                         <!-- Toggler -->
                         <button class="navbar-toggler order-lg-2 ml-n3 ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -202,14 +201,133 @@
                             </div>
                             <!-- Main navigation -->
                             <ul class="navbar-nav ml-lg-auto mr-3">
-                                {% include 'navigation_quick.html' %}
+                                <!-- Projects menu -->
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                   <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "games"|capfirst %}</a>
+                                   <div class="dropdown-menu dropdown-menu-md p-0">
+                                      <div class="row no-gutters">
+                                         <div class="col-12">
+                                            <div class="dropdown-body dropdown-body-right bg-dropdown-secondary h-100">
+                                                {% for category in project_categories %}
+                                                    <h6 class="dropdown-header text-info mb-1 mt-2">
+                                                        {{ category.title|capfirst }}
+                                                    </h6>
+                                                    <div class="list-group list-group-flush">
+                                                    {% for project in category.projects.all %}
+                                                        <div class="list-group-item bg-transparent border-0 px-0 py-2">
+                                                            <div class="media d-flex">
+                                                                <span class="h6">
+                                                                   <i class="fal fa-{{ category.icon|default:'box' }} fa-fw"></i>
+                                                                </span>
+                                                            <div class="media-body ml-2">
+                                                                <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
+                                                                    {{ project.title|capfirst }}                                                                 
+                                                                    {% with project as object %} 
+                                                                        {% if user.is_staff %}<small>{% include 'publishable_badge.html' %}</small>{% endif %}
+                                                                    {% endwith %}
+                                                                </a>
+                                                                <small class="text-sm text-muted mb-0">{{ project.short_description|capfirst }}</small>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                               {% endfor %}
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </li>
+                                <!-- Community menu -->
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
+                                    <div class="dropdown-menu dropdown-menu-md p-0">
+                                        <div class="list-group list-group-flush px-lg-4">
+                                            <a href="{% url 'forum:index' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <!-- SVG icon -->
+                                                    <span class="h6">
+                                                        <i class="far fa-quote-left"></i>
+                                                    </span>
+                                                    <!-- Media body -->
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">Forum</h6>
+                                                        <small class="text-sm">{% trans "a place to discuss adventures and developments"|capfirst %}.</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="{% url 'blog:home' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <!-- SVG icon -->
+                                                    <span class="h6">
+                                                        <i class="far fa-align-center"></i>
+                                                    </span>
+                                                    <!-- Media body -->
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">Blog</h6>
+                                                        <small class="text-sm">{% trans "find our latest news"|capfirst %}.</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% if user.is_staff %}
+                                <!-- Authors menu -->
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "authors"|capfirst %}</a>
+                                    <div class="dropdown-menu dropdown-menu-md p-0">
+                                        <div class="list-group list-group-flush px-lg-4">
+                                            <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i class="far fa-cog"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">Admin</h6>
+                                                        <small class="text-sm">{% trans "the control panel, suitable for authors only."|capfirst %}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="py-3">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <a href="{% url 'admin:blog_article_changelist' %}" class="dropdown-item">{% trans "articles"|capfirst %}</a>
+                                                        <a href="{% url 'admin:accounts_diventiuser_changelist' %}" class="dropdown-item">{% trans "users"|capfirst %}</a>
+                                                        <a href="{% url 'admin:products_product_changelist' %}" class="dropdown-item">{% trans "projects"|capfirst %}</a>
+                                                        <a href="{% url 'admin:feedbacks_survey_changelist' %}" class="dropdown-item">{% trans "surveys"|capfirst %}</a>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <a href="{% url 'admin:ebooks_book_changelist' %}" class="dropdown-item">{% trans "books"|capfirst %}</a>
+                                                        <a href="{% url 'admin:comments_diventicomment_changelist' %}" class="dropdown-item">{% trans "comments"|capfirst %}</a>
+                                                        <a href="{% url 'admin:reviews_review_changelist' %}" class="dropdown-item">{% trans "reviews"|capfirst %}</a>                        
+                                                        <a href="{% url 'admin:feedbacks_answer_changelist' %}" class="dropdown-item">{% trans "answers"|capfirst %}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="{% url 'landing:analytics' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i class="far fa-chart-bar"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
+                                                        <small class="text-sm">{% trans "a tool to measure the website performance."|capfirst %}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endif %}
                             </ul>
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                                 <li class="nav-item">
                                     <a href="#" data-action="omnisearch-open" data-target="#omnisearch" class="nav-link nav-link-icon px-2">
                                         <i class="far fa-search fa-sm fa-fw"></i>
                                     </a>
-                                </li>                        
+                                </li>
+                                {% if user.is_authenticated %}                     
                                 <li class="nav-item dropdown dropdown-animate">
                                     <a class="nav-link nav-link-icon px-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="far fa-cog fa-sm fa-fw"></i>
@@ -230,63 +348,26 @@
                                             {% endif %}
                                         {% endfor %}             
                                     </div>
-                                </li>                        
+                                </li> 
+                                {% endif %}                       
                             </ul>
-                        </div>
+                        </div>                        
                         <div class="order-lg-4 ml-lg-3">
-                            <a class="" href="#modal-profile" role="button" data-toggle="modal">
-                                <span class="avatar rounded-circle">
-                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="container">
-                        <!-- Brand -->
-                        <a class="navbar-brand diventi-font" href="{% url 'landing:home' %}">
-                            Diventi
-                        </a>
-                        <!-- Toggler -->
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <!-- Collapse -->
-                        <div class="collapse navbar-collapse navbar-collapse-overlay" id="navbar-main-collapse">
-                            <!-- Toggler --> 
-                            <div class="position-relative">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                                <i data-feather="x"></i>
-                                </button>
-                            </div>
-                            <!-- Main navigation -->
-                            <ul class="navbar-nav ml-lg-auto">
-                                {% include 'navigation_quick.html' %}
-                            </ul>
-                            <!-- Right navigation -->
-                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
-                                <!-- Auth -->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'accounts:signin' %}?next={{ request.path }}">
-                                        {% trans "sign in"|capfirst %}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'accounts:signup' %}" class="btn btn-sm btn-primary btn-icon ml-3">
-                                    <span class="btn-inner--icon">
-                                        <i class="far fa-sign-in-alt"></i>
+                            {% if user.is_authenticated %}
+                                <a class="" href="#modal-profile" role="button" data-toggle="modal">
+                                    <span class="avatar rounded-circle">
+                                        <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">
                                     </span>
-                                    <span class="btn-inner--text">{% trans 'sign up'|capfirst %}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- Mobile button -->
-                            <div class="d-lg-none px-4 text-center">
-                                <a href="{% url 'accounts:signin' %}" class="btn btn-block btn-sm btn-primary">{% trans "sign in"|capfirst %}</a>
-                            </div>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-black-50" data-toggle="tooltip" data-placement="bottom" title="{% trans 'sign in'|capfirst %}">
+                                    <span class="fa-stack mt-2">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fas fa-portal-enter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
                         </div>
-                    </div>
-                {% endif %}
             </nav>
         {% endblock navbar %}
     </header>

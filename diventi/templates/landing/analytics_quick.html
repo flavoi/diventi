@@ -40,7 +40,7 @@
                                 {% if result.action %}
                                 <div class="row align-items-center mt-4">
                                     <div class="col-6">
-                                        <a href="#" class="btn btn-sm btn-primary js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
+                                        <a href="#/" class="btn btn-sm btn-primary js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
                                             {{ result.action.label|capfirst }}
                                         </a>
                                     </div>

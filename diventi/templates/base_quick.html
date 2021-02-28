@@ -201,6 +201,59 @@
                             </div>
                             <!-- Main navigation -->
                             <ul class="navbar-nav ml-lg-auto mr-3">
+                                {% if user.is_anonymous %}
+                                <!-- Sign up link -->
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                    <a class="nav-link" href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a>
+                                </li>
+                                {% elif user.is_staff %}
+                                <!-- Authors menu -->
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "authors"|capfirst %}</a>
+                                    <div class="dropdown-menu dropdown-menu-md p-0">
+                                        <div class="list-group list-group-flush px-lg-4">
+                                            <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i class="far fa-cog"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">Admin</h6>
+                                                        <small class="text-sm">{% trans "the control panel, suitable for authors only."|capfirst %}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="py-3">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <a href="{% url 'admin:blog_article_changelist' %}" class="dropdown-item">{% trans "articles"|capfirst %}</a>
+                                                        <a href="{% url 'admin:accounts_diventiuser_changelist' %}" class="dropdown-item">{% trans "users"|capfirst %}</a>
+                                                        <a href="{% url 'admin:products_product_changelist' %}" class="dropdown-item">{% trans "projects"|capfirst %}</a>
+                                                        <a href="{% url 'admin:feedbacks_survey_changelist' %}" class="dropdown-item">{% trans "surveys"|capfirst %}</a>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <a href="{% url 'admin:ebooks_book_changelist' %}" class="dropdown-item">{% trans "books"|capfirst %}</a>
+                                                        <a href="{% url 'admin:comments_diventicomment_changelist' %}" class="dropdown-item">{% trans "comments"|capfirst %}</a>
+                                                        <a href="{% url 'admin:reviews_review_changelist' %}" class="dropdown-item">{% trans "reviews"|capfirst %}</a>                        
+                                                        <a href="{% url 'admin:feedbacks_answer_changelist' %}" class="dropdown-item">{% trans "answers"|capfirst %}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="{% url 'landing:analytics' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i class="far fa-chart-bar"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
+                                                        <small class="text-sm">{% trans "a tool to measure the website performance."|capfirst %}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endif %}
                                 <!-- Projects menu -->
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                    <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "games"|capfirst %}</a>
@@ -272,54 +325,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                {% if user.is_staff %}
-                                <!-- Authors menu -->
-                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
-                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "authors"|capfirst %}</a>
-                                    <div class="dropdown-menu dropdown-menu-md p-0">
-                                        <div class="list-group list-group-flush px-lg-4">
-                                            <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
-                                                <div class="d-flex">
-                                                    <span class="h6">
-                                                        <i class="far fa-cog"></i>
-                                                    </span>
-                                                    <div class="ml-3">
-                                                        <h6 class="heading mb-0">Admin</h6>
-                                                        <small class="text-sm">{% trans "the control panel, suitable for authors only."|capfirst %}</small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <div class="py-3">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <a href="{% url 'admin:blog_article_changelist' %}" class="dropdown-item">{% trans "articles"|capfirst %}</a>
-                                                        <a href="{% url 'admin:accounts_diventiuser_changelist' %}" class="dropdown-item">{% trans "users"|capfirst %}</a>
-                                                        <a href="{% url 'admin:products_product_changelist' %}" class="dropdown-item">{% trans "projects"|capfirst %}</a>
-                                                        <a href="{% url 'admin:feedbacks_survey_changelist' %}" class="dropdown-item">{% trans "surveys"|capfirst %}</a>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <a href="{% url 'admin:ebooks_book_changelist' %}" class="dropdown-item">{% trans "books"|capfirst %}</a>
-                                                        <a href="{% url 'admin:comments_diventicomment_changelist' %}" class="dropdown-item">{% trans "comments"|capfirst %}</a>
-                                                        <a href="{% url 'admin:reviews_review_changelist' %}" class="dropdown-item">{% trans "reviews"|capfirst %}</a>                        
-                                                        <a href="{% url 'admin:feedbacks_answer_changelist' %}" class="dropdown-item">{% trans "answers"|capfirst %}</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="{% url 'landing:analytics' %}" class="list-group-item list-group-item-action" role="button">
-                                                <div class="d-flex">
-                                                    <span class="h6">
-                                                        <i class="far fa-chart-bar"></i>
-                                                    </span>
-                                                    <div class="ml-3">
-                                                        <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
-                                                        <small class="text-sm">{% trans "a tool to measure the website performance."|capfirst %}</small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                {% endif %}
+                                
                             </ul>
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                                 <li class="nav-item">
@@ -415,7 +421,7 @@
         <!-- Messages -->
         {% for message in messages %}
         <div class="fixed-top">
-            <div class="col-lg-6 col-md-6 mx-auto">
+            <div class="col-lg-4 col-md-6 mx-auto">
                 <div class="alert-messages">
                     <div class="alert alert-group alert-{{ message.tags|default:'info' }} alert-icon" role="alert">
                         <div class="alert-group-prepend">

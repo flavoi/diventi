@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Updated Diventi Universale's engine to cope with 2021 dropbox API
 - [ebooks] Updated headings visual style for better readability
 - [landing] Activated special badge for unpublished contents (for staff only)
+- [landing] Moved the sign up link to the main navigation
 - [products] Activated special badge for unpublished contents (for staff only)
 - [products] Changed products url prefix from 'apps' to 'games'
 - [survey] Activated special badge for unpublished contents (for staff only)
@@ -29,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Fixed a problem that always redirected the user to the home page after signin in
 - [accounts] Fixed a problem that prevented the right projects count to be displayed on the profile modal
 - [ebooks] Fixed a problem that prevented paper adventures without Diventi Univerale to be rendered
+- [landing] Fixed a problem that caused the analytics links to jump at the top of the page 
 - [locale] Fixed a handful of fuzzy translations on products, policy and landing pages
 
 

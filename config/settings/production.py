@@ -47,13 +47,4 @@ RECAPTCHA_PRIVATE_KEY = get_env_variable('RECAPTCHA_PRIVATE_KEY')
 # Email backend for testing and development
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST_KEY = get_env_variable('EMAIL_HOST_KEY')
-EMAIL_HOST_USER_KEY = get_env_variable('EMAIL_HOST_USER_KEY')
-EMAIL_HOST_PASSWORD_KEY = get_env_variable('EMAIL_HOST_PASSWORD_KEY')
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = EMAIL_HOST_KEY # mail service smtp
-EMAIL_HOST_USER = EMAIL_HOST_USER_KEY # email id
-EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD_KEY # password
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True

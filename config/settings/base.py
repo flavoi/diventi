@@ -389,3 +389,12 @@ DROPBOX_ACCESS_TOKEN = get_env_variable('DROPBOX_ACCESS_TOKEN')
 DIVENTI_UNIVERSALE_PAPER_ID = get_env_variable('DIVENTI_UNIVERSALE_PAPER_ID')
 
 
+# Email backend for testing and development
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = ''
+EMAIL_HOST =  get_env_variable('EMAIL_HOST_KEY') # mail service smtp
+EMAIL_HOST_USER = get_env_variable('EMAIL_HOST_USER_KEY') # email id
+EMAIL_HOST_PASSWORD = get_env_variable('EMAIL_HOST_PASSWORD_KEY') # password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

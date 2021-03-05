@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Fixed a problem that always redirected the user to the home page after signin in
 - [accounts] Fixed a problem that prevented the right projects count to be displayed on the profile modal
 - [ebooks] Fixed a problem that prevented paper adventures without Diventi Univerale to be rendered
+- [feedbacks] Fixed a problem that prevetend the confirmation email to be sent
 - [landing] Fixed a problem that caused the analytics links to jump at the top of the page 
 - [locale] Fixed a handful of fuzzy translations on products, policy and landing pages
 

@@ -55,6 +55,7 @@ def survey_questions(request, slug, author_name=None):
     if request.user.is_authenticated:
         author_name = request.user.get_full_name()
         user_has_answered = Answer.objects.filter(author=request.user, survey=survey).exists()
+        # Redirezionare verso la pagina delle risposte
     elif survey.public:
         user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
         if user_has_answered and author_name != request.user.get_full_name():

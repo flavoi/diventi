@@ -105,6 +105,7 @@ def render_paper_hr(paper_soup):
     lines = paper_soup.find_all('hr')
     for line_tag in lines:
         line_tag['style'] = ''
+        line_tag['class'] = 'my-3'
     return paper_soup
 
 
@@ -127,7 +128,8 @@ def render_paper_images_by_direct_url(paper_soup):
             image_tag['data-src'] = image_link                       
             is_table_link = link_tag.find_parent('table')
             if is_table_link:
-                image_tag['class'] = 'rounded mx-auto'
+                image_tag['class'] = 'rounded'
+                image_tag['style'] = 'width: 255px;'
             else:
                 image_tag['class'] = 'img-fluid rounded shadow-lg'
                 figure_tag = image_soup.new_tag('figure')

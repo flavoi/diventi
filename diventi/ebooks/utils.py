@@ -131,9 +131,9 @@ def render_paper_images_by_direct_url(paper_soup):
                 image_tag['class'] = 'rounded'
                 image_tag['style'] = 'width: 255px;'
             else:
-                image_tag['class'] = 'img-fluid rounded shadow-lg'
+                image_tag['class'] = 'img-fluid rounded hover-translate-y-n3 hover-shadow-lg'
                 figure_tag = image_soup.new_tag('figure')
-                figure_tag['class'] = 'figure'
+                figure_tag['class'] = 'figure my-1'
                 figure_tag.append(image_tag)
                 image_tag = figure_tag
             link_tag = link_tag.find_parent('span')            

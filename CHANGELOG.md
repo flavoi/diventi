@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [landing] Moved the sign up link to the main navigation
 - [products] Activated special badge for unpublished contents (for staff only)
 - [products] Changed products url prefix from 'apps' to 'games'
+- [products] Enabled early access tags for upcoming games
+- [products] Enabled layout option to optimize the visual style of landing page cards 
 - [survey] Activated special badge for unpublished contents (for staff only)
 
 ### Removed

@@ -311,14 +311,19 @@ class HighlightedModel(models.Model):
 
 class DiventiColModel(models.Model):
     COL_CHOICES = [
-        (12, _('Wide')),
-        (8, _('Three fourths')),
-        (6, _('Half')),
-        (4, _('Narrow')),
+        (12, _('Full (12)')),
+        (8, _('Two thirds (8)')),
+        (6, _('Half (6)')),
+        (4, _('One third (4)')),
+        (3, _('One fourth (3)')),
     ]
     col_lg = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('lg column'))
+    order_lg = models.PositiveIntegerField(default=1, verbose_name=_('lg order'))
     col_md = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('md column'))
-
+    order_md = models.PositiveIntegerField(default=1, verbose_name=_('md order'))
+    col_sm = models.PositiveIntegerField(default=12, choices=COL_CHOICES, verbose_name=_('sm column'))
+    order_sm = models.PositiveIntegerField(default=1, verbose_name=_('sm order'))
+    
     class Meta:
         abstract = True
 

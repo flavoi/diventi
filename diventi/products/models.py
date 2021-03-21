@@ -25,6 +25,7 @@ from diventi.core.models import (
     Element,
     SectionModel,
     HighlightedModel,
+    DiventiColModel,
 )
 
 
@@ -60,6 +61,12 @@ class ProductQuerySet(PublishableModelQuerySet):
     # Return true if the user has authored at least one product
     def has_user_authored(self, user):
         return self.user_authored(user).exists()
+
+    # Return the list of products that are pinned.
+    def pinned(self):
+        products = self.published().filter(pinned=True)
+        products = products.prefetch()
+        return products
 
 
 class ProductCategoryQuerySet(models.QuerySet):
@@ -99,7 +106,7 @@ class ProductFormat(Element):
         verbose_name_plural = _('Formats')
 
 
-class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel):
+class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel, DiventiColModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(
         max_length=50, 
@@ -158,6 +165,14 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         default = False,
         verbose_name = _('unfolded'),
     ) # Unfolded products can be bought by users
+    pinned = models.BooleanField(
+        default = True,
+        verbose_name = _('pinned')
+    ) # Pinned products appear on top of the landing page
+    early_access = models.BooleanField(
+        default = True,
+        verbose_name = _('early_access')
+    ) # Products in early access activates special messages on their own pages
     courtesy_short_message = models.CharField(
         blank=True, 
         max_length=50, 

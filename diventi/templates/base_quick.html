@@ -256,78 +256,8 @@
                                     </div>
                                 </li>
                                 {% endif %}
-                                <!-- Projects menu -->
-                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
-                                   <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "games"|capfirst %}</a>
-                                   <div class="dropdown-menu dropdown-menu-md p-0">
-                                      <div class="row no-gutters">
-                                         <div class="col-12">
-                                            <div class="dropdown-body dropdown-body-right bg-dropdown-secondary h-100">
-                                                {% for category in project_categories %}
-                                                    <h6 class="dropdown-header text-info mb-1 mt-2">
-                                                        {{ category.title|capfirst }}
-                                                    </h6>
-                                                    <div class="list-group list-group-flush">
-                                                    {% for project in category.projects.all %}
-                                                        <div class="list-group-item bg-transparent border-0 px-0 py-2">
-                                                            <div class="media d-flex">
-                                                                <span class="h6">
-                                                                   <i class="fal fa-{{ category.icon|default:'box' }} fa-fw"></i>
-                                                                </span>
-                                                            <div class="media-body ml-2">
-                                                                <a href="{{ project.get_absolute_url }}" class="d-block heading h6 mb-0">
-                                                                    {{ project.title|capfirst }}                                                                 
-                                                                    {% with project as object %} 
-                                                                        {% if user.is_staff %}<small>{% include 'publishable_badge.html' %}</small>{% endif %}
-                                                                    {% endwith %}
-                                                                </a>
-                                                                <small class="text-sm text-muted mb-0">{{ project.short_description|capfirst }}</small>
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                        {% endfor %}
-                                                    </div>
-                                               {% endfor %}
-                                            </div>
-                                         </div>
-                                      </div>
-                                   </div>
-                                </li>
-                                <!-- Community menu -->
-                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
-                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
-                                    <div class="dropdown-menu dropdown-menu-md p-0">
-                                        <div class="list-group list-group-flush px-lg-4">
-                                            <a href="{% url 'forum:index' %}" class="list-group-item list-group-item-action" role="button">
-                                                <div class="d-flex">
-                                                    <!-- SVG icon -->
-                                                    <span class="h6">
-                                                        <i class="far fa-quote-left"></i>
-                                                    </span>
-                                                    <!-- Media body -->
-                                                    <div class="ml-3">
-                                                        <h6 class="heading mb-0">Forum</h6>
-                                                        <small class="text-sm">{% trans "a place to discuss adventures and developments"|capfirst %}.</small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="{% url 'blog:home' %}" class="list-group-item list-group-item-action" role="button">
-                                                <div class="d-flex">
-                                                    <!-- SVG icon -->
-                                                    <span class="h6">
-                                                        <i class="far fa-align-center"></i>
-                                                    </span>
-                                                    <!-- Media body -->
-                                                    <div class="ml-3">
-                                                        <h6 class="heading mb-0">Blog</h6>
-                                                        <small class="text-sm">{% trans "find our latest news"|capfirst %}.</small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                
+                                <li class="nav-item"><a class="nav-link" href="{% url 'forum:index' %}">Forum</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'blog:home' %}">Blog</a></li>
                             </ul>
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                                 <li class="nav-item">

@@ -61,7 +61,7 @@
                             {% endwith %}
                             <h3 class="h2 mt-4"><strong class="text-primary">{{ product.title|capfirst }}</strong> {% trans "in short" %}</h3>
                             <p class="my-4 lh-190">{{ product.description }}</p>
-                            {% include "products/partials/product_detail_actions.html" %}                    
+                            {% include "products/partials/product_detail_actions.html" %}
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 order-lg-1">
@@ -80,10 +80,16 @@
                                                 </a>
                                             </div>
                                             <div class="pl-2">
-                                                <span class="h6 text-sm mb-0">{{ product.title|capfirst }}</span></div>
+                                                <span class="h6 text-sm mb-0">{{ product.title|capfirst }}</span>
+                                            </div>
                                             <div class="ml-auto">
                                                 <div class="actions">
                                                     <small>
+                                                    {% if product.early_access %}
+                                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'ongoing playtest'|capfirst %}">
+                                                        <i class="far fa-lg fa-tools mr-1"></i>
+                                                    </span>
+                                                    {% endif %}
                                                     <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}: {{ product.modified|date:'M d, Y' }}">
                                                         <i class="far fa-lg fa-clock mr-1"></i>
                                                     </span>

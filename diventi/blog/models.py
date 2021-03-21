@@ -132,5 +132,3 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
 
     def class_name(self):
         return _('article')
-
-Article._meta.get_field('color').help_text = _('This color will be displayed in search results.')

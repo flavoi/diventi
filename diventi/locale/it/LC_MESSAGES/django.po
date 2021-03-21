@@ -1470,7 +1470,7 @@ msgstr "Extra"
 
 #: diventi/landing/apps.py:7
 msgid "Landing"
-msgstr "Pagina di destinazione"
+msgstr "Pagina di atterraggio"
 
 #: diventi/landing/models.py:47
 msgid "standard section"

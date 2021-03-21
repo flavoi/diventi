@@ -171,7 +171,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     ) # Pinned products appear on top of the landing page
     early_access = models.BooleanField(
         default = True,
-        verbose_name = _('early_access')
+        verbose_name = _('early access')
     ) # Products in early access activates special messages on their own pages
     courtesy_short_message = models.CharField(
         blank=True, 

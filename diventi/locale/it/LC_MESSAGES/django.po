@@ -946,27 +946,23 @@ msgstr "in evidenza"
 
 #: diventi/core/models.py:314
 msgid "Full (12)"
-msgstr ""
+msgstr "Riga piena (12)"
 
 #: diventi/core/models.py:315
 msgid "Two thirds (8)"
-msgstr ""
+msgstr "Due terzi (8)"
 
 #: diventi/core/models.py:316
-#, fuzzy
-#| msgid "Half"
 msgid "Half (6)"
-msgstr "Media"
+msgstr "Metà riga (6)"
 
 #: diventi/core/models.py:317
-#, fuzzy
-#| msgid "Enable third ring"
 msgid "One third (4)"
-msgstr "Attiva il terzo anello"
+msgstr "Un terzo (4)"
 
 #: diventi/core/models.py:318
 msgid "One fourth (3)"
-msgstr ""
+msgstr "Un quarto (3)"
 
 #: diventi/core/models.py:320
 msgid "lg column"

@@ -203,7 +203,7 @@
                             <ul class="navbar-nav ml-lg-auto mr-3">
                                 {% if user.is_anonymous %}
                                 <!-- Sign up link -->
-                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                <li class="nav-item">
                                     <a class="nav-link" href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a>
                                 </li>
                                 {% elif user.is_staff %}
@@ -256,8 +256,12 @@
                                     </div>
                                 </li>
                                 {% endif %}
-                                <li class="nav-item"><a class="nav-link" href="{% url 'forum:index' %}">Forum</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{% url 'blog:home' %}">Blog</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'forum:index' %}">Forum</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'blog:home' %}">Blog</a>
+                                </li>
                             </ul>
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                                 <li class="nav-item">

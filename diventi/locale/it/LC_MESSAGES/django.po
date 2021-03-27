@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-21 22:30+0100\n"
+"POT-Creation-Date: 2021-03-27 19:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,7 +244,7 @@ msgstr "Utente"
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:169 diventi/templates/base_quick.html:426
+#: diventi/accounts/models.py:169 diventi/templates/base_quick.html:430
 msgid "account"
 msgstr "profilo"
 
@@ -1554,7 +1554,7 @@ msgstr "aspetti"
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:107 diventi/templates/base_quick.html:331
+#: diventi/landing/models.py:107 diventi/templates/base_quick.html:335
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -1888,7 +1888,7 @@ msgstr ""
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/base_dashboard.html:127
 #: diventi/templates/landing/landing.html:37
-#: diventi/templates/landing/landing_quick.html:411
+#: diventi/templates/landing/landing_quick.html:429
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1923,7 +1923,7 @@ msgstr "successo"
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:118
-#: diventi/templates/base_quick.html:301 diventi/templates/base_quick.html:437
+#: diventi/templates/base_quick.html:305 diventi/templates/base_quick.html:441
 #: diventi/templates/feedbacks/author_form_quick.html:5
 #: diventi/templates/navigation.html:203
 msgid "sign in"
@@ -1961,8 +1961,8 @@ msgstr ""
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signin.html:59
 #: diventi/templates/accounts/signup_quick.html:5
-#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:438
-#: diventi/templates/landing/landing_quick.html:396
+#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:442
+#: diventi/templates/landing/landing_quick.html:414
 msgid "sign up"
 msgstr "registrati"
 
@@ -2122,7 +2122,7 @@ msgstr "alla pagina iniziale"
 
 #: diventi/templates/accounts/signout_quick.html:5
 #: diventi/templates/accounts/user_detail_quick_modal.html:83
-#: diventi/templates/base_quick.html:284 diventi/templates/navigation.html:197
+#: diventi/templates/base_quick.html:288 diventi/templates/navigation.html:197
 msgid "sign out"
 msgstr "annulla accesso"
 
@@ -2617,15 +2617,15 @@ msgstr "analitica"
 msgid "a tool to measure the website performance."
 msgstr "uno strumento per misurare le prestazioni del sito."
 
-#: diventi/templates/base_quick.html:274
+#: diventi/templates/base_quick.html:278
 msgid "hi"
 msgstr "ciao"
 
-#: diventi/templates/base_quick.html:326
+#: diventi/templates/base_quick.html:330
 msgid "type and hit enter"
 msgstr "scrivi e premi invio"
 
-#: diventi/templates/base_quick.html:401
+#: diventi/templates/base_quick.html:405
 msgid ""
 "Diventi is a role-playing game that embraces fun, encourages storytelling "
 "and helps game masters to prepare their fantastic adventures"
@@ -2633,15 +2633,15 @@ msgstr ""
 "Diventi è un gioco di ruolo che abbraccia il divertimento, incoraggia "
 "l'interpretazione e aiuta i game master a preparare fantastiche avventure"
 
-#: diventi/templates/base_quick.html:443
+#: diventi/templates/base_quick.html:447
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:451
+#: diventi/templates/base_quick.html:455
 msgid "community"
 msgstr "community"
 
-#: diventi/templates/base_quick.html:462 diventi/templates/footer.html:6
+#: diventi/templates/base_quick.html:466 diventi/templates/footer.html:6
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -2918,12 +2918,12 @@ msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
 #: diventi/templates/landing/landing.html:34
-#: diventi/templates/landing/landing_quick.html:403
+#: diventi/templates/landing/landing_quick.html:421
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:35
-#: diventi/templates/landing/landing_quick.html:404
+#: diventi/templates/landing/landing_quick.html:422
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -2931,46 +2931,41 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:41
-#: diventi/templates/landing/landing_quick.html:388
+#: diventi/templates/landing/landing_quick.html:406
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing.html:42
-#: diventi/templates/landing/landing_quick.html:389
+#: diventi/templates/landing/landing_quick.html:407
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/landing_quick.html:35
+#: diventi/templates/landing/landing_quick.html:36
 msgid "learn more"
 msgstr "scopri di più"
 
-#: diventi/templates/landing/landing_quick.html:50
-#: diventi/templates/landing/landing_quick.html:194
-#: diventi/templates/landing/landing_quick.html:276
-#: diventi/templates/landing/landing_quick.html:361
+#: diventi/templates/landing/landing_quick.html:51
+#: diventi/templates/landing/landing_quick.html:212
+#: diventi/templates/landing/landing_quick.html:294
+#: diventi/templates/landing/landing_quick.html:379
 msgid "play video"
 msgstr "avvia il video"
 
-#: diventi/templates/landing/landing_quick.html:67
+#: diventi/templates/landing/landing_quick.html:69
 msgid "our games"
 msgstr "i nostri giochi"
 
-#: diventi/templates/landing/landing_quick.html:68
+#: diventi/templates/landing/landing_quick.html:70
 msgid ""
 "for those who are not satisfied with the status quo, but are looking for "
-"compelling stories, built from the ground up through direct collaboration "
-"between players and game masters."
+"compelling stories, built through direct collaboration between players and "
+"game masters."
 msgstr ""
 "per coloro che non si accontentano dello status quo, ma cercano storie "
-"avvincenti, costruite dalle fondamenta tramite la collaborazione diretta tra "
+"avvincenti, costruite tramite la collaborazione diretta tra "
 "giocatori e game master."
 
-#: diventi/templates/landing/landing_quick.html:71
-#: diventi/templates/products/product_detail_quick.html:89
-msgid "ongoing playtest"
-msgstr "playtest in corso"
-
-#: diventi/templates/landing/landing_quick.html:106
+#: diventi/templates/landing/landing_quick.html:124
 msgid ""
 "Diventi is our vision of the best hobby in the world. We strongly believe "
 "that many styles of play exist and that each one of them is valid."
@@ -2978,23 +2973,23 @@ msgstr ""
 "Diventi è la nostra visione di uno dei migliori hobby al mondo. Crediamo "
 "fortemente che ci siano diversi stili di gioco e che ciascuno sia valido."
 
-#: diventi/templates/landing/landing_quick.html:122
+#: diventi/templates/landing/landing_quick.html:140
 msgid "A tabletop rpg that enables immersive storytelling"
 msgstr "Un gdr da tavolo che predilige avventure immersive"
 
-#: diventi/templates/landing/landing_quick.html:134
+#: diventi/templates/landing/landing_quick.html:152
 msgid "deep catalogs for granular character customizations"
 msgstr "cataloghi dettagliati per una personalizzazione spinta dei personaggi"
 
-#: diventi/templates/landing/landing_quick.html:146
+#: diventi/templates/landing/landing_quick.html:164
 msgid "contents optimized to work on the web"
 msgstr "contenuti ottimizzati per la fruizione via web"
 
-#: diventi/templates/landing/landing_quick.html:158
+#: diventi/templates/landing/landing_quick.html:176
 msgid "modular components for total freedom of play"
 msgstr "componenti modulari per una completa libertà di gioco"
 
-#: diventi/templates/landing/landing_quick.html:287
+#: diventi/templates/landing/landing_quick.html:305
 msgid "top details"
 msgstr "primi dettagli"
 
@@ -3775,6 +3770,10 @@ msgstr "progetti correlati"
 #: diventi/templates/products/product_detail_quick.html:62
 msgid "in short"
 msgstr "in breve"
+
+#: diventi/templates/products/product_detail_quick.html:89
+msgid "ongoing playtest"
+msgstr "playtest in corso"
 
 #: diventi/templates/products/product_detail_quick.html:129
 msgid "out of 5 stars"

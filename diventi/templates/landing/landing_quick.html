@@ -89,7 +89,13 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <span class="badge badge-secondary badge-pill">
-                                    {% if pp.book.published and pp.unfolded and pp.early_access %}{% trans 'early access' %}{% elif pp.book.published and pp.unfolded %}{% trans 'available' %}{% else %}{{ pp.courtesy_short_message|lower }}{% endif %}
+                                    {% if pp.book.published and pp.unfolded and pp.early_access %}
+                                      <i class="far fa-portal-enter"></i> {% trans 'early access'|capfirst %}
+                                    {% elif pp.book.published and pp.unfolded %}
+                                      <i class="far fa-check"></i> {% trans 'available'|capfirst %}
+                                    {% else %}
+                                      <i class="far fa-lock-alt"></i> {{ pp.courtesy_short_message|capfirst }}
+                                    {% endif %}
                                 </span>
                             </div>
                         </div>

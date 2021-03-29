@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-27 19:09+0100\n"
+"POT-Creation-Date: 2021-03-29 23:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1677,6 +1677,8 @@ msgid "pinned"
 msgstr "appuntato"
 
 #: diventi/products/models.py:174
+#: diventi/templates/landing/landing_quick.html:92
+#: diventi/templates/products/product_detail_quick.html:61
 msgid "early access"
 msgstr "accesso anticipato"
 
@@ -1888,7 +1890,7 @@ msgstr ""
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/base_dashboard.html:127
 #: diventi/templates/landing/landing.html:37
-#: diventi/templates/landing/landing_quick.html:429
+#: diventi/templates/landing/landing_quick.html:440
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1962,7 +1964,7 @@ msgstr ""
 #: diventi/templates/accounts/signin.html:59
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:442
-#: diventi/templates/landing/landing_quick.html:414
+#: diventi/templates/landing/landing_quick.html:425
 msgid "sign up"
 msgstr "registrati"
 
@@ -2918,12 +2920,12 @@ msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
 #: diventi/templates/landing/landing.html:34
-#: diventi/templates/landing/landing_quick.html:421
+#: diventi/templates/landing/landing_quick.html:432
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:35
-#: diventi/templates/landing/landing_quick.html:422
+#: diventi/templates/landing/landing_quick.html:433
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -2931,12 +2933,12 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:41
-#: diventi/templates/landing/landing_quick.html:406
+#: diventi/templates/landing/landing_quick.html:417
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing.html:42
-#: diventi/templates/landing/landing_quick.html:407
+#: diventi/templates/landing/landing_quick.html:418
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
@@ -2945,9 +2947,9 @@ msgid "learn more"
 msgstr "scopri di più"
 
 #: diventi/templates/landing/landing_quick.html:51
-#: diventi/templates/landing/landing_quick.html:212
-#: diventi/templates/landing/landing_quick.html:294
-#: diventi/templates/landing/landing_quick.html:379
+#: diventi/templates/landing/landing_quick.html:223
+#: diventi/templates/landing/landing_quick.html:305
+#: diventi/templates/landing/landing_quick.html:390
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2962,10 +2964,14 @@ msgid ""
 "game masters."
 msgstr ""
 "per coloro che non si accontentano dello status quo, ma cercano storie "
-"avvincenti, costruite tramite la collaborazione diretta tra "
-"giocatori e game master."
+"avvincenti, costruite tramite la collaborazione diretta tra giocatori e game "
+"master."
 
-#: diventi/templates/landing/landing_quick.html:124
+#: diventi/templates/landing/landing_quick.html:92
+msgid "available"
+msgstr "disponibile"
+
+#: diventi/templates/landing/landing_quick.html:135
 msgid ""
 "Diventi is our vision of the best hobby in the world. We strongly believe "
 "that many styles of play exist and that each one of them is valid."
@@ -2973,23 +2979,23 @@ msgstr ""
 "Diventi è la nostra visione di uno dei migliori hobby al mondo. Crediamo "
 "fortemente che ci siano diversi stili di gioco e che ciascuno sia valido."
 
-#: diventi/templates/landing/landing_quick.html:140
+#: diventi/templates/landing/landing_quick.html:151
 msgid "A tabletop rpg that enables immersive storytelling"
 msgstr "Un gdr da tavolo che predilige avventure immersive"
 
-#: diventi/templates/landing/landing_quick.html:152
+#: diventi/templates/landing/landing_quick.html:163
 msgid "deep catalogs for granular character customizations"
 msgstr "cataloghi dettagliati per una personalizzazione spinta dei personaggi"
 
-#: diventi/templates/landing/landing_quick.html:164
+#: diventi/templates/landing/landing_quick.html:175
 msgid "contents optimized to work on the web"
 msgstr "contenuti ottimizzati per la fruizione via web"
 
-#: diventi/templates/landing/landing_quick.html:176
+#: diventi/templates/landing/landing_quick.html:187
 msgid "modular components for total freedom of play"
 msgstr "componenti modulari per una completa libertà di gioco"
 
-#: diventi/templates/landing/landing_quick.html:305
+#: diventi/templates/landing/landing_quick.html:316
 msgid "top details"
 msgstr "primi dettagli"
 
@@ -3767,13 +3773,9 @@ msgstr "non c'è alcuna recensione per ora, postane una tu!"
 msgid "related projects"
 msgstr "progetti correlati"
 
-#: diventi/templates/products/product_detail_quick.html:62
+#: diventi/templates/products/product_detail_quick.html:67
 msgid "in short"
 msgstr "in breve"
-
-#: diventi/templates/products/product_detail_quick.html:89
-msgid "ongoing playtest"
-msgstr "playtest in corso"
 
 #: diventi/templates/products/product_detail_quick.html:129
 msgid "out of 5 stars"
@@ -3895,6 +3897,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "ongoing playtest"
+#~ msgstr "playtest in corso"
 
 #~ msgid "games"
 #~ msgstr "giochi"

@@ -84,17 +84,16 @@
                       <!-- Mask -->
                       <span class="mask bg-dark opacity-5"></span>
 
-                      {% if pp.early_access %}
+                      
                       <div class="card-header mt-2">
                         <div class="row align-items-center">
                             <div class="col">
                                 <span class="badge badge-secondary badge-pill">
-                                    playtest 
+                                    {% if pp.book.published and pp.unfolded and pp.early_access %}{% trans 'early access' %}{% elif pp.book.published and pp.unfolded %}{% trans 'available' %}{% else %}{{ pp.courtesy_short_message|lower }}{% endif %}
                                 </span>
                             </div>
                         </div>
                       </div>
-                      {% endif %}
                       <!-- Card body -->
                       <div class="card-body pt-5 mt-auto position-relative">
                           <!-- Title -->

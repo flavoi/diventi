@@ -56,6 +56,11 @@
                             <span class="badge badge-{{ product.category.color }} badge-pill">
                                 {{ product.category }}
                             </span>
+                            {% if product.early_access %}
+                            <span class="badge badge-secondary badge-pill ml-1">
+                                {% trans 'early access' %}
+                            </span>
+                            {% endif %}
                             {% with product as object %} 
                                 {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                             {% endwith %}
@@ -85,11 +90,6 @@
                                             <div class="ml-auto">
                                                 <div class="actions">
                                                     <small>
-                                                    {% if product.early_access %}
-                                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'ongoing playtest'|capfirst %}">
-                                                        <i class="far fa-lg fa-tools mr-1"></i>
-                                                    </span>
-                                                    {% endif %}
                                                     <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}: {{ product.modified|date:'M d, Y' }}">
                                                         <i class="far fa-lg fa-clock mr-1"></i>
                                                     </span>

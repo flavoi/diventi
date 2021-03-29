@@ -82,9 +82,21 @@
                   <div class="col-lg-{{ pp.col_lg}} col-md-{{ pp.col_md }} col-sm-{{ pp.col_sm }} col-{{ pp.col_sm }} order-lg-{{ pp.order_lg }} order-md-{{ pp.order_md }} order-sm-{{ pp.order_sm }} order-{{ pp.order_sm }} mt-n7 d-flex mt-n7 d-flex align-items-stretch">
                     <div class="card mb-8 hover-translate-y-n10 shadow-lg bg-cover bg-size--cover" style="background-image: url({{ pp.image }});">
                       <!-- Mask -->
-                      <span class="mask bg-dark opacity-5"></span>              
+                      <span class="mask bg-dark opacity-5"></span>
+
+                      {% if pp.early_access %}
+                      <div class="card-header mt-2">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span class="badge badge-secondary badge-pill">
+                                    playtest 
+                                </span>
+                            </div>
+                        </div>
+                      </div>
+                      {% endif %}
                       <!-- Card body -->
-                      <div class="card-body pt-6 mt-auto position-relative">
+                      <div class="card-body pt-5 mt-auto position-relative">
                           <!-- Title -->
                           <a href="{{ pp.get_absolute_url }}" class="d-block h5 mb-3 text-white stretched-link">{{ pp.title }}</a>
                           <!-- Text -->

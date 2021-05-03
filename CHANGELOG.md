@@ -23,10 +23,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [products] Changed products url prefix from 'apps' to 'games'
 - [products] Enabled early access tags for upcoming games
 - [products] Enabled layout option to optimize the visual style of landing page cards 
+- [products] Adjusted button colors, aligned the title in the center
 - [survey] Activated special badge for unpublished contents (for staff only)
 
 ### Removed
 - [landing] Removed adventures links from the main navbar
+- [accounts] Removed the featured link in the account page
 
 ### Fixed
 - [accounts] Fixed a problem that always redirected the user to the home page after signin in

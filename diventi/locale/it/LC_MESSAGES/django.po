@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-03 11:42+0200\n"
+"POT-Creation-Date: 2021-05-04 00:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1678,7 +1678,7 @@ msgstr "appuntato"
 
 #: diventi/products/models.py:174
 #: diventi/templates/landing/landing_quick.html:92
-#: diventi/templates/products/product_detail_quick.html:61
+#: diventi/templates/products/product_detail_quick.html:55
 msgid "early access"
 msgstr "accesso anticipato"
 
@@ -2347,7 +2347,7 @@ msgstr "Non ancora disponibile"
 
 #: diventi/templates/accounts/user_collection.html:64
 #: diventi/templates/products/product_detail.html:66
-#: diventi/templates/products/product_detail_quick.html:93
+#: diventi/templates/products/product_detail_quick.html:87
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
@@ -2405,8 +2405,8 @@ msgstr "progetti"
 #: diventi/templates/accounts/user_detail_quick.html:117
 #: diventi/templates/accounts/user_detail_quick_modal.html:40
 #: diventi/templates/base_quick.html:238
-#: diventi/templates/products/product_detail_quick.html:130
-#: diventi/templates/products/product_detail_quick.html:296
+#: diventi/templates/products/product_detail_quick.html:124
+#: diventi/templates/products/product_detail_quick.html:290
 #: diventi/templates/reviews/posted.html:11
 msgid "reviews"
 msgstr "recensioni"
@@ -2785,15 +2785,19 @@ msgstr "Introduzione"
 msgid "Close"
 msgstr "Chiudi"
 
-#: diventi/templates/ebooks/book_detail_quick.html:47
+#: diventi/templates/ebooks/book_detail_quick.html:49
 msgid "time to read"
 msgstr "tempo di lettura"
 
-#: diventi/templates/ebooks/book_detail_quick.html:47
+#: diventi/templates/ebooks/book_detail_quick.html:49
 msgid "words"
 msgstr "parole"
 
-#: diventi/templates/ebooks/book_detail_quick.html:99
+#: diventi/templates/ebooks/book_detail_quick.html:74
+msgid "table of contents"
+msgstr "indice"
+
+#: diventi/templates/ebooks/book_detail_quick.html:143
 msgid "jump to top"
 msgstr "salta in cima"
 
@@ -3720,7 +3724,7 @@ msgid "or"
 msgstr "o"
 
 #: diventi/templates/products/partials/product_detail_actions.html:47
-#: diventi/templates/products/product_detail_quick.html:157
+#: diventi/templates/products/product_detail_quick.html:151
 msgid "in your collection"
 msgstr "nella tua collezione"
 
@@ -3735,7 +3739,7 @@ msgstr "gratuito"
 
 #: diventi/templates/products/product_card_rich.html:25
 #: diventi/templates/products/product_detail.html:171
-#: diventi/templates/products/product_detail_quick.html:296
+#: diventi/templates/products/product_detail_quick.html:290
 msgid "community reviews"
 msgstr "Recensioni della community"
 
@@ -3756,7 +3760,7 @@ msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
 #: diventi/templates/products/product_detail.html:217
-#: diventi/templates/products/product_detail_quick.html:351
+#: diventi/templates/products/product_detail_quick.html:345
 msgid "there are no reviews yet, be the first to post one!"
 msgstr "non c'è alcuna recensione per ora, postane una tu!"
 
@@ -3764,19 +3768,19 @@ msgstr "non c'è alcuna recensione per ora, postane una tu!"
 msgid "related projects"
 msgstr "progetti correlati"
 
-#: diventi/templates/products/product_detail_quick.html:67
+#: diventi/templates/products/product_detail_quick.html:61
 msgid "in short"
 msgstr "in breve"
 
-#: diventi/templates/products/product_detail_quick.html:129
+#: diventi/templates/products/product_detail_quick.html:123
 msgid "out of 5 stars"
 msgstr "su 5 stelle"
 
-#: diventi/templates/products/product_detail_quick.html:130
+#: diventi/templates/products/product_detail_quick.html:124
 msgid "from"
 msgstr "da"
 
-#: diventi/templates/products/product_detail_quick.html:130
+#: diventi/templates/products/product_detail_quick.html:124
 #: diventi/templates/reviews/review_form.html:9
 #: diventi/templates/reviews/review_modal_quick.html:9
 msgid "review"
@@ -3784,23 +3788,23 @@ msgid_plural "reviews"
 msgstr[0] "recensione"
 msgstr[1] "recensioni"
 
-#: diventi/templates/products/product_detail_quick.html:136
+#: diventi/templates/products/product_detail_quick.html:130
 msgid "available formats"
 msgstr "formati disponibili"
 
-#: diventi/templates/products/product_detail_quick.html:157
+#: diventi/templates/products/product_detail_quick.html:151
 msgid "this content is available"
 msgstr "questo contenuto è disponibile"
 
-#: diventi/templates/products/product_detail_quick.html:166
+#: diventi/templates/products/product_detail_quick.html:160
 msgid "add this item to your collection to access its contents"
 msgstr "aggiungi questo oggetto alla tua collezione per accedere ai contenuti"
 
-#: diventi/templates/products/product_detail_quick.html:199
+#: diventi/templates/products/product_detail_quick.html:193
 msgid "key features"
 msgstr "caratteristiche chiave"
 
-#: diventi/templates/products/product_detail_quick.html:200
+#: diventi/templates/products/product_detail_quick.html:194
 msgid ""
 "any piece of content is modular and easy to pick up or discard depending on "
 "your playstyle"
@@ -3808,19 +3812,19 @@ msgstr ""
 "tutti i contenuti sono modulari e facili da selezionare o scartare a seconda "
 "del vostro stile di gioco"
 
-#: diventi/templates/products/product_detail_quick.html:222
+#: diventi/templates/products/product_detail_quick.html:216
 msgid "there are no key features to show for now"
 msgstr "non ci sono cratteristiche chiave da mostrare, per ora"
 
-#: diventi/templates/products/product_detail_quick.html:261
+#: diventi/templates/products/product_detail_quick.html:255
 msgid "details"
 msgstr "dettagli"
 
-#: diventi/templates/products/product_detail_quick.html:263
+#: diventi/templates/products/product_detail_quick.html:257
 msgid "here's a roundown of what you can expect from"
 msgstr "ecco cosa puoi aspettarti da"
 
-#: diventi/templates/products/product_detail_quick.html:298
+#: diventi/templates/products/product_detail_quick.html:292
 msgid "find out what others say about us"
 msgstr "scopri cosa gli altri dicono di noi"
 

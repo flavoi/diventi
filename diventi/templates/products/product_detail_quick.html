@@ -22,17 +22,11 @@
 {% block content %}
 
 <!-- Title section -->
-<section class="slice pt-6 mt-5 bg-light-secondary">
+<section class="slice pt-6 mt-6 bg-light-secondary">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="row align-items-center">
-                    <div class="col-auto">
-                        <span class="fa-stack fa-2x">
-                          <i class="fas fa-circle fa-stack-2x text-dark"></i>
-                          <i class="far fa-{{ product.category.icon }} fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
+                <div class="row text-center">
                     <div class="col ml-n3 ml-md-n2">
                         <h1 class="mb-0">
                             {{ product.title|title }}
@@ -149,12 +143,12 @@
                                         <div class="mt-3 pt-3 delimiter-top">
                                             <div class="actions">
                                                 {% if product.book.published and bought %}
-                                                    <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
+                                                    <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
                                                         <span class="btn-inner--icon">
-                                                            <i class="far fa-book-open"></i>
+                                                            <i class="fas fa-diploma fa-lg"></i>                     
                                                         </span>
                                                         <span class="btn-inner--text ml-1">
-                                                            {% trans "open"|capfirst %}
+                                                            {% trans "this content is available"|capfirst %} {% trans "in your collection" %}.
                                                         </span>
                                                     </a>
                                                 {% elif product.book.published and product.unfolded %}

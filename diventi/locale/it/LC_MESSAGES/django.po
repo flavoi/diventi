@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-29 23:24+0200\n"
+"POT-Creation-Date: 2021-05-03 11:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,39 +54,39 @@ msgstr "Molto buono"
 msgid "Excellent"
 msgstr "Eccellente"
 
-#: config/urls.py:34
+#: config/urls.py:38
 msgid "control-panel/"
 msgstr "pannello-di-controllo/"
 
-#: config/urls.py:35
+#: config/urls.py:39
 msgid "accounts/"
 msgstr "profili/"
 
-#: config/urls.py:36
+#: config/urls.py:40
 msgid "blog/"
 msgstr "blog/"
 
-#: config/urls.py:37
+#: config/urls.py:41
 msgid "comments/"
 msgstr "commenti/"
 
-#: config/urls.py:38
+#: config/urls.py:42
 msgid "feedbacks/"
 msgstr "riscontri/"
 
-#: config/urls.py:39
+#: config/urls.py:43
 msgid "ebooks/"
 msgstr "ebook/"
 
-#: config/urls.py:40
+#: config/urls.py:44
 msgid "adventures/"
 msgstr "avventure/"
 
-#: config/urls.py:41
+#: config/urls.py:45
 msgid "community/"
 msgstr "community/"
 
-#: config/urls.py:42
+#: config/urls.py:46
 msgid "games/"
 msgstr "giochi/"
 
@@ -1396,7 +1396,7 @@ msgid "survey"
 msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:111
-#: diventi/templates/accounts/user_detail_quick.html:230
+#: diventi/templates/accounts/user_detail_quick.html:205
 #: diventi/templates/base_quick.html:232
 msgid "surveys"
 msgstr "sondaggi"
@@ -1890,7 +1890,7 @@ msgstr ""
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/base_dashboard.html:127
 #: diventi/templates/landing/landing.html:37
-#: diventi/templates/landing/landing_quick.html:440
+#: diventi/templates/landing/landing_quick.html:445
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1907,7 +1907,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/password_reset_complete.html:14
 #: diventi/templates/accounts/signin.html:7
 #: diventi/templates/accounts/signin.html:25
-#: diventi/templates/products/partials/product_detail_actions.html:61
+#: diventi/templates/products/partials/product_detail_actions.html:60
 #: diventi/templates/products/product_detail.html:137
 msgid "Sign in"
 msgstr "Accedi"
@@ -1964,7 +1964,7 @@ msgstr ""
 #: diventi/templates/accounts/signin.html:59
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:442
-#: diventi/templates/landing/landing_quick.html:425
+#: diventi/templates/landing/landing_quick.html:430
 msgid "sign up"
 msgstr "registrati"
 
@@ -2185,11 +2185,10 @@ msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
-#: diventi/templates/accounts/user_detail_quick.html:158
+#: diventi/templates/accounts/user_detail_quick.html:133
 #: diventi/templates/accounts/user_detail_quick_modal.html:51
 #: diventi/templates/products/checkout_done_quick.html:37
-#: diventi/templates/products/partials/product_detail_actions.html:11
-#: diventi/templates/products/partials/product_detail_actions.html:48
+#: diventi/templates/products/partials/product_detail_actions.html:47
 #: diventi/templates/products/product_detail.html:114
 msgid "collection"
 msgstr "collezione"
@@ -2320,7 +2319,7 @@ msgstr ""
 "siamo a disposizione per qualunque domanda o chiarimento sull'argomento"
 
 #: diventi/templates/accounts/user_collection.html:21
-#: diventi/templates/accounts/user_detail_quick.html:190
+#: diventi/templates/accounts/user_detail_quick.html:165
 msgid "not available"
 msgstr "non ancora disponibile"
 
@@ -2333,7 +2332,7 @@ msgid "rewiew"
 msgstr "recensisci"
 
 #: diventi/templates/accounts/user_collection.html:48
-#: diventi/templates/accounts/user_detail_quick.html:218
+#: diventi/templates/accounts/user_detail_quick.html:193
 #: diventi/templates/accounts/user_detail_quick_modal.html:74
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
@@ -2357,7 +2356,7 @@ msgid "Display"
 msgstr "Visualizza"
 
 #: diventi/templates/accounts/user_collection.html:77
-#: diventi/templates/accounts/user_detail_quick.html:252
+#: diventi/templates/accounts/user_detail_quick.html:227
 msgid "There are no surveys yet."
 msgstr "Nessun sondaggio disponibile."
 
@@ -2417,32 +2416,28 @@ msgstr "recensioni"
 msgid "posts"
 msgstr "post"
 
-#: diventi/templates/accounts/user_detail_quick.html:140
-msgid "featured content"
-msgstr "contenuto in evidenza"
+#: diventi/templates/accounts/user_detail_quick.html:161
+#: diventi/templates/products/partials/product_detail_actions.html:8
+msgid "read online"
+msgstr "leggi online"
 
-#: diventi/templates/accounts/user_detail_quick.html:186
-#: diventi/templates/products/product_detail_quick.html:157
-msgid "open"
-msgstr "apri"
-
-#: diventi/templates/accounts/user_detail_quick.html:264
+#: diventi/templates/accounts/user_detail_quick.html:239
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60
 msgid "Recent posts"
 msgstr "Post recenti"
 
-#: diventi/templates/accounts/user_detail_quick.html:264
+#: diventi/templates/accounts/user_detail_quick.html:239
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60
 msgid "View all"
 msgstr "Visualizza tutto"
 
-#: diventi/templates/accounts/user_detail_quick.html:279
+#: diventi/templates/accounts/user_detail_quick.html:254
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:70
 #, python-format
 msgid "On %(creation_date)s"
 msgstr "il %(creation_date)s"
 
-#: diventi/templates/accounts/user_detail_quick.html:288
+#: diventi/templates/accounts/user_detail_quick.html:263
 msgid "There are no posts yet."
 msgstr "Nessun post disponibile."
 
@@ -2920,12 +2915,12 @@ msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
 #: diventi/templates/landing/landing.html:34
-#: diventi/templates/landing/landing_quick.html:432
+#: diventi/templates/landing/landing_quick.html:437
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing.html:35
-#: diventi/templates/landing/landing_quick.html:433
+#: diventi/templates/landing/landing_quick.html:438
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -2933,12 +2928,12 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/landing.html:41
-#: diventi/templates/landing/landing_quick.html:417
+#: diventi/templates/landing/landing_quick.html:422
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing.html:42
-#: diventi/templates/landing/landing_quick.html:418
+#: diventi/templates/landing/landing_quick.html:423
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
@@ -2947,17 +2942,17 @@ msgid "learn more"
 msgstr "scopri di più"
 
 #: diventi/templates/landing/landing_quick.html:51
-#: diventi/templates/landing/landing_quick.html:223
-#: diventi/templates/landing/landing_quick.html:305
-#: diventi/templates/landing/landing_quick.html:390
+#: diventi/templates/landing/landing_quick.html:228
+#: diventi/templates/landing/landing_quick.html:310
+#: diventi/templates/landing/landing_quick.html:395
 msgid "play video"
 msgstr "avvia il video"
 
-#: diventi/templates/landing/landing_quick.html:69
+#: diventi/templates/landing/landing_quick.html:70
 msgid "our games"
 msgstr "i nostri giochi"
 
-#: diventi/templates/landing/landing_quick.html:70
+#: diventi/templates/landing/landing_quick.html:71
 msgid ""
 "for those who are not satisfied with the status quo, but are looking for "
 "compelling stories, built through direct collaboration between players and "
@@ -2967,11 +2962,11 @@ msgstr ""
 "avvincenti, costruite tramite la collaborazione diretta tra giocatori e game "
 "master."
 
-#: diventi/templates/landing/landing_quick.html:92
+#: diventi/templates/landing/landing_quick.html:94
 msgid "available"
 msgstr "disponibile"
 
-#: diventi/templates/landing/landing_quick.html:135
+#: diventi/templates/landing/landing_quick.html:140
 msgid ""
 "Diventi is our vision of the best hobby in the world. We strongly believe "
 "that many styles of play exist and that each one of them is valid."
@@ -2979,23 +2974,23 @@ msgstr ""
 "Diventi è la nostra visione di uno dei migliori hobby al mondo. Crediamo "
 "fortemente che ci siano diversi stili di gioco e che ciascuno sia valido."
 
-#: diventi/templates/landing/landing_quick.html:151
+#: diventi/templates/landing/landing_quick.html:156
 msgid "A tabletop rpg that enables immersive storytelling"
 msgstr "Un gdr da tavolo che predilige avventure immersive"
 
-#: diventi/templates/landing/landing_quick.html:163
+#: diventi/templates/landing/landing_quick.html:168
 msgid "deep catalogs for granular character customizations"
 msgstr "cataloghi dettagliati per una personalizzazione spinta dei personaggi"
 
-#: diventi/templates/landing/landing_quick.html:175
+#: diventi/templates/landing/landing_quick.html:180
 msgid "contents optimized to work on the web"
 msgstr "contenuti ottimizzati per la fruizione via web"
 
-#: diventi/templates/landing/landing_quick.html:187
+#: diventi/templates/landing/landing_quick.html:192
 msgid "modular components for total freedom of play"
 msgstr "componenti modulari per una completa libertà di gioco"
 
-#: diventi/templates/landing/landing_quick.html:316
+#: diventi/templates/landing/landing_quick.html:321
 msgid "top details"
 msgstr "primi dettagli"
 
@@ -3703,37 +3698,33 @@ msgstr "prova di nuovo"
 msgid "buy for"
 msgstr "acquista per"
 
-#: diventi/templates/products/partials/product_detail_actions.html:11
-msgid "this content is available"
-msgstr "questo contenuto è disponibile"
-
-#: diventi/templates/products/partials/product_detail_actions.html:11
-#: diventi/templates/products/partials/product_detail_actions.html:48
-msgid "in your collection"
-msgstr "nella tua collezione"
-
-#: diventi/templates/products/partials/product_detail_actions.html:29
+#: diventi/templates/products/partials/product_detail_actions.html:28
 #: diventi/templates/products/product_detail.html:129
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/products/partials/product_detail_actions.html:44
+#: diventi/templates/products/partials/product_detail_actions.html:43
 msgid "you've already answered"
 msgstr "hai già risposto, grazie"
 
-#: diventi/templates/products/partials/product_detail_actions.html:48
+#: diventi/templates/products/partials/product_detail_actions.html:47
 msgid "you can"
 msgstr "puoi"
 
-#: diventi/templates/products/partials/product_detail_actions.html:48
+#: diventi/templates/products/partials/product_detail_actions.html:47
 msgid "check your answers here"
 msgstr "visualizzare le tue risposte qui"
 
-#: diventi/templates/products/partials/product_detail_actions.html:48
+#: diventi/templates/products/partials/product_detail_actions.html:47
 msgid "or"
 msgstr "o"
 
-#: diventi/templates/products/partials/product_detail_actions.html:61
+#: diventi/templates/products/partials/product_detail_actions.html:47
+#: diventi/templates/products/product_detail_quick.html:157
+msgid "in your collection"
+msgstr "nella tua collezione"
+
+#: diventi/templates/products/partials/product_detail_actions.html:60
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
 
@@ -3796,6 +3787,10 @@ msgstr[1] "recensioni"
 #: diventi/templates/products/product_detail_quick.html:136
 msgid "available formats"
 msgstr "formati disponibili"
+
+#: diventi/templates/products/product_detail_quick.html:157
+msgid "this content is available"
+msgstr "questo contenuto è disponibile"
 
 #: diventi/templates/products/product_detail_quick.html:166
 msgid "add this item to your collection to access its contents"
@@ -3897,6 +3892,12 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "featured content"
+#~ msgstr "contenuto in evidenza"
+
+#~ msgid "open"
+#~ msgstr "apri"
 
 #~ msgid "ongoing playtest"
 #~ msgstr "playtest in corso"

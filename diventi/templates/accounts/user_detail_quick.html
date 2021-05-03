@@ -125,31 +125,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <a href="{% url 'landing:home' %}">
-                            <div class="card card-fluid bg-section-dark hover-translate-y-n10">
-                                <div class="card-body px-4">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="d-flex align-items-center align-items-center mb-3">
-                                                <div>
-                                                    <div class="icon icon-sm icon-shape bg-warning text-white rounded-circle mr-3">
-                                                        <i class="far fa-gem pt-1"></i>
-                                                    </div>
-                                                </div>
-                                                <span class="h6 text-white mb-0">{% trans 'featured content'|capfirst %}</span>
-                                            </div>           
-                                            <h5 class="text-white pt-0">{{ graph_section.title|capfirst }}</h5>            
-                                            <p class="text-white opacity-8">
-                                                {{ graph_section.description|capfirst }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 <!-- Collection -->
                 <div class="mb-4">
@@ -180,10 +155,10 @@
                                                 {% endwith %}                      
                                                 <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
                                                     <span class="btn-inner--icon">
-                                                        <i class="far fa-book-open"></i>
+                                                        <i class="far fa-book-reader"></i>
                                                     </span>
                                                     <span class="btn-inner--text ml-1">
-                                                        {% trans "open"|capfirst %}
+                                                        {% trans "read online"|capfirst %}
                                                     </span>
                                                 </a>
                                             {% else %}

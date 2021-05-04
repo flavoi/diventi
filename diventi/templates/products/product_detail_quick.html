@@ -24,16 +24,12 @@
 <!-- Title section -->
 <section class="slice pt-6 mt-6 bg-light-secondary">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="row text-center">
-                    <div class="col ml-n3 ml-md-n2">
-                        <h1 class="mb-0">
-                            {{ product.title|title }}
-                        </h1>
-                        <span class="lead opacity-8">{{ product.abstract|capfirst }}</span>
-                    </div>
-                </div>
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="mb-0">
+                    {{ product.title|title }}
+                </h1>
+                <span class="lead opacity-8">{{ product.abstract|capfirst }}</span>
             </div>
         </div>
     </div>

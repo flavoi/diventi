@@ -141,6 +141,17 @@ def render_paper_images_by_direct_url(paper_soup):
     return paper_soup
 
 
+def render_paper_images(paper_soup):
+    """
+        Renders paper uploaded images with default visual styles.
+    """
+    images = paper_soup.find_all('img')
+    for image_tag in images:
+        image_tag['style'] = ''
+        image_tag['class'] = 'img-fluid my-3 hover-translate-y-n3 hover-shadow-lg'
+    return paper_soup
+
+
 def render_paper_code_blocks(paper_soup):
     """
         Substitutes code blocks with quick's style alerts.

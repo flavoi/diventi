@@ -35,6 +35,7 @@ from .utils import (
     render_paper_hr,
     render_paper_headings,
     render_diventi_snippets,
+    render_paper_images,
     make_paper_toc,
 )
 
@@ -125,7 +126,8 @@ class PaperEbookView(BookDetailView):
         context['paper_toc'] = make_paper_toc(paper_soup)
         render_diventi_snippets(paper_soup, diventi_universale_soup)
         render_paper_tables(paper_soup)
-        render_paper_images_by_direct_url(paper_soup)
+        render_paper_images(paper_soup)
+        # render_paper_images_by_direct_url(paper_soup) Deprecated: paper now supports uploaded images
         render_paper_code_blocks(paper_soup)
         remove_dropbox_placeholders(paper_soup)
         render_paper_hr(paper_soup)

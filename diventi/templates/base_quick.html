@@ -15,7 +15,7 @@
           <meta property="og:title" content="Diventi" />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-          <meta property="og:image" content="{{ graph_section.image }}" />
+          <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
           {% block desc_opengraph %}
             <meta property="og:description" content="{{ graph_section.description }}" />
           {% endblock desc_opengraph %}

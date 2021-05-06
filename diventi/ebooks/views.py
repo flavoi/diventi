@@ -1,30 +1,17 @@
-from itertools import chain
-
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
 from django.views import View
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, 
+    UserPassesTestMixin
+)
 from django.http import Http404
 from django.conf import settings
 
-from dal import autocomplete
-
-from diventi.core.views import StaffRequiredMixin
-
 from diventi.products.models import Product
-from diventi.tooltips.models import (
-    TooltipGroup,
-    Tooltip,
-)
 
-from .models import (
-    Book, 
-    Chapter, 
-    Section, 
-    UniversalSection,
-)
+from .models import Book
 
 from .utils import (
     get_dropbox_paper_soup, 
@@ -38,6 +25,7 @@ from .utils import (
     render_paper_images,
     make_paper_toc,
 )
+
 
 class UserHasProductMixin(UserPassesTestMixin):
     """ 
@@ -74,13 +62,6 @@ class EbookView(View):
         book_slug = self.kwargs.get('book_slug', None)
         book = get_object_or_404(Book, slug=book_slug)
         context['book'] = book
-        chapters = Chapter.objects.filter(chapter_book__slug=book_slug)
-        chapters = chapters.order_by('order_index', 'part').bookmark_sections()
-        context['chapters'] = chapters
-        tooltip_group = TooltipGroup.objects.filter(books=book).first()
-        if tooltip_group:
-            tooltips = tooltip_group.tooltips.all().prefetch()
-            context['tooltips'] = tooltips
         return context
 
 
@@ -98,11 +79,6 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
     def get_template_names(self):
         return ['ebooks/book_detail_%s.html' % self.object.template]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        first_chapter = self.object.chapters.order_by('order_index').first()
-        context['next_chapter'] = first_chapter
-        return context
 
 from django.utils.safestring import mark_safe
 class PaperEbookView(BookDetailView):
@@ -127,128 +103,14 @@ class PaperEbookView(BookDetailView):
         render_diventi_snippets(paper_soup, diventi_universale_soup)
         render_paper_tables(paper_soup)
         render_paper_images(paper_soup)
-        # render_paper_images_by_direct_url(paper_soup) Deprecated: paper now supports uploaded images
         render_paper_code_blocks(paper_soup)
-        remove_dropbox_placeholders(paper_soup)
+        #remove_dropbox_placeholders(paper_soup)
         render_paper_hr(paper_soup)
         render_paper_headings(paper_soup)
         context['paper_content'] = str(paper_soup)
+        if settings.PRINT_HTML_EBOOK:
+            print('Storicizzo paper in formato html in {}.'.format(settings.PROJ_ROOT))
+            with open(settings.PROJ_ROOT / 'paper_content.html', 'w') as file:
+                file.write(str(paper_soup))
+
         return context
-
-
-class ChapterDetailView(LoginRequiredMixin, UserHasProductMixin,
-                        EbookView, DetailView):
-    """ Returns the chapter of a book. """
-    
-    model = Chapter
-    template_name = "ebooks/chapter_detail.html"
-    slug_url_kwarg = 'chapter_slug'
-    
-    def get_queryset(self, **kwargs):
-        queryset = super().get_queryset(**kwargs)
-        book_slug = self.kwargs.get('book_slug')
-        book = get_object_or_404(Book, slug=book_slug) 
-        queryset = queryset.filter(chapter_book=book)
-        return queryset.published().sections()
-
-    def get_template_names(self):
-        return ['ebooks/chapter_detail_%s.html' % self.object.chapter_book.template]
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        chapters = context['chapters']
-        next_chapter = chapters.filter(order_index__gt=self.object.order_index)
-        next_chapter = next_chapter.order_by('order_index')
-        next_chapter = next_chapter.first()
-        context['next_chapter'] = next_chapter
-        previous_chapter = chapters.filter(order_index__lt=self.object.order_index)
-        previous_chapter = previous_chapter.order_by('-order_index')
-        previous_chapter = previous_chapter.first()
-        context['previous_chapter'] = previous_chapter
-        table_of_contents = Section.objects.filter(chapter=self.object).bookmarks()
-        context['table_of_contents'] = table_of_contents
-        return context
-
-
-class SectionSearchView(LoginRequiredMixin, UserHasProductMixin,
-                        EbookView, ListView):
-    """
-        Returns a list of sections that matches the searched phrase.
-    """
-
-    model = Section
-    context_object_name = 'results'
-
-
-    def get_queryset(self, **kwargs):
-        results = super().get_queryset(**kwargs)
-        query = self.request.GET.get('q')
-        book_slug = self.kwargs.get('book_slug')
-        if query:
-            sections = Section.search(self, query, book_slug)
-            results = list(chain(sections,))
-        else:
-            results = None
-        return results
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['search_query'] = self.request.GET.get('q')
-        return context
-
-    def get_template_names(self):
-        book_slug = self.kwargs.get('book_slug', None)
-        book = get_object_or_404(Book, slug=book_slug)
-        return ['ebooks/search_results_%s.html' % book.template]
-
-
-class SectionDetailView(LoginRequiredMixin, UserHasProductMixin,
-                        EbookView, DetailView):
-    """ Returns the chapter of a book. """
-    
-    model = Section
-    template_name = "ebooks/section_detail.html"
-    pk_url_kwarg = 'section_pk'
-    
-    def get_object(self, **kwargs):
-        obj = super().get_object(**kwargs)
-        chapter = Chapter.objects.filter(id=obj.chapter.id)
-        chapter = chapter.published()
-        try:
-            chapter = chapter.get()
-        except chapter.model.DoesNotExist:
-            raise Http404(_("This book hasn't been published yet."))
-        section = Section.objects.usection().get(id=obj.id) # Select related objects
-        return section
-
-    def get_template_names(self):
-        book_slug = self.kwargs.get('book_slug', None)
-        book = get_object_or_404(Book, slug=book_slug)
-        return ['ebooks/section_detail_%s.html' % book.template]
-
-
-class ChapterAutocomplete(autocomplete.Select2QuerySetView, StaffRequiredMixin):
-    """ Returns filtered chapters to facilitate user form fill. """
-  
-    def get_queryset(self):
-        qs = Chapter.objects.all().book()
-        book = self.forwarded.get('book', None)
-        if book:
-            qs = qs.filter(chapter_book=book)
-        if self.q:
-            qs = qs.filter(title__icontains=self.q)
-        return qs
-
-
-class SectionAutocompleteFromProduct(autocomplete.Select2QuerySetView, StaffRequiredMixin):
-    """ Returns filtered sections to facilitate user form fill. """
-
-    def get_queryset(self):
-        qs = Section.objects.all().usection()
-        product = self.forwarded.get('product', None)
-        if product:
-            book = Book.objects.filter(book_product=product)
-            qs = qs.filter(chapter__chapter_book=book[0])
-        if self.q:
-            qs = qs.filter(title__icontains=self.q)
-        return qs

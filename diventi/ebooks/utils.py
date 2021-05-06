@@ -199,21 +199,23 @@ def render_paper_headings(paper_soup):
     """
         Remove dropbox paper styles from the headings and adjust
         the visual style to improve readability as much as possibile.
+        It defers table formatting to the appropriate module.
     """
     for title in paper_soup.find_all('h1'):
         title['style'] = ''
-        title['class'] = 'h1 font-weight-normal mt-5 mb-4 pr-8'
+        title['class'] = 'h1 font-weight-normal mt-5 mb-4'
 
     for title in paper_soup.find_all('h2'):
         title['style'] = ''
         title['class'] = 'h2 font-weight-light mt-4 mb-1'
 
     for title in paper_soup.find_all(class_='ace-all-bold-hthree'):
-        title_soup = BeautifulSoup('', 'html.parser')
-        title_tag = title_soup.new_tag('h4')
-        title_tag['class'] = 'h5 mb-1'
-        title_tag.string = title.text
-        title.replace_with(title_tag)
+        if not title.find_parents("table"):
+            title_soup = BeautifulSoup('', 'html.parser')
+            title_tag = title_soup.new_tag('h4')
+            title_tag['class'] = 'h5 mb-1'
+            title_tag.string = title.text
+            title.replace_with(title_tag)
 
     return paper_soup
 

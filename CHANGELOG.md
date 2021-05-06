@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - [landing] Removed adventures links from the main navbar
 - [accounts] Removed the featured link in the account page
+- [tooltips] Removed the tooltip legacy functionality
 
 ### Fixed
 - [accounts] Fixed a problem that always redirected the user to the home page after signin in

@@ -1,8 +1,0 @@
-{% with section.section_aspects.all as aspects %}
-{% if aspects %}
-    {% for aspect in aspects %}
-      {% ifchanged aspect.aspect_type %}
-        {% if not forloop.first %}<br>{% endif %}<u>{{ aspect.get_aspect_type_display }}:</u>{% endifchanged %} {{ aspect.title|lower }}{% if forloop.last %}.{% else %},{% endif %} 
-    {% endfor %}
-{% endif %}
-{% endwith %}

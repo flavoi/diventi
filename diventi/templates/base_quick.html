@@ -1,4 +1,4 @@
-    {% load i18n %}
+{% load i18n %}
 {% load static %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_language_info for LANGUAGE_CODE as lang %}
@@ -29,11 +29,11 @@
     <title>Diventi{% block titleseparator %} &middot; {% endblock titleseparator %}{% block title %}{% endblock title %}</title>
     
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}?v=3">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}?v=3">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}?v=3">
-    <link rel="manifest" href="{% static 'favicons/manifest.json' %}?v=3">
-    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}?v=3" color="#5bbad5">    
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">    
     <!-- Quick CSS -->
     <link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}" id="stylesheet">
@@ -142,7 +142,7 @@
 
 </head>
 
-<body>
+<body {% block extrabody %}{% endblock extrabody%}>
     {% block preloadermodal %}
     <!-- Preloader -->
     <div class="preloader">

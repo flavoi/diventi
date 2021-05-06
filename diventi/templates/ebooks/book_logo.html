@@ -1,8 +1,0 @@
-{% block logo %}
-    <a href="{% url 'ebooks:book-detail' book.slug %}" class="simple-text logo-mini">
-      {{ book.short_title }}
-    </a>
-    <a href="{% url 'ebooks:book-detail' book.slug %}" class="simple-text logo-normal">
-      {{ book.title }}
-    </a>
-{% endblock logo %}

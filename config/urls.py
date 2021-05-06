@@ -1,5 +1,7 @@
 """ Diventi URL Configuration """
 
+import debug_toolbar
+
 from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls.static import static
@@ -21,6 +23,7 @@ urlpatterns = [
     path('reviews/', include('reviews.urls')),
     path('.well-known/', include('letsencrypt.urls')),
     path('.well-known/', include('diventi.brave.urls')),
+    path('__debug__/', include(debug_toolbar.urls)),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

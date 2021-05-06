@@ -133,6 +133,7 @@ THIRD_PARTY_APPS = [
     'widget_tweaks',
     'haystack',
     'fullurl',
+#    'debug_toolbar',
 ]
 
 FORUM_APPS = [
@@ -154,6 +155,7 @@ INSTALLED_APPS = PREFIX_APPS + DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS + FOR
 COMMENTS_APP = 'diventi.comments'
 
 MIDDLEWARE = [
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -388,7 +390,7 @@ STRIPE_ENDPOINT_SECRET_KEY = get_env_variable('STRIPE_ENDPOINT_SECRET_KEY')
 
 DROPBOX_ACCESS_TOKEN = get_env_variable('DROPBOX_ACCESS_TOKEN')
 DIVENTI_UNIVERSALE_PAPER_ID = get_env_variable('DIVENTI_UNIVERSALE_PAPER_ID')
-
+PRINT_HTML_EBOOK = False
 
 # Email backend for testing and development
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -399,3 +401,11 @@ EMAIL_HOST_USER = get_env_variable('EMAIL_HOST_USER_KEY') # email id
 EMAIL_HOST_PASSWORD = get_env_variable('EMAIL_HOST_PASSWORD_KEY') # password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# Django debug toolbar
+# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+# print("IP Address for debug-toolbar: " + self.request.META['REMOTE_ADDR'])
+
+INTERNAL_IPS = [
+    '10.0.2.2',
+]

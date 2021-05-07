@@ -17,20 +17,13 @@
 
 {% block extrahead %}
 
-<link rel="stylesheet" href="{% static 'diventi/css/diventi-ebook-quick.min.gz.css' %}">
 <link rel="stylesheet" href="{% static 'diventi/css/diventi-ebook-adjustments.min.css' %}" />
 
 <style type="text/css">
-    td {
-      vertical-align: top;
-    }
-    @media only screen and (min-width: 600px) {
-      td {
-        max-width: 100px;
-      }
-    }
+  body {
+    color: rgba(41, 41, 41, 1);
+  }
 </style>
-
 {% endblock extrahead %}
 
 {% block content %}
@@ -63,82 +56,80 @@
 </section>
 
 <section class="slice">
-   <div class="container py-4 py-lg-5">
-      <div class="row row-grid justify-content-between">
-        <div class="col-lg-3 ml-lg-auto">
-            <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
-                <div class="d-none d-md-none d-lg-block">
-                   <div class="card">
-                      <div class="card-body">
-                         <nav class="nav nav-pills flex-column" id="nav-terms">
-                            {% for part in paper_toc %}
-                                <div class="{% if not forloop.first %}mt-3{% endif %}">
-                                    {% for title, subheadings in part.items %}
+    <div class="container py-4 py-lg-5">
+        <div class="row row-grid justify-content-between">
+            <div class="col-lg-3 ml-lg-auto">
+                <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
+                    <div class="d-none d-md-none d-lg-block">
+                        <div class="card">
+                            <div class="card-body">
+                                <nav class="nav nav-pills flex-column" id="nav-terms">
+                                    {% for part in paper_toc %}
+                                    <div class="{% if not forloop.first %}mt-3{% endif %}">
+                                        {% for title, subheadings in part.items %}
                                         <span class="text-black mb-0">{{ title }}</span>
                                         {% for h in subheadings %}
-                                            {% if not forloop.first %}
-                                                <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
-                                            {% endif %}
+                                        {% if not forloop.first %}
+                                        <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+                                        {% endif %}
                                         {% endfor %}
+                                        {% endfor %}
+                                    </div>
                                     {% endfor %}
-                                </div>
-                            {% endfor %}
-                         </nav>
-                      </div>
-                   </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-6 mr-lg-auto mb-5 mb-lg-0">
-            {% if book.logo %}
-            <div class="mb-4 d-flex justify-content-center">
-                <figure class="figure">
-                    <a name="top"><img class="img-fluid rounded shadow-lg p-3" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.logo }}" data-src=""></a>
-                </figure>
-            </div>
-            {% endif %}
-
-            <div id="accordion-1" class="accordion accordion-spaced d-block d-md-block d-lg-none">
-               <div class="card bg-secondary border-primary-dark">
-                  <div class="card-header py-4 collapsed" id="heading-1-1" data-toggle="collapse" role="button" data-target="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
-                     <h6 class="mb-0">
-                        {% trans "table of contents"|capfirst %}
-                     </h6>
-                  </div>
-                  <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1" style="">
-                     <div class="card-body">
-                        <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
-                           <div class="card">
-                              <div class="card-body">
-                                 <nav class="nav nav-pills flex-column" id="nav-terms">
-                                    {% for part in paper_toc %}
-                                        <div class="{% if not forloop.first %}mt-3{% endif %}">
-                                            {% for title, subheadings in part.items %}
-                                                <span class="text-black mb-0">{{ title }}</span>
-                                                {% for h in subheadings %}
-                                                    {% if not forloop.first %}
-                                                        <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            {% endfor %}
-                                        </div>
-                                    {% endfor %}
-                                 </nav>
-                              </div>
-                           </div>
+            <div class="col-lg-7 mr-lg-auto mb-5 mb-lg-0">
+                {% if book.logo %}
+                <div class="mb-4 d-flex justify-content-center">
+                    <figure class="figure">
+                        <a name="top"><img class="img-fluid rounded shadow-lg p-3" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ book.logo }}" data-src=""></a>
+                    </figure>
+                </div>
+                {% endif %}
+                <div id="accordion-1" class="accordion accordion-spaced d-block d-md-block d-lg-none">
+                    <div class="card bg-secondary border-primary-dark">
+                        <div class="card-header py-4 collapsed" id="heading-1-1" data-toggle="collapse" role="button" data-target="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
+                            <h6 class="mb-0">
+                                {% trans "table of contents"|capfirst %}
+                            </h6>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                        <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1" style="">
+                            <div class="card-body">
+                                <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <nav class="nav nav-pills flex-column" id="nav-terms">
+                                                {% for part in paper_toc %}
+                                                <div class="{% if not forloop.first %}mt-3{% endif %}">
+                                                    {% for title, subheadings in part.items %}
+                                                    <span class="text-black mb-0">{{ title }}</span>
+                                                    {% for h in subheadings %}
+                                                    {% if not forloop.first %}
+                                                    <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                                {% endfor %}
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <article>
+                    {{ paper_content|safe }}
+                </article>
             </div>
-
-            <article>
-                {{ paper_content|safe }}
-            </article>
         </div>
     </div>
-</div>
-
+</section>
 <div class="customizer">
     <a href="#top" class="btn btn-sm btn-primary btn-icon-only rounded-circle hover-scale-110 shadow" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'jump to top'|capfirst %}">
         <span class="btn-inner--icon"><i class="fas fa-heading"></i></span>

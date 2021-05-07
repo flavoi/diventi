@@ -159,7 +159,7 @@ msgstr "La tua email"
 
 #: diventi/accounts/models.py:103
 msgid "staff_only"
-msgstr "riservato allo staff"
+msgstr "riservato agli autori"
 
 #: diventi/accounts/models.py:108
 msgid "Avatar"

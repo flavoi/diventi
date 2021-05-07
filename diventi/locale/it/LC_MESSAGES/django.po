@@ -2099,7 +2099,7 @@ msgstr "non sei registrato?"
 #: diventi/templates/accounts/signin_quick.html:68
 #: diventi/templates/accounts/signup_quick.html:22
 msgid "create your account"
-msgstr "crea il tuo account"
+msgstr "crea il tuo profilo"
 
 #: diventi/templates/accounts/signin_quick.html:70
 msgid "lost your password?"

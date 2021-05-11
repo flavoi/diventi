@@ -201,19 +201,22 @@ def render_paper_headings(paper_soup):
         the visual style to improve readability as much as possibile.
         It defers table formatting to the appropriate module.
     """
-    for title in paper_soup.find_all('h1'):
-        title['style'] = ''
-        title['class'] = 'h1 font-weight-normal mt-5 mb-4'
 
     for title in paper_soup.find_all('h2'):
+        title.name = 'h4'
         title['style'] = ''
-        title['class'] = 'h2 font-weight-light mt-4 mb-1'
+        title['class'] = 'mt-4 mb-1 text-primary'
+
+    for title in paper_soup.find_all('h1'):
+        title.name = 'h2'
+        title['style'] = ''
+        title['class'] = 'mt-5 mb-4'
 
     for title in paper_soup.find_all(class_='ace-all-bold-hthree'):
         if not title.find_parents("table"):
             title_soup = BeautifulSoup('', 'html.parser')
             title_tag = title_soup.new_tag('h4')
-            title_tag['class'] = 'h5 mb-1'
+            title_tag['class'] = 'h5 mb-1 text-dark'
             title_tag.string = title.text
             title.replace_with(title_tag)
 

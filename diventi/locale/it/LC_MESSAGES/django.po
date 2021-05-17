@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-04 00:14+0200\n"
+"POT-Creation-Date: 2021-05-18 00:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,75 +18,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:200
+#: config/settings/base.py:202
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:201
+#: config/settings/base.py:203
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:283
+#: config/settings/base.py:285
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:293
+#: config/settings/base.py:295
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:333
+#: config/settings/base.py:335
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:334
+#: config/settings/base.py:336
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:335
+#: config/settings/base.py:337
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:336
+#: config/settings/base.py:338
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:337
+#: config/settings/base.py:339
 msgid "Excellent"
 msgstr "Eccellente"
 
-#: config/urls.py:38
+#: config/urls.py:41
 msgid "control-panel/"
 msgstr "pannello-di-controllo/"
 
-#: config/urls.py:39
+#: config/urls.py:42
 msgid "accounts/"
 msgstr "profili/"
 
-#: config/urls.py:40
+#: config/urls.py:43
 msgid "blog/"
 msgstr "blog/"
 
-#: config/urls.py:41
+#: config/urls.py:44
 msgid "comments/"
 msgstr "commenti/"
 
-#: config/urls.py:42
+#: config/urls.py:45
 msgid "feedbacks/"
 msgstr "riscontri/"
 
-#: config/urls.py:43
+#: config/urls.py:46
 msgid "ebooks/"
 msgstr "ebook/"
 
-#: config/urls.py:44
+#: config/urls.py:47
 msgid "adventures/"
 msgstr "avventure/"
 
-#: config/urls.py:45
+#: config/urls.py:48
 msgid "community/"
 msgstr "community/"
 
-#: config/urls.py:46
+#: config/urls.py:49
 msgid "games/"
 msgstr "giochi/"
 
@@ -1027,7 +1027,6 @@ msgid "Universal content"
 msgstr "Contenuti universali"
 
 #: diventi/ebooks/admin.py:57
-#: diventi/templates/ebooks/chapter_detail_web.html:20
 msgid "Table of contents"
 msgstr "Indice"
 
@@ -1058,11 +1057,6 @@ msgid "Autocomplete ..."
 msgstr "Completamento automatico ..."
 
 #: diventi/ebooks/forms.py:27 diventi/products/models.py:356
-#: diventi/templates/ebooks/base_book_web.html:91
-#: diventi/templates/ebooks/base_book_web.html:125
-#: diventi/templates/ebooks/base_book_web.html:139
-#: diventi/templates/ebooks/chapter_detail_web.html:9
-#: diventi/templates/ebooks/section_detail_web.html:9
 msgid "Chapter"
 msgstr "Capitolo"
 
@@ -1195,7 +1189,6 @@ msgstr ""
 #: diventi/ebooks/models.py:307
 #: diventi/templates/adventures/situation_detail.html:39
 #: diventi/templates/adventures/situation_detail.html:48
-#: diventi/templates/ebooks/section_content_web.html:8
 msgid "situation"
 msgstr "situazione"
 
@@ -1289,60 +1282,28 @@ msgstr "segreto"
 msgid "secrets"
 msgstr "segreti"
 
-#: diventi/ebooks/urls.py:17
-msgid "book/<slug:book_slug>/"
-msgstr "libro/<slug:book_slug>/"
-
-#: diventi/ebooks/urls.py:18
+#: diventi/ebooks/urls.py:11
 msgid "paper/<slug:book_slug>/"
 msgstr "paper/<slug:book_slug>/"
 
-#: diventi/ebooks/urls.py:19
-msgid "book/<slug:book_slug>/chapter/<slug:chapter_slug>/"
-msgstr "libro/<slug:book_slug>/capitolo/<slug:chapter_slug>/"
-
-#: diventi/ebooks/urls.py:20
-msgid ""
-"book/<slug:book_slug>/chapter/<slug:chapter_slug>/<slug:section_slug>-<int:"
-"section_pk>/"
-msgstr ""
-"libro/<slug:book_slug>/capitolo/<slug:chapter_slug>/<slug:section_slug>-<int:"
-"section_pk>/"
-
-#: diventi/ebooks/urls.py:21
-msgid "book/<slug:book_slug>/search/"
-msgstr "libro/<slug:book_slug>/ricerca/"
-
-#: diventi/ebooks/urls.py:22
-msgid "chapter-autocomplete/"
-msgstr "completamento-capitolo/"
-
-#: diventi/ebooks/urls.py:23
-msgid "section-autocomplete-book/"
-msgstr "completamento-sezione-libro/"
-
-#: diventi/ebooks/utils.py:73
+#: diventi/ebooks/utils.py:89
 msgid "Discover"
 msgstr "Scopri"
 
-#: diventi/ebooks/views.py:49 diventi/ebooks/views.py:57
+#: diventi/ebooks/views.py:39 diventi/ebooks/views.py:47
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:60
+#: diventi/ebooks/views.py:50
 msgid "This book is not yet available, please check back later."
 msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi."
 
-#: diventi/ebooks/views.py:113
+#: diventi/ebooks/views.py:91
 msgid "This book is not linked to a paper, please contact the authors."
 msgstr ""
 "Questo libro non è collegato ad un paper, per favore contatta gli autori."
-
-#: diventi/ebooks/views.py:218
-msgid "This book hasn't been published yet."
-msgstr "Questo libro non è stato ancora pubblicato."
 
 #: diventi/feedbacks/apps.py:7
 msgid "Feedbacks"
@@ -1678,7 +1639,7 @@ msgstr "appuntato"
 
 #: diventi/products/models.py:174
 #: diventi/templates/landing/landing_quick.html:92
-#: diventi/templates/products/product_detail_quick.html:55
+#: diventi/templates/products/product_detail_quick.html:51
 msgid "early access"
 msgstr "accesso anticipato"
 
@@ -1760,7 +1721,6 @@ msgid "Chapter categories"
 msgstr "Tipi Capitolo"
 
 #: diventi/products/models.py:357
-#: diventi/templates/ebooks/base_book_web.html:81
 msgid "Chapters"
 msgstr "Capitoli"
 
@@ -2347,7 +2307,7 @@ msgstr "Non ancora disponibile"
 
 #: diventi/templates/accounts/user_collection.html:64
 #: diventi/templates/products/product_detail.html:66
-#: diventi/templates/products/product_detail_quick.html:87
+#: diventi/templates/products/product_detail_quick.html:83
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
@@ -2405,8 +2365,8 @@ msgstr "progetti"
 #: diventi/templates/accounts/user_detail_quick.html:117
 #: diventi/templates/accounts/user_detail_quick_modal.html:40
 #: diventi/templates/base_quick.html:238
-#: diventi/templates/products/product_detail_quick.html:124
-#: diventi/templates/products/product_detail_quick.html:290
+#: diventi/templates/products/product_detail_quick.html:120
+#: diventi/templates/products/product_detail_quick.html:286
 #: diventi/templates/reviews/posted.html:11
 msgid "reviews"
 msgstr "recensioni"
@@ -2694,6 +2654,7 @@ msgstr "corrente"
 #: diventi/templates/blog/article_list.html:127
 #: diventi/templates/blog/article_list_quick.html:166
 #: diventi/templates/blog/article_list_quick.html:168
+#: diventi/templates/ebooks/book_detail_quick.html:175
 msgid "Next"
 msgstr "Successivo"
 
@@ -2747,78 +2708,53 @@ msgstr "torna all'articolo"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/ebooks/base_book_material.html:29
-#: diventi/templates/ebooks/base_book_web.html:178
-#: diventi/templates/landing/search_form.html:14
-#: diventi/templates/landing/search_form.html:18
-#: diventi/templates/machina/forum_search/search.html:5
-#: diventi/templates/machina/forum_search/search.html:11
-#: diventi/templates/machina/forum_search/search.html:32
-#: diventi/templates/machina/forum_search/search.html:42
-msgid "Search"
-msgstr "Ricerca"
-
-#: diventi/templates/ebooks/base_book_web.html:109
-#: diventi/templates/ebooks/base_book_web.html:114
-msgid "View Chapters"
-msgstr "Visualzza Capitoli"
-
-#: diventi/templates/ebooks/base_book_web.html:148
-msgid "Previous Chapter"
-msgstr "Capitolo Precedente"
-
-#: diventi/templates/ebooks/base_book_web.html:155
-#: diventi/templates/ebooks/base_book_web.html:195
-#: diventi/templates/ebooks/chapter_detail_web.html:16
-#: diventi/templates/ebooks/section_detail_web.html:16
-msgid "Next Chapter"
-msgstr "Capitolo Successivo"
-
-#: diventi/templates/ebooks/base_book_web.html:167
-#: diventi/templates/ebooks/book_detail_web.html:11
-msgid "Introduction"
-msgstr "Introduzione"
-
-#: diventi/templates/ebooks/base_book_web.html:220
-#: diventi/templates/ebooks/section_content_material.html:46
-#: diventi/templates/ebooks/section_content_material.html:54
-msgid "Close"
-msgstr "Chiudi"
-
-#: diventi/templates/ebooks/book_detail_quick.html:49
+#: diventi/templates/ebooks/book_detail_quick.html:55
 msgid "time to read"
 msgstr "tempo di lettura"
 
-#: diventi/templates/ebooks/book_detail_quick.html:49
+#: diventi/templates/ebooks/book_detail_quick.html:55
 msgid "words"
 msgstr "parole"
 
-#: diventi/templates/ebooks/book_detail_quick.html:74
+#: diventi/templates/ebooks/book_detail_quick.html:102
 msgid "table of contents"
 msgstr "indice"
 
-#: diventi/templates/ebooks/book_detail_quick.html:143
+#: diventi/templates/ebooks/book_detail_quick.html:139
 msgid "jump to top"
 msgstr "salta in cima"
 
-#: diventi/templates/ebooks/book_detail_web.html:10
-msgid "First Chapter"
-msgstr "Primo Capitolo"
+#: diventi/templates/ebooks/book_detail_quick.html:167
+msgid "Display _MENU_ records per page"
+msgstr "Mostra _MENU_ righe per pagina"
 
-#: diventi/templates/ebooks/search_results_material.html:6
-#: diventi/templates/ebooks/search_results_material.html:15
-#: diventi/templates/ebooks/search_results_material.html:18
-#: diventi/templates/ebooks/search_results_web.html:11
-msgid "Search results"
-msgstr "Risultati"
-
-#: diventi/templates/ebooks/search_results_material.html:27
-#: diventi/templates/ebooks/search_results_web.html:19
-#: diventi/templates/landing/analytics.html:101
-#: diventi/templates/landing/search_results.html:49
-#: diventi/templates/landing/search_results_quick.html:49
-msgid "No items found"
+#: diventi/templates/ebooks/book_detail_quick.html:168
+msgid "Nothing found - sorry"
 msgstr "Nessun risultato trovato"
+
+#: diventi/templates/ebooks/book_detail_quick.html:169
+msgid "Showing page _PAGE_ of _PAGES_"
+msgstr "Pagina _PAGE_ di _PAGES_"
+
+#: diventi/templates/ebooks/book_detail_quick.html:170
+msgid "No records available"
+msgstr "Nessun risultato disponibile"
+
+#: diventi/templates/ebooks/book_detail_quick.html:171
+msgid "(filtered from _MAX_ total records)"
+msgstr "(filtrato da _MAX_ righe totali)"
+
+#: diventi/templates/ebooks/book_detail_quick.html:173
+msgid "First page"
+msgstr "Prima pagina"
+
+#: diventi/templates/ebooks/book_detail_quick.html:174
+msgid "Previous page"
+msgstr "Pagina precedente"
+
+#: diventi/templates/ebooks/book_detail_quick.html:178
+msgid "Filter records"
+msgstr "Filtra le righe"
 
 #: diventi/templates/feedbacks/answer_form.html:23
 #: diventi/templates/feedbacks/answer_list.html:19
@@ -2907,6 +2843,12 @@ msgstr "pagina di amministrazione"
 msgid "metrics and indices to best measure the performance of our projects"
 msgstr ""
 "metriche e indici per misurare al meglio le prestazioni dei nostri progetti"
+
+#: diventi/templates/landing/analytics.html:101
+#: diventi/templates/landing/search_results.html:49
+#: diventi/templates/landing/search_results_quick.html:49
+msgid "No items found"
+msgstr "Nessun risultato trovato"
 
 #: diventi/templates/landing/analytics.html:130
 #: diventi/templates/landing/analytics_quick.html:81
@@ -3001,6 +2943,15 @@ msgstr "primi dettagli"
 #: diventi/templates/landing/search_form.html:14
 msgid "e.g. First Contact"
 msgstr "es: Primo Contatto"
+
+#: diventi/templates/landing/search_form.html:14
+#: diventi/templates/landing/search_form.html:18
+#: diventi/templates/machina/forum_search/search.html:5
+#: diventi/templates/machina/forum_search/search.html:11
+#: diventi/templates/machina/forum_search/search.html:32
+#: diventi/templates/machina/forum_search/search.html:42
+msgid "Search"
+msgstr "Ricerca"
 
 #: diventi/templates/landing/search_results_quick.html:4
 #: diventi/templates/landing/search_results_quick.html:15
@@ -3724,7 +3675,7 @@ msgid "or"
 msgstr "o"
 
 #: diventi/templates/products/partials/product_detail_actions.html:47
-#: diventi/templates/products/product_detail_quick.html:151
+#: diventi/templates/products/product_detail_quick.html:147
 msgid "in your collection"
 msgstr "nella tua collezione"
 
@@ -3739,7 +3690,7 @@ msgstr "gratuito"
 
 #: diventi/templates/products/product_card_rich.html:25
 #: diventi/templates/products/product_detail.html:171
-#: diventi/templates/products/product_detail_quick.html:290
+#: diventi/templates/products/product_detail_quick.html:286
 msgid "community reviews"
 msgstr "Recensioni della community"
 
@@ -3760,7 +3711,7 @@ msgid "to add this product in your collection"
 msgstr "per aggiungere questo prodotto alla tua collezione"
 
 #: diventi/templates/products/product_detail.html:217
-#: diventi/templates/products/product_detail_quick.html:345
+#: diventi/templates/products/product_detail_quick.html:341
 msgid "there are no reviews yet, be the first to post one!"
 msgstr "non c'è alcuna recensione per ora, postane una tu!"
 
@@ -3768,19 +3719,19 @@ msgstr "non c'è alcuna recensione per ora, postane una tu!"
 msgid "related projects"
 msgstr "progetti correlati"
 
-#: diventi/templates/products/product_detail_quick.html:61
+#: diventi/templates/products/product_detail_quick.html:57
 msgid "in short"
 msgstr "in breve"
 
-#: diventi/templates/products/product_detail_quick.html:123
+#: diventi/templates/products/product_detail_quick.html:119
 msgid "out of 5 stars"
 msgstr "su 5 stelle"
 
-#: diventi/templates/products/product_detail_quick.html:124
+#: diventi/templates/products/product_detail_quick.html:120
 msgid "from"
 msgstr "da"
 
-#: diventi/templates/products/product_detail_quick.html:124
+#: diventi/templates/products/product_detail_quick.html:120
 #: diventi/templates/reviews/review_form.html:9
 #: diventi/templates/reviews/review_modal_quick.html:9
 msgid "review"
@@ -3788,23 +3739,23 @@ msgid_plural "reviews"
 msgstr[0] "recensione"
 msgstr[1] "recensioni"
 
-#: diventi/templates/products/product_detail_quick.html:130
+#: diventi/templates/products/product_detail_quick.html:126
 msgid "available formats"
 msgstr "formati disponibili"
 
-#: diventi/templates/products/product_detail_quick.html:151
+#: diventi/templates/products/product_detail_quick.html:147
 msgid "this content is available"
 msgstr "questo contenuto è disponibile"
 
-#: diventi/templates/products/product_detail_quick.html:160
+#: diventi/templates/products/product_detail_quick.html:156
 msgid "add this item to your collection to access its contents"
 msgstr "aggiungi questo oggetto alla tua collezione per accedere ai contenuti"
 
-#: diventi/templates/products/product_detail_quick.html:193
+#: diventi/templates/products/product_detail_quick.html:189
 msgid "key features"
 msgstr "caratteristiche chiave"
 
-#: diventi/templates/products/product_detail_quick.html:194
+#: diventi/templates/products/product_detail_quick.html:190
 msgid ""
 "any piece of content is modular and easy to pick up or discard depending on "
 "your playstyle"
@@ -3812,19 +3763,19 @@ msgstr ""
 "tutti i contenuti sono modulari e facili da selezionare o scartare a seconda "
 "del vostro stile di gioco"
 
-#: diventi/templates/products/product_detail_quick.html:216
+#: diventi/templates/products/product_detail_quick.html:212
 msgid "there are no key features to show for now"
 msgstr "non ci sono cratteristiche chiave da mostrare, per ora"
 
-#: diventi/templates/products/product_detail_quick.html:255
+#: diventi/templates/products/product_detail_quick.html:251
 msgid "details"
 msgstr "dettagli"
 
-#: diventi/templates/products/product_detail_quick.html:257
+#: diventi/templates/products/product_detail_quick.html:253
 msgid "here's a roundown of what you can expect from"
 msgstr "ecco cosa puoi aspettarti da"
 
-#: diventi/templates/products/product_detail_quick.html:292
+#: diventi/templates/products/product_detail_quick.html:288
 msgid "find out what others say about us"
 msgstr "scopri cosa gli altri dicono di noi"
 
@@ -3896,6 +3847,52 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "book/<slug:book_slug>/"
+#~ msgstr "libro/<slug:book_slug>/"
+
+#~ msgid "book/<slug:book_slug>/chapter/<slug:chapter_slug>/"
+#~ msgstr "libro/<slug:book_slug>/capitolo/<slug:chapter_slug>/"
+
+#~ msgid ""
+#~ "book/<slug:book_slug>/chapter/<slug:chapter_slug>/<slug:section_slug>-"
+#~ "<int:section_pk>/"
+#~ msgstr ""
+#~ "libro/<slug:book_slug>/capitolo/<slug:chapter_slug>/<slug:section_slug>-"
+#~ "<int:section_pk>/"
+
+#~ msgid "book/<slug:book_slug>/search/"
+#~ msgstr "libro/<slug:book_slug>/ricerca/"
+
+#~ msgid "chapter-autocomplete/"
+#~ msgstr "completamento-capitolo/"
+
+#~ msgid "section-autocomplete-book/"
+#~ msgstr "completamento-sezione-libro/"
+
+#~ msgid "This book hasn't been published yet."
+#~ msgstr "Questo libro non è stato ancora pubblicato."
+
+#~ msgid "View Chapters"
+#~ msgstr "Visualzza Capitoli"
+
+#~ msgid "Previous Chapter"
+#~ msgstr "Capitolo Precedente"
+
+#~ msgid "Next Chapter"
+#~ msgstr "Capitolo Successivo"
+
+#~ msgid "Introduction"
+#~ msgstr "Introduzione"
+
+#~ msgid "Close"
+#~ msgstr "Chiudi"
+
+#~ msgid "First Chapter"
+#~ msgstr "Primo Capitolo"
+
+#~ msgid "Search results"
+#~ msgstr "Risultati"
 
 #~ msgid "featured content"
 #~ msgstr "contenuto in evidenza"

@@ -49,6 +49,22 @@ def extract_diventi_content(mention_link, diventi_universale_soup):
         return ''
 
 
+def render_sortable_tables(paper_soup):
+    """
+        Prepare tables of jQuery datatables plugin.
+    """
+    tables = paper_soup.find_all('table')
+    table_counter = 1
+    for table in tables:
+        table['class'] = 'display compact sortable'
+        table['id'] = 'tabella-{}'.format(table_counter)
+        table_counter += 1
+    table_columns = paper_soup.find_all('td')
+    for td in table_columns:
+        td['style'] = ''    
+    return paper_soup
+
+
 def render_paper_tables(paper_soup):
     """
         Adds vertical spacing to tables and encapsulates

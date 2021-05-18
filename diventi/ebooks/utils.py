@@ -12,12 +12,12 @@ def get_dropbox_paper_soup(paper_id):
     url = "https://content.dropboxapi.com/2/files/export"
     headers = {
         "Authorization": "Bearer {}".format(settings.DROPBOX_ACCESS_TOKEN),
-        "Dropbox-API-Arg": "{{\"path\":\"{}\"}}".format(paper_id)
+        "Dropbox-API-Arg": "{\"path\":\"%s\",\"export_format\":\"html\"}" % paper_id,
     }
-    paper = requests.post(url, headers=headers)
-    soup = BeautifulSoup(paper.content, 'html.parser')
+    r = requests.post(url, headers=headers)
+    r.encoding = 'utf-8'
+    soup = BeautifulSoup(r.text, 'html.parser')
     return soup
-
 
 def extract_diventi_content(mention_link, diventi_universale_soup):
     """

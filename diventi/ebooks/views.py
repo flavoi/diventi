@@ -14,7 +14,7 @@ from diventi.products.models import Product
 from .models import Book
 
 from .utils import (
-    get_dropbox_paper_soup, 
+    get_dropbox_paper_soup,
     render_paper_images_by_direct_url,
     render_paper_code_blocks,
     remove_dropbox_placeholders,
@@ -26,7 +26,6 @@ from .utils import (
     render_paper_tables,
     render_sortable_tables,
 )
-
 
 class UserHasProductMixin(UserPassesTestMixin):
     """ 
@@ -96,19 +95,20 @@ class PaperEbookView(BookDetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paper_id = self.object.paper_id        
-        paper_soup = get_dropbox_paper_soup(paper_id)
+        paper_id = self.object.paper_id
+        paper_soup = get_dropbox_paper_soup(paper_id)        
         diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
         context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_toc'] = make_paper_toc(paper_soup)
         render_diventi_snippets(paper_soup, diventi_universale_soup)
-        # render_paper_tables(paper_soup)
         render_sortable_tables(paper_soup)
         render_paper_images(paper_soup)
         render_paper_code_blocks(paper_soup)
-        #remove_dropbox_placeholders(paper_soup)
         render_paper_hr(paper_soup)
         render_paper_headings(paper_soup)
+
+        # remove_dropbox_placeholders(paper_soup)
+        # render_paper_tables(paper_soup)
         context['paper_content'] = str(paper_soup)
         if settings.PRINT_HTML_EBOOK:
             print('Storicizzo paper in formato html in {}.'.format(settings.PROJ_ROOT))

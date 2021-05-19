@@ -106,13 +106,9 @@ class PaperEbookView(BookDetailView):
         render_paper_code_blocks(paper_soup)
         render_paper_hr(paper_soup)
         render_paper_headings(paper_soup)
-
-        # remove_dropbox_placeholders(paper_soup)
-        # render_paper_tables(paper_soup)
         context['paper_content'] = str(paper_soup)
         if settings.PRINT_HTML_EBOOK:
             print('Storicizzo paper in formato html in {}.'.format(settings.PROJ_ROOT))
             with open(settings.PROJ_ROOT / 'paper_content.html', 'w') as file:
                 file.write(str(paper_soup))
-
         return context

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 
 ### Added
+- [ebooks] Integrated Datatables with filter, ordering and pagination functionalities
 - [machina] Integrated open graph support for forum list and detail pages
 - [payments] Introduced a dedicated app for the management of stripe payments
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-18 00:12+0200\n"
+"POT-Creation-Date: 2021-05-19 22:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1290,17 +1290,17 @@ msgstr "paper/<slug:book_slug>/"
 msgid "Discover"
 msgstr "Scopri"
 
-#: diventi/ebooks/views.py:39 diventi/ebooks/views.py:47
+#: diventi/ebooks/views.py:38 diventi/ebooks/views.py:46
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:50
+#: diventi/ebooks/views.py:49
 msgid "This book is not yet available, please check back later."
 msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi."
 
-#: diventi/ebooks/views.py:91
+#: diventi/ebooks/views.py:90
 msgid "This book is not linked to a paper, please contact the authors."
 msgstr ""
 "Questo libro non è collegato ad un paper, per favore contatta gli autori."
@@ -2642,6 +2642,7 @@ msgstr "Nessun articolo è stato pubblicato"
 #: diventi/templates/blog/article_list.html:115
 #: diventi/templates/blog/article_list_quick.html:154
 #: diventi/templates/blog/article_list_quick.html:156
+#: diventi/templates/ebooks/book_detail_quick.html:793
 msgid "Previous"
 msgstr "Precedente"
 
@@ -2654,7 +2655,7 @@ msgstr "corrente"
 #: diventi/templates/blog/article_list.html:127
 #: diventi/templates/blog/article_list_quick.html:166
 #: diventi/templates/blog/article_list_quick.html:168
-#: diventi/templates/ebooks/book_detail_quick.html:175
+#: diventi/templates/ebooks/book_detail_quick.html:794
 msgid "Next"
 msgstr "Successivo"
 
@@ -2708,51 +2709,47 @@ msgstr "torna all'articolo"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/ebooks/book_detail_quick.html:55
+#: diventi/templates/ebooks/book_detail_quick.html:673
 msgid "time to read"
 msgstr "tempo di lettura"
 
-#: diventi/templates/ebooks/book_detail_quick.html:55
+#: diventi/templates/ebooks/book_detail_quick.html:673
 msgid "words"
 msgstr "parole"
 
-#: diventi/templates/ebooks/book_detail_quick.html:102
+#: diventi/templates/ebooks/book_detail_quick.html:721
 msgid "table of contents"
 msgstr "indice"
 
-#: diventi/templates/ebooks/book_detail_quick.html:139
+#: diventi/templates/ebooks/book_detail_quick.html:758
 msgid "jump to top"
 msgstr "salta in cima"
 
-#: diventi/templates/ebooks/book_detail_quick.html:167
+#: diventi/templates/ebooks/book_detail_quick.html:786
 msgid "Display _MENU_ records per page"
 msgstr "Mostra _MENU_ righe per pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:168
+#: diventi/templates/ebooks/book_detail_quick.html:787
 msgid "Nothing found - sorry"
 msgstr "Nessun risultato trovato"
 
-#: diventi/templates/ebooks/book_detail_quick.html:169
+#: diventi/templates/ebooks/book_detail_quick.html:788
 msgid "Showing page _PAGE_ of _PAGES_"
 msgstr "Pagina _PAGE_ di _PAGES_"
 
-#: diventi/templates/ebooks/book_detail_quick.html:170
+#: diventi/templates/ebooks/book_detail_quick.html:789
 msgid "No records available"
 msgstr "Nessun risultato disponibile"
 
-#: diventi/templates/ebooks/book_detail_quick.html:171
+#: diventi/templates/ebooks/book_detail_quick.html:790
 msgid "(filtered from _MAX_ total records)"
 msgstr "(filtrato da _MAX_ righe totali)"
 
-#: diventi/templates/ebooks/book_detail_quick.html:173
+#: diventi/templates/ebooks/book_detail_quick.html:792
 msgid "First page"
 msgstr "Prima pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:174
-msgid "Previous page"
-msgstr "Pagina precedente"
-
-#: diventi/templates/ebooks/book_detail_quick.html:178
+#: diventi/templates/ebooks/book_detail_quick.html:797
 msgid "Filter records"
 msgstr "Filtra le righe"
 
@@ -3847,6 +3844,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "Previous page"
+#~ msgstr "Pagina precedente"
 
 #~ msgid "book/<slug:book_slug>/"
 #~ msgstr "libro/<slug:book_slug>/"

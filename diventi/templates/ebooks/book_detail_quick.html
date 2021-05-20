@@ -61,11 +61,11 @@
                                     <div class="{% if not forloop.first %}mt-3{% endif %}">
                                         {% for title, subheadings in part.items %}
                                         <span class="text-black mb-0">{{ title }}</span>
-                                        {% for h in subheadings %}
-                                        {% if not forloop.first %}
-                                        <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
-                                        {% endif %}
-                                        {% endfor %}
+                                            {% for h in subheadings %}
+                                                {% if not forloop.first %}
+                                                    <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endfor %}
                                     </div>
                                     {% endfor %}
@@ -98,16 +98,16 @@
                                         <div class="card-body">
                                             <nav class="nav nav-pills flex-column" id="nav-terms">
                                                 {% for part in paper_toc %}
-                                                <div class="{% if not forloop.first %}mt-3{% endif %}">
-                                                    {% for title, subheadings in part.items %}
-                                                    <span class="text-black mb-0">{{ title }}</span>
-                                                    {% for h in subheadings %}
-                                                    {% if not forloop.first %}
-                                                    <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
-                                                    {% endif %}
-                                                    {% endfor %}
-                                                    {% endfor %}
-                                                </div>
+                                                    <div class="{% if not forloop.first %}mt-3{% endif %}">
+                                                        {% for title, subheadings in part.items %}
+                                                            <span class="text-black mb-0">{{ title }}</span>
+                                                            {% for h in subheadings %}
+                                                                {% if not forloop.first %}
+                                                                    <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endfor %}
+                                                    </div>
                                                 {% endfor %}
                                             </nav>
                                         </div>

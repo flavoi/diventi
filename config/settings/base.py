@@ -259,7 +259,7 @@ CKEDITOR_CONFIGS = {
             ['Styles', 'Format'],
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Table', 'HorizontalRule', 'customEmbed'],
-            ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'TextColor', 'BGColor'],
             ['NumberedList', 'BulletedList', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',],
             ['Source',],
         ],

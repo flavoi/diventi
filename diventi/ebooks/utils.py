@@ -246,7 +246,7 @@ def make_paper_toc_cards(paper_soup):
     """
     toc = []
     title_dict = {}
-    for title in paper_soup.find_all(['h1', 'h2']):
+    for title in paper_soup.find_all(['h1', 'h2', 'h4']):
         title['id'] = title['data-usually-unique-id']
         
         if title.name == 'h1':
@@ -263,7 +263,7 @@ def make_paper_toc_cards(paper_soup):
                     }           
                 ]
             }
-        else:
+        elif title.name == 'h2':
             # Sub-headings nested into headings
             title_dict[parent_title_key].append(
                 {
@@ -272,6 +272,8 @@ def make_paper_toc_cards(paper_soup):
                     'name': title.name,
                 } 
             )
+        else:
+            print(title.text)
     toc.append(title_dict)
     return toc
 

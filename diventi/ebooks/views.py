@@ -24,7 +24,6 @@ from .utils import (
     render_paper_images,
     make_paper_toc,
     render_paper_tables,
-    render_sortable_tables,
 )
 
 class UserHasProductMixin(UserPassesTestMixin):
@@ -101,7 +100,7 @@ class PaperEbookView(BookDetailView):
         context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_toc'] = make_paper_toc(paper_soup)
         render_diventi_snippets(paper_soup, diventi_universale_soup)
-        render_sortable_tables(paper_soup)
+        render_paper_tables(paper_soup)
         render_paper_images(paper_soup)
         render_paper_code_blocks(paper_soup)
         render_paper_hr(paper_soup)

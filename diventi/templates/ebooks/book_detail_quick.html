@@ -17,6 +17,23 @@
 
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'diventi/css/diventi-datatables.min.css' %}" />
+    <style>
+        table.cards {
+            width: 100%;
+            border-spacing: 0;
+            border: 1px solid #c1c7cd;
+            word-break: break-word;
+        }
+
+        table.cards td {
+            border-color: #c1c7cd;
+            border-style: solid;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-right-width: 0;
+            border-left-width: 1px;
+        }
+    </style>
 {% endblock extrahead %}
 
 {% block content %}

@@ -19,6 +19,7 @@ def get_dropbox_paper_soup(paper_id):
     soup = BeautifulSoup(r.text, 'html.parser')
     return soup
 
+
 def extract_diventi_content(mention_link, diventi_universale_soup):
     """
         Extract the paragraph between two titles in Diventi Universale.
@@ -49,69 +50,78 @@ def extract_diventi_content(mention_link, diventi_universale_soup):
         return ''
 
 
-def render_sortable_tables(paper_soup):
+def render_paper_tables(paper_soup):
     """
-        Prepare tables of jQuery datatables plugin.
+        Inject tables with the correct visual styles depending
+        on the table's nature.
     """
     tables = paper_soup.find_all('table')
     table_counter = 1
     for table in tables:
-        table['class'] = 'display compact sortable'
-        table['id'] = 'tabella-{}'.format(table_counter)
-        table_counter += 1
-    table_columns = paper_soup.find_all('td')
+        if table.get('class') and table.get('class')[0] == 'table-top-header':
+            table = render_sortable_table(table, table_counter)           
+        else:
+            table = render_card_table(table, table_counter)         
+        table_counter += 1 
+    return paper_soup    
+
+
+def render_sortable_table(table, table_counter):
+    """
+        Prepare tables of jQuery datatables plugin.
+    """
+    table['class'] = 'display compact sortable'
+    table['id'] = 'tabella-{}'.format(table_counter)
+    table_columns = table.find_all('td')
     for td in table_columns:
-        td['style'] = ''    
-    return paper_soup
+        td['style'] = ''
+    return table
 
 
-def render_paper_tables(paper_soup):
+def render_card_table(table, collapse_counter):
     """
         Adds vertical spacing to tables and encapsulates
         them in a collasping card.
     """
-    tables = paper_soup.find_all('table')
-    collapse_counter = 1
-    for table in tables:
-        table['style'] = ''
+   
+    table['style'] = ''
+    table['class'] = 'clear-user-agent-styles cards'
 
-        collapse_soup = BeautifulSoup('', 'html.parser')
-        
-        collapse_l1_tag = table.wrap(collapse_soup.new_tag("div", **{"class": "card-body"}))
-        collapse_l2_tag = collapse_l1_tag.wrap(collapse_soup.new_tag("div"))       
-        collapse_l2_tag['id'] = 'collapse-{}'.format(collapse_counter)
-        collapse_l2_tag['aria-labelledby'] = 'heading-{}'.format(collapse_counter)
-        collapse_l2_tag['data-parent'] = '#accordion-{}'.format(collapse_counter)
-        collapse_l2_tag['class'] = "collapse"
-       
-        collapse_title_l1_tag = collapse_soup.new_tag("h6")
-        collapse_title_l1_tag['class'] = 'mb-0'
-        collapse_title_l1_tag.string = _('Discover')
-        collapse_l2_tag = collapse_l2_tag.insert_before(collapse_title_l1_tag)
+    collapse_soup = BeautifulSoup('', 'html.parser')
+    
+    collapse_l1_tag = table.wrap(collapse_soup.new_tag("div", **{"class": "card-body"}))
+    collapse_l2_tag = collapse_l1_tag.wrap(collapse_soup.new_tag("div"))       
+    collapse_l2_tag['id'] = 'collapse-{}'.format(collapse_counter)
+    collapse_l2_tag['aria-labelledby'] = 'heading-{}'.format(collapse_counter)
+    collapse_l2_tag['data-parent'] = '#accordion-{}'.format(collapse_counter)
+    collapse_l2_tag['class'] = "collapse"
+   
+    collapse_title_l1_tag = collapse_soup.new_tag("h6")
+    collapse_title_l1_tag['class'] = 'mb-0'
+    collapse_title_l1_tag.string = _('Discover')
+    collapse_l2_tag = collapse_l2_tag.insert_before(collapse_title_l1_tag)
 
-        collapse_title_l2_tag = collapse_title_l1_tag.wrap(collapse_soup.new_tag("div"))
-        collapse_title_l2_tag['class'] = 'card-header py-4'
-        collapse_title_l2_tag['id'] = 'heading-{}'.format(collapse_counter)
-        collapse_title_l2_tag['data-toggle'] = 'collapse'
-        collapse_title_l2_tag['role'] = 'button'
-        collapse_title_l2_tag['data-target'] = '#collapse-{}'.format(collapse_counter)
-        collapse_title_l2_tag['aria-expanded'] = 'false'
-        collapse_title_l2_tag['aria-controls'] = 'collapse-{}'.format(collapse_counter)      
-      
-        collapse_wrapper_tag = collapse_title_l2_tag.find_parent('div')
-        collapse_wrapper_tag['class'] = 'card'
-        collapse_wrapper_tag['style'] = ''
+    collapse_title_l2_tag = collapse_title_l1_tag.wrap(collapse_soup.new_tag("div"))
+    collapse_title_l2_tag['class'] = 'card-header py-4'
+    collapse_title_l2_tag['id'] = 'heading-{}'.format(collapse_counter)
+    collapse_title_l2_tag['data-toggle'] = 'collapse'
+    collapse_title_l2_tag['role'] = 'button'
+    collapse_title_l2_tag['data-target'] = '#collapse-{}'.format(collapse_counter)
+    collapse_title_l2_tag['aria-expanded'] = 'false'
+    collapse_title_l2_tag['aria-controls'] = 'collapse-{}'.format(collapse_counter)      
+  
+    collapse_wrapper_tag = collapse_title_l2_tag.find_parent('div')
+    collapse_wrapper_tag['class'] = 'card'
+    collapse_wrapper_tag['style'] = ''
 
-        collapse_wrapper_tag = collapse_wrapper_tag.find_parent('div')
-        collapse_wrapper_tag.name = 'div'
-        collapse_wrapper_tag['id'] = 'accordion-{}'.format(collapse_counter)
-        collapse_wrapper_tag['class'] = 'accordion mt-2 mb-4'       
+    collapse_wrapper_tag = collapse_wrapper_tag.find_parent('div')
+    collapse_wrapper_tag.name = 'div'
+    collapse_wrapper_tag['id'] = 'accordion-{}'.format(collapse_counter)
+    collapse_wrapper_tag['class'] = 'accordion mt-2 mb-4' 
 
-        collapse_counter += 1
-    table_columns = paper_soup.find_all('td')
-    for td in table_columns:
-        td['style'] = ''    
-    return paper_soup
+    table_columns = table.find_all('td')
+  
+    return table
 
 
 def render_paper_hr(paper_soup):

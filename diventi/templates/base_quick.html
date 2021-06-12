@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}" id="stylesheet">
     <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/27968f469b.js" crossorigin="anonymous"></script>
+    <script defer src="{% static 'fontawesome-v5.15.3/js/all.min.js' %}" crossorigin="anonymous"></script>
     <style>
         @font-face {
             font-family: Kravitz;
@@ -223,7 +223,7 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                            <div class="py-3">
+                                            <div class="py-3 d-none d-lg-block">
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <a href="{% url 'admin:blog_article_changelist' %}" class="dropdown-item">{% trans "articles"|capfirst %}</a>

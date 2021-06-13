@@ -9,6 +9,7 @@ gmail-api.json
 adventures.json
 brave-rewards-verification.txt
 fixtures/*
+book_paper*
 
 # Vagrant
 .vagrant/*

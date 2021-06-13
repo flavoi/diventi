@@ -20,6 +20,17 @@ def get_dropbox_paper_soup(paper_id):
     return soup
 
 
+def parse_dropbox_paper_soup(paper_filename):
+    """
+        Load soup from html file.
+    """
+    for template_dir in settings.TEMPLATES[0]['DIRS']:
+        with open(template_dir / paper_filename, 'r') as paper_file:
+            soup = BeautifulSoup(paper_file, 'html.parser')
+            return soup
+    return 0
+
+
 def extract_diventi_content(mention_link, diventi_universale_soup):
     """
         Extract the paragraph between two titles in Diventi Universale.
@@ -70,8 +81,9 @@ def render_sortable_table(table, table_counter):
     """
         Prepare tables of jQuery datatables plugin.
     """
-    table['class'] = 'display compact sortable'
+    table['class'] = 'display compact sortable w-100'
     table['id'] = 'tabella-{}'.format(table_counter)
+    table['style'] = ''
     table_columns = table.find_all('td')
     for td in table_columns:
         td['style'] = ''
@@ -229,14 +241,14 @@ def render_paper_headings(paper_soup):
     """
 
     for title in paper_soup.find_all('h2'):
-        title.name = 'h4'
         title['style'] = ''
-        title['class'] = 'mt-4 mb-1 text-primary'
+        title['id'] = title['data-usually-unique-id']
+        title['class'] = 'h4 mt-4 mb-1 text-primary'
 
     for title in paper_soup.find_all('h1'):
-        title.name = 'h2'
         title['style'] = ''
-        title['class'] = 'mt-5 mb-4'
+        title['id'] = title['data-usually-unique-id']
+        title['class'] = 'h2 mt-5 mb-4'
 
     for title in paper_soup.find_all(class_='ace-all-bold-hthree'):
         if not title.find_parents("table"):
@@ -257,8 +269,6 @@ def make_paper_toc_cards(paper_soup):
     toc = []
     title_dict = {}
     for title in paper_soup.find_all(['h1', 'h2', 'h4']):
-        title['id'] = title['data-usually-unique-id']
-        
         if title.name == 'h1':
             # Main Headings will become card titles
             if title_dict:
@@ -283,7 +293,7 @@ def make_paper_toc_cards(paper_soup):
                 } 
             )
         else:
-            print(title.text)
+            pass
     toc.append(title_dict)
     return toc
 
@@ -330,3 +340,18 @@ def render_diventi_snippets(paper_soup, diventi_universale_soup):
             diventi_title = extract_diventi_content(mentioned_href, diventi_universale_soup)
             if diventi_title:
                 p.parent.parent.parent.replace_with(diventi_title)
+
+
+def render_dropbox_paper_soup(book_paper_id):
+    """
+        Invoke all the necessary module to completely render a book page.
+    """
+    paper_soup = get_dropbox_paper_soup(book_paper_id)
+    diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
+    render_diventi_snippets(paper_soup, diventi_universale_soup)
+    render_paper_tables(paper_soup)
+    render_paper_images(paper_soup)
+    render_paper_code_blocks(paper_soup)
+    render_paper_hr(paper_soup)
+    render_paper_headings(paper_soup)
+    return paper_soup

@@ -133,6 +133,7 @@ THIRD_PARTY_APPS = [
     'widget_tweaks',
     'haystack',
     'fullurl',
+    'django_crontab',
 #    'debug_toolbar',
 ]
 

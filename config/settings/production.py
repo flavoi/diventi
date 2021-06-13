@@ -46,5 +46,14 @@ RECAPTCHA_PRIVATE_KEY = get_env_variable('RECAPTCHA_PRIVATE_KEY')
 
 # Email backend for testing and development
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Django cron jobs
+# https://gutsytechster.wordpress.com/2019/06/24/how-to-setup-a-cron-job-in-django/
+CRONJOBS = [
+    (
+        '*/1 * * * *', 
+        'diventi.ebooks.cron.fetch_paper_books', 
+        '--settings=config.settings.production >/tmp/cron.log'
+    ),
+]

@@ -53,3 +53,13 @@ MEDIA_URL = '//%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
 # Email backend for testing and development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Django cron jobs
+# https://gutsytechster.wordpress.com/2019/06/24/how-to-setup-a-cron-job-in-django/
+CRONJOBS = [
+    (
+        '*/1 * * * *', 
+        'diventi.ebooks.cron.fetch_paper_books', 
+        '--settings=config.settings.local >%s/log/cron.log' % BASE_DIR,
+    ),
+]

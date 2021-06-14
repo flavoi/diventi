@@ -1,7 +1,10 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views import View
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import (
+    get_language,
+    gettext_lazy as _
+)
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, 
     UserPassesTestMixin
@@ -86,19 +89,10 @@ class PaperEbookView(BookDetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paper_filename = 'ebooks/partials/book_paper_{}.html'.format(self.object.id)
+        current_lan = get_language()
+        paper_filename = 'ebooks/partials/book_paper_{}_{}.html'.format(self.object.id, current_lan)
         paper_soup = parse_dropbox_paper_soup(paper_filename)
-        # paper_id = self.object.paper_id
-        # paper_soup = get_dropbox_paper_soup(paper_id)
-        # diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
         context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_toc'] = make_paper_toc(paper_soup)
-        # render_diventi_snippets(paper_soup, diventi_universale_soup)
-        # render_paper_tables(paper_soup)
-        # render_paper_images(paper_soup)
-        # render_paper_code_blocks(paper_soup)
-        # render_paper_hr(paper_soup)
-        # render_paper_headings(paper_soup)
-        # context['paper_content'] = str(paper_soup)
         context['book_paper'] = paper_filename
         return context

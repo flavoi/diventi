@@ -92,7 +92,8 @@ class PaperEbookView(BookDetailView):
         current_lan = get_language()
         paper_filename = 'ebooks/partials/book_paper_{}_{}.html'.format(self.object.id, current_lan)
         paper_soup = parse_dropbox_paper_soup(paper_filename)
-        context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
+        # context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
+        context['paper_title'] = self.object.title
         context['paper_toc'] = make_paper_toc(paper_soup)
         context['book_paper'] = paper_filename
         return context

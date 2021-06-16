@@ -257,7 +257,7 @@ def render_paper_headings(paper_soup):
             title_tag['class'] = 'h5 mb-1 text-dark'
             title_tag.string = title.text
             title.replace_with(title_tag)
-
+    paper_soup.select_one('.ace-line').extract()
     return paper_soup
 
 

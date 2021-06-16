@@ -38,7 +38,6 @@ django-rated-reviews==0.3.0
 django-recaptcha==1.4.0
 django-star-ratings==0.6.1
 django-storages==1.6.6
-django-tex==1.1.2.post4
 django-username-email==2.2.2
 django-widget-tweaks==1.4.5
 djangorestframework==3.11.2

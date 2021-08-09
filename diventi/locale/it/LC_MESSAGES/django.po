@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-13 17:42+0200\n"
+"POT-Creation-Date: 2021-08-09 11:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,7 +135,7 @@ msgstr "Indirizzo email"
 msgid "name@example.com"
 msgstr "nome@esempio.com"
 
-#: diventi/accounts/forms.py:103 diventi/accounts/forms.py:216
+#: diventi/accounts/forms.py:103 diventi/accounts/forms.py:228
 msgid "Can we send you emails?"
 msgstr "Possiamo inviarti email?"
 
@@ -143,15 +143,23 @@ msgstr "Possiamo inviarti email?"
 msgid "Mario Rossi"
 msgstr "Mario Rossi"
 
-#: diventi/accounts/forms.py:138
+#: diventi/accounts/forms.py:142
 msgid "This email has already been used."
 msgstr "Questa email è già stata usata."
 
-#: diventi/accounts/forms.py:147
+#: diventi/accounts/forms.py:144
+msgid "Please, fill in your email to complete the registration."
+msgstr "Per favore, compila la tua email per completare la registrazione."
+
+#: diventi/accounts/forms.py:150
+msgid "Please, let us know if we can send emails to you."
+msgstr "Per favore, facci sapere se possamo contattarti tramite email."
+
+#: diventi/accounts/forms.py:159
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:154
+#: diventi/accounts/forms.py:166
 #: diventi/templates/accounts/password_reset_form.html:65
 #: diventi/templates/accounts/signin.html:42
 msgid "Your email"
@@ -203,79 +211,79 @@ msgstr "Ruolo"
 msgid "Roles"
 msgstr "Ruoli"
 
-#: diventi/accounts/models.py:143
+#: diventi/accounts/models.py:146
 msgid "nametag"
 msgstr "nametag"
 
-#: diventi/accounts/models.py:144
+#: diventi/accounts/models.py:153
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:145
+#: diventi/accounts/models.py:156
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:146
+#: diventi/accounts/models.py:164
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:147
+#: diventi/accounts/models.py:171
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:148
+#: diventi/accounts/models.py:178
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:149
+#: diventi/accounts/models.py:182
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:150
+#: diventi/accounts/models.py:189
 msgid "role"
 msgstr "ruolo"
 
-#: diventi/accounts/models.py:156
+#: diventi/accounts/models.py:199
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:157 diventi/landing/models.py:84
+#: diventi/accounts/models.py:200 diventi/landing/models.py:84
 #: diventi/templates/accounts/subscribers.html:19
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:169 diventi/templates/base_quick.html:430
+#: diventi/accounts/models.py:212 diventi/templates/base_quick.html:430
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/models.py:206
+#: diventi/accounts/models.py:249
 #, python-format
 msgid "%(prefix)s: %(last_sub)s on %(date_joined)s"
 msgstr "%(prefix)s: %(last_sub)s - %(date_joined)s"
 
-#: diventi/accounts/models.py:217
+#: diventi/accounts/models.py:260
 msgid "Last subscriber"
 msgstr "Ultimo iscritto"
 
-#: diventi/accounts/models.py:220
+#: diventi/accounts/models.py:263
 msgid "users count"
 msgstr "conteggio utenti"
 
-#: diventi/accounts/models.py:222
+#: diventi/accounts/models.py:265
 #, python-format
 msgid "%(en)s english subscribers, %(it)s italian subscribers"
 msgstr "%(en)s iscritti inglesi, %(it)s iscritti italiani"
 
-#: diventi/accounts/models.py:231
+#: diventi/accounts/models.py:274
 msgid "english subscribers"
 msgstr "iscritti inglesi"
 
-#: diventi/accounts/models.py:233 diventi/accounts/models.py:239
+#: diventi/accounts/models.py:276 diventi/accounts/models.py:282
 #: diventi/products/models.py:279 diventi/products/models.py:291
 msgid "copy emails"
 msgstr "copia le email"
 
-#: diventi/accounts/models.py:237
+#: diventi/accounts/models.py:280
 msgid "italian subscribers"
 msgstr "iscritti italiani"
 
@@ -1286,21 +1294,21 @@ msgstr "segreti"
 msgid "paper/<slug:book_slug>/"
 msgstr "paper/<slug:book_slug>/"
 
-#: diventi/ebooks/utils.py:102
+#: diventi/ebooks/utils.py:113
 msgid "Discover"
 msgstr "Scopri"
 
-#: diventi/ebooks/views.py:37 diventi/ebooks/views.py:45
+#: diventi/ebooks/views.py:32 diventi/ebooks/views.py:40
 msgid "This book is not in your collection, please check your profile."
 msgstr ""
 "Questo libro non è presente nella tua collezione, per favore controlla il "
 "tuo profilo."
 
-#: diventi/ebooks/views.py:48
+#: diventi/ebooks/views.py:43
 msgid "This book is not yet available, please check back later."
 msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi."
 
-#: diventi/ebooks/views.py:89
+#: diventi/ebooks/views.py:84
 msgid "This book is not linked to a paper, please contact the authors."
 msgstr ""
 "Questo libro non è collegato ad un paper, per favore contatta gli autori."
@@ -1884,7 +1892,7 @@ msgstr "successo"
 #: diventi/templates/accounts/signin_quick.html:5
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
-#: diventi/templates/accounts/signup_quick.html:118
+#: diventi/templates/accounts/signup_quick.html:129
 #: diventi/templates/base_quick.html:305 diventi/templates/base_quick.html:441
 #: diventi/templates/feedbacks/author_form_quick.html:5
 #: diventi/templates/navigation.html:203
@@ -1939,8 +1947,8 @@ msgstr ""
 #: diventi/templates/accounts/password_reset_confirm_quick.html:51
 #: diventi/templates/accounts/password_reset_confirm_quick.html:67
 #: diventi/templates/accounts/signin_quick.html:56
-#: diventi/templates/accounts/signup_quick.html:68
-#: diventi/templates/accounts/signup_quick.html:84
+#: diventi/templates/accounts/signup_quick.html:79
+#: diventi/templates/accounts/signup_quick.html:95
 msgid "show password"
 msgstr "mostra password"
 
@@ -2099,7 +2107,7 @@ msgid "Sign up"
 msgstr "Registrati"
 
 #: diventi/templates/accounts/signup.html:110
-#: diventi/templates/accounts/signup_quick.html:101
+#: diventi/templates/accounts/signup_quick.html:112
 #: diventi/templates/accounts/user_change_privacy_quick.html:43
 #: diventi/templates/accounts/user_privacy.html:19
 msgid ""
@@ -2117,11 +2125,11 @@ msgstr "Iniziamo"
 msgid "Let the adventure begin"
 msgstr "Che l'avventura cominci"
 
-#: diventi/templates/accounts/signup_quick.html:113
+#: diventi/templates/accounts/signup_quick.html:124
 msgid "create my account"
 msgstr "crea il mio account"
 
-#: diventi/templates/accounts/signup_quick.html:117
+#: diventi/templates/accounts/signup_quick.html:128
 msgid "already have an account?"
 msgstr "hai già un account?"
 

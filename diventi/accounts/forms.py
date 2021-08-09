@@ -105,18 +105,23 @@ class DiventiUserCreationForm(UserCreationForm):
         widgets = {
             'first_name': forms.TextInput(attrs={
                 'class': 'form-control form-control-prepend', 
-                'placeholder': _('Mario Rossi')
+                'placeholder': _('Mario Rossi'),
             }),
             'email': forms.EmailInput(attrs={
                 'class': 'form-control form-control-prepend',
-                 'placeholder': _('name@example.com')
+                 'placeholder': _('name@example.com'),
+                 'required': True,
             }),
             'language': forms.Select(attrs={
                 'class': 'custom-select',
             }),
-            'has_agreed_gdpr': forms.RadioSelect(choices=BOOL_CHOICES, attrs={
-                'class': 'custom-control-input',
-            }),
+            'has_agreed_gdpr': forms.RadioSelect(
+                choices=BOOL_CHOICES,
+                attrs={
+                    'class': 'custom-control-input',
+                    'required': True,
+                },
+            ),
         }
 
     def __init__(self, *args, **kwargs):
@@ -136,7 +141,15 @@ class DiventiUserCreationForm(UserCreationForm):
         email_has_been_used = DiventiUser.objects.filter(email=email).exists()
         if email_has_been_used:
             raise forms.ValidationError( _('This email has already been used.'))
+        if email is None or email == '':
+            raise forms.ValidationError( _('Please, fill in your email to complete the registration.'))            
         return email
+
+    def clean_has_agreed_gdpr(self):
+        has_agreed_gdpr = self.cleaned_data['has_agreed_gdpr']
+        if has_agreed_gdpr is None:
+            raise forms.ValidationError( _('Please, let us know if we can send emails to you.'))
+        return has_agreed_gdpr
 
 
 class DiventiUserInitForm(forms.Form):

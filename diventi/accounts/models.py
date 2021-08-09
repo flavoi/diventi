@@ -140,15 +140,56 @@ class Role(Element):
         
 
 class DiventiUser(AbstractUser):
-    nametag = models.SlugField(max_length=200, unique=True, verbose_name=_('nametag'))
-    language = models.CharField(blank=True,  max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, verbose_name=_('language'))
-    has_agreed_gdpr = models.NullBooleanField(blank=True, verbose_name=_('subscriber status'))
-    avatar = models.ForeignKey(DiventiAvatar, blank=True, null=True, related_name='diventiuser', on_delete=models.SET_NULL, verbose_name=_('avatar'))
-    cover = models.ForeignKey(DiventiCover, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('cover'))
-    profilepic = models.ForeignKey(DiventiProfilePic, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('profilepic')) # For staff use only
-    bio = models.TextField(blank=True, verbose_name=_('bio'))
-    role = models.ForeignKey(Role, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_('role'))
-    achievements = models.ManyToManyField(Achievement, related_name='users')
+    nametag = models.SlugField(
+        max_length=200,
+        unique=True,
+        verbose_name=_('nametag')
+    )
+    language = models.CharField(
+        max_length=10,
+        choices=settings.LANGUAGES,
+        verbose_name=_('language')
+    )
+    has_agreed_gdpr = models.NullBooleanField(
+        verbose_name=_('subscriber status')
+    )
+    avatar = models.ForeignKey(
+        DiventiAvatar,
+        blank=True,
+        null=True,
+        related_name='diventiuser',
+        on_delete=models.SET_NULL,
+        verbose_name=_('avatar')
+    )
+    cover = models.ForeignKey(
+        DiventiCover,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name=_('cover')
+    )
+    profilepic = models.ForeignKey(
+        DiventiProfilePic,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name=_('profilepic')
+    ) # For staff use only
+    bio = models.TextField(
+        blank=True,
+        verbose_name=_('bio')
+    )
+    role = models.ForeignKey(
+        Role,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name=_('role')
+    )
+    achievements = models.ManyToManyField(
+        Achievement,
+        related_name='users'
+    )
 
     objects = DiventiUserManager()
 

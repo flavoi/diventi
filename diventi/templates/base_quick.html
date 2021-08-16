@@ -201,7 +201,13 @@
                             </div>
                             <!-- Main navigation -->
                             <ul class="navbar-nav ml-lg-auto mr-3">
-                                {% block extranav %}{% endblock extranav %}
+                                {% for product in graph_section.products.all %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-primary" href="{{ product.get_absolute_url }}">
+                                      <i class="fas fa-radiation fa-sm mr-1"></i> {{ graph_section.title|striptags|capfirst }}
+                                    </a>
+                                </li>
+                                {% endfor %}
                                 {% if user.is_anonymous %}
                                 <!-- Sign up link -->
                                 <li class="nav-item">

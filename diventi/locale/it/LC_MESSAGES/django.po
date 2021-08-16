@@ -2255,7 +2255,7 @@ msgstr "Desideri cancellare la tua utenza? Questa azione è irreversibile."
 
 #: diventi/templates/accounts/user_change_privacy_quick.html:72
 msgid "Delete my account"
-msgstr "Cancella il mio account"
+msgstr "Cancella il mio profilo"
 
 #: diventi/templates/accounts/user_change_privacy_quick.html:84
 msgid "your information is safe"

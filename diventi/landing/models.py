@@ -40,6 +40,7 @@ class SectionModelManager(FeaturedModelManager):
 
 
 class Section(DiventiImageModel, FeaturedModel, SectionModel):
+    prefix = models.TextField(blank=True, verbose_name=_('prefix text'))
     title = models.CharField(max_length=50, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))

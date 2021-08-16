@@ -9,9 +9,13 @@
 {% block headerclass %}{% endblock headerclass %}
 
 {% block extranav %}
+  {% for product in featured_section.products.all %}
     <li class="nav-item">
-        <a class="nav-link" href="">{{ featured_section.title|striptags|capfirst }}</a>
+        <a class="nav-link text-primary" href="{{ product.get_absolute_url }}">
+          <i class="fas fa-radiation fa-sm mr-1"></i>  {{ featured_section.title|striptags|capfirst }}
+        </a>
     </li>
+  {% endfor %}
 {% endblock extranav %}
 
 {% block content %}
@@ -37,8 +41,8 @@
             <h1 class="h1 text-center text-md-left mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-highlight-info">{{ featured_section.title|capfirst }}</strong></h1>
             <p class="lead text-center text-md-left text-muted">{{ featured_section.description|striptags|capfirst }}</p>
             <div class="text-center text-md-left mt-5">
-               {% for product in featured_section.products.all %}
-                  <a href="{{ product.get_absolute_url }}" class="btn btn-primary">                    
+                {% for product in featured_section.products.all %}
+                  <a href="{{ product.get_absolute_url }}" class="btn btn-primary">
                     {% trans "learn more"|capfirst %}
                   </a>
                 {% endfor %}

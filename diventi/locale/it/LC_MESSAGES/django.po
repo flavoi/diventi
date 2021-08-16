@@ -2244,7 +2244,7 @@ msgstr "zona pericolosa"
 
 #: diventi/templates/accounts/user_change_privacy_quick.html:68
 msgid "delete this account"
-msgstr "cancella questo account"
+msgstr "cancella questo profilo"
 
 #: diventi/templates/accounts/user_change_privacy_quick.html:69
 #: diventi/templates/accounts/user_privacy.html:48

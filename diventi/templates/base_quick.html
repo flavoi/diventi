@@ -35,8 +35,16 @@
     <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
     <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">    
     <!-- Quick CSS -->
-    <link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
-    <link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}" id="stylesheet">
+    <!--<link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}" id="stylesheet">-->
+    <!-- Request async loading for this stylesheets -->
+    <link rel="preload" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}"></noscript>
+    <link rel="preload" href="{% static 'quick-v110/css/quick-website.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}"></noscript>
+
+    
+
     <!-- Font Awesome -->
     <script defer src="{% static 'fontawesome-v5.15.3/js/all.min.gz.js' %}" crossorigin="anonymous"></script>
     <style>

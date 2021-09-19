@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [UNRELEASED]
+## [1.0.0-beta-9-rc] → 2021-09-19
 
 ### Added
 - [ebooks] Integrated Datatables with filter, ordering and pagination functionalities
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [landing] Activated special badge for unpublished contents (for staff only)
 - [landing] Moved the sign up link to the main navigation
 - [landing] Integrated featured section in navbar
+- [landing] Substituted sections attachments with a simplified news section
 - [products] Activated special badge for unpublished contents (for staff only)
 - [products] Changed products url prefix from 'apps' to 'games'
 - [products] Enabled early access tags for upcoming games
@@ -29,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [survey] Activated special badge for unpublished contents (for staff only)
 
 ### Removed
+- [core] Removed font awesome icons in favor of stock quick icons
 - [landing] Removed adventures links from the main navbar
 - [accounts] Removed the featured link in the account page
 - [tooltips] Removed the tooltip legacy functionality

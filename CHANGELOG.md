@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.0.0-beta-9-rc] → 2021-09-19
+## [1.0.0-beta-9] → 2021-09-19
 
 ### Added
 - [ebooks] Integrated Datatables with filter, ordering and pagination functionalities
@@ -43,11 +43,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Fixed a problem that prevented paper adventures without Diventi Univerale to be rendered
 - [blog] Updated navbar logo visual style to match a colored background
 - [feedbacks] Fixed a problem that prevetend the confirmation email to be sent
-- [landing] Fixed a problem that caused the analytics links to jump at the top of the page 
+- [landing] Fixed a problem that caused the analytics links to jump at the top of the page
+- [landing] Fixed a problem that sometimes prevented the sign in button to be displayed.
 - [locale] Fixed a handful of fuzzy translations on products, policy and landing pages
 
 
-## [1.0.0-beta-8-rc] → 2020-09-02
+## [1.0.0-beta-8] → 2020-09-02
 
 ### Added
 - Introduced adventures: a new experimental app that enables game master to play with Diventi's adventures

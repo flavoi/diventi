@@ -2822,7 +2822,7 @@ msgstr "componenti modulari per una completa libertà di gioco"
 
 #: diventi/templates/landing/landing_quick.html:205
 msgid "latest news"
-msgstr "le ultime notizie"
+msgstr "ultime notizie"
 
 #: diventi/templates/landing/landing_quick.html:207
 msgid "your adventure starts from here"

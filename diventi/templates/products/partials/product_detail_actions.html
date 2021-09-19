@@ -4,7 +4,6 @@
     {% if product.book.published and bought %}
         <div class="mt-1">
             <a href='{{ product.book.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
-                <i class="far fa-book-reader mr-1"></i>
                 {% trans "read online"|capfirst %}
             </a>
             {% with object=product %}
@@ -22,9 +21,6 @@
             {{ add_collection_form }}
             {{ add_collection_form.errors }}
             <button type="submit" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
-                <span class="btn-inner--icon">
-                    <i class="far fa-plus"></i>
-                </span>
                 <span class="btn-inner--text">{% trans "Add to collection" %}</span>
             </button>               
           </form>
@@ -32,14 +28,10 @@
     {% elif not product.unfolded and product.product_survey %}
         {% if not survey_answered %}
             <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
-                <span class="btn-inner--icon">
-                    <i class="far fa-poll-h"></i>
-                </span>
                 <span class="btn-inner--text">{{ product.product_survey.title }}</span>
             </a>
         {% else %}
             <a class="btn {{ button_disabled_class|default:'btn-success' }} btn-sm btn-icon disabled">
-                <i class="far fa-thumbs-up mr-1"></i>
                 <span class="btn-inner--text">{% trans "you've already answered"|capfirst %}!</span>
             </a>
             <div class="mt-1">
@@ -50,24 +42,19 @@
         {% endif %}
     {% else %}
         <a class="btn {{ button_disabled_class|default:'btn-dark' }} btn-sm btn-icon disabled">
-            <i class="far fa-lock-alt mr-1"></i>
             {{ product.courtesy_short_message }}
         </a>
     {% endif %}
 {% else %}
     {% if product.book.published and product.unfolded %}
         <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-dark text-underline--dashed">
-        <i class="fas fa-sign-in-alt"></i> {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
+        {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
     {% elif not product.unfolded and product.product_survey and product.product_survey.public %}
         <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
-            <span class="btn-inner--icon">
-                <i class="far fa-poll-h"></i>
-            </span>
             <span class="btn-inner--text">{{ product.product_survey.title }}</span>
         </a>
     {% else %}
         <a class="btn {{ button_disabled_class|default:'btn-dark' }} btn-sm btn-icon disabled">
-            <i class="far fa-lock-alt mr-1"></i>
             {{ product.courtesy_short_message }}
         </a>
     {% endif %}

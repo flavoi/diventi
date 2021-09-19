@@ -39,16 +39,16 @@
           <div class="col-md-10 post-content-wrapper">
               {% spaceless %}
               <h4 class="subject">
-                <a href="{% url 'forum_conversation:topic' post.topic.forum.slug post.topic.forum.pk post.topic.slug post.topic.pk %}?post={{ post.pk }}#{{ post.pk }}">{{ post.subject }}</a>
+                <a href="{% url 'forum_conversation:topic' post.topic.forum.slug post.topic.forum.pk post.topic.slug post.topic.pk %}?post={{ post.pk }}#{{ post.pk }}">{{ post.subject }}</a>
               </h4>
               {% endspaceless %}
               <p>
                 <small class="text-muted">
                 {% spaceless %}
-                <i class="fas fa-clock"></i>&nbsp;
+                <i data-feather="clock"></i>
                 {% url 'accounts:redirect' post.poster_id as poster_url %}
                 {% blocktrans trimmed with poster_url=poster_url username=post.poster|forum_member_display_name creation_date=post.created %}
-                By: <a href="{{ poster_url }}">{{ username }}</a> on {{ creation_date }}
+                By: <a href="{{ poster_url }}">{{ username }}</a> on {{ creation_date }}
                 {% endblocktrans %}
                 {% endspaceless %}
                 </small>

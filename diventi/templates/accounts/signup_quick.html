@@ -29,7 +29,7 @@
                                 <div class="alert alert-group alert-danger alert-icon" role="alert">
                                     <div class="alert-group-prepend">
                                         <span class="alert-group-icon text-">
-                                            <i class="far fa-exclamation-triangle"></i>
+                                            <i data-feather="alert-triangle"></i>
                                         </span>
                                     </div>
                                     <div class="alert-content">
@@ -57,7 +57,7 @@
                             <div class="input-group input-group-merge">
                                 {{ form.first_name }}
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                                    <span class="input-group-text"><i data-feather="user"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                             <div class="input-group input-group-merge">
                                 {{ form.email }}
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="far fa-at"></i></span>
+                                    <span class="input-group-text"><i data-feather="at-sign"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="input-group input-group-merge">
                                 {{ form.password1 }}
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="far fa-key"></i></span>
+                                    <span class="input-group-text"><i data-feather="key"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <div class="input-group input-group-merge">
                                 {{ form.password2 }}
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="far fa-key"></i></span>
+                                    <span class="input-group-text"><i data-feather="key"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">{{ form.has_agreed_gdpr.label }} <span class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}"><i class="far fa-info-circle"></i></span></label>
+                            <label class="form-control-label">{{ form.has_agreed_gdpr.label }} <span class="text-muted" data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}"></span></label>
                             {% for choice in form.has_agreed_gdpr %}
                             <div class="custom-control custom-radio">
                                 {{ choice.tag }}

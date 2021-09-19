@@ -74,6 +74,7 @@ class DashboardView(StaffRequiredMixin, ListView):
 def get_landing_context(request):
     sections = Section.objects.not_featured()
     featured_section = Section.objects.featured()
+    latest_articles = Article.objects.history()[:5]
     if featured_section:
         pass
     elif sections.exists():
@@ -84,6 +85,7 @@ def get_landing_context(request):
     context = {   
         'sections': sections,
         'featured_section': featured_section,
+        'latest_articles': latest_articles, 
     }
     return context
 

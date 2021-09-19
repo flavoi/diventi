@@ -34,7 +34,7 @@ class BlogCover(DiventiCoverModel, Element):
         verbose_name_plural = _('Blog Covers')
 
 
-class ArticleCategory(Category):
+class ArticleCategory(Element):
     """
         Defines the main argument of any article.
     """

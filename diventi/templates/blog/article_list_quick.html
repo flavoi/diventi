@@ -130,11 +130,11 @@
                             <div class="col text-right text-right">
                                 <div class="actions">
                                     <a href="#" class="action-item">
-                                        <i class="far fa-thumbs-up mr-1"></i>                                        
+                                        <i data-feather="thumbs-up"></i>                                       
                                         {{ article.promotions.count }}
                                     </a>
                                     <a href="#" class="action-item">
-                                        <i class="far fa-comments mr-1"></i>
+                                        <i data-feather="edit-3"></i>
                                         {% get_comment_count for article as comment_count %}
                                         {{ comment_count }}
                                     </a>

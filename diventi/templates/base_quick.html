@@ -34,19 +34,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
     <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">    
-    <!-- Quick CSS -->
-    <!--<link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}">
-    <link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}" id="stylesheet">-->
-    <!-- Request async loading for this stylesheets -->
     <link rel="preload" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Main visual style -->
     <noscript><link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}"></noscript>
     <link rel="preload" href="{% static 'quick-v110/css/quick-website.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}"></noscript>
-
-    
-
-    <!-- Font Awesome -->
-    <script defer src="{% static 'fontawesome-v5.15.3/js/all.min.gz.js' %}" crossorigin="anonymous"></script>
     <style>
         @font-face {
             font-family: Kravitz;
@@ -207,22 +200,19 @@
                                     <i data-feather="x"></i>
                                 </button>
                             </div>
-                            <!-- Main navigation -->
                             <ul class="navbar-nav ml-lg-auto mr-3">
                                 {% for product in graph_section.products.all %}
                                 <li class="nav-item">
                                     <a class="nav-link text-primary" href="{{ product.get_absolute_url }}">
-                                      <i class="fas fa-radiation fa-sm mr-1"></i> {{ graph_section.title|striptags|capfirst }}
+                                      <i data-feather="activity" class="mr-0"></i> {{ graph_section.title|striptags|capfirst }}
                                     </a>
                                 </li>
                                 {% endfor %}
                                 {% if user.is_anonymous %}
-                                <!-- Sign up link -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a>
                                 </li>
                                 {% elif user.is_staff %}
-                                <!-- Authors menu -->
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "authors"|capfirst %}</a>
                                     <div class="dropdown-menu dropdown-menu-md p-0">
@@ -230,7 +220,7 @@
                                             <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
                                                     <span class="h6">
-                                                        <i class="far fa-cog"></i>
+                                                        <i data-feather="settings"></i>
                                                     </span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">Admin</h6>
@@ -259,7 +249,7 @@
                                             <a href="{% url 'landing:analytics' %}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
                                                     <span class="h6">
-                                                        <i class="far fa-chart-bar"></i>
+                                                        <i data-feather="bar-chart-2"></i>
                                                     </span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
@@ -278,69 +268,72 @@
                                     <a class="nav-link" href="{% url 'blog:home' %}">Blog</a>
                                 </li>
                             </ul>
-                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+                            {% if user.is_authenticated %}
+                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">                                
                                 <li class="nav-item">
                                     <a href="#" data-action="omnisearch-open" data-target="#omnisearch" class="nav-link nav-link-icon px-2">
-                                        <i class="far fa-search fa-sm fa-fw"></i>
+                                        <i data-feather="search"></i>
                                     </a>
-                                </li>
-                                {% if user.is_authenticated %}                     
+                                </li>                                                     
                                 <li class="nav-item dropdown dropdown-animate">
                                     <a class="nav-link nav-link-icon px-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="far fa-cog fa-sm fa-fw"></i>
+                                        <i data-feather="settings"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow p-3">
                                         <h6 class="dropdown-header px-0 mb-2 text-primary">{% trans "hi"|capfirst %}, {{ user.get_full_name }}!</h6>
                                         {% for link in user_links %}
                                             <a href="{{ link.url }}" class="dropdown-item">
-                                                <i class="far fa-{{ link.icon }} fa-sm fa-fw"></i>
                                                 <span>{{ link.label|capfirst }}</span>
                                             </a>
                                             {% if forloop.last %}
                                             <div class="dropdown-divider"></div>
                                             <a href="{% url 'accounts:signout' %}" class="dropdown-item">
-                                                <i class="far fa-sign-out fa-sm fa-fw"></i>
                                                 <span>{% trans "sign out"|capfirst %}</span>
                                             </a>
                                             {% endif %}
                                         {% endfor %}             
                                     </div>
-                                </li> 
-                                {% endif %}                       
-                            </ul>
-                        </div>                        
-                        <div class="order-lg-4 ml-lg-3">
-                            {% if user.is_authenticated %}
-                                <a class="" href="#modal-profile" role="button" data-toggle="modal">
-                                    <span class="avatar rounded-circle">
-                                        <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">
-                                    </span>
-                                </a>
-                            {% else %}
-                                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-black-50" data-toggle="tooltip" data-placement="bottom" title="{% trans 'sign in'|capfirst %}">
-                                    <span class="fa-stack mt-2">
-                                      <i class="fas fa-circle fa-stack-2x"></i>
-                                      <i class="fas fa-portal-enter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
+                                </li>                        
+                            </ul> 
                             {% endif %}
-                        </div>
+                            {% if not user.is_authenticated %}
+                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+                              <li class="nav-item">
+                                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-sm btn-primary btn-icon ml-3">
+                                    <span class="btn-inner--icon">
+                                        <i data-feather="user" class="mb-1 mr-0"></i>
+                                    </span>
+                                    <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
+                                </a>
+                              </li>
+                            </ul>
+                            {% endif %}
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="order-lg-4 ml-lg-3">
+                        <a class="" href="#modal-profile" role="button" data-toggle="modal">
+                            <span class="avatar rounded-circle">
+                                <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">
+                            </span>
+                        </a>
+                    </div>
+                    {% endif %}
             </nav>
         {% endblock navbar %}
     </header>
     {% endblock header %}
     
     {% block omnisearch %}
-    <!-- Omnisearch -->
     <div id="omnisearch" class="omnisearch">
         <div class="container">
             <div class="omnisearch-container">
-                <!-- Search form -->
                 <form action="{% url 'landing:search' %}" class="omnisearch-form">
                     <div class="form-group">
                         <div class="input-group input-group-merge input-group-flush">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="far fa-search"></i></span>
+                                <span class="input-group-text">
+                                    <i data-feather="search"></i>
+                                </span>
                             </div>                            
                             <input type="text" class="form-control" id="search_text" placeholder="{% trans 'type and hit enter'|capfirst %}..." name="q" {% if search_query %}value='{{ search_query }}'{% endif %}>
                         </div>
@@ -354,8 +347,7 @@
                                 {% for ss in search_suggestions %}                                
                                 <li>
                                     <a class="list-link searchs" href="#" data-value="{{ ss.title|capfirst }}">
-                                    <i class="far fa-{{ ss.icon|default:'circle' }} fa-fw"></i>
-                                    <span>{{ ss.title|capfirst }}</span> &middot; {{ ss.description }}
+                                        <span>{{ ss.title|capfirst }}</span> &middot; {{ ss.description }}
                                     </a>
                                 </li>  
                                 {% endfor %}                              
@@ -376,8 +368,8 @@
                 <div class="alert-messages">
                     <div class="alert alert-group alert-{{ message.tags|default:'info' }} alert-icon" role="alert">
                         <div class="alert-group-prepend">
-                            <span class="alert-group-icon text-">
-                                <i class="far fa-{% if message.level == 25 %}thumbs-up{% elif message.level >= 25 %}exclamation-triangle{% else %}info-circle{% endif%}"></i>
+                            <span class="alert-group-icon">
+                                <i data-feather="{% if message.level == 25 %}thumbs-up{% elif message.level >= 25 %}alert-triangle{% else %}info{% endif%}"></i>
                             </span>
                         </div>
                         <div class="alert-content">
@@ -395,7 +387,6 @@
         {% endfor %}
     {% endif %}
 
-    <!-- Main content -->
     {% block basecontent %}
     {% block content %}{% endblock content %}
     {% endblock basecontent %}
@@ -403,13 +394,11 @@
     {% block footer %}
     <footer class="position-relative" id="footer-main">
         <div class="footer pt-lg-7 footer-dark bg-dark">
-            <!-- SVG shape -->
             <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
                 <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="{% block footercolor %}fill-section-secondary{% endblock footercolor %}">
                     <polygon points="2560 0 2560 100 0 100"></polygon>
                 </svg>
             </div>
-            <!-- Footer -->
             <div class="container pt-4">
                 {% block extrafooter %}{% endblock extrafooter %}
                 <div class="row">
@@ -421,22 +410,22 @@
                         <ul class="nav mt-4">
                             <li class="nav-item">
                                 <a class="nav-link pl-0" href="https://www.youtube.com/feed/my_videos" target="_blank">
-                                    <i class="fab fa-youtube"></i>
+                                    <i data-feather="youtube"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://github.com/flavoi/diventi" target="_blank">
-                                    <i class="fab fa-github"></i>
+                                    <i data-feather="github"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://www.instagram.com/playdiventi/" target="_blank">
-                                    <i class="fab fa-instagram"></i>
+                                    <i data-feather="instagram"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://www.facebook.com/playdiventi" target="_blank">
-                                    <i class="fab fa-facebook"></i>
+                                    <i data-feather="facebook"></i>
                                 </a>
                             </li>
                         </ul>
@@ -462,7 +451,7 @@
                         <h6 class="heading mb-3">{% trans "about"|capfirst %}</h6>
                         <ul class="list-unstyled">
                             {% for article in about_us_articles %}
-                            <li><a href="{{ article.get_absolute_url }}">{{ article.title|capfirst }}</a></li>
+                            <li><a href="{{article.get_absolute_url }}">{{ article.title|capfirst }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -485,7 +474,7 @@
                         <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
                             <li class="nav-item">
                                 <a class="nav-link" href="mailto:info@playdiventi.it">
-                                    <i class="far fa-envelope-open fa-sm"></i> info@playdiventi.it
+                                    <i data-feather="mail"></i> info@playdiventi.it
                                 </a>
                             </li>
                         </ul>

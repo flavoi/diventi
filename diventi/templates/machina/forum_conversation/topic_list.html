@@ -9,7 +9,7 @@
     <div class="card topiclist mb-0">
       <div class="p-0 card-header">
         <div class="row m-0 px-3 py-2">
-          <div class="pl-0 col-md-8 col-sm-9 col-12 topic-name-col"><h3 class="m-0 card-title h5 text-dark"><i class="fas fa-comment"></i> {% trans topic_list_title %}</h3></div>
+          <div class="pl-0 col-md-8 col-sm-9 col-12 topic-name-col"><h3 class="m-0 card-title h5 text-dark">{% trans topic_list_title %}</h3></div>
           <div class="col-md-1 d-none d-md-block text-center text-nowrap topic-count-col">{% trans "Replies" %}</div>
           <div class="col-md-1 d-none d-md-block text-center text-nowrap topic-count-col">{% trans "Views" %}</div>
           <div class="pr-0 col-md-2 col-sm-3 d-none d-sm-block text-nowrap topic-last-post-col">{% trans "Last post" %}</div>
@@ -23,10 +23,12 @@
           <table class="topic-data-table">
             <tr>
               <td class="pt-1 pr-3 align-top topic-icon {% if topic in unread_topics or force_all_unread %}unread{% endif %}">
-                <i class="fas {% if topic.is_sticky %}fa-lightbulb{% elif topic.is_announce %}fa-info{% else %}fa-dot-circle{% endif %} fa-2x"></i>
+                <div class="icon-sm">
+                  <i data-feather="{% if topic.is_sticky %}flag{% elif topic.is_announce %}book-open{% else %}circle{% endif %}"></i>
+                </div>
               </td>
               <td class="align-top topic-name">
-                <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="topic-name-link">{{ topic.subject }}</a>{% if topic.is_locked %}&nbsp;<i class="fas fa-lock-alt locked-indicator" title="{% trans 'This topic is locked' %}"></i>{% endif %}
+                <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="topic-name-link">{{ topic.subject }}</a>{% if topic.is_locked %}&nbsp;<i data-feather="lock" class="locked-indicator" title="{% trans 'This topic is locked' %}"></i>{% endif %}
                 <div>
                   <div class="topic-created">
                   {% if topic.poster %}
@@ -59,7 +61,7 @@
               By: {{ poster_username }}
             {% endblocktrans %}
           {% endif %}
-          &nbsp;<a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}?post={{ last_post.pk }}#{{ last_post.pk }}"><i class="fas fa-arrow-circle-right "></i></a>
+          &nbsp;<a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}?post={{ last_post.pk }}#{{ last_post.pk }}"></a>
           <br />
           <small>{{ last_post.created }}</small>
         {% endwith %}

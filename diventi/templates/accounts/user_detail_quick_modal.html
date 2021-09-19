@@ -55,17 +55,17 @@
                                 <div class="row align-items-center mb-4">
                                     <div class="col-auto">                                        
                                         <div class="icon icon-shape {% if product.book.published %}bg-soft-{{ product.category.color }} text-{{ product.category.color }}{% else %}bg-soft-secondary text-secondary{% endif%}">
-                                            <i class="fas fa-{{ product.category.icon }}"></i>
+                                            <i data-feather="book"></i>
                                         </div>
                                     </div>
                                     <div class="col pl-0">
                                         {% if product.book.published %}
                                         <span class="h6 text-sm mb-0">
-                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a>
+                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a>
                                         </span>                                        
                                         {% else %}
                                         <span class="h6 text-sm mb-0" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
-                                            <a tabindex="0" href="{{ product.book.get_absolute_url }}" class="btn-link disabled">{{ product.title|capfirst }}</a></span>
+                                            <a tabindex="0" href="{{ product.book.get_absolute_url }}" class="btn-link disabled">{{product.title|capfirst }}</a></span>
                                         {% endif %}
                                         <p class="mb-0 text-sm">{{ product.category }}</p>
                                     </div>                                    
@@ -79,7 +79,7 @@
             </div>
             <div class="modal-footer py-3 mt-auto">
                 <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
-                    <span class="btn-inner--icon"><i class="far fa-sign-out"></i></span>
+                    <span class="btn-inner--icon"><i data-feather="log-out"></i></span>
                     <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
                 </a>
             </div>

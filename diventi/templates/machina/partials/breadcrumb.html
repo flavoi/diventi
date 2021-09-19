@@ -2,10 +2,10 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{% url 'forum:index' %}"><i class="fas fa-home-alt mr-1">&nbsp;</i>{% trans "Forum index" %}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'forum:index' %}"><i data-feather="home" class="mr-1 mb-1"></i>{% trans "Forum index" %}</a></li>
     {% if forum %}
     {% for ancestor in forum.get_ancestors %}
-    <li class="breadcrumb-item"><a href="{% url 'forum:forum' ancestor.slug ancestor.id %}">{{ ancestor.name }}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'forum:forum' ancestor.slug ancestor.id %}">{{ ancestor.name }}</a></li>
     {% endfor %}
     <li class="breadcrumb-item"><a href="{% url 'forum:forum' forum.slug forum.id %}">{{ forum.name }}</a></li>
     {% endif %}

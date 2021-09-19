@@ -70,7 +70,7 @@
                                             <div class="d-block">
                                                 <a tabindex="0" class="btn btn-dark btn-xs rounded-circle btn-icon-only" role="button">
                                                     <span class="btn-inner--icon mt-0">
-                                                        <i class="far fa-{{ product.category.icon }} fa-lg fa-fw text-white"></i>
+                                                        <i data-feather="book" class="text-white"></i>
                                                     </span>
                                                 </a>
                                             </div>
@@ -79,11 +79,9 @@
                                             </div>
                                             <div class="ml-auto">
                                                 <div class="actions">
-                                                    <small>
                                                     <span data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'Last update date' %}: {{ product.modified|date:'M d, Y' }}">
-                                                        <i class="far fa-lg fa-clock mr-1"></i>
+                                                        <i data-feather="clock"></i>
                                                     </span>
-                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +91,7 @@
                                     <div class="p-3 d-flex">
                                         <div>
                                             <div class="icon icon-shape rounded-circle bg-success text-white mr-4">
-                                                <i class="far fa-check"></i>
+                                                <i data-feather="check"></i>
                                             </div>
                                         </div>
                                         <div>
@@ -127,11 +125,11 @@
                                         <div class="avatar-group hover-avatar-ungroup mb-2">
                                             {% for format in product.formats.all %}
                                                 <a tabindex="0" role="button" class="avatar bg-{{ format.color }} avatar-sm rounded-circle" data-container="body" data-toggle="popover" data-placement="top" title="{{ format.title }}" data-content="{{ format.description }}">
-                                                    <i class="fa{{ format.icon_style }} fa-{{ format.icon }} fa-2x text-white"></i>
+                                                    <i data-feather="pen-tool" class="text-white"></i>
                                                 </a>
                                             {% empty %}
                                                 <span class="avatar bg-secondary text-black-50 avatar-sm rounded-circle">
-                                                    <i class="far fa-empty-set fa-lg"></i>
+                                                    <i data-feather="circle"></i>
                                                 </span>
                                             {% endfor %}
                                         </div>
@@ -140,27 +138,18 @@
                                             <div class="actions">
                                                 {% if product.book.published and bought %}
                                                     <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="fas fa-diploma fa-lg"></i>                     
-                                                        </span>
                                                         <span class="btn-inner--text ml-1">
                                                             {% trans "this content is available"|capfirst %} {% trans "in your collection" %}.
                                                         </span>
                                                     </a>
                                                 {% elif product.book.published and product.unfolded %}
                                                     <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="far fa-balance-scale fa-lg"></i>
-                                                        </span>
                                                         <span class="btn-inner--text ml-1">
                                                             {% trans "add this item to your collection to access its contents"|capfirst %}.
                                                         </span>
                                                     </a>
                                                 {% else %}
                                                 <a class="btn btn-xs btn-neutral btn-icon rounded-pill disabled">
-                                                    <span class="btn-inner--icon">
-                                                        <i class="far fa-coffee-pot fa-lg"></i>                     
-                                                    </span>
                                                     <span class="btn-inner--text ml-1">
                                                         {{ product.courtesy_message }}
                                                     </span>
@@ -196,7 +185,7 @@
                 <div class="card card-fluid hover-translate-y-n10 hover-shadow-lg">
                     <div class="card-body">
                         <div class="pb-4">
-                            <i class="far fa-{{ chapter.icon }}" style="height: 50px; width: 50px;"></i>
+                            <i data-feather="bookmark" style="height: 50px; width: 50px;"></i>
                         </div>
                         <div class="pt-2 pb-3">
                             <h5>{{ chapter.title|capfirst }}</h5>
@@ -261,7 +250,7 @@
                     <div class="p-3 d-flex">
                         <div>
                             <div class="icon icon-shape rounded-circle bg-info text-white mr-4">
-                                <i class="far fa-check"></i>
+                                <i data-feather="check"></i>
                             </div>
                         </div>
                         <div>
@@ -313,9 +302,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 mt-2">
-                            <!-- Delimiter (for small resolutions) -->
                             <hr class="mt-3 mb-4 d-md-none" />
-                            <!-- Topic info -->
                             <div class="row align-items-center">
                                 <div class="col">
                                     <small>
@@ -325,7 +312,8 @@
                                     </small>
                                 </div>
                                 <div class="col-auto mr-md-4">                                    
-                                    <i class="far fa-clock mr-2"></i><span class="h6 text-sm">{{ review.submit_date|naturalday }}</span>
+                                    <i data-feather="clock" class="mr-1 mb-1"></i>
+                                    <span class="h6 text-sm">{{ review.submit_date|naturalday }}</span>
                                 </div>
                             </div>
                         </div>
@@ -351,7 +339,7 @@
     <div class="col-lg-12">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <h3 class="text-secondary mb-2">{{ product.title|capfirst }}</h3>
+                <h3 class="text-secondary mb-2">{{product.title|capfirst }}</h3>
                 <p class="lead mb-0 text-white opacity-8">{{ product.abstract|capfirst }}</p>
             </div>
             <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">

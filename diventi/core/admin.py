@@ -39,4 +39,3 @@ class DiventiIconAdmin(admin.ModelAdmin):
         css = {
             'screen': ('diventi/css/diventi-admin.css',),
         }
-        js = ('https://kit.fontawesome.com/27968f469b.js', )

@@ -41,7 +41,7 @@
   <div class="col-12">
     <h1>{% trans "Search" %}
     &nbsp;
-    <a href="{% url 'forum_search:search' %}" class="btn btn-sm btn-primary"><i class="fas fa-search"></i>&nbsp;{% trans "New search" %}</a></h1>
+    <a href="{% url 'forum_search:search' %}" class="btn btn-sm btn-primary"><i data-feather="search"></i>{% trans "New search" %}</a></h1>
   </div>
 </div>
 <div class="mb-3 row">
@@ -67,7 +67,7 @@
     <div class="card resultslist">
       <div class="card-header">
         <h3 class="m-0 card-title h5">
-          <i class="fas fa-search"></i>&nbsp;{% trans "Results" %}
+          <i data-feather="search"></i>{% trans "Results" %}
         </h3>
       </div>
       <div class="p-0 card-body">

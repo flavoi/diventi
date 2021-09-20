@@ -3,7 +3,7 @@
 
 <a href="." class="btn btn-xs btn-secondary rounded-circle btn-icon-only" data-toggle="modal" data-target="#reviewModalQuick-{{ object.pk }}">
     <span class="btn-inner--icon" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% if review %}{% trans 'check review'|capfirst %}{% else %}{% trans 'leave a review'|capfirst %}{% endif %}">
-        <i class="far fa-pencil"></i> {{ review_label }}
+        <i data-feather="edit-2"></i> {{ review_label }}
     </span>
 </a>
 

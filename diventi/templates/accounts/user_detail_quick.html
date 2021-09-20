@@ -45,12 +45,12 @@
                     {% for a in user_data.achievements %}
                       <div class="col-auto text-center mb-3 px-2">
                         <div class="d-block">
-                            <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
+                            <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
                                 <span class="btn-inner--icon pt-1">
-                                    <i class="fas fa-{{ a.icon }} fa-lg fa-fw text-white"></i>
+                                    <i data-feather="star" class="text-white mb-1"></i>
                                 </span>
                             </a>
-                            <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
+                            <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
                         </div>
                       </div>
                     {% endfor %}
@@ -59,10 +59,10 @@
                         <div class="d-block stretched-link">
                             <button type="button" class="btn btn-secondary rounded-circle btn-icon-only">
                                 <span class="btn-inner--icon pt-1">
-                                    <i class="far fa-lock fa-lg fa-fw text-white"></i>
+                                    <i data-feather="star" class="text-white mb-1"></i>
                                 </span>
                             </button>
-                            <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
+                            <div class="text-xs text-muted mt-1">{{ a.title|capfirst }}</div>
                         </div>
                       </div>
                     {% endfor %}
@@ -95,7 +95,7 @@
                                         {% if request.user == object %}
                                         <div class="col-auto">
                                             <a href="{% url 'accounts:settings' object.nametag %}" class="btn btn-xs btn-primary btn-icon rounded-pill">
-                                                <span class="btn-inner--icon"><i class="far fa-edit"></i></span>
+                                                <span class="btn-inner--icon"><i data-feather="edit"></i></span>
                                                 <span class="btn-inner--text">{% trans "edit"|capfirst %}</span>
                                             </a>
                                         </div>
@@ -143,7 +143,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <div class="icon bg-dark text-white rounded-circle icon-shape shadow">
-                                                <i class="far fa-{{ product.category.icon }}"></i>
+                                                <i data-feather="book"></i>
                                             </div>
                                         </div>
                                         {% if request.user == object %}
@@ -154,9 +154,6 @@
                                                     {% include "reviews/review_button_modal_quick.html" %}
                                                 {% endwith %}                      
                                                 <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
-                                                    <span class="btn-inner--icon">
-                                                        <i class="far fa-book-reader"></i>
-                                                    </span>
                                                     <span class="btn-inner--text ml-1">
                                                         {% trans "read online"|capfirst %}
                                                     </span>
@@ -165,9 +162,6 @@
                                                 {% trans "not available" as default_courtesy_short_message %}
                                                 <div class="d-block stretched-link" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
                                                     <a href="" tabindex="0" class="btn btn-xs btn-secondary btn-icon rounded-pill ml-0">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="far fa-do-not-enter"></i>
-                                                        </span>
                                                         <span class="btn-inner--text">{{ product.courtesy_short_message|default:default_courtesy_short_message }}</span>
                                                     </a>                                                
                                                 </div>
@@ -236,7 +230,7 @@
                 <div>
                     <div class="row mb-3">
                         <div class="col">
-                            <h6 class="mb-0">{% trans "Recent posts" %}{% if user_data.recent_posts %} &middot; <a href="{% url 'forum_member:user_posts' user_data.user_id %}"><i class="fal fa-border-all fa-sm mr-1"></i>{% trans "View all" %}</a>{% endif %}</h6>
+                            <h6 class="mb-0">{% trans "Recent posts" %}{% if user_data.recent_posts %} &middot; <a href="{% url 'forum_member:user_posts' user_data.user_id %}">{% trans "View all" %}</a>{% endif %}</h6>
                         </div>                        
                     </div>
                     <div class="row">
@@ -251,7 +245,7 @@
                                     </div>
                                     <p>
                                       <small class="text-muted">
-                                        <i class="fa fa-clock-o"></i>&nbsp;{% blocktrans with creation_date=post.created %}On {{ creation_date }}{% endblocktrans %}
+                                        <i data-feather="clock"></i>&nbsp;{% blocktrans with creation_date=post.created %}On {{ creation_date }}{% endblocktrans %}
                                       </small>
                                     </p>
                                     <div class="post-content">

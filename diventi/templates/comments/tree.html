@@ -19,16 +19,16 @@
                 <p class="text-sm lh-160">{{ node.comment }}</p>               
                 <div class="icon-actions">
                     <a data-href="{% url 'comments:promote-toggle-api' node.id %}" href="{% url 'comments:promote-toggle' node.id %}" data-promotions="{{ node.promotions.count }}" class="btn-promote text-{% if node.user_has_promoted %}primary{% endif %} {% if not user.is_authenticated %}disabled{% endif %}">
-                            <i class="far fa-thumbs-up mr-1"></i><span class="text-muted">{{ node.promotions.count }}</span>
+                            <i data-feather="thumbs-up" class="mr-1"></i><span class="text-muted">{{ node.promotions.count }}</span>
                     </a>
                     {% if not node.is_leaf_node %}
                         <a href="javascript:toggleDiv('child-of-{{ node.id }}');" data-toggle="tooltip" data-placement="bottom" rel="tooltip" data-original-title="{% trans 'Show replies' %}">
-                            <i class="far fa-comments mr-1"></i><span class="text-muted">{{ node.get_descendant_count }}</span>
+                            <i data-feather="edit-3" class="mr-1"></i><span class="text-muted">{{ node.get_descendant_count }}</span>
                         </a>
                     {% endif %}
                     {% if user.is_authenticated %}
                         <a href="javascript:toggleDiv('{{ node.id }}-reply-form');">
-                            <i class="far fa-reply mr-1"></i>
+                            <i data-feather="corner-up-right" class="mr-1"></i>
                         </a>                    
                         {% get_comment_form for object as form %}
                         <form class="{{ node.id }}-reply-form" action="{% comment_form_target %}" method="POST" style="display: none;" class="rounded-lg border">
@@ -36,7 +36,7 @@
                              <div class="input-group input-group-lg input-group-merge mt-2">
                                 <div class="input-group-prepend">
                                    <span class="input-group-text border-0 pr-2">
-                                      <i class="far fa-pencil"></i>
+                                      <i data-feather="edit-3"></i>
                                    </span>
                                 </div>
                                 <input type="text" name="comment" class="form-control border-0 px-1" id="comment-{{ node.id }}-{{ comment_order }}" placeholder="{% trans 'Write your comment' %}." required>

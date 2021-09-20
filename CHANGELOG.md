@@ -44,7 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [blog] Updated navbar logo visual style to match a colored background
 - [feedbacks] Fixed a problem that prevetend the confirmation email to be sent
 - [landing] Fixed a problem that caused the analytics links to jump at the top of the page
-- [landing] Fixed a problem that sometimes prevented the sign in button to be displayed.
+- [landing] Fixed a problem that sometimes prevented the sign in button to be displayed
 - [locale] Fixed a handful of fuzzy translations on products, policy and landing pages
 
 

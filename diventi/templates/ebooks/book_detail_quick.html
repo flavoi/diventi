@@ -57,7 +57,7 @@
                 </div>
                 <div class="mt-4 text-right">
                      <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
-                        <i class="fas fa-scroll mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
+                        <i data-feather="book-open" class="mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
                     </span>
                 </div>
             </div>
@@ -142,9 +142,10 @@
     </div>
 </section>
 <div class="customizer">
-    <a href="#top" class="btn btn-sm btn-primary btn-icon-only rounded-circle hover-scale-110 shadow" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'jump to top'|capfirst %}">
-        <span class="btn-inner--icon"><i class="fas fa-heading"></i></span>
-    </a>
+<div class="icon icon-primary rounded-circle icon-shape" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'jump to top'|capfirst %}">
+    <a href="#top"><i data-feather="arrow-up"></i></a>
+</div>
+
 </div>
 
 {% endblock content %}

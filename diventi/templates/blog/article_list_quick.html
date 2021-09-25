@@ -127,7 +127,7 @@
                             <div class="col-auto">
                                 <span class="avatar avatar-sm bg-primary rounded-circle"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}"></span> <span class="text-sm mb-0 avatar-content">{{ article.author.first_name }}</span>
                             </div>
-                            <div class="col text-right text-right">
+                            <div class="col text-right">
                                 <div class="actions">
                                     <a href="#" class="action-item">
                                         <i data-feather="thumbs-up"></i>                                       

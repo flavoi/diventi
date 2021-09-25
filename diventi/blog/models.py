@@ -57,6 +57,11 @@ class ArticleQuerySet(PublishableModelQuerySet):
         articles = articles.order_by('-publication_date')
         return articles
 
+    # Get the list of published articles but excludes the hot ones
+    def history_but_not_hot(self):
+        articles = self.history().exclude(hot=True)
+        return articles
+
     # Get the list of published articles of a certain category
     def category(self, category_title):
         articles = self.history().filter(category__title=category_title)

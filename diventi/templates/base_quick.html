@@ -185,11 +185,11 @@
             <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main">               
                 <div class="container">
                         <!-- Toggler -->
-                        <button class="navbar-toggler order-2 ml-n3 ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler order-{% if user.is_authenticated %}1{% else %}2{% endif %} ml-n3 ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <!-- Brand -->                        
-                        <a class="navbar-brand diventi-font order-1 {% block navbar_brand_style %}text-dark{% endblock navbar_brand_style %}" href="{% url 'landing:home' %}">
+                        <a class="navbar-brand diventi-font order-{% if user.is_authenticated %}2{% else %}1{% endif %} {% block navbar_brand_style %}text-dark{% endblock navbar_brand_style %}" href="{% url 'landing:home' %}">
                             Diventi
                         </a>
                         <!-- Collapse -->
@@ -318,7 +318,7 @@
                             {% endif %}
                     </div>
                     {% if user.is_authenticated %}
-                    <div class="order-lg-4 ml-lg-3">
+                    <div class="order-lg-4 order-3 ml-lg-3">
                         <a class="" href="#modal-profile" role="button" data-toggle="modal">
                             <span class="avatar rounded-circle">
                                 <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">

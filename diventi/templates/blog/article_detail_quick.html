@@ -51,7 +51,7 @@
             <div class="col-xl-8 col-lg-10 offset-xl-2 offset-lg-1">
                 <article>
                     {{ article.content|safe }}
-                    <p>[{% trans "Photo" %} <i class="far fa-sm fa-copyright"></i> {{ article.label }}]</p>
+                    <p>[{% trans "Photo" %} &copy; {{ article.label }}]</p>
                 </article>
                 <div class="row align-items-center mt-5 py-4 border-top border-bottom">
                     <div class="col mb-3 mb-lg-0">
@@ -68,7 +68,7 @@
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item pr-4">
                                 <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn btn-link btn-promote text-{% if article.user_has_promoted %}primary{% else %}muted{% endif %}{% if not user.is_authenticated %}disabled{% endif %}">
-                                    <i class="far fa-thumbs-up mr-1"></i> {{ article.promotions.count }}
+                                    <i data-feather="thumbs-up" class="mr-1 mb-1"></i> {{ article.promotions.count }}
                                 </a>
                             </li>
                         </ul>

@@ -1846,7 +1846,7 @@ msgstr ""
 
 #: diventi/templates/500.html:24
 msgid "Error 500: Webservice currently unavailable"
-msgstr "Errore 500: Webservice attualmente non disponibile"
+msgstr "Errore 500: Servizio attualmente non disponibile"
 
 #: diventi/templates/500.html:30
 msgid "An unexpected condition was encountered."
@@ -1855,7 +1855,7 @@ msgstr "Si è verificata una condizione inaspettata."
 #: diventi/templates/500.html:31
 msgid "Our service team has been dispatched to bring it back online."
 msgstr ""
-"Il nostro team di assistenza è stato attivato per ripristinare il sistema."
+"La nostra squadra di assistenza è stata attivata per ripristinare questa funzionalità."
 
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/landing/landing_quick.html:140

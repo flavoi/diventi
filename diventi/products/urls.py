@@ -2,6 +2,7 @@ from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from .views import (
+    ProductListView,
     ProductDetailView, 
     AddToUserCollectionView, 
     DropFromUserCollectionView, 
@@ -13,8 +14,8 @@ from .views import (
 app_name = 'products'
 
 urlpatterns = [
+    path(_(''), ProductListView.as_view(), name='list'),
     path(_('<slug:slug>/'), ProductDetailView.as_view(), name='detail'),
-    path(_('<slug:slug>/detail/'), ProductDetailView.as_view(), name='detail_retro'), # Duplicated to preserve past shared links
     path(_('<slug:slug>/add/'), AddToUserCollectionView.as_view(), name='add'),
     path(_('<slug:slug>/remove/'), DropFromUserCollectionView.as_view(), name='drop'),
     path(_('<slug:slug>/secretfile/'), SecretFileView.as_view(), name='secretfile'),

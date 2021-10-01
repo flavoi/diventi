@@ -19,8 +19,10 @@ def get_dropbox_paper_soup(paper_id):
     soup = BeautifulSoup(r.text, 'html.parser')
     return soup
 
+def get_paper_filename(paper_id, paper_lan):
+    return 'ebooks/partials/book_paper_{}_{}.html'.format(paper_id, paper_lan)
 
-def parse_dropbox_paper_soup(paper_filename):
+def parse_paper_soup(paper_filename):
     """
         Load soup from html file.
     """

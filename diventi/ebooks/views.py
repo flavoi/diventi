@@ -17,7 +17,8 @@ from diventi.products.models import Product
 from .models import Book
 
 from .utils import (
-    parse_dropbox_paper_soup,
+    get_paper_filename,
+    parse_paper_soup,
     make_paper_toc,
 )
 
@@ -74,7 +75,6 @@ class BookDetailView(LoginRequiredMixin, UserHasProductMixin,
         return ['ebooks/book_detail_%s.html' % self.object.template]
 
 
-from django.utils.safestring import mark_safe
 class PaperEbookView(BookDetailView):
     """ Renders an ebook from a paper document """
    
@@ -90,8 +90,8 @@ class PaperEbookView(BookDetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         current_lan = get_language()
-        paper_filename = 'ebooks/partials/book_paper_{}_{}.html'.format(self.object.id, current_lan)
-        paper_soup = parse_dropbox_paper_soup(paper_filename)
+        paper_filename = get_paper_filename(paper_id=self.object.id, paper_lan=current_lan)
+        paper_soup = parse_paper_soup(paper_filename)
         # context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_title'] = self.object.title
         context['paper_toc'] = make_paper_toc(paper_soup)

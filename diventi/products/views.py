@@ -5,7 +5,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
-from django.views.generic import RedirectView, TemplateView
+from django.views.generic import (
+    RedirectView, 
+    TemplateView,
+    ListView,
+)
 from django.views.decorators.csrf import csrf_exempt
 from django.http import (
     HttpResponse,
@@ -32,6 +36,23 @@ from .utils import (
     add_product_to_user_collection,
     humanize_price,
 )
+
+
+class ProductListView(ListView):
+    """
+        Displays the list of published products.
+    """
+    model = Product
+    template_name = 'products/product_list_quick.html'
+    context_object_name = 'products'
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Product.objects.published().order_by('publication_date')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductListView, self).get_context_data(*args, **kwargs)
+        return context
 
 
 class ProductDetailView(DetailView):

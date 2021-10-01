@@ -6,7 +6,7 @@
 {% load humanize %}
 
 {% block base_opengraph %}
-    <meta property="og:title" content="Diventi: {{ product.title|capfirst }}" />
+    <meta property="og:title" content="Diventi: {{ product.title }}" />
     <meta property="og:type" content="og:website" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     <meta property="og:image" content="{{ product.image }}" />

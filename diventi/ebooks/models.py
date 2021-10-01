@@ -45,7 +45,7 @@ class BookQuerySet(models.QuerySet):
             books = self.filter(published=True)
         return books
 
-    # Fetch the book related to the chapter
+    # Fetch the book related to the chapter
     def product(self):
         book = self.select_related('book_product')
         return book

@@ -1,0 +1,13 @@
+{% for part in paper_toc %}
+    <div class="{% if not forloop.first %}mt-3{% endif %}">
+    {% for title, subheadings in part.items %}
+        {% for h in subheadings %}
+            {% if forloop.first %}
+              <a class="text-dark mb-0" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+            {% else %}
+              <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endfor %}

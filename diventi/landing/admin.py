@@ -36,11 +36,6 @@ class SectionAdmin(DiventiTranslationAdmin):
         'title', 
         'image_tag', 
         'order_index', 
-        'get_features', 
-        'get_products', 
-        'get_users', 
-        'get_articles',
-        'section_survey', 
         'published', 
         'featured',
     ]
@@ -56,9 +51,6 @@ class SectionAdmin(DiventiTranslationAdmin):
         }),
         (_('Editing'), {
             'fields': ('prefix', 'title', 'order_index', 'description',),
-        }),
-        (_('Additionals'), {
-            'fields': ('products', 'users', 'section_survey', 'articles',),
         }),
     )
     inlines = [        

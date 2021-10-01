@@ -47,7 +47,7 @@
             <div class="col-lg-7 ml-auto">
                 <div class="card bg-dark shadow-lg border-0 mb-0">
                     <div class="px-5 py-6">
-                        <span class="badge badge-primary badge-pill">{{book.book_product.category }}</span>
+                        <span class="badge badge-primary badge-pill">{{ book.book_product.category }}</span>
                         {% with book as object %}
                             {% include 'publishable_badge.html' %}
                         {% endwith %}
@@ -74,18 +74,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <nav class="nav nav-pills flex-column" id="nav-terms">
-                                    {% for part in paper_toc %}
-                                    <div class="{% if not forloop.first %}mt-3{% endif %}">
-                                        {% for title, subheadings in part.items %}
-                                        <span class="text-black mb-0">{{ title }}</span>
-                                            {% for h in subheadings %}
-                                                {% if not forloop.first %}
-                                                    <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endfor %}
-                                    </div>
-                                    {% endfor %}
+                                    {% with paper_toc as paper_toc %}
+                                {% include "ebooks/book_toc_quick.html" %}
+                            {% endwith %}
                                 </nav>
                             </div>
                         </div>
@@ -102,7 +93,7 @@
                 </div>
                 {% endif %}
                 <div id="accordion-1" class="accordion accordion-spaced d-block d-md-block d-lg-none">
-                    <div class="card bg-dark-secondary border-primary-dark">
+                    <div class="card border-primary-dark">
                         <div class="card-header py-4 collapsed" id="heading-1-1" data-toggle="collapse" role="button" data-target="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
                             <h6 class="mb-0">
                                 {% trans "table of contents"|capfirst %}
@@ -110,26 +101,11 @@
                         </div>
                         <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1" style="">
                             <div class="card-body">
-                                <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <nav class="nav nav-pills flex-column" id="nav-terms">
-                                                {% for part in paper_toc %}
-                                                    <div class="{% if not forloop.first %}mt-3{% endif %}">
-                                                        {% for title, subheadings in part.items %}
-                                                            <span class="text-black mb-0">{{ title }}</span>
-                                                            {% for h in subheadings %}
-                                                                {% if not forloop.first %}
-                                                                    <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        {% endfor %}
-                                                    </div>
-                                                {% endfor %}
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
+                                <nav class="nav nav-pills flex-column" id="nav-terms">
+                                    {% with paper_toc as paper_toc %}
+                                        {% include "ebooks/book_toc_quick.html" %}
+                                    {% endwith %}
+                                </nav>
                             </div>
                         </div>
                     </div>
@@ -141,29 +117,12 @@
         </div>
     </div>
 </section>
-<div class="customizer">
-<div class="icon icon-primary rounded-circle icon-shape" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'jump to top'|capfirst %}">
-    <a href="#top"><i data-feather="arrow-up"></i></a>
-</div>
-
-</div>
 
 {% endblock content %}
 
 {% block footercolor %}{% endblock footercolor %}
 
 {% block extrascript %}
-    <script src="{% static 'readingtime/readingtime.js' %}"></script>
-    <script>
-        $('article').readingTime({
-            readingTimeTarget: '.eta',
-            wordCountTarget: '.words',
-        });
-        $(document).ready(function() { 
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
     <script src="{% static 'diventi/js/diventi-datatables.js' %}"></script>
     <script src="{% static 'diventi/js/diventi-sortable.min.js' %}"></script>
     <script>

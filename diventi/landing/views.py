@@ -4,23 +4,34 @@ from django.shortcuts import render, redirect, resolve_url
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import (
+    ugettext_lazy as _,
+    get_language,
+)
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.http import HttpResponseNotFound
 
-from diventi.accounts.models import DiventiUser
 from diventi.accounts.forms import DiventiUserInitForm
+
+from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
 from diventi.blog.models import Article
-from diventi.feedbacks.models import Survey, Answer
+from diventi.ebooks.models import Book
+
 from diventi.core.views import StaffRequiredMixin
 
 from .models import (
     Section,
     AboutArticle,
     PolicyArticle,
+)
+
+from diventi.ebooks.utils import (
+    get_paper_filename,
+    parse_paper_soup,
+    make_paper_toc,
 )
 
 
@@ -73,8 +84,19 @@ class DashboardView(StaffRequiredMixin, ListView):
 
 def get_landing_context(request):
     sections = Section.objects.not_featured()
+    # Get the demo book from the pinned product
+    pinned_product = Product.objects.pinned().get()
+    if hasattr(pinned_product, 'book'):
+        pinned_book = pinned_product.book
+        current_lan = get_language()
+        paper_filename = get_paper_filename(paper_id=pinned_book.id, paper_lan=current_lan)
+        paper_soup = parse_paper_soup(paper_filename)
+        paper_toc = make_paper_toc(paper_soup)
+    else:
+        pinned_book = None
+        
+    # Get the title from the featured section or the first section on the list 
     featured_section = Section.objects.featured()
-    latest_articles = Article.objects.history()[:5]
     if featured_section:
         pass
     elif sections.exists():
@@ -82,10 +104,11 @@ def get_landing_context(request):
         sections = sections.exclude(id=featured_section.id)
     else:
         return HttpResponseNotFound(_('This page is not available yet.'))
-    context = {   
-        'sections': sections,
+    context = {
         'featured_section': featured_section,
-        'latest_articles': latest_articles, 
+        'book': pinned_book,
+        'paper_filename': paper_filename,
+        'paper_toc': paper_toc,
     }
     return context
 

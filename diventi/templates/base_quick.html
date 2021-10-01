@@ -267,6 +267,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'blog:home' %}">Blog</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'products:list' %}">
+                                        <i data-feather="codesandbox" class="mr-0"></i> {% trans "games"|capfirst %}
+                                    </a>
+                                </li>
                             </ul>
                             {% if user.is_authenticated %}
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">                                

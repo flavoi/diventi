@@ -1,0 +1,50 @@
+{% extends 'base_quick.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block base_opengraph %}
+    <meta property="og:title" content="Diventi games list" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
+{% endblock base_opengraph %}
+
+{% block title %}{% trans 'games list'|capfirst %}{% endblock title %}
+
+{% block headerclass %}header-transparent{% endblock headerclass %}
+
+{% block navbarclass %}navbar-light{% endblock navbarclass %}
+
+{% block content %}
+<section class="mt-6">
+    <div class="container d-flex align-items-center text-center text-lg-left py-5 py-lg-6 border-bottom">
+        <div class="col px-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 text-center">
+                    <h2 class="h1 mb-2">{% trans "games list"|capfirst %}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="slice bg-section-secondary">
+    <div class="container">
+        <div class="row mx-lg-n4">
+            {% for product in products %}
+            <div class="col-md-4 px-lg-2">
+                <div class="card">
+                    <img loading="lazy" class="card-img-top" src="{{ product.image }}" alt="{{ product.title|capfirst }}">
+                    <div class="card-body">
+                        <small class="d-block text-sm mb-2">{{ product.category|capfirst }}</small>
+                        <a href="{{ product.get_absolute_url }}"><h5 class="card-title">{{ product.title|capfirst }}</h5></a>
+                        <p class="card-text">{{ product.short_description|capfirst }}</p>
+                        <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-primary">{% trans 'learn more'|capfirst %}</a>
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -36,7 +36,7 @@
                 <div class="card">
                     <img loading="lazy" class="card-img-top" src="{{ product.image }}" alt="{{ product.title|capfirst }}">
                     <div class="card-body">
-                        <small class="d-block text-sm mb-2">{{ product.category|capfirst }}</small>
+                        <small class="d-block text-sm mb-2">{{ product.category|capfirst }} {% if request.user.is_staff %}{% with product as object %}{% include 'publishable_badge.html' %}{% endwith %}{% endif %}</small>
                         <a href="{{ product.get_absolute_url }}"><h5 class="card-title">{{ product.title|capfirst }}</h5></a>
                         <p class="card-text">{{ product.short_description|capfirst }}</p>
                         <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-primary">{% trans 'learn more'|capfirst %}</a>

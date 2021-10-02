@@ -303,6 +303,11 @@
                             {% endif %}
                             {% if not user.is_authenticated %}
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+                                <li class="nav-item">
+                                    <a href="#" data-action="omnisearch-open" data-target="#omnisearch" class="nav-link nav-link-icon px-2">
+                                        <i data-feather="search"></i>
+                                    </a>
+                                </li>
                               <li class="nav-item">
                                 <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-sm btn-primary btn-icon ml-3">
                                     <span class="btn-inner--icon">
@@ -359,7 +364,7 @@
                             <ul class="list-unstyled mb-0">
                                 {% for ss in search_suggestions %}                                
                                 <li>
-                                    <a class="list-link searchs" href="#" data-value="{{ ss.title|capfirst }}">
+                                    <a class="list-link searchs" id="search_suggestion" href="{% url 'landing:search' %}?q={{ ss.title|capfirst }}" data-value="{{ ss.title|capfirst }}">
                                         <span>{{ ss.title|capfirst }}</span> &middot; {{ ss.description }}
                                     </a>
                                 </li>  

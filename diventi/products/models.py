@@ -169,10 +169,6 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         default = True,
         verbose_name = _('pinned')
     ) # Pinned products appear on top of the landing page
-    early_access = models.BooleanField(
-        default = True,
-        verbose_name = _('early access')
-    ) # Products in early access activates special messages on their own pages
     courtesy_short_message = models.CharField(
         blank=True, 
         max_length=50, 
@@ -181,7 +177,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     courtesy_message = models.TextField(
         blank=True, 
         verbose_name=_('courtesy message')
-    ) # folded products returns this message to users
+    ) # Folded products returns this message to users
     related_products = models.ManyToManyField(
         'self',
         related_name='products', 

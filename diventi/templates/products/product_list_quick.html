@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row mx-lg-n4">
             {% for product in products %}
-            <div class="col-md-4 px-lg-2">
+            <div class="col-md-4 px-lg-2 order-lg-{{ product.order_lg }} order-md-{{ product.order_md }} order-sm-{{ product.order_sm }}">
                 <div class="card">
                     <img loading="lazy" class="card-img-top" src="{{ product.image }}" alt="{{ product.title|capfirst }}">
                     <div class="card-body">

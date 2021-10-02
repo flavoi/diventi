@@ -46,15 +46,10 @@
                             <span class="badge badge-{{ product.category.color }} badge-pill">
                                 {{ product.category }}
                             </span>
-                            {% if product.early_access %}
-                            <span class="badge badge-secondary badge-pill ml-1">
-                                {% trans 'early access' %}
-                            </span>
-                            {% endif %}
                             {% with product as object %} 
                                 {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                             {% endwith %}
-                            <h3 class="h2 mt-4"><strong class="text-primary">{{ product.title|capfirst }}</strong> {% trans "in short" %}</h3>
+                            <h3 class="h2 mt-4"><strong class="text-primary">{{ product.title|capfirst }}</strong> {% trans "in short" %}</h3>
                             <p class="my-4 lh-190">{{ product.description }}</p>
                             {% include "products/partials/product_detail_actions.html" %}
                         </div>

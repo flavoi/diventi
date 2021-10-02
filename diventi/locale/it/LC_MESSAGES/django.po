@@ -979,7 +979,7 @@ msgstr "colonna lg"
 
 #: diventi/core/models.py:321
 msgid "lg order"
-msgstr ""
+msgstr "ordinamento lg"
 
 #: diventi/core/models.py:322
 msgid "md column"
@@ -3386,12 +3386,10 @@ msgstr "da"
 #: diventi/templates/products/product_detail_quick.html:118
 #: diventi/templates/reviews/review_form.html:9
 #: diventi/templates/reviews/review_modal_quick.html:9
-#, fuzzy
-#| msgid "review"
 msgid "review"
 msgid_plural "reviews"
 msgstr[0] "recensione"
-msgstr[1] "recensione"
+msgstr[1] "recensioni"
 
 #: diventi/templates/products/product_detail_quick.html:124
 msgid "available formats"

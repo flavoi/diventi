@@ -123,6 +123,16 @@
 {% block footercolor %}{% endblock footercolor %}
 
 {% block extrascript %}
+    <script src="{% static 'readingtime/readingtime.js' %}"></script>
+    <script>
+        $('article').readingTime({
+            readingTimeTarget: '.eta',
+            wordCountTarget: '.words',
+        });
+        $(document).ready(function() { 
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
     <script src="{% static 'diventi/js/diventi-datatables.js' %}"></script>
     <script src="{% static 'diventi/js/diventi-sortable.min.js' %}"></script>
     <script>

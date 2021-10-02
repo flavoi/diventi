@@ -106,13 +106,9 @@
                 <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1" style="">
                     <div class="card-body">
                         <nav class="nav nav-pills flex-column" id="nav-terms">
-                            {% for part in paper_toc %}
-                                <div class="{% if not forloop.first %}mt-3{% endif %}">
-                                    {% with paper_toc as paper_toc %}
-                                        {% include "ebooks/book_toc_quick.html" %}
-                                    {% endwith %}
-                                </div>
-                            {% endfor %}
+                            {% with paper_toc as paper_toc %}
+                                {% include "ebooks/book_toc_quick.html" %}
+                            {% endwith %}
                         </nav>
                     </div>
                 </div>

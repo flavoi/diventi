@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Updated table of contents visual style
 
 ### Removed
+- [accounts] Removed collection from user's public page
+
 ### Fixed
 
 

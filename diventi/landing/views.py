@@ -84,6 +84,7 @@ class DashboardView(StaffRequiredMixin, ListView):
 
 def get_landing_context(request):
     sections = Section.objects.not_featured()
+
     # Get the demo book from the pinned product
     pinned_product = Product.objects.pinned().get()
     if hasattr(pinned_product, 'book'):
@@ -94,6 +95,9 @@ def get_landing_context(request):
         paper_toc = make_paper_toc(paper_soup)
     else:
         pinned_book = None
+
+    # Get the latest blog article
+    latest_article = Article.objects.hottest()
         
     # Get the title from the featured section or the first section on the list 
     featured_section = Section.objects.featured()
@@ -109,6 +113,7 @@ def get_landing_context(request):
         'book': pinned_book,
         'paper_filename': paper_filename,
         'paper_toc': paper_toc,
+        'latest_article': latest_article,
     }
     return context
 

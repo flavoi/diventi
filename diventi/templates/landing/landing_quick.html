@@ -34,7 +34,7 @@
 <section class="slice py-lg-6 delimiter-bottom">
    <div class="container">
       <div class="row row-grid align-items-center">
-         <div class="col-12 col-md-5 col-lg-6 order-md-2">
+         <div class="col-12 col-md-5 col-lg-6 order-md-2">                        
             <figure class="w-100"><img loading="lazy" alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="img-fluid mw-md-100"></figure>
             {% if featured_section.video %}
             <div class="card-img-overlay d-flex justify-content-end d-block d-md-block d-lg-none">
@@ -48,17 +48,20 @@
             </div>
             {% endif %}
          </div>
-         <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
+         <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">            
             <h1 class="h1 text-center text-md-left mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-highlight-info">{{ featured_section.title|capfirst }}</strong></h1>
             <p class="lead text-center text-md-left text-muted">{{ featured_section.description|striptags|capfirst }}</p>
-            <div class="text-center text-md-left mt-5">
+            <div class="text-center text-md-left text-muted mt-2">
+                <a href="{{ latest_article.get_absolute_url }}" class="text-primary text-underline--dashed"><i data-feather="align-left" data-toggle="tooltip" data-placement="bottom" title="{% trans 'latest article'|capfirst %}" class="mb-1"></i> {{ latest_article.title|capfirst }} - {{ latest_article.publication_date|date:"d/m/Y" }}</a>
+            </div>
+            <div class="text-center text-md-left mt-4">
                 {% if featured_section.video %}
                   <a href="{{ featured_section.video }}" class="btn btn-neutral btn-icon d-none d-lg-inline-block" data-fancybox="">
                     <span class="btn-inner--text">{% trans 'play video'|capfirst %}</span>
                     <span class="btn-inner--icon">
                       <i data-feather="play" class="mb-1"></i>
                     </span>
-                  </a>     
+                  </a>
                 {% endif %}
             </div>
          </div>

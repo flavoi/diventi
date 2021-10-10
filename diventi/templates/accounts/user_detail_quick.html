@@ -127,6 +127,7 @@
                         </div>
                 </div>
                 <!-- Collection -->
+                {% if request.user == object %}
                 <div class="mb-4">
                     <div class="row mb-3">
                         <div class="col">
@@ -146,7 +147,6 @@
                                                 <i data-feather="book"></i>
                                             </div>
                                         </div>
-                                        {% if request.user == object %}
                                             <div class="text-right">
                                             {% if product.book.published and product.published %}
                                                 {% get_review_by_user for product as review %}
@@ -167,7 +167,6 @@
                                                 </div>
                                             {% endif %}
                                             </div>
-                                        {% endif %}
                                     </div>
                                     <!-- App title -->
                                     <div class="mt-3">
@@ -192,6 +191,7 @@
                         {% endfor %}
                     </div>
                 </div>  
+                {% endif %}
                 <!-- Surveys & Recent posts -->
                 <div class="mb-4">
                     <div class="row mb-3">

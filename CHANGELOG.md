@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Removed collection from user's public page
 
 ### Fixed
+- [blog] Fixed missing strings in the related articles section
 - [locale] Corrected translations for the category tables 
 
 

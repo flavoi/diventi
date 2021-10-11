@@ -38,7 +38,10 @@ class ArticleCategory(Element):
     """
         Defines the main argument of any article.
     """
-    pass
+
+    class Meta:
+        verbose_name = _('Article Category')
+        verbose_name_plural = _('Article Categories')
 
 
 class ArticleQuerySet(PublishableModelQuerySet):
@@ -96,11 +99,30 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
     """
-    category = models.ForeignKey(ArticleCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)    
-    content = RichTextField(verbose_name=_('content'))
-    hot = models.BooleanField(default=False, verbose_name=_('hot'))
-    slug = models.SlugField(unique=True, verbose_name=_('slug'))
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='articles', verbose_name=_('author'), on_delete=models.SET_NULL)
+    category = models.ForeignKey(
+        ArticleCategory, 
+        null=True, 
+        verbose_name=_('category'), 
+        on_delete=models.SET_NULL
+    )    
+    content = RichTextField(
+        verbose_name=_('content')
+    )
+    hot = models.BooleanField(
+        default=False, 
+        verbose_name=_('hot')
+    )
+    slug = models.SlugField(
+        unique=True,
+        verbose_name=_('slug')
+    )
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        related_name='articles',
+        verbose_name=_('author'),
+        on_delete=models.SET_NULL
+    )
     related_articles = models.ManyToManyField(
         'self',
         related_name='related_articles', 

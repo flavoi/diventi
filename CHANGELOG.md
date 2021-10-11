@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - [landing] Integrated demo ebook in the landing page
+- [landing] Integrate the hottest article in the landing page
 - [products] Introduced a games catalog page
 
 ### Changed
@@ -18,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Removed collection from user's public page
 
 ### Fixed
+- [locale] Corrected translations for the category tables 
 
 
 ## [1.0.0-beta-9] → 2021-09-19

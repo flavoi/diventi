@@ -93,7 +93,6 @@
         <div class="row align-items-center mb-5">
             <div class="col-12 col-md">
                 <h3 class="h4 mb-0">{% trans "keep reading"|capfirst %}</h3>
-                <p class="mb-0 text-muted">{% trans "more stories from Diventi"|capfirst %}</p>
             </div>
             <div class="col-12 col-md-auto">
                 <a href="{% url 'blog:home' %}" class="btn btn-sm btn-neutral d-none d-md-inline">{% trans "view all"|capfirst %}</a>
@@ -122,18 +121,13 @@
                             <div class="col-auto">                                
                                 <span class="avatar avatar-sm bg-primary rounded-circle">
                                     <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}">
-                                </span> <span class="text-sm mb-0 avatar-content">{{ related_article.author.get_full_name }}</span>
+                                </span> <span class="text-sm mb-0 avatar-content">{{ article.author.get_full_name }}</span>
                             </div>
                             <div class="col text-right text-right">
                                 <div class="actions">
                                     <a href="#" class="action-item">
                                         <i data-feather="thumbs-up" class="mr-1 mb-1"></i>
                                         {{ article.promotions.count }}
-                                    </a>
-                                    <a href="#" class="action-item">
-                                        <i class="far fa-comments mr-1"></i>
-                                        {% get_comment_count for article as comment_count %}
-                                        {{ comment_count }}
                                     </a>
                                 </div>
                             </div>

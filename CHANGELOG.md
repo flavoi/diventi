@@ -13,7 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [products] Introduced a games catalog page
 
 ### Changed
+- [blog] Updated cards visual styles
+- [blog] Integrated read time in article pills
 - [ebooks] Updated table of contents visual style
+- [products] Updated cards visual style
 
 ### Removed
 - [accounts] Removed collection from user's public page

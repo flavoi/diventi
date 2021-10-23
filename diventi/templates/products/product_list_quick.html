@@ -40,7 +40,9 @@
                         </a>
                     </div>
                     <div class="card-body py-4">
-                        <small class="d-block text-sm mb-2">{{ product.category }}</small> 
+                        <small class="d-block text-sm mb-2">{{ product.category }} {% with article as object %}
+                                    {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                {% endwith %}</small> 
                             <a href="{{ product.get_absolute_url }}" class="h5 stretched-link lh-150">
                                 {{ product.title|capfirst }}
                             </a>

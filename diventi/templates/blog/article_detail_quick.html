@@ -32,14 +32,14 @@
     <div class="container">
         <div class="row row-grid align-items-center">
             <div class="col-xl-9 col-lg-11 offset-lg-1 offset-xl-2">
-                <span class="badge badge-secondary badge-pill">
+                <span class="badge badge-white badge-pill shadow font-weight-light mr-1">
                     {{ article.category }}
                 </span>
                 {% with article as object %}
                     {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                 {% endwith %}
                 <h1 class="h2 text-white mt-3 mb-1 pr-5">{{ article.title|capfirst }}</h1>
-                <p class="lead text-white mb-1 pb-4 pr-5">{{ article.description|capfirst }}</p>
+                <p class="lead text-white mb-1 pb-5 pr-5">{{ article.description|capfirst }}</p>
             </div>
         </div>
     </div>
@@ -61,13 +61,13 @@
                                     <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}">
                                 </a>
                             </div>
-                            <div class="media-body"><span class="d-block h6 mb-0">{{ article.author.get_full_name }}</span> <span class="text-sm text-muted">{{ article.author.bio|capfirst }}</span></div>
+                            <div class="media-body"><span class="d-block h6 mb-0">{{ article.author.get_full_name }}</span> <span class="text-sm text-muted">{% trans "published on"|capfirst %} {{ article.publication_date|date:"d/m/Y" }}</span></span></div>
                         </div>
                     </div>
                     <div class="col-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item pr-4">
-                                <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn btn-link btn-promote text-{% if article.user_has_promoted %}primary{% else %}muted{% endif %}{% if not user.is_authenticated %}disabled{% endif %}">
+                                <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn btn-link btn-promote text-{% if article.user_has_promoted %}primary{% else %}muted{% endif %} {% if not user.is_authenticated %}disabled{% endif %}">
                                     <i data-feather="thumbs-up" class="mr-1 mb-1"></i> {{ article.promotions.count }}
                                 </a>
                             </li>
@@ -104,7 +104,7 @@
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
                         <a href="{{ article.get_absolute_url }}" class="d-block">
-                            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ article.image }}" class="card-img-top">
+                            <img loading="lazy" src="{{ article.image }}" alt="{{ article.title|capfirst }}" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body py-4">
@@ -121,13 +121,12 @@
                             <div class="col-auto">                                
                                 <span class="avatar avatar-sm bg-primary rounded-circle">
                                     <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}">
-                                </span> <span class="text-sm mb-0 avatar-content">{{ article.author.get_full_name }}</span>
+                                </span><span class="text-sm mb-0 ml-0 avatar-content">{{ article.author.get_full_name }}</span>
                             </div>
                             <div class="col text-right text-right">
                                 <div class="actions">
                                     <a href="#" class="action-item">
-                                        <i data-feather="thumbs-up" class="mr-1 mb-1"></i>
-                                        {{ article.promotions.count }}
+                                        <small>{{ article.get_readtime }} {% trans "read" %}</small>
                                     </a>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 from functools import reduce
-import operator
+import operator, readtime
 
 from django.db import models
 from django.db.models import Q
@@ -156,6 +156,15 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
     def reporting(self, *args, **kwargs):
         results = Article.objects.none()
         return results
+
+    def get_readtime(self):
+        result = readtime.of_text(self.content)
+        return result.text
+
+    def get_words_number(self):
+        words = self.content.split()
+        result = len(words)
+        return result
 
     def class_name(self):
         return _('article')

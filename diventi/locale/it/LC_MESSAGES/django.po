@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 08:43+0200\n"
+"POT-Creation-Date: 2021-10-23 19:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -735,7 +735,7 @@ msgstr "autore"
 msgid "related articles"
 msgstr "articoli correlati"
 
-#: diventi/blog/models.py:136 diventi/blog/models.py:161
+#: diventi/blog/models.py:136 diventi/blog/models.py:170
 msgid "article"
 msgstr "articolo"
 
@@ -2425,21 +2425,29 @@ msgstr "Sviluppato con passione dagli autori Diventi"
 msgid "Photo"
 msgstr "Foto"
 
+#: diventi/templates/blog/article_detail_quick.html:64
+msgid "published on"
+msgstr "pubblicato il"
+
 #: diventi/templates/blog/article_detail_quick.html:95
 msgid "keep reading"
 msgstr "continua a leggere"
 
-#: diventi/templates/blog/article_detail_quick.html:96
-msgid "more stories from Diventi"
-msgstr "più storie Diventi"
-
-#: diventi/templates/blog/article_detail_quick.html:99
+#: diventi/templates/blog/article_detail_quick.html:98
 msgid "view all"
 msgstr "visualizza tutto"
+
+#: diventi/templates/blog/article_detail_quick.html:129
+msgid "read"
+msgstr "lettura"
 
 #: diventi/templates/blog/article_list_quick.html:45
 msgid "all"
 msgstr "tutto"
+
+#: diventi/templates/blog/article_list_quick.html:134
+msgid "read time"
+msgstr "tempo di lettura"
 
 #: diventi/templates/blog/article_list_quick.html:144
 msgid "There are no posts yet"
@@ -3522,6 +3530,9 @@ msgstr "link della menzione"
 msgid "Tooltip"
 msgstr "Suggerimento"
 
+#~ msgid "more stories from Diventi"
+#~ msgstr "più storie Diventi"
+
 #~ msgid "early access"
 #~ msgstr "accesso anticipato"
 
@@ -3596,9 +3607,6 @@ msgstr "Suggerimento"
 
 #~ msgid "Sign up"
 #~ msgstr "Registrati"
-
-#~ msgid "read book"
-#~ msgstr "leggi il libro"
 
 #~ msgid "rewiew"
 #~ msgstr "recensisci"
@@ -3749,9 +3757,6 @@ msgstr "Suggerimento"
 
 #~ msgid "read the story"
 #~ msgstr "leggi la storia"
-
-#~ msgid "read article"
-#~ msgstr "leggi articolo"
 
 #~ msgid "available"
 #~ msgstr "disponibile"

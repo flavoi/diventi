@@ -131,8 +131,8 @@
                                   <span class="h6 text-sm ml-1 mb-1">{{ article.author.get_full_name }}</span>
                             </div>
                             <div class="col-auto">
-                                <span class="text-info"><i data-feather="clock"></i></span>
-                                <span class="h6 text-sm ml-1 mb-1">{{ article.publication_date|naturalday }}</span>
+                                <span class="text-info" data-toggle="tooltip" data-placement="bottom" title="{% trans 'read time'|capfirst %}"><i data-feather="align-left" ></i></span>
+                                <span class="h6 text-sm ml-1 mb-1">{{ article.get_readtime }}</span>
                             </div>
                         </div>
                     </div>

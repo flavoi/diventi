@@ -11,9 +11,8 @@ Diventi contains our philosophy of play: a playstyle that is free from excessive
 In Diventi we give space and importance to the creativity of the players, who can develop their characters in all their psychology and physicality. The mechanics, in this context, represent the tool to determine the outcome of the actions taken by the characters, allowing a more streamlined, structured and less confusing game.
 
 ### Built With
-* [Django](https://www.djangoproject.com/) - The web framework;
-* [Bootstrap](http://getbootstrap.com) - The front end library;
-* [Font Awesome](https://fontawesome.com/) - The best icons on the internet.
+* [Django](https://www.djangoproject.com/) - The web framework
+* [Bootstrap](http://getbootstrap.com) - The front end library
 
 ### License
 This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.

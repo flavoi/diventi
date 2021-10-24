@@ -26,8 +26,10 @@ django-crontab==0.7.1
 django-cuser==2017.3.16
 django-debug-toolbar==3.2.1
 django-djconfig==0.10.0
+django-etc==1.3.0
 django-fullurl==1.1
 django-haystack==3.0b1
+django-hitcount==1.3.3
 django-infinite-scroll-pagination==1.1.0
 django-js-asset==1.1.0
 django-letsencrypt==3.0.1

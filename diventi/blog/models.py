@@ -100,6 +100,12 @@ class ArticleQuerySet(PublishableModelQuerySet):
         articles = self.published().order_by('-hit_count_generic__hits')[:3]
         return articles
 
+    # # Get the most viewed articles in the last week
+    # def popular_last_week(self):
+    #     articles = self.published().filter(hit_count_generic__created__gte=7)
+    #     articles = articles.popular()
+    #     return articles
+
 
 class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element, HitCountMixin):
     """
@@ -167,6 +173,8 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
 
     def reporting(self, *args, **kwargs):
         queryset = Article.objects.popular()
+        # queryset2 = Article.objects.popular_last_week()
+        # print(queryset2)
         results = []
         for article in queryset:
             results.append({

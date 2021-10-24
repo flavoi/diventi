@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
+from hitcount.views import HitCountDetailView
 
 from .models import (
     Article, 
@@ -44,11 +45,12 @@ class ArticlesListViewByCategory(ArticlesListView):
         return context
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(HitCountDetailView):
 
     model = Article
     context_object_name = 'article'
     template_name = 'blog/article_detail_quick.html'
+    count_hit = True
 
     # Returns only published articles
     def get_queryset(self):

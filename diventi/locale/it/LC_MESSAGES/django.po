@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-23 19:41+0200\n"
+"POT-Creation-Date: 2021-10-24 11:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:203
+#: config/settings/base.py:204
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:204
+#: config/settings/base.py:205
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:286
+#: config/settings/base.py:287
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:296
+#: config/settings/base.py:297
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:336
+#: config/settings/base.py:337
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:337
+#: config/settings/base.py:338
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:338
+#: config/settings/base.py:339
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:339
+#: config/settings/base.py:340
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:340
+#: config/settings/base.py:341
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -689,59 +689,69 @@ msgstr "stile visivo"
 msgid "Blog"
 msgstr "Blog"
 
-#: diventi/blog/models.py:33
+#: diventi/blog/models.py:35
 msgid "Blog Cover"
 msgstr "Copertina del blog"
 
-#: diventi/blog/models.py:34
+#: diventi/blog/models.py:36
 msgid "Blog Covers"
 msgstr "Copertine del blog"
 
-#: diventi/blog/models.py:43
+#: diventi/blog/models.py:45
 msgid "Article Category"
 msgstr "Categoria di articolo"
 
-#: diventi/blog/models.py:44
+#: diventi/blog/models.py:46
 msgid "Article Categories"
 msgstr "Categorie di articolo"
 
-#: diventi/blog/models.py:105 diventi/ebooks/models.py:147
+#: diventi/blog/models.py:112 diventi/ebooks/models.py:147
 #: diventi/products/models.py:162 diventi/products/models.py:349
 msgid "category"
 msgstr "categoria"
 
-#: diventi/blog/models.py:109 diventi/ebooks/models.py:251
+#: diventi/blog/models.py:116 diventi/ebooks/models.py:251
 #: diventi/ebooks/models.py:302 diventi/feedbacks/models.py:184
 #: diventi/landing/models.py:73 diventi/landing/models.py:85
 msgid "content"
 msgstr "contenuto"
 
-#: diventi/blog/models.py:113
+#: diventi/blog/models.py:120
 msgid "hot"
 msgstr "hot"
 
-#: diventi/blog/models.py:117 diventi/ebooks/models.py:65
+#: diventi/blog/models.py:124 diventi/ebooks/models.py:65
 #: diventi/ebooks/models.py:204 diventi/ebooks/models.py:321
 #: diventi/feedbacks/models.py:103 diventi/landing/models.py:74
 #: diventi/landing/models.py:86 diventi/products/models.py:131
 msgid "slug"
 msgstr "slug"
 
-#: diventi/blog/models.py:123 diventi/feedbacks/models.py:158
+#: diventi/blog/models.py:130 diventi/feedbacks/models.py:158
 msgid "author"
 msgstr "autore"
 
-#: diventi/blog/models.py:130
+#: diventi/blog/models.py:137
 msgid "related articles"
 msgstr "articoli correlati"
 
-#: diventi/blog/models.py:136 diventi/blog/models.py:170
+#: diventi/blog/models.py:148 diventi/blog/models.py:196
 msgid "article"
 msgstr "articolo"
 
-#: diventi/blog/models.py:137 diventi/templates/base_quick.html:234
+#: diventi/blog/models.py:149 diventi/templates/base_quick.html:234
 msgid "articles"
 msgstr "articoli"
+
+#: diventi/blog/models.py:174
+#, python-format
+msgid "%(article)s: views count"
+msgstr "%(article)s: visite"
+
+#: diventi/blog/models.py:178
+#, python-format
+msgid "views in the last week: %(d)s"
+msgstr "visite nell'ultima settimana: %(d)s"
 
 #: diventi/blog/urls.py:16
 msgid "category/<str:category>/"
@@ -3458,10 +3468,6 @@ msgstr "non c'è alcuna recensione per ora, postane una tu!"
 msgid "games list"
 msgstr "catalogo dei giochi"
 
-#: diventi/templates/products/product_list_quick.html:42
-msgid "learn more"
-msgstr "scopri di più"
-
 #: diventi/templates/publishable_badge.html:4
 msgid "a draft content can be seen only by the staff"
 msgstr "una bozza può essere vista solo da un membro dello staff"
@@ -3529,6 +3535,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "learn more"
+#~ msgstr "scopri di più"
 
 #~ msgid "more stories from Diventi"
 #~ msgstr "più storie Diventi"

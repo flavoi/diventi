@@ -11,7 +11,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
-from hitcount.models import HitCount
+from hitcount.models import HitCount, HitCountMixin
 
 from diventi.core.models import (
     TimeStampedModel, 
@@ -82,7 +82,7 @@ class ArticleQuerySet(PublishableModelQuerySet):
         article = self.hot().latest('publication_date')
         return article
 
-    # Fetch all the promotions related to the article
+    # Fetch all the promotions related to the article
     def promotions(self):
         article = self.prefetch_related('promotions')
         return article
@@ -95,8 +95,13 @@ class ArticleQuerySet(PublishableModelQuerySet):
             article = self.published().latest('publication_date')
         return article
 
+    # Get the most viewed articles, counted by django hitcount
+    def popular(self):
+        articles = self.published().order_by('-hit_count_generic__hits')[:3]
+        return articles
 
-class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element):
+
+class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element, HitCountMixin):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
@@ -161,7 +166,21 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         return results
 
     def reporting(self, *args, **kwargs):
-        results = Article.objects.none()
+        queryset = Article.objects.popular()
+        results = []
+        for article in queryset:
+            results.append({
+                'columns': 4,
+                'name': _('%(article)s') % {
+                    'article': article.title,
+                },
+                'title': article.hit_count.hits,
+                'description1': _('views in the last week: %(d)s') % {
+                    'd': article.hit_count.hits_in_last(days=7),
+                },
+                'description2': '',
+                'action': '',
+            })
         return results
 
     def get_readtime(self):

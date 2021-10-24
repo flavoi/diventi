@@ -134,6 +134,7 @@ THIRD_PARTY_APPS = [
     'haystack',
     'fullurl',
     'django_crontab',
+    'hitcount',
 #    'debug_toolbar',
 ]
 

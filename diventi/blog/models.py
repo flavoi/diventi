@@ -7,9 +7,11 @@ from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.contrib.contenttypes.fields import GenericRelation
 
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
+from hitcount.models import HitCount
 
 from diventi.core.models import (
     TimeStampedModel, 
@@ -129,6 +131,11 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         blank=True, 
         verbose_name=_('related articles'),
     ) # Connect this article to others
+    hit_count_generic = GenericRelation(
+        HitCount, 
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation'
+    ) # Counts the views on this model
 
     objects = ArticleQuerySet.as_manager()
 

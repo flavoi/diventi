@@ -41,7 +41,7 @@
             </div>
         {% endif %}
     {% else %}
-        <a class="btn {{ button_disabled_class|default:'btn-dark' }} btn-sm btn-icon disabled">
+        <a class="btn btn-soft-dark btn-sm" href="#/" data-container="body" data-toggle="popover" data-placement="top" title="{{ product.courtesy_short_message }}" data-content="{{ product.courtesy_message }}">
             {{ product.courtesy_short_message }}
         </a>
     {% endif %}
@@ -54,7 +54,7 @@
             <span class="btn-inner--text">{{ product.product_survey.title }}</span>
         </a>
     {% else %}
-        <a class="btn {{ button_disabled_class|default:'btn-dark' }} btn-sm btn-icon disabled">
+        <a class="btn {{ button_disabled_class|default:'btn-secondary' }} btn-sm" href="#/" data-container="body" data-toggle="popover" data-placement="top" title="{{ product.courtesy_short_message }}" data-content="{{ product.courtesy_message }}">
             {{ product.courtesy_short_message }}
         </a>
     {% endif %}

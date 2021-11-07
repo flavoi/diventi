@@ -110,18 +110,12 @@
                                 <div class="card shadow-none mb-3">
                                     <div class="card-body text-center">             
                                         <span class="avatar rounded-circle avatar-lg hover-translate-y-n3">   <img alt="Image placeholder" src="{% static 'brand/diventi-logo-2.png' %}"> </span>                                                
-                                        <span class="d-block h6 mt-3 mb-4">{% trans "available formats"|capfirst %}</span>
-                                        <div class="avatar-group hover-avatar-ungroup mb-2">
-                                            {% for format in product.formats.all %}
-                                                <a tabindex="0" role="button" class="avatar bg-{{ format.color }} avatar-sm rounded-circle" data-container="body" data-toggle="popover" data-placement="top" title="{{ format.title }}" data-content="{{ format.description }}">
-                                                    <i data-feather="pen-tool" class="text-white"></i>
-                                                </a>
-                                            {% empty %}
-                                                <span class="avatar bg-secondary text-black-50 avatar-sm rounded-circle">
-                                                    <i data-feather="circle"></i>
-                                                </span>
-                                            {% endfor %}
-                                        </div>
+                                        <span class="d-block h6 mt-3 mb-4">{% trans "content formats"|capfirst %}</span>
+                                        {% for format in product.formats.all %}
+                                            <div>
+                                                <small class="text-muted text-underline--dashed">{{ format.title }}</small>
+                                            </div>
+                                        {% endfor %}
                                         <span class="clearfix"></span>
                                         <div class="mt-3 pt-3 delimiter-top">
                                             <div class="actions">

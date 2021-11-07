@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-24 11:35+0200\n"
+"POT-Creation-Date: 2021-11-07 10:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -744,9 +744,10 @@ msgid "articles"
 msgstr "articoli"
 
 #: diventi/blog/models.py:174
-#, python-format
-msgid "%(article)s: views count"
-msgstr "%(article)s: visite"
+#, fuzzy, python-format
+#| msgid "articles"
+msgid "%(article)s"
+msgstr "articoli"
 
 #: diventi/blog/models.py:178
 #, python-format
@@ -2202,8 +2203,8 @@ msgstr "progetti"
 #: diventi/templates/accounts/user_detail_quick.html:117
 #: diventi/templates/accounts/user_detail_quick_modal.html:40
 #: diventi/templates/base_quick.html:243
-#: diventi/templates/products/product_detail_quick.html:113
-#: diventi/templates/products/product_detail_quick.html:270
+#: diventi/templates/products/product_detail_quick.html:106
+#: diventi/templates/products/product_detail_quick.html:258
 #: diventi/templates/reviews/posted.html:11
 msgid "reviews"
 msgstr "recensioni"
@@ -3379,7 +3380,7 @@ msgid "or"
 msgstr "o"
 
 #: diventi/templates/products/partials/product_detail_actions.html:39
-#: diventi/templates/products/product_detail_quick.html:137
+#: diventi/templates/products/product_detail_quick.html:125
 msgid "in your collection"
 msgstr "nella tua collezione"
 
@@ -3399,15 +3400,11 @@ msgstr "in breve"
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
-#: diventi/templates/products/product_detail_quick.html:112
-msgid "out of 5 stars"
-msgstr "su 5 stelle"
-
-#: diventi/templates/products/product_detail_quick.html:113
+#: diventi/templates/products/product_detail_quick.html:106
 msgid "from"
 msgstr "da"
 
-#: diventi/templates/products/product_detail_quick.html:113
+#: diventi/templates/products/product_detail_quick.html:106
 #: diventi/templates/reviews/review_form.html:9
 #: diventi/templates/reviews/review_modal_quick.html:9
 msgid "review"
@@ -3415,23 +3412,23 @@ msgid_plural "reviews"
 msgstr[0] "recensione"
 msgstr[1] "recensioni"
 
-#: diventi/templates/products/product_detail_quick.html:119
-msgid "available formats"
-msgstr "formati disponibili"
+#: diventi/templates/products/product_detail_quick.html:113
+msgid "content formats"
+msgstr "formato dei contenuti"
 
-#: diventi/templates/products/product_detail_quick.html:137
+#: diventi/templates/products/product_detail_quick.html:125
 msgid "this content is available"
 msgstr "questo contenuto è disponibile"
 
-#: diventi/templates/products/product_detail_quick.html:143
+#: diventi/templates/products/product_detail_quick.html:131
 msgid "add this item to your collection to access its contents"
 msgstr "aggiungi questo oggetto alla tua collezione per accedere ai contenuti"
 
-#: diventi/templates/products/product_detail_quick.html:173
+#: diventi/templates/products/product_detail_quick.html:161
 msgid "key features"
 msgstr "caratteristiche chiave"
 
-#: diventi/templates/products/product_detail_quick.html:174
+#: diventi/templates/products/product_detail_quick.html:162
 msgid ""
 "any piece of content is modular and easy to pick up or discard depending on "
 "your playstyle"
@@ -3439,27 +3436,27 @@ msgstr ""
 "tutti i contenuti sono modulari e facili da selezionare o scartare a seconda "
 "del vostro stile di gioco"
 
-#: diventi/templates/products/product_detail_quick.html:196
+#: diventi/templates/products/product_detail_quick.html:184
 msgid "there are no key features to show for now"
 msgstr "non ci sono cratteristiche chiave da mostrare, per ora"
 
-#: diventi/templates/products/product_detail_quick.html:235
+#: diventi/templates/products/product_detail_quick.html:223
 msgid "details"
 msgstr "dettagli"
 
-#: diventi/templates/products/product_detail_quick.html:237
+#: diventi/templates/products/product_detail_quick.html:225
 msgid "here's a roundown of what you can expect from"
 msgstr "ecco cosa puoi aspettarti da"
 
-#: diventi/templates/products/product_detail_quick.html:270
+#: diventi/templates/products/product_detail_quick.html:258
 msgid "community reviews"
 msgstr "Recensioni della community"
 
-#: diventi/templates/products/product_detail_quick.html:272
+#: diventi/templates/products/product_detail_quick.html:260
 msgid "find out what others say about us"
 msgstr "scopri cosa gli altri dicono di noi"
 
-#: diventi/templates/products/product_detail_quick.html:324
+#: diventi/templates/products/product_detail_quick.html:306
 msgid "there are no reviews yet, be the first to post one!"
 msgstr "non c'è alcuna recensione per ora, postane una tu!"
 
@@ -3535,6 +3532,16 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#, python-format
+#~ msgid "%(article)s: views count"
+#~ msgstr "%(article)s: visite"
+
+#~ msgid "out of 5 stars"
+#~ msgstr "su 5 stelle"
+
+#~ msgid "available formats"
+#~ msgstr "formati disponibili"
 
 #~ msgid "learn more"
 #~ msgstr "scopri di più"

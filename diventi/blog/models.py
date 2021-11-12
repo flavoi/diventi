@@ -95,9 +95,14 @@ class ArticleQuerySet(PublishableModelQuerySet):
             article = self.published().latest('publication_date')
         return article
 
+    # Get the published articles, counted by django hitcount
+    def hit_count(self):
+        articles = self.published().order_by('-hit_count_generic__hits')
+        return articles
+
     # Get the most viewed articles, counted by django hitcount
     def popular(self):
-        articles = self.published().order_by('-hit_count_generic__hits')[:3]
+        articles = self.hit_count()[:3]
         return articles
 
 
@@ -186,11 +191,18 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
     def get_readtime(self):
         result = readtime.of_text(self.content)
         return result.text
+    get_readtime.short_description = _('Readtime')
 
     def get_words_number(self):
         words = self.content.split()
         result = len(words)
         return result
+    get_words_number.short_description = _('Words number')
+
+    def get_hitcounts(self):
+        return self.hit_count.hits
+    get_hitcounts.short_description = _('Hit counts')
+    get_hitcounts.admin_order_field = 'hit_count__hits'
 
     def class_name(self):
         return _('article')

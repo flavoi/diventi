@@ -19,7 +19,7 @@ from .forms import ArticleForm
 
 
 class ArticleAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
-    list_display = ['title', 'category', 'image_tag', 'hot', 'published', 'publication_date']
+    list_display = ['title', 'category', 'get_readtime', 'get_hitcounts', 'image_tag', 'hot', 'published', 'publication_date', 'created']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (
@@ -38,6 +38,8 @@ class ArticleAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     )
     form = ArticleForm
     actions = [make_published, make_unpublished]
+    list_filter = ('category',)
+    ordering = ('-created','publication_date',)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj=None, **kwargs)

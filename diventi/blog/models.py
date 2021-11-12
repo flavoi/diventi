@@ -202,7 +202,7 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
     def get_hitcounts(self):
         return self.hit_count.hits
     get_hitcounts.short_description = _('Hit counts')
-    get_hitcounts.admin_order_field = 'hit_count__hits'
+    get_hitcounts.admin_order_field = 'hit_count_generic__hits'
 
     def class_name(self):
         return _('article')

@@ -12,7 +12,7 @@
 {% block content %}
 <a href="{% url 'products:detail' view.kwargs.slug %}" class="btn btn-neutral btn-icon-only rounded-circle position-absolute left-4 top-4 d-none d-lg-inline-flex" data-toggle="tooltip" data-placement="right" title="" data-original-title="{% trans 'back to the project'|capfirst %}">
    <span class="btn-inner--icon">
-      <i class="far fa-arrow-left"></i>
+      <i data-feather="arrow-left"></i>
    </span>
 </a>
 <section>
@@ -24,17 +24,11 @@
          <div class="col-12 col-md-6 col-xl-5 order-md-1 text-center text-md-left">
             <h6 class="display-3 mb-3 font-weight-600 text-success">{% trans "checkout done"|capfirst %}!</h6>
             <p class="lead text-lg mb-5">{% trans "Your purchase has been finalized. You can check your collection or return home." %}</p>            
-            <a href="{% url 'landing:home' %}" class="btn btn-dark btn-icon hover-translate-y-n3">
-               <span class="btn-inner--icon">
-                  <i class="far fa-home"></i>
-               </span>
-               <span class="btn-inner--text">{% trans "return home"|capfirst %}</span>
+            <a href="{% url 'landing:home' %}" class="btn btn-secondary btn-icon hover-translate-y-n3">               
+               {% trans "return home"|capfirst %}
             </a>
-            <a href="{% url 'accounts:detail' request.user.nametag %}#collection" class="btn btn-secondary btn-icon hover-translate-y-n3">
-               <span class="btn-inner--icon">
-                  <i class="far fa-user-alt"></i>
-               </span>
-               <span class="btn-inner--text">{% trans "collection"|capfirst %}</span>
+            <a href="{% url 'accounts:detail' request.user.nametag %}#collection" class="btn btn-primary btn-icon hover-translate-y-n3">
+               {% trans "my collection"|capfirst %}
             </a>
          </div>
       </div>

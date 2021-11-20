@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-12 08:55+0100\n"
+"POT-Creation-Date: 2021-11-20 21:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1798,8 +1798,8 @@ msgstr "La risorsa richiesta richiede autenticazione."
 #: diventi/templates/accounts/password_reset_done_quick.html:32
 #: diventi/templates/accounts/signout_quick.html:25
 #: diventi/templates/feedbacks/survey_done_quick.html:30
-#: diventi/templates/products/checkout_done_quick.html:31
-#: diventi/templates/products/checkout_failed_quick.html:26
+#: diventi/templates/products/checkout_done_quick.html:28
+#: diventi/templates/products/checkout_failed_quick.html:23
 #: diventi/templates/reviews/posted.html:26
 msgid "return home"
 msgstr "pagina iniziale"
@@ -2035,7 +2035,6 @@ msgstr "Profilo"
 #: diventi/templates/accounts/user.html:69
 #: diventi/templates/accounts/user_detail_quick.html:134
 #: diventi/templates/accounts/user_detail_quick_modal.html:51
-#: diventi/templates/products/checkout_done_quick.html:37
 #: diventi/templates/products/partials/product_detail_actions.html:39
 msgid "collection"
 msgstr "collezione"
@@ -3350,6 +3349,10 @@ msgstr ""
 "Il tuo acquisto è stato finalizzato. Puoi verificare la tua collezione o "
 "tornare alla pagina iniziale."
 
+#: diventi/templates/products/checkout_done_quick.html:31
+msgid "my collection"
+msgstr "la mia collezione"
+
 #: diventi/templates/products/checkout_failed_quick.html:5
 #: diventi/templates/products/checkout_failed_quick.html:20
 msgid "checkout failed"
@@ -3363,7 +3366,7 @@ msgstr ""
 "Qualcosa è andato storto e il tuo acquisto è stato interrotto. Puoi "
 "riprovare o tornare alla pagina iniziale."
 
-#: diventi/templates/products/checkout_failed_quick.html:32
+#: diventi/templates/products/checkout_failed_quick.html:26
 msgid "try again"
 msgstr "prova di nuovo"
 
@@ -3791,9 +3794,6 @@ msgstr "Suggerimento"
 
 #~ msgid "admin"
 #~ msgstr "amministrazione"
-
-#~ msgid "my collection"
-#~ msgstr "la mia collezione"
 
 #~ msgid "profile"
 #~ msgstr "profilo"

@@ -20,16 +20,10 @@
             <h6 class="display-3 mb-3 font-weight-600 text-danger">{% trans "checkout failed"|capfirst %}!</h6>
             <p class="lead text-lg mb-5">{% trans "Something went wrong and your purchaes has been halted. You can go back and try again or return home." %}</p>            
             <a href="{% url 'landing:home' %}" class="btn btn-dark btn-icon hover-translate-y-n3">
-               <span class="btn-inner--icon">
-                  <i class="far fa-home"></i>
-               </span>
-               <span class="btn-inner--text">{% trans "return home"|capfirst %}</span>
+               {% trans "return home"|capfirst %}
             </a>
             <a href="{% url 'products:detail' view.kwargs.slug %}" class="btn btn-secondary btn-icon hover-translate-y-n3">
-               <span class="btn-inner--icon">
-                  <i class="far fa-redo"></i>
-               </span>
-               <span class="btn-inner--text">{% trans "try again"|capfirst %}</span>
+               {% trans "try again"|capfirst %}
             </a>
          </div>
       </div>

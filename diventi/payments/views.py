@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
+from django.http import HttpResponse
 
 from diventi.products.models import Product
 

@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - [blog] Fixed missing strings in the related articles section
 - [locale] Corrected translations for the category tables 
+- [payments] Fixed a problem that prevented successful payments to be sent to stripe
 - [products] Fixed erroneous spacing between cards in the title section
 
 

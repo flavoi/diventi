@@ -257,7 +257,7 @@ NOCAPTCHA = True
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar_Basic': [
-            ['Undo', 'Redo'],
+            ['Undo', 'Redo', 'CreateDiv'],
             ['Styles', 'Format'],
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Table', 'HorizontalRule', 'customEmbed'],

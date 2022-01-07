@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [locale] Corrected translations for the category tables
 - [payments] Fixed a problem that prevented successful payments to be sent to stripe
 - [products] Fixed erroneous spacing between cards in the title section
+- [products] Fixed a problem that disrupted the ordering of cards in the games list page
 
 
 ## [1.0.0-beta-9] → 2021-09-19

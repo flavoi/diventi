@@ -28,6 +28,27 @@
     </div>
 </section>
 
+<section class="border-bottom">
+    <div class="container py-3">
+        <div class="row align-items-center">
+            <div class="col-lg-12 d-inline-flex justify-content-center">
+                <ul class="nav">
+                    {% for c in categories %}
+                    {% if forloop.first %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if not view.kwargs.category %}active{% endif %}" href="{% url 'products:list' %}">{% trans "all"|capfirst %}</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link {% ifequal c.title view.kwargs.category %}active{% endifequal %}" href="{% url 'products:list_category' c.slug %}">{{ c.title|capfirst }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="slice bg-section-secondary">
     <div class="container">
         <div class="row mx-lg-n4">

@@ -68,6 +68,12 @@ class ProductQuerySet(PublishableModelQuerySet):
         products = products.prefetch()
         return products
 
+    # Get the list of published products of a certain category
+    def category(self, category_slug):
+        products = self.published().filter(category__slug=category_slug)
+        products = products.exclude(category__meta_category=True)
+        return products
+
 
 class ProductCategoryQuerySet(models.QuerySet):
 
@@ -76,8 +82,8 @@ class ProductCategoryQuerySet(models.QuerySet):
     def visible(self):
         categories = self.exclude(meta_category=True)
         published_projects = Product.objects.published()
-        categories = categories.filter(projects__pk__in=published_projects) # Exclude empty categories
-        categories = categories.prefetch_related(Prefetch('projects', queryset=published_projects))
+        categories = categories.filter(projects__pk__in=published_projects) # Exclude empty categories
+        categories = categories.prefetch_related(Prefetch('projects', queryset=published_projects)).distinct()
         return categories
 
 
@@ -89,6 +95,10 @@ class ProductCategory(Element):
         default=False, 
         verbose_name=_('meta category'), 
         help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.')
+    )
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug')
     )
 
     objects = ProductCategoryQuerySet.as_manager()

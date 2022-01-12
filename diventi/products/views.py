@@ -30,7 +30,10 @@ from logging import getLogger
 
 from diventi.core.views import DiventiActionMixin
 
-from .models import Product
+from .models import (
+    Product,
+    ProductCategory,
+)
 from .forms import UserCollectionUpdateForm
 from .utils import (
     add_product_to_user_collection,
@@ -48,11 +51,23 @@ class ProductListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Product.objects.published().order_by('publication_date')
+        products = Product.objects.published().order_by('publication_date')
+        products = products.exclude(category__meta_category=True)
+        return products
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProductListView, self).get_context_data(*args, **kwargs)
+        context['categories'] = ProductCategory.objects.visible()
         return context
+
+
+class ProductListViewByCategory(ProductListView):
+    """
+        Display a filtered list of published products by a selected category.
+    """
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.category(category_slug=self.kwargs['slug'])
 
 
 class ProductDetailView(DetailView):

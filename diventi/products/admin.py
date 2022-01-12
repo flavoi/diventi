@@ -109,9 +109,10 @@ class ProductCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
             'fields': ('icon', 'color'),
         }),
         (_('Editing'), {
-            'fields': ('title', 'description',),
+            'fields': ('title', 'description', 'slug'),
         }),
     )
+    prepopulated_fields = {"slug": ("title",)}
 
 
 class ChapterCategoryAdmin(DiventiTranslationAdmin):

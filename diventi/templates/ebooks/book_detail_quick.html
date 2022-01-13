@@ -68,22 +68,23 @@
 <section class="slice">
     <div class="container py-4 py-lg-5">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 order-lg-1 order-1">
                 <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
                     <div class="d-none d-md-none d-lg-block">
                         <div class="card">
                             <div class="card-body">
                                 <nav class="nav nav-pills flex-column" id="nav-terms">
                                     {% with paper_toc as paper_toc %}
-                                {% include "ebooks/book_toc_quick.html" %}
-                            {% endwith %}
+                                        {% include "ebooks/book_toc_quick.html" %}
+                                    {% endwith %}
                                 </nav>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 mb-5 mb-lg-0">
+
+            <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2">
                 {% if book.logo %}
                 <div class="mb-4 d-flex justify-content-center">
                     <figure class="figure">
@@ -110,6 +111,30 @@
                         </div>
                     </div>
                 </div>
+
+                <h1 class="h2 mt-5 mb-4">Giochi collegati</h1>  
+                <div class="row">
+                {% for p in related_products %}  
+                    <div class="col-lg-6">
+                        <div class="card hover-translate-y-n10 hover-shadow-lg">
+                            <div class="card-body">
+                                <div class="pb-4">
+                                    <div class="icon bg-{{ p.category.color }} text-white rounded-circle icon-shape shadow">
+                                        <i data-feather="{{ p.category.icon|default:'droplet' }}"></i>
+                                    </div>
+                                </div>
+                                <div class="pt-2 pb-3">
+                                    <h5><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h5>
+                                    <p class="text-muted mb-0">
+                                        {{ p.category }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+
                 <article>
                     {% include book_paper %}
                 </article>

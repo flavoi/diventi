@@ -22,6 +22,7 @@ from .utils import (
     make_paper_toc,
 )
 
+
 class UserHasProductMixin(UserPassesTestMixin):
     """ 
         This view checks if the user has bought the product
@@ -92,6 +93,7 @@ class PaperEbookView(BookDetailView):
         current_lan = get_language()
         paper_filename = get_paper_filename(paper_id=self.object.id, paper_lan=current_lan)
         paper_soup = parse_paper_soup(paper_filename)
+        context['related_products'] = self.object.book_product.related_products.all()
         # context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_title'] = self.object.title
         context['paper_toc'] = make_paper_toc(paper_soup)

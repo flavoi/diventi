@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [landing] Integrated demo ebook in the landing page
 - [landing] Integrate the hottest article in the landing page
 - [products] Introduced a games catalog page
+- [products] Introduced public products: a free content directly available to all users
 
 ### Changed
 - [blog] Updated cards visual styles

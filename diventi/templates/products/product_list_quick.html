@@ -49,6 +49,55 @@
     </div>
 </section>
 
+<section class="slice pt-5 pb-5 bg-section-secondary border-bottom">
+    <div class="container">
+        <div class="row">
+            {% for product in hot_products %}
+            <div class="col-md-{{ product.col_md }} col-lg-{{ product.col_lg }} d-flex align-items-stretch">
+                <div class="card shadow-lg bg-cover bg-size--cover hover-shadow-lg hover-translate-y-n3" style="background-image: url({{ product.image }});">
+                    <!-- Mask -->
+                    <span class="mask bg-dark opacity-5"></span>
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span class="badge badge-secondary badge-pill">
+                                    {{ product.category }} 
+                                </span>
+                                {% with product as object %}
+                                    {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body pt-5 mt-auto position-relative">
+                        <!-- Title -->
+                        <a href="{% url 'blog:detail' product.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ product.title }}</a>
+                        <!-- Text -->
+                        <p class="mb-0 text-white">
+                            {{ product.description|truncatechars:200 }}
+                        </p>
+                    </div>
+                    <!-- Meta -->
+                    <div class="card-body position-relative delimiter-top">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <a href="#" class="avatar avatar-sm rounded-circle d-inline-block">
+                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if product.author.avatar.image %}{{ product.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ product.author.get_full_name }}">
+                                </a>
+                            </div>
+                            <div class="pl-3">
+                                <a href="{{ product.author.get_absolute_url }}" class="h6 stretched-link text-white text-sm">{{ product.author.get_full_name }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 <section class="slice bg-section-secondary">
     <div class="container">
         <div class="row mx-lg-n4">

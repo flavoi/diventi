@@ -61,13 +61,14 @@ class ProductListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        products = Product.objects.published().order_by('publication_date')
+        products = Product.objects.published_but_not_hot().order_by('publication_date')
         products = products.exclude(category__meta_category=True)
         return products
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProductListView, self).get_context_data(*args, **kwargs)
         context['categories'] = ProductCategory.objects.visible()
+        context['hot_products'] = Product.objects.hot()
         return context
 
 
@@ -77,8 +78,13 @@ class ProductListViewByCategory(ProductListView):
     """
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.category(category_slug=self.kwargs['slug'])
+        return queryset.category(category_slug=self.kwargs['category'])
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductListView, self).get_context_data(*args, **kwargs)
+        context['hot_products'] = Product.objects.hot().category(category_slug=self.kwargs['category'])
+        return context
+        
 
 class ProductDetailView(DetailView):
     """

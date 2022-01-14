@@ -74,6 +74,17 @@ class ProductQuerySet(PublishableModelQuerySet):
         products = products.exclude(category__meta_category=True)
         return products
 
+    # Get the featured products
+    def hot(self):
+        products = self.published().filter(hot=True)
+        products = products.prefetch()
+        return products
+
+    # Get the list of published products but excludes the hot ones
+    def published_but_not_hot(self):
+        products = self.published().exclude(hot=True)
+        return products
+
 
 class ProductCategoryQuerySet(models.QuerySet):
 
@@ -177,11 +188,15 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     pinned = models.BooleanField(
         default = True,
         verbose_name = _('pinned')
-    ) # Pinned products appear on top of the landing page
+    ) # Pinned products appear on the landing page
     public = models.BooleanField(
         default = False,
         verbose_name = _('public')
     ) # Public products open their content to anonimous users
+    hot = models.BooleanField(
+        default=False, 
+        verbose_name=_('hot')
+    ) # Hot products are always on top of the games' page
     courtesy_short_message = models.CharField(
         blank=True, 
         max_length=50, 

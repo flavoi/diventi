@@ -97,7 +97,6 @@ class ProductCategory(Element):
         help_text=_('Meta categories won\'t be listed in search results, nor on reporting pages.')
     )
     slug = models.SlugField(
-        unique=True, 
         verbose_name=_('slug')
     )
 
@@ -179,6 +178,10 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         default = True,
         verbose_name = _('pinned')
     ) # Pinned products appear on top of the landing page
+    public = models.BooleanField(
+        default = False,
+        verbose_name = _('public')
+    ) # Public products open their content to anonimous users
     courtesy_short_message = models.CharField(
         blank=True, 
         max_length=50, 

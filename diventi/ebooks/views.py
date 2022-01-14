@@ -1,4 +1,8 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+) 
+
 from django.views.generic.detail import DetailView
 from django.views import View
 from django.utils.translation import (
@@ -61,8 +65,19 @@ class EbookView(View):
         return context
 
 
-class BookDetailView(LoginRequiredMixin, UserHasProductMixin, 
-                     EbookView, DetailView):
+class PublicEbookMixin:
+    """
+        Returns the ebook if the product is public, or else it redirects to the default view.
+    """
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        product = get_object_or_404(Product, id=obj.book_product.id)
+        if product.public: 
+            return super().get(request, *args, **kwargs)
+        return redirect('ebooks:book-detail', book_slug=obj.slug)
+        
+
+class BookDetailView(EbookView, DetailView):
     """ Returns the digital content of a product. """
     
     model = Book
@@ -93,9 +108,27 @@ class PaperEbookView(BookDetailView):
         current_lan = get_language()
         paper_filename = get_paper_filename(paper_id=self.object.id, paper_lan=current_lan)
         paper_soup = parse_paper_soup(paper_filename)
-        context['related_products'] = self.object.book_product.related_products.all()
         # context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_title'] = self.object.title
         context['paper_toc'] = make_paper_toc(paper_soup)
         context['book_paper'] = paper_filename
         return context
+
+
+class PublicPaperEbookView(PublicEbookMixin, PaperEbookView):
+    """
+        Renders the ebook regardless of the user or their collection.
+    """
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['related_products'] = self.object.book_product.related_products.all()
+        return context
+
+
+class PrivatePaperEbookView(LoginRequiredMixin, UserHasProductMixin, PaperEbookView):
+    """
+        Renders the ebook if and only if the user is authenticated 
+        and has the product in their collection.
+    """
+    pass

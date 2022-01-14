@@ -1,6 +1,10 @@
 import stripe
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import (
+    render, 
+    get_object_or_404,
+    redirect,
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.views.generic.detail import DetailView
@@ -24,6 +28,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
+from django.urls import reverse
 
 from boto.s3.connection import S3Connection
 from logging import getLogger
@@ -34,6 +39,11 @@ from .models import (
     Product,
     ProductCategory,
 )
+
+from diventi.ebooks.models import (
+    Book
+)
+
 from .forms import UserCollectionUpdateForm
 from .utils import (
     add_product_to_user_collection,
@@ -72,11 +82,17 @@ class ProductListViewByCategory(ProductListView):
 
 class ProductDetailView(DetailView):
     """
-        Displays a product with all its infos.
+        Renders the product contents.
     """
     model = Product
     context_object_name = 'product'
     template_name = 'products/product_detail_quick.html'
+
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.public: 
+            return redirect('ebooks:book-detail-public', book_slug=obj.slug)
+        return super().get(request, *args, **kwargs)
 
     # Returns only published products
     def get_queryset(self):
@@ -116,6 +132,24 @@ class FreeProductMixin:
             return super().post(request, *args, **kwargs)
         else:
             raise PermissionDenied
+
+
+class PublicProductMixin:
+    """ Restrict the access to public products only. """
+
+    def post(self, request, *args, **kwargs):        
+        if not self.get_object().public:
+            return super().post(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+
+class RedirectToPublicEbookView(PublicProductMixin, RedirectView):
+    
+    def get_redirect_url(self, **kwargs):
+        product = get_object_or_404(Product, slug=kwargs.get('slug'))
+        ebook = get_object_or_404(Book, book_product=product)
+        return reverse('ebooks:book-detail-public', kwargs={'book_slug': ebook.slug})
 
 
 class AddToUserCollectionView(FreeProductMixin, ProductUpdateView):

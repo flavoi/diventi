@@ -81,7 +81,7 @@ class ProductListViewByCategory(ProductListView):
         return queryset.category(category_slug=self.kwargs['category'])
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ProductListView, self).get_context_data(*args, **kwargs)
+        context = super(ProductListViewByCategory, self).get_context_data(*args, **kwargs)
         context['hot_products'] = Product.objects.hot().category(category_slug=self.kwargs['category'])
         return context
         

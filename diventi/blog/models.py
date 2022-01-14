@@ -176,7 +176,7 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         for article in queryset:
             results.append({
                 'columns': 4,
-                'name': _('%(article)s') % {
+                'name': '%(article)s' % {
                     'article': article.title,
                 },
                 'title': article.hit_count.hits,

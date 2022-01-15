@@ -97,7 +97,7 @@ class ProductDetailView(DetailView):
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.public: 
-            return redirect('ebooks:book-detail-public', book_slug=obj.slug)
+            return redirect('products:detail-public', slug=obj.slug)
         return super().get(request, *args, **kwargs)
 
     # Returns only published products
@@ -143,8 +143,9 @@ class FreeProductMixin:
 class PublicProductMixin:
     """ Restrict the access to public products only. """
 
-    def post(self, request, *args, **kwargs):        
-        if not self.get_object().public:
+    def post(self, request, *args, **kwargs):
+        obj =  self.get_object()  
+        if not obj.public:
             return super().post(request, *args, **kwargs)
         else:
             raise PermissionDenied

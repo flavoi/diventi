@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-14 21:53+0100\n"
+"POT-Creation-Date: 2022-01-15 19:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1748,8 +1748,8 @@ msgid "<slug:slug>/remove/"
 msgstr "<slug:slug>/rimuovi/"
 
 #: diventi/products/urls.py:24
-msgid "<slug:slug>/public-view/"
-msgstr "<slug:slug>/vista-pubblica/"
+msgid "<slug:slug>/public/"
+msgstr "<slug:slug>/pubblico/"
 
 #: diventi/products/urls.py:25
 msgid "<slug:slug>/secretfile/"
@@ -1768,19 +1768,19 @@ msgstr "<slug:slug>/check-out/fallito/"
 msgid "last purchase: %(last_sub)s on %(date_joined)s"
 msgstr "ultimo acquisto: %(last_sub)s - %(date_joined)s"
 
-#: diventi/products/utils.py:30 diventi/products/views.py:177
+#: diventi/products/utils.py:30 diventi/products/views.py:178
 msgid "The user has this product already."
 msgstr "L'utente possiede già questo prodotto."
 
-#: diventi/products/views.py:166
+#: diventi/products/views.py:167
 msgid "This item has been added to you collection"
 msgstr "Questo oggetto è stato aggiunto alla tua collezione"
 
-#: diventi/products/views.py:187
+#: diventi/products/views.py:188
 msgid "This product has been dropped from your collection"
 msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 
-#: diventi/products/views.py:194
+#: diventi/products/views.py:195
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
@@ -2563,6 +2563,10 @@ msgstr "parole"
 #: diventi/templates/landing/landing_quick.html:106
 msgid "table of contents"
 msgstr "indice"
+
+#: diventi/templates/ebooks/book_detail_quick.html:115
+msgid "related games"
+msgstr "giochi correlati"
 
 #: diventi/templates/ebooks/book_detail_quick.html:168
 #: diventi/templates/landing/landing_quick.html:150

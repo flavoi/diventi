@@ -40,7 +40,7 @@
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link {% ifequal c.title view.kwargs.category %}active{% endifequal %}" href="{% url 'products:list_category' c.slug %}">{{ c.title|capfirst }}</a>
+                            <a class="nav-link {% ifequal c.slug view.kwargs.category %}active{% endifequal %}" href="{% url 'products:list_category' c.slug %}">{{ c.title|capfirst }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -51,6 +51,9 @@
 
 <section class="slice pt-5 pb-5 bg-section-secondary border-bottom">
     <div class="container">
+        <div class="mb-3">
+            <h1 class="h4">{% trans 'featured'|capfirst %}:</h1>
+        </div>
         <div class="row">
             {% for product in hot_products %}
             <div class="col-md-{{ product.col_md }} col-lg-{{ product.col_lg }} d-flex align-items-stretch">
@@ -59,7 +62,7 @@
                     <span class="mask bg-dark opacity-5"></span>
                     <div class="card-header">
                         <div class="row align-items-center">
-                            <div class="col">
+                            <div class="col mt-2">
                                 <span class="badge badge-secondary badge-pill">
                                     {{ product.category }} 
                                 </span>
@@ -72,24 +75,12 @@
                     <!-- Card body -->
                     <div class="card-body pt-5 mt-auto position-relative">
                         <!-- Title -->
-                        <a href="{% url 'blog:detail' product.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ product.title }}</a>
+                        <a href="{% url 'blog:detail' product.slug %}" class="d-block h5 mb-3 text-white stretched-link">
+                            {{ product.title }}</a>
                         <!-- Text -->
                         <p class="mb-0 text-white">
                             {{ product.description|truncatechars:200 }}
                         </p>
-                    </div>
-                    <!-- Meta -->
-                    <div class="card-body position-relative delimiter-top">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <a href="#" class="avatar avatar-sm rounded-circle d-inline-block">
-                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if product.author.avatar.image %}{{ product.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ product.author.get_full_name }}">
-                                </a>
-                            </div>
-                            <div class="pl-3">
-                                <a href="{{ product.author.get_absolute_url }}" class="h6 stretched-link text-white text-sm">{{ product.author.get_full_name }}</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

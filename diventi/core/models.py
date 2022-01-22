@@ -21,7 +21,6 @@ COLORS_CHOICES = (
     ('light', _('White')),
 )
 
-
 class TimeStampedModel(models.Model):
     """
     An abstract base class model that provides self-updating

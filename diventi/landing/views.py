@@ -1,8 +1,13 @@
 from itertools import chain
 
-from django.shortcuts import render, redirect, resolve_url
+from django.urls import reverse
 from django.views.generic.detail import DetailView
-from django.views.generic import ListView, TemplateView
+from django.views.generic import (
+    ListView,
+    TemplateView,
+    RedirectView
+)
+
 from django.views.generic.edit import CreateView
 from django.utils.translation import (
     ugettext_lazy as _,
@@ -85,21 +90,11 @@ class DashboardView(StaffRequiredMixin, ListView):
 def get_landing_context(request):
     sections = Section.objects.not_featured()
 
-    # Get the demo book from the pinned product
-    pinned_product = Product.objects.pinned().get()
-    if hasattr(pinned_product, 'book'):
-        pinned_book = pinned_product.book
-        current_lan = get_language()
-        paper_filename = get_paper_filename(paper_id=pinned_book.id, paper_lan=current_lan)
-        paper_soup = parse_paper_soup(paper_filename)
-        paper_toc = make_paper_toc(paper_soup)
-    else:
-        pinned_book = None
-
-    # Get the latest blog article
+    hot_product = Product.objects.hot().pinned()
+    pinned_product = Product.objects.not_hot().pinned()
+    latest_public_product = Product.objects.latest_public()
     latest_article = Article.objects.hottest()
-        
-    # Get the title from the featured section or the first section on the list 
+
     featured_section = Section.objects.featured()
     if featured_section:
         pass
@@ -108,12 +103,16 @@ def get_landing_context(request):
         sections = sections.exclude(id=featured_section.id)
     else:
         return HttpResponseNotFound(_('This page is not available yet.'))
+
+    sections = Section.objects.not_featured()
+
     context = {
+        'hot_product': hot_product,
+        'pinned_product': pinned_product,
         'featured_section': featured_section,
-        'book': pinned_book,
-        'paper_filename': paper_filename,
-        'paper_toc': paper_toc,
+        'sections': sections,
         'latest_article': latest_article,
+        'latest_public_product': latest_public_product,
     }
     return context
 
@@ -142,8 +141,6 @@ class PolicyArticleDetailView(DetailView):
     
     model = PolicyArticle
     template_name  = "landing/about_article_quick.html"
-
-
 
 
 

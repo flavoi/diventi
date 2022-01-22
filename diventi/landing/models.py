@@ -12,7 +12,8 @@ from diventi.core.models import (
     Element, 
     DiventiImageModel, 
     FeaturedModel, 
-    FeaturedModelManager, 
+    FeaturedModelQuerySet,
+    FeaturedModelManager,
     SectionModel,
     PublishableModel,
     TimeStampedModel,
@@ -20,53 +21,15 @@ from diventi.core.models import (
 )
 
 from diventi.accounts.models import DiventiUser
-from diventi.products.models import Product
+from diventi.products.models import (
+    Product,
+    ProductCategory,
+)
 from diventi.feedbacks.models import Survey
-from diventi.blog.models import Article
-
-
-class SectionModelManager(FeaturedModelManager):
-
-    # Get the non featured sections that appear on the landing page
-    def not_featured(self):
-        sections = super(SectionModelManager, self).not_featured()
-        sections = sections.order_by('order_index')
-        return sections
-
-
-class Section(DiventiImageModel, FeaturedModel, SectionModel):
-    prefix = models.TextField(blank=True, verbose_name=_('prefix text'))
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    description = models.TextField(blank=True, verbose_name=_('description'))
-    order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    video = models.URLField(
-        blank=True,
-        verbose_name=_('video')
-    )
-
-    objects = SectionModelManager()
-
-    def __str__(self):
-        return '(%s) %s' % (self.order_index, self.title)
-
-    class Meta:
-        verbose_name = _('section')
-        verbose_name_plural = _('sections')
-
-
-class Feature(Element): 
-    section = models.ForeignKey(Section, null=True, related_name='features', on_delete=models.SET_NULL)
-
-    class Meta:
-        verbose_name = _('feature')
-        verbose_name_plural = _('features')
-
-
-class SearchSuggestion(Element):
-
-    class Meta:
-        verbose_name = _('search suggestion')
-        verbose_name_plural = _('search suggestions')
+from diventi.blog.models import (
+    Article,
+    ArticleCategory,
+)
 
 
 class AboutArticle(TimeStampedModel, PublishableModel, Element):
@@ -91,6 +54,90 @@ class PolicyArticle(TimeStampedModel, PublishableModel, Element):
     class Meta:
         verbose_name = _('policy article')
         verbose_name_plural = _('policy article')    
+
+
+class SectionModelQuerySet(FeaturedModelQuerySet):
+
+    def prefetch(self):
+        sections = self.select_related('about_article')
+        sections = sections.select_related('product_category')
+        sections = sections.select_related('article_category')
+        return sections
+
+    # Get the not featured object that can be selected to appear on the landing page
+    def not_featured(self):
+        not_featured_models = self.published().filter(featured=False)
+        return not_featured_models
+
+
+class SectionModelManager(FeaturedModelManager):
+
+    def get_queryset(self):
+        return SectionModelQuerySet(self.model, using=self._db)
+
+    def not_featured(self):
+        return self.get_queryset().not_featured()
+
+
+class Section(DiventiImageModel, FeaturedModel, SectionModel):
+    prefix = models.TextField(blank=True, verbose_name=_('prefix text'))
+    title = models.CharField(max_length=50, verbose_name=_('title'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
+    button_label = models.CharField(blank=True, max_length=50, verbose_name=_('button label'))
+    order_index = models.PositiveIntegerField(verbose_name=_('order index'))
+    about_article = models.ForeignKey(
+        AboutArticle,
+        blank = True,
+        null = True,
+        related_name='sections',
+        on_delete=models.SET_NULL,
+        verbose_name=_('about article'),
+    )
+    product_category = models.ForeignKey(
+        ProductCategory,
+        blank = True,
+        null = True,
+        related_name='sections',
+        on_delete=models.SET_NULL,
+        verbose_name=_('product category'),
+    )
+    article_category = models.ForeignKey(
+        ArticleCategory,
+        blank = True,
+        null = True,
+        related_name='sections',
+        on_delete=models.SET_NULL,
+        verbose_name=_('article category'),
+    )
+    video = models.URLField(
+        blank=True,
+        verbose_name=_('video')
+    )
+
+
+    objects = SectionModelManager()
+
+    def __str__(self):
+        return '(%s) %s' % (self.order_index, self.title)
+
+    class Meta:
+        verbose_name = _('section')
+        verbose_name_plural = _('sections')
+
+
+class Feature(Element): 
+    section = models.ForeignKey(Section, null=True, related_name='features', on_delete=models.SET_NULL)
+
+    class Meta:
+        verbose_name = _('feature')
+        verbose_name_plural = _('features')
+
+
+class SearchSuggestion(Element):
+
+    class Meta:
+        verbose_name = _('search suggestion')
+        verbose_name_plural = _('search suggestions')
 
 
 

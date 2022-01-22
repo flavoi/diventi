@@ -64,9 +64,14 @@ class ProductQuerySet(PublishableModelQuerySet):
 
     # Return the list of products that are pinned.
     def pinned(self):
-        products = self.published().filter(pinned=True)
-        products = products.prefetch()
-        return products
+        product = self.published().filter(pinned=True).prefetch()
+        try:
+            product = product.get()
+        except Product.MultipleObjectsReturned:
+            product = product.latest('publication_date')
+        except Product.DoesNotExist:
+            product = product.first()
+        return product
 
     # Get the list of published products of a certain category
     def category(self, category_slug):
@@ -74,17 +79,26 @@ class ProductQuerySet(PublishableModelQuerySet):
         products = products.exclude(category__meta_category=True)
         return products
 
-    # Get the featured products
+    # Get the hottest products
     def hot(self):
-        products = self.published().filter(hot=True)
-        products = products.prefetch()
+        products = self.published().filter(hot=True).prefetch()
+        return products
+
+    # Exclude the featured products
+    def not_hot(self):
+        products = self.exclude(hot=True)
         return products
 
     # Get the list of published products but excludes the hot ones
     def published_but_not_hot(self):
-        products = self.published().exclude(hot=True)
+        products = self.published().not_hot()
         return products
 
+    # Get the latest product that has public access
+    def latest_public(self):
+        product = self.published().filter(public=True).latest('publication_date')
+        return product
+        
 
 class ProductCategoryQuerySet(models.QuerySet):
 

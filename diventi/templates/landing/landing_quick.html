@@ -5,8 +5,9 @@
 {% block titleseparator %}{% endblock titleseparator %}
 {% block title %}{% endblock title %}
 
-{% block navbarclass %}navbar-light{% endblock navbarclass %}
-{% block headerclass %}{% endblock headerclass %}
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
+{% block headerclass %}header-transparent{% endblock headerclass %}
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'diventi/css/diventi-datatables.min.css' %}" />
@@ -31,138 +32,211 @@
 
 {% block content %}
 
-<section class="slice py-lg-6 delimiter-bottom">
-   <div class="container">
-      <div class="row row-grid align-items-center">
-         <div class="col-12 col-md-5 col-lg-6 order-md-2">                        
-            <figure class="w-100"><img loading="lazy" alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="img-fluid mw-md-100"></figure>
-            {% if featured_section.video %}
-            <div class="card-img-overlay d-flex justify-content-end d-block d-md-block d-lg-none">
-              <div class="text-center">
-                <div>
-                  <a href="{{ featured_section.video }}" class="icon bg-gradient-primary text-white rounded-circle icon-shape hover-scale-110" data-fancybox="">
-                    <i data-feather="play"></i>
-                  </a>
+<section class="slice slice-lg bg-primary">
+    <div class="container d-flex align-items-center text-center text-lg-left pt-4 pt-lg-6">
+        <div class="col px-0">
+            <div class="row row-grid align-items-center">
+                <div class="col-lg-6 pr-lg-5">
+                    <h1 class="display-4 text-white mb-4">
+                        {{ featured_section.prefix|capfirst }} <strong class="text-warning">{{ featured_section.title|capfirst }}.</strong>
+                    </h1>
+                    <p class="lead text-white opacity-8">
+                        {{ featured_section.description|striptags|capfirst }}
+                    </p>
+                    <div class="mt-5">
+                        <a href="#sct-next" class="btn btn-white my-2" data-scroll-to="" data-scroll-to-offset="85">{% trans 'learn more'|capfirst %}</a>
+                        {% if hot_product %}
+                        <a href="{{ hot_product.get_absolute_url }}" class="btn btn-outline-white my-2">{{ featured_section.button_label|capfirst }}</a>
+                        {% endif %}
+                    </div>
                 </div>
-              </div>
+                <div class="col-lg-6">
+                    <div class="row mx-n2">
+                        <div class="col-sm-6 mt-sm-6 px-sm-2">
+                            <div class="card border-0 mb-3 hover-translate-y-n10">
+                                <div class="h-100">
+                                    <img loading=lazy class="card-img-top py-3" src="{{ featured_section.image }}" alt="{{ pinned_product.title }}">
+                                </div>
+                                <div class="card-body p-3 delimiter-top">
+                                    <div class="d-flex align-items-center">
+                                        <div data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ pinned_product.category.title }}">
+                                            <span class="avatar avatar-sm rounded-circle bg-{{ pinned_product.category.color }} text-white"><i data-feather="{{ pinned_product.category.icon }}"></i></span>
+                                        </div>
+                                        <div class="pl-3">
+                                            <span class="h6 text-sm mb-0">{{ pinned_product.title|capfirst }}</span>
+                                            {% with pinned_product as object %}
+                                                {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                            {% endwith %}
+                                        </div>
+                                        <div class="ml-auto">
+                                            <div class="actions">
+                                                <a href="{{ pinned_product.get_absolute_url }}" class="action-item"  data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'visualize'|capfirst %}"><i data-feather="eye"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if featured_section.video %}
+                            <div class="card shadow-none mb-3x">
+                                <div class="card-body py-3">                                        
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <div class="icon bg-warning text-white rounded-circle icon-shape hover-scale-110">
+                                                <a href="{{ featured_section.video }}" class="mb-0" data-fancybox="">
+                                                    <i data-feather="play" class="text-white"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="pl-3 mt-2">
+                                            <h6>{% trans 'video presentation'|capfirst %}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-6 px-sm-2 mt-sm-6 ">
+                            <div class="card mb-3 hover-shadow-lg hover-translate-y-n3 mt-xl-n6">
+                                <div class="card-body text-center py-5 h-100">
+                                    <div class="d-flex justify-content-center align-items-center mb-3">
+                                        <span class="badge badge-soft-dark badge-pill">
+                                            {{ latest_article.publication_date|date:"d/m/Y" }}
+                                        </span>
+                                        {% with latest_article as object %}
+                                            {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                        {% endwith %}
+                                    </div>
+                                    <div class="mb-1 mx-auto">
+                                        <h6>{{ latest_article.title }}</h6>
+                                    </div>
+
+                                    <a href="{{ latest_article.get_absolute_url }}" class="ttext-sm link link-underline-dark">{% trans 'read article'|capfirst %}</a>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-body text-center">
+
+                                    <div class="mt-2 mb-3" data-toggle="tooltip" data-placement="bottom" title="{{ latest_public_product.category.title }}">
+                                        <a href="{% url 'products:list_category' latest_public_product.category.slug %}" class="hover-translate-y-n3">
+                                            <div class="icon icon-lg bg-{{ latest_public_product.category.color }} text-white rounded-circle icon-shape shadow">
+                                                <i data-feather="{{ latest_public_product.category.icon }}"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <a href="{{ latest_public_product.get_absolute_url }}" class="d-block h5 mt-3 mb-4">
+                                        {{ latest_public_product.title }}                                    
+                                    </a>
+                                    {% with latest_public_product as object %}
+                                        {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                    {% endwith %}
+
+                                    <div class="mt-3 pt-3 delimiter-top">
+                                        <div class="">
+                                            <div class="row">
+                                                {% for pd in latest_public_product.details.all %}                                    
+                                                    <div class="col px-0 mx-0">
+                                                        <span class="h6 font-weight-bolder mb-0">{{ pd.title }}x</span>
+                                                        <div class="icon icon-sm icon-dark rounded-circle icon-shape shadow" data-toggle="tooltip" data-placement="bottom" title="{{ pd.description|capfirst }}">
+                                                            <i data-feather="{{ pd.icon|default:'book' }}"></i>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endif %}
-         </div>
-         <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">            
-            <h1 class="h1 text-center text-md-left mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-highlight-info">{{ featured_section.title|capfirst }}</strong></h1>
-            <p class="lead text-center text-md-left text-muted">{{ featured_section.description|striptags|capfirst }}</p>
-            <div class="text-center text-md-left text-muted mt-2">
-                <a href="{{ latest_article.get_absolute_url }}" class="text-primary text-underline--dashed"><i data-feather="align-left" data-toggle="tooltip" data-placement="bottom" title="{% trans 'latest article'|capfirst %}" class="mb-1"></i> {{ latest_article.title|capfirst }} - {{ latest_article.publication_date|date:"d/m/Y" }}</a>
-            </div>
-            <div class="text-center text-md-left mt-4">
-                {% if featured_section.video %}
-                  <a href="{{ featured_section.video }}" class="btn btn-neutral btn-icon d-none d-lg-inline-block" data-fancybox="">
-                    <span class="btn-inner--text">{% trans 'play video'|capfirst %}</span>
-                    <span class="btn-inner--icon">
-                      <i data-feather="play" class="mb-1"></i>
-                    </span>
-                  </a>
-                {% endif %}
-            </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
+    <!-- SVG separator -->
+    <div class="shape-container shape-line shape-position-bottom">
+        <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="">
+            <polygon points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+    </div>
 </section>
 
-<section class="slice">
+<section class="slice pb-9" {% if forloop.first %}id="sct-next"{% endif %}>
+    <div class="container">
+    {% for section in sections %}
+        <div class="section-process-step">
+            <div class="row row-grid justify-content-between align-items-center">
+                <div class="col-lg-5 order-lg-{% if forloop.counter|divisibleby:2 %}1{% else%}2{% endif %}">
+                    <span class="badge badge-primary badge-pill">{{ section.category.button_label|default:'feature'|capfirst }}</span>
+                    {% with section as object %}
+                        {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                    {% endwith %}
+                    <h5 class="h3 mt-4">{{ section.title }}</h5>
+                    <p class="lead text-muted mb-4">
+                        {{ section.description|capfirst }}
+                    </p>
+
+                    {% if section.about_article or section.product_category or section.article_category %}                
+                    <a href="{% if section.about_article %}{{ section.about_article.get_absolute_url }}{% elif section.product_category %}{% url 'products:list_category' section.product_category.slug %}{% elif section.article_category %}{% url 'blog:list_category' section.article_category.title %}{% endif %}" class="link link-underline-primary font-weight-bold">
+                        {{ section.button_label|default:'find out more'|capfirst }}
+                    </a>
+                    {% endif %}
+
+                </div>
+                <div class="col-lg-6 order-lg-{% if forloop.counter|divisibleby:2 %}2{% else%}1{% endif %}">
+                    <div class="card card-transparent mb-0 mr-lg-5 shadow-none border-0 hover-shadow-lg">
+                        <div class="card-body p-0">
+                            <img loading=lazy alt="{{ section.title }}" src="{{ section.image }}" class="img-fluid shadow rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</section>
+
+<section class="slice slice-lg pt-md-9 bg-section-secondary">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-        <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
-            <div class="d-none d-md-none d-lg-block">
-                <div class="card">
-                    <div class="card-body">
-                        <nav class="nav nav-pills flex-column" id="nav-terms">
-                            {% with paper_toc as paper_toc %}
-                                {% include "ebooks/book_toc_quick.html" %}
-                            {% endwith %}
-                        </nav>
-                    </div>
-                </div>
-            </div>
+    <div class="card shadow-lg border-0 zindex-100">
+      <div class="card-body px-5 py-5 text-center text-md-left">
+        {% if not user.is_authenticated %}
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h4 class="h5 mb-2">{% trans "Join our community" %}.</h4>
+            <p class="mb-0">{% trans "Sign up to know more and start exploring." %}</p>
+          </div>
+          <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+            <a href="{% url 'accounts:signup' %}" class="btn btn-warning btn-icon rounded-pill">
+              <span class="btn-inner--icon">
+                <i data-feather="log-in"></i>
+              </span>
+              <span class="btn-inner--text">{% trans 'sign up'|capfirst %}</span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-7 mb-5 mb-lg-0">        
-        <div class="mb-4 d-flex justify-content-center">
-          {% if book.logo %}
-            <figure class="figure">
-                <a name="top">
-                  <img loading="lazy" class="img-fluid rounded shadow-lg p-3" src="{{ book.logo }}">
-                </a>
-            </figure>
-          {% else %}
-            <a name="top"><h1>{{ book.title|capfirst }}</h1></a>
-          {% endif %}
-        </div>       
-        <div id="accordion-1" class="accordion accordion-spaced d-block d-md-block d-lg-none">
-            <div class="card bg-light-secondary border-primary-dark">
-                <div class="card-header py-4 collapsed" id="heading-1-1" data-toggle="collapse" role="button" data-target="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
-                    <h6 class="mb-0">
-                        {% trans "table of contents"|capfirst %}
-                    </h6>
-                </div>
-                <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1" style="">
-                    <div class="card-body">
-                        <nav class="nav nav-pills flex-column" id="nav-terms">
-                            {% with paper_toc as paper_toc %}
-                                {% include "ebooks/book_toc_quick.html" %}
-                            {% endwith %}
-                        </nav>
-                    </div>
-                </div>
-            </div>
+        {% else %}
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h4 class="h5 mb-2">{% trans "Hello" %} {{ user.first_name }}!</h4>
+            <p class="mb-0">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</p>
+          </div>
+          <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+            <a href="{% url 'accounts:detail' user.nametag %}" class="btn btn-warning btn-icon rounded-pill">
+              <span class="btn-inner--icon">
+                <i data-feather="user" class="mb-1"></i>
+              </span>
+              <span class="btn-inner--text">{% trans "Manage profile" %}</span>
+            </a>
+          </div>
         </div>
-        <article>
-          {% include paper_filename %}
-        </article>        
+        {% endif %}
       </div>
     </div>
- </div>
+  </div>
 </section>
+
 {% endblock content %}
 
 {% block footercolor %}{% endblock footercolor %}
-
-{% block extrascript %}
-    <script src="{% static 'readingtime/readingtime.js' %}"></script>
-    <script>
-        $('article').readingTime({
-            readingTimeTarget: '.eta',
-            wordCountTarget: '.words',
-        });
-        $(document).ready(function() { 
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
-    <script src="{% static 'diventi/js/diventi-datatables.js' %}"></script>
-    <script src="{% static 'diventi/js/diventi-sortable.min.js' %}"></script>
-    <script>
-        $(document).ready(function() {
-            for (var i = 99; i >= 0; i--) {
-                $('#tabella-'+i).DataTable({
-                    "language": {
-                        "lengthMenu": "{% trans 'Display _MENU_ records per page' %}",
-                        "zeroRecords": "{% trans 'Nothing found - sorry' %}",
-                        "info": "{% trans 'Showing page _PAGE_ of _PAGES_' %}",
-                        "infoEmpty": "{% trans 'No records available' %}",
-                        "infoFiltered": "{% trans '(filtered from _MAX_ total records)' %}",
-                        "paginate": {
-                            "first": "{% trans 'First page' %}",
-                            "previous": "{% trans 'Previous' %}",
-                            "next": "{% trans 'Next' %}"
-                        },
-                        search: '',
-                        searchPlaceholder: '{% trans 'Filter records' %}'
-                    }
-                });
-            }
-        } );
-    </script>
-
-{% endblock extrascript %}

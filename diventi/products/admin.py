@@ -32,7 +32,7 @@ make_unpublished.short_description = _("Mark selected products as hidden")
 
 class ProductDetailInline(TranslationStackedInline):
     model = ProductDetail
-    fields = ('title', 'description', 'highlighted')
+    fields = ('title', 'description', 'icon', 'highlighted')
     extra = 0
 
 

@@ -50,7 +50,10 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('alignment', 'position',),
         }),
         (_('Editing'), {
-            'fields': ('prefix', 'title', 'order_index', 'description',),
+            'fields': ('prefix', 'title', 'button_label', 'order_index', 'description',),
+        }),
+        (_('Attachment'), {
+            'fields': ('about_article', 'product_category', 'article_category',),
         }),
     )
     inlines = [        

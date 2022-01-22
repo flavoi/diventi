@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-15 19:48+0100\n"
+"POT-Creation-Date: 2022-01-21 23:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,7 +277,7 @@ msgid "english subscribers"
 msgstr "iscritti inglesi"
 
 #: diventi/accounts/models.py:274 diventi/accounts/models.py:280
-#: diventi/products/models.py:303 diventi/products/models.py:315
+#: diventi/products/models.py:308 diventi/products/models.py:320
 msgid "copy emails"
 msgstr "copia le email"
 
@@ -448,14 +448,14 @@ msgstr "Antagonisti"
 
 #: diventi/adventures/models.py:135 diventi/ebooks/models.py:379
 #: diventi/ebooks/models.py:401 diventi/ebooks/models.py:426
-#: diventi/landing/models.py:53 diventi/tooltips/models.py:57
+#: diventi/landing/models.py:54 diventi/tooltips/models.py:57
 msgid "section"
 msgstr "sezione"
 
 #: diventi/adventures/models.py:143 diventi/ebooks/models.py:72
-#: diventi/products/models.py:245 diventi/products/models.py:358
-#: diventi/products/models.py:376 diventi/products/models.py:386
-#: diventi/products/models.py:433 diventi/tooltips/models.py:65
+#: diventi/products/models.py:250 diventi/products/models.py:363
+#: diventi/products/models.py:381 diventi/products/models.py:391
+#: diventi/products/models.py:438 diventi/tooltips/models.py:65
 msgid "product"
 msgstr "prodotto"
 
@@ -536,7 +536,7 @@ msgstr "Storia n. %(uuid)s"
 msgid "story"
 msgstr "storia"
 
-#: diventi/adventures/models.py:273 diventi/products/models.py:434
+#: diventi/adventures/models.py:273 diventi/products/models.py:439
 msgid "customer"
 msgstr "cliente"
 
@@ -706,25 +706,25 @@ msgid "Article Categories"
 msgstr "Categorie di articolo"
 
 #: diventi/blog/models.py:117 diventi/ebooks/models.py:147
-#: diventi/products/models.py:182 diventi/products/models.py:377
+#: diventi/products/models.py:187 diventi/products/models.py:382
 msgid "category"
 msgstr "categoria"
 
 #: diventi/blog/models.py:121 diventi/ebooks/models.py:251
 #: diventi/ebooks/models.py:302 diventi/feedbacks/models.py:184
-#: diventi/landing/models.py:73 diventi/landing/models.py:85
+#: diventi/landing/models.py:74 diventi/landing/models.py:86
 msgid "content"
 msgstr "contenuto"
 
-#: diventi/blog/models.py:125 diventi/products/models.py:198
+#: diventi/blog/models.py:125 diventi/products/models.py:203
 msgid "hot"
 msgstr "hot"
 
 #: diventi/blog/models.py:129 diventi/ebooks/models.py:65
 #: diventi/ebooks/models.py:204 diventi/ebooks/models.py:321
-#: diventi/feedbacks/models.py:103 diventi/landing/models.py:74
-#: diventi/landing/models.py:86 diventi/products/models.py:111
-#: diventi/products/models.py:151
+#: diventi/feedbacks/models.py:103 diventi/landing/models.py:75
+#: diventi/landing/models.py:87 diventi/products/models.py:116
+#: diventi/products/models.py:156
 msgid "slug"
 msgstr "slug"
 
@@ -882,7 +882,7 @@ msgstr "creato"
 msgid "modified"
 msgstr "modificato"
 
-#: diventi/core/models.py:66 diventi/products/models.py:337
+#: diventi/core/models.py:66 diventi/products/models.py:342
 msgid "published"
 msgstr "pubblicato"
 
@@ -896,7 +896,7 @@ msgstr "promozioni"
 
 #: diventi/core/models.py:107 diventi/feedbacks/models.py:26
 #: diventi/feedbacks/models.py:65 diventi/feedbacks/models.py:101
-#: diventi/landing/models.py:39 diventi/products/models.py:133
+#: diventi/landing/models.py:39 diventi/products/models.py:138
 msgid "title"
 msgstr "titolo"
 
@@ -911,7 +911,7 @@ msgstr "stile icona"
 #: diventi/core/models.py:130 diventi/ebooks/models.py:28
 #: diventi/feedbacks/models.py:27 diventi/feedbacks/models.py:66
 #: diventi/feedbacks/models.py:102 diventi/landing/models.py:40
-#: diventi/products/models.py:147
+#: diventi/products/models.py:152
 msgid "description"
 msgstr "descrizione"
 
@@ -951,7 +951,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:181 diventi/products/models.py:389
+#: diventi/core/models.py:181 diventi/products/models.py:394
 msgid "Image"
 msgstr "Immagine"
 
@@ -1089,7 +1089,7 @@ msgstr ""
 msgid "Autocomplete ..."
 msgstr "Completamento automatico ..."
 
-#: diventi/ebooks/forms.py:27 diventi/products/models.py:380
+#: diventi/ebooks/forms.py:27 diventi/products/models.py:385
 msgid "Chapter"
 msgstr "Capitolo"
 
@@ -1156,7 +1156,7 @@ msgstr "libri"
 
 #: diventi/ebooks/models.py:203 diventi/ebooks/models.py:250
 #: diventi/ebooks/models.py:298 diventi/feedbacks/models.py:28
-#: diventi/landing/models.py:41
+#: diventi/landing/models.py:42
 msgid "order index"
 msgstr "id ordinamento"
 
@@ -1257,7 +1257,7 @@ msgstr "allineamento del testo"
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:380 diventi/landing/models.py:54
+#: diventi/ebooks/models.py:380 diventi/landing/models.py:55
 #: diventi/templates/base_quick.html:238
 msgid "sections"
 msgstr "sezioni"
@@ -1383,12 +1383,12 @@ msgstr "scelta"
 msgid "choices"
 msgstr "scelte"
 
-#: diventi/feedbacks/models.py:105 diventi/products/models.py:194
+#: diventi/feedbacks/models.py:105 diventi/products/models.py:199
 msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:110 diventi/feedbacks/models.py:117
-#: diventi/products/models.py:239
+#: diventi/products/models.py:244
 msgid "survey"
 msgstr "sondaggio"
 
@@ -1487,31 +1487,35 @@ msgstr "Pagina di atterraggio"
 msgid "prefix text"
 msgstr "prefisso"
 
-#: diventi/landing/models.py:44
+#: diventi/landing/models.py:41
+msgid "button label"
+msgstr "etichetta del bottone"
+
+#: diventi/landing/models.py:45
 msgid "video"
 msgstr "video"
 
-#: diventi/landing/models.py:61
+#: diventi/landing/models.py:62
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:62
+#: diventi/landing/models.py:63
 msgid "features"
 msgstr "aspetti"
 
-#: diventi/landing/models.py:68
+#: diventi/landing/models.py:69
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:69 diventi/templates/base_quick.html:361
+#: diventi/landing/models.py:70 diventi/templates/base_quick.html:361
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
-#: diventi/landing/models.py:80 diventi/landing/models.py:81
+#: diventi/landing/models.py:81 diventi/landing/models.py:82
 msgid "about article"
 msgstr "articolo su di noi"
 
-#: diventi/landing/models.py:92 diventi/landing/models.py:93
+#: diventi/landing/models.py:93 diventi/landing/models.py:94
 msgid "policy article"
 msgstr "articolo sulla policy"
 
@@ -1531,7 +1535,7 @@ msgstr "su-di-noi/<slug:slug>/"
 msgid "policy/<slug:slug>/"
 msgstr "policy/<slug:slug>/"
 
-#: diventi/landing/views.py:110
+#: diventi/landing/views.py:105
 msgid "This page is not available yet."
 msgstr "Questa pagina non è ancora disponibile."
 
@@ -1566,167 +1570,167 @@ msgstr "Prezzatura"
 msgid "Projects"
 msgstr "Progetti"
 
-#: diventi/products/models.py:107
+#: diventi/products/models.py:112
 msgid "meta category"
 msgstr "meta categoria"
 
-#: diventi/products/models.py:108
+#: diventi/products/models.py:113
 msgid ""
 "Meta categories won't be listed in search results, nor on reporting pages."
 msgstr ""
 "Le meta categorie non vengono esposte né nella funzione di ricerca, né nelle "
 "pagine di reportistica."
 
-#: diventi/products/models.py:117
+#: diventi/products/models.py:122
 msgid "Product category"
 msgstr "Categoria di Prodotto"
 
-#: diventi/products/models.py:118
+#: diventi/products/models.py:123
 msgid "Product categories"
 msgstr "Categorie di Prodotto"
 
-#: diventi/products/models.py:125
+#: diventi/products/models.py:130
 msgid "Format"
 msgstr "Formato"
 
-#: diventi/products/models.py:126
+#: diventi/products/models.py:131
 msgid "Formats"
 msgstr "Formati"
 
-#: diventi/products/models.py:138
+#: diventi/products/models.py:143
 msgid "short description"
 msgstr "descrizione breve"
 
-#: diventi/products/models.py:143
+#: diventi/products/models.py:148
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/products/models.py:156 diventi/templates/base_quick.html:217
+#: diventi/products/models.py:161 diventi/templates/base_quick.html:217
 msgid "authors"
 msgstr "autori"
 
-#: diventi/products/models.py:162
+#: diventi/products/models.py:167
 msgid "buyers"
 msgstr "acquirenti"
 
-#: diventi/products/models.py:168
+#: diventi/products/models.py:173
 msgid "customers"
 msgstr "clienti"
 
-#: diventi/products/models.py:173
+#: diventi/products/models.py:178
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:186
+#: diventi/products/models.py:191
 msgid "unfolded"
 msgstr "aperto"
 
-#: diventi/products/models.py:190
+#: diventi/products/models.py:195
 msgid "pinned"
 msgstr "appuntato"
 
-#: diventi/products/models.py:203
+#: diventi/products/models.py:208
 msgid "short courtesy messages"
 msgstr "breve messaggio di cortesia"
 
-#: diventi/products/models.py:207
+#: diventi/products/models.py:212
 msgid "courtesy message"
 msgstr "messaggio di cortesia"
 
-#: diventi/products/models.py:213
+#: diventi/products/models.py:218
 msgid "related products"
 msgstr "prodotti correlati"
 
-#: diventi/products/models.py:219
+#: diventi/products/models.py:224
 msgid "formats"
 msgstr "formati"
 
-#: diventi/products/models.py:224
+#: diventi/products/models.py:229
 msgid "stripe price"
 msgstr "prezzo stripe"
 
-#: diventi/products/models.py:231
+#: diventi/products/models.py:236
 msgid "stripe product"
 msgstr "prodotto stripe"
 
-#: diventi/products/models.py:246
+#: diventi/products/models.py:251
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:252
+#: diventi/products/models.py:257
 msgid "application"
 msgstr "applicazione"
 
-#: diventi/products/models.py:277
+#: diventi/products/models.py:282
 msgid "Last purchase"
 msgstr "Ultimo acquisto"
 
-#: diventi/products/models.py:284
+#: diventi/products/models.py:289
 #, python-format
 msgid "%(product)s: total customers"
 msgstr "%(product)s: clienti totali"
 
-#: diventi/products/models.py:288
+#: diventi/products/models.py:293
 #, python-format
 msgid "%(en)s english customers, %(it)s italian customers"
 msgstr "%(en)s clienti inglesi, %(it)s clienti italiani"
 
-#: diventi/products/models.py:298
+#: diventi/products/models.py:303
 #, python-format
 msgid "%(product)s: english subscribers"
 msgstr "%(product)s: iscritti inglesi"
 
-#: diventi/products/models.py:310
+#: diventi/products/models.py:315
 #, python-format
 msgid "%(product)s: italian subscribers"
 msgstr "%(product)s: iscritti italiani"
 
-#: diventi/products/models.py:339 diventi/templates/publishable_badge.html:4
+#: diventi/products/models.py:344 diventi/templates/publishable_badge.html:4
 msgid "draft"
 msgstr "bozza"
 
-#: diventi/products/models.py:348
+#: diventi/products/models.py:353
 msgid "at a premium"
 msgstr "a pagamento"
 
-#: diventi/products/models.py:363
+#: diventi/products/models.py:368
 msgid "Detail"
 msgstr "Dettaglio"
 
-#: diventi/products/models.py:364
+#: diventi/products/models.py:369
 msgid "Details"
 msgstr "Dettagli"
 
-#: diventi/products/models.py:370
+#: diventi/products/models.py:375
 msgid "Chapter category"
 msgstr "Categoria di capitolo"
 
-#: diventi/products/models.py:371
+#: diventi/products/models.py:376
 msgid "Chapter categories"
 msgstr "Categorie di capitolo"
 
-#: diventi/products/models.py:381
+#: diventi/products/models.py:386
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:390
+#: diventi/products/models.py:395
 msgid "Images"
 msgstr "Immagini"
 
-#: diventi/products/models.py:439
+#: diventi/products/models.py:444
 msgid "Purchase"
 msgstr "Acquisto"
 
-#: diventi/products/models.py:440
+#: diventi/products/models.py:445
 msgid "Purchases"
 msgstr "Acquisti"
 
-#: diventi/products/models.py:444
+#: diventi/products/models.py:449
 #, python-format
 msgid "Purchase: %(id)s"
 msgstr "Acquisto: %(id)s"
 
-#: diventi/products/models.py:449
+#: diventi/products/models.py:454
 #, python-format
 msgid "%(prefix)s: %(last_pur)s on %(created)s"
 msgstr "%(prefix)s: %(last_pur)s - %(created)s"
@@ -2486,7 +2490,6 @@ msgstr "Nessun articolo è stato pubblicato"
 #: diventi/templates/blog/article_list_quick.html:151
 #: diventi/templates/blog/article_list_quick.html:153
 #: diventi/templates/ebooks/book_detail_quick.html:175
-#: diventi/templates/landing/landing_quick.html:157
 msgid "Previous"
 msgstr "Precedente"
 
@@ -2497,7 +2500,6 @@ msgstr "corrente"
 #: diventi/templates/blog/article_list_quick.html:163
 #: diventi/templates/blog/article_list_quick.html:165
 #: diventi/templates/ebooks/book_detail_quick.html:176
-#: diventi/templates/landing/landing_quick.html:158
 msgid "Next"
 msgstr "Successivo"
 
@@ -2560,7 +2562,6 @@ msgid "words"
 msgstr "parole"
 
 #: diventi/templates/ebooks/book_detail_quick.html:100
-#: diventi/templates/landing/landing_quick.html:106
 msgid "table of contents"
 msgstr "indice"
 
@@ -2569,37 +2570,30 @@ msgid "related games"
 msgstr "giochi correlati"
 
 #: diventi/templates/ebooks/book_detail_quick.html:168
-#: diventi/templates/landing/landing_quick.html:150
 msgid "Display _MENU_ records per page"
 msgstr "Mostra _MENU_ righe per pagina"
 
 #: diventi/templates/ebooks/book_detail_quick.html:169
-#: diventi/templates/landing/landing_quick.html:151
 msgid "Nothing found - sorry"
 msgstr "Nessun risultato trovato"
 
 #: diventi/templates/ebooks/book_detail_quick.html:170
-#: diventi/templates/landing/landing_quick.html:152
 msgid "Showing page _PAGE_ of _PAGES_"
 msgstr "Pagina _PAGE_ di _PAGES_"
 
 #: diventi/templates/ebooks/book_detail_quick.html:171
-#: diventi/templates/landing/landing_quick.html:153
 msgid "No records available"
 msgstr "Nessun risultato disponibile"
 
 #: diventi/templates/ebooks/book_detail_quick.html:172
-#: diventi/templates/landing/landing_quick.html:154
 msgid "(filtered from _MAX_ total records)"
 msgstr "(filtrato da _MAX_ righe totali)"
 
 #: diventi/templates/ebooks/book_detail_quick.html:174
-#: diventi/templates/landing/landing_quick.html:156
 msgid "First page"
 msgstr "Prima pagina"
 
 #: diventi/templates/ebooks/book_detail_quick.html:179
-#: diventi/templates/landing/landing_quick.html:161
 msgid "Filter records"
 msgstr "Filtra le righe"
 
@@ -2667,7 +2661,7 @@ msgstr ""
 "profilo."
 
 #: diventi/templates/landing/about_article_quick.html:84
-#: diventi/templates/landing/landing_quick.html:60
+#: diventi/templates/landing/landing_quick.html:64
 msgid "play video"
 msgstr "avvia il video"
 

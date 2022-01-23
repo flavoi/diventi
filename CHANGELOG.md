@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [blog] Integrated read time in article pills
 - [ebooks] Updated table of contents visual style
 - [products] Updated cards visual style
+- [products] Integrated dynamic cover text
+- [landing] Refreshed the landing page visual style
 - [reviews] Updated stars icons style
 
 ### Removed

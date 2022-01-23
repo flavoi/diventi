@@ -38,6 +38,7 @@ from diventi.core.views import DiventiActionMixin
 from .models import (
     Product,
     ProductCategory,
+    ProductCover,
 )
 
 from diventi.ebooks.models import (
@@ -69,6 +70,7 @@ class ProductListView(ListView):
         context = super(ProductListView, self).get_context_data(*args, **kwargs)
         context['categories'] = ProductCategory.objects.visible()
         context['hot_products'] = Product.objects.hot()
+        context['productcover'] = ProductCover.objects.active()
         return context
 
 

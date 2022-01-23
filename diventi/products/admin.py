@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from diventi.core.admin import (
     DiventiIconAdmin,
     DiventiTranslationAdmin,
+    deactivate,
 )
 
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
@@ -17,6 +18,7 @@ from .models import (
     Purchase, 
     ProductDetail, 
     ProductFormat,
+    ProductCover,
 )
 from .forms import ProductForm
 
@@ -127,8 +129,22 @@ class PurchaseAdmin(admin.ModelAdmin):
     list_filter = ['product',]
 
 
+class ProductCoverAdmin(DiventiTranslationAdmin):
+    list_display= ('title', 'description', 'image_tag', 'active')
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('active',)
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'image', 'description',),
+        }),
+    )
+    actions = [deactivate]
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ImagePreview, ImagePreviewAdmin)
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
 admin.site.register(ProductFormat, ProductFormatAdmin)
+admin.site.register(ProductCover, ProductCoverAdmin)

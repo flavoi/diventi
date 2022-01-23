@@ -118,8 +118,8 @@
                                 <div class="card-body text-center">
 
                                     <div class="mt-2 mb-3" data-toggle="tooltip" data-placement="bottom" title="{{ latest_public_product.category.title }}">
-                                        <a href="{% url 'products:list_category' latest_public_product.category.slug %}" class="hover-translate-y-n3">
-                                            <div class="icon icon-lg bg-{{ latest_public_product.category.color }} text-white rounded-circle icon-shape shadow">
+                                        <a href="{% url 'products:list_category' latest_public_product.category.slug %}">
+                                            <div class="icon icon-lg bg-{{ latest_public_product.category.color }} text-white rounded-circle icon-shape shadow hover-translate-y-n3">
                                                 <i data-feather="{{ latest_public_product.category.icon }}"></i>
                                             </div>
                                         </a>

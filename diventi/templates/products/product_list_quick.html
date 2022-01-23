@@ -13,15 +13,19 @@
 
 {% block headerclass %}header-transparent{% endblock headerclass %}
 
-{% block navbarclass %}navbar-light{% endblock navbarclass %}
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
+
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
 {% block content %}
-<section class="mt-6">
-    <div class="container d-flex align-items-center text-center text-lg-left py-5 py-lg-6 border-bottom">
-        <div class="col px-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12 text-center">
-                    <h2 class="h1 mb-2">{% trans "games list"|capfirst %}</h2>
+
+<section class="slice slice-lg py-7 bg-cover bg-size--cover bg-gradient-gray-dark">
+    <div class="container d-flex align-items-center" style="padding-top:60px;">
+        <div class="col py-5">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7 col-lg-7 text-center">
+                    <h1 class="display-4 text-white mb-2">{{ productcover.title }}</h1>
+                    <span class="text-white text-sm">{{ productcover.description }}</span>
                 </div>
             </div>
         </div>

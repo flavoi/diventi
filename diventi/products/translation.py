@@ -8,6 +8,7 @@ from .models import (
     ChapterCategory, 
     ProductDetail,
     ProductFormat,
+    ProductCover,
 )
 
 
@@ -43,3 +44,8 @@ class ChapterTranslationOptions(TranslationOptions):
 @register(ImagePreview)
 class ImagePreviewTranslationOptions(TranslationOptions):
     fields = ('title', 'description', 'image')
+
+
+@register(ProductCover)
+class ProductCoverTranslationOptions(TranslationOptions):
+    fields = ('label', 'title', 'description')

@@ -26,7 +26,18 @@ from diventi.core.models import (
     SectionModel,
     HighlightedModel,
     DiventiColModel,
+    DiventiCoverModel,
 )
+
+
+class ProductCover(DiventiCoverModel, Element):
+    """
+        Stores cover images for the blog page.
+    """
+
+    class Meta:
+        verbose_name = _('Product Cover')
+        verbose_name_plural = _('Product Covers')
 
 
 class ProductQuerySet(PublishableModelQuerySet):

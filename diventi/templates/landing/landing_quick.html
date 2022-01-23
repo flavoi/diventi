@@ -195,7 +195,7 @@
 
                     {% if section.about_article or section.product_category or section.article_category %}                
                     <a href="{% if section.about_article %}{{ section.about_article.get_absolute_url }}{% elif section.product_category %}{% url 'products:list_category' section.product_category.slug %}{% elif section.article_category %}{% url 'blog:list_category' section.article_category.title %}{% endif %}" class="link link-underline-primary font-weight-bold">
-                        {{ section.button_label|default:'find out more'|capfirst }}
+                        {{ section.attachment_label|default:'find out more'|capfirst }}
                     </a>
                     {% endif %}
 

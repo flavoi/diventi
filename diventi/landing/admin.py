@@ -46,14 +46,11 @@ class SectionAdmin(DiventiTranslationAdmin):
         (_('Multimedia'), {
             'fields': ('image', 'video',)
         }),
-        (_('Layout'), {
-            'fields': ('alignment', 'position',),
-        }),
         (_('Editing'), {
-            'fields': ('prefix', 'title', 'button_label', 'order_index', 'description',),
+            'fields': ('order_index', 'prefix', 'title', 'button_label', 'description',),
         }),
         (_('Attachment'), {
-            'fields': ('about_article', 'product_category', 'article_category',),
+            'fields': ('attachment_label', 'about_article', 'product_category', 'article_category',),
         }),
     )
     inlines = [        

@@ -86,6 +86,7 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
     description = models.TextField(blank=True, verbose_name=_('description'))
     button_label = models.CharField(blank=True, max_length=50, verbose_name=_('button label'))
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
+    attachment_label = models.CharField(blank=True, max_length=50, verbose_name=_('attachment label'))
     about_article = models.ForeignKey(
         AboutArticle,
         blank = True,

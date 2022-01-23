@@ -2702,7 +2702,7 @@ msgstr ""
 
 #: diventi/templates/landing/landing_quick.html:91
 msgid "video presentation"
-msgstr ""
+msgstr "video-presentazione"
 
 #: diventi/templates/landing/landing_quick.html:113
 msgid "read article"

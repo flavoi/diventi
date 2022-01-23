@@ -62,6 +62,7 @@ class SectionModelQuerySet(FeaturedModelQuerySet):
         sections = self.select_related('about_article')
         sections = sections.select_related('product_category')
         sections = sections.select_related('article_category')
+        sections = section.prefetch_related('features')
         return sections
 
     # Get the not featured object that can be selected to appear on the landing page

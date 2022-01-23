@@ -168,7 +168,7 @@
         <div class="section-process-step">
             <div class="row row-grid justify-content-between align-items-center">
                 <div class="col-lg-5 order-lg-{% if forloop.counter|divisibleby:2 %}1{% else%}2{% endif %}">
-                    <span class="badge badge-primary badge-pill">{{ section.category.button_label|default:'feature'|capfirst }}</span>
+                    <span class="badge badge-primary badge-pill">{{ section.button_label|default:'feature'|capfirst }}</span>
                     {% with section as object %}
                         {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                     {% endwith %}
@@ -176,6 +176,22 @@
                     <p class="lead text-muted mb-4">
                         {{ section.description|capfirst }}
                     </p>
+
+                    {% if section.features %}
+                    <ul class="list-unstyled mb-4">
+                        {% for feature in section.features.all %}
+                        <li class="py-2">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <div class="icon icon-shape bg-{{ feature.color|default:'primary' }} text-white icon-sm rounded-circle mr-3">
+                                        <i data-feather="{{ feature.icon|default:'arrow-right' }}"></i></div>
+                                </div>
+                                <div><span class="h6 mb-0">{{ feature.title }}</span></div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
 
                     {% if section.about_article or section.product_category or section.article_category %}                
                     <a href="{% if section.about_article %}{{ section.about_article.get_absolute_url }}{% elif section.product_category %}{% url 'products:list_category' section.product_category.slug %}{% elif section.article_category %}{% url 'blog:list_category' section.article_category.title %}{% endif %}" class="link link-underline-primary font-weight-bold">

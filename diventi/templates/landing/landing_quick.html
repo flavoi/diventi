@@ -65,7 +65,7 @@
                                         <div class="pl-3">
                                             <span class="h6 text-sm mb-0">{{ pinned_product.title|capfirst }}</span>
                                             {% with pinned_product as object %}
-                                                {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                                {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
                                             {% endwith %}
                                         </div>
                                         <div class="ml-auto">

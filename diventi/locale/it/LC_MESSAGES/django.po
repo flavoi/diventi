@@ -2698,7 +2698,7 @@ msgstr "scopri di più"
 
 #: diventi/templates/landing/landing_quick.html:73
 msgid "visualize"
-msgstr ""
+msgstr "visualizza"
 
 #: diventi/templates/landing/landing_quick.html:91
 msgid "video presentation"

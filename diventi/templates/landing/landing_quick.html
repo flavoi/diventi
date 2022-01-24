@@ -103,7 +103,7 @@
                                             {{ latest_article.publication_date|date:"d/m/Y" }}
                                         </span>
                                         {% with latest_article as object %}
-                                            {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                            {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
                                         {% endwith %}
                                     </div>
                                     <div class="mb-1 mx-auto">
@@ -129,7 +129,7 @@
                                         {{ latest_public_product.title }}                                    
                                     </a>
                                     {% with latest_public_product as object %}
-                                        {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                        {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
                                     {% endwith %}
 
                                     <div class="mt-3 pt-3 delimiter-top">
@@ -170,7 +170,7 @@
                 <div class="col-lg-5 order-lg-{% if forloop.counter|divisibleby:2 %}1{% else%}2{% endif %}">
                     <span class="badge badge-primary badge-pill">{{ section.button_label|default:'feature'|capfirst }}</span>
                     {% with section as object %}
-                        {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                        {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
                     {% endwith %}
                     <h5 class="h3 mt-4">{{ section.title }}</h5>
                     <p class="lead text-muted mb-4">

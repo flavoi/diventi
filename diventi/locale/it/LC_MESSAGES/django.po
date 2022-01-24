@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-23 12:43+0100\n"
+"POT-Creation-Date: 2022-01-24 09:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -448,7 +448,7 @@ msgstr "Antagonisti"
 
 #: diventi/adventures/models.py:135 diventi/ebooks/models.py:379
 #: diventi/ebooks/models.py:401 diventi/ebooks/models.py:426
-#: diventi/landing/models.py:125 diventi/tooltips/models.py:57
+#: diventi/landing/models.py:126 diventi/tooltips/models.py:57
 msgid "section"
 msgstr "sezione"
 
@@ -658,21 +658,21 @@ msgstr "Hai sbloccato una nuova situazione."
 
 #: diventi/blog/admin.py:26 diventi/blog/admin.py:53 diventi/ebooks/admin.py:93
 #: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:43
-#: diventi/landing/admin.py:77 diventi/products/admin.py:75
+#: diventi/landing/admin.py:74 diventi/products/admin.py:75
 #: diventi/products/admin.py:107 diventi/products/admin.py:135
 msgid "Management"
 msgstr "Gestione"
 
 #: diventi/blog/admin.py:29 diventi/ebooks/admin.py:60
 #: diventi/ebooks/admin.py:99 diventi/ebooks/admin.py:119
-#: diventi/landing/admin.py:49 diventi/products/admin.py:78
+#: diventi/products/admin.py:78
 msgid "Layout"
 msgstr "Disposizione"
 
 #: diventi/blog/admin.py:32 diventi/blog/admin.py:56 diventi/blog/admin.py:66
 #: diventi/ebooks/admin.py:63 diventi/ebooks/admin.py:102
 #: diventi/ebooks/admin.py:122 diventi/feedbacks/admin.py:59
-#: diventi/landing/admin.py:52 diventi/landing/admin.py:80
+#: diventi/landing/admin.py:49 diventi/landing/admin.py:77
 #: diventi/products/admin.py:84 diventi/products/admin.py:113
 #: diventi/products/admin.py:138
 msgid "Editing"
@@ -1259,7 +1259,7 @@ msgstr "allineamento del testo"
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:380 diventi/landing/models.py:126
+#: diventi/ebooks/models.py:380 diventi/landing/models.py:127
 #: diventi/templates/base_quick.html:238
 msgid "sections"
 msgstr "sezioni"
@@ -1481,7 +1481,7 @@ msgstr "Si è verificato un errore mentre processavamo il tuo sondaggio."
 msgid "Multimedia"
 msgstr "Contenuti multimediali"
 
-#: diventi/landing/admin.py:55
+#: diventi/landing/admin.py:52
 msgid "Attachment"
 msgstr "Allegato"
 
@@ -1490,7 +1490,7 @@ msgid "Landing"
 msgstr "Pagina di atterraggio"
 
 #: diventi/landing/models.py:43 diventi/landing/models.py:44
-#: diventi/landing/models.py:95
+#: diventi/landing/models.py:96
 msgid "about article"
 msgstr "articolo su di noi"
 
@@ -1506,31 +1506,35 @@ msgstr "prefisso"
 msgid "button label"
 msgstr "etichetta del bottone"
 
-#: diventi/landing/models.py:103
+#: diventi/landing/models.py:89
+msgid "attachment label"
+msgstr "etichetta dell'allegato"
+
+#: diventi/landing/models.py:104
 msgid "product category"
 msgstr "categoria prodotto"
 
-#: diventi/landing/models.py:111
+#: diventi/landing/models.py:112
 msgid "article category"
 msgstr "categoria articolo"
 
-#: diventi/landing/models.py:115
+#: diventi/landing/models.py:116
 msgid "video"
 msgstr "video"
 
-#: diventi/landing/models.py:133
+#: diventi/landing/models.py:134
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:134
+#: diventi/landing/models.py:135
 msgid "features"
 msgstr "aspetti"
 
-#: diventi/landing/models.py:140
+#: diventi/landing/models.py:141
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:141 diventi/templates/base_quick.html:366
+#: diventi/landing/models.py:142 diventi/templates/base_quick.html:366
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 

@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Removed collection from user's public page
 
 ### Fixed
+- [accounts] Fixed missing icons in registration forms
 - [blog] Fixed missing strings in the related articles section
 - [feedbacks] Fixed text alignment of the title in the survey page
 - [locale] Corrected translations for the category tables

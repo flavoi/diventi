@@ -109,7 +109,17 @@ class ProductQuerySet(PublishableModelQuerySet):
     def latest_public(self):
         product = self.published().filter(public=True).latest('publication_date')
         return product
-        
+
+    # Filter public products only
+    def public(self):
+        products = self.filter(public=True)
+        return products
+
+    # Exclude public products        
+    def not_public(self):
+        products = self.exclude(public=True)
+        return products
+
 
 class ProductCategoryQuerySet(models.QuerySet):
 
@@ -294,10 +304,25 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         return results
 
     def reporting(self, *args, **kwargs):
-        queryset = Product.objects.all().exclude(category__meta_category=True)
-        queryset = queryset.prefetch()
+        queryset_not_public = Product.objects.not_public().exclude(category__meta_category=True)
+        queryset_not_public = queryset_not_public.prefetch()
+        queryset_public = Product.objects.public()
+        queryset_public = queryset_public.prefetch()
         results = []
-        for product in queryset:
+        for product in queryset_public:
+            results.append({
+                'columns': 4,
+                'name': '%(product)s' % {
+                    'product': product.title,
+                },
+                'title': product.book.hit_count.hits,
+                'description1': _('views in the last week: %(d)s') % {
+                    'd': product.book.hit_count.hits_in_last(days=7),
+                },
+                'description2': '',
+                'action': '',
+            })
+        for product in queryset_not_public:
             last_purchase = Purchase.objects.last_purchase(product)
             prefix = _('Last purchase')
             customers_en = Purchase.objects.customers(product, 'en')

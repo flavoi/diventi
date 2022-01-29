@@ -88,7 +88,7 @@ class ReplacementRuleAdmin(DiventiTranslationAdmin):
 
 
 class BookAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'published', 'paper_id', 'image_tag', 'get_logo_image', 'get_product_category', 'created', 'modified', 'publication_date']
+    list_display = ['title', 'published', 'paper_id', 'image_tag', 'get_logo_image', 'get_product_category', 'get_hitcounts', 'created', 'modified', 'publication_date']
     fieldsets = (        
         (_('Management'), {
             'fields': ('published', 'book_product'),
@@ -104,6 +104,7 @@ class BookAdmin(DiventiTranslationAdmin):
         }),
     )
     readonly_fields = ['created', 'modified', 'publication_date']
+    list_filter = ('book_product__category',)
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ['title']
     actions = [make_published, make_unpublished]

@@ -8,9 +8,11 @@ from django.urls import reverse
 from django.utils.html import mark_safe
 from django.utils.text import capfirst
 from django.core.exceptions import ValidationError
+from django.contrib.contenttypes.fields import GenericRelation
 
 from ckeditor.fields import RichTextField
 from cuser.middleware import CuserMiddleware
+from hitcount.models import HitCount, HitCountMixin
 
 from diventi.products.models import Product
 from diventi.core.models import (
@@ -59,7 +61,7 @@ class Part(Element):
         verbose_name_plural = _('parts')
 
 
-class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, DiventiColModel):
+class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, DiventiColModel, HitCountMixin):
     """ A collection of chapters that constitutes a product. """
     short_title = models.CharField(max_length=2, verbose_name=_('short title'))
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
@@ -130,7 +132,12 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
         verbose_name = _('logo background'),
         max_length = 30,
     )
-    
+    hit_count_generic = GenericRelation(
+        HitCount, 
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation'
+    ) # Counts the views on this model
+
     objects = BookQuerySet.as_manager()
 
     def __str__(self):
@@ -168,6 +175,11 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
     class Meta:
         verbose_name = _('book')
         verbose_name_plural = _('books')
+
+    def get_hitcounts(self):
+        return self.hit_count.hits
+    get_hitcounts.short_description = _('Hit counts')
+    get_hitcounts.admin_order_field = 'hit_count_generic__hits'
 
 
 class ChapterQuerySet(models.QuerySet):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 09:00+0100\n"
+"POT-Creation-Date: 2022-01-29 10:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1833,7 +1833,7 @@ msgstr "La risorsa richiesta richiede autenticazione."
 
 #: diventi/templates/403.html:35 diventi/templates/404.html:35
 #: diventi/templates/500.html:36
-#: diventi/templates/accounts/password_reset_done_quick.html:32
+#: diventi/templates/accounts/password_reset_done_quick.html:29
 #: diventi/templates/accounts/signout_quick.html:25
 #: diventi/templates/feedbacks/survey_done_quick.html:30
 #: diventi/templates/products/checkout_done_quick.html:28
@@ -2464,11 +2464,12 @@ msgid "type and hit enter"
 msgstr "scrivi e premi invio"
 
 #: diventi/templates/base_quick.html:432
+#, fuzzy
 msgid ""
-"Diventi is a role-playing game that embraces fun, encourages storytelling "
-"and helps game masters to prepare their fantastic adventures"
+"Diventi is a role-playing community that embraces fun, encourages "
+"storytelling and helps game masters to prepare their fantastic adventures"
 msgstr ""
-"Diventi è un gioco di ruolo che abbraccia il divertimento, incoraggia "
+"Diventi è una comunità di giocatori di ruolo che abbraccia il divertimento, incoraggia "
 "l'interpretazione e aiuta i game master a preparare fantastiche avventure"
 
 #: diventi/templates/base_quick.html:474

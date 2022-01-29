@@ -16,6 +16,9 @@ from django.contrib.auth.mixins import (
 from django.http import Http404
 from django.conf import settings
 
+from hitcount.views import HitCountDetailView
+
+
 from diventi.products.models import Product
 
 from .models import Book
@@ -77,11 +80,12 @@ class PublicEbookMixin:
         return redirect('ebooks:book-detail', book_slug=obj.slug)
         
 
-class BookDetailView(EbookView, DetailView):
+class BookDetailView(EbookView, HitCountDetailView):
     """ Returns the digital content of a product. """
     
     model = Book
     slug_url_kwarg = 'book_slug'
+    count_hit = True
 
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)

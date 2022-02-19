@@ -205,7 +205,10 @@ def add_public_product_to_user_collection_view(request, slug):
     product = get_object_or_404(Product, slug=slug)
     if product.public:
         add_product_to_user_collection(product, request.user)
-        messages.add_message(request, messages.SUCCESS, _('"%s" has been added in your collection.' % product.title))
+        message = _('%(p)s has been added in your collection.') % {
+            'p': product.title,
+        }
+        messages.add_message(request, messages.SUCCESS, message)
         return redirect(request.META.get('HTTP_REFERER', '/'))
     messages.add_message(request, messages.WARNING, _('The requested product is not public.'))
     return redirect(product)

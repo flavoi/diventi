@@ -6,7 +6,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="reviewModalListLabel-{{ object.pk }}">{% trans "reviews of"|capfirst %} "{{ object.title }}"</h5>
+        <h5 class="modal-title" id="reviewModalListLabel-{{ object.pk }}">{{ object.title }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -19,7 +19,7 @@
                   {% get_rating for object as average_rating %}
                   {% get_review_count for object as rating_count %}
                   <div class="avatar rounded-circle avatar-lg mb-4">
-                      <img alt="{% trans 'review'|capfirst %}" src="{% static 'brand/diventi-logo-2.png' %}">
+                      <img alt="diventi" src="{% static 'brand/diventi-logo-2.png' %}">
                   </div>
                   {% with average_rating as rating %}
                       <span class="static-rating d-block">

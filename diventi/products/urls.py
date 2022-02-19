@@ -17,7 +17,7 @@ from .views import (
 app_name = 'products'
 
 urlpatterns = [
-    path(_(''), ProductListView.as_view(), name='list'),
+    path('', ProductListView.as_view(), name='list'),
     path(_('category/<slug:category>/'), ProductListViewByCategory.as_view(), name='list_category'),
     path(_('<slug:slug>/'), ProductDetailView.as_view(), name='detail'),
     path(_('<slug:slug>/add/'), AddToUserCollectionView.as_view(), name='add'),

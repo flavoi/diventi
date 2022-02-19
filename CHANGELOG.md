@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - [ckeditor] Added CrateDiv plugin to expand the formatting capabilities of blog articles
 - [ebooks] Added related products row in detail page
+- [ebooks] Added action cards in public ebook page
 - [landing] Integrated demo ebook in the landing page
 - [landing] Integrate the hottest article in the landing page
 - [products] Introduced a games catalog page
@@ -32,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [blog] Fixed missing strings in the related articles section
 - [feedbacks] Fixed text alignment of the title in the survey page
 - [locale] Corrected translations for the category tables
+- [locale] Fixed a problem that caused warning errors while compiling plural strings
 - [payments] Fixed a problem that prevented successful payments to be sent to stripe
 - [products] Fixed erroneous spacing between cards in the title section
 - [products] Fixed a problem that disrupted the ordering of cards in the games list page

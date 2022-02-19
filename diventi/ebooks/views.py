@@ -75,7 +75,7 @@ class PublicEbookMixin:
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
         product = get_object_or_404(Product, id=obj.book_product.id)
-        if product.public: 
+        if product.public and product.published: 
             return super().get(request, *args, **kwargs)
         return redirect('ebooks:book-detail', book_slug=obj.slug)
         
@@ -110,6 +110,7 @@ class PaperEbookView(BookDetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         current_lan = get_language()
+        context['bought'] = self.object.book_product.user_has_already_bought(self.request.user)
         paper_filename = get_paper_filename(paper_id=self.object.id, paper_lan=current_lan)
         paper_soup = parse_paper_soup(paper_filename)
         # context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()

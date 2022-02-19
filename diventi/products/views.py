@@ -29,6 +29,10 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.urls import reverse
+from django.shortcuts import (
+    render,
+    redirect
+)
 
 from boto.s3.connection import S3Connection
 from logging import getLogger
@@ -153,7 +157,18 @@ class PublicProductMixin:
             raise PermissionDenied
 
 
-class RedirectToPublicEbookView(PublicProductMixin, RedirectView):
+class PublishedProductMixin:
+    """ Restrict the access to public products only. """
+
+    def post(self, request, *args, **kwargs):
+        obj =  self.get_object()  
+        if not obj.published:
+            return super().post(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+
+class RedirectToPublicEbookView(PublishedProductMixin, PublicProductMixin, RedirectView):
     
     def get_redirect_url(self, **kwargs):
         product = get_object_or_404(Product, slug=kwargs.get('slug'))
@@ -169,7 +184,6 @@ class AddToUserCollectionView(FreeProductMixin, ProductUpdateView):
     success_msg = _('This item has been added to you collection')
     template_name = 'products/product_detail_quick.html'
 
-
     def form_valid(self, form):
         add_product_to_user_collection(self.object, self.request.user)
         return super(AddToUserCollectionView, self).form_valid(form)
@@ -180,6 +194,21 @@ class AddToUserCollectionView(FreeProductMixin, ProductUpdateView):
             msg = _('The user has this product already.')
             raise Http404(msg)
         return super().get_initial()
+
+
+def add_public_product_to_user_collection_view(request, slug):
+    """
+        Add the selected product to the user collection and the return to the caller page.
+        If the prodct is not public it doesn't do anything.
+    """
+
+    product = get_object_or_404(Product, slug=slug)
+    if product.public:
+        add_product_to_user_collection(product, request.user)
+        messages.add_message(request, messages.SUCCESS, _('"%s" has been added in your collection.' % product.title))
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    messages.add_message(request, messages.WARNING, _('The requested product is not public.'))
+    return redirect(product)
 
 
 class DropFromUserCollectionView(ProductUpdateView):

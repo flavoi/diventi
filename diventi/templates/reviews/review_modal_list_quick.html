@@ -1,0 +1,83 @@
+{% load i18n %}
+{% load reviews %}
+{% load static %}
+
+<div class="modal fade pl-3" id="reviewModalListQuick-{{ object.pk }}" tabindex="-1" role="dialog" aria-labelledby="reviewModalListQuick-{{ object.pk }}" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalListLabel-{{ object.pk }}">{% trans "reviews of"|capfirst %} "{{ object.title }}"</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">        
+            {% csrf_token %}
+            <div id="accordion-2" class="accordion accordion-spaced">
+
+              <div class="card-body py-5 text-center h-100">
+                  {% get_rating for object as average_rating %}
+                  {% get_review_count for object as rating_count %}
+                  <div class="avatar rounded-circle avatar-lg mb-4">
+                      <img alt="{% trans 'review'|capfirst %}" src="{% static 'brand/diventi-logo-2.png' %}">
+                  </div>
+                  {% with average_rating as rating %}
+                      <span class="static-rating d-block">
+                          {% include "reviews/rating_star.html" %}
+                      </span>
+                  {% endwith %}
+                  <h5 class="h6 mt-4 mb-1">{{ average_rating|floatformat:1|default:'-' }} {% trans "out of 5 stars" %}</h5>
+                  <p class="text-muted text-sm mb-0">{% trans "from" %} <b class="text-info">{{ rating_count }} {% blocktrans count counter=rating_count %}review{% plural %}reviews{% endblocktrans %}</b></p>
+              </div>
+
+            {% get_review_list for object as review_list %}
+            {% for review in review_list %}
+              <div class="card">
+                  <div class="card-header py-4" id="heading-{{ review.pk }}" data-toggle="collapse" role="button" data-target="#collapse-{{ review.pk }}" aria-expanded="false" aria-controls="collapse-{{ review.pk }}">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="media align-items-center">
+                                  <div>
+                                      <span class="mr-3">
+                                          <img class="avatar" loading="lazy" src="{% if review.user.avatar.image %}{{ review.user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}">
+                                      </span>
+                                  </div>
+                                  <div class="media-body">
+                                      <h6 class="h6 mb-0">
+                                          {{ review.user.get_full_name|title }}
+                                          {% for a in review.user.achievements.all %}
+                                              {% include 'accounts/partials/achievement_badge.html' %}
+                                          {% endfor %}
+                                      </h6>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6 mt-2">
+                              <hr class="mt-3 mb-4 d-md-none" />
+                              <div class="row align-items-center">
+                                  <div class="col">
+                                      {% with review.rating as rating %}
+                                          {% include 'reviews/rating_star.html' %}
+                                      {% endwith %}
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="collapse-{{ review.pk }}" class="collapse" aria-labelledby="heading-{{ review.pk }}" data-parent="#accordion-2">
+                      <div class="card-body row align-items-center">
+                          <p>{{ review.comment|capfirst }}</p>
+                      </div>
+                  </div>
+              </div>
+            {% empty %}
+             <h6 class="text-center">{% trans "there are no reviews yet, be the first to post one!"|capfirst %}</h6>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{% trans "close"|capfirst %}</button>
+        </div>
+    </div>
+  </div>
+</div>

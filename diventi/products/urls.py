@@ -11,6 +11,7 @@ from .views import (
     CheckoutDoneTemplateView,
     CheckoutFailedTemplateView,
     RedirectToPublicEbookView,
+    add_public_product_to_user_collection_view,
 )
 
 app_name = 'products'
@@ -20,6 +21,7 @@ urlpatterns = [
     path(_('category/<slug:category>/'), ProductListViewByCategory.as_view(), name='list_category'),
     path(_('<slug:slug>/'), ProductDetailView.as_view(), name='detail'),
     path(_('<slug:slug>/add/'), AddToUserCollectionView.as_view(), name='add'),
+    path(_('<slug:slug>/add/public/'), add_public_product_to_user_collection_view, name='add_public'),
     path(_('<slug:slug>/remove/'), DropFromUserCollectionView.as_view(), name='drop'),
     path(_('<slug:slug>/public/'), RedirectToPublicEbookView.as_view(), name='detail-public'),
     path(_('<slug:slug>/secretfile/'), SecretFileView.as_view(), name='secretfile'),

@@ -43,7 +43,7 @@ class PublishableModelQuerySet(models.QuerySet):
         """
         user = CuserMiddleware.get_user()
         qs = self
-        if not user.is_staff:
+        if user and not user.is_staff:
             qs = qs.filter(published=True)
         return qs
 

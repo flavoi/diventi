@@ -247,10 +247,15 @@ def render_paper_headings(paper_soup):
         title['id'] = title['data-usually-unique-id']
         title['class'] = 'h4 mt-4 mb-1 text-primary'
 
+    first_title = 1
     for title in paper_soup.find_all('h1'):
         title['style'] = ''
         title['id'] = title['data-usually-unique-id']
-        title['class'] = 'h2 mt-5 mb-4'
+        if first_title:
+            title['class'] = 'h2 mt-0 mb-4'
+            first_title = 0
+        else:
+            title['class'] = 'h2 mt-5 mb-4'
 
     for title in paper_soup.find_all(class_='ace-all-bold-hthree'):
         if not title.find_parents("table"):

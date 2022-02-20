@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-20 10:07+0100\n"
+"POT-Creation-Date: 2022-02-20 12:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -381,27 +381,27 @@ msgstr "La tua registrazione è andata a buon fine!"
 msgid "Your sign up has failed."
 msgstr "La registrazione non è andata a buon fine."
 
-#: diventi/accounts/views.py:163
+#: diventi/accounts/views.py:167
 msgid "Profile updated!"
 msgstr "Profilo aggiornato!"
 
-#: diventi/accounts/views.py:164
+#: diventi/accounts/views.py:168
 msgid "Profile has not been updated."
 msgstr "L'aggiornamento del profilo non è andato a buon fine."
 
-#: diventi/accounts/views.py:181
+#: diventi/accounts/views.py:185
 msgid "A user may update his own profile only."
 msgstr "Un utente piò modificare solo il suo profilo."
 
-#: diventi/accounts/views.py:228
+#: diventi/accounts/views.py:232
 msgid "Your profile has been deleted."
 msgstr "Il tuo profilo è stato cancellato."
 
-#: diventi/accounts/views.py:266
+#: diventi/accounts/views.py:270
 msgid "The email addresses have been copied to clipboard."
 msgstr "Gli indirizzi email sono stati copiati con successo."
 
-#: diventi/accounts/views.py:267
+#: diventi/accounts/views.py:271
 msgid "Something went wrong with the copy."
 msgstr "La copia degli indirizzi email è fallita."
 
@@ -3466,7 +3466,6 @@ msgid "in your collection"
 msgstr "nella tua collezione"
 
 #: diventi/templates/products/partials/product_detail_actions.html:51
-#: diventi/templates/products/partials/product_detail_actions_public.html:77
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -3476,6 +3475,7 @@ msgstr "per aggiungere questo oggetto alla tua collezione"
 
 #: diventi/templates/products/partials/product_detail_actions_public.html:11
 #: diventi/templates/products/partials/product_detail_actions_public.html:44
+#: diventi/templates/products/partials/product_detail_actions_public.html:78
 msgid "your collection"
 msgstr "la tua collezione"
 
@@ -3494,9 +3494,9 @@ msgstr ""
 "puoi lasciare una recensione ed eventualmente leggere quelle degli altri "
 "giocatori"
 
-#: diventi/templates/products/partials/product_detail_actions_public.html:77
-msgid "to add this content in your collection"
-msgstr "per aggiungere questo contenuto alla tua collezione"
+#: diventi/templates/products/partials/product_detail_actions_public.html:85
+msgid "sign in or sign up"
+msgstr "accedi o registrati"
 
 #: diventi/templates/products/product_detail_quick.html:50
 msgid "in short"
@@ -3644,6 +3644,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "to add this content in your collection"
+#~ msgstr "per aggiungere questo contenuto alla tua collezione"
 
 #~ msgid "reviews of"
 #~ msgstr "recensioni di"

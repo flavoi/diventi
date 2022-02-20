@@ -82,7 +82,7 @@
             <div class="row align-items-center mt-4">
                 <div class="col-12">
                     <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
-                        <span class="btn-inner--text">{% trans "Sign in or sign up" %}</span>
+                        <span class="btn-inner--text">{% trans "sign in or sign up"|capfirst %}</span>
                     </a>
                 </div>
             </div>

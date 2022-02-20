@@ -65,7 +65,7 @@
                   <div class="mt-4"><button type="submit" class="btn btn-block btn-primary">{% trans "sign in"|capfirst %}</button></div>
                </form>
                <div class="mt-4 text-center">
-                <small>{% trans "not registered?"|capfirst %}</small> <a href="{% url 'accounts:signup' %}" class="small font-weight-bold">{% trans "create your account"|capfirst %}</a></a>
+                <small>{% trans "not registered?"|capfirst %}</small> <a href="{% url 'accounts:signup' %}?next={{ next }}" class="small font-weight-bold">{% trans "create your account"|capfirst %}</a></a>
                 <br>
                 <small>{% trans "lost your password?"|capfirst %}</small> <a class="small font-weight-bold" href="{% url 'accounts:password_reset' %}">{% trans "request a reset"|capfirst %}</a></div>
             </div>

@@ -50,7 +50,7 @@
                     </div>
                     {% endif %}
                     <span class="clearfix"></span>
-                    <form method="POST" action="{% url 'accounts:signup' %}">
+                    <form method="POST" action="{% url 'accounts:signup' %}?next={{ request.GET.next }}">
                         {% csrf_token %}
                         <div class="form-group">
                             <label class="form-control-label">{{ form.first_name.label }}</label>

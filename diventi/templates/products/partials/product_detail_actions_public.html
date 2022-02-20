@@ -1,75 +1,91 @@
 {% load i18n %}
 {% load static %}
 
-    {% if user.is_authenticated %}
-        {% if product.book.published and bought %}
+{% if user.is_authenticated %}
+    {% if product.book.published and bought %}
+        <div class="card">
+            <div class="card-body">
+                <div class="icon">
+                    <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Folders.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+                </div>
+                <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}" class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</a>
+                <p class="text-sm text-muted mb-0">
+                    {% trans "this book is in your collection."|capfirst %}
+                </p>
+            </div>
+        </div>
+        <div class="mt-1">
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
-                        <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Folders.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+                        <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Pen_tool.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
                     </div>
-                    <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}" class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</a>
-                    <p class="text-sm text-muted mb-0">
-                        {% trans "this book is in your collection."|capfirst %}
-                    </p>
-                </div>
-            </div>
-            <div class="mt-1">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="icon">
-                            <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Pen_tool.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
-                        </div>
-                        <a href="#/" data-toggle="modal" data-target="#reviewModalListQuick-{{ product.pk }}" class="d-block h5 mt-3">{% trans "testimonials"|capfirst %}</a>
-                        <p class="text-sm text-muted">
-                            {% trans "you can leave a review and check what other players think of this content."|capfirst %}
-                        </p>
-                        <div class="row align-items-center mt-4">
-                            <div class="col-12">
-                                {% with object=product %}
-                                    {% include "reviews/review_button_with_text_modal_quick.html" %}
-                                    {% include 'reviews/review_modal_list_quick.html' %}
-                                {% endwith %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% elif product.book.published %}
-            <div class="card">
-                <div class="card-body">
-                    <div class="icon">
-                        <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Add_to_cart.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
-                    </div>
-                    <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}" class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</a>
+                    <a href="#/" data-toggle="modal" data-target="#reviewModalListQuick-{{ product.pk }}" class="d-block h5 mt-3">{% trans "testimonials"|capfirst %}</a>
                     <p class="text-sm text-muted">
-                        {{ product.courtesy_message }}
+                        {% trans "you can leave a review and check what other players think of this content."|capfirst %}
                     </p>
                     <div class="row align-items-center mt-4">
                         <div class="col-12">
-                            <form action="{% url 'products:add_public' product.slug %}" method="POST">
-                                {% csrf_token %}
-                                {{ add_collection_form }}
-                                {{ add_collection_form.errors }}
-                                <button type="submit" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
-                                    <span class="btn-inner--text">{% trans "Add to collection" %}</span>
-                                </button>               
-                            </form>
+                            {% with object=product %}
+                                {% include "reviews/review_button_with_text_modal_quick.html" %}
+                                {% include 'reviews/review_modal_list_quick.html' %}
+                            {% endwith %}
                         </div>
                     </div>
                 </div>
             </div>
-        {% else %}
-            <div class="card border-0 rounded-lg">
-                <div class="card-body">
-                    <h5 class="font-weight-bold text-left mb-0">{{ product.courtesy_short_message }}</h5>
-                    <p class="text-left mb-0">
-                        {{ product.courtesy_message }}
-                    </p>
+        </div>
+    {% elif product.book.published %}
+        <div class="card">
+            <div class="card-body">
+                <div class="icon">
+                    <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Add_to_cart.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+                </div>
+                <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}" class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</a>
+                <p class="text-sm text-muted">
+                    {{ product.courtesy_message }}
+                </p>
+                <div class="row align-items-center mt-4">
+                    <div class="col-12">
+                        <form action="{% url 'products:add_public' product.slug %}" method="POST">
+                            {% csrf_token %}
+                            {{ add_collection_form }}
+                            {{ add_collection_form.errors }}
+                            <button type="submit" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
+                                <span class="btn-inner--text">{% trans "Add to collection" %}</span>
+                            </button>               
+                        </form>
+                    </div>
                 </div>
             </div>
-        {% endif %}
+        </div>
     {% else %}
-        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-dark text-underline--dashed">
-        {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
+        <div class="card border-0 rounded-lg">
+            <div class="card-body">
+                <h5 class="font-weight-bold text-left mb-0">{{ product.courtesy_short_message }}</h5>
+                <p class="text-left mb-0">
+                    {{ product.courtesy_message }}
+                </p>
+            </div>
+        </div>
     {% endif %}
+{% else %}
+    <div class="card border-0 rounded-lg">
+        <div class="card-body">
+            <div class="icon">
+                <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Marketing.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+            </div>
+            <h5 class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</h5>
+            <p class="text-sm text-muted">
+                {{ product.courtesy_message }}
+            </p>
+            <div class="row align-items-center mt-4">
+                <div class="col-12">
+                    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">
+                        <span class="btn-inner--text">{% trans "Sign in or sign up" %}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

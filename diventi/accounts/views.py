@@ -125,6 +125,7 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 
     def get_initial(self):
         # Retrieve initial data from user inputs on the landing page
+        initial = super().get_initial()
         initial_email = self.request.session.get('initial_email', None)
         initial_first_name = self.request.session.get('initial_first_name', None)
         initial = {
@@ -135,6 +136,9 @@ class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
 
     def get_success_url(self):
         self.request.session['show_login_form'] = 1
+        next_path = self.request.GET.get('next', '')
+        if next_path:
+            return next_path
         return reverse_lazy('landing:home')
 
     def form_valid(self, form, inital_group='Community'):

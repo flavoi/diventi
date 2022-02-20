@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-19 20:47+0100\n"
+"POT-Creation-Date: 2022-02-20 10:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3466,12 +3466,11 @@ msgid "in your collection"
 msgstr "nella tua collezione"
 
 #: diventi/templates/products/partials/product_detail_actions.html:51
-#: diventi/templates/products/partials/product_detail_actions_public.html:74
+#: diventi/templates/products/partials/product_detail_actions_public.html:77
 msgid "Sign in"
 msgstr "Accedi"
 
 #: diventi/templates/products/partials/product_detail_actions.html:51
-#: diventi/templates/products/partials/product_detail_actions_public.html:74
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
 
@@ -3494,6 +3493,10 @@ msgid ""
 msgstr ""
 "puoi lasciare una recensione ed eventualmente leggere quelle degli altri "
 "giocatori"
+
+#: diventi/templates/products/partials/product_detail_actions_public.html:77
+msgid "to add this content in your collection"
+msgstr "per aggiungere questo contenuto alla tua collezione"
 
 #: diventi/templates/products/product_detail_quick.html:50
 msgid "in short"

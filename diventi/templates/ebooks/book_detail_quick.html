@@ -125,7 +125,7 @@
                     {% include "products/partials/product_detail_actions_public.html" %}
                 {% endwith %}
 
-                {% if book.book_product.public %}
+                {% if book.book_product.public and related_products %}
                     <div class="card">
                         <div class="card-header pb-3">
                             <div class="d-flex justify-content-between align-items-center">

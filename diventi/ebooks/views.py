@@ -127,7 +127,8 @@ class PublicPaperEbookView(PublicEbookMixin, PaperEbookView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['related_products'] = self.object.book_product.related_products.all()
+        related_products = self.object.book_product.related_products.all()
+        context['related_products'] = related_products
         return context
 
 

@@ -53,29 +53,27 @@
                 <div class="col-lg-6">
                     <div class="row mx-n2">
                         <div class="col-sm-6 mt-sm-6 px-sm-2">
-                            <div class="card border-0 mb-3 hover-translate-y-n10">
-                                <div class="h-100">
-                                    <img loading=lazy class="card-img-top py-3" src="{{ featured_section.image }}" alt="{{ pinned_product.title }}">
-                                </div>
-                                <div class="card-body p-3 delimiter-top">
-                                    <div class="d-flex align-items-center">
-                                        <div data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ pinned_product.category.title }}">
-                                            <span class="avatar avatar-sm rounded-circle bg-{{ pinned_product.category.color }} text-white"><i data-feather="{{ pinned_product.category.icon }}"></i></span>
-                                        </div>
-                                        <div class="pl-3">
-                                            <span class="h6 text-sm mb-0">{{ pinned_product.title|capfirst }}</span>
+                            <a href="{{ pinned_product.get_absolute_url }}">
+                                <div class="card border-0 mb-3 hover-translate-y-n10 hover-shadow-lg">
+                                    <div class="h-100">
+                                        <img loading=lazy class="card-img-top py-3" src="{{ featured_section.image }}" alt="{{ pinned_product.title }}">
+                                    </div>
+                                    <div class="card-body p-3 delimiter-top">
+                                        <div class="text-center">
                                             {% with pinned_product as object %}
-                                                {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
-                                            {% endwith %}
-                                        </div>
-                                        <div class="ml-auto">
-                                            <div class="actions">
-                                                <a href="{{ pinned_product.get_absolute_url }}" class="action-item"  data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{% trans 'visualize'|capfirst %}"><i data-feather="eye"></i></a>
-                                            </div>
+                                                {% if user.is_staff %}
+                                                    <div class="mb-1">
+                                                        {% include 'publishable_badge.html' %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}        
+                                            <a href="{{ pinned_product.get_absolute_url }}" class="h6 stretched-link lh-150">
+                                                 {{ pinned_product.title|capfirst }}</a>
+                                            <small class="d-block text-sm mb-0 text-{{ pinned_product.category.color }}"><b>{{ pinned_product.category.title }}</b></small>                 
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                             {% if featured_section.video %}
                             <div class="card shadow-none mb-3">
                                 <div class="card-body p-3">                                        

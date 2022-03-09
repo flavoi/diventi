@@ -222,11 +222,8 @@
             <p class="mb-0">{% trans "Sign up to know more and start exploring." %}</p>
           </div>
           <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
-            <a href="{% url 'accounts:signup' %}" class="btn btn-warning btn-icon rounded-pill">
-              <span class="btn-inner--icon">
-                <i data-feather="log-in"></i>
-              </span>
-              <span class="btn-inner--text">{% trans 'sign up'|capfirst %}</span>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-primary my-2">
+              {% trans 'sign up'|capfirst %}
             </a>
           </div>
         </div>
@@ -237,11 +234,8 @@
             <p class="mb-0">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</p>
           </div>
           <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
-            <a href="{% url 'accounts:detail' user.nametag %}" class="btn btn-warning btn-icon rounded-pill">
-              <span class="btn-inner--icon">
-                <i data-feather="user" class="mb-1"></i>
-              </span>
-              <span class="btn-inner--text">{% trans "Manage profile" %}</span>
+            <a href="{% url 'accounts:detail' user.nametag %}" class="btn btn-primary my-2">
+              {% trans "Manage profile" %}
             </a>
           </div>
         </div>

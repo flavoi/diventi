@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - [accounts] Removed collection from user's public page
+- [adventures] Removed legacy adventure app
 
 ### Fixed
 - [accounts] Fixed missing icons in registration forms

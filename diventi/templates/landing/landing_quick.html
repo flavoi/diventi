@@ -93,7 +93,8 @@
                             </div> 
                             {% endif %}
                         </div>
-                        <div class="col-sm-6 px-sm-2 mt-sm-6 ">
+
+                        <div class="col-sm-6 px-sm-2 mt-sm-7">
                             <div class="card mb-3 hover-shadow-lg hover-translate-y-n3 mt-xl-n6">
                                 <div class="card-body text-center py-5 h-100">
                                     <div class="d-flex justify-content-center align-items-center mb-3">
@@ -113,22 +114,18 @@
                             </div>
                             
                             <div class="card">
-                                <div class="card-body text-center">
+                                <div class="card-body text-center">          
 
-                                    <div class="mt-2 mb-3" data-toggle="tooltip" data-placement="bottom" title="{{ latest_public_product.category.title }}">
-                                        <a href="{% url 'products:list_category' latest_public_product.category.slug %}">
-                                            <div class="icon icon-lg bg-{{ latest_public_product.category.color }} text-white rounded-circle icon-shape shadow hover-translate-y-n3">
-                                                <i data-feather="{{ latest_public_product.category.icon }}"></i>
-                                            </div>
+                                    <div class="mt-3 mb-3">
+                                        <a href="{{ latest_public_product.get_absolute_url }}" class="d-block h5 mb-0">
+                                            {{ latest_public_product.title }}                                    
                                         </a>
-                                    </div>
+                                        {% with latest_public_product as object %}
+                                            {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
+                                        {% endwith %}
 
-                                    <a href="{{ latest_public_product.get_absolute_url }}" class="d-block h5 mt-3 mb-4">
-                                        {{ latest_public_product.title }}                                    
-                                    </a>
-                                    {% with latest_public_product as object %}
-                                        {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
-                                    {% endwith %}
+                                        <small class="d-block text-sm mb-0 text-{{ latest_public_product.category.color }}"><b>{{ latest_public_product.category.title }}</b></small>
+                                    </div>
 
                                     <div class="mt-3 pt-3 delimiter-top">
                                         <div class="">

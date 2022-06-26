@@ -68,6 +68,7 @@ class SectionModelQuerySet(FeaturedModelQuerySet):
     # Get the not featured object that can be selected to appear on the landing page
     def not_featured(self):
         not_featured_models = self.published().filter(featured=False)
+        not_featured_models = not_featured_models.order_by('order_index')
         return not_featured_models
 
 

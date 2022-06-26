@@ -28,11 +28,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - [accounts] Removed collection from user's public page
 - [adventures] Removed adventure legacy app
+- [landing] Removed an old form from the about article
 
 ### Fixed
 - [accounts] Fixed missing icons in registration forms
 - [blog] Fixed missing strings in the related articles section
 - [feedbacks] Fixed text alignment of the title in the survey page
+- [landing] Fixed a problem that prevented the admin to order of the content sections
 - [locale] Corrected translations for the category tables
 - [locale] Fixed a problem that caused warning errors while compiling plural strings
 - [payments] Fixed a problem that prevented successful payments to be sent to stripe

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-20 12:35+0100\n"
+"POT-Creation-Date: 2022-07-27 09:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -434,7 +434,6 @@ msgid "Enable third ring"
 msgstr "Attiva il terzo anello"
 
 #: diventi/adventures/forms.py:51 diventi/adventures/models.py:310
-#: diventi/templates/adventures/situation_story_detail.html:11
 msgid "Resolution"
 msgstr "Risoluzione"
 
@@ -448,7 +447,7 @@ msgstr "Antagonisti"
 
 #: diventi/adventures/models.py:135 diventi/ebooks/models.py:391
 #: diventi/ebooks/models.py:413 diventi/ebooks/models.py:438
-#: diventi/landing/models.py:126 diventi/tooltips/models.py:57
+#: diventi/landing/models.py:127 diventi/tooltips/models.py:57
 msgid "section"
 msgstr "sezione"
 
@@ -586,12 +585,10 @@ msgid "next situation"
 msgstr "situazione successiva"
 
 #: diventi/adventures/models.py:402
-#: diventi/templates/adventures/situation_detail.html:7
 msgid "Situation"
 msgstr "Situazione"
 
 #: diventi/adventures/models.py:403
-#: diventi/templates/adventures/situation_story_list.html:5
 msgid "Situations"
 msgstr "Situazioni"
 
@@ -897,7 +894,7 @@ msgstr "promozioni"
 
 #: diventi/core/models.py:106 diventi/feedbacks/models.py:26
 #: diventi/feedbacks/models.py:65 diventi/feedbacks/models.py:101
-#: diventi/landing/models.py:85 diventi/products/models.py:168
+#: diventi/landing/models.py:86 diventi/products/models.py:168
 msgid "title"
 msgstr "titolo"
 
@@ -911,7 +908,7 @@ msgstr "stile icona"
 
 #: diventi/core/models.py:129 diventi/ebooks/models.py:30
 #: diventi/feedbacks/models.py:27 diventi/feedbacks/models.py:66
-#: diventi/feedbacks/models.py:102 diventi/landing/models.py:86
+#: diventi/feedbacks/models.py:102 diventi/landing/models.py:87
 #: diventi/products/models.py:182
 msgid "description"
 msgstr "descrizione"
@@ -969,7 +966,6 @@ msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
 #: diventi/core/models.py:266
-#: diventi/templates/products/product_list_quick.html:59
 msgid "featured"
 msgstr "in primo piano"
 
@@ -1158,7 +1154,7 @@ msgstr "libri"
 
 #: diventi/ebooks/models.py:215 diventi/ebooks/models.py:262
 #: diventi/ebooks/models.py:310 diventi/feedbacks/models.py:28
-#: diventi/landing/models.py:88
+#: diventi/landing/models.py:89
 msgid "order index"
 msgstr "id ordinamento"
 
@@ -1222,8 +1218,6 @@ msgstr ""
 "compagni game master."
 
 #: diventi/ebooks/models.py:319
-#: diventi/templates/adventures/situation_detail.html:39
-#: diventi/templates/adventures/situation_detail.html:48
 msgid "situation"
 msgstr "situazione"
 
@@ -1259,7 +1253,7 @@ msgstr "allineamento del testo"
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:392 diventi/landing/models.py:127
+#: diventi/ebooks/models.py:392 diventi/landing/models.py:128
 #: diventi/templates/base_quick.html:238
 msgid "sections"
 msgstr "sezioni"
@@ -1309,7 +1303,6 @@ msgid "requires a skill check"
 msgstr "richiede una prova"
 
 #: diventi/ebooks/models.py:446
-#: diventi/templates/adventures/situation_detail.html:102
 msgid "secret"
 msgstr "segreto"
 
@@ -1490,7 +1483,7 @@ msgid "Landing"
 msgstr "Pagina di atterraggio"
 
 #: diventi/landing/models.py:43 diventi/landing/models.py:44
-#: diventi/landing/models.py:96
+#: diventi/landing/models.py:97
 msgid "about article"
 msgstr "articolo su di noi"
 
@@ -1498,43 +1491,43 @@ msgstr "articolo su di noi"
 msgid "policy article"
 msgstr "articolo sulla policy"
 
-#: diventi/landing/models.py:84
+#: diventi/landing/models.py:85
 msgid "prefix text"
 msgstr "prefisso"
 
-#: diventi/landing/models.py:87
+#: diventi/landing/models.py:88
 msgid "button label"
 msgstr "etichetta del bottone"
 
-#: diventi/landing/models.py:89
+#: diventi/landing/models.py:90
 msgid "attachment label"
 msgstr "etichetta dell'allegato"
 
-#: diventi/landing/models.py:104
+#: diventi/landing/models.py:105
 msgid "product category"
 msgstr "categoria prodotto"
 
-#: diventi/landing/models.py:112
+#: diventi/landing/models.py:113
 msgid "article category"
 msgstr "categoria articolo"
 
-#: diventi/landing/models.py:116
+#: diventi/landing/models.py:117
 msgid "video"
 msgstr "video"
 
-#: diventi/landing/models.py:134
+#: diventi/landing/models.py:135
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:135
+#: diventi/landing/models.py:136
 msgid "features"
 msgstr "aspetti"
 
-#: diventi/landing/models.py:141
+#: diventi/landing/models.py:142
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:142 diventi/templates/base_quick.html:366
+#: diventi/landing/models.py:143 diventi/templates/base_quick.html:366
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -1882,8 +1875,7 @@ msgstr ""
 "funzionalità."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/landing/about_article_quick.html:61
-#: diventi/templates/landing/landing_quick.html:246
+#: diventi/templates/landing/landing_quick.html:235
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1913,8 +1905,7 @@ msgstr "accedi"
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:213 diventi/templates/base_quick.html:469
-#: diventi/templates/landing/about_article_quick.html:46
-#: diventi/templates/landing/landing_quick.html:231
+#: diventi/templates/landing/landing_quick.html:223
 msgid "sign up"
 msgstr "registrati"
 
@@ -2343,98 +2334,6 @@ msgstr "Aggiorna preferenza"
 msgid "general information"
 msgstr "informazioni generali"
 
-#: diventi/templates/adventures/situation_detail.html:17
-msgid "you are playing the"
-msgstr "stai giocando il"
-
-#: diventi/templates/adventures/situation_detail.html:18
-msgid "public link"
-msgstr "link pubblico"
-
-#: diventi/templates/adventures/situation_detail.html:29
-#: diventi/templates/adventures/situation_story_create.html:6
-#: diventi/templates/adventures/situation_story_list.html:26
-msgid "adventures"
-msgstr "avventure"
-
-#: diventi/templates/adventures/situation_detail.html:40
-msgid "interactions"
-msgstr "interazioni"
-
-#: diventi/templates/adventures/situation_detail.html:71
-msgid "adventure secrets"
-msgstr "segreti dell'avventura"
-
-#: diventi/templates/adventures/situation_detail.html:81
-#, python-format
-msgid "%(name)s's goal"
-msgstr "obiettivo di %(name)s"
-
-#: diventi/templates/adventures/situation_detail.html:109
-msgid "situation check:"
-msgstr "prova:"
-
-#: diventi/templates/adventures/situation_detail.html:111
-msgid "reveal"
-msgstr "rivela"
-
-#: diventi/templates/adventures/situation_story_create.html:18
-msgid "Start your adventure"
-msgstr "Inizia una nuova avventura"
-
-#: diventi/templates/adventures/situation_story_create.html:24
-msgid "your open situations"
-msgstr "le tue situazioni aperte"
-
-#: diventi/templates/adventures/situation_story_create.html:32
-msgid "you have no open situations"
-msgstr "non hai situazioni aperte"
-
-#: diventi/templates/adventures/situation_story_create.html:38
-msgid "your past adventures"
-msgstr "le tue avventure passate"
-
-#: diventi/templates/adventures/situation_story_create.html:46
-msgid "you have yet to complete a whole adventure"
-msgstr "devi ancora completare un'avventura"
-
-#: diventi/templates/adventures/situation_story_create.html:65
-msgid "Get Started"
-msgstr "Iniziamo"
-
-#: diventi/templates/adventures/situation_story_detail.html:8
-msgid "finale"
-msgstr "finale"
-
-#: diventi/templates/adventures/situation_story_detail.html:62
-#: diventi/templates/machina/forum_conversation/forum_polls/poll_vote_form.html:35
-#: diventi/templates/machina/forum_conversation/partials/topic_form.html:100
-#: diventi/templates/machina/forum_conversation/post_create.html:28
-#: diventi/templates/machina/forum_conversation/post_update.html:27
-#: diventi/templates/machina/forum_member/forum_profile_update.html:35
-msgid "Submit"
-msgstr "Invia"
-
-#: diventi/templates/adventures/situation_story_list.html:15
-msgid "the situations you played in this adventure"
-msgstr "ecco le situazioni che hai giocato in questa avventura"
-
-#: diventi/templates/adventures/situation_story_list.html:37
-msgid "this situation is still open."
-msgstr "questa situazione è ancora aperta."
-
-#: diventi/templates/adventures/story_detail.html:30
-msgid "Your story"
-msgstr "La tua storia"
-
-#: diventi/templates/adventures/story_detail.html:50
-msgid "Adventure secrets"
-msgstr "Segreti dell'avventura"
-
-#: diventi/templates/adventures/story_detail.html:64
-msgid "Refesh"
-msgstr "Aggiorna"
-
 #: diventi/templates/base_quick.html:151
 msgid "loading"
 msgstr "caricamento"
@@ -2686,30 +2585,7 @@ msgstr ""
 msgid "check answers"
 msgstr "visualizza risposte"
 
-#: diventi/templates/landing/about_article_quick.html:38
-#: diventi/templates/landing/landing_quick.html:223
-msgid "Join our community"
-msgstr "Unisciti alla nostra community"
-
-#: diventi/templates/landing/about_article_quick.html:39
-#: diventi/templates/landing/landing_quick.html:224
-msgid "Sign up to know more and start exploring."
-msgstr "Registrati per saperne di più e accedere ai contenuti."
-
-#: diventi/templates/landing/about_article_quick.html:53
-#: diventi/templates/landing/landing_quick.html:238
-msgid "Hello"
-msgstr "Ciao"
-
-#: diventi/templates/landing/about_article_quick.html:54
-#: diventi/templates/landing/landing_quick.html:239
-msgid ""
-"You have signed in. Feel free to explore or deep dive into your profile."
-msgstr ""
-"Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
-"profilo."
-
-#: diventi/templates/landing/about_article_quick.html:84
+#: diventi/templates/landing/about_article_quick.html:44
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2725,17 +2601,32 @@ msgstr "ops, la copia è fallita"
 msgid "learn more"
 msgstr "scopri di più"
 
-#: diventi/templates/landing/landing_quick.html:73
-msgid "visualize"
-msgstr "visualizza"
-
-#: diventi/templates/landing/landing_quick.html:91
+#: diventi/templates/landing/landing_quick.html:89
 msgid "video presentation"
 msgstr "video-presentazione"
 
-#: diventi/templates/landing/landing_quick.html:113
+#: diventi/templates/landing/landing_quick.html:112
 msgid "read article"
 msgstr "leggi articolo"
+
+#: diventi/templates/landing/landing_quick.html:218
+msgid "Join our community"
+msgstr "Unisciti alla nostra community"
+
+#: diventi/templates/landing/landing_quick.html:219
+msgid "Sign up to know more and start exploring."
+msgstr "Registrati per saperne di più e accedere ai contenuti."
+
+#: diventi/templates/landing/landing_quick.html:230
+msgid "Hello"
+msgstr "Ciao"
+
+#: diventi/templates/landing/landing_quick.html:231
+msgid ""
+"You have signed in. Feel free to explore or deep dive into your profile."
+msgstr ""
+"Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
+"profilo."
 
 #: diventi/templates/landing/search_results_quick.html:4
 #: diventi/templates/landing/search_results_quick.html:15
@@ -2947,6 +2838,14 @@ msgstr "Anteprima:"
 #: diventi/templates/machina/forum_conversation/forum_polls/poll_results.html:19
 msgid "Total votes:"
 msgstr "Voti totali:"
+
+#: diventi/templates/machina/forum_conversation/forum_polls/poll_vote_form.html:35
+#: diventi/templates/machina/forum_conversation/partials/topic_form.html:100
+#: diventi/templates/machina/forum_conversation/post_create.html:28
+#: diventi/templates/machina/forum_conversation/post_update.html:27
+#: diventi/templates/machina/forum_member/forum_profile_update.html:35
+msgid "Submit"
+msgstr "Invia"
 
 #: diventi/templates/machina/forum_conversation/forum_polls/poll_vote_form.html:36
 msgid "View results"
@@ -3568,6 +3467,14 @@ msgstr "non c'è alcuna recensione per ora, postane una tu!"
 msgid "games list"
 msgstr "catalogo dei giochi"
 
+#: diventi/templates/products/product_list_quick.html:59
+msgid "featured games"
+msgstr "giochi in primo piano"
+
+#: diventi/templates/products/product_list_quick.html:92
+msgid "all games"
+msgstr "tutti i giochi"
+
 #: diventi/templates/publishable_badge.html:4
 msgid "a draft content can be seen only by the staff"
 msgstr "una bozza può essere vista solo da un membro dello staff"
@@ -3644,6 +3551,70 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "you are playing the"
+#~ msgstr "stai giocando il"
+
+#~ msgid "public link"
+#~ msgstr "link pubblico"
+
+#~ msgid "adventures"
+#~ msgstr "avventure"
+
+#~ msgid "interactions"
+#~ msgstr "interazioni"
+
+#~ msgid "adventure secrets"
+#~ msgstr "segreti dell'avventura"
+
+#, python-format
+#~ msgid "%(name)s's goal"
+#~ msgstr "obiettivo di %(name)s"
+
+#~ msgid "situation check:"
+#~ msgstr "prova:"
+
+#~ msgid "reveal"
+#~ msgstr "rivela"
+
+#~ msgid "Start your adventure"
+#~ msgstr "Inizia una nuova avventura"
+
+#~ msgid "your open situations"
+#~ msgstr "le tue situazioni aperte"
+
+#~ msgid "you have no open situations"
+#~ msgstr "non hai situazioni aperte"
+
+#~ msgid "your past adventures"
+#~ msgstr "le tue avventure passate"
+
+#~ msgid "you have yet to complete a whole adventure"
+#~ msgstr "devi ancora completare un'avventura"
+
+#~ msgid "Get Started"
+#~ msgstr "Iniziamo"
+
+#~ msgid "finale"
+#~ msgstr "finale"
+
+#~ msgid "the situations you played in this adventure"
+#~ msgstr "ecco le situazioni che hai giocato in questa avventura"
+
+#~ msgid "this situation is still open."
+#~ msgstr "questa situazione è ancora aperta."
+
+#~ msgid "Your story"
+#~ msgstr "La tua storia"
+
+#~ msgid "Adventure secrets"
+#~ msgstr "Segreti dell'avventura"
+
+#~ msgid "Refesh"
+#~ msgstr "Aggiorna"
+
+#~ msgid "visualize"
+#~ msgstr "visualizza"
 
 #~ msgid "to add this content in your collection"
 #~ msgstr "per aggiungere questo contenuto alla tua collezione"

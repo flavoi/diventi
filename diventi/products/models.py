@@ -73,16 +73,21 @@ class ProductQuerySet(PublishableModelQuerySet):
     def has_user_authored(self, user):
         return self.user_authored(user).exists()
 
-    # Return the list of products that are pinned.
+    # Return the first pinned product
     def pinned(self):
         product = self.published().filter(pinned=True).prefetch()
         try:
             product = product.get()
         except Product.MultipleObjectsReturned:
-            product = product.latest('publication_date')
+            product = product.order_by('-publication_date').first()
         except Product.DoesNotExist:
             product = product.first()
         return product
+
+    # Return the list of pinned products
+    def pinned_list(self):
+        products = self.published().filter(pinned=True).prefetch()
+        return products
 
     # Get the list of published products of a certain category
     def category(self, category_slug):
@@ -219,19 +224,23 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     unfolded = models.BooleanField(
         default = False,
         verbose_name = _('unfolded'),
-    ) # Unfolded products can be bought by users
+        help_text = _('Unfolded products can be bought by users')
+    )
     pinned = models.BooleanField(
         default = True,
-        verbose_name = _('pinned')
-    ) # Pinned products appear on the landing page
+        verbose_name = _('pinned'),
+        help_text = _('Pinned products appear on the landing page') 
+    )
     public = models.BooleanField(
         default = False,
-        verbose_name = _('public')
-    ) # Public products open their content to anonimous users
+        verbose_name = _('public'),
+        help_text = _('Public products diplay their content to anonimous users')
+    ) 
     hot = models.BooleanField(
         default=False, 
-        verbose_name=_('hot')
-    ) # Hot products are always on top of the games' page
+        verbose_name=_('hot'),
+        help_text = _('Hot products are displayed on top of the games page')
+    ) 
     courtesy_short_message = models.CharField(
         blank=True, 
         max_length=50, 
@@ -239,14 +248,15 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
     )
     courtesy_message = models.TextField(
         blank=True, 
-        verbose_name=_('courtesy message')
-    ) # Folded products returns this message to users
+        verbose_name = _('courtesy message'),
+        help_text = _('Folded products return this message to all users')
+    )
     related_products = models.ManyToManyField(
         'self',
-        related_name='products', 
-        blank=True, 
-        verbose_name=_('related products'),
-    ) # Connect this product to others
+        related_name = 'products', 
+        blank = True, 
+        verbose_name = _('related products'),
+    )
     formats = models.ManyToManyField(
         ProductFormat, 
         blank = True, 

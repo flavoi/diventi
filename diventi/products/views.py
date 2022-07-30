@@ -73,7 +73,7 @@ class ProductListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(ProductListView, self).get_context_data(*args, **kwargs)
         context['categories'] = ProductCategory.objects.visible()
-        context['hot_products'] = Product.objects.hot()
+        context['hot_products'] = (Product.objects.hot() | Product.objects.pinned_list()).distinct()
         context['productcover'] = ProductCover.objects.active()
         return context
 
@@ -82,15 +82,13 @@ class ProductListViewByCategory(ProductListView):
     """
         Display a filtered list of published products by a selected category.
     """
+
+    template_name = 'products/product_list_filtered_quick.html'
+
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.category(category_slug=self.kwargs['category'])
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProductListViewByCategory, self).get_context_data(*args, **kwargs)
-        context['hot_products'] = Product.objects.hot().category(category_slug=self.kwargs['category'])
-        return context
-        
 
 class ProductDetailView(DetailView):
     """

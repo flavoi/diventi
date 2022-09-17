@@ -21,10 +21,7 @@ from .models import (
 def get_user_data(user, self=None):
     user_id = user.pk
     surveys = Survey.objects.user_collection(user)
-    if user.is_staff:
-        collection = Product.objects.user_authored(user=user)
-    else:
-        collection = Product.objects.user_collection(user=user)
+    collection = Product.objects.user_collection(user=user)
     projects_count = collection.count
     survey_answers_count = user.answers.count
     ratings_count = Review.objects.filter(user=user).count()

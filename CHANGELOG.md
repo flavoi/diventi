@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ckeditor] Added CrateDiv plugin to expand the formatting capabilities of blog articles
 - [ebooks] Added related products row in detail page
 - [ebooks] Added action cards in public ebook page
+- [feedbaks] Added sign up page for private surveys
 - [landing] Integrated demo ebook in the landing page
 - [landing] Integrate the hottest article in the landing page
 - [products] Introduced a games catalog page

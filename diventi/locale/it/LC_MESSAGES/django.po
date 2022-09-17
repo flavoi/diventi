@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:10+0200\n"
+"POT-Creation-Date: 2022-09-17 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1427,28 +1427,28 @@ msgid "<slug:slug>/new-submit/"
 msgstr "<slug:slug>/nuovo/"
 
 #: diventi/feedbacks/urls.py:18
-msgid "<slug:slug>/questions/"
-msgstr "<slug:slug>/domande/"
+msgid "<slug:slug>/questions/gate/"
+msgstr "<slug:slug>/domande/accesso/"
 
 #: diventi/feedbacks/urls.py:19
-msgid "<slug:slug>/questions/<str:author_name>/"
-msgstr "<slug:slug>/domande/<str:author_name>/"
+msgid "<slug:slug>/questions/gate/<str:author_name>/"
+msgstr "<slug:slug>/domande/accesso/<str:author_name>/"
 
 #: diventi/feedbacks/urls.py:20
 msgid "<slug:slug>/questions/private/"
 msgstr "<slug:slug>/domande/private/"
 
 #: diventi/feedbacks/urls.py:21
-msgid "<slug:slug>/questions/<str:author_name>/private/"
-msgstr "<slug:slug>/domande/<str:author_name>/private/"
+msgid "<slug:slug>/questions/private/<str:author_name>/"
+msgstr "<slug:slug>/domande/private/<str:author_name>/"
 
 #: diventi/feedbacks/urls.py:22
 msgid "<slug:slug>/questions/public/"
 msgstr "<slug:slug>/domande/pubbliche/"
 
 #: diventi/feedbacks/urls.py:23
-msgid "<slug:slug>/questions/<str:author_name>/public/"
-msgstr "<slug:slug>/domande/<str:author_name>/pubbliche/"
+msgid "<slug:slug>/questions/public/<str:author_name>/"
+msgstr "<slug:slug>/domande/pubbliche/<str:author_name>/"
 
 #: diventi/feedbacks/urls.py:24
 msgid "<slug:slug>/answers/"
@@ -3584,6 +3584,15 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "<slug:slug>/questions/"
+#~ msgstr "<slug:slug>/domande/"
+
+#~ msgid "<slug:slug>/questions/<str:author_name>/private/"
+#~ msgstr "<slug:slug>/domande/<str:author_name>/private/"
+
+#~ msgid "<slug:slug>/questions/<str:author_name>/public/"
+#~ msgstr "<slug:slug>/domande/<str:author_name>/pubbliche/"
 
 #~ msgid "Attachment"
 #~ msgstr "Allegato"

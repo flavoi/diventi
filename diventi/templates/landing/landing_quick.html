@@ -48,6 +48,9 @@
                         {% if hot_product %}
                         <a href="{{ hot_product.get_absolute_url }}" class="btn btn-outline-white my-2">{{ featured_section.button_label|capfirst }}</a>
                         {% endif %}
+                        {% if pinned_survey %}
+                        <a href="{{ pinned_survey.get_absolute_url }}" class="btn btn-outline-success my-2">{{ featured_section.button_label|capfirst }}</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-lg-6">

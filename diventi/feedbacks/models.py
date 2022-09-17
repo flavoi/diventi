@@ -93,6 +93,17 @@ class SurveyQuerySet(FeaturedModelQuerySet):
         surveys = surveys.distinct()
         return surveys
 
+    # Return the first pinned survey
+    def pinned(self):
+        survey = self.published().filter(pinned=True)
+        try:
+            survey = survey.get()
+        except Survey.MultipleObjectsReturned:
+            survey = survey.order_by('-publication_date').first()
+        except Survey.DoesNotExist:
+            survey = survey.first()
+        return survey
+
 
 class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
     """
@@ -103,6 +114,11 @@ class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys', verbose_name=_('question groups'))
     public = models.BooleanField(verbose_name=_('public'))
+    pinned = models.BooleanField(
+        default = True,
+        verbose_name = _('pinned'),
+        help_text = _('Pinned surveys appear on the landing page') 
+    )
     
     objects = SurveyQuerySet.as_manager()
 

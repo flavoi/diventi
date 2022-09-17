@@ -24,6 +24,7 @@ from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
 from diventi.blog.models import Article
 from diventi.ebooks.models import Book
+from diventi.feedbacks.models import Survey
 
 from diventi.core.views import StaffRequiredMixin
 
@@ -94,6 +95,7 @@ def get_landing_context(request):
     pinned_product = Product.objects.not_hot().pinned()
     latest_public_product = Product.objects.latest_public()
     latest_article = Article.objects.hottest()
+    pinned_survey = Survey.objects.pinned()
 
     featured_section = Section.objects.featured()
     if featured_section:
@@ -113,6 +115,7 @@ def get_landing_context(request):
         'sections': sections,
         'latest_article': latest_article,
         'latest_public_product': latest_public_product,
+        'pinned_survey': pinned_survey,
     }
     return context
 

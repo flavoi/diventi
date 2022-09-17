@@ -87,31 +87,6 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
     description = models.TextField(blank=True, verbose_name=_('description'))
     button_label = models.CharField(blank=True, max_length=50, verbose_name=_('button label'))
     order_index = models.PositiveIntegerField(verbose_name=_('order index'))
-    attachment_label = models.CharField(blank=True, max_length=50, verbose_name=_('attachment label'))
-    about_article = models.ForeignKey(
-        AboutArticle,
-        blank = True,
-        null = True,
-        related_name='sections',
-        on_delete=models.SET_NULL,
-        verbose_name=_('about article'),
-    )
-    product_category = models.ForeignKey(
-        ProductCategory,
-        blank = True,
-        null = True,
-        related_name='sections',
-        on_delete=models.SET_NULL,
-        verbose_name=_('product category'),
-    )
-    article_category = models.ForeignKey(
-        ArticleCategory,
-        blank = True,
-        null = True,
-        related_name='sections',
-        on_delete=models.SET_NULL,
-        verbose_name=_('article category'),
-    )
     video = models.URLField(
         blank=True,
         verbose_name=_('video')

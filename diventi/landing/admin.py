@@ -49,9 +49,6 @@ class SectionAdmin(DiventiTranslationAdmin):
         (_('Editing'), {
             'fields': ('order_index', 'prefix', 'title', 'button_label', 'description',),
         }),
-        (_('Attachment'), {
-            'fields': ('attachment_label', 'about_article', 'product_category', 'article_category',),
-        }),
     )
     inlines = [        
         FeatureInline,

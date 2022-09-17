@@ -227,7 +227,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="mb-4">
                     <div class="row mb-3">
                         <div class="col">
                             <h6 class="mb-0">{% trans "Recent posts" %}{% if user_data.recent_posts %} &middot; <a href="{% url 'forum_member:user_posts' user_data.user_id %}">{% trans "View all" %}</a>{% endif %}</h6>
@@ -235,32 +235,28 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-12 px-2">
-                            <div class="card card-fluid">
-                              <div class="card-body">
+                            <div class="list-group">
                                 {% for post in user_data.recent_posts %}
-                                <div class="row post">
-                                  <div class="col-md-12 post-content-wrapper">
-                                    <div class="post-title">
-                                      <a href="{% url 'forum_conversation:topic' post.topic.forum.slug post.topic.forum.pk post.topic.slug post.topic.pk %}?post={{ post.pk }}#{{ post.pk }}">{{ post.subject }}</a>
-                                    </div>
-                                    <p>
-                                      <small class="text-muted">
-                                        <i data-feather="clock"></i>&nbsp;{% blocktrans with creation_date=post.created %}On {{ creation_date }}{% endblocktrans %}
-                                      </small>
-                                    </p>
-                                    <div class="post-content">
-                                      {{ post.content.rendered|truncatechars_html:160 }}
-                                    </div>
-                                  </div>
-                                </div>
+                                    <a href="{% url 'forum_conversation:topic' post.topic.forum.slug post.topic.forum.pk post.topic.slug post.topic.pk %}?post={{ post.pk }}#{{ post.pk }}" class="list-group-item list-group-item-action">{{ post.subject }} &middot; <small>{% blocktrans with creation_date=post.created %}{{ creation_date }}{% endblocktrans %}</small> 
+                                        <p class="mb-1 text-xs">
+                                            <small class="text-muted">
+                                                {{ post.content.rendered|truncatechars_html:160 }}
+                                            </small>
+                                        </p>
+                                    </a>
                                 {% empty %}
-                                    {% trans "There are no posts yet." %}
+                                    <div class="card rounded-lg border-0">
+                                        <div class="p-4 text-center text-sm-left">
+                                            <h6 class="mb-0 text-muted">
+                                                {% trans "There are no posts yet." %}
+                                            </h6>
+                                        </div>
+                                    </div>
                                 {% endfor %}
-                              </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>            
             </div>
         </div>
     </div>

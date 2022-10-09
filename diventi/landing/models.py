@@ -4,9 +4,11 @@ from django.conf import settings
 from django.utils.html import mark_safe
 from django.urls import reverse
 from django.db.models import Prefetch
+from django.contrib.contenttypes.fields import GenericRelation
 
 from cuser.middleware import CuserMiddleware
 from ckeditor.fields import RichTextField
+from hitcount.models import HitCount, HitCountMixin
 
 from diventi.core.models import (
     Element, 
@@ -16,6 +18,7 @@ from diventi.core.models import (
     FeaturedModelManager,
     SectionModel,
     PublishableModel,
+    PublishableModelQuerySet,
     TimeStampedModel,
     PromotableModel,
 )
@@ -32,12 +35,60 @@ from diventi.blog.models import (
 )
 
 
-class AboutArticle(TimeStampedModel, PublishableModel, Element):
-    content = RichTextField(verbose_name=_('content'))
-    slug = models.SlugField(unique=True, verbose_name=_('slug'))
+class AboutArticleQuerySet(PublishableModelQuerySet):
+
+    # Get the published articles, counted by django hitcount
+    def hit_count(self):
+        articles = self.published().order_by('-hit_count_generic__hits')
+        return articles
+
+    # Get the most viewed articles, counted by django hitcount
+    def popular(self):
+        articles = self.hit_count()[:3]
+        return articles
+
+
+class AboutArticle(TimeStampedModel, PublishableModel, Element, HitCountMixin):
+    content = RichTextField(
+        verbose_name=_('content')
+    )
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug')
+    )
+    hit_count_generic = GenericRelation(
+        HitCount, 
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation'
+    ) # Counts the views on this model
+
+    objects = AboutArticleQuerySet.as_manager()
 
     def get_absolute_url(self):
         return reverse('landing:about', args=[str(self.slug,)])
+
+    def get_hitcounts(self):
+        return self.hit_count.hits
+    get_hitcounts.short_description = _('Hit counts')
+    get_hitcounts.admin_order_field = 'hit_count_generic__hits'
+
+    def reporting(self, *args, **kwargs):
+        queryset = AboutArticle.objects.popular()
+        results = []
+        for article in queryset:
+            results.append({
+                'columns': 4,
+                'name': '%(article)s' % {
+                    'article': article.title,
+                },
+                'title': article.hit_count.hits,
+                'description1': _('views in the last week: %(d)s') % {
+                    'd': article.hit_count.hits_in_last(days=7),
+                },
+                'description2': '',
+                'action': '',
+            })
+        return results
 
     class Meta:
         verbose_name = _('about article')

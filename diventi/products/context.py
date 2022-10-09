@@ -22,6 +22,6 @@ def project_categories(request):
 
 def pinned_projects(request):
     context = {}
-    pinned_projects = Product.objects.pinned()
+    pinned_projects = (Product.objects.hot() | Product.objects.pinned_list()).distinct()
     context['pinned_projects'] = pinned_projects
     return context

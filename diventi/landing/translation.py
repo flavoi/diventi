@@ -26,7 +26,7 @@ class SearchSuggestionOptions(TranslationOptions):
 
 @register(AboutArticle)
 class AboutArticleOptions(TranslationOptions):
-    fields = ('title', 'content', 'slug')
+    fields = ('title', 'description', 'content', 'slug')
 
 
 @register(PolicyArticle)

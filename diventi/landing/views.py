@@ -18,6 +18,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.http import HttpResponseNotFound
 
+from hitcount.views import HitCountDetailView
+
 from diventi.accounts.forms import DiventiUserInitForm
 
 from diventi.accounts.models import DiventiUser
@@ -31,7 +33,6 @@ from diventi.core.views import StaffRequiredMixin
 from .models import (
     Section,
     AboutArticle,
-    PolicyArticle,
 )
 
 from diventi.ebooks.utils import (
@@ -76,9 +77,10 @@ class DashboardView(StaffRequiredMixin, ListView):
     def get_queryset(self):
         results = super(DashboardView, self).get_queryset()
         articles = Article.reporting(self)
+        about_articles = AboutArticle.reporting(self)
         products = Product.reporting(self)
         users = DiventiUser.reporting(self)
-        results = list(chain(users,articles, products, ))
+        results = list(chain(users, articles, about_articles, products, ))
         return results
 
     def get_context_data(self, **kwargs):
@@ -132,17 +134,11 @@ class LandingTemplateView(TemplateView):
         return context
 
 
-class AboutArticleDetailView(DetailView):
+class AboutArticleDetailView(HitCountDetailView):
     """ Renders the 'about us' article and the content related to it. """
     
     model = AboutArticle
-    template_name  = "landing/about_article_quick.html"
-
-
-class PolicyArticleDetailView(DetailView):
-    """ Renders the policy article and the content related to it. """
-    
-    model = PolicyArticle
+    count_hit = True
     template_name  = "landing/about_article_quick.html"
 
 

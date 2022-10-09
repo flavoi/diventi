@@ -201,20 +201,13 @@
                                 </button>
                             </div>
                             <ul class="navbar-nav ml-lg-auto mr-3">
-                                {% for product in graph_section.products.all %}
-                                <li class="nav-item">
-                                    <a class="nav-link text-primary" href="{{ product.get_absolute_url }}">
-                                      <i data-feather="activity" class="mr-0"></i> {{ graph_section.title|striptags|capfirst }}
-                                    </a>
-                                </li>
-                                {% endfor %}
                                 {% if user.is_anonymous %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a>
                                 </li>
                                 {% elif user.is_staff %}
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
-                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "authors"|capfirst %}</a>
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "manage"|capfirst %}</a>
                                     <div class="dropdown-menu dropdown-menu-md p-0">
                                         <div class="list-group list-group-flush px-lg-4">
                                             <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
@@ -224,7 +217,7 @@
                                                     </span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">Admin</h6>
-                                                        <small class="text-sm">{% trans "the control panel, suitable for authors only."|capfirst %}</small>
+                                                        <small class="text-sm">{% trans "control panel for authors only"|capfirst %}.</small>
                                                     </div>
                                                 </div>
                                             </a>
@@ -253,7 +246,7 @@
                                                     </span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
-                                                        <small class="text-sm">{% trans "a tool to measure the website performance."|capfirst %}</small>
+                                                        <small class="text-sm">{% trans "a tool to measure the website performance"|capfirst %}.</small>
                                                     </div>
                                                 </div>
                                             </a>
@@ -261,17 +254,109 @@
                                     </div>
                                 </li>
                                 {% endif %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'forum:index' %}">Forum</a>
+
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                  <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "participate"|capfirst %}</a>
+                                  <div class="dropdown-menu dropdown-menu-md p-0">
+                                        <div class="dropdown-body py-3 pl-4">
+                                          <h6 class="dropdown-header text-info">{% trans "community"|capfirst %}</h6>
+                                          <div class="list-group list-group-flush">
+
+                                            <div class="list-group-item bg-transparent border-0 px-0 py-2">
+                                              <div class="media d-flex">
+                                                <span class="h6">
+                                                  <i data-feather="layout" class="feather feather-layout"></i>
+                                                </span>
+                                                <div class="media-body ml-2">
+                                                  <a href="{% url 'forum:index' %}" class="d-block heading h6 mb-0">Forum</a>
+                                                  <small class="text-sm text-muted mb-0">{% trans "join in our latest discussions"|capfirst %}.</small>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <div class="list-group-item bg-transparent border-0 px-0 py-2">
+                                              <div class="media d-flex">
+                                                <span class="h6">
+                                                  <i data-feather="align-center" class="feather feather-layout"></i>
+                                                </span>
+                                                <div class="media-body ml-2">
+                                                  <a href="{% url 'blog:home' %}" class="d-block heading h6 mb-0">Blog</a>
+                                                  <small class="text-sm text-muted mb-0">{% trans "read and comment our latest news"|capfirst %}.</small>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                          <h6 class="dropdown-header text-info mt-4">{% trans "about us"|capfirst %}</h6>
+                                          <div class="list-group list-group-flush">
+                                            
+                                            {% for article in about_us_articles %}
+                                            <div class="list-group-item bg-transparent border-0 px-0 py-2">
+                                              <div class="media d-flex">
+                                                <span class="h6">
+                                                  <i data-feather="columns" class="feather feather-layout"></i>
+                                                </span>
+                                                <div class="media-body ml-2">
+                                                  <a href="{{ article.get_absolute_url }}" class="d-block heading h6 mb-0">{{ article.title|capfirst }}</a>
+                                                  <small class="text-sm text-muted mb-0">{{ article.description|capfirst }}</small>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            {% endfor %}
+                                          </div>
+                                        </div>
+
+                                  </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'blog:home' %}">Blog</a>
+
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "play"|capfirst %}</a>
+                                    <div class="dropdown-menu dropdown-menu-md p-0">
+                                        <div class="list-group list-group-flush px-lg-4">
+                                            {% if hot_product %}
+                                            <a href="{{ hot_product.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i data-feather="feather"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">{{ hot_product.title|title }}</h6>
+                                                        <small class="text-sm">{{ hot_product.description|capfirst }}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            {% endif %}
+                                            {% if pinned_projects %}
+                                            {% for pinned_product in pinned_projects %}
+                                            <a href="{{ pinned_product.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i data-feather="bookmark"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">{{ pinned_product.title|title }}</h6>
+                                                        <small class="text-sm">{{ pinned_product.short_description }}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            {% endfor %}
+                                            {% endif %}
+                                            <a href="{% url 'products:list' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i data-feather="globe"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">{% trans 'all games'|capfirst %}</h6>
+                                                        <small class="text-sm">{% trans "explore our collection"|capfirst %}.</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'products:list' %}">
-                                        <i data-feather="codesandbox" class="mr-0"></i> {% trans "games"|capfirst %}
-                                    </a>
-                                </li>
+                                {% block extranav %}{% endblock extranav %}
+
                             </ul>
                             {% if user.is_authenticated %}
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">                                

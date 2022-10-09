@@ -8,6 +8,7 @@ from .models import (
     AboutArticle,
 )
 
+
 def graph_section(request):
     """ Show featured sections to improve social networks sharing capabilities """
     graph_section = Section.objects.featured()

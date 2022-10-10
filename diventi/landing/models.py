@@ -111,8 +111,7 @@ class SectionModelQuerySet(FeaturedModelQuerySet):
 
     def prefetch(self):
         sections = self.select_related('about_article')
-        sections = sections.select_related('product_category')
-        sections = sections.select_related('article_category')
+        sections = sections.select_related('attached_product')
         sections = section.prefetch_related('features')
         return sections
 
@@ -133,16 +132,42 @@ class SectionModelManager(FeaturedModelManager):
 
 
 class Section(DiventiImageModel, FeaturedModel, SectionModel):
-    prefix = models.TextField(blank=True, verbose_name=_('prefix text'))
-    title = models.CharField(max_length=50, verbose_name=_('title'))
-    description = models.TextField(blank=True, verbose_name=_('description'))
-    button_label = models.CharField(blank=True, max_length=50, verbose_name=_('button label'))
-    order_index = models.PositiveIntegerField(verbose_name=_('order index'))
+    prefix = models.TextField(
+        blank=True, 
+        verbose_name=_('prefix text')
+    )
+    title = models.CharField(
+        max_length=50, 
+        verbose_name=_('title')
+    )
+    description = models.TextField(
+        blank=True, 
+        verbose_name=_('description')
+    )
+    button_label = models.CharField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('button label')
+    )
+    order_index = models.PositiveIntegerField(
+        verbose_name=_('order index')
+    )
     video = models.URLField(
         blank=True,
         verbose_name=_('video')
     )
-
+    attachment_label = models.CharField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('attachment label')
+    )
+    attached_product = models.OneToOneField(
+        Product,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_('product')
+    )
 
     objects = SectionModelManager()
 

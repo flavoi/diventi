@@ -5,7 +5,6 @@ from .models import (
 	Section, 
 	SearchSuggestion,
     AboutArticle,
-    PolicyArticle,
 )
 
 
@@ -16,7 +15,7 @@ class FeatureTranslationOptions(TranslationOptions):
 
 @register(Section)
 class SectionTranslationOptions(TranslationOptions):
-    fields = ('prefix', 'title', 'description', 'button_label',)
+    fields = ('prefix', 'title', 'description', 'button_label','attachment_label',)
 
 
 @register(SearchSuggestion)
@@ -27,8 +26,3 @@ class SearchSuggestionOptions(TranslationOptions):
 @register(AboutArticle)
 class AboutArticleOptions(TranslationOptions):
     fields = ('title', 'description', 'content', 'slug')
-
-
-@register(PolicyArticle)
-class AboutArticleOptions(TranslationOptions):
-    fields = ('title', 'content', 'slug')

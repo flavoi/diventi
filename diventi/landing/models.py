@@ -92,7 +92,7 @@ class AboutArticle(TimeStampedModel, PublishableModel, Element, HitCountMixin):
 
     class Meta:
         verbose_name = _('about article')
-        verbose_name_plural = _('about article')
+        verbose_name_plural = _('about articles')
 
 
 class PolicyArticle(TimeStampedModel, PublishableModel, Element):

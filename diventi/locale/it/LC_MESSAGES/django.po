@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-09 13:06+0200\n"
+"POT-Creation-Date: 2022-10-10 08:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1505,9 +1505,13 @@ msgstr "Contenuti multimediali"
 msgid "Landing"
 msgstr "Pagina di atterraggio"
 
-#: diventi/landing/models.py:94 diventi/landing/models.py:95
+#: diventi/landing/models.py:94
 msgid "about article"
 msgstr "articolo su di noi"
+
+#: diventi/landing/models.py:95
+msgid "about articles"
+msgstr "articoli su di noi"
 
 #: diventi/landing/models.py:106 diventi/landing/models.py:107
 msgid "policy article"

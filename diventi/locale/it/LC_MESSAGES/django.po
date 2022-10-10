@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-10 08:18+0200\n"
+"POT-Creation-Date: 2022-10-10 08:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -447,14 +447,15 @@ msgstr "Antagonisti"
 
 #: diventi/adventures/models.py:135 diventi/ebooks/models.py:391
 #: diventi/ebooks/models.py:413 diventi/ebooks/models.py:438
-#: diventi/landing/models.py:153 diventi/tooltips/models.py:57
+#: diventi/landing/models.py:178 diventi/tooltips/models.py:57
 msgid "section"
 msgstr "sezione"
 
 #: diventi/adventures/models.py:143 diventi/ebooks/models.py:74
-#: diventi/products/models.py:290 diventi/products/models.py:418
-#: diventi/products/models.py:436 diventi/products/models.py:446
-#: diventi/products/models.py:493 diventi/tooltips/models.py:65
+#: diventi/landing/models.py:169 diventi/products/models.py:290
+#: diventi/products/models.py:418 diventi/products/models.py:436
+#: diventi/products/models.py:446 diventi/products/models.py:493
+#: diventi/tooltips/models.py:65
 msgid "product"
 msgstr "prodotto"
 
@@ -655,7 +656,7 @@ msgstr "Hai sbloccato una nuova situazione."
 
 #: diventi/blog/admin.py:26 diventi/blog/admin.py:53 diventi/ebooks/admin.py:93
 #: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:42
-#: diventi/landing/admin.py:70 diventi/products/admin.py:75
+#: diventi/landing/admin.py:73 diventi/products/admin.py:75
 #: diventi/products/admin.py:107 diventi/products/admin.py:135
 msgid "Management"
 msgstr "Gestione"
@@ -669,7 +670,7 @@ msgstr "Disposizione"
 #: diventi/blog/admin.py:32 diventi/blog/admin.py:56 diventi/blog/admin.py:66
 #: diventi/ebooks/admin.py:63 diventi/ebooks/admin.py:102
 #: diventi/ebooks/admin.py:123 diventi/feedbacks/admin.py:59
-#: diventi/landing/admin.py:48 diventi/landing/admin.py:73
+#: diventi/landing/admin.py:48 diventi/landing/admin.py:76
 #: diventi/products/admin.py:84 diventi/products/admin.py:113
 #: diventi/products/admin.py:138
 msgid "Editing"
@@ -896,7 +897,7 @@ msgstr "promozioni"
 
 #: diventi/core/models.py:106 diventi/feedbacks/models.py:26
 #: diventi/feedbacks/models.py:65 diventi/feedbacks/models.py:112
-#: diventi/landing/models.py:137 diventi/products/models.py:173
+#: diventi/landing/models.py:141 diventi/products/models.py:173
 msgid "title"
 msgstr "titolo"
 
@@ -910,7 +911,7 @@ msgstr "stile icona"
 
 #: diventi/core/models.py:129 diventi/ebooks/models.py:30
 #: diventi/feedbacks/models.py:27 diventi/feedbacks/models.py:66
-#: diventi/feedbacks/models.py:113 diventi/landing/models.py:138
+#: diventi/feedbacks/models.py:113 diventi/landing/models.py:145
 #: diventi/products/models.py:187
 msgid "description"
 msgstr "descrizione"
@@ -1157,7 +1158,7 @@ msgstr "libri"
 
 #: diventi/ebooks/models.py:215 diventi/ebooks/models.py:262
 #: diventi/ebooks/models.py:310 diventi/feedbacks/models.py:28
-#: diventi/landing/models.py:140
+#: diventi/landing/models.py:153
 msgid "order index"
 msgstr "id ordinamento"
 
@@ -1256,7 +1257,7 @@ msgstr "allineamento del testo"
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:392 diventi/landing/models.py:154
+#: diventi/ebooks/models.py:392 diventi/landing/models.py:179
 #: diventi/templates/base_quick.html:231
 msgid "sections"
 msgstr "sezioni"
@@ -1501,6 +1502,15 @@ msgstr "Spiacente, questo sondaggio non è aperto al pubblico."
 msgid "Multimedia"
 msgstr "Contenuti multimediali"
 
+#: diventi/landing/admin.py:51
+#: diventi/templates/machina/forum_conversation/forum_attachments/attachments_detail.html:8
+#: diventi/templates/machina/forum_conversation/forum_attachments/attachments_preview.html:7
+#: diventi/templates/machina/forum_conversation/partials/post_form.html:22
+#: diventi/templates/machina/forum_conversation/partials/post_form.html:60
+#: diventi/templates/machina/forum_conversation/partials/topic_form.html:24
+msgid "Attachments"
+msgstr "Allegati"
+
 #: diventi/landing/apps.py:7
 msgid "Landing"
 msgstr "Pagina di atterraggio"
@@ -1517,31 +1527,35 @@ msgstr "articoli su di noi"
 msgid "policy article"
 msgstr "articolo sulla policy"
 
-#: diventi/landing/models.py:136
+#: diventi/landing/models.py:137
 msgid "prefix text"
 msgstr "prefisso"
 
-#: diventi/landing/models.py:139
+#: diventi/landing/models.py:150
 msgid "button label"
 msgstr "etichetta del bottone"
 
-#: diventi/landing/models.py:143
+#: diventi/landing/models.py:157
 msgid "video"
 msgstr "video"
 
-#: diventi/landing/models.py:161
+#: diventi/landing/models.py:162
+msgid "attachment label"
+msgstr "etichetta dell'allegato"
+
+#: diventi/landing/models.py:186
 msgid "feature"
 msgstr "aspetto"
 
-#: diventi/landing/models.py:162
+#: diventi/landing/models.py:187
 msgid "features"
 msgstr "aspetti"
 
-#: diventi/landing/models.py:168
+#: diventi/landing/models.py:193
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:169 diventi/templates/base_quick.html:451
+#: diventi/landing/models.py:194 diventi/templates/base_quick.html:451
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -2853,14 +2867,6 @@ msgstr "(opzionale)"
 msgid "Add another file"
 msgstr "Aggiunti un altro file"
 
-#: diventi/templates/machina/forum_conversation/forum_attachments/attachments_detail.html:8
-#: diventi/templates/machina/forum_conversation/forum_attachments/attachments_preview.html:7
-#: diventi/templates/machina/forum_conversation/partials/post_form.html:22
-#: diventi/templates/machina/forum_conversation/partials/post_form.html:60
-#: diventi/templates/machina/forum_conversation/partials/topic_form.html:24
-msgid "Attachments"
-msgstr "Allegati"
-
 #: diventi/templates/machina/forum_conversation/forum_polls/poll_detail.html:17
 #: diventi/templates/machina/forum_conversation/forum_polls/poll_preview.html:13
 msgid "You may select <b>1</b> option"
@@ -3633,9 +3639,6 @@ msgstr "Suggerimento"
 
 #~ msgid "Attachment"
 #~ msgstr "Allegato"
-
-#~ msgid "attachment label"
-#~ msgstr "etichetta dell'allegato"
 
 #~ msgid "product category"
 #~ msgstr "categoria prodotto"

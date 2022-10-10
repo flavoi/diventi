@@ -89,6 +89,7 @@ class ProductAdmin(DiventiTranslationAdmin):
         }),
     )
     actions = [make_published, make_unpublished]
+    list_filter = ['category',]
     form = ProductForm
     list_select_related = (
         'category',

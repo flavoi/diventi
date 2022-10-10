@@ -15,6 +15,8 @@ from diventi.core.admin import (
     make_unpublished,
 )
 
+from diventi.products.models import Product
+
 from .models import (
     Feature, 
     Section,
@@ -58,6 +60,11 @@ class SectionAdmin(DiventiTranslationAdmin):
     actions = [make_published, make_unpublished]
     form = SectionForm
     ordering = ['-featured', 'order_index']
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(SectionAdmin, self).get_form(request, obj, **kwargs)
+        form.base_fields['attached_product'].queryset = Product.objects.filter(published=True)
+        return form
 
 
 class SearchSuggestionAdmin(DiventiTranslationAdmin, DiventiIconAdmin):

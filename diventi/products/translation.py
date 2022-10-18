@@ -16,6 +16,7 @@ from .models import (
 class ProductFormatOptions(TranslationOptions):
     fields = ('title', 'description',)
 
+
 @register(ProductDetail)
 class ProductTranslationOptions(TranslationOptions):
     fields = ('title', 'description',)

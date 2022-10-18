@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% if user.is_authenticated %}
+    {% if package.published and bought %}
+        <a class="btn btn-soft-dark btn-sm" href="#/" data-container="body" data-toggle="popover" data-placement="top" title="{{ package.courtesy_short_message }}" data-content="{{ package.courtesy_message }}">
+            {{ package.courtesy_short_message }}
+        </a>                                                          
+    {% elif package.published %}
+        {% include "products/partials/pay_button.html" %}
+    {% endif %}
+{% endif %}

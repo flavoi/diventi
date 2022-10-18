@@ -39,6 +39,10 @@ from logging import getLogger
 
 from diventi.core.views import DiventiActionMixin
 
+from diventi.core.utils import (
+    humanize_price,
+)
+
 from .models import (
     Product,
     ProductCategory,
@@ -51,8 +55,7 @@ from diventi.ebooks.models import (
 
 from .forms import UserCollectionUpdateForm
 from .utils import (
-    add_product_to_user_collection,
-    humanize_price,
+    add_product_to_user_collection
 )
 
 

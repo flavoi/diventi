@@ -44,7 +44,7 @@ urlpatterns += i18n_patterns(
     path(_('comments/'), include('diventi.comments.urls', namespace='comments')),
     path(_('feedbacks/'), include('diventi.feedbacks.urls', namespace='feedbacks')),
     path(_('ebooks/'), include('diventi.ebooks.urls', namespace='ebooks')),
-    path(_('adventures/'), include('diventi.adventures.urls', namespace='adventures')),
     path(_('community/'), include(machina_urls)),
     path(_('games/'), include('diventi.products.urls', namespace='products')),
+    path(_('packages/'), include('diventi.packages.urls', namespace='packages')),
 )

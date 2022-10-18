@@ -227,7 +227,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         help_text = _('Unfolded products can be bought by users')
     )
     pinned = models.BooleanField(
-        default = True,
+        default = False,
         verbose_name = _('pinned'),
         help_text = _('Pinned products appear on the landing page') 
     )

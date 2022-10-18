@@ -9,12 +9,23 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponse
+from django.contrib import messages
 
-from diventi.products.models import Product
+from diventi.products.models import (
+    Product,
+)
+
+from diventi.packages.models import (
+    Package,
+)
+
+from diventi.core.utils import (
+    humanize_price,
+)
 
 from diventi.products.utils import (
     add_product_to_user_collection,
-    humanize_price,
+    add_package_to_user_collection,
 )
 
 
@@ -45,13 +56,22 @@ def stripe_webhook(request):
             get_user_model(), 
             nametag = session['client_reference_id'],
         )
-        product = get_object_or_404(
-            Product, 
-            stripe_product=item['price']['product'],
-        )        
+        print('Sto processando {}'.format(item['price']['product']))
+        try:
+            product = Product.objects.get(
+                stripe_product=item['price']['product'],
+            )
+            add_product_to_user_collection(product, user=user)
+        except Product.DoesNotExist:
+            print('Prodotto non trovato, procedo con il pacchetto...')
+            package = get_object_or_404(
+                Package,
+                stripe_product=item['price']['product'],
+            )
+            msg = add_package_to_user_collection(package, user=user)
+            messages.warning(request, msg)
         translation.activate(user.language)
         request.LANGUAGE_CODE = translation.get_language()
-        add_product_to_user_collection(product, user)
         price = humanize_price(float(session['amount_total']))
         send_mail(
             _('Diventi: %(title)s purchase') % {'title': product.title,},

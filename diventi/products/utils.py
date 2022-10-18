@@ -13,15 +13,6 @@ def get_last_purchase_description(last_purchase):
         description = None
     return description
 
-# Format the price for human eyes
-# Currency is defaulted to Euro
-def humanize_price(price, sign='EURO SIGN'):
-    p = ('%(currency)s %(price).2f' % {
-        'currency': unicodedata.lookup('EURO SIGN'), 
-        'price': price / 100,
-    })
-    return p
-
 # Adds a product to the user collection
 def add_product_to_user_collection(product, user):
     if not product.user_has_already_bought(user):
@@ -29,3 +20,13 @@ def add_product_to_user_collection(product, user):
     else:
         msg = _('The user has this product already.')
         raise Http404(msg)
+
+# Adds all products of a package to the user collection
+def add_package_to_user_collection(package, user):
+    print('Acquisto pacchetto in corso...')
+    for product in package.related_products.all():
+        print('Acquisto {}'.format(product))
+        try:
+            add_product_to_user_collection(product, user)
+        except Http404:
+            return _('You already have {} in your collection.'.format(product.title))

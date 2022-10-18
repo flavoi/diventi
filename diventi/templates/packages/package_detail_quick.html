@@ -1,0 +1,54 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+
+{% block base_opengraph %}
+    <meta property="og:title" content="Diventi: {{ package.title }}" />
+    <meta property="og:type" content="og:website" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ package.image }}" />
+    <meta property="og:description" content="{{ package.description }}" />
+{% endblock base_opengraph %}
+
+{% block title %}{{ package.title }}{% endblock title %}
+
+{% block content %}
+
+<section>
+    <div class="container d-flex align-items-center text-center text-lg-left py-5 py-lg-6 border-bottom">
+        <div class="col px-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2 class="h1 mb-2">{{ package.title }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="slice slice-lg delimiter-bottom">
+  <div class="container">
+    <div class="row row-grid align-items-center justify-content-between">
+     <div class="col-md-6 col-lg-5 mr-md-auto">
+        {% with package as object %} 
+          {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
+        {% endwith %}
+        <p class="lead lh-180">
+            Descrizione: {{ package.description|safe }}
+        </p>             
+        <p class="lead lh-180">
+            Prezzo del pacchetto: {{ price }}
+        </p>
+        <p class="lead lh-180">
+            Prezzo dei pacchetti sottostanti: {{ related_products_value }}
+        </p>
+        {% with package as product %}
+            {% include "packages/partials/package_detail_actions.html" %}
+        {% endwith %}
+     </div>
+    </div>
+</div>
+</section>
+
+{% endblock content %}
+
+{% block footercolor %}{% endblock footercolor %}

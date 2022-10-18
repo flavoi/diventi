@@ -1,9 +1,4 @@
-from django.shortcuts import render
 from django.contrib import messages
-from django.views.generic import ListView
-from django.contrib.auth.mixins import UserPassesTestMixin
-
-from diventi.blog.models import Article
 
 
 class DiventiActionMixin:

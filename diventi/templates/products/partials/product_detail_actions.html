@@ -1,6 +1,6 @@
 {% load i18n %}
 
-{% if user.is_authenticated %}                           
+{% if user.is_authenticated %}
     {% if product.book.published and bought %}
         <div class="mt-1">
             <a href='{{ product.book.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
@@ -12,7 +12,7 @@
         </div>                                                             
     {% elif product.book.published and product.unfolded %}
         {% if product.at_a_premium %}
-          {% with object=product %}
+          {% with object=package %}
             {% include "products/partials/pay_button.html" %}
           {% endwith %}
         {% else %}

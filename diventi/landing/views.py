@@ -27,6 +27,7 @@ from diventi.products.models import Product
 from diventi.blog.models import Article
 from diventi.ebooks.models import Book
 from diventi.feedbacks.models import Survey
+from diventi.packages.models import Package
 
 from diventi.core.views import StaffRequiredMixin
 
@@ -56,7 +57,8 @@ class LandingSearchView(ListView):
             articles = Article.search(self, query)
             products = Product.search(self, query)
             users = DiventiUser.search(self, query)
-            results = list(chain(products, articles, users))
+            packages = Package.search(self, query)
+            results = list(chain(products, articles, users, packages))
         else:
             results = None
         return results
@@ -98,6 +100,7 @@ def get_landing_context(request):
     latest_public_product = Product.objects.latest_public()
     latest_article = Article.objects.hottest()
     pinned_survey = Survey.objects.pinned()
+    pinned_package = Package.objects.pinned()
 
     featured_section = Section.objects.featured()
     if featured_section:
@@ -118,6 +121,7 @@ def get_landing_context(request):
         'latest_article': latest_article,
         'latest_public_product': latest_public_product,
         'pinned_survey': pinned_survey,
+        'pinned_package': pinned_package,
     }
     return context
 

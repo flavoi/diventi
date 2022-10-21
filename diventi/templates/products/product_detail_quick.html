@@ -295,11 +295,11 @@
     <div class="col-lg-12">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <h3 class="text-secondary mb-2">{{product.title|capfirst }}</h3>
+                <h3 class="text-secondary mb-2">{{ product.title|capfirst }}</h3>
                 <p class="lead mb-0 text-white opacity-8">{{ product.abstract|capfirst }}</p>
             </div>
             <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">
-                {% with button_disabled_class="btn-white" button_action_class="btn-primary" %}
+                {% with button_disabled_class="btn-white" button_action_class="btn-primary" footer_text_class="text-white" %}
                     {% include "products/partials/product_detail_actions.html" %}
                 {% endwith %}
             </div>

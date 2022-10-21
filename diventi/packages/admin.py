@@ -1,13 +1,17 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
+from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
+
 from diventi.core.admin import (
     DiventiTranslationAdmin,
+    DiventiIconAdmin,
     deactivate,
 )
 
 from .models import (
     Package,
+    FAQ,
 )
 
 
@@ -20,10 +24,37 @@ def make_unpublished(modeladmin, request, queryset):
 make_unpublished.short_description = _("Mark selected products as hidden")
 
 
+class FAQAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'icon', 'package', 'modified']
+    prepopulated_fields = {"slug": ("title",)}
+    readonly_fields = ['created', 'modified',]
+    list_filter = ['package',]
+    fieldsets = (
+        (_('Editing'), {
+        'fields': ('title', 'answer', 'slug'),
+        }),
+        (_('Multimedia'), {
+            'fields': ('icon', 'color'),
+        }),
+        (_('Related'), {
+            'fields': ('package',),
+        }),
+    )
+
+
+class FAQInline(TranslationStackedInline):
+    model = FAQ
+    fields = ('title', 'description', 'icon', 'color')
+    extra = 0
+
+
 class PackageAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'published', 'pinned', 'publication_date', 'modified']    
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
+    inlines = [
+        FAQInline,
+    ]
     fieldsets = (
         (_('Management'), {
             'fields': ('published', 'pinned',)
@@ -32,7 +63,7 @@ class PackageAdmin(DiventiTranslationAdmin):
             'fields': ('stripe_product', 'stripe_price',)
         }),
         (_('Editing'), {
-            'fields': ('title', 'description', 'courtesy_short_message', 'courtesy_message', 'slug'),
+        'fields': ('title', 'short_description', 'abstract', 'description', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
         (_('Related'), {
             'fields': ('related_products',),
@@ -43,3 +74,4 @@ class PackageAdmin(DiventiTranslationAdmin):
 
 
 admin.site.register(Package, PackageAdmin)
+admin.site.register(FAQ, FAQAdmin)

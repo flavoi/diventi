@@ -39,7 +39,11 @@
                             <div class="pl-4">
                                 <a href="{{ result.get_absolute_url }}" class="h5">{{ result.title }}</a>
                                 <p class="p-0 m-0">
-                                    {{ result.description|striptags }}
+                                    {% if result.abstract %}
+                                        {{ result.abstract|striptags }}
+                                    {% else %}
+                                        {{ result.description|striptags }}
+                                    {% endif %}
                                 </p>
                             </div>
                         </div>

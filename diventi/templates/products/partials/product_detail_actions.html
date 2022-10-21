@@ -47,7 +47,7 @@
     {% endif %}
 {% else %}
     {% if product.book.published and product.unfolded %}
-        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-dark text-underline--dashed">
+        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="{{ footer_text_class|default:'text-dark' }} text-underline--dashed">
         {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
     {% elif not product.unfolded and product.product_survey and product.product_survey.public %}
         <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-sm btn-icon-label">

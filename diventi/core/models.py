@@ -134,7 +134,7 @@ class Element(models.Model):
 
     def icon_tag(self):
         if self.icon:
-            return mark_safe('<i class="fa{0} fa-{1} fa-2x fa-fw"></i>'.format(self.icon_style, self.icon))
+            return mark_safe('<i data-feather="{}"></i>'.format(self.icon))
         else:
             return _('No icon')    
     icon_tag.short_description = _('Icon')

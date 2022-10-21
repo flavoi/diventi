@@ -6,6 +6,11 @@
             {{ package.courtesy_short_message }}
         </a>                                                          
     {% elif package.published %}
-        {% include "products/partials/pay_button.html" %}
+        {% with package as product %}
+            {% include "products/partials/pay_button.html" %}
+        {% endwith %}
     {% endif %}
+{% else %}
+     <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="{{ footer_text_class|default:'text-dark' }} text-underline--dashed">
+        {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
 {% endif %}

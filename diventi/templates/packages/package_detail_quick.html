@@ -11,44 +11,109 @@
 
 {% block title %}{{ package.title }}{% endblock title %}
 
-{% block content %}
+{% block navbar_brand_style %}text-light{% endblock navbar_brand_style %}
+{% block headerclass %}header-transparent{% endblock headerclass %}
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
 
-<section>
-    <div class="container d-flex align-items-center text-center text-lg-left py-5 py-lg-6 border-bottom">
-        <div class="col px-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <h2 class="h1 mb-2">{{ package.title }}</h2>
-                </div>
-            </div>
-        </div>
+{% block content %}
+<section class="slice slice-lg py-7 pt-lg-9 pb-lg-7 bg-cover bg-size--cover" style="background-image:url(../../assets/img/backgrounds/img-1.jpg)">
+  <span class="mask bg-gradient-dark opacity-9"></span>
+  <div class="container pt-6">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <h1 class="mb-4 text-center text-white">{{ package.title }}</h1>
+      </div>
     </div>
+  </div>
+  <div class="container position-relative zindex-100">
+    <div class="mb-4 text-center col-lg-8 mx-auto">
+      <h2 class="text-white lead text-white opacity-8 mb-0">{{ package.abstract }}</h2>
+    </div>
+    <div class="text-center mb-5 pb-lg-5" style="color: #a0aec0">
+        {% with footer_text_class="text-white" %}    
+            {% include "packages/partials/package_detail_actions.html" %}
+            <p class="mt-2">{% trans "total value of objects"|capfirst %}: {{ related_products_value }} &middot; {% trans "package discount"|capfirst %}: <b class="text-success">{{ package_discount }}%</b></p>
+        {% endwith %}
+    </div>
+  </div>
+  <div class="shape-container shape-position-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+      <path d="M 0 0 c 0 0 200 50 500 50 s 500 -50 500 -50 v 101 h -1000 v -100 z"></path>
+    </svg>
+  </div>
 </section>
 
-<section class="slice slice-lg delimiter-bottom">
+<section class="slice">
   <div class="container">
-    <div class="row row-grid align-items-center justify-content-between">
-     <div class="col-md-6 col-lg-5 mr-md-auto">
-        {% with package as object %} 
-          {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}
-        {% endwith %}
-        <p class="lead lh-180">
-            Descrizione: {{ package.description|safe }}
-        </p>             
-        <p class="lead lh-180">
-            Prezzo del pacchetto: {{ price }}
-        </p>
-        <p class="lead lh-180">
-            Prezzo dei pacchetti sottostanti: {{ related_products_value }}
-        </p>
-        {% with package as product %}
-            {% include "packages/partials/package_detail_actions.html" %}
-        {% endwith %}
-     </div>
+    <div class="row">
+      <div class="col-lg-7">
+        <article>
+          <h5>{{ package.title|capfirst }} {% trans "in short" %}</h5>
+          <p>{{ package.description|safe }}</p>
+        </article>
+        <hr>
+        <h5>{% trans "what's inside"|capfirst %}</h5>
+            <div class="row">
+            {% for product in package.related_products.all %}
+                <div class="col-lg-6 mt-2">
+                    <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
+                        <div class="position-relative overflow-hidden">
+                            <a href="{{ product.get_absolute_url }}" class="d-block">
+                                <img loading="lazy" src="{{ product.image }}" alt="{{ product.title|capfirst }}" class="card-img-top">
+                            </a>
+                        </div>
+                        <div class="card-body py-4">
+                            <small class="d-block text-sm text-{{ product.category.color }} mb-2">{{ product.category }}</small> 
+                                <a href="{{ product.get_absolute_url }}" class="h5 stretched-link lh-150">
+                                    {{ product.title|capfirst }}
+                                </a>
+                            <p class="mt-3 mb-0 lh-170">
+                                {{ product.abstract|truncatechars:200 }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+      </div>
+      <div class="col-lg-4 ml-lg-auto">
+        <div data-toggle="sticky" data-sticky-offset="50">
+          <div id="accordion-1" class="accordion accordion-stacked">
+          {% for q in package.faq.all %}
+            <div class="card">
+                <div class="card-header py-4" id="heading-{{ q.id }}" data-toggle="collapse" role="button" data-target="#collapse-{{ q.id }}" aria-expanded="false" aria-controls="collapse-{{ q.id }}">
+                    <h6 class="mb-0"><i data-feather="{{ q.icon|default:'folder' }}" class="mr-3"></i>{{ q.title|capfirst }}</h6>
+                </div>
+                <div id="collapse-{{ q.id }}" class="collapse" aria-labelledby="heading-{{ q.id }}" data-parent="#accordion-1">
+                    <div class="card-body">
+                        <p>{{ q.answer }}</p>
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+          </div>          
+      </div>
     </div>
-</div>
+  </div>
 </section>
 
 {% endblock content %}
 
-{% block footercolor %}{% endblock footercolor %}
+{% block extrafooter %}
+<div class="row justify-content-center">
+    <div class="col-lg-12">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h3 class="text-secondary mb-2">{{ package.title|capfirst }}</h3>
+                <p class="lead mb-0 text-white opacity-8">{{ package.abstract|capfirst }}</p>
+            </div>
+            <div class="col-lg-5 text-lg-right mt-4 mt-lg-0">
+                {% with button_disabled_class="btn-white" button_action_class="btn-primary" footer_text_class="text-white" %}
+                    {% include "packages/partials/package_detail_actions.html" %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="divider divider-fade divider-dark my-5">
+{% endblock extrafooter %}

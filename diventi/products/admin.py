@@ -63,7 +63,7 @@ class ImagePreviewAdmin(DiventiTranslationAdmin):
 
 
 class ProductAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'published', 'unfolded', 'pinned', 'hot', '_at_a_premium', 'public', 'product_survey', 'category', 'publication_date', 'modified']    
+    list_display = ['title', 'image_tag', 'postcard_tag', 'published', 'unfolded', 'pinned', 'hot', '_at_a_premium', 'public', 'product_survey', 'category', 'publication_date', 'modified']    
     inlines = [
         ChapterInline,
         ImagePreviewInline,
@@ -81,8 +81,11 @@ class ProductAdmin(DiventiTranslationAdmin):
         (_('Pricing'), {
             'fields': ('stripe_product', 'stripe_price',)
         }),
+        (_('Multimedia'), {
+            'fields': ('image', 'postcard'),
+        }),
         (_('Editing'), {
-            'fields': ('title', 'short_description', 'abstract', 'description', 'image', 'category', 'file', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
+            'fields': ('title', 'short_description', 'abstract', 'description', 'category', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
         (_('Related'), {
             'fields': ('related_products',),

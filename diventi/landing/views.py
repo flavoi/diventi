@@ -77,12 +77,13 @@ class DashboardView(StaffRequiredMixin, ListView):
     model = Section
 
     def get_queryset(self):
-        results = super(DashboardView, self).get_queryset()
-        articles = Article.reporting(self)
-        about_articles = AboutArticle.reporting(self)
-        products = Product.reporting(self)
-        users = DiventiUser.reporting(self)
-        results = list(chain(users, articles, about_articles, products, ))
+        results = []
+        results.append((_('users'), DiventiUser.reporting(self)))
+        results.append((_('packages'), Package.reporting(self)))
+        results.append((_('articles'), Article.reporting(self)))
+        results.append((_('about articles'), AboutArticle.reporting(self)))
+        results.append((_('private products'), Product.reporting_private(self)))
+        results.append((_('public products'), Product.reporting_public(self)))
         return results
 
     def get_context_data(self, **kwargs):

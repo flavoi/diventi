@@ -5,6 +5,9 @@ from django.views.generic.detail import DetailView
 from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
+
+from hitcount.views import HitCountDetailView
+
 from diventi.core.utils import (
     humanize_price,
 )
@@ -14,12 +17,12 @@ from .models import (
 )
 
 
-
-class PackageDetailView(DetailView):
+class PackageDetailView(HitCountDetailView):
     """
         Renders the package contents.
     """
     model = Package
+    count_hit = True
     context_object_name = 'package'
     template_name = 'packages/package_detail_quick.html'
 

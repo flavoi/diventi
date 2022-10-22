@@ -61,6 +61,7 @@ TEMPLATES = [
                 'diventi.landing.context.about_us_articles',
                 'diventi.products.context.project_categories',
                 'diventi.products.context.pinned_projects',
+                'diventi.packages.context.pinned_packages',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',

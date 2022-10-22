@@ -283,6 +283,22 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         blank = True, 
         verbose_name = _('survey')
     )
+    image = models.URLField(
+        blank=True, 
+        verbose_name = _('cover')
+    )
+    postcard = models.URLField(
+        blank=True, 
+        verbose_name = _('postcard')
+    )
+
+    def image_tag(self):
+        return super(Product, self).image_tag()
+    image_tag.short_description = _('Cover')
+
+    def postcard_tag(self):
+        return super(Product, self).image_tag(image_url=self.postcard)
+    postcard_tag.short_description = _('Postcard')
 
     objects = ProductQuerySet.as_manager()
 
@@ -313,9 +329,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         )
         return results
 
-    def reporting(self, *args, **kwargs):
-        queryset_not_public = Product.objects.not_public().exclude(category__meta_category=True)
-        queryset_not_public = queryset_not_public.prefetch()
+    def reporting_public(self, *args, **kwargs):
         queryset_public = Product.objects.public()
         queryset_public = queryset_public.prefetch()
         results = []
@@ -332,6 +346,12 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
                 'description2': '',
                 'action': '',
             })
+        return results
+
+    def reporting_private(self, *args, **kwargs):
+        queryset_not_public = Product.objects.not_public().exclude(category__meta_category=True)
+        queryset_not_public = queryset_not_public.prefetch()
+        results = []
         for product in queryset_not_public:
             last_purchase = Purchase.objects.last_purchase(product)
             prefix = _('Last purchase')

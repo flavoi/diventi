@@ -49,7 +49,7 @@ class FAQInline(TranslationStackedInline):
 
 
 class PackageAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'published', 'pinned', 'publication_date', 'modified']    
+    list_display = ['title', 'published', 'pinned', 'get_hitcounts', 'publication_date', 'modified']    
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
     inlines = [

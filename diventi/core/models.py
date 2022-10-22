@@ -172,8 +172,10 @@ class DiventiImageModel(models.Model):
     image = models.URLField(blank=True, verbose_name=_('image'))
     label = models.CharField(max_length=50, blank=True, verbose_name=_('label'))
 
-    def image_tag(self):
-        if self.image:
+    def image_tag(self, image_url=0):
+        if image_url:
+            return mark_safe('<img style="max-width:120px;" src="{0}" />'.format(image_url))            
+        elif self.image:
             return mark_safe('<img style="max-width:120px;" src="{0}" />'.format(self.image))
         else:
             return _('No image')    

@@ -22,6 +22,9 @@
     <div class="row justify-content-center">
       <div class="col-lg-9">
         <h1 class="mb-4 text-center text-white">{{ package.title }}</h1>
+        {% with package as object %} 
+            {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+        {% endwith %}
       </div>
     </div>
   </div>
@@ -65,7 +68,13 @@
                         <div class="card-body p-3 delimiter-top">                        
                             <div class="text-center">
                             <a href="{{ product.get_absolute_url }}" target="_blank" class="h6 stretched-link lh-150">
-                                    {{ product.title|capfirst }}</a>
+                                {{ product.title|capfirst }}</a>
+                                {% with product as object %} 
+                                    {% if user.is_staff %}
+                                        <span class="ml-1">{% include 'publishable_badge.html' %}</span>
+                                        <span class="ml-1">{% include 'unfoldable_badge.html' %}</span>
+                                    {% endif %}
+                                {% endwith %}
                                 <small class="d-block text-sm mb-0 text-{{ product.category.color }}"><b>{{ product.category }}</b></small>
                             </div>
                         </div>

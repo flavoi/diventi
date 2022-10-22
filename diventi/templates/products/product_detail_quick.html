@@ -45,7 +45,9 @@
                                 {{ product.category }}
                             </span>
                             {% with product as object %} 
-                                {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                {% if user.is_staff %}
+                                    <span class="ml-1">{% include 'publishable_badge.html' %}</span>
+                                {% endif %}
                             {% endwith %}
                             <h3 class="h2 mt-4"><strong class="text-primary">{{ product.title|capfirst }}</strong> {% trans "in short" %}</h3>
                             <p class="my-4 lh-190">{{ product.description }}</p>

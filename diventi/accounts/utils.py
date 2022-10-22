@@ -22,7 +22,13 @@ def get_user_data(user, self=None):
     user_id = user.pk
     surveys = Survey.objects.user_collection(user)
     collection = Product.objects.user_collection(user=user)
-    projects_count = collection.count
+    has_user_authored = Product.objects.has_user_authored(user=user)
+    if has_user_authored:
+        projects = Product.objects.user_authored(user=user)
+        projects_count = projects.count()
+    else:
+        projects = None
+        projects_count = 0
     survey_answers_count = user.answers.count
     ratings_count = Review.objects.filter(user=user).count()
     achievements = user.achievements.all()
@@ -30,7 +36,6 @@ def get_user_data(user, self=None):
     achievements_total_count = Achievement.objects.all().count() 
     locked_achievements = Achievement.objects.all().exclude(pk__in=achievements)
     comments_count = DiventiComment.objects.filter(user=user).count()
-    has_user_authored = Product.objects.has_user_authored(user=user)
     try:
         forum_posts = ForumProfile.objects.get(user=user).posts_count
     except ForumProfile.DoesNotExist:
@@ -49,6 +54,7 @@ def get_user_data(user, self=None):
     user_data = {
         'user_id': user_id,
         'surveys': surveys,
+        'projects': projects,
         'projects_count': projects_count,
         'survey_answers_count':  survey_answers_count,
         'ratings_count': ratings_count,

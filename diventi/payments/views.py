@@ -56,14 +56,12 @@ def stripe_webhook(request):
             get_user_model(), 
             nametag = session['client_reference_id'],
         )
-        print('Sto processando {}'.format(item['price']['product']))
         try:
             product = Product.objects.get(
                 stripe_product=item['price']['product'],
             )
             add_product_to_user_collection(product, user=user)
         except Product.DoesNotExist:
-            print('Prodotto non trovato, procedo con il pacchetto...')
             package = get_object_or_404(
                 Package,
                 stripe_product=item['price']['product'],

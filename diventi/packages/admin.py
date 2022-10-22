@@ -26,12 +26,11 @@ make_unpublished.short_description = _("Mark selected products as hidden")
 
 class FAQAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'icon', 'package', 'modified']
-    prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified',]
     list_filter = ['package',]
     fieldsets = (
         (_('Editing'), {
-        'fields': ('title', 'answer', 'slug'),
+        'fields': ('title', 'answer',),
         }),
         (_('Multimedia'), {
             'fields': ('icon', 'color'),
@@ -44,7 +43,7 @@ class FAQAdmin(DiventiTranslationAdmin):
 
 class FAQInline(TranslationStackedInline):
     model = FAQ
-    fields = ('title', 'description', 'icon', 'color')
+    fields = ('title', 'answer', 'icon', 'color')
     extra = 0
 
 

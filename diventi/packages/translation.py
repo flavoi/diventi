@@ -13,4 +13,4 @@ class PackageCoverTranslationOptions(TranslationOptions):
 
 @register(FAQ)
 class FAQCoverTranslationOptions(TranslationOptions):
-    fields = ('title', 'answer', 'slug')
+    fields = ('title', 'answer',)

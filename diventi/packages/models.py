@@ -2,7 +2,7 @@ from functools import reduce
 import operator
 
 from django.db import models
-from django.db.models import Q
+from django.db.models import Prefetch, Q
 
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -27,7 +27,7 @@ class PackageQuerySet(FeaturedModelQuerySet):
 
     # Prefetch all relevant data
     def prefetch(self):
-        packages = self.prefetch_related('related_products')
+        packages = self.prefetch_related(Prefetch('related_products', queryset=Product.objects.published()))
         packages = packages.prefetch_related('faq')
         return packages
 
@@ -164,11 +164,6 @@ class FAQ(TimeStampedModel, Element):
         verbose_name = _('answer')
     )
 
-    slug = models.SlugField(
-        unique=True, 
-        verbose_name=_('slug')
-    )
-    
     package = models.ForeignKey(
         Package,
         related_name = 'faq',

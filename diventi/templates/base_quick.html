@@ -356,11 +356,12 @@
                                     </div>
                                 </li>
 
+                                {% if pinned_packages %}
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "buy"|capfirst %}</a>
                                     <div class="dropdown-menu dropdown-menu-md p-0">
                                         <div class="list-group list-group-flush px-lg-4">
-                                            {% if pinned_packages %}
+                                            
                                             {% for pinned_package in pinned_packages %}
                                             <a href="{{ pinned_package.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
@@ -368,16 +369,17 @@
                                                         <i data-feather="shopping-bag"></i>
                                                     </span>
                                                     <div class="ml-3">
-                                                        <h6 class="heading mb-0">{{ pinned_package.title|title }}</h6>
+                                                        <h6 class="heading mb-0">{{ pinned_package.title|capfirst }}</h6>
                                                         <small class="text-sm">{{ pinned_package.short_description|capfirst }}</small>
                                                     </div>
                                                 </div>
                                             </a>
                                             {% endfor %}
-                                            {% endif %}
+                                            
                                         </div>
                                     </div>
                                 </li>                                
+                                {% endif %}
 
                                 {% block extranav %}{% endblock extranav %}
 

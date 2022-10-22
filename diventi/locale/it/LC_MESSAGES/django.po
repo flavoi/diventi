@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-22 13:31+0200\n"
+"POT-Creation-Date: 2022-10-22 14:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,7 +250,7 @@ msgstr "Utente"
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:566
+#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:568
 msgid "account"
 msgstr "profilo"
 
@@ -1182,7 +1182,7 @@ msgid "survey"
 msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:127
-#: diventi/templates/accounts/user_detail_quick.html:199
+#: diventi/templates/accounts/user_detail_quick.html:264
 #: diventi/templates/base_quick.html:230
 msgid "surveys"
 msgstr "sondaggi"
@@ -1338,7 +1338,7 @@ msgstr "aspetti"
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:194 diventi/templates/base_quick.html:475
+#: diventi/landing/models.py:194 diventi/templates/base_quick.html:477
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -1535,16 +1535,12 @@ msgid "formats"
 msgstr "formati"
 
 #: diventi/products/models.py:292
-#, fuzzy
-#| msgid "posts"
 msgid "postcard"
-msgstr "post"
+msgstr "cartolina"
 
 #: diventi/products/models.py:301
-#, fuzzy
-#| msgid "Post"
 msgid "Postcard"
-msgstr "Pubblica"
+msgstr "Cartolina"
 
 #: diventi/products/models.py:307
 msgid "products"
@@ -1773,15 +1769,15 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick.html:430 diventi/templates/base_quick.html:439
-#: diventi/templates/base_quick.html:577
+#: diventi/templates/base_quick.html:432 diventi/templates/base_quick.html:441
+#: diventi/templates/base_quick.html:579
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
 msgstr "accedi"
 
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
-#: diventi/templates/base_quick.html:206 diventi/templates/base_quick.html:578
+#: diventi/templates/base_quick.html:206 diventi/templates/base_quick.html:580
 #: diventi/templates/landing/landing_quick.html:229
 msgid "sign up"
 msgstr "registrati"
@@ -1901,7 +1897,7 @@ msgstr "richiedi un reset"
 
 #: diventi/templates/accounts/signout_quick.html:5
 #: diventi/templates/accounts/user_detail_quick_modal.html:83
-#: diventi/templates/base_quick.html:405
+#: diventi/templates/base_quick.html:407
 msgid "sign out"
 msgstr "annulla accesso"
 
@@ -2129,6 +2125,7 @@ msgid "edit"
 msgstr "modifica"
 
 #: diventi/templates/accounts/user_detail_quick.html:114
+#: diventi/templates/accounts/user_detail_quick.html:199
 #: diventi/templates/accounts/user_detail_quick_modal.html:37
 #: diventi/templates/base_quick.html:229
 msgid "projects"
@@ -2149,39 +2146,42 @@ msgid "posts"
 msgstr "post"
 
 #: diventi/templates/accounts/user_detail_quick.html:158
+#: diventi/templates/accounts/user_detail_quick.html:223
 #: diventi/templates/products/partials/product_detail_actions.html:7
 msgid "read online"
 msgstr "leggi online"
 
 #: diventi/templates/accounts/user_detail_quick.html:162
+#: diventi/templates/accounts/user_detail_quick.html:227
 msgid "not available"
 msgstr "non ancora disponibile"
 
 #: diventi/templates/accounts/user_detail_quick.html:186
+#: diventi/templates/accounts/user_detail_quick.html:252
 #: diventi/templates/accounts/user_detail_quick_modal.html:74
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_detail_quick.html:221
+#: diventi/templates/accounts/user_detail_quick.html:286
 msgid "There are no surveys yet."
 msgstr "Nessun sondaggio disponibile."
 
-#: diventi/templates/accounts/user_detail_quick.html:233
+#: diventi/templates/accounts/user_detail_quick.html:298
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60
 msgid "Recent posts"
 msgstr "Post recenti"
 
-#: diventi/templates/accounts/user_detail_quick.html:233
+#: diventi/templates/accounts/user_detail_quick.html:298
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60
 msgid "View all"
 msgstr "Visualizza tutto"
 
-#: diventi/templates/accounts/user_detail_quick.html:240
+#: diventi/templates/accounts/user_detail_quick.html:305
 #, python-format
 msgid "%(creation_date)s"
 msgstr "%(creation_date)s"
 
-#: diventi/templates/accounts/user_detail_quick.html:251
+#: diventi/templates/accounts/user_detail_quick.html:316
 msgid "There are no posts yet."
 msgstr "Nessun post disponibile."
 
@@ -2245,7 +2245,7 @@ msgstr "uno strumento per misurare le prestazioni del sito"
 msgid "participate"
 msgstr "partecipa"
 
-#: diventi/templates/base_quick.html:262 diventi/templates/base_quick.html:591
+#: diventi/templates/base_quick.html:262 diventi/templates/base_quick.html:593
 msgid "community"
 msgstr "community"
 
@@ -2274,19 +2274,19 @@ msgstr "tutti i giochi"
 msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
-#: diventi/templates/base_quick.html:360
+#: diventi/templates/base_quick.html:361
 msgid "buy"
 msgstr "acquista"
 
-#: diventi/templates/base_quick.html:397
+#: diventi/templates/base_quick.html:399
 msgid "hi"
 msgstr "ciao"
 
-#: diventi/templates/base_quick.html:470
+#: diventi/templates/base_quick.html:472
 msgid "type and hit enter"
 msgstr "scrivi e premi invio"
 
-#: diventi/templates/base_quick.html:541
+#: diventi/templates/base_quick.html:543
 msgid ""
 "Diventi is a role-playing community that embraces fun, encourages "
 "storytelling and helps game masters to prepare their fantastic adventures"
@@ -2295,11 +2295,11 @@ msgstr ""
 "incoraggia l'interpretazione e aiuta i game master a preparare fantastiche "
 "avventure"
 
-#: diventi/templates/base_quick.html:583
+#: diventi/templates/base_quick.html:585
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:602
+#: diventi/templates/base_quick.html:604
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 

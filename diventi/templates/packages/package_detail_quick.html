@@ -20,11 +20,15 @@
   <span class="mask bg-gradient-dark opacity-9"></span>
   <div class="container pt-6">
     <div class="row justify-content-center">
+            {% with package as object %}
+        {% if user.is_staff %}
+        <div class="mb-1 text-center col-lg-8 mx-auto">
+            {% include 'publishable_badge.html' %}
+        </div>
+        {% endif %}
+    {% endwith %}
       <div class="col-lg-9">
-        <h1 class="mb-4 text-center text-white">{{ package.title }}</h1>
-        {% with package as object %} 
-            {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
-        {% endwith %}
+        <h1 class="mb-4 text-center text-white">{{ package.title }}</h1>        
       </div>
     </div>
   </div>

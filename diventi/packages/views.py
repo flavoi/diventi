@@ -28,7 +28,7 @@ class PackageDetailView(HitCountDetailView):
 
     def get_queryset(self):
         qs = super(PackageDetailView, self).get_queryset()
-        return qs.prefetch()
+        return qs.published().prefetch()
 
     def get_context_data(self, **kwargs):
         context = super(PackageDetailView, self).get_context_data(**kwargs)

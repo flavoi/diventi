@@ -9,7 +9,7 @@
     <meta property="og:title" content="Diventi: {{ product.title }}" />
     <meta property="og:type" content="og:website" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:image" content="{{ product.image }}" />
+    <meta property="og:image" content="{% if product.postcard %}{{ product.postcard }}{% else %}{{ product.image }}{% endif %}" />
     <meta property="og:description" content="{{ product.abstract }}" />
 {% endblock base_opengraph %}
 
@@ -59,7 +59,7 @@
                             <div class="col-sm-6 mt-sm-6 px-sm-2">
                                 <div class="card mb-3">
                                     <div class="h-100">
-                                        <img class="card-img-top" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ product.image }}" style="width:100%;" alt="{{ product.title|capfirst }}"></div>
+                                        <img class="card-img-top" loading="lazy" src="{% if product.postcard %}{{ product.postcard }}{% else %}{{ product.image }}{% endif %}" alt="{{ product.title|capfirst }}" style="width:100%;" alt="{{ product.title|capfirst }}"></div>
                                     <div class="card-body p-3">
                                         <div class="d-flex align-items-center">
                                             <div class="d-block">

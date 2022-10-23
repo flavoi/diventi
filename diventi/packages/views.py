@@ -43,7 +43,7 @@ class PackageDetailView(HitCountDetailView):
         context['related_products_value'] = humanize_price(related_products_value)
         context['package_discount'] = round((1 - (stipe_price / related_products_value)) * 100, 2)
         for product in related_products:
-            if (product.user_has_already_bought(self.request.user) or product.user_has_authored(self.request.user)):
+            if (product.user_has_already_bought(self.request.user)):
                 context['bought'] = 1
         return context
 

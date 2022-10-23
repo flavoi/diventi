@@ -45,7 +45,7 @@
                     {% for a in user_data.achievements %}
                       <div class="col-auto text-center mb-3 px-2">
                         <div class="d-block">
-                            <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
+                            <a tabindex="0" class="btn btn-{{ a.color }} rounded-circle btn-icon-only" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
                                 <span class="btn-inner--icon pt-1">
                                     <i data-feather="{{ a.icon|default:'star' }}" class="text-white mb-1"></i>
                                 </span>

@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.0.0-beta-10] → 2022-10-23
+## [1.0.0-beta.10] → 2022-10-23
 
 ### Added
 - [feedbaks] Introduced a sign up page for private surveys
@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [products] Fixed a problem that disrupted the ordering of cards in the games list page
 
 
-## [1.0.0-beta-9] → 2021-09-19
+## [1.0.0-beta.9] → 2021-09-19
 
 ### Added
 - [ebooks] Integrated Datatables with filter, ordering and pagination functionalities
@@ -90,7 +90,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [locale] Fixed a handful of fuzzy translations on products, policy and landing pages
 
 
-## [1.0.0-beta-8] → 2020-09-02
+## [1.0.0-beta.8] → 2020-09-02
 
 ### Added
 - Introduced adventures: a new experimental app that enables game master to play with Diventi's adventures
@@ -133,7 +133,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [core] Updated cryptography from v2.3.0 to v3.2.0
 
 
-## [1.0.0-beta-7] → 2020-04-02
+## [1.0.0-beta.7] → 2020-04-02
 
 ### Added
 - [core] Upgraded material kit from v2.1.1 to v2.2.0

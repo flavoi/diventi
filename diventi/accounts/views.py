@@ -32,7 +32,7 @@ from diventi.products.models import Product
 from diventi.comments.models import DiventiComment
 from diventi.landing.models import Section
 
-from .models import DiventiUser, DiventiAvatar, Achievement
+from .models import DiventiUser, DiventiAvatar
 from .forms import (
     DiventiAuthenticationForm,
     DiventiPasswordResetForm,

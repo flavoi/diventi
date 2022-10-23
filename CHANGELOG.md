@@ -8,26 +8,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Undisclosed]
 
 ### Added
-- [ckeditor] Added CrateDiv plugin to expand the formatting capabilities of blog articles
-- [ebooks] Added related products row in detail page
-- [ebooks] Added action cards in public ebook page
-- [feedbaks] Added sign up page for private surveys
-- [landing] Integrated demo ebook in the landing page
-- [landing] Integrate the hottest article in the landing page
-- [products] Introduced a games catalog page
+- [feedbaks] Introduced a sign up page for private surveys
+- [packages] Introduced the packages app for the management of discounts and sales of products
+- [products] Introduced a games catalog page with pagination and filter features
 - [products] Introduced public products: a free content directly available to all users
 
 ### Changed
-- [blog] Updated cards visual styles
+- [ckeditor] Installed CrateDiv plugin to expand the formatting capabilities of blog articles
+- [core] Updated the visual style of various icons on the top navbar
+- [accounts] Updated the projects collection for author users to display the authored products
+- [blog] Updated cards visual styles with new postcards and color categories
 - [blog] Integrated read time in article pills
 - [ebooks] Updated table of contents visual style
-- [products] Updated cards visual style
-- [products] Integrated dynamic cover text
-- [landing] Refreshed the landing page visual style
-- [reviews] Updated stars icons style
+- [ebooks] Enabled action cards in the public ebook page
+- [ebooks] Enabled related products section in the ebook detail page
+- [landing] Reorganized analytics page with separated titles and sections for each reporting object
+- [landing] Integrated the hot ebook link in the landing page
+- [landing] Integrated the hottest article in the landing page
+- [products] Refreshed cards visual style with new postcards and color categories
+- [landing] Refreshed the landing page sections visual style
+- [reviews] Updated stars icons style with clearer colors
 
 ### Removed
 - [accounts] Removed collection from user's public page
+- [accounts] Removed the locked achievements from the user detail page
 - [adventures] Removed adventure legacy app
 - [landing] Removed an old form from the about article
 
@@ -36,6 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [blog] Fixed missing strings in the related articles section
 - [feedbacks] Fixed text alignment of the title in the survey page
 - [landing] Fixed a problem that prevented the admin to order of the content sections
+- [landing] Adjusted various spacing values of cards and buttons on the landing page
 - [locale] Corrected translations for the category tables
 - [locale] Fixed a problem that caused warning errors while compiling plural strings
 - [payments] Fixed a problem that prevented successful payments to be sent to stripe

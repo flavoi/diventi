@@ -38,34 +38,32 @@
 
 {% block content %}
 
-<section class="section-half-rounded">
-    <div class="jumbotron section-inner left-0 rounded-right bg-primary overflow-hidden col-lg-5">
-        <img alt="{{ book.title }}" src="{{ book.image }}" loading=lazy data-src="{{ book.image }}" class="img-as-bg">        
-    </div>
-    <div class="container text-center text-lg-left py-5">
-        <div class="row">
-            <div class="col-lg-7 ml-auto">
-                <div class="card bg-dark shadow-lg border-0 mb-0">
-                    <div class="px-5 py-6">
-                        <span class="badge badge-primary badge-pill">{{ book.book_product.category }}</span>
-                        {% with book as object %}
-                            {% include 'publishable_badge.html' %}
-                        {% endwith %}
-                        <h2 class="h2 lh-180 text-white font-weight-bold mt-3 mb-3">{{ paper_title|capfirst }}</h2>
-                        <p class="lead text-muted">{{ book.description|capfirst }}</p>
-                    </div>
+<section class="slice slice-lg pb-0 pt-5 bg-section-secondary">
+    <div class="row pb-5 px-3 justify-content-center text-center">
+        <div class="col-lg-5 col-md-9">
+                {% if book.logo %}
+                <div class="mb-4 d-flex justify-content-center">
+                    <figure class="figure">
+                        <a name="top">
+                            <img loading=lazy class="img-fluid rounded shadow-lg p-3" src="{{ book.logo }}"></a>
+                    </figure>
                 </div>
-                <div class="mt-4 text-right">
+                {% else %}
+                    <h3 class="h1 lh-170">{{ paper_title|capfirst }}</strong>
+                {% endif %}
+                <h3 class="h4 text-muted">{{ book.description|capfirst }}</h3>
+                <div class="mt-4 text-center">
                      <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
                         <i data-feather="book-open" class="mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
                     </span>
+                    <span class="badge badge-soft-{{ book.book_product.category.color }} badge-lg badge-pill ml-2">{{ book.book_product.category }}</span>
                 </div>
-            </div>
+            </h3>
         </div>
     </div>
 </section>
 
-<section class="slice">
+<section class="slice mt-0 pt-0">
     <div class="container py-4 py-lg-5">
         <div class="row">
             <div class="col-lg-3 order-lg-1 order-1">
@@ -106,14 +104,6 @@
             </div>
 
             <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2 order-3">
-                {% if book.logo %}
-                <div class="mb-4 d-flex justify-content-center">
-                    <figure class="figure">
-                        <a name="top">
-                            <img loading=lazy class="img-fluid rounded shadow-lg p-3" src="{{ book.logo }}"></a>
-                    </figure>
-                </div>
-                {% endif %}
                 <article>
                     {% include book_paper %}
                 </article>
@@ -126,33 +116,35 @@
                 {% endwith %}
 
                 {% if book.book_product.public and related_products %}
+                <div id="accordion-2" class="accordion accordion-spaced">
                     <div class="card">
-                        <div class="card-header pb-3">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="h6">{% trans "related games"|capfirst %}</span>
-                                </div>
-                            </div>
+                        <div class="card-header py-4 collapsed" id="heading-2-1" data-toggle="collapse" role="button" data-target="#collapse-2-1" aria-expanded="true" aria-controls="collapse-2-1">
+                            <h6 class="mb-0">
+                                {% trans "related games"|capfirst %}
+                            </h6>
                         </div>
-                        <div class="card-body">
-                            {% for p in related_products %}
-                                <div class="row align-items-center mb-3 shadow-none">
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-soft-{{ p.category.color }} text-{{ p.category.color }}">
-                                            <i data-feather="{{ p.category.icon|default:'droplet' }}"></i>
+                        <div id="collapse-2-1" class="collapse show" aria-labelledby="heading-2-1" data-parent="#accordion-1" style="">
+                            <div class="card-body">
+                                {% for p in related_products %}
+                                    <div class="row align-items-center shadow-none">
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-soft-{{ p.category.color }} text-{{ p.category.color }}">
+                                                <i data-feather="{{ p.category.icon|default:'droplet' }}"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col pl-0">
+                                            <span class="d-block h6 text-sm mb-0"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></span>
+                                            <p class="mb-0 text-xs">{{ p.category }}</p>
                                         </div>
                                     </div>
-                                    <div class="col pl-0">
-                                        <span class="d-block h6 text-sm mb-0"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></span>
-                                        <p class="mb-0 text-xs">{{ p.category }}</p>
-                                    </div>
-                                </div>
-                                {% if not forloop.last %}
-                                    <hr class="my-3" />
-                                {% endif %}
-                            {% endfor %}
+                                    {% if not forloop.last %}
+                                        <hr class="my-3" />
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
+                </div>
                 {% endif %}
             </div>
         </div>

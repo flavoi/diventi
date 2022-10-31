@@ -14,6 +14,7 @@ from cuser.middleware import CuserMiddleware
 from .fields import ProtectedFileField
 
 from diventi.feedbacks.models import Survey
+from diventi.blog.models import Article
 
 from diventi.core.models import (
     Element,
@@ -51,6 +52,7 @@ class ProductQuerySet(PublishableModelQuerySet):
         products = products.prefetch_related('details')
         products = products.select_related('category')
         products = products.prefetch_related('formats')
+        products = products.prefetch_related('related_articles')
         products = products.select_related('product_survey')
         return products
 
@@ -256,6 +258,12 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         related_name = 'products', 
         blank = True, 
         verbose_name = _('related products'),
+    )
+    related_articles = models.ManyToManyField(
+        Article,
+        related_name = 'products', 
+        blank = True, 
+        verbose_name = _('related articles'),
     )
     formats = models.ManyToManyField(
         ProductFormat, 

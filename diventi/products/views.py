@@ -119,6 +119,7 @@ class ProductDetailView(DetailView):
         context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
         context['bought'] = self.object.user_has_already_bought(user)        
         context['featured_detail'] = self.object.details.highlighted_or_first()
+        context['latest_articles'] = self.object.related_articles.all().order_by('-publication_date')[:3]
         if self.object.at_a_premium:            
             stripe.api_key = settings.STRIPE_SECRET_KEY
             stripe_price = stripe.Price.retrieve(self.object.stripe_price)

@@ -4,15 +4,16 @@
 
 ![Latest release](https://img.shields.io/github/v/release/flavoi/diventi?include_prereleases)
 
-More than a set of homebrew elements, Diventi is a style of play that embraces fun, encourages role playing and help game masters to better prepare their fantastic adventures.
+Diventi is a role-playing community that embraces fun, encourages storytelling and helps game masters to create outstanding adventures.
 
-Diventi contains our philosophy of play: a playstyle that is free from excessive constraints of mechanics and that is not limited to being purely narrative. The role play for us is great involvement of the players, who have fun together playing the protagonists of an adventure.
+Diventi contains our philosophy of play: a playstyle free from excessive constraints, yet not limited to pure narrative. The role play for us is great involvement of the players, who have fun together playing the protagonists of an adventure.
 
-In Diventi we give space and importance to the creativity of the players, who can develop their characters in all their psychology and physicality. The mechanics, in this context, represent the tool to determine the outcome of the actions taken by the characters, allowing a more streamlined, structured and less confusing game.
+With Diventi we highlight creativity to help players on the development of their characters, while giving game masters the tools they need to build a satisfying story for all.
 
 ### Built With
 * [Django](https://www.djangoproject.com/) - The web framework
 * [Bootstrap](http://getbootstrap.com) - The front end library
+* [Sly flourish](https://slyflourish.com/) - A source of playful inspiration
 
 ### License
 This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.

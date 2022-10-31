@@ -38,6 +38,7 @@
 
 {% block content %}
 
+<!--
 <section class="slice slice-lg pb-0 pt-5 bg-section-secondary">
     <div class="row pb-5 px-3 justify-content-center text-center">
         <div class="col-lg-5 col-md-9">
@@ -61,6 +62,26 @@
             </h3>
         </div>
     </div>
+</section>
+-->
+<section class="section-half-rounded pt-5 pt-lg-8 pb-7 pb-lg-10">
+  <div class="jumbotron section-inner left-0 rounded-right bg-gradient-primary overflow-hidden col-lg-11">
+    <img loading="lazy" src="{{ book.book_product.image }}" alt="Image" class="img-as-bg blend-mode--multiply">
+  </div>
+  <div class="container pt-5 pb-7">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <span class="badge badge-{{ book.book_product.category.color }} badge-pill">{{ book.book_product.category }}</span>
+        <h1 class="display-4 text-white mt-4 lh-110">{{ paper_title|capfirst }}</h1>
+        <p class="lead mb-4 text-white mt-4">{{ book.book_product.abstract|capfirst }}</p>
+        <div class="mt-5">
+           <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
+                <i data-feather="book-open" class="mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="slice mt-0 pt-0">
@@ -105,6 +126,13 @@
 
             <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2 order-3">
                 <article>
+                    {% if book.logo %}
+                    <div class="mb-4 mt-0 d-flex justify-content-center">
+                        <a name="top">
+                            <img loading="lazy" class="img-fluid rounded shadow-lg p-3" src="{{ book.logo }}">
+                        </a>
+                    </div>
+                    {% endif %}
                     {% include book_paper %}
                 </article>
             </div>

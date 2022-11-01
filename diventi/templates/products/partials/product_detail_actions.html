@@ -54,7 +54,7 @@
             <span class="btn-inner--text">{{ product.product_survey.title }}</span>
         </a>
     {% else %}
-        <a class="btn {{ button_disabled_class|default:'btn-secondary' }} btn-sm" href="#/" data-container="body" data-toggle="popover" data-placement="top" title="{{ product.courtesy_short_message }}" data-content="{{ product.courtesy_message }}">
+        <a class="btn {{ button_action_class }} btn-secondary btn-sm" href="#/" data-container="body" data-toggle="popover" data-placement="top" title="{{ product.courtesy_short_message }}" data-content="{{ product.courtesy_message }}">
             {{ product.courtesy_short_message }}
         </a>
     {% endif %}

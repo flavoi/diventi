@@ -69,7 +69,7 @@ class ProductListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        products = Product.objects.published().order_by('publication_date')
+        products = Product.objects.published().order_by('-publication_date')
         products = products.exclude(category__meta_category=True)
         return products
 

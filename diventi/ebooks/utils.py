@@ -192,6 +192,23 @@ def render_paper_images(paper_soup):
     return paper_soup
 
 
+def render_paper_fancy_images(paper_soup):
+    """
+        Renders paper uploaded images with a fancy box.
+    """
+    images = paper_soup.find_all('img')
+    for image_tag in images:
+        image_tag['style'] = 'fancy'
+        image_tag['class'] = 'img-fluid my-3 hover-translate-y-n3 hover-shadow-lg'
+        fancy_soup = BeautifulSoup('', 'html.parser')
+        fancy_tag = fancy_soup.new_tag('a')
+        fancy_tag['data-fancybox'] = ''
+        fancy_tag['href'] = image_tag.get('src')
+        fancy_tag['data-caption'] = image_tag.get('alt')
+        image_tag = image_tag.wrap(fancy_tag)
+    return paper_soup
+
+
 def render_paper_code_blocks(paper_soup):
     """
         Substitutes code blocks with quick's style alerts.
@@ -357,7 +374,7 @@ def render_dropbox_paper_soup(book_paper_id):
     diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
     render_diventi_snippets(paper_soup, diventi_universale_soup)
     render_paper_tables(paper_soup)
-    render_paper_images(paper_soup)
+    render_paper_fancy_images(paper_soup)
     render_paper_code_blocks(paper_soup)
     render_paper_hr(paper_soup)
     render_paper_headings(paper_soup)

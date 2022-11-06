@@ -156,6 +156,19 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         blank=True,
         verbose_name=_('video')
     )
+    video_label = models.CharField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('video label')
+    )
+    video_image = models.URLField(
+        blank=True,
+        verbose_name=_('video image')
+    )
+    featured_video = models.BooleanField(
+        default=False,
+        verbose_name=_('featured video')
+    )
     attachment_label = models.CharField(
         blank=True, 
         max_length=50, 
@@ -170,6 +183,10 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
     )
 
     objects = SectionModelManager()
+
+    def video_image_tag(self):
+        return super(Section, self).image_tag(image_url=self.video_image)
+    video_image_tag.short_description = _('Video image')
 
     def __str__(self):
         return '(%s) %s' % (self.order_index, self.title)

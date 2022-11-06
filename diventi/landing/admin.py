@@ -35,9 +35,11 @@ class FeatureInline(TranslationStackedInline):
 class SectionAdmin(DiventiTranslationAdmin):
     list_display = [
         'title', 
-        'image_tag', 
-        'order_index', 
-        'published', 
+        'image_tag',
+        'video_image_tag',
+        'order_index',
+        'featured_video',
+        'published',
         'featured',
     ]
     fieldsets = (
@@ -45,7 +47,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('published', 'featured')
         }),
         (_('Multimedia'), {
-            'fields': ('image', 'video',)
+            'fields': ('image', 'video', 'video_label', 'video_image', 'featured_video')
         }),
         (_('Editing'), {
             'fields': ('order_index', 'prefix', 'title', 'button_label', 'description',),

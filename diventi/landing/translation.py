@@ -15,7 +15,7 @@ class FeatureTranslationOptions(TranslationOptions):
 
 @register(Section)
 class SectionTranslationOptions(TranslationOptions):
-    fields = ('prefix', 'title', 'description', 'button_label','attachment_label',)
+    fields = ('prefix', 'title', 'description', 'button_label','attachment_label', 'video_label')
 
 
 @register(SearchSuggestion)

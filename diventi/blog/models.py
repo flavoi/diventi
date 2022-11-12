@@ -128,6 +128,10 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         unique=True,
         verbose_name=_('slug')
     )
+    postcard = models.URLField(
+        blank=True, 
+        verbose_name = _('postcard')
+    )
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
@@ -158,6 +162,10 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
 
     def get_absolute_url(self):
         return reverse('blog:detail', args=[str(self.slug)])
+
+    def postcard_tag(self):
+        return super(Article, self).image_tag(image_url=self.postcard)
+    postcard_tag.short_description = _('Postcard')
 
     def search(self, query, *args, **kwargs):
         results = Article.objects.history()

@@ -140,6 +140,11 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         max_length=50, 
         verbose_name=_('title')
     )
+    subtitle = models.CharField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('subtitle')
+    )
     description = models.TextField(
         blank=True, 
         verbose_name=_('description')
@@ -156,18 +161,9 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         blank=True,
         verbose_name=_('video')
     )
-    video_label = models.CharField(
-        blank=True, 
-        max_length=50, 
-        verbose_name=_('video label')
-    )
     video_image = models.URLField(
         blank=True,
         verbose_name=_('video image')
-    )
-    featured_video = models.BooleanField(
-        default=False,
-        verbose_name=_('featured video')
     )
     attachment_label = models.CharField(
         blank=True, 

@@ -103,14 +103,14 @@
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
                         <a href="{{ pinned_product.get_absolute_url }}" class="d-block">
-                            <img loading="lazy" src="{{ pinned_product.image }}" alt="{{ pinned_product.title|capfirst }}" class="card-img-top" style="height:278px;">
+                            <img loading="lazy" src="{{ pinned_product.image }}" alt="{{ pinned_product.title|capfirst }}" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body py-4">
                         <small class="d-block text-sm text-{{ pinned_product.category.color }} mb-2"><strong>{{ pinned_product.category }}</strong> {% with pinned_product as object %}
                                     {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                                 {% endwith %}</small> 
-                            <a href="{{ product.get_absolute_url }}" class="h5 stretched-link lh-150">
+                            <a href="{{ pinned_product.get_absolute_url }}" class="h5 stretched-link lh-150">
                                 {{ pinned_product.title|capfirst }}
                             </a>
                         <p class="mt-3 mb-0 lh-170">
@@ -132,7 +132,7 @@
                                     {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                                 {% endwith %}
                         </small> 
-                        <a href="{{ product.get_absolute_url }}" class="h5 stretched-link lh-150">
+                        <a href="{{ latest_article.get_absolute_url }}" class="h5 stretched-link lh-150">
                             {{ latest_article.title|capfirst }}
                         </a>
                         <p class="mt-3 mb-0 lh-170">
@@ -154,7 +154,7 @@
                                     {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                                 {% endwith %}
                         </small> 
-                        <a href="{{ product.get_absolute_url }}" class="h5 stretched-link lh-150">
+                        <a href="{{ latest_public_product.get_absolute_url }}" class="h5 stretched-link lh-150">
                             {{ latest_public_product.title|capfirst }}
                         </a>
                         <p class="mt-3 mb-0 lh-170">

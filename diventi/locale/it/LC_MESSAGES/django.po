@@ -1324,10 +1324,8 @@ msgid "prefix text"
 msgstr "prefisso"
 
 #: diventi/landing/models.py:146
-#, fuzzy
-#| msgid "title"
 msgid "subtitle"
-msgstr "titolo"
+msgstr "sottotitolo"
 
 #: diventi/landing/models.py:155
 msgid "button label"
@@ -2547,10 +2545,8 @@ msgid "learn more"
 msgstr "scopri di più"
 
 #: diventi/templates/landing/landing_quick.html:130
-#, fuzzy
-#| msgid "our latest updates"
 msgid "our latest contents"
-msgstr "i nostri ultimi aggiornamenti"
+msgstr "i nostri ultimi contenuti"
 
 #: diventi/templates/landing/landing_quick.html:279
 msgid "Join our community"

@@ -33,6 +33,21 @@
             border-right-width: 0;
             border-left-width: 1px;
         }
+
+        .ebook {
+            font-size: calc(16px + .1vw);
+/*            font-size: 18px;*/
+            line-height: 1.6;
+            letter-spacing: -0.003em;
+            word-break: break-word;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .ebook .alert {
+            font-size: calc(14px + .1vw);
+        }
+
     </style>
 {% endblock extrahead %}
 
@@ -82,7 +97,7 @@
                 </div>
             </div>
             <div class="col-lg-8 mb-5 mb-lg-0 order-lg-2 order-3">
-                <article style="font-size: 18px; letter-spacing: -0.003em; word-break: break-word; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;">
+                <article class="ebook">
                     {% if book.logo %}
                     <div class="mb-4 mt-0 d-flex justify-content-center">
                         <a name="top">

@@ -61,41 +61,6 @@
 <section class="slice mt-0 pt-0">
     <div class="container py-4 py-lg-5">
         <div class="row">
-        
-        <!--
-            {% if book.book_product.public and related_products %}
-                <div id="accordion-2" class="accordion accordion-spaced">
-                    <div class="card">
-                        <div class="card-header py-4 collapsed" id="heading-2-1" data-toggle="collapse" role="button" data-target="#collapse-2-1" aria-expanded="true" aria-controls="collapse-2-1">
-                            <h6 class="mb-0">
-                                {% trans "related games"|capfirst %}
-                            </h6>
-                        </div>
-                        <div id="collapse-2-1" class="collapse show" aria-labelledby="heading-2-1" data-parent="#accordion-1" style="">
-                            <div class="card-body">
-                                {% for p in related_products %}
-                                    <div class="row align-items-center shadow-none">
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-soft-{{ p.category.color }} text-{{ p.category.color }}">
-                                                <i data-feather="{{ p.category.icon|default:'droplet' }}"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col pl-0">
-                                            <span class="d-block h6 text-sm mb-0"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></span>
-                                            <p class="mb-0 text-xs">{{ p.category }}</p>
-                                        </div>
-                                    </div>
-                                    {% if not forloop.last %}
-                                        <hr class="my-3" />
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-        -->
-
             <div class="col-lg-3 col-12 order-1 d-block d-md-block d-lg-none">
                 <div id="accordion-1" class="accordion accordion-spaced ">
                     <div class="card border-primary-dark">
@@ -116,7 +81,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-8 mb-5 mb-lg-0 order-lg-2 order-3">
                 <article style="font-size: 18px; letter-spacing: -0.003em; word-break: break-word; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;">
                     {% if book.logo %}
@@ -128,9 +92,7 @@
                     {% endif %}
                     {% include book_paper %}
                 </article>
-            </div>
-
-            
+            </div>        
             <div class="col-lg-4 order-lg-3 order-2">
                 {% with book.book_product as product %}
                     {% include "products/partials/product_detail_actions_public.html" %}
@@ -167,7 +129,7 @@
                     </div>
                 </div>
                 {% endif %}
-                
+
                 <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
                     <div class="d-none d-md-none d-lg-block">
                         <div class="card">

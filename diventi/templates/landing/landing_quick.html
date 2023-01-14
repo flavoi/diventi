@@ -36,8 +36,8 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 col-md-6 col-lg-6 order-md-2 mb-5 mb-md-0">
-                <div class="card border-0 shadow-lg zindex-100 mb-0">
-                    {% if featured_section.video %}
+                {% if featured_section.video %}
+                    <div class="card border-0 shadow-lg zindex-100 mb-0">
                         <figure>
                             <img alt="{{ featured_section.title }}" src="{{ featured_section.video_image }}" class="card-img">
                         </figure>
@@ -50,17 +50,18 @@
                                 </a>
                             </div>
                         </div>
-                    {% else %}
-                        <figure>
-                            <img alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="card-img">
-                        </figure>
-                    {% endif %}
-                </div>
-                <div class="w-75 position-absolute bottom-n5 right-n5 rotate-180">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 463.6 616" style="enable-background:new 0 0 463.6 616;" xml:space="preserve" class="injected-svg svg-inject fill-secondary">
-                        <path d="M148.4,608.3C25.7,572.5-3.5,442.2,0.3,375.8s24.8-117,124.8-166.5s125.7-77.4,165-129.6 c43.2-57.4,96.5-94.4,127.9-73c63,43,53.9,280,14,358s-68.9,75.5-98.9,118.7S271,644,148.4,608.3z"></path>
-                    </svg>
-                </div>
+                    </div>
+                    <div class="w-75 position-absolute bottom-n5 right-n5 rotate-180">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 463.6 616" style="enable-background:new 0 0 463.6 616;" xml:space="preserve" class="injected-svg svg-inject fill-secondary">
+                            <path d="M148.4,608.3C25.7,572.5-3.5,442.2,0.3,375.8s24.8-117,124.8-166.5s125.7-77.4,165-129.6 c43.2-57.4,96.5-94.4,127.9-73c63,43,53.9,280,14,358s-68.9,75.5-98.9,118.7S271,644,148.4,608.3z"></path>
+                        </svg>
+                    </div>
+                {% else %}
+                    <figure class="w-100">
+                        <img alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="img-fluid mw-md-120">
+                    </figure>
+                {% endif %}
+            
             </div>
             <div class="col-12 col-md-6 col-lg-6 order-md-1 pr-md-5">
                 {% if featured_section.subtitle %}<h6 class="">- {{ featured_section.subtitle }}</h6>{% endif %}

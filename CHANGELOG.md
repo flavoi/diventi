@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] → 2023-01-15
+The first live version of Diventi is now released!
+
 ## [1.0.0-beta.10] → 2022-10-23
 
 ### Added
@@ -41,6 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [feedbacks] Fixed text alignment of the title in the survey page
 - [landing] Fixed a problem that prevented the admin to order of the content sections
 - [landing] Adjusted various spacing values of cards and buttons on the landing page
+- [ldaning] Fixed an issue that prevented hot products to be displayed in the navbar
 - [locale] Corrected translations for the category tables
 - [locale] Fixed a problem that caused warning errors while compiling plural strings
 - [payments] Fixed a problem that prevented successful payments to be sent to stripe

@@ -88,7 +88,7 @@ class ProductQuerySet(PublishableModelQuerySet):
 
     # Return the list of pinned products
     def pinned_list(self):
-        products = self.published().filter(pinned=True).prefetch()
+        products = self.published().filter(pinned=True).not_hot().prefetch()
         return products
 
     # Get the list of published products of a certain category

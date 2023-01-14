@@ -57,9 +57,20 @@
                         </svg>
                     </div>
                 {% else %}
+                <!--
                     <figure class="w-100">
                         <img alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="img-fluid mw-md-120">
                     </figure>
+                -->
+                <div class="w-100">
+                    <div class="card card-transparent shadow-none border-0 hover-shadow-lg">
+                        <div class="card-body p-0">
+                            <a href="{{ featured_section.image }}" data-fancybox data-caption="{{ featured_section.title }}">
+                                <img loading="lazy" alt="{{ featured_section.title }}" src="{{ featured_section.image }}" class="img-fluid shadow rounded">
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 {% endif %}
             
             </div>

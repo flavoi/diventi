@@ -108,6 +108,7 @@
             </div>
         </div>
         <div class="row justify-content-md-center">
+            {% if pinned_product.title %}
             <div class="col-md-4 d-flex align-items-stretch">
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
@@ -128,6 +129,8 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
+            {% if latest_article %} 
             <div class="col-md-4 d-flex align-items-stretch">
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
@@ -150,6 +153,8 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
+            {% if latest_public_product %}
             <div class="col-md-4 d-flex align-items-stretch">
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
@@ -172,6 +177,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </section>

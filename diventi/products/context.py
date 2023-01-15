@@ -23,5 +23,8 @@ def project_categories(request):
 def pinned_projects(request):
     context = {}
     context['pinned_products_nav'] = Product.objects.pinned_list().distinct()
-    context['hot_product_nav'] = Product.objects.hot().get()
+    try:
+        context['hot_product_nav'] = Product.objects.hot().get()
+    except Product.DoesNotExist:
+        context['hot_product_nav'] = None
     return context

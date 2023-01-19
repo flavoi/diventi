@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-12 16:25+0100\n"
+"POT-Creation-Date: 2023-01-19 09:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -750,7 +750,7 @@ msgstr "attiva"
 msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
-#: diventi/core/models.py:268 diventi/templates/landing/landing_quick.html:129
+#: diventi/core/models.py:268 diventi/templates/landing/landing_quick.html:112
 #: diventi/templates/products/product_list_quick.html:61
 msgid "featured"
 msgstr "in primo piano"
@@ -1763,7 +1763,7 @@ msgstr ""
 "funzionalità."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/landing/landing_quick.html:296
+#: diventi/templates/landing/landing_quick.html:285
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1793,7 +1793,7 @@ msgstr "accedi"
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:206 diventi/templates/base_quick.html:580
-#: diventi/templates/landing/landing_quick.html:284
+#: diventi/templates/landing/landing_quick.html:273
 msgid "sign up"
 msgstr "registrati"
 
@@ -2361,7 +2361,7 @@ msgstr "Nessun articolo è stato pubblicato"
 
 #: diventi/templates/blog/article_list_quick.html:150
 #: diventi/templates/blog/article_list_quick.html:152
-#: diventi/templates/ebooks/book_detail_quick.html:211
+#: diventi/templates/ebooks/book_detail_quick.html:194
 #: diventi/templates/products/product_list_filtered_quick.html:85
 #: diventi/templates/products/product_list_filtered_quick.html:87
 #: diventi/templates/products/product_list_quick.html:147
@@ -2377,7 +2377,7 @@ msgstr "corrente"
 
 #: diventi/templates/blog/article_list_quick.html:162
 #: diventi/templates/blog/article_list_quick.html:164
-#: diventi/templates/ebooks/book_detail_quick.html:212
+#: diventi/templates/ebooks/book_detail_quick.html:195
 #: diventi/templates/products/product_list_filtered_quick.html:97
 #: diventi/templates/products/product_list_filtered_quick.html:99
 #: diventi/templates/products/product_list_quick.html:159
@@ -2435,49 +2435,47 @@ msgstr "torna all'articolo"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/ebooks/book_detail_quick.html:58
-#: diventi/templates/ebooks/book_detail_quick.html:79
+#: diventi/templates/ebooks/book_detail_quick.html:67
 msgid "time to read"
 msgstr "tempo di lettura"
 
-#: diventi/templates/ebooks/book_detail_quick.html:58
-#: diventi/templates/ebooks/book_detail_quick.html:79
+#: diventi/templates/ebooks/book_detail_quick.html:67
 msgid "words"
 msgstr "parole"
 
-#: diventi/templates/ebooks/book_detail_quick.html:111
+#: diventi/templates/ebooks/book_detail_quick.html:83
 msgid "table of contents"
 msgstr "indice"
 
-#: diventi/templates/ebooks/book_detail_quick.html:151
+#: diventi/templates/ebooks/book_detail_quick.html:120
 msgid "related games"
 msgstr "giochi correlati"
 
-#: diventi/templates/ebooks/book_detail_quick.html:204
+#: diventi/templates/ebooks/book_detail_quick.html:187
 msgid "Display _MENU_ records per page"
 msgstr "Mostra _MENU_ righe per pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:205
+#: diventi/templates/ebooks/book_detail_quick.html:188
 msgid "Nothing found - sorry"
 msgstr "Nessun risultato trovato"
 
-#: diventi/templates/ebooks/book_detail_quick.html:206
+#: diventi/templates/ebooks/book_detail_quick.html:189
 msgid "Showing page _PAGE_ of _PAGES_"
 msgstr "Pagina _PAGE_ di _PAGES_"
 
-#: diventi/templates/ebooks/book_detail_quick.html:207
+#: diventi/templates/ebooks/book_detail_quick.html:190
 msgid "No records available"
 msgstr "Nessun risultato disponibile"
 
-#: diventi/templates/ebooks/book_detail_quick.html:208
+#: diventi/templates/ebooks/book_detail_quick.html:191
 msgid "(filtered from _MAX_ total records)"
 msgstr "(filtrato da _MAX_ righe totali)"
 
-#: diventi/templates/ebooks/book_detail_quick.html:210
+#: diventi/templates/ebooks/book_detail_quick.html:193
 msgid "First page"
 msgstr "Prima pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:215
+#: diventi/templates/ebooks/book_detail_quick.html:198
 msgid "Filter records"
 msgstr "Filtra le righe"
 
@@ -2526,9 +2524,8 @@ msgid "check answers"
 msgstr "visualizza risposte"
 
 #: diventi/templates/landing/about_article_quick.html:44
-#: diventi/templates/landing/landing_quick.html:52
-#: diventi/templates/landing/landing_quick.html:114
-#: diventi/templates/landing/landing_quick.html:248
+#: diventi/templates/landing/landing_quick.html:90
+#: diventi/templates/landing/landing_quick.html:237
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2540,27 +2537,47 @@ msgstr "copiato"
 msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
-#: diventi/templates/landing/landing_quick.html:102
+#: diventi/templates/landing/landing_quick.html:96
 msgid "learn more"
 msgstr "scopri di più"
 
-#: diventi/templates/landing/landing_quick.html:130
+#: diventi/templates/landing/landing_quick.html:99
+msgid "Licenced under"
+msgstr "Rilasciato con"
+
+#: diventi/templates/landing/landing_quick.html:101
+msgid "en"
+msgstr "it"
+
+#: diventi/templates/landing/landing_quick.html:101
+msgid "Creative Commons License"
+msgstr "Licenza Creative Commons"
+
+#: diventi/templates/landing/landing_quick.html:101
+msgid ""
+"This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 "
+"International License"
+msgstr ""
+"Quest'opera è distribuita con Licenza Creative Commons Attribuzione - "
+"Condividi allo stesso modo 4.0 Internazionale"
+
+#: diventi/templates/landing/landing_quick.html:113
 msgid "our latest contents"
 msgstr "i nostri ultimi contenuti"
 
-#: diventi/templates/landing/landing_quick.html:279
+#: diventi/templates/landing/landing_quick.html:268
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing_quick.html:280
+#: diventi/templates/landing/landing_quick.html:269
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/landing_quick.html:291
+#: diventi/templates/landing/landing_quick.html:280
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing_quick.html:292
+#: diventi/templates/landing/landing_quick.html:281
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -4087,9 +4104,6 @@ msgstr "Suggerimento"
 
 #~ msgid "featured content"
 #~ msgstr "contenuto in evidenza"
-
-#~ msgid "open"
-#~ msgstr "apri"
 
 #~ msgid "ongoing playtest"
 #~ msgstr "playtest in corso"

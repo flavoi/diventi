@@ -78,9 +78,9 @@
                     {% if hot_product %}
                         <a href="{{ hot_product.get_absolute_url }}" class="btn btn-danger bg-gradient-danger btn-icon-label">
                             <span class="btn-inner--text">{{ featured_section.button_label|capfirst }}</span><span class="btn-inner--icon">
-                                <i data-feather="book-open"></i>
+                                <i data-feather="book-open"></i> 
                             </span>
-                        </a>
+                        </a>                        
                     {% endif %}
                     {% if pinned_survey %}
                         <a href="{{ pinned_survey.get_absolute_url }}" class="btn btn-info my-2">{{ featured_section.button_label|capfirst }}</a>
@@ -94,6 +94,12 @@
                         </a>
                     {% endif %}
                     <a href="#sct-next" class="btn btn-neutral btn-icon d-none d-xl-inline-block" data-scroll-to="" data-scroll-to-offset="85">{% trans 'learn more'|capfirst %}</a>
+                </div>
+                <div class="d-flex align-items-center justify-content-center mt-5">
+                  <div class="col-3 col-md-auto text-sm pl-0 pr-1">Licenced under:</div>
+                  <div class="col-3 col-md client-group">
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img loading="lazy" alt="{% trans 'Creative Commons License' %}" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<h6 class='text-white'>{% trans 'Creative Commons License' %}</h6>{% trans 'This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License' %}"></a>
+                  </div>
                 </div>
             </div>
         </div>

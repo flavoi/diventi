@@ -1553,10 +1553,8 @@ msgid "Hot products are displayed on top of the games page"
 msgstr "I prodotti hot compaiono in alto nella pagina dei giochi"
 
 #: diventi/products/models.py:258
-#, fuzzy
-#| msgid "related articles"
 msgid "relatable"
-msgstr "articoli correlati"
+msgstr "correlabile"
 
 #: diventi/products/models.py:259
 msgid "Activate to show related objects"

@@ -112,7 +112,7 @@
                     {% include "products/partials/product_detail_actions_public.html" %}
                 {% endwith %}
 
-                {% if book.book_product.public and related_products %}
+                {% if book.book_product.public and related_products and book.book_product.relatable %}
                 
                     <div id="accordion-2" class="accordion accordion-spaced">
                         <div class="card">

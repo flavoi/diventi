@@ -242,7 +242,7 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         default=False, 
         verbose_name=_('hot'),
         help_text = _('Hot products are displayed on top of the games page')
-    ) 
+    )
     courtesy_short_message = models.CharField(
         blank=True, 
         max_length=50, 
@@ -253,6 +253,11 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         verbose_name = _('courtesy message'),
         help_text = _('Folded products return this message to all users')
     )
+    relatable = models.BooleanField(
+        default=True, 
+        verbose_name=_('relatable'),
+        help_text = _('Activate to show related objects')
+    ) 
     related_products = models.ManyToManyField(
         'self',
         related_name = 'products', 

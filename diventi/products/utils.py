@@ -23,10 +23,7 @@ def add_product_to_user_collection(product, user):
 
 # Adds all products of a package to the user collection
 def add_package_to_user_collection(package, user):
-    print('Acquisto pacchetto in corso...')
     for product in package.related_products.all():
-        print('Acquisto {}'.format(product))
-        try:
+        if not product.user_has_already_bought(user):
             add_product_to_user_collection(product, user)
-        except Http404:
-            return _('You already have {} in your collection.'.format(product.title))
+        

@@ -12,6 +12,8 @@ from diventi.core.utils import (
     humanize_price,
 )
 
+from diventi.products.models import Purchase
+
 from .models import (
     Package,
 )
@@ -38,12 +40,15 @@ class PackageDetailView(HitCountDetailView):
         stipe_price = float(stripe_price['unit_amount_decimal'])
         context['price'] = humanize_price(stipe_price)
         related_products = self.object.related_products.all()
-        relate_products_prices = [stripe.Price.retrieve(p['stripe_price']) for p in related_products.values('stripe_price')]
-        related_products_value = sum([float(v['unit_amount_decimal']) for v in relate_products_prices])
-        context['related_products_value'] = humanize_price(related_products_value)
-        context['package_discount'] = round((1 - (stipe_price / related_products_value)) * 100, 2)
-        for product in related_products:
-            if (product.user_has_already_bought(self.request.user)):
-                context['bought'] = 1
+        products_already_bought = Purchase.objects.filter(product__in=related_products, customer=self.request.user)
+        related_products = related_products.exclude(id__in=products_already_bought.values('product__id'))
+        context['products_already_bought'] = products_already_bought.values_list('product__id', flat=True)
+        if related_products.exists():
+            related_products_prices = [stripe.Price.retrieve(p['stripe_price']) for p in related_products.values('stripe_price')]
+            related_products_value = sum([float(v['unit_amount_decimal']) for v in related_products_prices])
+            context['related_products_value'] = humanize_price(related_products_value)
+            context['package_discount'] = round((1 - (stipe_price / related_products_value)) * 100, 2)            
+        else:
+            context['bought'] = 1
         return context
 

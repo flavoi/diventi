@@ -3,7 +3,7 @@
 
 {% if user.is_authenticated %}
   <script src="https://js.stripe.com/v3"></script>
-  <button class="btn {{ button_action_class|default:'btn-primary' }} btn-icon-label {{ btn_extra_class|default:'btn-sm' }}" id="checkout-button">
+  <button class="btn btn-primary btn-icon-label btn-sm " id="checkout-button">
       <span class="btn-inner--icon">
           <i data-feather="shopping-bag"></i>
       </span>

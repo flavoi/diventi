@@ -34,7 +34,9 @@ def stripe_webhook(request):
     payload = request.body
     stripe.api_key = settings.STRIPE_SECRET_KEY
     endpoint_secret = settings.STRIPE_ENDPOINT_SECRET_KEY
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    if not sig_header:
+        return HttpResponse('This is a stripe webhook.')
     event = None
     try:
         event = stripe.Webhook.construct_event(
@@ -60,26 +62,29 @@ def stripe_webhook(request):
             product = Product.objects.get(
                 stripe_product=item['price']['product'],
             )
+            receipt_title = product.title
             add_product_to_user_collection(product, user=user)
         except Product.DoesNotExist:
             package = get_object_or_404(
                 Package,
                 stripe_product=item['price']['product'],
             )
-            msg = add_package_to_user_collection(package, user=user)
-            messages.warning(request, msg)
+            receipt_title = package.title
+            add_package_to_user_collection(package, user=user)
         translation.activate(user.language)
         request.LANGUAGE_CODE = translation.get_language()
         price = humanize_price(float(session['amount_total']))
+        print(user.email)
+        print(user.first_name)
         send_mail(
-            _('Diventi: %(title)s purchase') % {'title': product.title,},
+            _('Diventi: %(title)s purchase') % {'title': receipt_title,},
             _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {
                 'user': user.first_name,
                 'price': price,
-                'title': product.title,
+                'title': receipt_title,
             },
             'info@playdiventi.it',
-            [user.email],
+            [user.email,],
             fail_silently=False,
         )
     return HttpResponse(status=200)

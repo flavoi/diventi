@@ -75,15 +75,15 @@
 <section class="slice mt-0 pt-0">
     <div class="container py-4 py-lg-5">
         <div class="row">
-            <div class="col-lg-3 col-12 order-1 d-block d-md-block d-lg-none">
-                <div id="accordion-1" class="accordion accordion-spaced ">
+            <div class="col-lg-3 col-12 order-1 d-block d-md-block d-lg-none" >
+                <div id="accordion-1" class="accordion accordion-spaced">
                     <div class="card border-primary-dark">
                         <div class="card-header py-4 collapsed" id="heading-1-1" data-toggle="collapse" role="button" data-target="#collapse-1-1" aria-expanded="false" aria-controls="collapse-1-1">
                             <h6 class="mb-0">
                                 {% trans "table of contents"|capfirst %}
                             </h6>
                         </div>
-                        <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1" style="">
+                        <div id="collapse-1-1" class="collapse" aria-labelledby="heading-1-1" data-parent="#accordion-1">
                             <div class="card-body">
                                 <nav class="nav nav-pills flex-column" id="nav-terms">
                                     {% with paper_toc as paper_toc %}
@@ -144,7 +144,7 @@
                 </div>
                 {% endif %}
 
-                <div data-toggle="sticky" data-sticky-offset="50" class="" style="">
+                <div data-toggle="sticky" data-sticky-offset="50" class="">
                     <div class="d-none d-md-none d-lg-block">
                         <div class="card">
                             <div class="card-body">

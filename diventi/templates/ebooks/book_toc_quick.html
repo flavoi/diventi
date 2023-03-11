@@ -4,9 +4,9 @@
     {% for title, subheadings in part.items %}
         {% for h in subheadings %}
             {% if forloop.first %}
-              <a class="text-dark mb-0" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+              <a class="text-dark mb-0 {{ h.class }}" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
             {% else %}
-              <a class="nav-link text-sm" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
+              <a class="nav-link text-sm {{ h.class }}" href="#{{ h.anchor }}" data-scroll-to="" data-scroll-to-offset="130">{{ h.string }}</a>
             {% endif %}
         {% endfor %}
     {% endfor %}

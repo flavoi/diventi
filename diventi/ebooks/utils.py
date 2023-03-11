@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 
 from django.conf import settings
 from django.utils.translation import gettext as _
+from django.utils.text import slugify
 
 
 def get_dropbox_paper_soup(paper_id):
@@ -262,6 +263,7 @@ def render_paper_headings(paper_soup):
     for title in paper_soup.find_all('h2'):
         title['style'] = ''
         title['id'] = title['data-usually-unique-id']
+        h2_title_id = title['id']
         title['class'] = 'h4 mt-4 mb-1 text-primary'
 
     first_title = 1
@@ -279,6 +281,7 @@ def render_paper_headings(paper_soup):
             title_soup = BeautifulSoup('', 'html.parser')
             title_tag = title_soup.new_tag('h4')
             title_tag['class'] = 'h5 mb-1 text-dark'
+            title_tag['id'] = h2_title_id + '-' + slugify(title.text)
             title_tag.string = title.text
             title.replace_with(title_tag)
     paper_soup.select_one('.ace-line').extract()
@@ -314,6 +317,16 @@ def make_paper_toc_cards(paper_soup):
                     'string': title.span.string,
                     'anchor': title['id'],
                     'name': title.name,
+                } 
+            )
+        elif title.name == 'h4':
+            # Section-headings nested into sub-headings
+            title_dict[parent_title_key].append(
+                {
+                    'string': title.string,
+                    'anchor': title['id'],
+                    'name': title.name,
+                    'class': 'ml-4'
                 } 
             )
         else:

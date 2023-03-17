@@ -72,14 +72,16 @@
                 <h1 class="h1 mb-4">{{ featured_section.prefix|capfirst }} <strong>{{ featured_section.title|capfirst }}</strong></h1>
                 <p class="lead text-muted">{{ featured_section.description|striptags|capfirst }}</p>
                 <div class="mt-5 text-center text-md-left">                    
-                    {% if pinned_package %}
-                        <a href="{{ pinned_package.get_absolute_url }}" class="btn btn-warning my-2">{{ featured_section.button_label|capfirst }}</a>
+                    {% if featured_package %}
+                        <a href="{{ featured_package.get_absolute_url }}" class="btn btn-primary bg-gradient-primary btn-icon-label">
+                            <span class="btn-inner--text">{{ featured_section.button_label|capfirst }}</span>
+                            <span class="btn-inner--icon"><i data-feather="box"></i></span>
+                        </a>
                     {% endif %}
-                    {% if hot_product %}
-                        <a href="{{ hot_product.get_absolute_url }}" class="btn btn-danger bg-gradient-danger btn-icon-label">
-                            <span class="btn-inner--text">{{ featured_section.button_label|capfirst }}</span><span class="btn-inner--icon">
-                                <i data-feather="book-open"></i> 
-                            </span>
+                    {% if featured_product %}
+                        <a href="{{ featured_product.get_absolute_url }}" class="btn btn-danger bg-gradient-danger btn-icon-label">
+                            <span class="btn-inner--text">{{ featured_section.button_label|capfirst }}</span>
+                            <span class="btn-inner--icon"><i data-feather="book-open"></i></span>
                         </a>                        
                     {% endif %}
                     {% if pinned_survey %}

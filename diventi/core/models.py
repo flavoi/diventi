@@ -244,6 +244,23 @@ class FeaturedModelQuerySet(PublishableModelQuerySet):
         not_featured_models = self.published().filter(featured=False)
         return not_featured_models
 
+    # Returns the first pinned objects
+    # It assumes that the model has a "publication_date" field
+    def pinned(self):
+        featured_model = self.published().filter(pinned=True)
+        try:
+            featured_model = featured_model.get()
+        except self.model.MultipleObjectsReturned:
+            featured_model = featured_model.order_by('-publication_date').first()
+        except self.model.DoesNotExist:
+            featured_model = featured_model.first()
+        return featured_model
+
+    # Returns the list of pinned objects
+    def pinned_list(self):
+        featured_model = self.published().filter(pinned=True)
+        return featured_model
+
 
 class FeaturedModelManager(models.Manager):
 
@@ -259,13 +276,28 @@ class FeaturedModelManager(models.Manager):
     def not_featured(self):
         return self.get_queryset().not_featured()
 
+    def pinned(self):
+        return self.get_queryset().pinned()
+
+    def pinned_list(self):
+        return self.get_queryset().pinned_list()
+
 
 class FeaturedModel(PublishableModel):
     """
     An abstract base class that includes a featured boolean field
     
     """
-    featured = models.BooleanField(default=False, verbose_name=_('featured'))
+    pinned = models.BooleanField(
+        default = False,
+        verbose_name = _('pinned'),
+        help_text = _('Pinned objects appear on the navbar and on the landing page') 
+    )
+    featured = models.BooleanField(
+        default=False, 
+        verbose_name=_('featured'),
+        help_text = _('Featured objects are displayed on the top of their page. If pinned, they are also displayed on the top of the landing page')
+    )
 
     objects = FeaturedModelManager()
 
@@ -354,4 +386,3 @@ class SectionModel(models.Model):
 
     class Meta:
         abstract = True
-

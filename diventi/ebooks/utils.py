@@ -319,7 +319,7 @@ def make_paper_toc_cards(paper_soup):
                     'name': title.name,
                 } 
             )
-        elif title.name == 'h4':
+        elif title.name == 'h4' and title.get('id'):
             # Section-headings nested into sub-headings
             title_dict[parent_title_key].append(
                 {

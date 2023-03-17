@@ -96,11 +96,12 @@ class DashboardView(StaffRequiredMixin, ListView):
 def get_landing_context(request):
     sections = Section.objects.not_featured()
 
-    hot_product = Product.objects.hot().pinned()
+    featured_product = Product.objects.pinned_list().featured()
     pinned_product = Product.objects.not_hot().pinned()
     latest_public_product = Product.objects.latest_public()
     latest_article = Article.objects.hottest()
     pinned_survey = Survey.objects.pinned()
+    featured_package = Package.objects.pinned_list().featured()
     pinned_package = Package.objects.pinned()
 
     featured_section = Section.objects.featured()
@@ -115,13 +116,14 @@ def get_landing_context(request):
     sections = Section.objects.not_featured()
 
     context = {
-        'hot_product': hot_product,
+        'featured_product': featured_product,
         'pinned_product': pinned_product,
         'featured_section': featured_section,
         'sections': sections,
         'latest_article': latest_article,
         'latest_public_product': latest_public_product,
         'pinned_survey': pinned_survey,
+        'featured_package': featured_package,
         'pinned_package': pinned_package,
     }
     return context

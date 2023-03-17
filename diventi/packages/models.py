@@ -15,6 +15,7 @@ from diventi.core.models import (
     Element,
     TimeStampedModel,
     PublishableModel,
+    FeaturedModel,
     FeaturedModelQuerySet,
 )
 
@@ -31,24 +32,8 @@ class PackageQuerySet(FeaturedModelQuerySet):
         packages = packages.prefetch_related('faq')
         return packages
 
-    # Returns the first pinned package
-    def pinned(self):
-        package = self.published().filter(pinned=True)
-        try:
-            package = package.get()
-        except Package.MultipleObjectsReturned:
-            package = package.order_by('-publication_date').first()
-        except Package.DoesNotExist:
-            package = package.first()
-        return package
 
-    # Return the list of pinned packages
-    def pinned_list(self):
-        packages = self.published().filter(pinned=True).prefetch()
-        return packages
-
-
-class Package(TimeStampedModel, PublishableModel, Element, HitCountMixin):
+class Package(TimeStampedModel, FeaturedModel, Element, HitCountMixin):
     """
         A package contains one or more products and can 
         be used to pubblish special discounts to the final
@@ -66,11 +51,6 @@ class Package(TimeStampedModel, PublishableModel, Element, HitCountMixin):
         blank=True, 
         max_length=200, 
         verbose_name=_('abstract')
-    )
-    pinned = models.BooleanField(
-        default = False,
-        verbose_name = _('pinned'),
-        help_text = _('Pinned packages appear on the landing page') 
     )
     related_products = models.ManyToManyField(
         Product,

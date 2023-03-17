@@ -28,6 +28,8 @@ from diventi.core.models import (
     HighlightedModel,
     DiventiColModel,
     DiventiCoverModel,
+    FeaturedModel,
+    FeaturedModelQuerySet
 )
 
 
@@ -41,7 +43,7 @@ class ProductCover(DiventiCoverModel, Element):
         verbose_name_plural = _('Product Covers')
 
 
-class ProductQuerySet(PublishableModelQuerySet):
+class ProductQuerySet(FeaturedModelQuerySet):
 
     # Prefetch all relevant data
     def prefetch(self):
@@ -75,36 +77,15 @@ class ProductQuerySet(PublishableModelQuerySet):
     def has_user_authored(self, user):
         return self.user_authored(user).exists()
 
-    # Return the first pinned product
-    def pinned(self):
-        product = self.published().filter(pinned=True).prefetch()
-        try:
-            product = product.get()
-        except Product.MultipleObjectsReturned:
-            product = product.order_by('-publication_date').first()
-        except Product.DoesNotExist:
-            product = product.first()
-        return product
-
-    # Return the list of pinned products
-    def pinned_list(self):
-        products = self.published().filter(pinned=True).not_hot().prefetch()
-        return products
-
     # Get the list of published products of a certain category
     def category(self, category_slug):
         products = self.published().filter(category__slug=category_slug)
         products = products.exclude(category__meta_category=True)
         return products
 
-    # Get the hottest products
-    def hot(self):
-        products = self.published().filter(hot=True).prefetch()
-        return products
-
-    # Exclude the featured products
+    # Exclude hot products
     def not_hot(self):
-        products = self.exclude(hot=True)
+        products = self.exclude(featured=True)
         return products
 
     # Get the list of published products but excludes the hot ones
@@ -168,7 +149,7 @@ class ProductFormat(Element):
         verbose_name_plural = _('Formats')
 
 
-class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, SectionModel, DiventiColModel):
+class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, SectionModel, DiventiColModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(
         max_length=50, 
@@ -228,21 +209,11 @@ class Product(TimeStampedModel, PublishableModel, DiventiImageModel, Element, Se
         verbose_name = _('unfolded'),
         help_text = _('Unfolded products can be bought by users')
     )
-    pinned = models.BooleanField(
-        default = False,
-        verbose_name = _('pinned'),
-        help_text = _('Pinned products appear on the landing page') 
-    )
     public = models.BooleanField(
         default = False,
         verbose_name = _('public'),
         help_text = _('Public products diplay their content to anonimous users')
     ) 
-    hot = models.BooleanField(
-        default=False, 
-        verbose_name=_('hot'),
-        help_text = _('Hot products are displayed on top of the games page')
-    )
     courtesy_short_message = models.CharField(
         blank=True, 
         max_length=50, 

@@ -63,7 +63,7 @@ class ImagePreviewAdmin(DiventiTranslationAdmin):
 
 
 class ProductAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'postcard_tag', 'published', 'unfolded', 'pinned', 'hot', '_at_a_premium', 'public', 'product_survey', 'category', 'publication_date', 'modified']    
+    list_display = ['title', 'image_tag', 'postcard_tag', 'published', 'unfolded', 'pinned', 'featured', '_at_a_premium', 'public', 'product_survey', 'category', 'publication_date', 'modified']    
     inlines = [
         ChapterInline,
         ImagePreviewInline,
@@ -73,7 +73,7 @@ class ProductAdmin(DiventiTranslationAdmin):
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'unfolded', 'product_survey', 'hot', 'pinned', 'public', 'relatable')
+            'fields': ('published', 'unfolded', 'product_survey', 'pinned', 'featured', 'public', 'relatable')
         }),
         (_('Layout'), {
             'fields': ('col_lg', 'order_lg', 'col_md', 'order_md', 'col_sm', 'order_sm',)

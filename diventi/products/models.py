@@ -83,6 +83,10 @@ class ProductQuerySet(FeaturedModelQuerySet):
         products = products.exclude(category__meta_category=True)
         return products
 
+    # Returns the list of featured products
+    def hot(self):
+        return self.filter(featured=True)
+
     # Exclude hot products
     def not_hot(self):
         products = self.exclude(featured=True)

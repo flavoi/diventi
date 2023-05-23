@@ -33,7 +33,6 @@ from django.shortcuts import (
     redirect
 )
 
-from boto.s3.connection import S3Connection
 from logging import getLogger
 
 from diventi.core.views import DiventiActionMixin
@@ -237,47 +236,6 @@ class DropFromUserCollectionView(ProductUpdateView):
 
 # Enables logging of failed requests of a file
 logger = getLogger('django.request')
-
-
-class SecretFileView(RedirectView):
-    """ Returns a temporary url if the user has added the product to his collection """
-    permanent = False
-
-    def get_redirect_url(self, **kwargs):
-        s3 = S3Connection(settings.AWS_ACCESS_KEY_ID,
-                            settings.AWS_SECRET_ACCESS_KEY,
-                            is_secure=True)
-        # Create a URL valid for 60 seconds.
-        return s3.generate_url(60, 'GET',
-                            bucket=settings.AWS_STORAGE_BUCKET_NAME,
-                            key=kwargs['filepath'],
-                            force_http=True)
-
-    def get(self, request, *args, **kwargs):
-        product = get_object_or_404(Product, pk=kwargs['pk'])
-        u = request.user
-
-        if (product.user_has_already_bought(u) or product.user_has_authored(u)) and product.available:
-            if product.file:
-                filepath = settings.MEDIA_ROOT + product.file.name
-                url = self.get_redirect_url(filepath=filepath)
-                # The below is taken straight from RedirectView.
-                if url:
-                    if self.permanent:
-                        return HttpResponsePermanentRedirect(url)
-                    else:
-                        return HttpResponseRedirect(url)
-                else:
-                    logger.warning('Gone: %s', self.request.path,
-                                extra={
-                                    'status_code': 410,
-                                    'request': self.request
-                                })
-                    return HttpResponseGone()
-            else:
-                raise Http404
-        else:
-            raise Http404
 
 
 class CheckoutDoneTemplateView(TemplateView):

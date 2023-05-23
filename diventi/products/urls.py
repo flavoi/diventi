@@ -7,7 +7,6 @@ from .views import (
     ProductDetailView, 
     AddToUserCollectionView, 
     DropFromUserCollectionView, 
-    SecretFileView,
     CheckoutDoneTemplateView,
     CheckoutFailedTemplateView,
     RedirectToPublicEbookView,
@@ -24,7 +23,6 @@ urlpatterns = [
     path(_('<slug:slug>/add/public/'), add_public_product_to_user_collection_view, name='add_public'),
     path(_('<slug:slug>/remove/'), DropFromUserCollectionView.as_view(), name='drop'),
     path(_('<slug:slug>/public/'), RedirectToPublicEbookView.as_view(), name='detail-public'),
-    path(_('<slug:slug>/secretfile/'), SecretFileView.as_view(), name='secretfile'),
     path(_('<slug:slug>/checkout/done/'), CheckoutDoneTemplateView.as_view(), name='checkout_done'),
     path(_('<slug:slug>/checkout/failed/'), CheckoutFailedTemplateView.as_view(), name='checkout_failed'),
 ]

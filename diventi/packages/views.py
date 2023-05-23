@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from hitcount.views import HitCountDetailView
 
@@ -19,7 +20,7 @@ from .models import (
 )
 
 
-class PackageDetailView(HitCountDetailView):
+class PackageDetailView(LoginRequiredMixin, HitCountDetailView):
     """
         Renders the package contents.
     """

@@ -128,7 +128,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'captcha',
     'mptt',
-    'boto',
+    #'boto',
     'letsencrypt',
     'reviews',
     'widget_tweaks',

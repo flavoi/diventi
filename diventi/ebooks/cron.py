@@ -34,7 +34,7 @@ def fetch_paper_books():
                 print('Elaboro %s' % book.title_it)
                 paper_soup = render_dropbox_paper_soup(book.paper_id)
                 filepath = settings.BASE_DIR / 'templates/ebooks/partials/book_paper_{}_{}.html'.format(book.id, language[0]) 
-                with open(filepath, 'w') as f:
+                with open(filepath, 'w', encoding='utf-8') as f:
                     print('Stampo %s' % filepath)
                     f.write(str(paper_soup))
             else:

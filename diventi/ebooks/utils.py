@@ -28,7 +28,7 @@ def parse_paper_soup(paper_filename):
         Load soup from html file.
     """
     for template_dir in settings.TEMPLATES[0]['DIRS']:
-        with open(template_dir / paper_filename, 'r') as paper_file:
+        with open(template_dir / paper_filename, 'r', encoding='utf-8') as paper_file:
             soup = BeautifulSoup(paper_file, 'html.parser')
             return soup
     return 0

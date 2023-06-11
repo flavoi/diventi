@@ -171,6 +171,8 @@ MIDDLEWARE = [
     'cuser.middleware.CuserMiddleware', 
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
 ROOT_URLCONF = 'config.urls'
 
 WSGI_APPLICATION = 'config.wsgi.application'

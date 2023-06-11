@@ -31,7 +31,7 @@ def fetch_paper_books():
         print('Lingua corrente: %s' % lan)
         for book in books:
             if book.paper_id:
-                print('Elaboro %s' % book.title_it)
+                print('Elaboro {}'.format(book.title_it))
                 paper_soup = render_dropbox_paper_soup(book.paper_id)
                 filepath = settings.BASE_DIR / 'templates/ebooks/partials/book_paper_{}_{}.html'.format(book.id, language[0]) 
                 with open(filepath, 'w', encoding='utf-8') as f:

@@ -40,7 +40,15 @@
         {% with footer_text_class="text-white" %}    
             {% include "packages/partials/package_detail_actions.html" %}
             {% if related_products_value %}
-            <p class="mt-2">{% trans "total value of objects"|capfirst %}: {{ related_products_value }} &middot; {% trans "package discount"|capfirst %}: <b class="text-success">{{ package_discount }}%</b></p>
+            <p class="mt-2">
+                {% trans "total value of objects"|capfirst %}: {{ related_products_value }}
+                {% if products_already_bought %}
+                    &middot; <b class="text-warning">{% trans "you already own some of these items"|capfirst %}</b>
+                {% endif %}
+                {% if package_discount %}
+                    &middot; {% trans "package discount"|capfirst %}: <b class="text-success">{{ package_discount }}%</b>
+                {% endif %}
+            </p>
             {% endif %}
         {% endwith %}
     </div>

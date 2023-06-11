@@ -48,7 +48,8 @@ class PackageDetailView(LoginRequiredMixin, HitCountDetailView):
             related_products_prices = [stripe.Price.retrieve(p['stripe_price']) for p in related_products.values('stripe_price')]
             related_products_value = sum([float(v['unit_amount_decimal']) for v in related_products_prices])
             context['related_products_value'] = humanize_price(related_products_value)
-            context['package_discount'] = round((1 - (stipe_price / related_products_value)) * 100, 2)            
+            if not products_already_bought:
+                context['package_discount'] = round((1 - (stipe_price / related_products_value)) * 100, 2)
         else:
             context['bought'] = 1
         return context

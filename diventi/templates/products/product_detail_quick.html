@@ -153,7 +153,7 @@
                 <div class="card bg-cover bg-size--cover" style="background-image:url('{{ article.image }}')">
                   <span class="mask bg-dark opacity-5"></span>
                   <div class="card-body pt-10 mt-auto position-relative">
-                    <a href="#" class="d-block h5 mb-3 text-white stretched-link">{{ article.title|capfirst }}</a>
+                    <a href="{{ article.get_absolute_url }}" class="d-block h5 mb-3 text-white stretched-link">{{ article.title|capfirst }}</a>
                     <p class="mb-0 text-white">{{ article.description|capfirst }}</p>
                   </div>
                   <div class="card-body position-relative delimiter-top">

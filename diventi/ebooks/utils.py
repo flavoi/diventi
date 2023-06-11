@@ -280,7 +280,7 @@ def render_paper_headings(paper_soup):
         if not title.find_parents("table"):
             title_soup = BeautifulSoup('', 'html.parser')
             title_tag = title_soup.new_tag('h4')
-            title_tag['class'] = 'h5 mb-1 text-dark'
+            title_tag['class'] = 'h5 mt-2 mb-1 text-dark'
             title_tag['id'] = h2_title_id + '-' + slugify(title.text)
             title_tag.string = title.text
             title.replace_with(title_tag)

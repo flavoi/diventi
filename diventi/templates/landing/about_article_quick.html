@@ -1,6 +1,10 @@
 {% extends 'base_quick.html' %}
 {% load i18n %}
 
+{% block desc_opengraph %}
+<meta property="og:description" content="{{ object.title }}" />
+{% endblock desc_opengraph %}
+
 {% block title %}{{ object.title|capfirst }}{% endblock title %}
 
 {% block content %}

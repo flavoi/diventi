@@ -12,13 +12,13 @@
     
     {% block opengraph %}
         {% block base_opengraph %}
-          <meta property="og:title" content="Diventi" />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-          <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
-          {% block desc_opengraph %}
-            <meta property="og:description" content="{{ graph_section.description }}" />
-          {% endblock desc_opengraph %}
+            <meta property="og:title" content="{% if graph_section.subtitle %}{{ graph_section.subtitle }}{% else %}Diventi{% endif %}" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+            <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
+            {% block desc_opengraph %}
+                <meta property="og:description" content="{{ graph_section.title }} &middot; {{ graph_section.description }}" />
+            {% endblock desc_opengraph %}
         {% endblock base_opengraph %}
         {% block lang_opengraph %}
             <meta property="og:locale" content="{{ lang.code }}" />

@@ -285,6 +285,8 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath'
         ]),
+        'removePlugins': 'stylesheetparser',
+        'allowedContent': True,
         'stylesSet': [
             {
                 "name": _('Base block'),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-11 23:02+0200\n"
+"POT-Creation-Date: 2023-12-30 21:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,31 +26,31 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:290
+#: config/settings/base.py:292
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:300
+#: config/settings/base.py:302
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:340
+#: config/settings/base.py:342
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:341
+#: config/settings/base.py:343
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:342
+#: config/settings/base.py:344
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:343
+#: config/settings/base.py:345
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:344
+#: config/settings/base.py:346
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -760,7 +760,7 @@ msgstr ""
 "Gli oggetti appuntati vengono visualizzati nella barra superiore e nella "
 "pagina iniziale"
 
-#: diventi/core/models.py:298 diventi/templates/landing/landing_quick.html:116
+#: diventi/core/models.py:298 diventi/templates/landing/landing_quick.html:115
 #: diventi/templates/products/product_list_quick.html:61
 msgid "featured"
 msgstr "in primo piano"
@@ -1763,7 +1763,7 @@ msgstr ""
 "funzionalità."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/landing/landing_quick.html:289
+#: diventi/templates/landing/landing_quick.html:288
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1793,7 +1793,7 @@ msgstr "accedi"
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:206 diventi/templates/base_quick.html:567
-#: diventi/templates/landing/landing_quick.html:277
+#: diventi/templates/landing/landing_quick.html:276
 msgid "sign up"
 msgstr "registrati"
 
@@ -2523,9 +2523,9 @@ msgstr ""
 msgid "check answers"
 msgstr "visualizza risposte"
 
-#: diventi/templates/landing/about_article_quick.html:44
+#: diventi/templates/landing/about_article_quick.html:48
 #: diventi/templates/landing/landing_quick.html:92
-#: diventi/templates/landing/landing_quick.html:241
+#: diventi/templates/landing/landing_quick.html:240
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2537,23 +2537,19 @@ msgstr "copiato"
 msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
-#: diventi/templates/landing/landing_quick.html:98
-msgid "learn more"
-msgstr "scopri di più"
-
-#: diventi/templates/landing/landing_quick.html:102
+#: diventi/templates/landing/landing_quick.html:101
 msgid "Licenced under"
 msgstr "Rilasciato con"
 
-#: diventi/templates/landing/landing_quick.html:104
+#: diventi/templates/landing/landing_quick.html:103
 msgid "en"
 msgstr "it"
 
-#: diventi/templates/landing/landing_quick.html:104
+#: diventi/templates/landing/landing_quick.html:103
 msgid "Creative Commons License"
 msgstr "Licenza Creative Commons"
 
-#: diventi/templates/landing/landing_quick.html:104
+#: diventi/templates/landing/landing_quick.html:103
 msgid ""
 "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 "
 "International License"
@@ -2561,23 +2557,23 @@ msgstr ""
 "Quest'opera è distribuita con Licenza Creative Commons Attribuzione - "
 "Condividi allo stesso modo 4.0 Internazionale"
 
-#: diventi/templates/landing/landing_quick.html:117
+#: diventi/templates/landing/landing_quick.html:116
 msgid "our latest contents"
 msgstr "i nostri ultimi contenuti"
 
-#: diventi/templates/landing/landing_quick.html:272
+#: diventi/templates/landing/landing_quick.html:271
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing_quick.html:273
+#: diventi/templates/landing/landing_quick.html:272
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/landing_quick.html:284
+#: diventi/templates/landing/landing_quick.html:283
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing_quick.html:285
+#: diventi/templates/landing/landing_quick.html:284
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -3266,20 +3262,25 @@ msgid "in short"
 msgstr "in breve"
 
 #: diventi/templates/packages/package_detail_quick.html:72
-msgid "what's inside"
-msgstr "cosa c'è dentro"
+msgid "what is included"
+msgstr "cos'è incluso"
 
 #: diventi/templates/packages/package_detail_quick.html:86
 #: diventi/templates/products/partials/product_detail_actions.html:39
 msgid "in your collection"
 msgstr "nella tua collezione"
 
-#: diventi/templates/packages/partials/package_detail_actions.html:15
+#: diventi/templates/packages/partials/package_detail_actions.html:18
+#: diventi/templates/products/partials/pay_button.html:10
+msgid "buy for"
+msgstr "acquista per"
+
+#: diventi/templates/packages/partials/package_detail_actions.html:23
 #: diventi/templates/products/partials/product_detail_actions.html:51
 msgid "Sign in"
 msgstr "Accedi"
 
-#: diventi/templates/packages/partials/package_detail_actions.html:15
+#: diventi/templates/packages/partials/package_detail_actions.html:23
 #: diventi/templates/products/partials/product_detail_actions.html:51
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
@@ -3317,10 +3318,6 @@ msgstr ""
 #: diventi/templates/products/checkout_failed_quick.html:26
 msgid "try again"
 msgstr "prova di nuovo"
-
-#: diventi/templates/products/partials/pay_button.html:10
-msgid "buy for"
-msgstr "acquista per"
 
 #: diventi/templates/products/partials/product_detail_actions.html:24
 #: diventi/templates/products/partials/product_detail_actions_public.html:55
@@ -3515,6 +3512,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "learn more"
+#~ msgstr "scopri di più"
 
 #~ msgid "<slug:slug>/secretfile/"
 #~ msgstr "<slug:slug>/file-segreto/"

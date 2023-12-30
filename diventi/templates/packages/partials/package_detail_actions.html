@@ -11,6 +11,15 @@
         {% endwith %}
     {% endif %}
 {% else %}
+    <button class="btn btn-primary btn-icon-label btn-sm" id="checkout-button" disabled>
+      <span class="btn-inner--icon">
+          <i data-feather="shopping-bag"></i>
+      </span>
+      <span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
+      
+    </button>
+    <p class="mt-2">
      <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="{{ footer_text_class|default:'text-dark' }} text-underline--dashed">
         {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.
+    </p>
 {% endif %}

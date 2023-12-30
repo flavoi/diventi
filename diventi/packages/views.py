@@ -20,7 +20,7 @@ from .models import (
 )
 
 
-class PackageDetailView(LoginRequiredMixin, HitCountDetailView):
+class PackageDetailView(HitCountDetailView):
     """
         Renders the package contents.
     """
@@ -41,7 +41,10 @@ class PackageDetailView(LoginRequiredMixin, HitCountDetailView):
         stipe_price = float(stripe_price['unit_amount_decimal'])
         context['price'] = humanize_price(stipe_price)
         related_products = self.object.related_products.all()
-        products_already_bought = Purchase.objects.filter(product__in=related_products, customer=self.request.user)
+        if self.request.user.is_anonymous:
+            products_already_bought = Purchase.objects.none()
+        else:
+            products_already_bought = Purchase.objects.filter(product__in=related_products, customer=self.request.user)
         related_products = related_products.exclude(id__in=products_already_bought.values('product__id'))
         context['products_already_bought'] = products_already_bought.values_list('product__id', flat=True)
         if related_products.exists():

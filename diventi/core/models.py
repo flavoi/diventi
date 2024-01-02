@@ -16,15 +16,14 @@ COLORS_CHOICES = (
     ('danger', _('Red')),
     ('warning', _('Yellow')),
     ('success', _('Green')),
-    ('secondary', _('Gray')),
+    ('secondary', _('Light gray')),
+    ('gray', _('Gray')),
     ('gray-dark', _('Black')),
     ('white', _('White')),
     ('indigo', _('Indigo')),
     ('purple', _('Purple')),
     ('pink', _('Pink')),
-    ('yellow', ('Yellow')),
-    ('cyan', ('Cyan')),
-    ('gray', ('Light gray')),
+    ('cyan', _('Cyan')),    
 )
 
 class TimeStampedModel(models.Model):

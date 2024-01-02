@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 11:30+0100\n"
+"POT-Creation-Date: 2024-01-02 11:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,7 +250,7 @@ msgstr "Utente"
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:555
+#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:556
 msgid "account"
 msgstr "profilo"
 
@@ -517,7 +517,7 @@ msgid "article"
 msgstr "articolo"
 
 #: diventi/blog/models.py:158 diventi/landing/views.py:83
-#: diventi/templates/base_quick.html:227
+#: diventi/templates/base_quick.html:228
 msgid "articles"
 msgstr "articoli"
 
@@ -571,7 +571,7 @@ msgstr "brave-rewards-verification.txt/"
 #: diventi/comments/apps.py:7 diventi/comments/models.py:19
 #: diventi/templates/accounts/user_detail_quick.html:101
 #: diventi/templates/accounts/user_detail_quick_modal.html:32
-#: diventi/templates/base_quick.html:235
+#: diventi/templates/base_quick.html:236
 msgid "comments"
 msgstr "commenti"
 
@@ -668,6 +668,18 @@ msgstr "Viola"
 #: diventi/core/models.py:24
 msgid "Pink"
 msgstr "Rosa"
+
+#: diventi/core/models.py:25
+msgid "Light yellow"
+msgstr "Giallo chiaro"
+
+#: diventi/core/models.py:26
+msgid "Cyan"
+msgstr "Ciano"
+
+#: diventi/core/models.py:27
+msgid "Light gray"
+msgstr "Grigio chiaro"
 
 #: diventi/core/models.py:35
 msgid "created"
@@ -972,7 +984,7 @@ msgstr "sfondo del logo"
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:177 diventi/templates/base_quick.html:234
+#: diventi/ebooks/models.py:177 diventi/templates/base_quick.html:235
 msgid "books"
 msgstr "libri"
 
@@ -1084,7 +1096,7 @@ msgid "section"
 msgstr "sezione"
 
 #: diventi/ebooks/models.py:392 diventi/landing/models.py:192
-#: diventi/templates/base_quick.html:231
+#: diventi/templates/base_quick.html:232
 msgid "sections"
 msgstr "sezioni"
 
@@ -1223,7 +1235,7 @@ msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:127
 #: diventi/templates/accounts/user_detail_quick.html:256
-#: diventi/templates/base_quick.html:230
+#: diventi/templates/base_quick.html:231
 msgid "surveys"
 msgstr "sondaggi"
 
@@ -1385,7 +1397,7 @@ msgstr "aspetti"
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:207 diventi/templates/base_quick.html:464
+#: diventi/landing/models.py:207 diventi/templates/base_quick.html:465
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -1401,12 +1413,12 @@ msgstr "analitica/"
 msgid "about/<slug:slug>/"
 msgstr "su-di-noi/<slug:slug>/"
 
-#: diventi/landing/views.py:81 diventi/templates/base_quick.html:228
+#: diventi/landing/views.py:81 diventi/templates/base_quick.html:229
 msgid "users"
 msgstr "utenti"
 
 #: diventi/landing/views.py:82 diventi/packages/models.py:95
-#: diventi/templates/base_quick.html:237
+#: diventi/templates/base_quick.html:238
 msgid "packages"
 msgstr "pacchetti"
 
@@ -1796,15 +1808,15 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick.html:419 diventi/templates/base_quick.html:428
-#: diventi/templates/base_quick.html:566
+#: diventi/templates/base_quick.html:420 diventi/templates/base_quick.html:429
+#: diventi/templates/base_quick.html:567
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
 msgstr "accedi"
 
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
-#: diventi/templates/base_quick.html:206 diventi/templates/base_quick.html:567
+#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:568
 #: diventi/templates/landing/landing_quick.html:276
 msgid "sign up"
 msgstr "registrati"
@@ -1924,7 +1936,7 @@ msgstr "richiedi un reset"
 
 #: diventi/templates/accounts/signout_quick.html:5
 #: diventi/templates/accounts/user_detail_quick_modal.html:113
-#: diventi/templates/base_quick.html:394
+#: diventi/templates/base_quick.html:395
 msgid "sign out"
 msgstr "annulla accesso"
 
@@ -2159,13 +2171,13 @@ msgstr "modifica"
 #: diventi/templates/accounts/user_detail_quick.html:191
 #: diventi/templates/accounts/user_detail_quick_modal.html:37
 #: diventi/templates/accounts/user_detail_quick_modal.html:51
-#: diventi/templates/base_quick.html:229
+#: diventi/templates/base_quick.html:230
 msgid "projects"
 msgstr "progetti"
 
 #: diventi/templates/accounts/user_detail_quick.html:109
 #: diventi/templates/accounts/user_detail_quick_modal.html:40
-#: diventi/templates/base_quick.html:236
+#: diventi/templates/base_quick.html:237
 #: diventi/templates/products/product_detail_quick.html:59
 #: diventi/templates/products/product_detail_quick.html:222
 #: diventi/templates/reviews/posted.html:11
@@ -2243,83 +2255,83 @@ msgstr "Aggiorna preferenza"
 msgid "general information"
 msgstr "informazioni generali"
 
-#: diventi/templates/base_quick.html:151
+#: diventi/templates/base_quick.html:152
 msgid "loading"
 msgstr "caricamento"
 
-#: diventi/templates/base_quick.html:164
+#: diventi/templates/base_quick.html:165
 msgid ""
 "we uses cookies to ensure we give you the best experience on our website."
 msgstr "usiamo i cookie per ottimizzare la tua esperienza nel nostro sito web."
 
-#: diventi/templates/base_quick.html:210
+#: diventi/templates/base_quick.html:211
 msgid "manage"
 msgstr "gestisci"
 
-#: diventi/templates/base_quick.html:220
+#: diventi/templates/base_quick.html:221
 msgid "control panel for authors only"
 msgstr "pannello di controllo riservato agli autori"
 
-#: diventi/templates/base_quick.html:238
+#: diventi/templates/base_quick.html:239
 msgid "research"
 msgstr "ricerche"
 
-#: diventi/templates/base_quick.html:248
+#: diventi/templates/base_quick.html:249
 #: diventi/templates/landing/analytics_quick.html:9
 #: diventi/templates/landing/analytics_quick.html:19
 msgid "analytics"
 msgstr "analitica"
 
-#: diventi/templates/base_quick.html:249
+#: diventi/templates/base_quick.html:250
 msgid "a tool to measure the website performance"
 msgstr "uno strumento per misurare le prestazioni del sito"
 
-#: diventi/templates/base_quick.html:259
+#: diventi/templates/base_quick.html:260
 msgid "participate"
 msgstr "partecipa"
 
-#: diventi/templates/base_quick.html:262 diventi/templates/base_quick.html:580
+#: diventi/templates/base_quick.html:263 diventi/templates/base_quick.html:581
 msgid "community"
 msgstr "community"
 
-#: diventi/templates/base_quick.html:272
+#: diventi/templates/base_quick.html:273
 msgid "join in our latest discussions"
 msgstr "unisciti ai nostri ultimi dibattiti"
 
-#: diventi/templates/base_quick.html:284
+#: diventi/templates/base_quick.html:285
 msgid "read and comment our latest news"
 msgstr "leggi e commenta le nostre ultime notizie"
 
-#: diventi/templates/base_quick.html:290
+#: diventi/templates/base_quick.html:291
 msgid "about us"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:313
+#: diventi/templates/base_quick.html:314
 msgid "play"
 msgstr "gioca"
 
-#: diventi/templates/base_quick.html:337
+#: diventi/templates/base_quick.html:338
 #: diventi/templates/products/product_list_quick.html:118
 msgid "all games"
 msgstr "tutti i giochi"
 
-#: diventi/templates/base_quick.html:338
+#: diventi/templates/base_quick.html:339
 msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
-#: diventi/templates/base_quick.html:348
+#: diventi/templates/base_quick.html:349
 msgid "buy"
 msgstr "acquista"
 
-#: diventi/templates/base_quick.html:386
+#: diventi/templates/base_quick.html:387
 msgid "hi"
 msgstr "ciao"
 
-#: diventi/templates/base_quick.html:459
+#: diventi/templates/base_quick.html:460
 msgid "type and hit enter"
 msgstr "scrivi e premi invio"
 
-#: diventi/templates/base_quick.html:530
+#: diventi/templates/base_quick.html:531
 msgid ""
 "Diventi is a role-playing community that embraces fun, encourages "
 "storytelling and helps game masters to create outstanding adventures"
@@ -2328,11 +2340,11 @@ msgstr ""
 "incoraggia l'interpretazione e aiuta i game master a realizzare avventure "
 "straordinarie"
 
-#: diventi/templates/base_quick.html:572
+#: diventi/templates/base_quick.html:573
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:591
+#: diventi/templates/base_quick.html:592
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 

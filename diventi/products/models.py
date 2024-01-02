@@ -141,8 +141,8 @@ class ProductCategory(Element):
     objects = ProductCategoryQuerySet.as_manager()
 
     class Meta:
-        verbose_name = _('Product category')
-        verbose_name_plural = _('Product categories')
+        verbose_name = _('Product Category')
+        verbose_name_plural = _('Product Categories')
 
 
 class ProductFormat(Element):

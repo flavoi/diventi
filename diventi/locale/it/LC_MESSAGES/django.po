@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 11:40+0100\n"
+"POT-Creation-Date: 2024-01-02 11:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -646,150 +646,146 @@ msgid "Green"
 msgstr "Verde"
 
 #: diventi/core/models.py:19
+msgid "Light gray"
+msgstr "Grigio chiaro"
+
+#: diventi/core/models.py:20
 msgid "Gray"
 msgstr "Grigio"
 
-#: diventi/core/models.py:20
+#: diventi/core/models.py:21
 msgid "Black"
 msgstr "Nero"
 
-#: diventi/core/models.py:21
+#: diventi/core/models.py:22
 msgid "White"
 msgstr "Bianco"
 
-#: diventi/core/models.py:22
+#: diventi/core/models.py:23
 msgid "Indigo"
 msgstr "Indaco"
 
-#: diventi/core/models.py:23
+#: diventi/core/models.py:24
 msgid "Purple"
 msgstr "Viola"
 
-#: diventi/core/models.py:24
+#: diventi/core/models.py:25
 msgid "Pink"
 msgstr "Rosa"
-
-#: diventi/core/models.py:25
-msgid "Light yellow"
-msgstr "Giallo chiaro"
 
 #: diventi/core/models.py:26
 msgid "Cyan"
 msgstr "Ciano"
 
-#: diventi/core/models.py:27
-msgid "Light gray"
-msgstr "Grigio chiaro"
-
-#: diventi/core/models.py:35
+#: diventi/core/models.py:34
 msgid "created"
 msgstr "creato"
 
-#: diventi/core/models.py:36
+#: diventi/core/models.py:35
 msgid "modified"
 msgstr "modificato"
 
-#: diventi/core/models.py:71 diventi/products/models.py:405
+#: diventi/core/models.py:70 diventi/products/models.py:405
 msgid "published"
 msgstr "pubblicato"
 
-#: diventi/core/models.py:72
+#: diventi/core/models.py:71
 msgid "publication_date"
 msgstr "data pubblicazione"
 
-#: diventi/core/models.py:92
+#: diventi/core/models.py:91
 msgid "promotions"
 msgstr "promozioni"
 
-#: diventi/core/models.py:112 diventi/feedbacks/models.py:26
+#: diventi/core/models.py:111 diventi/feedbacks/models.py:26
 #: diventi/feedbacks/models.py:65 diventi/feedbacks/models.py:112
 #: diventi/landing/models.py:141 diventi/products/models.py:160
 msgid "title"
 msgstr "titolo"
 
-#: diventi/core/models.py:117
+#: diventi/core/models.py:116
 msgid "icon"
 msgstr "icona"
 
-#: diventi/core/models.py:133
+#: diventi/core/models.py:132
 msgid "icon style"
 msgstr "stile icona"
 
-#: diventi/core/models.py:135 diventi/ebooks/models.py:30
+#: diventi/core/models.py:134 diventi/ebooks/models.py:30
 #: diventi/feedbacks/models.py:27 diventi/feedbacks/models.py:66
 #: diventi/feedbacks/models.py:113 diventi/landing/models.py:150
 #: diventi/packages/models.py:43 diventi/products/models.py:174
 msgid "description"
 msgstr "descrizione"
 
-#: diventi/core/models.py:136
+#: diventi/core/models.py:135
 msgid "color"
 msgstr "colore"
 
-#: diventi/core/models.py:145
+#: diventi/core/models.py:144
 msgid "No icon"
 msgstr "Nessuna icona"
 
-#: diventi/core/models.py:146
+#: diventi/core/models.py:145
 msgid "Icon"
 msgstr "Icona"
 
-#: diventi/core/models.py:152
+#: diventi/core/models.py:151
 msgid "No color"
 msgstr "Nessun colore"
 
-#: diventi/core/models.py:153
+#: diventi/core/models.py:152
 msgid "Color"
 msgstr "Colore"
 
-#: diventi/core/models.py:170
+#: diventi/core/models.py:169
 msgid "categories"
 msgstr "categorie"
 
-#: diventi/core/models.py:178 diventi/ebooks/models.py:161
+#: diventi/core/models.py:177 diventi/ebooks/models.py:161
 msgid "image"
 msgstr "immagine"
 
-#: diventi/core/models.py:179
+#: diventi/core/models.py:178
 msgid "label"
 msgstr "didascalia"
 
-#: diventi/core/models.py:187 diventi/ebooks/models.py:167
+#: diventi/core/models.py:186 diventi/ebooks/models.py:167
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:188 diventi/products/models.py:457
+#: diventi/core/models.py:187 diventi/products/models.py:457
 msgid "Image"
 msgstr "Immagine"
 
-#: diventi/core/models.py:206
+#: diventi/core/models.py:205
 msgid "There must be only one object at a time. Please fix!"
 msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 
-#: diventi/core/models.py:225
+#: diventi/core/models.py:224
 msgid "active"
 msgstr "attiva"
 
-#: diventi/core/models.py:244
+#: diventi/core/models.py:243
 msgid "Multiple featured objects returned. Please fix!"
 msgstr "Trovati molteplici oggetti sponsorizzati. Sistemare!"
 
-#: diventi/core/models.py:299 diventi/feedbacks/models.py:119
+#: diventi/core/models.py:298 diventi/feedbacks/models.py:119
 msgid "pinned"
 msgstr "appuntato"
 
-#: diventi/core/models.py:300
+#: diventi/core/models.py:299
 msgid "Pinned objects appear on the navbar and on the landing page"
 msgstr ""
 "Gli oggetti appuntati vengono visualizzati nella barra superiore e nella "
 "pagina iniziale"
 
-#: diventi/core/models.py:304 diventi/templates/landing/landing_quick.html:115
+#: diventi/core/models.py:303 diventi/templates/landing/landing_quick.html:115
 #: diventi/templates/products/product_list_quick.html:61
 msgid "featured"
 msgstr "in primo piano"
 
-#: diventi/core/models.py:305
+#: diventi/core/models.py:304
 msgid ""
 "Featured objects are displayed on the top of their page. If pinned, they are "
 "also displayed on the top of the landing page"
@@ -798,83 +794,83 @@ msgstr ""
 "loro sezione. Se appuntati vengono anche visualizzati nella sezione in "
 "evidenza della pagina iniziale"
 
-#: diventi/core/models.py:324
+#: diventi/core/models.py:323
 msgid "Multiple highlighted objects returned. Please fix!"
 msgstr "Sono stati trovati molteplici oggetti in evidenza. Sistemare!"
 
-#: diventi/core/models.py:343
+#: diventi/core/models.py:342
 msgid "highlighted"
 msgstr "in evidenza"
 
-#: diventi/core/models.py:353
+#: diventi/core/models.py:352
 msgid "Full (12)"
 msgstr "Riga piena (12)"
 
-#: diventi/core/models.py:354
+#: diventi/core/models.py:353
 msgid "Two thirds (8)"
 msgstr "Due terzi (8)"
 
-#: diventi/core/models.py:355
+#: diventi/core/models.py:354
 msgid "Half (6)"
 msgstr "Metà riga (6)"
 
-#: diventi/core/models.py:356
+#: diventi/core/models.py:355
 msgid "One third (4)"
 msgstr "Un terzo (4)"
 
-#: diventi/core/models.py:357
+#: diventi/core/models.py:356
 msgid "One fourth (3)"
 msgstr "Un quarto (3)"
 
-#: diventi/core/models.py:359
+#: diventi/core/models.py:358
 msgid "lg column"
 msgstr "colonna lg"
 
-#: diventi/core/models.py:360
+#: diventi/core/models.py:359
 msgid "lg order"
 msgstr "ordinamento lg"
 
-#: diventi/core/models.py:361
+#: diventi/core/models.py:360
 msgid "md column"
 msgstr "colonna md"
 
-#: diventi/core/models.py:362
+#: diventi/core/models.py:361
 msgid "md order"
 msgstr "ordinamento md"
 
-#: diventi/core/models.py:363
+#: diventi/core/models.py:362
 msgid "sm column"
 msgstr "colonna sm"
 
-#: diventi/core/models.py:364
+#: diventi/core/models.py:363
 msgid "sm order"
 msgstr "ordinamento sm"
 
-#: diventi/core/models.py:373
+#: diventi/core/models.py:372
 msgid "left"
 msgstr "sinistra"
 
-#: diventi/core/models.py:374
+#: diventi/core/models.py:373
 msgid "centered"
 msgstr "centrale"
 
-#: diventi/core/models.py:375
+#: diventi/core/models.py:374
 msgid "right"
 msgstr "destra"
 
-#: diventi/core/models.py:381
+#: diventi/core/models.py:380
 msgid "alignment"
 msgstr "allineamento"
 
-#: diventi/core/models.py:384
+#: diventi/core/models.py:383
 msgid "text first"
 msgstr "testo all'inizio"
 
-#: diventi/core/models.py:385
+#: diventi/core/models.py:384
 msgid "text second"
 msgstr "test alla fine"
 
-#: diventi/core/models.py:390
+#: diventi/core/models.py:389
 msgid "text position"
 msgstr "posizione del testo"
 
@@ -1534,11 +1530,11 @@ msgstr ""
 "pagine di reportistica."
 
 #: diventi/products/models.py:144
-msgid "Product category"
+msgid "Product Category"
 msgstr "Categoria di Prodotto"
 
 #: diventi/products/models.py:145
-msgid "Product categories"
+msgid "Product Categories"
 msgstr "Categorie di Prodotto"
 
 #: diventi/products/models.py:152
@@ -3536,6 +3532,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "Light yellow"
+#~ msgstr "Giallo chiaro"
 
 #~ msgid "learn more"
 #~ msgstr "scopri di più"

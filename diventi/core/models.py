@@ -17,8 +17,14 @@ COLORS_CHOICES = (
     ('warning', _('Yellow')),
     ('success', _('Green')),
     ('secondary', _('Gray')),
-    ('dark', _('Black')),
-    ('light', _('White')),
+    ('gray-dark', _('Black')),
+    ('white', _('White')),
+    ('indigo', _('Indigo')),
+    ('purple', _('Purple')),
+    ('pink', _('Pink')),
+    ('yellow', ('Yellow')),
+    ('cyan', ('Cyan')),
+    ('gray', ('Light gray')),
 )
 
 class TimeStampedModel(models.Model):
@@ -141,7 +147,7 @@ class Element(models.Model):
 
     def color_tag(self):
         if self.color:
-            return mark_safe('<b class="text-{0}">{1}</b>'.format(self.color, self.get_color_display()))
+            return mark_safe('<b class="text-{0}">{1}</b>'.format(self.color, self.get_color_display()))        
         else:
             return _('No color')    
     color_tag.short_description = _('Color')

@@ -36,4 +36,7 @@ class DiventiTranslationAdmin(TabbedTranslationAdmin):
 class DiventiIconAdmin(admin.ModelAdmin):
     
     class Media:
+        css = {
+            'all': ('diventi/css/diventi-admin-colors.css',)
+        }
         js = ('quick-v110/libs/feather-icons/dist/feather.min.js', 'diventi/js/diventi-admin.js')

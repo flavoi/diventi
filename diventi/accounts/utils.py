@@ -4,7 +4,10 @@ from machina.apps.forum_member.models import ForumProfile
 from machina.apps.forum.models import Forum
 from machina.apps.forum_conversation.models import Post
 
-from diventi.products.models import Product
+from diventi.products.models import (
+    Product,
+    ProductCategory
+)
 from diventi.feedbacks.models import Survey
 from diventi.comments.models import DiventiComment
 
@@ -26,6 +29,7 @@ def get_user_data(user, self=None):
     if has_user_authored:
         projects = Product.objects.user_authored(user=user)
         projects_count = projects.count()
+        projects_categories = ProductCategory.objects.authored(user=user)
     else:
         projects = None
         projects_count = 0
@@ -56,6 +60,7 @@ def get_user_data(user, self=None):
         'surveys': surveys,
         'projects': projects,
         'projects_count': projects_count,
+        'projects_categories': projects_categories,
         'survey_answers_count':  survey_answers_count,
         'ratings_count': ratings_count,
         'achievements_count': achievements_count,

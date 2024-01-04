@@ -124,6 +124,14 @@ class ProductCategoryQuerySet(models.QuerySet):
         categories = categories.prefetch_related(Prefetch('projects', queryset=published_projects)).distinct()
         return categories
 
+    # Returns categories related to projects authored by the user
+    # Useful to display projects grouped by their categories
+    def authored(self, user):
+        authored_projects = Product.objects.user_authored(user)
+        categories = self.filter(projects__pk__in=authored_projects) # Show only projects related to the user
+        categories = categories.prefetch_related(Prefetch('projects', queryset=authored_projects)).distinct()
+        return categories
+
 
 class ProductCategory(Element):
     """

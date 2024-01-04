@@ -11,4 +11,5 @@ app_name = 'ebooks'
 urlpatterns = [
     path(_('paper/public/<slug:book_slug>/'), PublicPaperEbookView.as_view(), name='book-detail-public'),
     path(_('paper/<slug:book_slug>/'), PrivatePaperEbookView.as_view(), name='book-detail'),
+    path(_('paper/<slug:book_slug>/language/<language_code>/'), PrivatePaperEbookView.as_view(), name='book-detail-customlan'),
 ]

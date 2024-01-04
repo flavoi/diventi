@@ -22,8 +22,15 @@
                         </div>
                     </div>
                     <div class="text-center mb-4">
-                        <h6 class="h5 mb-0"><a href="{% url 'accounts:detail' user.nametag %}">{{ user.get_full_name }}</a></h6>
-                        <span class="d-block text-muted">{{ user.email }}</span>
+                        <span class="h5">{{ user.get_full_name }}</span>
+                        <a class="h5" href="{% url 'accounts:detail' user.nametag %}">
+                            <button type="button" class="btn btn-soft-primary rounded-circle btn-xs btn-icon-only">
+                                <span class="btn-inner--icon">
+                                    <i data-feather="edit"></i>
+                                </span>
+                            </button>
+                        </a>
+                        <span class="d-block text-muted">{{ user.email }}</span>                        
                     </div>
                     <!-- Profile stats -->
                     <div class="d-flex mb-5">

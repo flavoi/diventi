@@ -67,6 +67,28 @@
                 <i data-feather="book-open" class="mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
             </span>
         </div>
+        <div class="mt-3">
+            <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
+                <i data-feather="eye" class="mr-1"></i> {% trans 'content language'|capfirst %}: <strong>{{ current_lan|upper }}</strong>
+            </span>
+            {% if bought or authored %}
+            <div class="dropdown">
+                <button class="btn btn-secondary btn-sm rounded-circle btn-icon-only dropdown-animate ml-1" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <span class="btn-inner--icon">
+                        <i data-feather="edit-2"></i>
+                    </span>
+                </button>          
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'en' %}">
+                        <img src="{% static 'quick-v110/img/icons/flags/gb.svg' %}"> {% trans "english"|capfirst %} (EN)
+                    </a>
+                    <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'it' %}">
+                        <img src="{% static 'quick-v110/img/icons/flags/it.svg' %}"> {% trans "italian"|capfirst %} (IT)
+                    </a>
+                </div>            
+            </div>
+            {% endif %}
+        </div>
       </div>
     </div>
   </div>

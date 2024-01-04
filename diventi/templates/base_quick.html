@@ -398,11 +398,13 @@
                                         {% endfor %}             
                                     </div>
                                 </li> 
+                                <!--
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-icon px-2" href="#modal-profile" role="button" data-toggle="modal">
                                         <i data-feather="grid"></i>
                                     </a>
-                                </li>                       
+                                </li>     
+                                -->                  
                             </ul> 
                             {% endif %}
                             {% if not user.is_authenticated %}
@@ -432,7 +434,7 @@
                             {% endif %}
                         </div>
                         {% if user.is_authenticated %}
-                    <div class="order-lg-4 order-3 ml-lg-3 d-block d-lg-none">
+                    <div class="order-lg-4 order-3 ml-lg-3">
                         <a class="" href="#modal-profile" role="button" data-toggle="modal">
                             <span class="avatar rounded-circle">
                                 <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">

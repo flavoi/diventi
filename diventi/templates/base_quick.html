@@ -204,13 +204,13 @@
                             <ul class="navbar-nav ml-lg-auto mr-3">
                                 {% if user.is_anonymous %}
                                 <div class="d-lg-none px-4 text-center mt-5 mb-3">
-                                    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-block btn-sm btn-neutral">
+                                    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-block btn-sm btn-primary">
                                         <span class="btn-inner--icon">
                                             <i data-feather="user" class="mb-1 mr-0"></i>
                                         </span>
                                         <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
                                     </a>
-                                </div>
+                                </div>                                
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a>
                                 </li>                            

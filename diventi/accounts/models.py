@@ -219,8 +219,14 @@ class DiventiUser(AbstractUser):
         else:
             return self.get_username()
 
+    def get_diventi_role(self):
+        if self.role:
+            return self.get_diventi_username() + ' · {}'.format(self.role.title)
+        else:
+            return self.get_diventi_username()
+
     def search(self, query, *args, **kwargs):
-        results = DiventiUser.objects.all()
+        results = DiventiUser.objects.all().select_related('role')
         query_list = query.split()
         queryset = results.filter(
             reduce(operator.and_,
@@ -234,7 +240,7 @@ class DiventiUser(AbstractUser):
         for user in queryset:
             row = {
                 'class_name': user.class_name(),
-                'title': user.first_name,
+                'title': user.get_diventi_role(),
                 'description': user.bio,
                 'get_absolute_url': user.get_absolute_url()
             }

@@ -14,6 +14,7 @@
                 </div>
                 <!-- Modal content -->
                 <div class="px-4">
+
                     <!-- Avatar -->
                     <div class="d-flex my-4">
                         <div class="avatar-parent-child mx-auto">
@@ -21,17 +22,29 @@
                             <span class="avatar-child avatar-badge bg-success"></span>
                         </div>
                     </div>
-                    <div class="text-center mb-4">
+                    <div class="text-center">
                         <span class="h5">{{ user.get_full_name }}</span>
-                        <a class="h5" href="{% url 'accounts:detail' user.nametag %}">
-                            <button type="button" class="btn btn-soft-primary rounded-circle btn-xs btn-icon-only">
+                    </div>
+                    <div class="text-center mb-1">
+                        <a href="{% url 'accounts:detail' user.nametag %}">
+                            <button type="button" class="btn btn-soft-primary rounded-circle btn-xs btn-icon-only" data-toggle="tooltip" data-placement="bottom" title="{% trans 'customize your profile'|capfirst %}">
                                 <span class="btn-inner--icon">
                                     <i data-feather="edit"></i>
                                 </span>
                             </button>
                         </a>
-                        <span class="d-block text-muted">{{ user.email }}</span>                        
+                        <a href="#" data-action="omnisearch-open" data-target="#omnisearch" data-dismiss="modal">
+                            <button type="button" class="btn btn-secondary rounded-circle btn-xs btn-icon-only" data-toggle="tooltip" data-placement="bottom" title="{% trans 'search contents'|capfirst %}">
+                                <span class="btn-inner--icon">
+                                    <i data-feather="search"></i>
+                                </span>
+                            </button>
+                        </a>
                     </div>
+                    <div class="text-center mb-4">
+                        <span class="d-block text-muted">{{ user.email }}</span>
+                    </div>          
+                </div>
                     <!-- Profile stats -->
                     <div class="d-flex mb-5">
                         <div class="col-4 text-center">

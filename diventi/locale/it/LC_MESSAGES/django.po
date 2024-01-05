@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 15:45+0100\n"
+"POT-Creation-Date: 2024-01-05 19:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2337,8 +2337,8 @@ msgid "buy"
 msgstr "acquista"
 
 #: diventi/templates/base_quick.html:438
-msgid "type and hit enter"
-msgstr "scrivi e premi invio"
+msgid "tap or click to search"
+msgstr "tocca o clicca per effettuare la ricerca"
 
 #: diventi/templates/base_quick.html:509
 msgid ""
@@ -3557,6 +3557,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "type and hit enter"
+#~ msgstr "scrivi e premi invio"
 
 #~ msgid "you have not obtained any achievement, yet"
 #~ msgstr "non hai ancora ottenuto alcun riconoscimento, per ora."

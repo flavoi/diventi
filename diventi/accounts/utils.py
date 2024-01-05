@@ -25,14 +25,15 @@ def get_user_data(user, self=None):
     user_id = user.pk
     surveys = Survey.objects.user_collection(user)
     collection = Product.objects.user_collection(user=user)
-    has_user_authored = Product.objects.has_user_authored(user=user)
+    has_user_authored = Product.objects.has_user_authored(user=user)    
     if has_user_authored:
         projects = Product.objects.user_authored(user=user)
         projects_count = projects.count()
         projects_categories = ProductCategory.objects.authored(user=user)
     else:
-        projects = None
+        projects = Product.objects.none()
         projects_count = 0
+        projects_categories = ProductCategory.objects.none()
     survey_answers_count = user.answers.count
     ratings_count = Review.objects.filter(user=user).count()
     achievements = user.achievements.all()

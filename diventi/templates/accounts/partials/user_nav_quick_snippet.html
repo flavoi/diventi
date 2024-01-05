@@ -1,0 +1,23 @@
+{% load i18n %}
+<ul class="nav nav-tabs overflow-x">                        
+    <li class="nav-item">
+        <a href="{% url 'accounts:detail' request.user.nametag %}" class="nav-link{% if user_profile_active %} active{% endif %}">
+            {% trans 'profile'|capfirst %}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{% url 'accounts:settings' request.user.nametag %}" class="nav-link{% if user_settings_active %} active{% endif %}">
+            {% trans 'settings'|capfirst %}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{% url 'accounts:change_password' request.user.nametag %}" class="nav-link{% if user_password_active %} active{% endif%}">
+            {% trans 'credentials'|capfirst %}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{% url 'accounts:change_privacy' request.user.nametag %}" class="nav-link{% if user_privacy_active %} active{% endif %}">
+            {% trans 'privacy'|capfirst %}
+        </a>
+    </li>
+</ul>

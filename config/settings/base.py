@@ -55,7 +55,6 @@ TEMPLATES = [
                 'diventi.core.context.footer',
                 'diventi.accounts.context.user_preferred_language',
                 'diventi.accounts.context.user_statistics',
-                'diventi.accounts.context.user_menu',
                 'diventi.landing.context.graph_section',
                 'diventi.landing.context.search_suggestions',
                 'diventi.landing.context.about_us_articles',

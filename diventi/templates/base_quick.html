@@ -379,32 +379,7 @@
                                         <i data-feather="search"></i>
                                     </a>
                                 </li>                                                     
-                                <li class="nav-item dropdown dropdown-animate">
-                                    <a class="nav-link nav-link-icon px-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i data-feather="user"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right p-3">
-                                        <h6 class="dropdown-header px-0 mb-2 text-primary">{% trans "hi"|capfirst %}, {{ user.get_full_name }}!</h6>
-                                        {% for link in user_links %}
-                                            <a href="{{ link.url }}" class="dropdown-item">
-                                                <span>{{ link.label|capfirst }}</span>
-                                            </a>
-                                            {% if forloop.last %}
-                                            <div class="dropdown-divider"></div>
-                                            <a href="{% url 'accounts:signout' %}" class="dropdown-item">
-                                                <span>{% trans "sign out"|capfirst %}</span>
-                                            </a>
-                                            {% endif %}
-                                        {% endfor %}             
-                                    </div>
-                                </li> 
-                                <!--
-                                <li class="nav-item">
-                                    <a class="nav-link nav-link-icon px-2" href="#modal-profile" role="button" data-toggle="modal">
-                                        <i data-feather="grid"></i>
-                                    </a>
-                                </li>     
-                                -->                  
+                                               
                             </ul> 
                             {% endif %}
                             {% if not user.is_authenticated %}

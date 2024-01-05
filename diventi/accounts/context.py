@@ -30,28 +30,3 @@ def user_statistics(request):
     return context
 
 
-class UserLink(object):
-    label = ""
-    icon = ""
-    url = ""
-
-    def __init__(self, label, icon, url):
-        self.label = label
-        self.icon = icon
-        self.url = url
-
-def user_menu(request):
-    context = {}
-    if request.user.is_authenticated:
-        user_links = [
-            UserLink(label=_('my profile'), icon='user', url=reverse_lazy('accounts:detail', args=(request.user.nametag,))),
-            UserLink(label=_('settings'), icon='tools', url=reverse_lazy('accounts:settings', args=(request.user.nametag,))),
-            UserLink(label=_('credentials'), icon='key', url=reverse_lazy('accounts:change_password', args=(request.user.nametag,))),
-            UserLink(label=_('privacy'), icon='user-secret', url=reverse_lazy('accounts:change_privacy', args=(request.user.nametag,))),
-        ]
-        context = {
-            'user_links': user_links, 
-        }
-    return context
-
-

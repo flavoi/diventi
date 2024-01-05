@@ -5,8 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [UNRELEASED] → 2024-01-xx
+
+### Added
+- [ebooks] Added the possibility to change a specific content language without the need to open the user menu
+
+### Changed
+- [accounts] Refreshed the user avatars with new illustrations
+- [accounts] Enabled readonly bio to be displayed in the profile page
+- [accounts] Enabled role title in the search results, if present
+- [landing] Enabled menu with user avatar in desktop mode
+
+### Removed
+- [accounts] Removed unecessary context variables to display the navbar
+- [landing] Removed user dropdown with duplicated links in respect of the user modal
+
+### Fixed
+- [accounts] Fixed a problem that made dead links visible to anonymous users
+
 ## [1.0.0] → 2023-01-15
-The first live version of Diventi is now live!
+The first Diventi release is now live!
 
 ## [1.0.0-beta.10] → 2022-10-23
 

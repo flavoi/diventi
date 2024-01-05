@@ -24,30 +24,30 @@
     <div class="container">
         <div class="row row-grid justify-content-between">
             <div class="col-lg-8 mx-auto">
-                {% for result in results %}
-                    <div class="card mb-5 hover-translate-y-n10">
-                        <div class="d-flex p-5">
-                            <div>
-                                <span class="badge badge-{{ result.category.color|default:'info' }} badge-pill">
-                                    {% if result.category %}
-                                        {{ result.category }}
-                                    {% else %}
-                                        {{ result.class_name }}
-                                    {% endif %}
-                                </span>
-                            </div>
-                            <div class="pl-4">
-                                <a href="{{ result.get_absolute_url }}" class="h5">{{ result.title }}</a>
-                                <p class="p-0 m-0">
-                                    {% if result.abstract %}
-                                        {{ result.abstract|striptags }}
-                                    {% else %}
-                                        {{ result.description|striptags }}
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </div>
+                {% for result in results %}                
+                <div class="card hover-translate-y-n10 hover-shadow-lg">
+                  <div class="card-body">
+                    <div class="pb-2">                      
+                        <div class="badge badge-{{ result.category.color|default:'info' }} badge-pill">
+                            {% if result.category %}
+                                {{ result.category|capfirst }}
+                            {% else %}
+                                {{ result.class_name|capfirst }}
+                            {% endif %}
+                        </div>                    
                     </div>
+                    <div class="pt-2 pb-3">
+                      <h5><a href="{{ result.get_absolute_url }}" class="h5">{{ result.title }}</a></h5>
+                      <p class="text-muted mb-0">
+                        {% if result.abstract %}
+                            {{ result.abstract|striptags }}
+                        {% else %}
+                            {{ result.description|striptags }}
+                        {% endif %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 {% empty %}
                     <div class="text-center">
                         <h4>{% trans "No items found" %}.</h4>

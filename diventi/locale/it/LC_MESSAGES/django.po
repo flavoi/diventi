@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-04 23:36+0100\n"
+"POT-Creation-Date: 2024-01-05 10:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:207
+#: config/settings/base.py:206
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:208
+#: config/settings/base.py:207
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:292
+#: config/settings/base.py:291
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:302
+#: config/settings/base.py:301
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:342
+#: config/settings/base.py:341
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:343
+#: config/settings/base.py:342
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:344
+#: config/settings/base.py:343
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:345
+#: config/settings/base.py:344
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:346
+#: config/settings/base.py:345
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -93,30 +93,6 @@ msgstr "pacchetti/"
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
 msgstr "Profili"
-
-#: diventi/accounts/context.py:47
-msgid "my profile"
-msgstr "il mio profilo"
-
-#: diventi/accounts/context.py:48
-#: diventi/templates/accounts/user_settings_quick.html:10
-#: diventi/templates/accounts/user_settings_quick.html:20
-msgid "settings"
-msgstr "impostazioni"
-
-#: diventi/accounts/context.py:49 diventi/templates/accounts/user.html:53
-#: diventi/templates/accounts/user.html:86
-#: diventi/templates/accounts/user_change_password_quick.html:5
-#: diventi/templates/accounts/user_change_password_quick.html:15
-msgid "credentials"
-msgstr "credenziali"
-
-#: diventi/accounts/context.py:50 diventi/templates/accounts/user.html:59
-#: diventi/templates/accounts/user.html:96
-#: diventi/templates/accounts/user_change_privacy_quick.html:5
-#: diventi/templates/accounts/user_change_privacy_quick.html:15
-msgid "privacy"
-msgstr "privacy"
 
 #: diventi/accounts/forms.py:31
 msgid "Yes, I'm interested."
@@ -250,7 +226,7 @@ msgstr "Utente"
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:556
+#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:533
 msgid "account"
 msgstr "profilo"
 
@@ -1397,7 +1373,7 @@ msgstr "aspetti"
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:207 diventi/templates/base_quick.html:465
+#: diventi/landing/models.py:207 diventi/templates/base_quick.html:442
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -1791,6 +1767,32 @@ msgstr ""
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
+#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:5
+msgid "profile"
+msgstr "profilo"
+
+#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:10
+#: diventi/templates/accounts/user_settings_quick.html:10
+#: diventi/templates/accounts/user_settings_quick.html:20
+msgid "settings"
+msgstr "impostazioni"
+
+#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:15
+#: diventi/templates/accounts/user.html:53
+#: diventi/templates/accounts/user.html:86
+#: diventi/templates/accounts/user_change_password_quick.html:5
+#: diventi/templates/accounts/user_change_password_quick.html:15
+msgid "credentials"
+msgstr "credenziali"
+
+#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:20
+#: diventi/templates/accounts/user.html:59
+#: diventi/templates/accounts/user.html:96
+#: diventi/templates/accounts/user_change_privacy_quick.html:5
+#: diventi/templates/accounts/user_change_privacy_quick.html:15
+msgid "privacy"
+msgstr "privacy"
+
 #: diventi/templates/accounts/password_reset_complete_quick.html:23
 msgid "you have signed in"
 msgstr "hai effettuato l'accesso!"
@@ -1808,15 +1810,15 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick.html:420 diventi/templates/base_quick.html:429
-#: diventi/templates/base_quick.html:567
+#: diventi/templates/base_quick.html:397 diventi/templates/base_quick.html:406
+#: diventi/templates/base_quick.html:544
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
 msgstr "accedi"
 
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
-#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:568
+#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:545
 #: diventi/templates/landing/landing_quick.html:276
 msgid "sign up"
 msgstr "registrati"
@@ -1936,7 +1938,6 @@ msgstr "richiedi un reset"
 
 #: diventi/templates/accounts/signout_quick.html:5
 #: diventi/templates/accounts/user_detail_quick_modal.html:120
-#: diventi/templates/base_quick.html:395
 msgid "sign out"
 msgstr "annulla accesso"
 
@@ -2290,7 +2291,7 @@ msgstr "uno strumento per misurare le prestazioni del sito"
 msgid "participate"
 msgstr "partecipa"
 
-#: diventi/templates/base_quick.html:263 diventi/templates/base_quick.html:581
+#: diventi/templates/base_quick.html:263 diventi/templates/base_quick.html:558
 msgid "community"
 msgstr "community"
 
@@ -2323,15 +2324,11 @@ msgstr "esplora la nostra collezione"
 msgid "buy"
 msgstr "acquista"
 
-#: diventi/templates/base_quick.html:387
-msgid "hi"
-msgstr "ciao"
-
-#: diventi/templates/base_quick.html:460
+#: diventi/templates/base_quick.html:437
 msgid "type and hit enter"
 msgstr "scrivi e premi invio"
 
-#: diventi/templates/base_quick.html:531
+#: diventi/templates/base_quick.html:508
 msgid ""
 "Diventi is a role-playing community that embraces fun, encourages "
 "storytelling and helps game masters to create outstanding adventures"
@@ -2340,11 +2337,11 @@ msgstr ""
 "incoraggia l'interpretazione e aiuta i game master a realizzare avventure "
 "straordinarie"
 
-#: diventi/templates/base_quick.html:573
+#: diventi/templates/base_quick.html:550
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:592
+#: diventi/templates/base_quick.html:569
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -3549,6 +3546,12 @@ msgstr "link della menzione"
 msgid "Tooltip"
 msgstr "Suggerimento"
 
+#~ msgid "my profile"
+#~ msgstr "il mio profilo"
+
+#~ msgid "hi"
+#~ msgstr "ciao"
+
 #~ msgid "Light yellow"
 #~ msgstr "Giallo chiaro"
 
@@ -4104,9 +4107,6 @@ msgstr "Suggerimento"
 
 #~ msgid "admin"
 #~ msgstr "amministrazione"
-
-#~ msgid "profile"
-#~ msgstr "profilo"
 
 #~ msgid "Previous page"
 #~ msgstr "Pagina precedente"

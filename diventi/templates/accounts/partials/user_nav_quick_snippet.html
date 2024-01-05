@@ -5,6 +5,7 @@
             {% trans 'profile'|capfirst %}
         </a>
     </li>
+    {% ifequal object request.user %}
     <li class="nav-item">
         <a href="{% url 'accounts:settings' request.user.nametag %}" class="nav-link{% if user_settings_active %} active{% endif %}">
             {% trans 'settings'|capfirst %}
@@ -20,4 +21,5 @@
             {% trans 'privacy'|capfirst %}
         </a>
     </li>
+    {% endifequal %}
 </ul>

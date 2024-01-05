@@ -203,9 +203,17 @@
                             </div>
                             <ul class="navbar-nav ml-lg-auto mr-3">
                                 {% if user.is_anonymous %}
+                                <div class="d-lg-none px-4 text-center mt-5 mb-3">
+                                    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-block btn-sm btn-neutral">
+                                        <span class="btn-inner--icon">
+                                            <i data-feather="user" class="mb-1 mr-0"></i>
+                                        </span>
+                                        <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
+                                    </a>
+                                </div>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'accounts:signup' %}">{% trans "sign up"|capfirst %}</a>
-                                </li>
+                                </li>                            
                                 {% elif user.is_staff %}
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "manage"|capfirst %}</a>
@@ -388,14 +396,6 @@
                                 </a>
                               </li>
                             </ul>
-                            <div class="d-lg-none px-4 text-center">
-                                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-block btn-sm btn-neutral">
-                                    <span class="btn-inner--icon">
-                                        <i data-feather="user" class="mb-1 mr-0"></i>
-                                    </span>
-                                    <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
-                                </a>
-                            </div>                          
                             {% endif %}
                         </div>
                         {% if user.is_authenticated %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 19:09+0100\n"
+"POT-Creation-Date: 2024-01-05 19:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,7 +226,7 @@ msgstr "Utente"
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:534
+#: diventi/accounts/models.py:210 diventi/templates/base_quick.html:523
 msgid "account"
 msgstr "profilo"
 
@@ -1373,7 +1373,7 @@ msgstr "aspetti"
 msgid "search suggestion"
 msgstr "suggerimento di ricerca"
 
-#: diventi/landing/models.py:207 diventi/templates/base_quick.html:443
+#: diventi/landing/models.py:207
 msgid "search suggestions"
 msgstr "suggerimenti di ricerca"
 
@@ -1810,15 +1810,15 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick.html:398 diventi/templates/base_quick.html:407
-#: diventi/templates/base_quick.html:545
+#: diventi/templates/base_quick.html:387 diventi/templates/base_quick.html:396
+#: diventi/templates/base_quick.html:534
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
 msgstr "accedi"
 
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
-#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:546
+#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:535
 #: diventi/templates/landing/landing_quick.html:276
 msgid "sign up"
 msgstr "registrati"
@@ -2286,8 +2286,8 @@ msgid "control panel for authors only"
 msgstr "pannello di controllo riservato agli autori"
 
 #: diventi/templates/base_quick.html:239
-msgid "research"
-msgstr "ricerche"
+msgid "search suggenstions"
+msgstr "suggerimenti"
 
 #: diventi/templates/base_quick.html:249
 #: diventi/templates/landing/analytics_quick.html:9
@@ -2303,7 +2303,7 @@ msgstr "uno strumento per misurare le prestazioni del sito"
 msgid "participate"
 msgstr "partecipa"
 
-#: diventi/templates/base_quick.html:263 diventi/templates/base_quick.html:559
+#: diventi/templates/base_quick.html:263 diventi/templates/base_quick.html:548
 msgid "community"
 msgstr "community"
 
@@ -2336,11 +2336,15 @@ msgstr "esplora la nostra collezione"
 msgid "buy"
 msgstr "acquista"
 
-#: diventi/templates/base_quick.html:438
+#: diventi/templates/base_quick.html:427
 msgid "tap or click to search"
 msgstr "tocca o clicca per effettuare la ricerca"
 
-#: diventi/templates/base_quick.html:509
+#: diventi/templates/base_quick.html:432
+msgid "suggestions"
+msgstr "suggerimenti"
+
+#: diventi/templates/base_quick.html:498
 msgid ""
 "Diventi is a role-playing community that embraces fun, encourages "
 "storytelling and helps game masters to create outstanding adventures"
@@ -2349,11 +2353,11 @@ msgstr ""
 "incoraggia l'interpretazione e aiuta i game master a realizzare avventure "
 "straordinarie"
 
-#: diventi/templates/base_quick.html:551
+#: diventi/templates/base_quick.html:540
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:570
+#: diventi/templates/base_quick.html:559
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -3557,6 +3561,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "research"
+#~ msgstr "ricerche"
 
 #~ msgid "type and hit enter"
 #~ msgstr "scrivi e premi invio"

@@ -55,7 +55,7 @@
                       </div>
                     {% empty %}
                     <div class="col-auto text-center mb-3 px-2">
-                        <div class="text-sm text-muted mt-1">{% trans "you have not obtained any achievement, yet"|capfirst %}</div>
+                        <div class="text-sm text-muted mt-1">{% trans "there are no achievements yet"|capfirst %}.</div>
                     </div>
                     {% endfor %}
                    </div>
@@ -114,6 +114,22 @@
                                             <span class="d-block text-sm">{% trans "posts"|capfirst %}</span>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card card-fluid">
+                                <div class="p-4 text-left">
+                                    <h5 class="mb-0">
+                                        Bio
+                                    </h5>
+                                    <p class="text-muted mb-0">
+                                        {% if object.bio %}
+                                            {{ object.bio }}
+                                        {% else %}
+                                            <span class="text-sm">{% trans 'there is no bio di display, yet'|capfirst %}.</span>
+                                        {% endif %}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -184,6 +200,7 @@
                     </div>
                 </div>
                 {% endif %}
+                {% if user_data.projects_count > 0 %}
                 <!-- Projects -->
                 <div class="mb-4">
                     <div class="row mb-3">
@@ -267,6 +284,7 @@
                     </div>
 
                 </div>
+                {% endif %}
                 <!-- Surveys & Recent posts -->
                 <div class="mb-4">
                     <div class="row mb-3">
@@ -291,10 +309,10 @@
                                     {% endif %}                        
                                 {% empty %}
                                     <div class="card rounded-lg border-0">
-                                        <div class="p-4 text-center text-sm-left">
-                                            <h6 class="mb-0 text-muted">
-                                                {% trans "There are no surveys yet." %}
-                                            </h6>
+                                        <div class="p-4 text-left">
+                                            <p class="mb-0 text-sm text-muted">
+                                                {% trans "There are no surveys yet" %}.
+                                            </p>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -321,10 +339,10 @@
                                     </a>
                                 {% empty %}
                                     <div class="card rounded-lg border-0">
-                                        <div class="p-4 text-center text-sm-left">
-                                            <h6 class="mb-0 text-muted">
-                                                {% trans "There are no posts yet." %}
-                                            </h6>
+                                        <div class="p-4 text-left">
+                                            <p class="mb-0 text-sm text-muted">
+                                                {% trans "There are no forum posts yet" %}.
+                                            </p>
                                         </div>
                                     </div>
                                 {% endfor %}

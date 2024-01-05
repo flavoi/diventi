@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 10:38+0100\n"
+"POT-Creation-Date: 2024-01-05 12:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,34 +230,34 @@ msgstr "Utenti"
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/models.py:247
+#: diventi/accounts/models.py:253
 #, python-format
 msgid "%(prefix)s: %(last_sub)s on %(date_joined)s"
 msgstr "%(prefix)s: %(last_sub)s - %(date_joined)s"
 
-#: diventi/accounts/models.py:258
+#: diventi/accounts/models.py:264
 msgid "Last subscriber"
 msgstr "Ultimo iscritto"
 
-#: diventi/accounts/models.py:261
+#: diventi/accounts/models.py:267
 msgid "users count"
 msgstr "conteggio utenti"
 
-#: diventi/accounts/models.py:263
+#: diventi/accounts/models.py:269
 #, python-format
 msgid "%(en)s english subscribers, %(it)s italian subscribers"
 msgstr "%(en)s iscritti inglesi, %(it)s iscritti italiani"
 
-#: diventi/accounts/models.py:272
+#: diventi/accounts/models.py:278
 msgid "english subscribers"
 msgstr "iscritti inglesi"
 
-#: diventi/accounts/models.py:274 diventi/accounts/models.py:280
+#: diventi/accounts/models.py:280 diventi/accounts/models.py:286
 #: diventi/products/models.py:379 diventi/products/models.py:391
 msgid "copy emails"
 msgstr "copia le email"
 
-#: diventi/accounts/models.py:278
+#: diventi/accounts/models.py:284
 msgid "italian subscribers"
 msgstr "iscritti italiani"
 
@@ -1210,7 +1210,7 @@ msgid "survey"
 msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:127
-#: diventi/templates/accounts/user_detail_quick.html:274
+#: diventi/templates/accounts/user_detail_quick.html:290
 #: diventi/templates/base_quick.html:231
 msgid "surveys"
 msgstr "sondaggi"
@@ -1771,13 +1771,13 @@ msgstr "Gestisci profilo"
 msgid "profile"
 msgstr "profilo"
 
-#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:10
+#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:11
 #: diventi/templates/accounts/user_settings_quick.html:10
 #: diventi/templates/accounts/user_settings_quick.html:20
 msgid "settings"
 msgstr "impostazioni"
 
-#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:15
+#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:16
 #: diventi/templates/accounts/user.html:53
 #: diventi/templates/accounts/user.html:86
 #: diventi/templates/accounts/user_change_password_quick.html:5
@@ -1785,7 +1785,7 @@ msgstr "impostazioni"
 msgid "credentials"
 msgstr "credenziali"
 
-#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:20
+#: diventi/templates/accounts/partials/user_nav_quick_snippet.html:21
 #: diventi/templates/accounts/user.html:59
 #: diventi/templates/accounts/user.html:96
 #: diventi/templates/accounts/user_change_privacy_quick.html:5
@@ -1990,7 +1990,7 @@ msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
-#: diventi/templates/accounts/user_detail_quick.html:126
+#: diventi/templates/accounts/user_detail_quick.html:142
 #: diventi/templates/accounts/user_detail_quick_modal.html:88
 #: diventi/templates/products/partials/product_detail_actions.html:39
 #: diventi/templates/products/partials/product_detail_actions_public.html:11
@@ -2157,8 +2157,8 @@ msgid "achievements"
 msgstr "riconoscimenti"
 
 #: diventi/templates/accounts/user_detail_quick.html:58
-msgid "you have not obtained any achievement, yet"
-msgstr "non hai ancora ottenuto alcun riconoscimento, per ora."
+msgid "there are no achievements yet"
+msgstr "Nessun riconoscimento trovato"
 
 #: diventi/templates/accounts/user_detail_quick.html:68
 msgid "quick stats"
@@ -2169,7 +2169,7 @@ msgid "edit"
 msgstr "modifica"
 
 #: diventi/templates/accounts/user_detail_quick.html:106
-#: diventi/templates/accounts/user_detail_quick.html:191
+#: diventi/templates/accounts/user_detail_quick.html:207
 #: diventi/templates/accounts/user_detail_quick_modal.html:44
 #: diventi/templates/accounts/user_detail_quick_modal.html:58
 #: diventi/templates/base_quick.html:230
@@ -2190,46 +2190,50 @@ msgstr "recensioni"
 msgid "posts"
 msgstr "post"
 
-#: diventi/templates/accounts/user_detail_quick.html:150
-#: diventi/templates/accounts/user_detail_quick.html:227
+#: diventi/templates/accounts/user_detail_quick.html:130
+msgid "there is no bio di display, yet"
+msgstr "per questo utente non c'è una biografia disponibile"
+
+#: diventi/templates/accounts/user_detail_quick.html:166
+#: diventi/templates/accounts/user_detail_quick.html:243
 #: diventi/templates/products/partials/product_detail_actions.html:7
 msgid "read online"
 msgstr "leggi online"
 
-#: diventi/templates/accounts/user_detail_quick.html:154
-#: diventi/templates/accounts/user_detail_quick.html:231
+#: diventi/templates/accounts/user_detail_quick.html:170
+#: diventi/templates/accounts/user_detail_quick.html:247
 msgid "not available"
 msgstr "non ancora disponibile"
 
-#: diventi/templates/accounts/user_detail_quick.html:178
-#: diventi/templates/accounts/user_detail_quick.html:256
+#: diventi/templates/accounts/user_detail_quick.html:194
+#: diventi/templates/accounts/user_detail_quick.html:272
 #: diventi/templates/accounts/user_detail_quick_modal.html:81
 #: diventi/templates/accounts/user_detail_quick_modal.html:111
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_detail_quick.html:296
-msgid "There are no surveys yet."
-msgstr "Nessun sondaggio disponibile."
+#: diventi/templates/accounts/user_detail_quick.html:312
+msgid "There are no surveys yet"
+msgstr "Non è presente alcun sondaggio"
 
-#: diventi/templates/accounts/user_detail_quick.html:308
+#: diventi/templates/accounts/user_detail_quick.html:324
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60
 msgid "Recent posts"
 msgstr "Post recenti"
 
-#: diventi/templates/accounts/user_detail_quick.html:308
+#: diventi/templates/accounts/user_detail_quick.html:324
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60
 msgid "View all"
 msgstr "Visualizza tutto"
 
-#: diventi/templates/accounts/user_detail_quick.html:315
+#: diventi/templates/accounts/user_detail_quick.html:331
 #, python-format
 msgid "%(creation_date)s"
 msgstr "%(creation_date)s"
 
-#: diventi/templates/accounts/user_detail_quick.html:326
-msgid "There are no posts yet."
-msgstr "Nessun post disponibile."
+#: diventi/templates/accounts/user_detail_quick.html:342
+msgid "There are no forum posts yet"
+msgstr "Non è presente alcun post"
 
 #: diventi/templates/accounts/user_privacy.html:8
 msgid ""
@@ -2378,7 +2382,7 @@ msgstr "tempo di lettura"
 
 #: diventi/templates/blog/article_list_quick.html:143
 msgid "There are no posts yet"
-msgstr "Nessun articolo è stato pubblicato"
+msgstr "Nessun articolo è stato ancora pubblicato"
 
 #: diventi/templates/blog/article_list_quick.html:150
 #: diventi/templates/blog/article_list_quick.html:152
@@ -3545,6 +3549,12 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "you have not obtained any achievement, yet"
+#~ msgstr "non hai ancora ottenuto alcun riconoscimento, per ora."
+
+#~ msgid "There are no posts yet."
+#~ msgstr "Nessun post disponibile."
 
 #~ msgid "my profile"
 #~ msgstr "il mio profilo"

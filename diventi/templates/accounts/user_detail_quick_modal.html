@@ -44,7 +44,7 @@
                     <div class="text-center mb-4">
                         <span class="d-block text-muted">{{ user.email }}</span>
                     </div>          
-                </div>
+                
                     <!-- Profile stats -->
                     <div class="d-flex mb-5">
                         <div class="col-4 text-center">
@@ -127,11 +127,12 @@
                     </div>
                 </div>
             
-            <div class="modal-footer py-3 mt-auto">
-                <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
-                    <span class="btn-inner--icon"><i data-feather="log-out"></i></span>
-                    <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
-                </a>
+                <div class="modal-footer py-3 mt-auto">
+                    <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
+                        <span class="btn-inner--icon"><i data-feather="log-out"></i></span>
+                        <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

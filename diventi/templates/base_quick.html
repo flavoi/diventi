@@ -424,7 +424,7 @@
                                     <i data-feather="search"></i>
                                 </span>
                             </div>                            
-                            <input type="text" class="form-control" id="search_text" placeholder="{% trans 'tap or click to search'|capfirst %}..." name="q" {% if search_query %}value='{{ search_query }}'{% endif %}>
+                            <input type="text" class="form-control" id="search_text" placeholder="{% trans 'search'|capfirst %}..." name="q" {% if search_query %}value='{{ search_query }}'{% endif %}>
                         </div>
                     </div>
                 </form>
@@ -603,6 +603,16 @@
             var text = $('#search_text');
             text.val($(this).attr('data-value'));
             $('#search_text').focus()
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(function () {
+        $('.search').on('click', function () {
+            $('#modal-profile').modal('hide');
+            $('#modal-profile').on('hidden.bs.modal', function () {
+              $('#search_text').focus()
+           });            
         });
     });
     </script>

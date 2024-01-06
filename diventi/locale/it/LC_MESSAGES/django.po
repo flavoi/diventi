@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 19:20+0100\n"
+"POT-Creation-Date: 2024-01-06 10:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -493,7 +493,9 @@ msgid "article"
 msgstr "articolo"
 
 #: diventi/blog/models.py:158 diventi/landing/views.py:83
-#: diventi/templates/base_quick.html:228
+#: diventi/templates/accounts/user_detail_quick.html:102
+#: diventi/templates/accounts/user_detail_quick_modal.html:53
+#: diventi/templates/base_quick.html:236
 msgid "articles"
 msgstr "articoli"
 
@@ -545,9 +547,9 @@ msgid "brave-rewards-verification.txt/"
 msgstr "brave-rewards-verification.txt/"
 
 #: diventi/comments/apps.py:7 diventi/comments/models.py:19
-#: diventi/templates/accounts/user_detail_quick.html:101
-#: diventi/templates/accounts/user_detail_quick_modal.html:52
-#: diventi/templates/base_quick.html:236
+#: diventi/templates/accounts/user_detail_quick.html:105
+#: diventi/templates/accounts/user_detail_quick_modal.html:56
+#: diventi/templates/base_quick.html:244
 msgid "comments"
 msgstr "commenti"
 
@@ -956,7 +958,7 @@ msgstr "sfondo del logo"
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:177 diventi/templates/base_quick.html:235
+#: diventi/ebooks/models.py:177 diventi/templates/base_quick.html:243
 msgid "books"
 msgstr "libri"
 
@@ -1068,7 +1070,7 @@ msgid "section"
 msgstr "sezione"
 
 #: diventi/ebooks/models.py:392 diventi/landing/models.py:192
-#: diventi/templates/base_quick.html:232
+#: diventi/templates/base_quick.html:240
 msgid "sections"
 msgstr "sezioni"
 
@@ -1210,8 +1212,8 @@ msgid "survey"
 msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:127
-#: diventi/templates/accounts/user_detail_quick.html:290
-#: diventi/templates/base_quick.html:231
+#: diventi/templates/accounts/user_detail_quick.html:298
+#: diventi/templates/base_quick.html:239
 msgid "surveys"
 msgstr "sondaggi"
 
@@ -1389,12 +1391,12 @@ msgstr "analitica/"
 msgid "about/<slug:slug>/"
 msgstr "su-di-noi/<slug:slug>/"
 
-#: diventi/landing/views.py:81 diventi/templates/base_quick.html:229
+#: diventi/landing/views.py:81 diventi/templates/base_quick.html:237
 msgid "users"
 msgstr "utenti"
 
 #: diventi/landing/views.py:82 diventi/packages/models.py:95
-#: diventi/templates/base_quick.html:238
+#: diventi/templates/base_quick.html:246
 msgid "packages"
 msgstr "pacchetti"
 
@@ -1810,7 +1812,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick.html:387 diventi/templates/base_quick.html:396
+#: diventi/templates/base_quick.html:211 diventi/templates/base_quick.html:395
 #: diventi/templates/base_quick.html:534
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
@@ -1818,7 +1820,7 @@ msgstr "accedi"
 
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
-#: diventi/templates/base_quick.html:207 diventi/templates/base_quick.html:535
+#: diventi/templates/base_quick.html:215 diventi/templates/base_quick.html:535
 #: diventi/templates/landing/landing_quick.html:276
 msgid "sign up"
 msgstr "registrati"
@@ -1937,7 +1939,7 @@ msgid "request a reset"
 msgstr "richiedi un reset"
 
 #: diventi/templates/accounts/signout_quick.html:5
-#: diventi/templates/accounts/user_detail_quick_modal.html:133
+#: diventi/templates/accounts/user_detail_quick_modal.html:138
 msgid "sign out"
 msgstr "annulla accesso"
 
@@ -1990,8 +1992,8 @@ msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
-#: diventi/templates/accounts/user_detail_quick.html:140
-#: diventi/templates/accounts/user_detail_quick_modal.html:101
+#: diventi/templates/accounts/user_detail_quick.html:231
+#: diventi/templates/accounts/user_detail_quick_modal.html:106
 #: diventi/templates/products/partials/product_detail_actions.html:39
 #: diventi/templates/products/partials/product_detail_actions_public.html:11
 #: diventi/templates/products/partials/product_detail_actions_public.html:44
@@ -2168,70 +2170,69 @@ msgstr "statistiche veloci"
 msgid "edit"
 msgstr "modifica"
 
-#: diventi/templates/accounts/user_detail_quick.html:106
-#: diventi/templates/accounts/user_detail_quick.html:206
-#: diventi/templates/accounts/user_detail_quick_modal.html:57
-#: diventi/templates/accounts/user_detail_quick_modal.html:71
-#: diventi/templates/base_quick.html:230
+#: diventi/templates/accounts/user_detail_quick.html:111
+#: diventi/templates/accounts/user_detail_quick.html:146
+#: diventi/templates/accounts/user_detail_quick_modal.html:62
+#: diventi/templates/accounts/user_detail_quick_modal.html:76
+#: diventi/templates/base_quick.html:238
 msgid "projects"
 msgstr "progetti"
 
-#: diventi/templates/accounts/user_detail_quick.html:109
-#: diventi/templates/accounts/user_detail_quick_modal.html:60
-#: diventi/templates/base_quick.html:237
+#: diventi/templates/accounts/user_detail_quick.html:114
+#: diventi/templates/accounts/user_detail_quick_modal.html:65
+#: diventi/templates/base_quick.html:245
 #: diventi/templates/products/product_detail_quick.html:59
 #: diventi/templates/products/product_detail_quick.html:222
 #: diventi/templates/reviews/posted.html:11
 msgid "reviews"
 msgstr "recensioni"
 
-#: diventi/templates/accounts/user_detail_quick.html:114
-#: diventi/templates/accounts/user_detail_quick_modal.html:65
+#: diventi/templates/accounts/user_detail_quick.html:119
+#: diventi/templates/accounts/user_detail_quick_modal.html:70
 msgid "posts"
 msgstr "post"
 
-#: diventi/templates/accounts/user_detail_quick.html:128
+#: diventi/templates/accounts/user_detail_quick.html:133
 msgid "there is no bio di display, yet"
 msgstr "per questo utente non c'è una biografia disponibile"
 
-#: diventi/templates/accounts/user_detail_quick.html:164
-#: diventi/templates/accounts/user_detail_quick.html:242
+#: diventi/templates/accounts/user_detail_quick.html:182
+#: diventi/templates/accounts/user_detail_quick.html:255
 #: diventi/templates/products/partials/product_detail_actions.html:7
 msgid "read online"
 msgstr "leggi online"
 
-#: diventi/templates/accounts/user_detail_quick.html:168
-#: diventi/templates/accounts/user_detail_quick.html:246
+#: diventi/templates/accounts/user_detail_quick.html:186
+#: diventi/templates/accounts/user_detail_quick.html:259
 msgid "not available"
 msgstr "non ancora disponibile"
 
-#: diventi/templates/accounts/user_detail_quick.html:192
-#: diventi/templates/accounts/user_detail_quick.html:271
-#: diventi/templates/accounts/user_detail_quick_modal.html:94
-#: diventi/templates/accounts/user_detail_quick_modal.html:124
+#: diventi/templates/accounts/user_detail_quick.html:211
+#: diventi/templates/accounts/user_detail_quick.html:283
+#: diventi/templates/accounts/user_detail_quick_modal.html:99
+#: diventi/templates/accounts/user_detail_quick_modal.html:129
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_detail_quick.html:312
+#: diventi/templates/accounts/user_detail_quick.html:320
 msgid "There are no surveys yet"
 msgstr "Non è presente alcun sondaggio"
 
-#: diventi/templates/accounts/user_detail_quick.html:324
-#: diventi/templates/machina/forum_member/forum_profile_detail.html:60
-msgid "Recent posts"
-msgstr "Post recenti"
+#: diventi/templates/accounts/user_detail_quick.html:336
+msgid "Recent articles"
+msgstr "Articoli recenti"
 
-#: diventi/templates/accounts/user_detail_quick.html:324
-#: diventi/templates/machina/forum_member/forum_profile_detail.html:60
-msgid "View all"
-msgstr "Visualizza tutto"
-
-#: diventi/templates/accounts/user_detail_quick.html:331
+#: diventi/templates/accounts/user_detail_quick.html:343
+#: diventi/templates/accounts/user_detail_quick.html:368
 #, python-format
 msgid "%(creation_date)s"
 msgstr "%(creation_date)s"
 
-#: diventi/templates/accounts/user_detail_quick.html:342
+#: diventi/templates/accounts/user_detail_quick.html:361
+msgid "Recent forum posts"
+msgstr "Post recenti del forum"
+
+#: diventi/templates/accounts/user_detail_quick.html:379
 msgid "There are no forum posts yet"
 msgstr "Non è presente alcun post"
 
@@ -2277,62 +2278,62 @@ msgid ""
 "we uses cookies to ensure we give you the best experience on our website."
 msgstr "usiamo i cookie per ottimizzare la tua esperienza nel nostro sito web."
 
-#: diventi/templates/base_quick.html:211
+#: diventi/templates/base_quick.html:219
 msgid "manage"
 msgstr "gestisci"
 
-#: diventi/templates/base_quick.html:221
+#: diventi/templates/base_quick.html:229
 msgid "control panel for authors only"
 msgstr "pannello di controllo riservato agli autori"
 
-#: diventi/templates/base_quick.html:239
+#: diventi/templates/base_quick.html:247
 msgid "search suggenstions"
 msgstr "suggerimenti"
 
-#: diventi/templates/base_quick.html:249
+#: diventi/templates/base_quick.html:257
 #: diventi/templates/landing/analytics_quick.html:9
 #: diventi/templates/landing/analytics_quick.html:19
 msgid "analytics"
 msgstr "analitica"
 
-#: diventi/templates/base_quick.html:250
+#: diventi/templates/base_quick.html:258
 msgid "a tool to measure the website performance"
 msgstr "uno strumento per misurare le prestazioni del sito"
 
-#: diventi/templates/base_quick.html:260
+#: diventi/templates/base_quick.html:268
 msgid "participate"
 msgstr "partecipa"
 
-#: diventi/templates/base_quick.html:263 diventi/templates/base_quick.html:548
+#: diventi/templates/base_quick.html:271 diventi/templates/base_quick.html:548
 msgid "community"
 msgstr "community"
 
-#: diventi/templates/base_quick.html:273
+#: diventi/templates/base_quick.html:281
 msgid "join in our latest discussions"
 msgstr "unisciti ai nostri ultimi dibattiti"
 
-#: diventi/templates/base_quick.html:285
+#: diventi/templates/base_quick.html:293
 msgid "read and comment our latest news"
 msgstr "leggi e commenta le nostre ultime notizie"
 
-#: diventi/templates/base_quick.html:291
+#: diventi/templates/base_quick.html:299
 msgid "about us"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:314
+#: diventi/templates/base_quick.html:322
 msgid "play"
 msgstr "gioca"
 
-#: diventi/templates/base_quick.html:338
+#: diventi/templates/base_quick.html:346
 #: diventi/templates/products/product_list_quick.html:118
 msgid "all games"
 msgstr "tutti i giochi"
 
-#: diventi/templates/base_quick.html:339
+#: diventi/templates/base_quick.html:347
 msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
-#: diventi/templates/base_quick.html:349
+#: diventi/templates/base_quick.html:357
 msgid "buy"
 msgstr "acquista"
 
@@ -3104,6 +3105,14 @@ msgstr[0] ""
 msgstr[1] ""
 "<h2><strong>%(counter)s</strong></h2>\n"
 "                      <p><small>Argomenti</small></p>"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:60
+msgid "Recent posts"
+msgstr "Post recenti"
+
+#: diventi/templates/machina/forum_member/forum_profile_detail.html:60
+msgid "View all"
+msgstr "Visualizza tutto"
 
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:70
 #, python-format

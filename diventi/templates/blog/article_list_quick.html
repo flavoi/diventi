@@ -88,7 +88,7 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 <a href="#" class="avatar avatar-sm rounded-circle d-inline-block">
-                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}">
+                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}">
                                 </a>
                             </div>
                             <div class="pl-3">

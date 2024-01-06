@@ -402,7 +402,7 @@
                     <div class="order-lg-4 order-3 ml-lg-3">
                         <a class="" href="#modal-profile" role="button" data-toggle="modal">
                             <span class="avatar rounded-circle">
-                                <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}">
+                                <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}">
                             </span>
                         </a>
                     </div>

@@ -19,7 +19,7 @@
                   {% get_rating for object as average_rating %}
                   {% get_review_count for object as rating_count %}
                   <div class="avatar rounded-circle avatar-lg mb-4">
-                      <img alt="diventi" src="{% static 'brand/diventi-logo-2.png' %}">
+                      <img alt="diventi" src="{% static 'brand/avatar-default.jpg' %}">
                   </div>
                   {% with average_rating as rating %}
                       <span class="static-rating d-block">
@@ -39,7 +39,7 @@
                               <div class="media align-items-center">
                                   <div>
                                       <span class="mr-3">
-                                          <img class="avatar" loading="lazy" src="{% if review.user.avatar.image %}{{ review.user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}">
+                                          <img class="avatar" loading="lazy" src="{% if review.user.avatar.image %}{{ review.user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}">
                                       </span>
                                   </div>
                                   <div class="media-body">

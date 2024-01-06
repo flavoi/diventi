@@ -58,7 +58,7 @@
                         <div class="media align-items-center">
                             <div>
                                 <a href="#" class="avatar avatar-lg rounded-circle mr-3">
-                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}">
+                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}">
                                 </a>
                             </div>
                             <div class="media-body"><span class="d-block h6 mb-0">{{ article.author.get_full_name }}</span> <span class="text-sm text-muted">{% trans "published on"|capfirst %} {{ article.publication_date|date:"d/m/Y" }}</span></span></div>
@@ -120,7 +120,7 @@
                         <div class="row align-items-center">
                             <div class="col-auto">                                
                                 <span class="avatar avatar-sm bg-primary rounded-circle">
-                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ article.author.get_full_name }}">
+                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}">
                                 </span><span class="text-sm mb-0 ml-0 avatar-content">{{ article.author.get_full_name }}</span>
                             </div>
                             <div class="col text-right text-right">

@@ -18,7 +18,7 @@
                     <!-- Avatar -->
                     <div class="d-flex my-4">
                         <div class="avatar-parent-child mx-auto">
-                            <img loading=lazy src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle">
+                            <img loading=lazy src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle">
                             <span class="avatar-child avatar-badge bg-success"></span>
                         </div>
                     </div>

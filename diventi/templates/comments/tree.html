@@ -5,7 +5,7 @@
 
 <div class="my-2 {% if node.is_root_node %}parent{% else %}child-of-{{ node.parent.id }}{% endif%}" style="{% if not node.is_root_node %}display: none;{% endif %}">
     <div class="media media-comment py-0">
-        <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if node.user.avatar.image %}{{ node.user.avatar.image }}{% else %}{% static 'brand/diventi-logo-2.png' %}{% endif %}" alt="{{ node.user.get_full_name }}" class="rounded-circle shadow mr-4" style="width:58px">
+        <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if node.user.avatar.image %}{{ node.user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ node.user.get_full_name }}" class="rounded-circle shadow mr-4" style="width:58px">
         <div class="media-body">
             <div class="media-comment-bubble left-top">
                 <a href="{{ node.user.get_absolute_url }}">

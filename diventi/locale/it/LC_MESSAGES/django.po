@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-06 10:53+0100\n"
+"POT-Creation-Date: 2024-01-06 18:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2337,10 +2337,6 @@ msgstr "esplora la nostra collezione"
 msgid "buy"
 msgstr "acquista"
 
-#: diventi/templates/base_quick.html:427
-msgid "tap or click to search"
-msgstr "tocca o clicca per effettuare la ricerca"
-
 #: diventi/templates/base_quick.html:432
 msgid "suggestions"
 msgstr "suggerimenti"
@@ -3570,6 +3566,12 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "search"
+#~ msgstr "cerca"
+
+#~ msgid "tap or click to search"
+#~ msgstr "tocca o clicca per effettuare la ricerca"
 
 #~ msgid "research"
 #~ msgstr "ricerche"

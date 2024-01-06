@@ -10,6 +10,7 @@ from diventi.products.models import (
 )
 from diventi.feedbacks.models import Survey
 from diventi.comments.models import DiventiComment
+from diventi.blog.models import Article
 
 from .models import (
     Achievement,
@@ -29,18 +30,23 @@ def get_user_data(user, self=None):
     if has_user_authored:
         projects = Product.objects.user_authored(user=user)
         projects_count = projects.count()
-        projects_categories = ProductCategory.objects.authored(user=user)
+        projects_categories = ProductCategory.objects.authored(user=user)        
     else:
         projects = Product.objects.none()
         projects_count = 0
         projects_categories = ProductCategory.objects.none()
-    survey_answers_count = user.answers.count
     ratings_count = Review.objects.filter(user=user).count()
     achievements = user.achievements.all()
     achievements_count = user.achievements.count
     achievements_total_count = Achievement.objects.all().count() 
-    locked_achievements = Achievement.objects.all().exclude(pk__in=achievements)
     comments_count = DiventiComment.objects.filter(user=user).count()
+    articles = (
+        Article.objects
+        .filter(author=user)    
+        .order_by('-publication_date')
+        )
+    articles_count = articles.count()
+    recent_articles = articles[:3]
     try:
         forum_posts = ForumProfile.objects.get(user=user).posts_count
     except ForumProfile.DoesNotExist:
@@ -62,17 +68,17 @@ def get_user_data(user, self=None):
         'projects': projects,
         'projects_count': projects_count,
         'projects_categories': projects_categories,
-        'survey_answers_count':  survey_answers_count,
         'ratings_count': ratings_count,
         'achievements_count': achievements_count,
-        'achievements': achievements,
-        'locked_achievements': locked_achievements,
+        'achievements': achievements,        
         'achievements_total_count': achievements_total_count,
         'comments_count': comments_count,
         'has_user_authored': has_user_authored,
         'collection': collection,
         'forum_posts': forum_posts,
         'recent_posts': recent_posts,
+        'recent_articles': recent_articles,
+        'articles_count': articles_count,
     }
     return user_data
         

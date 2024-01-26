@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - [ebooks] Added the possibility to change a specific content language without the need to open the user menu
+- [blog] Integrated plural categories for article categories
+- [products] Integrated plural categories for product categories
 
 ### Changed
 - [accounts] Refreshed the user avatars with new illustrations

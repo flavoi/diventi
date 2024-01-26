@@ -45,7 +45,7 @@
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link {% ifequal c.title view.kwargs.category %}active{% endifequal %}" href="{% url 'blog:list_category' c.title %}">{{ c.title_plural|capfirst|default:c.title }}</a>
+                            <a class="nav-link {% ifequal c.title view.kwargs.category %}active{% endifequal %}" href="{% url 'blog:list_category' c.title %}">{{ c.title_plural|default:c.title|capfirst }}</a>
                         </li>
                     {% endfor %}
                 </ul>

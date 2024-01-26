@@ -18,7 +18,6 @@ from diventi.core.models import (
     PromotableModel, 
     PublishableModel,
     PublishableModelQuerySet,
-    Category, 
     DiventiImageModel, 
     DiventiCoverModel, 
     Element,

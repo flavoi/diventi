@@ -63,17 +63,17 @@ class BlogCoverAdmin(DiventiTranslationAdmin):
     actions = [deactivate]
 
 
-class CategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
+class ArticleCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     list_display = ('title', 'color_tag')
     fieldsets = (
-        (_('Editing'), {
-            'fields': ('title',),
-        }),
-        (_('Visual style'), {
+        (_('Multimedia'), {
             'fields': ('color',),
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'title_plural'),
         }),
     )
 
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(ArticleCategory, CategoryAdmin)
+admin.site.register(ArticleCategory, ArticleCategoryAdmin)
 admin.site.register(BlogCover, BlogCoverAdmin)

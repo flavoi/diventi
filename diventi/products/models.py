@@ -22,7 +22,6 @@ from diventi.core.models import (
     TimeStampedModel,
     PublishableModel,
     PublishableModelQuerySet,
-    Category,
     Element,
     SectionModel,
     HighlightedModel,
@@ -440,7 +439,7 @@ class ProductDetail(Element, HighlightedModel):
         verbose_name_plural = _('Details')
 
 
-class ChapterCategory(Category):
+class ChapterCategory(Element):
     """ Defines the type of a chapter. """
     class Meta:
         verbose_name = _('Chapter category')

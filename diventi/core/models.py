@@ -110,6 +110,11 @@ class Element(models.Model):
         max_length = 80,
         verbose_name = _('title'),
     )
+    title_plural = models.CharField(
+        blank = True,
+        max_length = 80,
+        verbose_name = _('plural title'),
+    )
     icon = models.CharField(
         blank = True,
         max_length = 30, 
@@ -152,21 +157,6 @@ class Element(models.Model):
     color_tag.short_description = _('Color')
 
     class Meta:
-        abstract = True
-
-
-class Category(models.Model):
-    """
-    An abstract base class model that defines a specific type of object.
-    """
-    title = models.CharField(max_length=60, unique=True)
-    default = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name_plural = _("categories")
         abstract = True
 
 

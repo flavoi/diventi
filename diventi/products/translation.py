@@ -24,7 +24,7 @@ class ProductTranslationOptions(TranslationOptions):
 
 @register(ProductCategory)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'slug')
+    fields = ('title', 'title_plural', 'slug')
 
 
 @register(Product)

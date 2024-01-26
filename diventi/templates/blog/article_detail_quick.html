@@ -108,7 +108,7 @@
                         </a>
                     </div>
                     <div class="card-body py-4">
-                        <small class="d-block text-sm mb-2">{{ article.category }}</small> 
+                        <small class="d-block text-sm text-{{ article.category.color }} mb-2">{{ article.category|capfirst }}</small> 
                             <a href="{{ article.get_absolute_url }}" class="h5 stretched-link lh-150">
                                 {{ article.title|capfirst }}
                             </a>

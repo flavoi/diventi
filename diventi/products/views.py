@@ -173,7 +173,10 @@ class RedirectToPublicEbookView(PublishedProductMixin, PublicProductMixin, Redir
     def get_redirect_url(self, **kwargs):
         product = get_object_or_404(Product, slug=kwargs.get('slug'))
         ebook = get_object_or_404(Book, book_product=product)
-        return reverse('ebooks:book-detail-public', kwargs={'book_slug': ebook.slug})
+        if ebook.paper_id:
+            return reverse('ebooks:book-detail-public', kwargs={'book_slug': ebook.slug})
+        elif ebook.content_file_url:
+            return reverse('ebooks:pdf-detail-public', kwargs={'book_slug': ebook.slug})
 
 
 class AddToUserCollectionView(FreeProductMixin, ProductUpdateView):

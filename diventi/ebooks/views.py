@@ -1,9 +1,9 @@
 from django.shortcuts import (
     get_object_or_404,
     redirect,
-) 
-
+)
 from django.views.generic.detail import DetailView
+from django.views.generic.base import RedirectView
 from django.views import View
 from django.utils.translation import (
     get_language,
@@ -11,13 +11,20 @@ from django.utils.translation import (
 )
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, 
-    UserPassesTestMixin
+    UserPassesTestMixin,
+    AccessMixin,
 )
-from django.http import Http404
-from django.conf import settings
+from django.http import (
+    Http404, 
+    HttpResponseRedirect,
+)
+from django.core.exceptions import PermissionDenied
 
-from hitcount.views import HitCountDetailView
-
+from hitcount.models import HitCount
+from hitcount.views import (
+    HitCountMixin, 
+    HitCountDetailView,
+)
 
 from diventi.products.models import Product
 
@@ -46,11 +53,37 @@ class UserHasProductMixin(UserPassesTestMixin):
         product = book.book_product
         user_has_bought_test = product.user_has_already_bought(self.request.user) or product.user_has_authored(self.request.user)
         if not user_has_bought_test:
-            self.permission_denied_message = _('This book is not in your collection, please check your profile.')
+            self.permission_denied_message = _('This book is not in your collection, please check your profile.')        
+        return user_has_bought_test 
+
+
+class BookIsPublishedMixin(UserPassesTestMixin):
+    """
+        This view checks if the book has been published.
+        It assumes to have the slug of the book object available
+        in book_slug get parameter.
+    """
+    def test_func(self):        
+        book_slug = self.kwargs.get('book_slug', None)
+        book = get_object_or_404(Book, slug=book_slug)
         book_is_published_test = book.is_published()
         if not book_is_published_test:
-            self.permission_denied_message = _('This book is not yet available, please check back later.')
-        return user_has_bought_test and book_is_published_test
+            self.permission_denied_message = _('This book is not published yet, please check back later.')
+        return book_is_published_test
+
+
+class PublicEbookMixin(UserPassesTestMixin):
+    """
+        Returns the ebook if the product is public, or else it redirects to the default view.
+    """
+    def test_func(self):
+        book_slug = self.kwargs.get('book_slug', None)
+        book = get_object_or_404(Book, slug=book_slug)
+        product = get_object_or_404(Product, id=book.book_product.id)
+        book_is_public_test = product.public
+        if not book_is_public_test:
+            self.permission_denied_message = _("This book has no content attached, please contact the authors.")
+        return book_is_public_test
 
 
 class EbookView(View):
@@ -68,18 +101,6 @@ class EbookView(View):
         return context
 
 
-class PublicEbookMixin:
-    """
-        Returns the ebook if the product is public, or else it redirects to the default view.
-    """
-    def get(self, request, *args, **kwargs):
-        obj = self.get_object()
-        product = get_object_or_404(Product, id=obj.book_product.id)
-        if product.public and product.published: 
-            return super().get(request, *args, **kwargs)
-        return redirect('ebooks:book-detail', book_slug=obj.slug)
-        
-
 class BookDetailView(EbookView, HitCountDetailView):
     """ Returns the digital content of a product. """
     
@@ -92,10 +113,15 @@ class BookDetailView(EbookView, HitCountDetailView):
         return queryset.published().product()
 
     def get_template_names(self):
-        return ['ebooks/book_detail_%s.html' % self.object.template]
+        return ['ebooks/book_detail_quick.html', ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['bought'] = self.object.book_product.user_has_already_bought(self.request.user)
+        return context
 
 
-class PaperEbookView(BookDetailView):
+class PaperEbookView(BookIsPublishedMixin, BookDetailView):
     """ Renders an ebook from a paper document """
    
     def get_object(self, queryset=None):
@@ -111,12 +137,10 @@ class PaperEbookView(BookDetailView):
         context = super().get_context_data(**kwargs)
         current_lan = self.kwargs.get('language_code')
         if not current_lan:
-            current_lan = get_language()
-        context['bought'] = self.object.book_product.user_has_already_bought(self.request.user)
+            current_lan = get_language()        
         context['authored'] = self.object.book_product.user_has_authored(self.request.user)
         paper_filename = get_paper_filename(paper_id=self.object.id, paper_lan=current_lan)
         paper_soup = parse_paper_soup(paper_filename)
-        # context['paper_title'] = paper_soup.select_one('.ace-line').extract().get_text()
         context['paper_title'] = self.object.title
         context['paper_toc'] = make_paper_toc(paper_soup)
         context['book_paper'] = paper_filename
@@ -142,3 +166,32 @@ class PrivatePaperEbookView(LoginRequiredMixin, UserHasProductMixin, PaperEbookV
         and has the product in their collection.
     """
     pass
+
+
+class PdfEbookView(BookIsPublishedMixin, BookDetailView):
+    """ Returns the pdf url of the ebook """
+
+    def get_template_names(self):
+        return ['ebooks/book_detail_pdf.html', ]
+
+
+class PublicPdfEbookView(PublicEbookMixin, PdfEbookView):
+    """
+        Renders the ebook regardless of the user or their collection.
+    """
+    pass
+
+
+class PrivatePdfEbookView(LoginRequiredMixin, UserHasProductMixin, PdfEbookView):
+    """
+        Renders the ebook if and only if the user is authenticated 
+        and has the product in their collection.
+    """
+    pass
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+{% block opengraph %}
+    <meta property="og:title" content="Diventi: {{ book.title }}" />
+    <meta property="og:type" content="book" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ book.image }}" />
+    <meta property="og:description" content="{{ book.description }}" />
+    <meta name="description" content="{{ book.description }}"  />
+    <meta name="twitter:card" content="Diventi: {{ book.title }}" />
+{% endblock opengraph %}
+
+{% block title %}{{ object.title|capfirst }}{% endblock title %}
+
+{% block content %}
+<section>
+  <div class="container d-flex align-items-center py-5 py-lg-6 border-bottom">
+    <div class="col px-0">        
+      <div class="row">
+
+        <div class="col-lg-8 mb-2">
+            
+                  <div class="media align-items-center">
+                    <object data="{{ book.content_file_url }}"
+                            type="application/pdf"
+                            width="100%"
+                            style="height:calc(75vh)">
+                      <p>{% trans 'unable to display PDF file.'|capfirst %} <a href="{{ book.content_file_url }}">{% trans 'click here to download instead'|capfirst %}</a>.</p>
+                    </object>
+                  </div>
+
+        </div>
+      
+        <div class="col-lg-4">
+            {% with book.book_product as product %}
+                {% include "products/partials/product_detail_actions_public.html" %}
+            {% endwith %}
+        </div>
+    </div>      
+    </div>
+  </div>
+</section>
+{% endblock content %}

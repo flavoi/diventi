@@ -100,7 +100,7 @@ class BookAdmin(DiventiTranslationAdmin):
             'fields': ('image', 'logo'),
         }),
         (_('Editing'), {
-            'fields': ('title', 'description', 'slug', 'created', 'modified', 'publication_date'),
+            'fields': ('title', 'summary', 'slug', 'created', 'modified', 'publication_date'),
         }),
     )
     readonly_fields = ['created', 'modified', 'publication_date']

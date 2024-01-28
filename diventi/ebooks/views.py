@@ -98,6 +98,9 @@ class EbookView(View):
         book_slug = self.kwargs.get('book_slug', None)
         book = get_object_or_404(Book, slug=book_slug)
         context['book'] = book
+        related_products = self.object.book_product.related_products.all()
+        related_products = related_products.order_by('-publication_date')[:3]
+        context['related_products'] = related_products
         return context
 
 
@@ -152,12 +155,7 @@ class PublicPaperEbookView(PublicEbookMixin, PaperEbookView):
     """
         Renders the ebook regardless of the user or their collection.
     """
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        related_products = self.object.book_product.related_products.all()
-        context['related_products'] = related_products
-        return context
+    pass
 
 
 class PrivatePaperEbookView(LoginRequiredMixin, UserHasProductMixin, PaperEbookView):

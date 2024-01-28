@@ -235,11 +235,6 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
         verbose_name = _('courtesy message'),
         help_text = _('Folded products return this message to all users')
     )
-    relatable = models.BooleanField(
-        default=True, 
-        verbose_name=_('relatable'),
-        help_text = _('Activate to show related objects')
-    ) 
     related_products = models.ManyToManyField(
         'self',
         related_name = 'products', 

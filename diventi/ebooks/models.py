@@ -77,19 +77,6 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
         blank = True,
         verbose_name = _('summary'),
     )
-    DEFAULT_TEMPLATE = 'quick'
-    TEMPLATE_CHOICES = (
-        (DEFAULT_TEMPLATE, _('Quick')),
-        ('web', _('Web')),
-        ('material', _('Material')),
-    )
-    # The template adds a suffix to the template name relative to this object
-    template = models.CharField(
-        max_length=50, 
-        choices=TEMPLATE_CHOICES, 
-        default=DEFAULT_TEMPLATE, 
-        verbose_name=_('template'),
-    )
     # The unique ID that points to the dropbox paper document
     paper_id = models.CharField(
         max_length = 50,
@@ -262,7 +249,7 @@ class ReplacementRule(Element):
 
 class SectionQuerySet(models.QuerySet):
 
-    # Fetch the related objects attached to the section
+    # Fetch the related objects attached to the section
     def usection(self):
         sections = self.select_related('universal_section')
         sections = sections.prefetch_related('rules')

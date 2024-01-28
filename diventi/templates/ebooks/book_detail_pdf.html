@@ -15,52 +15,73 @@
 
 {% block title %}{{ object.title|capfirst }}{% endblock title %}
 
-{% block content %}
-<section>
-  <div class="container d-flex align-items-center py-5 py-lg-6 border-bottom">
-    <div class="col px-0">        
-      <div class="row">
+{% block headerclass %}header-transparent{% endblock headerclass %}
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
-        <div class="col-lg-8 d-none d-lg-block">
-          <div class="media align-items-center">
-            <object data="{{ book.content_file_url }}"
-                    type="application/pdf"
-                    width="100%"
-                    style="height:calc(75vh); display: block;">
-              <p>{% trans 'unable to display PDF file.'|capfirst %} <a href="{{ book.content_file_url }}">{% trans 'click here to download instead'|capfirst %}</a>.</p>
-            </object>
+{% block content %}
+
+<section class="slice slice-lg pb-4 bg-section-dark">
+  <div class="container mb-n7 position-relative zindex-100 pt-5 pt-lg-6">
+    <div class="row mb-5 justify-content-center text-center">
+      <div class="col-lg-7 col-md-9">
+        <h3 class="h1 text-white">{{ book.title }}</h3>
+        <p class="lead text-white opacity-8 mb-0">{{ book.book_product.abstract }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="pricing-container">
+          <div class="text-center mb-7">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              {% if user.is_authenticated %}
+                {% if book.book_product.published and bought %}
+                  <a class="btn btn-sm btn-white disabled" aria-disabled="true">
+                    {% trans "this book is in your collection."|capfirst %}
+                  </a>
+                  <a href="{{ book.content_file_url }}" class="btn btn-sm btn-primary btn-icon" data-fancybox="">
+                        <span class="btn-inner--text"> {% trans 'download'|capfirst %}</span> 
+                        <span class="btn-inner--icon">
+                          <i data-feather="arrow-down"></i>
+                        </span>
+                      </a>
+                {% else %}
+                <form action="{% url 'products:add_public' book.book_product.slug %}" method="POST">
+                    {% csrf_token %}
+                    {{ add_collection_form }}
+                    {{ add_collection_form.errors }}
+                    <button type="submit" class="btn btn-sm btn-white active" data-pricing="monthly">{% trans "Add to collection" %}</button>                    
+                </form>
+
+                {% endif %}
+              {% else %}
+                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-sm btn-white active" data-pricing="monthly">
+                  {% trans "sign in or sign up"|capfirst %}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="pricing row no-gutters">
+            <div class="col-lg-10 mx-auto">              
+                <div class="card border-0 shadow-lg zindex-100 mb-0">
+                  <figure>
+                    <img alt="{{ book.title }}" src="{{ book.image }}" class="card-img">
+                  </figure>
+                </div>
+              </div>          
           </div>
         </div>
-      
-        <div class="col-lg-8 d-lg-none">
-
-                <div class="card shadow-lg bg-cover bg-size--cover d-lg-none" style="background-image: url({{ book.image }});">
-    <!-- Mask -->
-    <span class="mask bg-dark opacity-5"></span>
-
-    <!-- Card body -->
-    <div class="card-body pt-10 mt-auto position-relative">
-
-        <!-- Title -->
-        <a href="{{ book.content_file_url }}" class="d-block h5 mb-3 text-white stretched-link"><button type="button" class="btn btn-secondary rounded-circle btn-icon-only">
-    <span class="btn-inner--icon">
-        <i data-feather="arrow-down"></i>
-    </span>
-</button></a>
-    </div>
-</div>
-        </div>
-
-        <div class="col-lg-4 mb-2">
-            {% with book.book_product as product %}
-                {% include "products/partials/product_detail_actions_public.html" %}
-            {% endwith %}
-        </div>
-
-        
-
-    </div>      
+      </div>
     </div>
   </div>
+  <div class="shape-container shape-line shape-position-bottom">
+    <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
+      <polygon points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</section>
+
+<section class="mb-8">
+  &nbsp;
 </section>
 {% endblock content %}

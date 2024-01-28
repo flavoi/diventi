@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="icon">
-                        <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Folder_2.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+                        <i data-feather="folder"></i>
                     </div>
                     <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}" class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</a>
                     <p class="text-sm text-muted mb-0">
@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="icon">
-                            <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Pen_tool.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+                            <i data-feather="star"></i>
                         </div>
                         <a href="#/" data-toggle="modal" data-target="#reviewModalListQuick-{{ product.pk }}" class="d-block h5 mt-3">{% trans "testimonials"|capfirst %}</a>
                         <p class="text-sm text-muted">
@@ -45,7 +45,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="icon">
-                    <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Folders.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+                    <i data-feather="folder"></i>
                 </div>
                 <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}" class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</a>
                 <p class="text-sm text-muted">
@@ -79,7 +79,7 @@
     <div class="card border-0 rounded-lg">
         <div class="card-body">
             <div class="icon">
-                <img alt="collection" loading="lazy" src="{% static 'quick-v110/img/svg/icons/Marketing.svg' %}" class="svg-inject" style="width: 50px; height: 50px;">
+                <i data-feather="folder"></i>
             </div>
             <h5 class="d-block h5 mt-3">{% trans "your collection"|capfirst %}</h5>
             <p class="text-sm text-muted">

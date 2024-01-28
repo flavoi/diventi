@@ -1140,7 +1140,7 @@ msgstr "pdf/<slug:book_slug>/"
 
 #: diventi/ebooks/urls.py:18
 msgid "pdf/<slug:book_slug>/public/"
-msgstr "pdf/<slug:slug>/pubblico/"
+msgstr "pdf/<slug:book_slug>/pubblico/"
 
 #: diventi/ebooks/utils.py:116
 msgid "Discover"

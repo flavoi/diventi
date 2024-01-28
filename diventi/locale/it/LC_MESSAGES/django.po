@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-28 11:28+0100\n"
+"POT-Creation-Date: 2024-01-28 18:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2478,17 +2478,23 @@ msgstr "torna all'articolo"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:30
-msgid "unable to display PDF file."
-msgstr "il file pdf non è visualizzabile"
+#: diventi/templates/ebooks/book_detail_pdf.html:40
+msgid "this content is in your collection."
+msgstr "questo contenuto è nella tua collezione."
 
-#: diventi/templates/ebooks/book_detail_pdf.html:30
-msgid "click here to download instead"
-msgstr "clicca qui per scaricarlo"
-
-#: diventi/templates/ebooks/book_detail_pdf.html:48
-msgid "dowload"
+#: diventi/templates/ebooks/book_detail_pdf.html:43
+msgid "download"
 msgstr "scarica"
+
+#: diventi/templates/ebooks/book_detail_pdf.html:53
+#: diventi/templates/products/partials/product_detail_actions.html:24
+#: diventi/templates/products/partials/product_detail_actions_public.html:61
+msgid "Add to collection"
+msgstr "Aggiungi alla collezione"
+
+#: diventi/templates/ebooks/book_detail_pdf.html:59
+msgid "sign in or sign up to download this content"
+msgstr "accedi o registrati per scaricare questo contenuto"
 
 #: diventi/templates/ebooks/book_detail_quick.html:67
 msgid "time to read"
@@ -3394,11 +3400,6 @@ msgstr ""
 msgid "try again"
 msgstr "prova di nuovo"
 
-#: diventi/templates/products/partials/product_detail_actions.html:24
-#: diventi/templates/products/partials/product_detail_actions_public.html:61
-msgid "Add to collection"
-msgstr "Aggiungi alla collezione"
-
 #: diventi/templates/products/partials/product_detail_actions.html:35
 msgid "you've already answered"
 msgstr "hai già risposto, grazie"
@@ -3587,6 +3588,12 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "unable to display PDF file."
+#~ msgstr "il file pdf non è visualizzabile"
+
+#~ msgid "click here to download instead"
+#~ msgstr "clicca qui per scaricarlo"
 
 #~ msgid "Paper data"
 #~ msgstr "Contenuti Paper"

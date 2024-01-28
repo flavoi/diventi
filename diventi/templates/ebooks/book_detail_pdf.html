@@ -37,7 +37,7 @@
               {% if user.is_authenticated %}
                 {% if book.book_product.published and bought %}
                   <a class="btn btn-sm btn-white disabled" aria-disabled="true">
-                    {% trans "this book is in your collection."|capfirst %}
+                    {% trans "this content is in your collection."|capfirst %}
                   </a>
                   <a href="{{ book.content_file_url }}" class="btn btn-sm btn-primary btn-icon" data-fancybox="">
                         <span class="btn-inner--text"> {% trans 'download'|capfirst %}</span> 
@@ -56,7 +56,7 @@
                 {% endif %}
               {% else %}
                 <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-sm btn-white active" data-pricing="monthly">
-                  {% trans "sign in or sign up"|capfirst %}
+                  {% trans "sign in or sign up to download this content"|capfirst %}
                 </a>
               {% endif %}
             </div>

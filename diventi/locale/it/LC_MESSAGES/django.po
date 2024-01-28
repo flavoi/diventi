@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-28 00:48+0100\n"
+"POT-Creation-Date: 2024-01-28 11:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1158,7 +1158,9 @@ msgstr "Questo libro non è ancora disponibile, per favore controlla più tardi.
 
 #: diventi/ebooks/views.py:85
 msgid "This book has no content attached, please contact the authors."
-msgstr "Questo libro non è collegato ad alcun contenuto, per favore contatta gli autori."
+msgstr ""
+"Questo libro non è collegato ad alcun contenuto, per favore contatta gli "
+"autori."
 
 #: diventi/ebooks/views.py:130
 msgid "This book is not linked to a paper, please contact the authors."
@@ -2476,13 +2478,17 @@ msgstr "torna all'articolo"
 msgid "Show replies"
 msgstr "Mostra le risposte"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:31
+#: diventi/templates/ebooks/book_detail_pdf.html:30
 msgid "unable to display PDF file."
 msgstr "il file pdf non è visualizzabile"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:31
+#: diventi/templates/ebooks/book_detail_pdf.html:30
 msgid "click here to download instead"
 msgstr "clicca qui per scaricarlo"
+
+#: diventi/templates/ebooks/book_detail_pdf.html:48
+msgid "dowload"
+msgstr "scarica"
 
 #: diventi/templates/ebooks/book_detail_quick.html:67
 msgid "time to read"

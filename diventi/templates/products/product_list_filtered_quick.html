@@ -57,7 +57,7 @@
     <div class="container">
         <div class="row mx-lg-n4">
             {% for product in products %}
-            <div class="col-md-4 px-lg-2 order-lg-{{ product.order_lg }} order-md-{{ product.order_md }} order-sm-{{ product.order_sm }} order-{{ product.order_sm }}">
+            <div class="col-md-4 px-lg-2">
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
                         <a href="{{ product.get_absolute_url }}" class="d-block">

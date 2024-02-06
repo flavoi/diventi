@@ -75,9 +75,6 @@ class ProductAdmin(DiventiTranslationAdmin):
         (_('Management'), {
             'fields': ('published', 'unfolded', 'product_survey', 'pinned', 'featured', 'public',)
         }),
-        (_('Layout'), {
-            'fields': ('col_lg', 'order_lg', 'col_md', 'order_md', 'col_sm', 'order_sm',)
-        }),
         (_('Pricing'), {
             'fields': ('stripe_product', 'stripe_price',)
         }),

@@ -160,7 +160,7 @@ class ProductFormat(Element):
         verbose_name_plural = _('Formats')
 
 
-class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, SectionModel, DiventiColModel):
+class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, SectionModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(
         max_length=50, 

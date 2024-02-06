@@ -16,11 +16,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Refreshed the user avatars with new illustrations
 - [accounts] Enabled readonly bio to be displayed in the profile page
 - [accounts] Enabled role title in the search results, if present
+- [accounts] Updated redirect after a profile update to the user detail page
 - [landing] Enabled menu with user avatar in desktop mode
 
 ### Removed
 - [accounts] Removed unecessary context variables to display the navbar
 - [landing] Removed user dropdown with duplicated links in respect of the user modal
+- [products] Removed layout fields and admin section and moved them to the template engine
 
 ### Fixed
 - [accounts] Fixed a problem that made dead links visible to anonymous users

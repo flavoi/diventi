@@ -32,7 +32,7 @@ from diventi.products.models import Product
 from diventi.comments.models import DiventiComment
 from diventi.landing.models import Section
 
-from .models import DiventiUser, DiventiAvatar
+from .models import DiventiUser
 from .forms import (
     DiventiAuthenticationForm,
     DiventiPasswordResetForm,
@@ -176,7 +176,7 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
         return 0
 
     def get_success_url(self):        
-        return reverse('accounts:settings', kwargs={'nametag': self.object.nametag})
+        return reverse('accounts:detail', kwargs={'nametag': self.object.nametag})
 
     def get_form_kwargs(self):
         """ Inject form with additional keyword arguments. """

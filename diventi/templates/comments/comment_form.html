@@ -7,7 +7,9 @@
 {% if user.is_authenticated %}
     {% get_comment_form for object as form %}
     <div class="media media-comment align-items-center">
-        <img alt="{{ request.user.get_full_name }}" class="rounded-circle shadow mr-4" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if request.user.image %}{{ request.user.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" style="width:58px">
+        <span class="avatar rounded-circle">
+            <img alt="{{ request.user.get_full_name }}" class="rounded-circle shadow mr-4" src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}">
+        </span>
         <div class="media-body">
           <form id="live-preview-form" action="{% comment_form_target %}" method="POST" class="rounded-lg border">
              {% csrf_token %}

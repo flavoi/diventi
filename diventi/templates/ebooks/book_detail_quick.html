@@ -62,32 +62,38 @@
         <span class="badge badge-{{ book.book_product.category.color }} badge-pill">{{ book.book_product.category }}</span>
         <h1 class="display-4 text-white mt-4 lh-110">{{ paper_title|capfirst }}</h1>
         <p class="lead mb-4 text-white mt-4">{{ book.book_product.abstract|capfirst }}</p>
-        <div class="mt-5">
-           <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
+        <div class="d-flex justify-content-left">
+            <div class="mt-5">
+                <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
                 <i data-feather="book-open" class="mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
-            </span>
-        </div>
-        <div class="mt-3">
-            <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
-                <i data-feather="eye" class="mr-1"></i> {% trans 'content language'|capfirst %}: <strong>{{ current_lan|upper }}</strong>
-            </span>
-            {% if bought or authored %}
-            <div class="dropdown">
-                <button class="btn btn-secondary btn-sm rounded-circle btn-icon-only dropdown-animate ml-1" type="button" data-toggle="dropdown" aria-expanded="false">
-                    <span class="btn-inner--icon">
-                        <i data-feather="edit-2"></i>
-                    </span>
-                </button>          
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'en' %}">
-                        <img src="{% static 'quick-v110/img/icons/flags/gb.svg' %}"> {% trans "english"|capfirst %} (EN)
+                </span>
+                {% if bought or authored %}
+                <div class="dropdown">
+                    <button class="btn btn-primary btn-sm btn-icon-only btn-icon rounded-circle dropdown-animate ml-1" type="button" data-toggle="dropdown" aria-expanded="false">
+                        <span class="btn-inner--icon">
+                            <i data-feather="globe"></i> 
+                        </span>
+                    </button>          
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'en' %}">
+                            <img src="{% static 'quick-v110/img/icons/flags/gb.svg' %}"> {% trans "english"|capfirst %} (EN)
+                        </a>
+                        <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'it' %}">
+                            <img src="{% static 'quick-v110/img/icons/flags/it.svg' %}"> {% trans "italian"|capfirst %} (IT)
+                        </a>
+                    </div>            
+                </div>
+                {% endif %}
+                {% if book.book_product.related_forum_topic %}
+                    {% with book.book_product.related_forum_topic as topic %}
+                    <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-info btn-sm btn-icon-only btn-icon rounded-circle" data-toggle="tooltip" data-placement="bottom" title="{% trans 'join the discussion'|capfirst %}" target="_blank">                        
+                        <span class="btn-inner--icon">
+                            <i data-feather="align-center"></i> 
+                        </span>
                     </a>
-                    <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'it' %}">
-                        <img src="{% static 'quick-v110/img/icons/flags/it.svg' %}"> {% trans "italian"|capfirst %} (IT)
-                    </a>
-                </div>            
+                    {% endwith %}
+                {% endif %}
             </div>
-            {% endif %}
         </div>
       </div>
     </div>
@@ -130,10 +136,6 @@
                 </article>
             </div>        
             <div class="col-lg-4 order-lg-3 order-2">
-                {% with book.book_product as product %}
-                    {% include "products/partials/product_detail_actions_public.html" %}
-                {% endwith %}
-
                 <div data-toggle="sticky" data-sticky-offset="50" class="" style="max-height: 600px; overflow-y: auto;">
                     <div class="d-none d-md-none d-lg-block">
                         <div class="card">

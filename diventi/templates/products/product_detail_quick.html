@@ -34,30 +34,32 @@
                         </h1>
                     </div>
                     <div class="col-lg-5 col-md-7 mx-md-auto order-lg-2 order-2">
-                        {% with button_action_class='w-100' %}
-                            {% include "products/partials/product_detail_actions.html" %}
-                        {% endwith %}
-                        <div class="mt-4 pb-4">
+                        <div class="mt-0 pb-4">
                             <ul class="list-group">
                               <li class="list-group-item">{{ product.description|capfirst }}</li>
                               <li class="list-group-item">
-                                <b>{% trans "formats"|capfirst %}:</b> {% for format in product.formats.all %}
-                                    <a tabindex="0" class="h6 text-muted text-underline--dashed" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ format.title }}" data-content="{{ format.description }}">
+                                <b>{% trans "format"|capfirst %}:</b> {% for format in product.formats.all %}
+                                    <a tabindex="0" class="text-muted text-underline--dashed" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ format.title }}" data-content="{{ format.description }}">
                                         {{ format.title|lower }}
                                     </a>
                                 {% endfor %}
                             </li>
-                              <li class="list-group-item">
-                                {% get_rating for product as average_rating %}
-                                {% get_review_count for product as rating_count %}
-                                {% with average_rating as rating %}
-                                    <span class="static-rating d-block">
-                                        {% include "reviews/rating_star.html" %}
-                                    </span>
-                                {% endwith %}
-                                <span class="h6">{{ average_rating|floatformat:1|default:'-' }} {% trans "out of 5 stars" %}</span>
-                                <span class="text-muted text-sm mb-0">{% trans "from" %} <a href="#{% trans 'reviews' %}" class="text-sm mb-0">{{ rating_count }} {% blocktrans count counter=rating_count %}review{% plural %}reviews{% endblocktrans %}</a></span>
+                            {% if product.related_forum_topic %}
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-left">
+                                    {% include "products/partials/product_detail_actions.html" %}
+                                    {% with product.related_forum_topic as topic %}    
+                                        {% if topic %}
+                                        <div class="mt-1 ml-1">
+                                            <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-secondary btn-sm btn-icon bg-light-info" target="_blank">
+                                                {% trans "join the discussion"|capfirst %}
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
                             </li>
+                            {% endif %}
                               <li class="list-group-item"><b>{% trans 'Last update date' %}:</b> {{ product.modified|date:'M d, Y' }}</li>
                               <li class="list-group-item"><b>{% trans 'category'|capfirst %}:</b> <a href="{% url 'products:list_category' product.category.slug %}" target="_blank" class="text-{{ product.category.color|default:'primary' }}">{{ product.category|lower }}</a></li>
                             </ul>
@@ -73,8 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class="shape-container shape-line shape-position-bottom"><svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class=""><polygon points="2560 0 2560 100 0 100"></polygon></svg>
-        </div>
+        
     </div>
 </section>
 
@@ -113,31 +114,6 @@
 
 </section>
 
-{% if product.imagepreviews.all %}
-<section class="slice delimiter-bottom">
-    <div class="container">
-        {% for image in product.imagepreviews.all %}
-        <div class="section-process-step {% if forloop.first %}pt-0{% elif forloop.last %}pb-0{% endif %}">
-            <div class="row row-grid justify-content-between align-items-center">
-                <div class="col-lg-5 order-lg-2">
-                    <h5 class="h3">{{ image.title|capfirst }}</h5>
-                    <p class="lead my-4">
-                        {{ image.description|capfirst }}
-                    </p>
-                </div>
-                <div class="col-lg-6 order-lg-{% if forloop.counter|divisibleby:2 %}3{% else %}1{% endif %}">
-                    <div class="card mb-0 mr-lg-5">
-                        <div class="card-body p-2">
-                            <img alt="{{ image.title|capfirst }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{ image.image }}" class="img-fluid shadow rounded">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</section>
-{% endif %}
 
 {% if product.related_articles.all %}
 <section class="slice delimiter-bottom">
@@ -215,6 +191,7 @@
 </section>
 {% endif %}
 
+<!--
 <section class="slice bg-section-secondary">
     <div class="container">
         <div class="row mb-5 justify-content-center text-center">
@@ -272,8 +249,11 @@
         </div>
     </div>
 </section>
+-->
 
 {% endblock content %}
+
+{% block footercolor %}{% endblock footercolor %}
 
 {% block extrafooter %}
 <div class="row justify-content-center">

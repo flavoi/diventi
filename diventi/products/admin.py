@@ -85,7 +85,7 @@ class ProductAdmin(DiventiTranslationAdmin):
             'fields': ('title', 'short_description', 'abstract', 'description', 'category', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
         }),
         (_('Related'), {
-            'fields': ('related_products', 'related_articles'),
+            'fields': ('related_products', 'related_articles', 'related_forum_topic'),
         }),
     )
     actions = [make_published, make_unpublished]

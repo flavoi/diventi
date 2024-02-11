@@ -9,6 +9,8 @@ from django.utils.translation import gettext_lazy as _, gettext
 from django.contrib.humanize.templatetags.humanize import naturalday
 from django.contrib.auth import get_user_model
 
+from machina.apps.forum_conversation.models import Topic
+
 from cuser.middleware import CuserMiddleware
 
 from .fields import ProtectedFileField
@@ -55,6 +57,7 @@ class ProductQuerySet(FeaturedModelQuerySet):
         products = products.prefetch_related('formats')
         products = products.prefetch_related('related_articles')
         products = products.select_related('product_survey')
+        products = products.select_related('related_forum_topic')
         return products
 
     # Fetch the products purchased by the user
@@ -246,6 +249,12 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
         related_name = 'products', 
         blank = True, 
         verbose_name = _('related articles'),
+    )
+    related_forum_topic = models.OneToOneField(
+        Topic,
+        blank = True,
+        null = True,
+        on_delete = models.SET_NULL,
     )
     formats = models.ManyToManyField(
         ProductFormat, 

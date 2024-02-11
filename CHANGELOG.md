@@ -11,18 +11,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [ebooks] Added the possibility to change a specific content language without the need to open the user menu
 - [blog] Integrated plural categories for article categories
 - [products] Integrated plural categories for product categories
+- [products] Added a related forum post into the product object
 
 ### Changed
 - [accounts] Refreshed the user avatars with new illustrations
 - [accounts] Enabled readonly bio to be displayed in the profile page
 - [accounts] Enabled role title in the search results, if present
 - [accounts] Updated redirect after a profile update to the user detail page
+- [accounts] Added games and deeds count to the user stats
 - [landing] Enabled menu with user avatar in desktop mode
 
 ### Removed
 - [accounts] Removed unecessary context variables to display the navbar
+- [accounts] Removed comments and reviews count from the users stats
 - [landing] Removed user dropdown with duplicated links in respect of the user modal
 - [products] Removed layout fields and admin section and moved them to the template engine
+- [reviews] Disabled reviews functionality from product and ebook pages
 
 ### Fixed
 - [accounts] Fixed a problem that made dead links visible to anonymous users

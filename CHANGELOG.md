@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Updated redirect after a profile update to the user detail page
 - [accounts] Added games and deeds count to the user stats
 - [landing] Enabled menu with user avatar in desktop mode
+- [machina] Enabled user achievements
 
 ### Removed
 - [accounts] Removed unecessary context variables to display the navbar

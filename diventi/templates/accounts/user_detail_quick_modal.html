@@ -52,8 +52,8 @@
                                 <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.articles_count }}</p>
                                 <span class="d-block text-sm">{% trans "articles"|capfirst %}</span>
                             {% else %}
-                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.comments_count }}</p>
-                                <span class="d-block text-sm">{% trans "comments"|capfirst %}</span>
+                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.achievements_count }}</p>
+                                <span class="d-block text-sm">{% trans "deeds"|capfirst %}</span>
                             {% endif %}
                         </div>
                         <div class="col-4 text-center">
@@ -61,8 +61,8 @@
                                 <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.projects_count }}</p>
                                 <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
                             {% else %}
-                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.ratings_count }}</p>
-                                <span class="d-block text-sm">{% trans "reviews"|capfirst %}</span>
+                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.collection_count }}</p>
+                                <span class="d-block text-sm">{% trans "games"|capfirst %}</span>
                             {% endif %}
                         </div>
                         <div class="col-4 text-center">

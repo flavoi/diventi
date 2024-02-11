@@ -48,7 +48,7 @@
                 <div class="mb-4">
                    <div class="row align-items-center mb-3">
                       <div class="col">
-                         <h6 class="mb-0">{% trans "achievements"|capfirst %}</h6>
+                         <h6 class="mb-0">{% trans "deeds"|capfirst %}</h6>
                       </div>
                    </div>
                    <div class="row mx-n2">
@@ -65,7 +65,7 @@
                       </div>
                     {% empty %}
                     <div class="col-auto text-center mb-3 px-2">
-                        <div class="text-sm text-muted mt-1">{% trans "there are no achievements yet"|capfirst %}.</div>
+                        <div class="text-sm text-muted mt-1">{% trans "there are no deeds, yet"|capfirst %}.</div>
                     </div>
                     {% endfor %}
                    </div>
@@ -106,22 +106,17 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-4 text-center">
-                                            {% if authenticated_user_data.articles_count %}
-                                                <span class="h5 mb-0">{{ user_data.articles_count }}</span>
-                                                <span class="d-block text-sm">{% trans "articles"|capfirst %}</span>
-                                            {% else %}
-                                                <span class="h5 mb-0">{{ user_data.comments_count }}</span>
-                                                <span class="d-block text-sm">{% trans "comments"|capfirst %}</span>
-                                            {% endif %}
+                                        <div class="col-4 text-center">                                        
+                                            <span class="h5 mb-0">{{ user_data.achievements_count }}</span>
+                                            <span class="d-block text-sm">{% trans "deeds"|capfirst %}</span>
                                         </div>
                                         <div class="col-4 text-center">
                                             {% if user_data.has_user_authored %}
                                                 <span class="h5 mb-0">{{ user_data.projects_count }}</span>
                                                 <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
                                             {% else %}
-                                                <span class="h5 mb-0">{{ user_data.ratings_count }}</span>
-                                                <span class="d-block text-sm">{% trans "reviews"|capfirst %}</span>
+                                                <span class="h5 mb-0">{{ user_data.collection_count }}</span>
+                                                <span class="d-block text-sm">{% trans "games"|capfirst %}</span>
                                             {% endif %}
                                         </div>
                                         <div class="col-4 text-center">
@@ -140,7 +135,7 @@
                                         {% if object.bio %}
                                             {{ object.bio }}
                                         {% else %}
-                                            <span class="text-sm">{% trans 'there is no bio di display, yet'|capfirst %}.</span>
+                                            <span class="text-sm">{% trans 'there is no bio, yet'|capfirst %}.</span>
                                         {% endif %}
                                     </p>
                                 </div>
@@ -162,7 +157,7 @@
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             {% for category in user_data.projects_categories %}
                                 <li class="nav-item">
-                                    <a class="nav-link{% if forloop.first %} active{% endif %}" id="pills-{{ category.pk }}-tab" data-toggle="pill" href="#pills-{{ category.pk }}" role="tab" aria-controls="pills-{{ category.pk }}" aria-selected="true">{{ category.title }}</a>
+                                    <a class="nav-link{% if forloop.first %} active{% endif %}" id="pills-{{ category.pk }}-tab" data-toggle="pill" href="#pills-{{ category.pk }}" role="tab" aria-controls="pills-{{ category.pk }}" aria-selected="true">{{ category.title_plural }}</a>
                                   </li>
                             {% endfor %}
                             </ul>                    
@@ -182,11 +177,7 @@
                                                             </div>
                                                             {% if request.user == object %}
                                                             <div class="text-right">
-                                                                {% if product.book.published and product.published %}
-                                                                    {% get_review_by_user for product as review %}
-                                                                    {% with object=product %}
-                                                                        {% include "reviews/review_button_modal_quick.html" %}
-                                                                    {% endwith %}                      
+                                                                {% if product.book.published and product.published %}                   
                                                                     <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
                                                                         <span class="btn-inner--text ml-1">
                                                                             {% trans "read online"|capfirst %}
@@ -256,10 +247,6 @@
                                         </div>
                                             <div class="text-right">
                                             {% if product.book.published and product.published %}
-                                                {% get_review_by_user for product as review %}
-                                                {% with object=product %}
-                                                    {% include "reviews/review_button_modal_quick.html" %}
-                                                {% endwith %}                      
                                                 <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
                                                     <span class="btn-inner--text ml-1">
                                                         {% trans "read online"|capfirst %}
@@ -327,7 +314,7 @@
                                     <div class="card rounded-lg border-0">
                                         <div class="p-4 text-left">
                                             <p class="mb-0 text-sm text-muted">
-                                                {% trans "There are no surveys yet" %}.
+                                                {% trans "There are no surveys, yet" %}.
                                             </p>
                                         </div>
                                     </div>
@@ -386,7 +373,7 @@
                                     <div class="card rounded-lg border-0">
                                         <div class="p-4 text-left">
                                             <p class="mb-0 text-sm text-muted">
-                                                {% trans "There are no forum posts yet" %}.
+                                                {% trans "There are no forum posts, yet" %}.
                                             </p>
                                         </div>
                                     </div>

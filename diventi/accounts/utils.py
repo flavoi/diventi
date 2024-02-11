@@ -75,6 +75,7 @@ def get_user_data(user, self=None):
         'comments_count': comments_count,
         'has_user_authored': has_user_authored,
         'collection': collection,
+        'collection_count': len(collection),
         'forum_posts': forum_posts,
         'recent_posts': recent_posts,
         'recent_articles': recent_articles,

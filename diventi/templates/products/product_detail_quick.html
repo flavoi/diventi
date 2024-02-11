@@ -2,7 +2,6 @@
 {% load core_extras %}
 {% load i18n %}
 {% load static %}
-{% load reviews %}
 {% load humanize %}
 
 {% block base_opengraph %}
@@ -50,9 +49,13 @@
                                     {% include "products/partials/product_detail_actions.html" %}
                                     {% with product.related_forum_topic as topic %}    
                                         {% if topic %}
-                                        <div class="mt-1 ml-1">
+                                        <div class="mt-1 ml-1">                                            
                                             <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-secondary btn-sm btn-icon bg-light-info" target="_blank">
-                                                {% trans "join the discussion"|capfirst %}
+                                                
+                                                    <i data-feather="align-center" class=" mr-1 mb-1"></i>
+                                                
+                                                    {% trans "comment on"|capfirst %}
+                                                
                                             </a>
                                         </div>
                                         {% endif %}

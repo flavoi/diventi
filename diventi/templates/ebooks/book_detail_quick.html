@@ -86,7 +86,7 @@
                 {% endif %}
                 {% if book.book_product.related_forum_topic %}
                     {% with book.book_product.related_forum_topic as topic %}
-                    <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-info btn-sm btn-icon-only btn-icon rounded-circle" data-toggle="tooltip" data-placement="bottom" title="{% trans 'join the discussion'|capfirst %}" target="_blank">                        
+                    <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-info btn-sm btn-icon-only btn-icon rounded-circle" data-toggle="tooltip" data-placement="bottom" title="{% trans 'comment on'|capfirst %}" target="_blank">                        
                         <span class="btn-inner--icon">
                             <i data-feather="align-center"></i> 
                         </span>

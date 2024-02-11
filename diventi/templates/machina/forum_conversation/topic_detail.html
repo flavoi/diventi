@@ -77,7 +77,7 @@
               {% if post.updates_count %}
               <div class="mt-4 edit-info">
                 <small class="text-muted">
-                  <i data-feather="edit"></i>&nbsp;{% if post.updated_by %}{% trans "Last edited by:" %}&nbsp;<a href="{% url 'accounts:redirect' post.updated_by_id %}">{{ post.updated_by|forum_member_display_name }}</a>&nbsp;{% else %}{% trans "Updated" %}&nbsp;{% endif %}{% trans "on" %}&nbsp;{{ post.updated }}, {% blocktrans count counter=post.updates_count %}edited {{counter }} time in total.{% plural %}edited {{counter }} times in total.{% endblocktrans %}
+                  <i data-feather="edit"></i>&nbsp;{% if post.updated_by %}{% trans "Last edited by:" %}&nbsp;<a href="{% url 'accounts:redirect' post.updated_by_id %}">{{ post.updated_by|forum_member_display_name }}</a>&nbsp;{% else %}{% trans "Updated" %}&nbsp;{% endif %}{% trans "on" %}&nbsp;{{ post.updated }}, {% blocktrans count counter=post.updates_count %}edited {{counter }} time in total.{% plural %}edited {{counter }} times in total.{% endblocktrans %}                  
                 </small>
                 {% if post.update_reason %}
                 <br />
@@ -95,10 +95,13 @@
                 {% include "partials/avatar.html" with profile=post.poster.forum_profile show_placeholder=True %}
               </a>
             
-            <div class="username"><a href="{% url 'accounts:redirect' post.poster_id %}"><b>{{ post.poster|forum_member_display_name }}</b></a></div>
+            <div class="username"><a href="{% url 'accounts:redirect' post.poster_id %}"><b>{{ post.poster|forum_member_display_name }}</b></a></div>
             <div class="posts-count text-muted"><b>{% trans "Posts:" %}</b>&nbsp;{{ post.poster.forum_profile.posts_count }}</div>
+            {% for a in post.poster.achievements.all %}
+                {% include 'accounts/partials/achievement_badge.html' %}
+            {% endfor %}
             {% else %}
-            <div class="username"><b>{{ post.username }}</b></div>
+            <div class="username"><b>{{ post.username }}</b></div>            
             <div class="username text-muted">{% trans "Anonymous user" %}</div>
             {% endif %}
           </div>

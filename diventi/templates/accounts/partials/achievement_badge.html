@@ -1,3 +1,3 @@
-<span class="badge badge-{{ a.color }} badge-circle mb-1" data-toggle="tooltip" data-placement="top" data-html="true" title="{{ a.title }}: {{ a.description|lower }}">
-    <i data-feather="star"></i>
-</span>
+<a tabindex="0" class="badge badge-{{ a.color }} badge-circle mb-1" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ a.title|capfirst }}" data-content="{{ a.description|capfirst }}">
+    <i data-feather="{{ a.icon|default:'star' }}"></i>
+</a>

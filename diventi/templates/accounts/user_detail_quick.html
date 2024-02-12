@@ -88,7 +88,7 @@
                                         <div class="col-auto">
                                             <!-- Avatar -->
                                             <a href="#" class="avatar rounded-circle">
-                                                <img alt="{{ object.first_name|title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}">
+                                                <img alt="{{ object.first_name|title }}" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if object.avatar.image %}{{ object.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" loading="lazy">
                                             </a>
                                         </div>
                                         <div class="col ml-md-n2">
@@ -107,9 +107,14 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-4 text-center">                                        
-                                            <span class="h5 mb-0">{{ user_data.achievements_count }}</span>
-                                            <span class="d-block text-sm">{% trans "deeds"|capfirst %}</span>
+                                        <div class="col-4 text-center">
+                                            {% if user_data.has_user_authored %}                              
+                                                <span class="h5 mb-0">{{ user_data.articles_count }}</span>
+                                                <span class="d-block text-sm">{% trans "articles"|capfirst %}</span>
+                                            {% else %}
+                                                <span class="h5 mb-0">{{ user_data.achievements_count }}</span>
+                                                <span class="d-block text-sm">{% trans "deeds"|capfirst %}</span>
+                                            {% endif %}
                                         </div>
                                         <div class="col-4 text-center">
                                             {% if user_data.has_user_authored %}

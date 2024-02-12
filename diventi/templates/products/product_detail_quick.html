@@ -42,11 +42,11 @@
                                         {{ format.title|lower }}
                                     </a>
                                 {% endfor %}
-                            </li>
-                            {% if product.related_forum_topic %}
+                            </li>                            
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-left">
                                     {% include "products/partials/product_detail_actions.html" %}
+                                    {% if product.related_forum_topic %}
                                     {% with product.related_forum_topic as topic %}    
                                         {% if topic %}
                                         <div class="mt-1 ml-1">                                            
@@ -60,9 +60,9 @@
                                         </div>
                                         {% endif %}
                                     {% endwith %}
+                                    {% endif %}
                                 </div>
-                            </li>
-                            {% endif %}
+                            </li>                            
                               <li class="list-group-item"><b>{% trans 'Last update date' %}:</b> {{ product.modified|date:'M d, Y' }}</li>
                               <li class="list-group-item"><b>{% trans 'category'|capfirst %}:</b> <a href="{% url 'products:list_category' product.category.slug %}" target="_blank" class="text-{{ product.category.color|default:'primary' }}">{{ product.category|lower }}</a></li>
                             </ul>

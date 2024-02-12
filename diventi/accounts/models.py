@@ -128,8 +128,8 @@ class DiventiCover(DiventiImageModel):
 class Achievement(Element):
 
     class Meta:
-        verbose_name = _('Achievement')
-        verbose_name_plural = _('Achievements')
+        verbose_name = _('Deed')
+        verbose_name_plural = _('Deeds')
 
 
 class Role(Element):

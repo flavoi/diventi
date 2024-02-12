@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-11 23:21+0100\n"
+"POT-Creation-Date: 2024-02-12 09:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,12 +170,12 @@ msgid "Covers"
 msgstr "Copertine"
 
 #: diventi/accounts/models.py:131
-msgid "Achievement"
-msgstr "Riconoscimento"
+msgid "Deed"
+msgstr "Premio"
 
 #: diventi/accounts/models.py:132
-msgid "Achievements"
-msgstr "Riconoscimenti"
+msgid "Deeds"
+msgstr "Premi"
 
 #: diventi/accounts/models.py:138
 msgid "Role"
@@ -449,7 +449,7 @@ msgstr "Categorie di articolo"
 
 #: diventi/blog/models.py:116 diventi/ebooks/models.py:117
 #: diventi/products/models.py:219 diventi/products/models.py:456
-#: diventi/templates/products/product_detail_quick.html:64
+#: diventi/templates/products/product_detail_quick.html:67
 msgid "category"
 msgstr "categoria"
 
@@ -1202,7 +1202,7 @@ msgid "survey"
 msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:127
-#: diventi/templates/accounts/user_detail_quick.html:295
+#: diventi/templates/accounts/user_detail_quick.html:296
 #: diventi/templates/base_quick.html:239
 msgid "surveys"
 msgstr "sondaggi"
@@ -1972,7 +1972,7 @@ msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
-#: diventi/templates/accounts/user_detail_quick.html:232
+#: diventi/templates/accounts/user_detail_quick.html:233
 #: diventi/templates/accounts/user_detail_quick_modal.html:106
 #: diventi/templates/products/partials/product_detail_actions.html:38
 msgid "collection"
@@ -2133,82 +2133,86 @@ msgid "Update profile"
 msgstr "Aggiorna profilo"
 
 #: diventi/templates/accounts/user_detail_quick.html:51
-#: diventi/templates/accounts/user_detail_quick.html:111
+#: diventi/templates/accounts/user_detail_quick.html:112
 #: diventi/templates/accounts/user_detail_quick_modal.html:56
 msgid "deeds"
-msgstr ""
+msgstr "premi"
 
 #: diventi/templates/accounts/user_detail_quick.html:68
 msgid "there are no deeds, yet"
-msgstr "Nessun riconoscimento trovato"
+msgstr "nessun premio trovato"
 
-#: diventi/templates/accounts/user_detail_quick.html:78
+#: diventi/templates/accounts/user_detail_quick.html:69
+msgid "check the 'participate' section to get more"
+msgstr "esplora la sezione 'partecipa' per ottenerne"
+
+#: diventi/templates/accounts/user_detail_quick.html:79
 msgid "quick stats"
 msgstr "statistiche veloci"
 
-#: diventi/templates/accounts/user_detail_quick.html:101
+#: diventi/templates/accounts/user_detail_quick.html:102
 msgid "edit"
 msgstr "modifica"
 
-#: diventi/templates/accounts/user_detail_quick.html:116
-#: diventi/templates/accounts/user_detail_quick.html:151
+#: diventi/templates/accounts/user_detail_quick.html:117
+#: diventi/templates/accounts/user_detail_quick.html:152
 #: diventi/templates/accounts/user_detail_quick_modal.html:62
 #: diventi/templates/accounts/user_detail_quick_modal.html:76
 #: diventi/templates/base_quick.html:238
 msgid "projects"
 msgstr "progetti"
 
-#: diventi/templates/accounts/user_detail_quick.html:119
+#: diventi/templates/accounts/user_detail_quick.html:120
 #: diventi/templates/accounts/user_detail_quick_modal.html:65
 msgid "games"
 msgstr "giochi"
 
-#: diventi/templates/accounts/user_detail_quick.html:124
+#: diventi/templates/accounts/user_detail_quick.html:125
 #: diventi/templates/accounts/user_detail_quick_modal.html:70
 msgid "posts"
 msgstr "post"
 
-#: diventi/templates/accounts/user_detail_quick.html:138
+#: diventi/templates/accounts/user_detail_quick.html:139
 msgid "there is no bio, yet"
 msgstr "non è ancora disponibile alcuna biografia"
 
-#: diventi/templates/accounts/user_detail_quick.html:183
-#: diventi/templates/accounts/user_detail_quick.html:252
+#: diventi/templates/accounts/user_detail_quick.html:184
+#: diventi/templates/accounts/user_detail_quick.html:253
 #: diventi/templates/products/partials/product_detail_actions.html:8
 msgid "read online"
 msgstr "leggi online"
 
-#: diventi/templates/accounts/user_detail_quick.html:187
-#: diventi/templates/accounts/user_detail_quick.html:256
+#: diventi/templates/accounts/user_detail_quick.html:188
+#: diventi/templates/accounts/user_detail_quick.html:257
 msgid "not available"
 msgstr "non ancora disponibile"
 
-#: diventi/templates/accounts/user_detail_quick.html:212
-#: diventi/templates/accounts/user_detail_quick.html:280
+#: diventi/templates/accounts/user_detail_quick.html:213
+#: diventi/templates/accounts/user_detail_quick.html:281
 #: diventi/templates/accounts/user_detail_quick_modal.html:99
 #: diventi/templates/accounts/user_detail_quick_modal.html:129
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_detail_quick.html:317
+#: diventi/templates/accounts/user_detail_quick.html:318
 msgid "There are no surveys, yet"
 msgstr "Non è presente alcun sondaggio"
 
-#: diventi/templates/accounts/user_detail_quick.html:333
+#: diventi/templates/accounts/user_detail_quick.html:334
 msgid "Recent articles"
 msgstr "Articoli recenti"
 
-#: diventi/templates/accounts/user_detail_quick.html:340
-#: diventi/templates/accounts/user_detail_quick.html:365
+#: diventi/templates/accounts/user_detail_quick.html:341
+#: diventi/templates/accounts/user_detail_quick.html:366
 #, python-format
 msgid "%(creation_date)s"
 msgstr "%(creation_date)s"
 
-#: diventi/templates/accounts/user_detail_quick.html:358
+#: diventi/templates/accounts/user_detail_quick.html:359
 msgid "Recent forum posts"
 msgstr "Post recenti del forum"
 
-#: diventi/templates/accounts/user_detail_quick.html:376
+#: diventi/templates/accounts/user_detail_quick.html:377
 msgid "There are no forum posts, yet"
 msgstr "Non è presente alcun post"
 
@@ -2263,7 +2267,6 @@ msgid "control panel for authors only"
 msgstr "pannello di controllo riservato agli autori"
 
 #: diventi/templates/base_quick.html:245
-#: diventi/templates/products/product_detail_quick.html:199
 #: diventi/templates/reviews/posted.html:11
 msgid "reviews"
 msgstr "recensioni"
@@ -2355,7 +2358,7 @@ msgstr "continua a leggere"
 #: diventi/templates/blog/article_detail_quick.html:98
 #: diventi/templates/ebooks/book_detail_pdf.html:110
 #: diventi/templates/ebooks/book_detail_quick.html:165
-#: diventi/templates/products/product_detail_quick.html:151
+#: diventi/templates/products/product_detail_quick.html:154
 msgid "view all"
 msgstr "visualizza tutto"
 
@@ -2496,6 +2499,7 @@ msgid "italian"
 msgstr "italiano"
 
 #: diventi/templates/ebooks/book_detail_quick.html:89
+#: diventi/templates/products/product_detail_quick.html:57
 msgid "comment on"
 msgstr "commenta"
 
@@ -3038,7 +3042,7 @@ msgstr "Causale:"
 msgid "Posts:"
 msgstr "Post:"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:102
+#: diventi/templates/machina/forum_conversation/topic_detail.html:105
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:120
 msgid "Anonymous user"
 msgstr "Utente anonimo"
@@ -3398,50 +3402,33 @@ msgstr "o"
 msgid "to interact with this content"
 msgstr ""
 
-#: diventi/templates/products/product_detail_quick.html:41
+#: diventi/templates/products/product_detail_quick.html:40
 msgid "format"
 msgstr "formato"
 
-#: diventi/templates/products/product_detail_quick.html:55
-msgid "join the discussion"
-msgstr "unisciti al dibattito"
-
-#: diventi/templates/products/product_detail_quick.html:63
+#: diventi/templates/products/product_detail_quick.html:66
 msgid "Last update date"
 msgstr "Data ultimo aggiornamento"
 
-#: diventi/templates/products/product_detail_quick.html:87
+#: diventi/templates/products/product_detail_quick.html:90
 msgid "key features"
 msgstr "caratteristiche chiave"
 
-#: diventi/templates/products/product_detail_quick.html:109
+#: diventi/templates/products/product_detail_quick.html:112
 msgid "there are no key features to show for now"
 msgstr "non ci sono cratteristiche chiave da mostrare, per ora"
 
-#: diventi/templates/products/product_detail_quick.html:123
+#: diventi/templates/products/product_detail_quick.html:126
 msgid "our latest updates"
 msgstr "i nostri ultimi aggiornamenti"
 
-#: diventi/templates/products/product_detail_quick.html:163
+#: diventi/templates/products/product_detail_quick.html:166
 msgid "details"
 msgstr "dettagli"
 
-#: diventi/templates/products/product_detail_quick.html:165
+#: diventi/templates/products/product_detail_quick.html:168
 msgid "here's a roundown of what you can expect from"
 msgstr "ecco cosa puoi aspettarti da"
-
-#: diventi/templates/products/product_detail_quick.html:199
-msgid "community reviews"
-msgstr "Recensioni della community"
-
-#: diventi/templates/products/product_detail_quick.html:201
-msgid "find out what others say about us"
-msgstr "scopri cosa gli altri dicono di noi"
-
-#: diventi/templates/products/product_detail_quick.html:247
-#: diventi/templates/reviews/review_modal_list_quick.html:74
-msgid "there are no reviews yet, be the first to post one!"
-msgstr "non c'è alcuna recensione per ora, postane una tu!"
 
 #: diventi/templates/products/product_list_filtered_quick.html:12
 #: diventi/templates/products/product_list_quick.html:12
@@ -3511,6 +3498,10 @@ msgid_plural "reviews"
 msgstr[0] "recensione"
 msgstr[1] "recensioni"
 
+#: diventi/templates/reviews/review_modal_list_quick.html:74
+msgid "there are no reviews yet, be the first to post one!"
+msgstr "non c'è alcuna recensione per ora, postane una tu!"
+
 #: diventi/templates/reviews/review_modal_quick.html:9
 msgid "review of"
 msgstr "recensione di"
@@ -3550,6 +3541,21 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "community reviews"
+#~ msgstr "Recensioni della community"
+
+#~ msgid "find out what others say about us"
+#~ msgstr "scopri cosa gli altri dicono di noi"
+
+#~ msgid "Achievement"
+#~ msgstr "Premio"
+
+#~ msgid "Achievements"
+#~ msgstr "Premi"
+
+#~ msgid "join the discussion"
+#~ msgstr "unisciti al dibattito"
 
 #~ msgid "achievements"
 #~ msgstr "riconoscimenti"

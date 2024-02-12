@@ -67,7 +67,10 @@
                 <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
                 <i data-feather="book-open" class="mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
                 </span>
-                {% if bought or authored %}
+            </div>
+        </div>
+        <div class="d-flex justify-content-left mt-3">
+            {% if bought or authored %}
                 <div class="dropdown">
                     <button class="btn btn-primary btn-sm btn-icon-only btn-icon rounded-circle dropdown-animate ml-1" type="button" data-toggle="dropdown" aria-expanded="false">
                         <span class="btn-inner--icon">
@@ -83,18 +86,25 @@
                         </a>
                     </div>            
                 </div>
-                {% endif %}
-                {% if book.book_product.related_forum_topic %}
-                    {% with book.book_product.related_forum_topic as topic %}
-                    <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-info btn-sm btn-icon-only btn-icon rounded-circle" data-toggle="tooltip" data-placement="bottom" title="{% trans 'comment on'|capfirst %}" target="_blank">                        
+            {% endif %}
+            {% if book.book_product.related_forum_topic %}
+                {% with book.book_product.related_forum_topic as topic %}
+                <div class="dropdown">
+                    <button class="btn btn-info btn-sm btn-icon-only btn-icon rounded-circle dropdown-animate ml-1" type="button" data-toggle="dropdown" aria-expanded="false">                        
                         <span class="btn-inner--icon">
                             <i data-feather="align-center"></i> 
                         </span>
-                    </a>
-                    {% endwith %}
-                {% endif %}
-            </div>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}">
+                            <img src="{% static 'quick-v110/img/svg/icons/Inbox.svg' %}"> {% trans 'comment on'|capfirst %} (forum)
+                        </a>
+                    </div>
+                </div>
+                {% endwith %}
+            {% endif %}
         </div>
+       </div>
       </div>
     </div>
   </div>

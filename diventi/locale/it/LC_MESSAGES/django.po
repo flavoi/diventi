@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 09:04+0100\n"
+"POT-Creation-Date: 2024-02-12 22:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,127 +139,174 @@ msgstr "Il tuo nome"
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/models.py:103
+#: diventi/accounts/management/commands/notify_awarded_users.py:9
+msgid "Send an email to all users that have received a new award"
+msgstr ""
+
+#: diventi/accounts/management/commands/notify_awarded_users.py:16
+msgid "Diventi: new deed award"
+msgstr ""
+
+#: diventi/accounts/management/commands/notify_awarded_users.py:17
+#, python-format
+msgid ""
+"Dear %(user)s, you have been awarded with a new deed! Enjoy your new "
+"%(deed)s achievement. Regards, Diventi's team"
+msgstr ""
+
+#: diventi/accounts/models.py:99
 msgid "staff_only"
 msgstr "riservato agli autori"
 
-#: diventi/accounts/models.py:108
+#: diventi/accounts/models.py:104
 msgid "Avatar"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:109
+#: diventi/accounts/models.py:105
 #: diventi/templates/accounts/user_customization.html:39
 msgid "Avatars"
 msgstr "Avatar"
 
-#: diventi/accounts/models.py:115
+#: diventi/accounts/models.py:111
 msgid "Profile picture"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:116
+#: diventi/accounts/models.py:112
 msgid "Profile pictures"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:124 diventi/products/models.py:296
+#: diventi/accounts/models.py:120 diventi/products/models.py:296
 msgid "Cover"
 msgstr "Copertina"
 
-#: diventi/accounts/models.py:125
+#: diventi/accounts/models.py:121
 #: diventi/templates/accounts/user_customization.html:54
 msgid "Covers"
 msgstr "Copertine"
 
-#: diventi/accounts/models.py:131
+#: diventi/accounts/models.py:127
 msgid "Deed"
 msgstr "Premio"
 
-#: diventi/accounts/models.py:132
+#: diventi/accounts/models.py:128
 msgid "Deeds"
 msgstr "Premi"
 
-#: diventi/accounts/models.py:138
+#: diventi/accounts/models.py:134
 msgid "Role"
 msgstr "Ruolo"
 
-#: diventi/accounts/models.py:139
+#: diventi/accounts/models.py:135
 msgid "Roles"
 msgstr "Ruoli"
 
-#: diventi/accounts/models.py:146
+#: diventi/accounts/models.py:142
 msgid "nametag"
 msgstr "nametag"
 
-#: diventi/accounts/models.py:151
+#: diventi/accounts/models.py:147
 msgid "language"
 msgstr "lingua"
 
-#: diventi/accounts/models.py:154
+#: diventi/accounts/models.py:150
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:162
+#: diventi/accounts/models.py:158
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:169 diventi/products/models.py:287
+#: diventi/accounts/models.py:165 diventi/products/models.py:287
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:176
+#: diventi/accounts/models.py:172
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:180
+#: diventi/accounts/models.py:176
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:187
+#: diventi/accounts/models.py:183
 msgid "role"
 msgstr "ruolo"
 
-#: diventi/accounts/models.py:197
+#: diventi/accounts/models.py:188
+#: diventi/templates/accounts/user_detail_quick.html:51
+#: diventi/templates/accounts/user_detail_quick.html:112
+#: diventi/templates/accounts/user_detail_quick_modal.html:56
+msgid "deeds"
+msgstr "premi"
+
+#: diventi/accounts/models.py:195
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:198
+#: diventi/accounts/models.py:196
 #: diventi/templates/accounts/subscribers.html:19
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:210
+#: diventi/accounts/models.py:208
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/models.py:253
+#: diventi/accounts/models.py:251
 #, python-format
 msgid "%(prefix)s: %(last_sub)s on %(date_joined)s"
 msgstr "%(prefix)s: %(last_sub)s - %(date_joined)s"
 
-#: diventi/accounts/models.py:264
+#: diventi/accounts/models.py:262
 msgid "Last subscriber"
 msgstr "Ultimo iscritto"
 
-#: diventi/accounts/models.py:267
+#: diventi/accounts/models.py:265
 msgid "users count"
 msgstr "conteggio utenti"
 
-#: diventi/accounts/models.py:269
+#: diventi/accounts/models.py:267
 #, python-format
 msgid "%(en)s english subscribers, %(it)s italian subscribers"
 msgstr "%(en)s iscritti inglesi, %(it)s iscritti italiani"
 
-#: diventi/accounts/models.py:278
+#: diventi/accounts/models.py:276
 msgid "english subscribers"
 msgstr "iscritti inglesi"
 
-#: diventi/accounts/models.py:280 diventi/accounts/models.py:286
+#: diventi/accounts/models.py:278 diventi/accounts/models.py:284
 #: diventi/products/models.py:382 diventi/products/models.py:394
 msgid "copy emails"
 msgstr "copia le email"
 
-#: diventi/accounts/models.py:284
+#: diventi/accounts/models.py:282
 msgid "italian subscribers"
 msgstr "iscritti italiani"
+
+#: diventi/accounts/models.py:331
+msgid "deed"
+msgstr "premio"
+
+#: diventi/accounts/models.py:336
+msgid "awarded user"
+msgstr "utente premiato"
+
+#: diventi/accounts/models.py:340
+msgid "notified"
+msgstr "notificato"
+
+#: diventi/accounts/models.py:346
+msgid "Award"
+msgstr "Riconoscimento"
+
+#: diventi/accounts/models.py:347
+msgid "Awards"
+msgstr "Riconoscimenti"
+
+#: diventi/accounts/models.py:351
+#, python-format
+msgid "Award: %(id)s"
+msgstr "Riconoscimento: %(id)s"
 
 #: diventi/accounts/urls.py:27
 msgid "^signin/$"
@@ -1467,12 +1514,12 @@ msgstr "<slug:slug>/"
 msgid "Payments"
 msgstr "Pagamenti"
 
-#: diventi/payments/views.py:80
+#: diventi/payments/views.py:78
 #, python-format
 msgid "Diventi: %(title)s purchase"
 msgstr "Diventi: acquisto %(title)s"
 
-#: diventi/payments/views.py:81
+#: diventi/payments/views.py:79
 #, python-format
 msgid ""
 "Dear %(user)s, you have successufully purchased %(title)s for %(price)s."
@@ -2132,12 +2179,6 @@ msgstr "Aggiornamento profilo"
 msgid "Update profile"
 msgstr "Aggiorna profilo"
 
-#: diventi/templates/accounts/user_detail_quick.html:51
-#: diventi/templates/accounts/user_detail_quick.html:112
-#: diventi/templates/accounts/user_detail_quick_modal.html:56
-msgid "deeds"
-msgstr "premi"
-
 #: diventi/templates/accounts/user_detail_quick.html:68
 msgid "there are no deeds, yet"
 msgstr "nessun premio trovato"
@@ -2357,7 +2398,7 @@ msgstr "continua a leggere"
 
 #: diventi/templates/blog/article_detail_quick.html:98
 #: diventi/templates/ebooks/book_detail_pdf.html:110
-#: diventi/templates/ebooks/book_detail_quick.html:165
+#: diventi/templates/ebooks/book_detail_quick.html:175
 #: diventi/templates/products/product_detail_quick.html:154
 msgid "view all"
 msgstr "visualizza tutto"
@@ -2382,7 +2423,7 @@ msgstr "Nessun articolo è stato ancora pubblicato"
 
 #: diventi/templates/blog/article_list_quick.html:150
 #: diventi/templates/blog/article_list_quick.html:152
-#: diventi/templates/ebooks/book_detail_quick.html:223
+#: diventi/templates/ebooks/book_detail_quick.html:233
 #: diventi/templates/products/product_list_filtered_quick.html:85
 #: diventi/templates/products/product_list_filtered_quick.html:87
 #: diventi/templates/products/product_list_quick.html:147
@@ -2398,7 +2439,7 @@ msgstr "corrente"
 
 #: diventi/templates/blog/article_list_quick.html:162
 #: diventi/templates/blog/article_list_quick.html:164
-#: diventi/templates/ebooks/book_detail_quick.html:224
+#: diventi/templates/ebooks/book_detail_quick.html:234
 #: diventi/templates/products/product_list_filtered_quick.html:97
 #: diventi/templates/products/product_list_filtered_quick.html:99
 #: diventi/templates/products/product_list_quick.html:159
@@ -2478,7 +2519,7 @@ msgid "playing"
 msgstr "giocare a"
 
 #: diventi/templates/ebooks/book_detail_pdf.html:107
-#: diventi/templates/ebooks/book_detail_quick.html:162
+#: diventi/templates/ebooks/book_detail_quick.html:172
 msgid "related contents"
 msgstr "contenuti simili"
 
@@ -2490,48 +2531,48 @@ msgstr "tempo di lettura"
 msgid "words"
 msgstr "parole"
 
-#: diventi/templates/ebooks/book_detail_quick.html:79
+#: diventi/templates/ebooks/book_detail_quick.html:82
 msgid "english"
 msgstr "inglese"
 
-#: diventi/templates/ebooks/book_detail_quick.html:82
+#: diventi/templates/ebooks/book_detail_quick.html:85
 msgid "italian"
 msgstr "italiano"
 
-#: diventi/templates/ebooks/book_detail_quick.html:89
+#: diventi/templates/ebooks/book_detail_quick.html:100
 #: diventi/templates/products/product_detail_quick.html:57
 msgid "comment on"
 msgstr "commenta"
 
-#: diventi/templates/ebooks/book_detail_quick.html:111
+#: diventi/templates/ebooks/book_detail_quick.html:121
 msgid "table of contents"
 msgstr "indice"
 
-#: diventi/templates/ebooks/book_detail_quick.html:216
+#: diventi/templates/ebooks/book_detail_quick.html:226
 msgid "Display _MENU_ records per page"
 msgstr "Mostra _MENU_ righe per pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:217
+#: diventi/templates/ebooks/book_detail_quick.html:227
 msgid "Nothing found - sorry"
 msgstr "Nessun risultato trovato"
 
-#: diventi/templates/ebooks/book_detail_quick.html:218
+#: diventi/templates/ebooks/book_detail_quick.html:228
 msgid "Showing page _PAGE_ of _PAGES_"
 msgstr "Pagina _PAGE_ di _PAGES_"
 
-#: diventi/templates/ebooks/book_detail_quick.html:219
+#: diventi/templates/ebooks/book_detail_quick.html:229
 msgid "No records available"
 msgstr "Nessun risultato disponibile"
 
-#: diventi/templates/ebooks/book_detail_quick.html:220
+#: diventi/templates/ebooks/book_detail_quick.html:230
 msgid "(filtered from _MAX_ total records)"
 msgstr "(filtrato da _MAX_ righe totali)"
 
-#: diventi/templates/ebooks/book_detail_quick.html:222
+#: diventi/templates/ebooks/book_detail_quick.html:232
 msgid "First page"
 msgstr "Prima pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:227
+#: diventi/templates/ebooks/book_detail_quick.html:237
 msgid "Filter records"
 msgstr "Filtra le righe"
 

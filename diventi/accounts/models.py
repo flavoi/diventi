@@ -10,7 +10,11 @@ from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils.text import slugify
 from django.contrib.humanize.templatetags.humanize import naturalday
 
-from diventi.core.models import DiventiImageModel, Element
+from diventi.core.models import (
+    DiventiImageModel, 
+    Element,
+    TimeStampedModel,
+)
 from diventi.products.models import Product
 
 
@@ -25,11 +29,6 @@ class DiventiUserQuerySet(models.QuerySet):
         users = self.is_active()
         users = self.filter(has_agreed_gdpr=True)
         return users
-
-    # Fetch all the achievements related to the user
-    def achievements(self):
-        user = self.prefetch_related('achievements')
-        return user
 
     # Fetch all users that made at least a product
     def authors(self):
@@ -72,9 +71,6 @@ class DiventiUserManager(UserManager):
     def has_agreed_gdpr(self):
         return self.get_queryset().has_agreed_gdpr()
 
-    def achievements(self):
-        return self.get_queryset().achievements()
-
     def authors(self):
         return self.get_queryset().authors()
 
@@ -93,7 +89,7 @@ class DiventiUserManager(UserManager):
         
 class DiventiAvatarQuerySet(models.QuerySet):
 
-    # Fetch all users related to the avatar
+    # Fetch all users related to the avatar
     def users(self):
         avatar = self.diventiuser.all()
         return avatar
@@ -186,9 +182,11 @@ class DiventiUser(AbstractUser):
         on_delete=models.SET_NULL,
         verbose_name=_('role')
     )
-    achievements = models.ManyToManyField(
+    deeds = models.ManyToManyField(
         Achievement,
-        related_name='users'
+        through = 'Award',
+        verbose_name = _('deeds'),
+        blank = True,
     )
 
     objects = DiventiUserManager()
@@ -289,3 +287,66 @@ class DiventiUser(AbstractUser):
 
     def __str__(self):
         return u'{0} ({1})'.format(self.get_short_name(), self.username)
+
+
+class AwardQuerySet(models.QuerySet):
+
+    # Prefetch all relevant data
+    def related(self):
+        awards = self.select_related('awarded_user')
+        awards = awards.select_related('deed')
+        return awards
+
+    # Returns the users that were awarded with a certain achievement
+    # with "lan" as main language
+    def awarded_users(self, achievement, lan=None):
+        awards = self.filter(achievement=achievement)
+        awarded_users_id = awards.values_list('awarded_user')
+        UserModel = get_user_model() 
+        awarded_users = UserModel.objects.filter(id__in=awarded_users_id)
+        if lan:
+            awarded_users = awarded_users.filter(language=lan)
+        awarded_users = awarded_users.is_active()
+        return awarded_users
+
+    # Returns the emails of users that were awarded with a certain achievement
+    # with "lan" as main language
+    def awarded_users_emails(self, achievement, lan):
+        awarded_users = self.awarded_users(achievement, lan)
+        awarded_users = awarded_users.has_agreed_gdpr()
+        awarded_users = awarded_users.values_list('email', flat=True)
+        return awarded_users
+
+    # Returns the awards that have to be notified to the users
+    def to_be_notified(self):
+        awards = self.filter(notified=False)
+        return awards
+        
+
+class Award(TimeStampedModel):
+
+    deed = models.ForeignKey(
+        Achievement, 
+        on_delete = models.CASCADE, 
+        verbose_name = _('deed')
+    )
+    awarded_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete = models.CASCADE, 
+        verbose_name = _('awarded user')
+    )
+    notified = models.BooleanField(
+        default = False,
+        verbose_name = _('notified')
+    )
+
+    objects = AwardQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _('Award')
+        verbose_name_plural = _('Awards')
+
+
+    def __str__(self):
+        return _('Award: %(id)s') % {'id': self.id}
+

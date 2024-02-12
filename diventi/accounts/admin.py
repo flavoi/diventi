@@ -4,7 +4,14 @@ from django.contrib.auth.admin import UserAdmin
 
 from diventi.core.admin import DiventiTranslationAdmin
 
-from .models import DiventiUser, DiventiAvatar, DiventiProfilePic, DiventiCover, Achievement, Role
+from .models import (
+    DiventiUser, 
+    DiventiAvatar, 
+    DiventiProfilePic, 
+    DiventiCover,
+    Role,
+    Award,
+)
 
 
 class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
@@ -48,23 +55,20 @@ class DiventiCoverAdmin(DiventiTranslationAdmin):
     list_display = ('label', 'image_tag')
 
 
-class DiventiUserInline(admin.TabularInline):
-    model = Achievement.users.through
-
-
-class AchievementAdmin(DiventiTranslationAdmin):
-    list_display = ('title', 'description')
-    inlines = [
-        DiventiUserInline,
-    ]
-
-
 class RoleAdmin(DiventiTranslationAdmin):
     list_display = ('title', 'description')
+
+
+class AwardAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'awarded_user', 'deed', 'notified', 'created')
+    readonly_fields = ['created',]
+    search_fields = ['awarded_user__first_name']
+    list_filter = ['deed',]
 
 
 admin.site.register(DiventiUser, DiventiUserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)
 admin.site.register(DiventiProfilePic, DiventiProfilePicAdmin)
-admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(Role, RoleAdmin)
+admin.site.register(Award, AwardAdmin)
+

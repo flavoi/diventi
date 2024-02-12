@@ -13,7 +13,7 @@ from diventi.comments.models import DiventiComment
 from diventi.blog.models import Article
 
 from .models import (
-    Achievement,
+    Award,
     DiventiUser,
 )
 
@@ -36,9 +36,8 @@ def get_user_data(user, self=None):
         projects_count = 0
         projects_categories = ProductCategory.objects.none()
     ratings_count = Review.objects.filter(user=user).count()
-    achievements = user.achievements.all()
-    achievements_count = user.achievements.count
-    achievements_total_count = Achievement.objects.all().count() 
+    achievements = Award.objects.filter(awarded_user=user).related()
+    achievements_count = achievements.count()
     comments_count = DiventiComment.objects.filter(user=user).count()
     articles = (
         Article.objects
@@ -70,8 +69,7 @@ def get_user_data(user, self=None):
         'projects_categories': projects_categories,
         'ratings_count': ratings_count,
         'achievements_count': achievements_count,
-        'achievements': achievements,        
-        'achievements_total_count': achievements_total_count,
+        'achievements': achievements,
         'comments_count': comments_count,
         'has_user_authored': has_user_authored,
         'collection': collection,

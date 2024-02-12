@@ -74,8 +74,6 @@ def stripe_webhook(request):
         translation.activate(user.language)
         request.LANGUAGE_CODE = translation.get_language()
         price = humanize_price(float(session['amount_total']))
-        print(user.email)
-        print(user.first_name)
         send_mail(
             _('Diventi: %(title)s purchase') % {'title': receipt_title,},
             _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {

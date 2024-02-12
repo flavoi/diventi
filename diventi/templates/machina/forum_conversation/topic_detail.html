@@ -97,7 +97,7 @@
             
             <div class="username"><a href="{% url 'accounts:redirect' post.poster_id %}"><b>{{ post.poster|forum_member_display_name }}</b></a></div>
             <div class="posts-count text-muted"><b>{% trans "Posts:" %}</b>&nbsp;{{ post.poster.forum_profile.posts_count }}</div>
-            {% for a in post.poster.achievements.all %}
+            {% for a in post.poster.deeds.all %}
                 {% include 'accounts/partials/achievement_badge.html' %}
             {% endfor %}
             {% else %}

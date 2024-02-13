@@ -13,8 +13,8 @@ class Command(BaseCommand):
         for a in awards:
             a.notified = True
             send_mail(
-                _('Diventi: new deed award'),
-                _('Dear %(user)s, you have been awarded with a new deed! Enjoy your new %(deed)s achievement. Regards, Diventi\'s team') % {
+                _('A new award from Diventi Roleplaying Community'),
+                _('Dear %(user)s,\nyour new %(deed)s tag is now available on your playdiventi.it profile.\n\nRegards,\nDiventi team') % {
                     'user': a.awarded_user.first_name,
                     'deed': a.deed,
                 },

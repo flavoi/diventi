@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 22:41+0100\n"
+"POT-Creation-Date: 2024-02-13 22:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,15 +144,24 @@ msgid "Send an email to all users that have received a new award"
 msgstr ""
 
 #: diventi/accounts/management/commands/notify_awarded_users.py:16
-msgid "Diventi: new deed award"
+msgid "A new award from Diventi Roleplaying Community"
 msgstr ""
 
 #: diventi/accounts/management/commands/notify_awarded_users.py:17
 #, python-format
 msgid ""
-"Dear %(user)s, you have been awarded with a new deed! Enjoy your new "
-"%(deed)s achievement. Regards, Diventi's team"
+"Dear %(user)s,\n"
+"your new %(deed)s tag is now available on your playdiventi.it profile.\n"
+"\n"
+"Regards,\n"
+"Diventi team"
 msgstr ""
+"Gentile %(user)s,\n"
+"la tua nuova medaglietta %(deed)s è ora disponibile nel tuo profilo su "
+"playdiventi.it.\n"
+"\n"
+"Cordialmente,\n"
+"Il team Diventi"
 
 #: diventi/accounts/models.py:99
 msgid "staff_only"
@@ -234,7 +243,7 @@ msgstr "ruolo"
 
 #: diventi/accounts/models.py:188
 #: diventi/templates/accounts/user_detail_quick.html:51
-#: diventi/templates/accounts/user_detail_quick.html:112
+#: diventi/templates/accounts/user_detail_quick.html:116
 #: diventi/templates/accounts/user_detail_quick_modal.html:56
 msgid "deeds"
 msgstr "premi"
@@ -535,6 +544,7 @@ msgid "article"
 msgstr "articolo"
 
 #: diventi/blog/models.py:157 diventi/landing/views.py:83
+#: diventi/templates/accounts/user_detail_quick.html:113
 #: diventi/templates/accounts/user_detail_quick_modal.html:53
 #: diventi/templates/base_quick.html:236
 msgid "articles"
@@ -1249,7 +1259,7 @@ msgid "survey"
 msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:127
-#: diventi/templates/accounts/user_detail_quick.html:296
+#: diventi/templates/accounts/user_detail_quick.html:301
 #: diventi/templates/base_quick.html:239
 msgid "surveys"
 msgstr "sondaggi"
@@ -1522,8 +1532,17 @@ msgstr "Diventi: acquisto %(title)s"
 #: diventi/payments/views.py:79
 #, python-format
 msgid ""
-"Dear %(user)s, you have successufully purchased %(title)s for %(price)s."
-msgstr "Caro %(user)s, hai acquistato con successo %(title)s per %(price)s."
+"Dear %(user)s,\n"
+"you have successfully purchased %(title)s for %(price)s.\n"
+"\n"
+"Regards,\n"
+"Diventi team"
+msgstr ""
+"Gentile %(user)s,\n"
+"hai acquistato con successo %(title)s per %(price)s.\n"
+"\n"
+"Cordialmente,\n"
+"Il team Diventi"
 
 #: diventi/products/apps.py:7
 msgid "Projects"
@@ -2019,7 +2038,7 @@ msgstr "Profilo"
 
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
-#: diventi/templates/accounts/user_detail_quick.html:233
+#: diventi/templates/accounts/user_detail_quick.html:238
 #: diventi/templates/accounts/user_detail_quick_modal.html:106
 #: diventi/templates/products/partials/product_detail_actions.html:38
 msgid "collection"
@@ -2195,65 +2214,65 @@ msgstr "statistiche veloci"
 msgid "edit"
 msgstr "modifica"
 
-#: diventi/templates/accounts/user_detail_quick.html:117
-#: diventi/templates/accounts/user_detail_quick.html:152
+#: diventi/templates/accounts/user_detail_quick.html:122
+#: diventi/templates/accounts/user_detail_quick.html:157
 #: diventi/templates/accounts/user_detail_quick_modal.html:62
 #: diventi/templates/accounts/user_detail_quick_modal.html:76
 #: diventi/templates/base_quick.html:238
 msgid "projects"
 msgstr "progetti"
 
-#: diventi/templates/accounts/user_detail_quick.html:120
+#: diventi/templates/accounts/user_detail_quick.html:125
 #: diventi/templates/accounts/user_detail_quick_modal.html:65
 msgid "games"
 msgstr "giochi"
 
-#: diventi/templates/accounts/user_detail_quick.html:125
+#: diventi/templates/accounts/user_detail_quick.html:130
 #: diventi/templates/accounts/user_detail_quick_modal.html:70
 msgid "posts"
 msgstr "post"
 
-#: diventi/templates/accounts/user_detail_quick.html:139
+#: diventi/templates/accounts/user_detail_quick.html:144
 msgid "there is no bio, yet"
 msgstr "non è ancora disponibile alcuna biografia"
 
-#: diventi/templates/accounts/user_detail_quick.html:184
-#: diventi/templates/accounts/user_detail_quick.html:253
+#: diventi/templates/accounts/user_detail_quick.html:189
+#: diventi/templates/accounts/user_detail_quick.html:258
 #: diventi/templates/products/partials/product_detail_actions.html:8
 msgid "read online"
 msgstr "leggi online"
 
-#: diventi/templates/accounts/user_detail_quick.html:188
-#: diventi/templates/accounts/user_detail_quick.html:257
+#: diventi/templates/accounts/user_detail_quick.html:193
+#: diventi/templates/accounts/user_detail_quick.html:262
 msgid "not available"
 msgstr "non ancora disponibile"
 
-#: diventi/templates/accounts/user_detail_quick.html:213
-#: diventi/templates/accounts/user_detail_quick.html:281
+#: diventi/templates/accounts/user_detail_quick.html:218
+#: diventi/templates/accounts/user_detail_quick.html:286
 #: diventi/templates/accounts/user_detail_quick_modal.html:99
 #: diventi/templates/accounts/user_detail_quick_modal.html:129
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
-#: diventi/templates/accounts/user_detail_quick.html:318
+#: diventi/templates/accounts/user_detail_quick.html:323
 msgid "There are no surveys, yet"
 msgstr "Non è presente alcun sondaggio"
 
-#: diventi/templates/accounts/user_detail_quick.html:334
+#: diventi/templates/accounts/user_detail_quick.html:339
 msgid "Recent articles"
 msgstr "Articoli recenti"
 
-#: diventi/templates/accounts/user_detail_quick.html:341
-#: diventi/templates/accounts/user_detail_quick.html:366
+#: diventi/templates/accounts/user_detail_quick.html:346
+#: diventi/templates/accounts/user_detail_quick.html:371
 #, python-format
 msgid "%(creation_date)s"
 msgstr "%(creation_date)s"
 
-#: diventi/templates/accounts/user_detail_quick.html:359
+#: diventi/templates/accounts/user_detail_quick.html:364
 msgid "Recent forum posts"
 msgstr "Post recenti del forum"
 
-#: diventi/templates/accounts/user_detail_quick.html:377
+#: diventi/templates/accounts/user_detail_quick.html:382
 msgid "There are no forum posts, yet"
 msgstr "Non è presente alcun post"
 

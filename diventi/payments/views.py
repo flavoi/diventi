@@ -76,7 +76,7 @@ def stripe_webhook(request):
         price = humanize_price(float(session['amount_total']))
         send_mail(
             _('Diventi: %(title)s purchase') % {'title': receipt_title,},
-            _('Dear %(user)s, you have successufully purchased %(title)s for %(price)s.') % {
+            _('Dear %(user)s,\nyou have successfully purchased %(title)s for %(price)s.\n\nRegards,\nDiventi team') % {
                 'user': user.first_name,
                 'price': price,
                 'title': receipt_title,

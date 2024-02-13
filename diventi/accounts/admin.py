@@ -11,6 +11,7 @@ from .models import (
     DiventiCover,
     Role,
     Award,
+    Achievement,
 )
 
 
@@ -66,6 +67,11 @@ class AwardAdmin(admin.ModelAdmin):
     list_filter = ['deed',]
 
 
+class AchievementAdmin(DiventiTranslationAdmin):
+    list_display = ('title',)
+
+
+admin.site.register(Achievement, AchievementAdmin)
 admin.site.register(DiventiUser, DiventiUserAdmin)
 admin.site.register(DiventiAvatar, DiventiAvatarAdmin)
 admin.site.register(DiventiProfilePic, DiventiProfilePicAdmin)

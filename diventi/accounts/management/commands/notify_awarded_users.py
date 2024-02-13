@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
+from django.utils import translation
 
 from diventi.accounts.models import Award
 
@@ -10,6 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         awards = Award.objects.to_be_notified()
+        translation.activate(a.awarded_user.language)
         for a in awards:
             a.notified = True
             send_mail(

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 22:01+0100\n"
+"POT-Creation-Date: 2024-02-13 22:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,15 +139,15 @@ msgstr "Il tuo nome"
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:9
+#: diventi/accounts/management/commands/notify_awarded_users.py:10
 msgid "Send an email to all users that have received a new award"
 msgstr ""
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:16
+#: diventi/accounts/management/commands/notify_awarded_users.py:18
 msgid "A new award from Diventi Roleplaying Community"
 msgstr ""
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:17
+#: diventi/accounts/management/commands/notify_awarded_users.py:19
 #, python-format
 msgid ""
 "Dear %(user)s,\n"
@@ -162,6 +162,11 @@ msgstr ""
 "\n"
 "Cordialmente,\n"
 "Il team Diventi"
+
+#: diventi/accounts/management/commands/notify_awarded_users.py:28
+#, python-format
+msgid "Successfully notified award \"%s\""
+msgstr "Riconoscimento \"%s\" notificato con successo"
 
 #: diventi/accounts/models.py:99
 msgid "staff_only"

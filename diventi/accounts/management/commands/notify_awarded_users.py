@@ -11,8 +11,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         awards = Award.objects.to_be_notified()
-        translation.activate(a.awarded_user.language)
         for a in awards:
+            translation.activate(a.awarded_user.language)
             a.notified = True
             send_mail(
                 _('A new award from Diventi Roleplaying Community'),
@@ -25,4 +25,4 @@ class Command(BaseCommand):
                 fail_silently=False,
             )
             a.save()
-            self.stdout.write(self.style.SUCCESS('Successfully notified award "%s"' % a))
+            self.stdout.write(self.style.SUCCESS(_('Successfully notified award "%s"') % a))

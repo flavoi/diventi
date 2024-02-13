@@ -29,7 +29,7 @@ class ProductTranslationOptions(TranslationOptions):
 
 @register(Product)
 class ProductTranslationOptions(TranslationOptions):
-    fields = ('title', 'short_description', 'abstract', 'description', 'file', 'slug', 'courtesy_short_message', 'courtesy_message')
+    fields = ('title', 'short_description', 'abstract', 'description', 'file', 'slug', 'courtesy_short_message', 'courtesy_message', 'related_forum_topic')
 
 
 @register(ChapterCategory)

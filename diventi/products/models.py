@@ -255,6 +255,7 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
         blank = True,
         null = True,
         on_delete = models.SET_NULL,
+        verbose_name = _('related forum topic'),
     )
     formats = models.ManyToManyField(
         ProductFormat, 

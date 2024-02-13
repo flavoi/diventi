@@ -141,11 +141,11 @@ msgstr "La tua email"
 
 #: diventi/accounts/management/commands/notify_awarded_users.py:10
 msgid "Send an email to all users that have received a new award"
-msgstr ""
+msgstr "Invia un'email agli utenti che hanno ricevuto un riconoscimento"
 
 #: diventi/accounts/management/commands/notify_awarded_users.py:18
 msgid "A new award from Diventi Roleplaying Community"
-msgstr ""
+msgstr "Un nuovo riconoscimento dalla Comunità di Ruolo Diventi"
 
 #: diventi/accounts/management/commands/notify_awarded_users.py:19
 #, python-format

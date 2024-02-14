@@ -1,8 +1,8 @@
 {% load i18n %}
 
 <div class="d-flex justify-content-center">
+<div class="mt-1">
 {% if user.is_authenticated %}
-    <div class="mt-1">
     {% if product.book.published and bought %}
             <a href='{{ product.book.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
                 {% trans "read online"|capfirst %}
@@ -44,11 +44,11 @@
             {{ product.courtesy_short_message }}
         </a>
     {% endif %}
-    </div>
+
 {% else %}
     {% if product.book.published and product.unfolded %}
-        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="{{ footer_text_class|default:'text-dark' }} text-underline--dashed">
-        {% trans "Sign in" %}</a> {% trans 'to interact with this content' %}.
+        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-secondary btn-sm btn-icon bg-light-success">
+            <i data-feather="user-check" class=" mr-1 mb-1"></i> {% trans "Sign in to interact" %}</a>
     {% elif not product.unfolded and product.product_survey and product.product_survey.public %}
     <div class="mt-1">
         <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-secondary btn-sm bg-light-primary btn-icon-label">
@@ -63,4 +63,5 @@
     </div>
     {% endif %}
 {% endif %}
+    </div>
 </div>

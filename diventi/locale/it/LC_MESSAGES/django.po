@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 22:44+0100\n"
+"POT-Creation-Date: 2024-02-14 16:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3409,7 +3409,6 @@ msgid "buy for"
 msgstr "acquista per"
 
 #: diventi/templates/packages/partials/package_detail_actions.html:23
-#: diventi/templates/products/partials/product_detail_actions.html:51
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -3468,8 +3467,8 @@ msgid "or"
 msgstr "o"
 
 #: diventi/templates/products/partials/product_detail_actions.html:51
-msgid "to interact with this content"
-msgstr ""
+msgid "Sign in to interact"
+msgstr "Accedi per interagire"
 
 #: diventi/templates/products/product_detail_quick.html:40
 msgid "format"

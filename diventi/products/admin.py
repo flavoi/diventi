@@ -128,6 +128,7 @@ class PurchaseAdmin(admin.ModelAdmin):
     readonly_fields = ['created',]
     search_fields = ['customer__first_name']
     list_filter = ['product',]
+    raw_id_fields = ('customer', )
 
 
 class ProductCoverAdmin(DiventiTranslationAdmin):

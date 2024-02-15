@@ -65,6 +65,7 @@ class AwardAdmin(admin.ModelAdmin):
     readonly_fields = ['created',]
     search_fields = ['awarded_user__first_name']
     list_filter = ['deed',]
+    raw_id_fields = ('awarded_user', )
 
 
 class AchievementAdmin(DiventiTranslationAdmin):

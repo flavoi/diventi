@@ -130,7 +130,7 @@ THIRD_PARTY_APPS = [
     'mptt',
     #'boto',
     'letsencrypt',
-    #'reviews',
+    'reviews',
     'widget_tweaks',
     'haystack',
     'fullurl',

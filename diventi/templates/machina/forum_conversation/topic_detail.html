@@ -122,3 +122,34 @@
   </div>
 </div>
 {% endblock content %}
+
+{% block extra_js %}
+
+<script>
+    link = document.getElementsByTagName('oembed')[0];
+    $(document).ready(function(){
+      console.log(link);
+      $.ajax({
+          url: '{% url "previews:generate" %}',
+          data: {
+              'link': link.innerHTML
+          },
+          dataType: 'json',
+          success: function (response) {
+            $(link).replaceWith('<a href="' + link.innerHTML + '" target="_blank"><div class="card mb-3 bg-light"><div class="row no-gutters"><div class="col-md-4"><img src="' + response.image +'" class="card-img" alt="' +response.title +'"></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">' + response.title +'</h5><p class="card-text">' + response.description + '</p></div></div></div></div></a>')
+             /*
+              title.innerHTML = response.title
+              desc.innerHTML = response.description
+              image.src = response.image
+              link_btn.href = link
+              loader.classList.add('not-visible');
+              */
+          },
+          error: function (error) {
+              console.log(error);
+          },
+      });
+  });
+</script>
+
+{% endblock extra_js %}

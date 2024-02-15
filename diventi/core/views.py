@@ -1,6 +1,5 @@
 from django.contrib import messages
 
-
 class DiventiActionMixin:
     """ Disable redirect for update and creation views. """
 
@@ -18,3 +17,5 @@ class StaffRequiredMixin:
 
     def test_func(self):
         return self.request.user.is_staff
+
+

@@ -14,6 +14,7 @@ def generate_preview(request):
         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'
     }
     url = request.GET.get('link')
+    print(url)
     req = requests.get(url, headers)
     html = BeautifulSoup(req.content, 'html.parser')
     meta_data = {
@@ -21,6 +22,7 @@ def generate_preview(request):
         'description': get_description(html),
         'image': get_image(html),
     }
+    print(meta_data)
     return JsonResponse(meta_data)
 
 

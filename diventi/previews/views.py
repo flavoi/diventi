@@ -16,7 +16,7 @@ def generate_preview(request):
     headers = {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"}
     url = request.GET.get('link')
     print(url)
-    req = requests.get(url, headers)
+    req = requests.get(url, headers, timeout=5)
     html = BeautifulSoup(req.content, 'html.parser')
     meta_data = {
         'title': get_title(html),

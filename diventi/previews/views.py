@@ -1,8 +1,10 @@
-from django.shortcuts import render
-
 import requests
+from urllib.parse import urlparse
 from bs4 import BeautifulSoup
+
+from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
+from django.conf import settings
 
 
 def generate_preview(request):
@@ -11,11 +13,9 @@ def generate_preview(request):
         'Access-Control-Allow-Methods': 'GET',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Max-Age': '3600',
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
     }
-    headers = {"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"}
     url = request.GET.get('link')
-    print(url)
     req = requests.get(url, headers, timeout=5)
     html = BeautifulSoup(req.content, 'html.parser')
     meta_data = {
@@ -23,7 +23,6 @@ def generate_preview(request):
         'description': get_description(html),
         'image': get_image(html),
     }
-    print(meta_data)
     return JsonResponse(meta_data)
 
 

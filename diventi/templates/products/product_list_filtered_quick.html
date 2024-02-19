@@ -9,7 +9,7 @@
     <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
 {% endblock base_opengraph %}
 
-{% block title %}{% trans 'games list'|capfirst %}: {{ product.category.title|capfirst }}{% endblock title %}
+{% block title %}{% trans 'games list'|capfirst %}: {{ filtered_category.title_plural|lower }}{% endblock title %}
 
 {% block headerclass %}header-transparent{% endblock headerclass %}
 

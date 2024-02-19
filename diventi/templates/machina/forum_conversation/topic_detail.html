@@ -4,9 +4,13 @@
 {% load forum_member_tags %}
 {% load forum_permission_tags %}
 
-{% block desc_opengraph %}
-  <meta property="og:description" content="{{ forum.name }} | {{ topic.subject }}" />
-{% endblock desc_opengraph %}
+{% block base_opengraph %}
+  <meta property="og:title" content="{{ topic.subject }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
+  <meta property="og:description" content="{{ forum.name }} | {{ topic.description }}" />
+{% endblock base_opengraph %}
 
 {% block sub_title %}{{ topic.subject }}{% endblock sub_title %}
 

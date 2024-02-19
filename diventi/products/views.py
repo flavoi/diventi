@@ -90,6 +90,12 @@ class ProductListViewByCategory(ProductListView):
         queryset = super().get_queryset()
         return queryset.category(category_slug=self.kwargs['category'])
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductListViewByCategory, self).get_context_data(*args, **kwargs)
+        filtered_category = get_object_or_404(ProductCategory, slug=self.kwargs['category'])
+        context['filtered_category'] = filtered_category
+        return context
+
 
 class ProductDetailView(DetailView):
     """

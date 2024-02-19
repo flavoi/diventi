@@ -32,6 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - [accounts] Fixed a problem that made dead links visible to anonymous users
+- [products] Fixed a problem that prevented the product category to be displayed
+
 
 ## [1.0.0] → 2023-01-15
 The first Diventi release is now live!

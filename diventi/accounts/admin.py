@@ -38,7 +38,7 @@ class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
     add_form = auth_admin.UserCreationForm
     change_password_form = auth_admin.AdminPasswordChangeForm
     list_display = ('email', 'first_name', 'last_login', 'date_joined', 'language', 'has_agreed_gdpr', 'is_superuser')
-    list_filter = ('role', 'languange', 'groups')
+    list_filter = ('role', 'language', 'groups')
     search_fields = ('first_name', 'last_name', 'email')
     ordering = ('-date_joined',)
     readonly_fields = ('nametag', 'last_login', 'date_joined',)

@@ -41,7 +41,7 @@ class ProductDetailInline(TranslationStackedInline):
 class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     model = ProductFormat
     list_display = ['title', 'icon_tag', 'color_tag']
-    fields = ('title', 'description', 'icon', 'icon_style', 'color')    
+    fields = ('title', 'description', 'icon', 'color')
     extra = 0
 
 

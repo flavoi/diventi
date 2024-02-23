@@ -2,7 +2,10 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.admin import UserAdmin
 
-from diventi.core.admin import DiventiTranslationAdmin
+from diventi.core.admin import (
+    DiventiTranslationAdmin,
+    DiventiIconAdmin,
+)
 
 from .models import (
     DiventiUser, 
@@ -68,8 +71,9 @@ class AwardAdmin(admin.ModelAdmin):
     raw_id_fields = ('awarded_user', )
 
 
-class AchievementAdmin(DiventiTranslationAdmin):
-    list_display = ('title',)
+class AchievementAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
+    list_display = ['title', 'icon_tag', 'color_tag']
+    fields = ('title', 'description', 'icon', 'color')
 
 
 admin.site.register(Achievement, AchievementAdmin)

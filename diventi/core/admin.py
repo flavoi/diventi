@@ -40,3 +40,5 @@ class DiventiIconAdmin(admin.ModelAdmin):
             'all': ('diventi/css/diventi-admin-colors.css',)
         }
         js = ('quick-v110/libs/feather-icons/dist/feather.min.js', 'diventi/js/diventi-admin.js')
+
+        

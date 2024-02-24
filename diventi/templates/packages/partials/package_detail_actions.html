@@ -15,8 +15,12 @@
       <span class="btn-inner--icon">
           <i data-feather="shopping-bag"></i>
       </span>
-      <span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
-      
+      {% if discount %}
+        <span class="btn-inner--text" style="padding-right: 2em;">{% trans 'buy for'|capfirst %} {{ price }}</span>
+        <span class="badge badge-success badge-pill badge-floating">-{{ discount }}%</span>
+      {% else %}
+        <span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
+      {% endif %}      
     </button>
     <p class="mt-2">
      <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="{{ footer_text_class|default:'text-dark' }} text-underline--dashed">

@@ -45,9 +45,6 @@
                 {% if products_already_bought %}
                     &middot; <b class="text-warning">{% trans "you already own some of these items"|capfirst %}</b>
                 {% endif %}
-                {% if package_discount %}
-                    &middot; {% trans "package discount"|capfirst %}: <b class="text-success">{{ package_discount }}%</b>
-                {% endif %}
             </p>
             {% endif %}
         {% endwith %}

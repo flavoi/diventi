@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-14 16:25+0100\n"
+"POT-Creation-Date: 2024-02-24 23:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:206
+#: config/settings/base.py:207
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:207
+#: config/settings/base.py:208
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:291
+#: config/settings/base.py:292
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:301
+#: config/settings/base.py:302
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:341
+#: config/settings/base.py:342
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:342
+#: config/settings/base.py:343
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:343
+#: config/settings/base.py:344
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:344
+#: config/settings/base.py:345
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:345
+#: config/settings/base.py:346
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -458,7 +458,7 @@ msgstr "Copertine utente"
 #: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:46
 #: diventi/landing/admin.py:82 diventi/packages/admin.py:58
 #: diventi/products/admin.py:75 diventi/products/admin.py:108
-#: diventi/products/admin.py:136
+#: diventi/products/admin.py:137
 msgid "Management"
 msgstr "Gestione"
 
@@ -479,7 +479,7 @@ msgstr "Contenuti multimediali"
 #: diventi/landing/admin.py:52 diventi/landing/admin.py:85
 #: diventi/packages/admin.py:32 diventi/packages/admin.py:64
 #: diventi/products/admin.py:84 diventi/products/admin.py:114
-#: diventi/products/admin.py:139
+#: diventi/products/admin.py:140
 msgid "Editing"
 msgstr "Contenuti"
 
@@ -1448,7 +1448,7 @@ msgid "users"
 msgstr "utenti"
 
 #: diventi/landing/views.py:82 diventi/packages/models.py:95
-#: diventi/templates/base_quick.html:246
+#: diventi/templates/base_quick.html:245
 msgid "packages"
 msgstr "pacchetti"
 
@@ -1548,6 +1548,12 @@ msgstr ""
 "\n"
 "Cordialmente,\n"
 "Il team Diventi"
+
+#: diventi/previews/apps.py:7
+#, fuzzy
+#| msgid "reviews"
+msgid "Link previews"
+msgstr "recensioni"
 
 #: diventi/products/apps.py:7
 msgid "Projects"
@@ -1744,28 +1750,28 @@ msgstr "<slug:slug>/check-out/fallito/"
 msgid "last purchase: %(last_sub)s on %(date_joined)s"
 msgstr "ultimo acquisto: %(last_sub)s - %(date_joined)s"
 
-#: diventi/products/utils.py:21 diventi/products/views.py:197
+#: diventi/products/utils.py:21 diventi/products/views.py:203
 msgid "The user has this product already."
 msgstr "L'utente possiede già questo prodotto."
 
-#: diventi/products/views.py:187
+#: diventi/products/views.py:193
 msgid "This item has been added to you collection"
 msgstr "Questo oggetto è stato aggiunto alla tua collezione"
 
-#: diventi/products/views.py:211
+#: diventi/products/views.py:217
 #, python-format
 msgid "%(p)s has been added in your collection."
 msgstr "%(p)s è stato aggiunto alla tua collezione."
 
-#: diventi/products/views.py:216
+#: diventi/products/views.py:222
 msgid "The requested product is not public."
 msgstr "Il prodotto richiesto non è pubblico."
 
-#: diventi/products/views.py:225
+#: diventi/products/views.py:231
 msgid "This product has been dropped from your collection"
 msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 
-#: diventi/products/views.py:232
+#: diventi/products/views.py:238
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
@@ -2335,10 +2341,9 @@ msgstr "gestisci"
 msgid "control panel for authors only"
 msgstr "pannello di controllo riservato agli autori"
 
-#: diventi/templates/base_quick.html:245
-#: diventi/templates/reviews/posted.html:11
-msgid "reviews"
-msgstr "recensioni"
+#: diventi/templates/base_quick.html:246
+msgid "forum posts"
+msgstr "Post del forum"
 
 #: diventi/templates/base_quick.html:247
 msgid "search suggenstions"
@@ -2926,57 +2931,62 @@ msgid "Options"
 msgstr "Opzioni"
 
 #: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:16
+#: diventi/templates/products/partials/product_detail_actions.html:51
+msgid "Sign in to interact"
+msgstr "Accedi per interagire"
+
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:20
 msgid "Post reply"
 msgstr "Risposta"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:21
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:25
 msgid "Subscribe"
 msgstr "Iscriviti"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:25
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:29
 msgid "Unsubscribe"
 msgstr "Disiscriviti"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:31
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:35
 msgid "Moderate"
 msgstr "Modera"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:35
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:39
 #: diventi/templates/machina/forum_moderation/topic_lock.html:5
 #: diventi/templates/machina/forum_moderation/topic_lock.html:12
 msgid "Lock topic"
 msgstr "Blocca l'argomento"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:36
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:40
 #: diventi/templates/machina/forum_moderation/topic_unlock.html:5
 #: diventi/templates/machina/forum_moderation/topic_unlock.html:12
 msgid "Unlock topic"
 msgstr "Sblocca l'argomento"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:37
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:41
 #: diventi/templates/machina/forum_moderation/topic_delete.html:5
 #: diventi/templates/machina/forum_moderation/topic_delete.html:12
 msgid "Delete topic"
 msgstr "Cancella l'argomento"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:38
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:42
 #: diventi/templates/machina/forum_moderation/topic_move.html:5
 #: diventi/templates/machina/forum_moderation/topic_move.html:12
 msgid "Move topic"
 msgstr "Sposta l'argomento"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:40
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:47
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:44
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:51
 msgid "Change to sticky topic"
 msgstr "Metti in evidenza l'argomento"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:41
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:44
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:45
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:48
 msgid "Change to announce"
 msgstr "Cambia in annuncio"
 
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:43
-#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:46
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:47
+#: diventi/templates/machina/forum_conversation/partials/topic_detail_actions.html:50
 msgid "Change to standard topic"
 msgstr "Cambia in argomento normale"
 
@@ -3001,7 +3011,7 @@ msgid "Topic review"
 msgstr "Recensione dell'argomento"
 
 #: diventi/templates/machina/forum_conversation/post_create.html:51
-#: diventi/templates/machina/forum_conversation/topic_detail.html:57
+#: diventi/templates/machina/forum_conversation/topic_detail.html:62
 #: diventi/templates/machina/forum_conversation/topic_list.html:36
 #: diventi/templates/machina/forum_member/user_posts_list.html:50
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:86
@@ -3013,7 +3023,7 @@ msgid "By: <a href=\"%(poster_url)s\">%(username)s</a> on %(creation_date)s"
 msgstr "By: <a href=\"%(poster_url)s\">%(username)s</a> on %(creation_date)s"
 
 #: diventi/templates/machina/forum_conversation/post_create.html:55
-#: diventi/templates/machina/forum_conversation/topic_detail.html:61
+#: diventi/templates/machina/forum_conversation/topic_detail.html:66
 #: diventi/templates/machina/forum_conversation/topic_list.html:40
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:90
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:149
@@ -3074,44 +3084,44 @@ msgstr "Modifica il post"
 msgid "Post a new topic"
 msgstr "Posta una nuovo argomento"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:38
+#: diventi/templates/machina/forum_conversation/topic_detail.html:43
 msgid "Edit"
 msgstr "Modifica"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:42
+#: diventi/templates/machina/forum_conversation/topic_detail.html:47
 msgid "Delete"
 msgstr "Cancella"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:80
+#: diventi/templates/machina/forum_conversation/topic_detail.html:85
 msgid "Last edited by:"
 msgstr "Ultima modifica di:"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:80
+#: diventi/templates/machina/forum_conversation/topic_detail.html:85
 msgid "Updated"
 msgstr "Aggiornato"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:80
+#: diventi/templates/machina/forum_conversation/topic_detail.html:85
 msgid "on"
 msgstr "su"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:80
+#: diventi/templates/machina/forum_conversation/topic_detail.html:85
 #, python-format
 msgid "edited %(counter)s time in total."
 msgid_plural "edited %(counter)s times in total."
 msgstr[0] "modificato %(counter)s volta in totale."
 msgstr[1] "modificato %(counter)s volte in totale."
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:85
+#: diventi/templates/machina/forum_conversation/topic_detail.html:90
 msgid "Reason:"
 msgstr "Causale:"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:99
+#: diventi/templates/machina/forum_conversation/topic_detail.html:104
 #: diventi/templates/machina/forum_member/user_posts_list.html:67
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:117
 msgid "Posts:"
 msgstr "Post:"
 
-#: diventi/templates/machina/forum_conversation/topic_detail.html:105
+#: diventi/templates/machina/forum_conversation/topic_detail.html:110
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:120
 msgid "Anonymous user"
 msgstr "Utente anonimo"
@@ -3386,33 +3396,31 @@ msgstr "valore totale degli oggetti"
 msgid "you already own some of these items"
 msgstr "possiedi già alcuni dei seguenti oggetti"
 
-#: diventi/templates/packages/package_detail_quick.html:49
-msgid "package discount"
-msgstr "sconto pacchetto"
-
-#: diventi/templates/packages/package_detail_quick.html:68
+#: diventi/templates/packages/package_detail_quick.html:65
 msgid "in short"
 msgstr "in breve"
 
-#: diventi/templates/packages/package_detail_quick.html:72
+#: diventi/templates/packages/package_detail_quick.html:69
 msgid "what is included"
 msgstr "cos'è incluso"
 
-#: diventi/templates/packages/package_detail_quick.html:86
+#: diventi/templates/packages/package_detail_quick.html:83
 #: diventi/templates/products/partials/product_detail_actions.html:38
 msgid "in your collection"
 msgstr "nella tua collezione"
 
-#: diventi/templates/packages/partials/package_detail_actions.html:18
-#: diventi/templates/products/partials/pay_button.html:10
+#: diventi/templates/packages/partials/package_detail_actions.html:19
+#: diventi/templates/packages/partials/package_detail_actions.html:22
+#: diventi/templates/products/partials/pay_button.html:11
+#: diventi/templates/products/partials/pay_button.html:14
 msgid "buy for"
 msgstr "acquista per"
 
-#: diventi/templates/packages/partials/package_detail_actions.html:23
+#: diventi/templates/packages/partials/package_detail_actions.html:27
 msgid "Sign in"
 msgstr "Accedi"
 
-#: diventi/templates/packages/partials/package_detail_actions.html:23
+#: diventi/templates/packages/partials/package_detail_actions.html:27
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
 
@@ -3466,10 +3474,6 @@ msgstr "visualizzare le tue risposte qui"
 msgid "or"
 msgstr "o"
 
-#: diventi/templates/products/partials/product_detail_actions.html:51
-msgid "Sign in to interact"
-msgstr "Accedi per interagire"
-
 #: diventi/templates/products/product_detail_quick.html:40
 msgid "format"
 msgstr "formato"
@@ -3510,6 +3514,10 @@ msgstr "una bozza può essere vista solo da un membro dello staff"
 #: diventi/templates/reviews/form.html:23
 msgid "Select a rating"
 msgstr "Seleziona un punteggio"
+
+#: diventi/templates/reviews/posted.html:11
+msgid "reviews"
+msgstr "recensioni"
 
 #: diventi/templates/reviews/posted.html:11
 msgid "back to the project"
@@ -3609,6 +3617,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "package discount"
+#~ msgstr "sconto pacchetto"
 
 #~ msgid "community reviews"
 #~ msgstr "Recensioni della community"

@@ -191,6 +191,7 @@
     </div>
 </section>
 
+{% if sections %}
 <section class="slice pb-6 delimiter-top" id="sct-next">
     <div class="container">
     {% for section in sections %}
@@ -260,6 +261,7 @@
     {% endfor %}
 </div>
 </section>
+{% endif %}
 
 <section class="slice slice-lg pt-md-9 bg-section-secondary">
   <div class="container">

@@ -491,49 +491,49 @@
             <div class="container pt-4">
                 {% block extrafooter %}{% endblock extrafooter %}
                 <div class="row">
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <a href="{% url 'landing:home' %}">
-                            <img loading=lazy src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" alt="Diventi" class="img-fluid" style="width: 228px;" id="footer-logo">
-                        </a>
-                        <p class="mt-4 text-sm opacity-8 pr-lg-4">{% trans "Diventi is a role-playing community that embraces fun, encourages storytelling and helps game masters to create outstanding adventures" %}.</p>
-                        <ul class="nav mt-4">
-                            <li class="nav-item">
-                                <a class="nav-link pl-0" href="https://www.youtube.com/feed/my_videos" target="_blank">
-                                    <i data-feather="youtube"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://github.com/flavoi/diventi" target="_blank">
-                                    <i data-feather="github"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://www.instagram.com/playdiventi/" target="_blank">
-                                    <i data-feather="instagram"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://www.facebook.com/playdiventi" target="_blank">
-                                    <i data-feather="facebook"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-                        <h6 class="heading mb-3">{% trans "about"|capfirst %}</h6>
-                        <ul class="list-unstyled">
-                            {% for article in about_us_articles %}
-                            <li><a href="{{article.get_absolute_url }}">{{ article.title|capfirst }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-                        <h6 class="heading mb-3">{% trans "community"|capfirst %}</h6>
+                  <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a href="{% url 'landing:home' %}">
+                        <img loading=lazy src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" alt="Diventi" class="img-fluid" style="width: 228px;" id="footer-logo">
+                    </a>
+                    <p class="mt-4 text-sm opacity-8 pr-lg-4">{% trans "Diventi is a role-playing community that embraces fun, encourages storytelling and helps game masters to create outstanding adventures" %}.</p>
+                    <ul class="nav mt-4">
+                        <li class="nav-item">
+                            <a class="nav-link pl-0" href="https://www.youtube.com/feed/my_videos" target="_blank">
+                                <i data-feather="youtube"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/flavoi/diventi" target="_blank">
+                                <i data-feather="github"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.instagram.com/playdiventi/" target="_blank">
+                                <i data-feather="instagram"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/playdiventi" target="_blank">
+                                <i data-feather="facebook"></i>
+                            </a>
+                        </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
+                    <h6 class="heading mb-3">{% trans "about"|capfirst %}</h6>
+                    <ul class="list-unstyled">
+                        {% for article in about_us_articles %}
+                        <li><a href="{{article.get_absolute_url }}">{{ article.title|capfirst }}</a></li>
+                        {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
+                    <h6 class="heading mb-3">{% trans "community"|capfirst %}</h6>
                         <ul class="list-unstyled">
                             <li><a href="{% url 'blog:home' %}">Blog</a></li>
                             <li><a href="{% url 'forum:index' %}">Forum</a></li>
                         </ul>
-                    </div>
+                  </div>                
                 </div>
                 <hr class="divider divider-fade divider-dark my-4">
                 <div class="row align-items-center justify-content-md-between pb-4">

@@ -23,10 +23,12 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <span class="h5">{{ user.get_full_name }}</span>
+                        <a href="{% url 'accounts:detail' user.nametag %}">
+                            <span class="h5">{{ user.get_full_name }}</span>
+                        </a>
                     </div>
                     <div class="text-center mb-1">
-                        <a href="{% url 'accounts:detail' user.nametag %}">
+                        <a href="{% url 'accounts:settings' user.nametag %}">
                             <button type="button" class="btn btn-soft-primary rounded-circle btn-xs btn-icon-only" data-toggle="tooltip" data-placement="bottom" title="{% trans 'customize your profile'|capfirst %}">
                                 <span class="btn-inner--icon">
                                     <i data-feather="edit"></i>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-24 23:54+0100\n"
+"POT-Creation-Date: 2024-02-27 08:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -249,7 +249,7 @@ msgstr "ruolo"
 #: diventi/accounts/models.py:188
 #: diventi/templates/accounts/user_detail_quick.html:51
 #: diventi/templates/accounts/user_detail_quick.html:116
-#: diventi/templates/accounts/user_detail_quick_modal.html:56
+#: diventi/templates/accounts/user_detail_quick_modal.html:58
 msgid "deeds"
 msgstr "premi"
 
@@ -550,7 +550,7 @@ msgstr "articolo"
 
 #: diventi/blog/models.py:157 diventi/landing/views.py:83
 #: diventi/templates/accounts/user_detail_quick.html:113
-#: diventi/templates/accounts/user_detail_quick_modal.html:53
+#: diventi/templates/accounts/user_detail_quick_modal.html:55
 #: diventi/templates/base_quick.html:236
 msgid "articles"
 msgstr "articoli"
@@ -1550,10 +1550,8 @@ msgstr ""
 "Il team Diventi"
 
 #: diventi/previews/apps.py:7
-#, fuzzy
-#| msgid "reviews"
 msgid "Link previews"
-msgstr "recensioni"
+msgstr "Anteprime"
 
 #: diventi/products/apps.py:7
 msgid "Projects"
@@ -1827,7 +1825,7 @@ msgstr ""
 "funzionalità."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/landing/landing_quick.html:288
+#: diventi/templates/landing/landing_quick.html:290
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1882,7 +1880,7 @@ msgstr "accedi"
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:215
-#: diventi/templates/landing/landing_quick.html:276
+#: diventi/templates/landing/landing_quick.html:278
 msgid "sign up"
 msgstr "registrati"
 
@@ -2000,7 +1998,7 @@ msgid "request a reset"
 msgstr "richiedi un reset"
 
 #: diventi/templates/accounts/signout_quick.html:5
-#: diventi/templates/accounts/user_detail_quick_modal.html:138
+#: diventi/templates/accounts/user_detail_quick_modal.html:140
 msgid "sign out"
 msgstr "annulla accesso"
 
@@ -2054,7 +2052,7 @@ msgstr "Profilo"
 #: diventi/templates/accounts/user.html:41
 #: diventi/templates/accounts/user.html:69
 #: diventi/templates/accounts/user_detail_quick.html:238
-#: diventi/templates/accounts/user_detail_quick_modal.html:106
+#: diventi/templates/accounts/user_detail_quick_modal.html:108
 #: diventi/templates/products/partials/product_detail_actions.html:38
 msgid "collection"
 msgstr "collezione"
@@ -2231,19 +2229,19 @@ msgstr "modifica"
 
 #: diventi/templates/accounts/user_detail_quick.html:122
 #: diventi/templates/accounts/user_detail_quick.html:157
-#: diventi/templates/accounts/user_detail_quick_modal.html:62
-#: diventi/templates/accounts/user_detail_quick_modal.html:76
+#: diventi/templates/accounts/user_detail_quick_modal.html:64
+#: diventi/templates/accounts/user_detail_quick_modal.html:78
 #: diventi/templates/base_quick.html:238
 msgid "projects"
 msgstr "progetti"
 
 #: diventi/templates/accounts/user_detail_quick.html:125
-#: diventi/templates/accounts/user_detail_quick_modal.html:65
+#: diventi/templates/accounts/user_detail_quick_modal.html:67
 msgid "games"
 msgstr "giochi"
 
 #: diventi/templates/accounts/user_detail_quick.html:130
-#: diventi/templates/accounts/user_detail_quick_modal.html:70
+#: diventi/templates/accounts/user_detail_quick_modal.html:72
 msgid "posts"
 msgstr "post"
 
@@ -2264,8 +2262,8 @@ msgstr "non ancora disponibile"
 
 #: diventi/templates/accounts/user_detail_quick.html:218
 #: diventi/templates/accounts/user_detail_quick.html:286
-#: diventi/templates/accounts/user_detail_quick_modal.html:99
-#: diventi/templates/accounts/user_detail_quick_modal.html:129
+#: diventi/templates/accounts/user_detail_quick_modal.html:101
+#: diventi/templates/accounts/user_detail_quick_modal.html:131
 msgid "This collection is empty."
 msgstr "Questa collezione è vuota."
 
@@ -2291,11 +2289,11 @@ msgstr "Post recenti del forum"
 msgid "There are no forum posts, yet"
 msgstr "Non è presente alcun post"
 
-#: diventi/templates/accounts/user_detail_quick_modal.html:30
+#: diventi/templates/accounts/user_detail_quick_modal.html:32
 msgid "customize your profile"
 msgstr "personalizza il tuo profilo"
 
-#: diventi/templates/accounts/user_detail_quick_modal.html:37
+#: diventi/templates/accounts/user_detail_quick_modal.html:39
 msgid "search contents"
 msgstr "ricerca contenuti"
 
@@ -2430,7 +2428,7 @@ msgid "keep reading"
 msgstr "continua a leggere"
 
 #: diventi/templates/blog/article_detail_quick.html:98
-#: diventi/templates/ebooks/book_detail_pdf.html:110
+#: diventi/templates/ebooks/book_detail_pdf.html:107
 #: diventi/templates/ebooks/book_detail_quick.html:175
 #: diventi/templates/products/product_detail_quick.html:154
 msgid "view all"
@@ -2534,24 +2532,26 @@ msgstr "Mostra le risposte"
 msgid "this content is in your collection."
 msgstr "questo contenuto è nella tua collezione."
 
-#: diventi/templates/ebooks/book_detail_pdf.html:48
-msgid "download"
-msgstr "scarica"
-
-#: diventi/templates/ebooks/book_detail_pdf.html:58
+#: diventi/templates/ebooks/book_detail_pdf.html:52
 #: diventi/templates/products/partials/product_detail_actions.html:22
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:64
-msgid "sign in or sign up to download this content"
-msgstr "accedi o registrati per scaricare questo contenuto"
+#: diventi/templates/ebooks/book_detail_pdf.html:58
+msgid "sign in or sign up to add this content to your collection"
+msgstr "accedi o registrati per aggiungere questo contenuto alla tua collezione"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:94
+#: diventi/templates/ebooks/book_detail_pdf.html:61
+msgid ""
+"your collection is always accessible from your profile panel, under your "
+"avatar"
+msgstr "la tua collezione è sempre disponibile nel tuo pannello, al di sotto del tuo avatar"
+
+#: diventi/templates/ebooks/book_detail_pdf.html:91
 msgid "playing"
 msgstr "giocare a"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:107
+#: diventi/templates/ebooks/book_detail_pdf.html:104
 #: diventi/templates/ebooks/book_detail_quick.html:172
 msgid "related contents"
 msgstr "contenuti simili"
@@ -2655,7 +2655,7 @@ msgstr "visualizza risposte"
 
 #: diventi/templates/landing/about_article_quick.html:48
 #: diventi/templates/landing/landing_quick.html:92
-#: diventi/templates/landing/landing_quick.html:240
+#: diventi/templates/landing/landing_quick.html:241
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2691,19 +2691,19 @@ msgstr ""
 msgid "our latest contents"
 msgstr "i nostri ultimi contenuti"
 
-#: diventi/templates/landing/landing_quick.html:271
+#: diventi/templates/landing/landing_quick.html:273
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing_quick.html:272
+#: diventi/templates/landing/landing_quick.html:274
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/landing_quick.html:283
+#: diventi/templates/landing/landing_quick.html:285
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing_quick.html:284
+#: diventi/templates/landing/landing_quick.html:286
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -3618,6 +3618,12 @@ msgstr "link della menzione"
 msgid "Tooltip"
 msgstr "Suggerimento"
 
+#~ msgid "download"
+#~ msgstr "scarica"
+
+#~ msgid "sign in or sign up to download this content"
+#~ msgstr "accedi o registrati per scaricare questo contenuto"
+
 #~ msgid "package discount"
 #~ msgstr "sconto pacchetto"
 
@@ -4019,9 +4025,6 @@ msgstr "Suggerimento"
 
 #~ msgid "visualize"
 #~ msgstr "visualizza"
-
-#~ msgid "to add this content in your collection"
-#~ msgstr "per aggiungere questo contenuto alla tua collezione"
 
 #~ msgid "reviews of"
 #~ msgstr "recensioni di"

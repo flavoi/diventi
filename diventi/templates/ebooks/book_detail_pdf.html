@@ -49,21 +49,24 @@
                     {% csrf_token %}
                     {{ add_collection_form }}
                     {{ add_collection_form.errors }}
-                    <button type="submit" class="btn btn-sm btn-primary active" data-pricing="monthly">{% trans "Add to collection" %}</button>                    
+                    <button type="submit" class="btn btn-sm btn-primary active">{% trans "Add to collection" %}</button>                    
                 </form>
 
                 {% endif %}
               {% else %}
-                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-sm btn-info active" data-pricing="monthly">
-                  {% trans "sign in or sign up to add this content to your collection"|capfirst %}
-                </a>                
+                <a class="btn btn-sm btn-primary disabled">{% trans "Add to collection" %}</a>                    
               {% endif %}
-                <a a href="#/" data-container="body" data-toggle="popover" data-placement="bottom" class="btn btn-secondary btn-sm rounded-circle btn-icon-only ml-2" data-content="{% trans 'your collection is always accessible from your profile panel, under your avatar'|capfirst %}.">                
+                <button type="button" data-container="body" data-toggle="popover" data-placement="bottom" class="btn btn-secondary btn-sm rounded-circle btn-icon-only ml-2" data-content="{% trans 'your collection is always accessible from your profile panel, under your avatar'|capfirst %}.">                
                     <span class="btn-inner--icon mb-1">
                         <i data-feather="info"></i>
                     </span>
-                </a>
+                </button>
             </div>
+            {% if user.is_anonymous %}
+            <p class="mt-2">
+                <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-light; text-underline--dashed">
+                    {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.</p>  
+            {% endif %} 
           </div>
           <div class="pricing row no-gutters">
             <div class="col-lg-10 mx-auto">              

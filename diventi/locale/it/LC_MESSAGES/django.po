@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-27 08:02+0100\n"
+"POT-Creation-Date: 2024-02-27 15:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2428,7 +2428,7 @@ msgid "keep reading"
 msgstr "continua a leggere"
 
 #: diventi/templates/blog/article_detail_quick.html:98
-#: diventi/templates/ebooks/book_detail_pdf.html:107
+#: diventi/templates/ebooks/book_detail_pdf.html:105
 #: diventi/templates/ebooks/book_detail_quick.html:175
 #: diventi/templates/products/product_detail_quick.html:154
 msgid "view all"
@@ -2529,29 +2529,37 @@ msgid "Show replies"
 msgstr "Mostra le risposte"
 
 #: diventi/templates/ebooks/book_detail_pdf.html:45
-msgid "this content is in your collection."
-msgstr "questo contenuto è nella tua collezione."
+msgid "this content is in your collection"
+msgstr "questo contenuto è nella tua collezione"
 
 #: diventi/templates/ebooks/book_detail_pdf.html:52
+#: diventi/templates/ebooks/book_detail_pdf.html:57
 #: diventi/templates/products/partials/product_detail_actions.html:22
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:58
-msgid "sign in or sign up to add this content to your collection"
-msgstr "accedi o registrati per aggiungere questo contenuto alla tua collezione"
+#: diventi/templates/ebooks/book_detail_pdf.html:63
+#: diventi/templates/packages/partials/package_detail_actions.html:27
+msgid "Sign in"
+msgstr "Accedi"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:61
+#: diventi/templates/ebooks/book_detail_pdf.html:63
+msgid "to proceed"
+msgstr "per procedere"
+
+#: diventi/templates/ebooks/book_detail_pdf.html:63
 msgid ""
 "your collection is always accessible from your profile panel, under your "
 "avatar"
-msgstr "la tua collezione è sempre disponibile nel tuo pannello, al di sotto del tuo avatar"
+msgstr ""
+"la tua collezione è sempre disponibile nel tuo pannello, al di sotto del tuo "
+"avatar"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:91
+#: diventi/templates/ebooks/book_detail_pdf.html:89
 msgid "playing"
 msgstr "giocare a"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:104
+#: diventi/templates/ebooks/book_detail_pdf.html:102
 #: diventi/templates/ebooks/book_detail_quick.html:172
 msgid "related contents"
 msgstr "contenuti simili"
@@ -3417,10 +3425,6 @@ msgid "buy for"
 msgstr "acquista per"
 
 #: diventi/templates/packages/partials/package_detail_actions.html:27
-msgid "Sign in"
-msgstr "Accedi"
-
-#: diventi/templates/packages/partials/package_detail_actions.html:27
 msgid "to add this object in your collection"
 msgstr "per aggiungere questo oggetto alla tua collezione"
 
@@ -3617,6 +3621,10 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "sign in or sign up to add this content to your collection"
+#~ msgstr ""
+#~ "accedi o registrati per aggiungere questo contenuto alla tua collezione"
 
 #~ msgid "download"
 #~ msgstr "scarica"

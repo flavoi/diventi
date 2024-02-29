@@ -42,7 +42,7 @@
               {% if user.is_authenticated %}
                 {% if book.book_product.published and bought %}
                   <a class="btn btn-sm btn-white disabled" aria-disabled="true">
-                    {% trans "this content is in your collection."|capfirst %}
+                    {% trans "this content is in your collection"|capfirst %}
                   </a>
                 {% else %}
                 <form action="{% url 'products:add_public' book.book_product.slug %}" method="POST">
@@ -54,24 +54,19 @@
 
                 {% endif %}
               {% else %}
-                <a class="btn btn-sm btn-primary disabled">{% trans "Add to collection" %}</a>                    
+                <a class="btn btn-sm btn-primary disabled">{% trans "Add to collection" %}</a>
               {% endif %}
-                <button type="button" data-container="body" data-toggle="popover" data-placement="bottom" class="btn btn-secondary btn-sm rounded-circle btn-icon-only ml-2" data-content="{% trans 'your collection is always accessible from your profile panel, under your avatar'|capfirst %}.">                
-                    <span class="btn-inner--icon mb-1">
-                        <i data-feather="info"></i>
-                    </span>
-                </button>
             </div>
             {% if user.is_anonymous %}
             <p class="mt-2">
                 <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="text-light; text-underline--dashed">
-                    {% trans "Sign in" %}</a> {% trans 'to add this object in your collection' %}.</p>  
+                    {% trans "Sign in" %}</a> {% trans 'to proceed' %}</p>  
             {% endif %} 
           </div>
           <div class="pricing row no-gutters">
             <div class="col-lg-10 mx-auto">              
                 <div class="card border-0 shadow-lg zindex-100 mb-0">
-                    <embed src="{{ book.content_file_url }}" style="width: 100%;" width="800" height="500" type='application/pdf'>
+                    <img alt="{{ book.title }}" src="{{ book.image }}" class="card-img">
                 </div>
               </div>          
           </div>

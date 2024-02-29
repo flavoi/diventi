@@ -20,7 +20,7 @@ class Command(BaseCommand):
                     'user': a.awarded_user.first_name,
                     'deed': a.deed,
                 },
-                'info@playdiventi.it',
+                'autori@playdiventi.it',
                 [a.awarded_user.email,],
                 fail_silently=False,
             )

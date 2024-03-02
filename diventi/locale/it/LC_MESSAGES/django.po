@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 15:15+0100\n"
+"POT-Creation-Date: 2024-03-02 19:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,48 +94,48 @@ msgstr "pacchetti/"
 msgid "Accounts"
 msgstr "Profili"
 
-#: diventi/accounts/forms.py:31
+#: diventi/accounts/forms.py:36
 msgid "Yes, I'm interested."
 msgstr "Si, mi interessa."
 
-#: diventi/accounts/forms.py:31
+#: diventi/accounts/forms.py:36
 msgid "No, don't send me emails."
 msgstr "No, non inviarmi email."
 
-#: diventi/accounts/forms.py:68
+#: diventi/accounts/forms.py:73
 msgid "Email address"
 msgstr "Indirizzo email"
 
-#: diventi/accounts/forms.py:71 diventi/accounts/forms.py:83
-#: diventi/accounts/forms.py:112
+#: diventi/accounts/forms.py:76 diventi/accounts/forms.py:120
+#: diventi/accounts/forms.py:149
 msgid "name@example.com"
 msgstr "nome@esempio.com"
 
-#: diventi/accounts/forms.py:103 diventi/accounts/forms.py:229
+#: diventi/accounts/forms.py:140 diventi/accounts/forms.py:266
 msgid "Can we send you emails?"
 msgstr "Possiamo inviarti email?"
 
-#: diventi/accounts/forms.py:108
+#: diventi/accounts/forms.py:145
 msgid "Mario Rossi"
 msgstr "Mario Rossi"
 
-#: diventi/accounts/forms.py:143
+#: diventi/accounts/forms.py:180
 msgid "This email has already been used."
 msgstr "Questa email è già stata usata."
 
-#: diventi/accounts/forms.py:145
+#: diventi/accounts/forms.py:182
 msgid "Please, fill in your email to complete the registration."
 msgstr "Per favore, compila la tua email per completare la registrazione."
 
-#: diventi/accounts/forms.py:151
+#: diventi/accounts/forms.py:188
 msgid "Please, let us know if we can send emails to you."
 msgstr "Per favore, facci sapere se possamo contattarti tramite email."
 
-#: diventi/accounts/forms.py:160
+#: diventi/accounts/forms.py:197
 msgid "Your name"
 msgstr "Il tuo nome"
 
-#: diventi/accounts/forms.py:167
+#: diventi/accounts/forms.py:204
 msgid "Your email"
 msgstr "La tua email"
 
@@ -1534,8 +1534,9 @@ msgid ""
 "Dear %(user)s,<br>you have successfully purchased %(title)s for %(price)s."
 "<br /><br />Regards,<br />Diventi team"
 msgstr ""
-"Gentile %(user)s,<br>ti confermiamo che il tuo acquisto di %(title)s per %(price)s è andato a buon fine."
-"<br /><br />Cordialmente,<br />Gli autori Diventi"
+"Gentile %(user)s,<br>ti confermiamo che il tuo acquisto di %(title)s per "
+"%(price)s è andato a buon fine.<br /><br />Cordialmente,<br />Gli autori "
+"Diventi"
 
 #: diventi/previews/apps.py:7
 msgid "Link previews"
@@ -1952,9 +1953,8 @@ msgid "Thanks for using our site!"
 msgstr "Grazie per aver navigato con noi!"
 
 #: diventi/templates/accounts/password_reset_email.html:12
-#, python-format
-msgid "The %(site_name)s team"
-msgstr "Il team %(site_name)s"
+msgid "The Diventi team"
+msgstr "Gli autori Diventi"
 
 #: diventi/templates/accounts/password_reset_form_quick.html:22
 msgid "enter your email to reset your password"

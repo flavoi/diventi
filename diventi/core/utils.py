@@ -26,11 +26,13 @@ def send_diventi_email(subject, message, from_email, recipient_list, from_name, 
     server.login(email_user,email_password)
 
     msg = EmailMessage()
-    msg.set_content(html_message, subtype='html')
+    if html_message:
+        msg.set_content(html_message, subtype='html')
+    elif message:
+        msg.set_content(message)
     msg['Subject'] = subject
     msg['From'] = formataddr((from_name, from_email))
-    
-    
+        
     for r in recipient_list:
         msg['To'] = r
         server.send_message(msg)

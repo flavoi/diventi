@@ -51,13 +51,15 @@ def stripe_webhook(request):
         print(e)
         return HttpResponse(status=400)
     # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
+    if event['type'] == 'checkout.session.completed':        
         session = event['data']['object']
         item = stripe.checkout.Session.list_line_items(session['id'], limit=1)['data'][0]
         user = get_object_or_404(
             get_user_model(), 
             nametag = session['client_reference_id'],
         )
+        translation.activate(user.language)
+        request.LANGUAGE_CODE = translation.get_language()
         try:
             product = Product.objects.get(
                 stripe_product=item['price']['product'],
@@ -70,9 +72,7 @@ def stripe_webhook(request):
                 stripe_product=item['price']['product'],
             )
             receipt_title = package.title
-            add_package_to_user_collection(package, user=user)
-        translation.activate(user.language)
-        request.LANGUAGE_CODE = translation.get_language()
+            add_package_to_user_collection(package, user=user)                
         price = humanize_price(float(session['amount_total']))
         send_diventi_email(
             subject = _('Diventi: %(title)s purchase') % {'title': receipt_title,},

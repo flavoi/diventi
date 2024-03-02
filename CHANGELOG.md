@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED] → 2024-01-xx
 
 ### Added
-- [ebooks] Added the possibility to change a specific content language without the need to open the user menu
+- [core] Added a new method to send emails with the custom domain
 - [blog] Integrated plural categories for article categories
+- [ebooks] Added the possibility to change a specific content language without the need to open the user menu
 - [products] Integrated plural categories for product categories
 - [previews] Introduced preview app to generate link previews
 - [products] Added a related forum post into the product object

@@ -10,9 +10,14 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
 )
 from django.conf import settings
+from django.template import loader
+from django.core.mail import EmailMultiAlternatives
 
 from captcha.fields import ReCaptchaField
 from cuser.middleware import CuserMiddleware
+
+
+from diventi.core.utils import send_diventi_email
 
 from .models import (
     DiventiUser,
@@ -71,6 +76,38 @@ class DiventiPasswordResetForm(PasswordResetForm):
             'placeholder': _('name@example.com'),
         })
     )
+
+    def send_mail(
+        self,
+        subject_template_name,
+        email_template_name,
+        context,
+        from_email,
+        to_email,
+        html_email_template_name=None,
+    ):
+        """
+        Send a django.core.mail.EmailMultiAlternatives to `to_email`.
+        """
+        subject = loader.render_to_string(subject_template_name, context)
+        # Email subject *must not* contain newlines
+        subject = "".join(subject.splitlines())
+        body = loader.render_to_string(email_template_name, context)
+
+        email_message = EmailMultiAlternatives(subject, body, from_email, [to_email])
+        html_email = ''
+        if html_email_template_name is not None:
+            html_email = loader.render_to_string(html_email_template_name, context)
+            email_message.attach_alternative(html_email, "text/html")
+
+        send_diventi_email(
+            subject = subject,
+            message = body,
+            from_email = 'autori@playdiventi.it',
+            recipient_list = [to_email],
+            from_name = 'Diventi',
+            html_message = None,
+        )
 
 
 class DiventiAuthenticationForm(AuthenticationForm):
@@ -235,3 +272,4 @@ class DiventiUserPrivacyChangeForm(forms.ModelForm):
                     'class': 'custom-control-input',
                 }),
         }
+

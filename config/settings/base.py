@@ -400,7 +400,7 @@ DIVENTI_UNIVERSALE_PAPER_ID = get_env_variable('DIVENTI_UNIVERSALE_PAPER_ID')
 PRINT_HTML_EBOOK = False
 
 # Email backend for testing and development
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_BACKEND = ''
 EMAIL_HOST =  get_env_variable('EMAIL_HOST_KEY') # mail service smtp

@@ -8,15 +8,15 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 from django.db.models import Sum
 from django.contrib import messages
 from django.forms import formset_factory
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from diventi.core.views import DiventiActionMixin
+from diventi.core.utils import send_diventi_email
 
 from .models import Survey, Answer, Question, QuestionGroup
 from .forms import AnswerForm, FeaturedSurveyInitForm
@@ -75,12 +75,13 @@ def survey_questions_private(request, slug, author_name=None):
         if formset.is_valid():
             for form in formset:
                 form.save()
-            send_mail(
-                _('Diventi: %(user)s has completed %(survey)s') % {'user': author_name, 'survey': survey.title,},
-                _('Dear Diventi authors, new answers are now available for survey %(survey)s.') % {'survey': survey.title,},
-                'info@playdiventi.it',
-                ['info@playdiventi.it',],
-                fail_silently=False,
+            send_diventi_email(
+                subject = _('Diventi: %(user)s has completed %(survey)s') % {'user': author_name, 'survey': survey.title,},
+                message = None,
+                from_email = 'autori@playdiventi.it',
+                recipient_list = ['autori@playdiventi.it',],
+                from_name = 'Diventi',
+                html_message = _('Dear Diventi authors, new answers are now available for survey %(survey)s.') % {'survey': survey.title,},
             )
             request.session['user_has_answered'] = 1
             return redirect(reverse('feedbacks:survey_done', args=[slug,]))
@@ -124,12 +125,13 @@ def survey_questions_public(request, slug, author_name=None):
         if formset.is_valid():
             for form in formset:
                 form.save()
-            send_mail(
-                _('Diventi: %(user)s has completed %(survey)s') % {'user': author_name, 'survey': survey.title,},
-                _('Dear Diventi authors, new answers are now available for survey %(survey)s.') % {'survey': survey.title,},
-                'info@playdiventi.it',
-                ['info@playdiventi.it',],
-                fail_silently=False,
+            send_diventi_email(
+                subject = _('Diventi: %(user)s has completed %(survey)s') % {'user': author_name, 'survey': survey.title,},
+                message = None,
+                from_email = 'autori@playdiventi.it',
+                from_name = 'Diventi',
+                recipient_list = ['autori@playdiventi.it',],
+                html_message = _('Dear Diventi authors, new answers are now available for survey %(survey)s.') % {'survey': survey.title,},            
             )
             request.session['user_has_answered'] = 1
             return redirect(reverse('feedbacks:survey_done', args=[slug,]))

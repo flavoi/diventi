@@ -6,8 +6,7 @@ from django.utils import translation
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 from django.http import HttpResponse
 from django.contrib import messages
 
@@ -21,6 +20,7 @@ from diventi.packages.models import (
 
 from diventi.core.utils import (
     humanize_price,
+    send_diventi_email,
 )
 
 from diventi.products.utils import (
@@ -74,15 +74,16 @@ def stripe_webhook(request):
         translation.activate(user.language)
         request.LANGUAGE_CODE = translation.get_language()
         price = humanize_price(float(session['amount_total']))
-        send_mail(
-            _('Diventi: %(title)s purchase') % {'title': receipt_title,},
-            _('Dear %(user)s,\nyou have successfully purchased %(title)s for %(price)s.\n\nRegards,\nDiventi team') % {
+        send_diventi_email(
+            subject = _('Diventi: %(title)s purchase') % {'title': receipt_title,},
+            message = None,
+            from_email = 'autori@playdiventi.it',
+            recipient_list = [user.email,],
+            from_name = 'Diventi',
+            html_message = _('Dear %(user)s,<br>you have successfully purchased %(title)s for %(price)s.<br /><br />Regards,<br />Diventi team') % {
                 'user': user.first_name,
                 'price': price,
                 'title': receipt_title,
             },
-            'info@playdiventi.it',
-            [user.email,],
-            fail_silently=False,
         )
     return HttpResponse(status=200)

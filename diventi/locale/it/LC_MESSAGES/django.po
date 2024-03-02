@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-02 15:07+0100\n"
+"POT-Creation-Date: 2024-03-02 15:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,24 +139,25 @@ msgstr "Il tuo nome"
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:11
+#: diventi/accounts/management/commands/notify_awarded_users.py:10
 msgid "Send an email to all users that have received a new award"
 msgstr "Invia un'email agli utenti che hanno ricevuto un riconoscimento"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:19
+#: diventi/accounts/management/commands/notify_awarded_users.py:18
 msgid "A new award from Diventi Roleplaying Community"
 msgstr "Un nuovo riconoscimento dalla Comunità di Ruolo Diventi"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:24
+#: diventi/accounts/management/commands/notify_awarded_users.py:23
 #, python-format
 msgid ""
 "Dear %(user)s,<br />your new <b>%(deed)s</b> tag is now available on your "
 "playdiventi.it profile.<br/ ><br />Regards,<br />Diventi team"
 msgstr ""
-"Gentile %(user)s,<br />il tuo nuovo tag <b>%(deed)s</b> è ora disponibile nel tuo "
-"profilo su playdiventi.it<br/ ><br />Cordialmente,<br />Gli autori Diventi"
+"Gentile %(user)s,<br />il tuo nuovo tag <b>%(deed)s</b> è ora disponibile "
+"nel tuo profilo su playdiventi.it<br/ ><br />Cordialmente,<br />Gli autori "
+"Diventi"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:30
+#: diventi/accounts/management/commands/notify_awarded_users.py:29
 #, python-format
 msgid "Successfully notified award \"%s\""
 msgstr "Riconoscimento \"%s\" notificato con successo"
@@ -1318,12 +1319,12 @@ msgstr "<slug:slug>/risposte/"
 msgid "<slug:slug>/survey-done/"
 msgstr "<slug:slug>/sondaggio-completato/"
 
-#: diventi/feedbacks/views.py:79 diventi/feedbacks/views.py:128
+#: diventi/feedbacks/views.py:79 diventi/feedbacks/views.py:129
 #, python-format
 msgid "Diventi: %(user)s has completed %(survey)s"
 msgstr "Diventi: %(user)s ha completato %(survey)s"
 
-#: diventi/feedbacks/views.py:80 diventi/feedbacks/views.py:129
+#: diventi/feedbacks/views.py:84 diventi/feedbacks/views.py:134
 #, python-format
 msgid ""
 "Dear Diventi authors, new answers are now available for survey %(survey)s."
@@ -1331,27 +1332,27 @@ msgstr ""
 "Cari autori Diventi, nuove risposte sono ora disponibili per il sondaggio "
 "%(survey)s."
 
-#: diventi/feedbacks/views.py:88 diventi/feedbacks/views.py:137
+#: diventi/feedbacks/views.py:89 diventi/feedbacks/views.py:139
 msgid "Please, double check your answers below."
 msgstr "Per favore controlla le tue risposte qui sotto."
 
-#: diventi/feedbacks/views.py:103 diventi/feedbacks/views.py:196
+#: diventi/feedbacks/views.py:104 diventi/feedbacks/views.py:198
 msgid ""
 "An other user already picked that name and answered, please choose another "
 "name."
 msgstr ""
 "Un altro utente ha già utilizzato questo nome, per favore scegline un altro."
 
-#: diventi/feedbacks/views.py:160 diventi/feedbacks/views.py:177
+#: diventi/feedbacks/views.py:162 diventi/feedbacks/views.py:179
 msgid "No survey found, please go back and redo your survey."
 msgstr ""
 "Non è stato trovato alcun sondaggio, per favore torna indietro e riprova."
 
-#: diventi/feedbacks/views.py:201
+#: diventi/feedbacks/views.py:203
 msgid "There was an error while processing your survey."
 msgstr "Si è verificato un errore mentre processavamo il tuo sondaggio."
 
-#: diventi/feedbacks/views.py:215
+#: diventi/feedbacks/views.py:217
 msgid "This survey is not open to public, sorry."
 msgstr "Spiacente, questo sondaggio non è aperto al pubblico."
 
@@ -1527,20 +1528,14 @@ msgstr "Pagamenti"
 msgid "Diventi: %(title)s purchase"
 msgstr "Diventi: acquisto %(title)s"
 
-#: diventi/payments/views.py:79
+#: diventi/payments/views.py:83
 #, python-format
 msgid ""
-"Dear %(user)s,\n"
-"you have successfully purchased %(title)s for %(price)s.\n"
-"\n"
-"Regards,\n"
-"Diventi team"
+"Dear %(user)s,<br>you have successfully purchased %(title)s for %(price)s."
+"<br /><br />Regards,<br />Diventi team"
 msgstr ""
-"Gentile %(user)s,\n"
-"hai acquistato con successo %(title)s per %(price)s.\n"
-"\n"
-"Cordialmente,\n"
-"Il team Diventi"
+"Gentile %(user)s,<br>ti confermiamo che il tuo acquisto di %(title)s per %(price)s è andato a buon fine."
+"<br /><br />Cordialmente,<br />Gli autori Diventi"
 
 #: diventi/previews/apps.py:7
 msgid "Link previews"

@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import gettext as _
-from django.core.mail import send_mail
 from django.utils import translation
 
 from diventi.core.utils import send_diventi_email
@@ -17,7 +16,7 @@ class Command(BaseCommand):
             a.notified = True
             send_diventi_email(
                 subject = _('A new award from Diventi Roleplaying Community'),
-                message = None,          
+                message = None,
                 from_email = 'autori@playdiventi.it',
                 recipient_list = [a.awarded_user.email,],
                 from_name = 'Diventi',

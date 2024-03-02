@@ -3,6 +3,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
 from django.utils import translation
 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.header import Header
+from email.utils import formataddr
+
 from diventi.accounts.models import Award
 
 
@@ -14,13 +19,20 @@ class Command(BaseCommand):
         for a in awards:
             translation.activate(a.awarded_user.language)
             a.notified = True
-            send_mail(
-                _('A new award from Diventi Roleplaying Community'),
-                _('Dear %(user)s,\nyour new %(deed)s tag is now available on your playdiventi.it profile.\n\nRegards,\nDiventi team') % {
+            
+            from_email = 'autori@playdiventi.it'
+            msg = MIMEMultipart('alternative')
+            msg['From'] = formataddr((str(Header('Diventi', 'utf-8')), from_email))
+            html = _('Dear %(user)s,\nyour new %(deed)s tag is now available on your playdiventi.it profile.\n\nRegards,\nDiventi team') % {
                     'user': a.awarded_user.first_name,
                     'deed': a.deed,
-                },
-                'autori@playdiventi.it',
+                }
+            msg.attach(MIMEText(html, 'html'))
+
+            send_mail(
+                _('A new award from Diventi Roleplaying Community'),
+                msg.as_string(),
+                from_email,
                 [a.awarded_user.email,],
                 fail_silently=False,
             )

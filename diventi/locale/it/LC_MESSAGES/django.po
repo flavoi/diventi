@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-27 15:28+0100\n"
+"POT-Creation-Date: 2024-03-02 15:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,31 +139,24 @@ msgstr "Il tuo nome"
 msgid "Your email"
 msgstr "La tua email"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:10
+#: diventi/accounts/management/commands/notify_awarded_users.py:11
 msgid "Send an email to all users that have received a new award"
 msgstr "Invia un'email agli utenti che hanno ricevuto un riconoscimento"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:18
+#: diventi/accounts/management/commands/notify_awarded_users.py:19
 msgid "A new award from Diventi Roleplaying Community"
 msgstr "Un nuovo riconoscimento dalla Comunità di Ruolo Diventi"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:19
+#: diventi/accounts/management/commands/notify_awarded_users.py:24
 #, python-format
 msgid ""
-"Dear %(user)s,\n"
-"your new %(deed)s tag is now available on your playdiventi.it profile.\n"
-"\n"
-"Regards,\n"
-"Diventi team"
+"Dear %(user)s,<br />your new <b>%(deed)s</b> tag is now available on your "
+"playdiventi.it profile.<br/ ><br />Regards,<br />Diventi team"
 msgstr ""
-"Gentile %(user)s,\n"
-"la tua nuova medaglietta %(deed)s è ora disponibile nel tuo profilo su "
-"playdiventi.it.\n"
-"\n"
-"Cordialmente,\n"
-"Il team Diventi"
+"Gentile %(user)s,<br />il tuo nuovo tag <b>%(deed)s</b> è ora disponibile nel tuo "
+"profilo su playdiventi.it<br/ ><br />Cordialmente,<br />Gli autori Diventi"
 
-#: diventi/accounts/management/commands/notify_awarded_users.py:28
+#: diventi/accounts/management/commands/notify_awarded_users.py:30
 #, python-format
 msgid "Successfully notified award \"%s\""
 msgstr "Riconoscimento \"%s\" notificato con successo"
@@ -2547,14 +2540,6 @@ msgstr "Accedi"
 msgid "to proceed"
 msgstr "per procedere"
 
-#: diventi/templates/ebooks/book_detail_pdf.html:63
-msgid ""
-"your collection is always accessible from your profile panel, under your "
-"avatar"
-msgstr ""
-"la tua collezione è sempre disponibile nel tuo pannello, al di sotto del tuo "
-"avatar"
-
 #: diventi/templates/ebooks/book_detail_pdf.html:89
 msgid "playing"
 msgstr "giocare a"
@@ -3621,6 +3606,13 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid ""
+#~ "your collection is always accessible from your profile panel, under your "
+#~ "avatar"
+#~ msgstr ""
+#~ "la tua collezione è sempre disponibile nel tuo pannello, al di sotto del "
+#~ "tuo avatar"
 
 #~ msgid "sign in or sign up to add this content to your collection"
 #~ msgstr ""

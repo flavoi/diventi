@@ -19,7 +19,7 @@ class Command(BaseCommand):
         for a in awards:
             translation.activate(a.awarded_user.language)
             a.notified = True
-            
+
             from_email = 'autori@playdiventi.it'
             msg = MIMEMultipart('alternative')
             msg['From'] = formataddr((str(Header('Diventi', 'utf-8')), from_email))
@@ -30,11 +30,12 @@ class Command(BaseCommand):
             msg.attach(MIMEText(html, 'html'))
 
             send_mail(
-                _('A new award from Diventi Roleplaying Community'),
-                msg.as_string(),
-                from_email,
-                [a.awarded_user.email,],
-                fail_silently=False,
+                subject = _('A new award from Diventi Roleplaying Community'),
+                message = None,          
+                from_email = from_email,
+                recipient_list = [a.awarded_user.email,],
+                fail_silently = False,
+                html_message = msg.as_string(),
             )
             a.save()
             self.stdout.write(self.style.SUCCESS(_('Successfully notified award "%s"') % a))

@@ -97,6 +97,10 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
         object_id_field='object_pk',
         related_query_name='hit_count_generic_relation'
     ) # Counts the views on this model
+    continuous_update = models.BooleanField(
+        default = False,
+        verbose_name = _('continuous update')
+    )
 
     objects = BookQuerySet.as_manager()
 

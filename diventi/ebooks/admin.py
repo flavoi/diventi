@@ -88,10 +88,10 @@ class ReplacementRuleAdmin(DiventiTranslationAdmin):
 
 
 class BookAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'published', 'paper_id', 'content_file_url', 'image_tag', 'get_logo_image', 'get_product_category', 'get_hitcounts', 'created', 'modified', 'publication_date']
+    list_display = ['title', 'published', 'continuous_update', 'paper_id', 'content_file_url', 'image_tag', 'get_logo_image', 'get_product_category', 'get_hitcounts', 'created', 'modified', 'publication_date']
     fieldsets = (        
         (_('Management'), {
-            'fields': ('published', 'book_product'),
+            'fields': ('published', 'book_product', 'continuous_update'),
         }),
         (_('Content'), {
             'fields': ('paper_id', 'content_file_url', 'image'),

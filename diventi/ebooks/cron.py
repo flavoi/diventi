@@ -29,7 +29,6 @@ def fetch_paper_books():
         activate(language[0])
         lan = get_language()
         print('Lingua corrente: %s' % lan)
-        print(books)
         for book in books:
             if book.paper_id:
                 print('Elaboro {}'.format(book.title_it))

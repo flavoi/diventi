@@ -29,6 +29,7 @@ def fetch_paper_books():
         activate(language[0])
         lan = get_language()
         print('Lingua corrente: %s' % lan)
+        print(books)
         for book in books:
             if book.paper_id:
                 print('Elaboro {}'.format(book.title_it))
@@ -36,8 +37,7 @@ def fetch_paper_books():
                 filepath = settings.BASE_DIR / 'templates/ebooks/partials/book_paper_{}_{}.html'.format(book.id, language[0]) 
                 with open(filepath, 'w', encoding='utf-8') as f:
                     print('Stampo %s' % filepath)
-                    output = f.write(str(paper_soup))
-                    print(output)
+                    f.write(str(paper_soup))
             else:
                 pass
     return 1

@@ -24,7 +24,7 @@ def fetch_paper_books():
     """
     ct = datetime.datetime.now()
     print('Ultima stampa di paper: %s' % ct)
-    books = Book.objects.all()
+    books = Book.objects.exclude(paper_id__exact='')
     for language in settings.LANGUAGES:
         activate(language[0])
         lan = get_language()

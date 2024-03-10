@@ -69,7 +69,35 @@
         <h5>{% trans "what is included"|capfirst %}</h5>
             <div class="row">
             {% for product in package.related_products.all %}
-                <div class="col-lg-6 mt-2">
+                <div class="col-lg-12 mt-2">
+                    <a href="{{ product.get_absolute_url }}" target="_blank">
+                      <div class="card mb-3 bg-light hover-translate-y-n10 hover-shadow-lg">
+                        <div class="row no-gutters">
+                          <div class="col-md-4">
+                            <img loading="lazy" src="{{ product.image }}" class="card-img" alt="Diventi · {{ product.title|capfirst }}">
+                          </div>
+                          {% if product.id in products_already_bought %}     
+                                <div class="card-img-overlay d-flex">
+                                    <div class="text-center">
+                                        <span class="badge badge-pill badge-info align-middle" data-fancybox="">   
+                                            <i data-feather="check" class="mr-0"></i>
+                                            {% trans "in your collection"|capfirst %}
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title mb-0">Diventi · {{ product.title|capfirst }}</h5>
+                              <small class="d-block text-sm mb-0 text-{{ product.category.color }}"><b>{{ product.category }}</b></small>
+                              <p class="card-text mt-1">{{ product.short_description }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+
+                    <!--
                     <div class="card border-0 mb-3 hover-translate-y-n10 hover-shadow-lg">
                         <a href="#/" data-container="body" data-toggle="popover" data-placement="right" title="{{ product.title|capfirst }}" data-content="{{ product.abstract }}">
                             <div class="h-100">
@@ -100,6 +128,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
             {% endfor %}
             </div>

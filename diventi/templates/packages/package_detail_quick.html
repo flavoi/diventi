@@ -79,9 +79,9 @@
                           {% if product.id in products_already_bought %}     
                                 <div class="card-img-overlay d-flex">
                                     <div class="text-center">
-                                        <span class="badge badge-pill badge-info align-middle" data-fancybox="">   
+                                        <span class="badge badge-pill badge-warning align-middle" data-fancybox="">   
                                             <i data-feather="check" class="mr-0"></i>
-                                            {% trans "in your collection"|capfirst %}
+                                            {% trans "in your collection, already"|capfirst %}
                                         </span>
                                     </div>
                                 </div>
@@ -96,39 +96,6 @@
                         </div>
                       </div>
                     </a>
-
-                    <!--
-                    <div class="card border-0 mb-3 hover-translate-y-n10 hover-shadow-lg">
-                        <a href="#/" data-container="body" data-toggle="popover" data-placement="right" title="{{ product.title|capfirst }}" data-content="{{ product.abstract }}">
-                            <div class="h-100">
-                                <img loading="lazy" class="card-img-top py-3" src="{{ product.postcard }}" alt="{{ product.title|capfirst }}">
-                            </div>
-                            {% if product.id in products_already_bought %}     
-                                <div class="card-img-overlay d-flex">
-                                    <div class="text-center">
-                                        <span class="badge badge-pill badge-info align-middle" data-fancybox="">   
-                                            <i data-feather="check" class="mr-0"></i>
-                                            {% trans "in your collection"|capfirst %}
-                                        </span>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </a>
-                        <div class="card-body p-3 delimiter-top">                        
-                            <div class="text-center">
-                            <a href="{{ product.get_absolute_url }}" target="_blank" class="h6 stretched-link lh-150">
-                                {{ product.title|capfirst }}</a>
-                                {% with product as object %} 
-                                    {% if user.is_staff %}
-                                        <span class="ml-1">{% include 'publishable_badge.html' %}</span>
-                                        <span class="ml-1">{% include 'unfoldable_badge.html' %}</span>
-                                    {% endif %}
-                                {% endwith %}
-                                <small class="d-block text-sm mb-0 text-{{ product.category.color }}"><b>{{ product.category }}</b></small>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             {% endfor %}
             </div>

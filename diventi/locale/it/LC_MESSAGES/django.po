@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-03 18:46+0100\n"
+"POT-Creation-Date: 2024-03-10 11:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3400,10 +3400,9 @@ msgstr "in breve"
 msgid "what is included"
 msgstr "cos'è incluso"
 
-#: diventi/templates/packages/package_detail_quick.html:83
-#: diventi/templates/products/partials/product_detail_actions.html:38
-msgid "in your collection"
-msgstr "nella tua collezione"
+#: diventi/templates/packages/package_detail_quick.html:84
+msgid "in your collection, already"
+msgstr "già nella tua collezione"
 
 #: diventi/templates/packages/partials/package_detail_actions.html:19
 #: diventi/templates/packages/partials/package_detail_actions.html:22
@@ -3465,6 +3464,10 @@ msgstr "visualizzare le tue risposte qui"
 #: diventi/templates/products/partials/product_detail_actions.html:38
 msgid "or"
 msgstr "o"
+
+#: diventi/templates/products/partials/product_detail_actions.html:38
+msgid "in your collection"
+msgstr "nella tua collezione"
 
 #: diventi/templates/products/product_detail_quick.html:40
 msgid "format"

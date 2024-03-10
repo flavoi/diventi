@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [landing] Enabled menu with user avatar in desktop mode
 - [machina] Enabled user achievements
 - [packages] Updated discount visual style
+- [packages] Updated cards visual style
 
 ### Removed
 - [accounts] Removed unecessary context variables to display the navbar

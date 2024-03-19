@@ -28,15 +28,6 @@
                 <div class="card hover-translate-y-n10 hover-shadow-lg">
                   <div class="card-body">
                     <div class="pb-2">
-                    <!--             
-                        <div class="badge badge-{{ result.category.color|default:'info' }} badge-pill">
-                            {% if result.category %}
-                                {{ result.category|capfirst }}
-                            {% else %}
-                                {{ result.class_name|capfirst }}
-                            {% endif %}
-                        </div>
-                    -->
                         <small class="d-block text-sm text-{{ result.category.color|default:'info' }} mb-2">
                             <strong>
                                 {% if result.category %}

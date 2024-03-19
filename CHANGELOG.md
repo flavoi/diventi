@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Removed unecessary context variables to display the navbar
 - [accounts] Removed comments and reviews count from the users stats
 - [landing] Removed user dropdown with duplicated links in respect of the user modal
+- [landing] Removed the email from the footer
 - [products] Removed layout fields and admin section and moved them to the template engine
 - [reviews] Disabled reviews functionality from product and ebook pages
 

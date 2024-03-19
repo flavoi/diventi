@@ -173,7 +173,9 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
             reduce(operator.and_,
                    (Q(title__icontains=q) for q in query_list)) |
             reduce(operator.and_,
-                   (Q(description__icontains=q) for q in query_list))
+                   (Q(description__icontains=q) for q in query_list)) |
+            reduce(operator.and_,
+                   (Q(category__title__icontains=q) for q in query_list))
         )
         return results
 

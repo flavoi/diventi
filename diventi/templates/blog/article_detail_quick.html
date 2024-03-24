@@ -57,11 +57,15 @@
                     <div class="col mb-3 mb-lg-0">
                         <div class="media align-items-center">
                             <div>
-                                <a href="#" class="avatar avatar-lg rounded-circle mr-3">
+                                <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-lg rounded-circle mr-3">
                                     <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}">
                                 </a>
                             </div>
-                            <div class="media-body"><span class="d-block h6 mb-0">{{ article.author.get_full_name }}</span> <span class="text-sm text-muted">{% trans "published on"|capfirst %} {{ article.publication_date|date:"d/m/Y" }}</span></span></div>
+                            <div class="media-body"><span class="d-block mb-0"><a class="h6" href="{{ article.author.get_absolute_url }}">{{ article.author.get_full_name }}</a>
+                            {% for a in article.author.deeds.all %}
+                                {% include 'accounts/partials/achievement_badge.html' %}
+                            {% endfor %}</span>
+                            <span class="text-sm text-muted">{% trans "published on"|capfirst %} {{ article.publication_date|date:"d/m/Y" }}</span></span></div>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -118,14 +122,15 @@
                     </div>
                     <div class="card-footer border-0 delimiter-top">
                         <div class="row align-items-center">
-                            <div class="col-auto">                                
+                            <div class="col-auto">                           
                                 <span class="avatar avatar-sm bg-primary rounded-circle">
                                     <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}">
                                 </span><span class="text-sm mb-0 ml-0 avatar-content">{{ article.author.get_full_name }}</span>
+                            </a>
                             </div>
                             <div class="col text-right text-right">
                                 <div class="actions">
-                                    <a href="#" class="action-item">
+                                    <a href="#/" class="action-item">
                                         <small>{{ article.get_readtime }} {% trans "read" %}</small>
                                     </a>
                                 </div>

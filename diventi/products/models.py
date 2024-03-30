@@ -427,7 +427,7 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
                     'product': product.title,
                 },
                 'title': product.hit_count.hits,
-                'description1': _('product views in the last week: %(d)s') % {
+                'description1': _('views in the last week:: %(d)s') % {
                     'd': product.hit_count.hits_in_last(days=7),
                 },
                 'action': ''
@@ -438,7 +438,7 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
                     'product': product.title,
                 },
                 'title': product.book.hit_count.hits,
-                'description1': _('book views in the last week: %(d)s') % {
+                'description1': _('views in the last week:: %(d)s') % {
                     'd': product.book.hit_count.hits_in_last(days=7),
                 },
                 'title': customers_it_emails.count(),

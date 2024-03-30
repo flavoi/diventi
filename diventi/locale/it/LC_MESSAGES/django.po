@@ -1664,17 +1664,17 @@ msgstr "%(product)s: visite al prodotto"
 #: diventi/products/models.py:430
 #, python-format
 msgid "product views in the last week: %(d)s"
-msgstr "visite del prodotto nell'ultima settimana: %(d)s"
+msgstr "visite al prodotto nell'ultima settimana: %(d)s"
 
 #: diventi/products/models.py:437
 #, python-format
 msgid "%(product)s: book views"
-msgstr "%(product)s: visite al libro"
+msgstr "%(product)s: visite al libro "
 
 #: diventi/products/models.py:441
 #, python-format
 msgid "book views in the last week: %(d)s"
-msgstr "visite del libro nell'ultima settimana: %(d)s"
+msgstr "visite al libro nell'ultima settimana: %(d)s"
 
 #: diventi/products/models.py:466 diventi/templates/publishable_badge.html:4
 msgid "draft"

@@ -104,6 +104,11 @@ class ArticleQuerySet(PublishableModelQuerySet):
         articles = self.hit_count()[:3]
         return articles
 
+    # Get the latest articles, counted by django hitcount
+    def popular_recent(self):
+        articles = self.hit_count().order_by('-publication_date')[:3]
+        return articles
+
 
 class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element, HitCountMixin):
     """
@@ -179,8 +184,26 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
         )
         return results
 
-    def reporting(self, *args, **kwargs):
+    def reporting_popular(self, *args, **kwargs):
         queryset = Article.objects.popular()
+        results = []
+        for article in queryset:
+            results.append({
+                'columns': 4,
+                'name': '%(article)s' % {
+                    'article': article.title,
+                },
+                'title': article.hit_count.hits,
+                'description1': _('views in the last week: %(d)s') % {
+                    'd': article.hit_count.hits_in_last(days=7),
+                },
+                'description2': '',
+                'action': '',
+            })
+        return results
+
+    def reporting_latest(self, *args, **kwargs):
+        queryset = Article.objects.popular_recent()
         results = []
         for article in queryset:
             results.append({

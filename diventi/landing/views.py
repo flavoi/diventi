@@ -80,7 +80,8 @@ class DashboardView(StaffRequiredMixin, ListView):
         results = []
         results.append((_('users'), DiventiUser.reporting(self)))
         results.append((_('packages'), Package.reporting(self)))
-        results.append((_('articles'), Article.reporting(self)))
+        results.append((_('popular articles'), Article.reporting_popular(self)))
+        results.append((_('latest articles'), Article.reporting_latest(self)))
         results.append((_('about articles'), AboutArticle.reporting(self)))
         results.append((_('private products'), Product.reporting_private(self)))
         results.append((_('public products'), Product.reporting_public(self)))

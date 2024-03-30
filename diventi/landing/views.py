@@ -99,7 +99,7 @@ def get_landing_context(request):
     sections = Section.objects.not_featured()
 
     featured_product = Product.objects.pinned_list().featured()
-    pinned_product = Product.objects.not_hot().pinned()
+    pinned_product = Product.objects.pinned()
     latest_public_product = Product.objects.latest_public()
     latest_article = Article.objects.hottest()
     pinned_survey = Survey.objects.pinned()

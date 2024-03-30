@@ -84,7 +84,8 @@ class DashboardView(StaffRequiredMixin, ListView):
         results.append((_('latest articles'), Article.reporting_latest(self)))
         results.append((_('about articles'), AboutArticle.reporting(self)))
         results.append((_('private products'), Product.reporting_private(self)))
-        results.append((_('public products'), Product.reporting_public(self)))
+        results.append((_('popular public products'), Product.reporting_public_popular(self)))
+        results.append((_('latest public products'), Product.reporting_public_recent(self)))
         return results
 
     def get_context_data(self, **kwargs):

@@ -96,7 +96,7 @@ class ArticleQuerySet(PublishableModelQuerySet):
 
     # Get the published articles, counted by django hitcount
     def hit_count(self):
-        articles = self.published().order_by('-hit_count_generic__hits')
+        articles = self.published().prefetch().order_by('-hit_count_generic__hits')
         return articles
 
     # Get the most viewed articles, counted by django hitcount

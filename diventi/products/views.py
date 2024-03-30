@@ -35,6 +35,10 @@ from django.shortcuts import (
 
 from logging import getLogger
 
+from hitcount.views import (
+    HitCountDetailView,
+)
+
 from diventi.core.views import DiventiActionMixin
 
 from diventi.core.utils import (
@@ -97,13 +101,14 @@ class ProductListViewByCategory(ProductListView):
         return context
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(HitCountDetailView):
     """
         Renders the product contents.
     """
     model = Product
     context_object_name = 'product'
     template_name = 'products/product_detail_quick.html'
+    count_hit = True
 
     def get(self, request, *args, **kwargs):
         obj = self.get_object()

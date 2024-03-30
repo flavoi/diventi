@@ -22,7 +22,6 @@ from django.core.exceptions import PermissionDenied
 
 from hitcount.models import HitCount
 from hitcount.views import (
-    HitCountMixin, 
     HitCountDetailView,
 )
 

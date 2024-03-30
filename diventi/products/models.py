@@ -8,8 +8,11 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _, gettext
 from django.contrib.humanize.templatetags.humanize import naturalday
 from django.contrib.auth import get_user_model
+from django.contrib.contenttypes.fields import GenericRelation
 
 from machina.apps.forum_conversation.models import Topic
+
+from hitcount.models import HitCount, HitCountMixin
 
 from cuser.middleware import CuserMiddleware
 
@@ -104,14 +107,39 @@ class ProductQuerySet(FeaturedModelQuerySet):
         product = self.published().filter(public=True).latest('publication_date')
         return product
 
-    # Filter public products only
+    # Get public products only
     def public(self):
         products = self.filter(public=True)
+        return products
+
+    # Get the published products, counted by their book hitcount
+    def hit_count_book(self):
+        products = self.published().prefetch().order_by('-book__hit_count_generic__hits')
+        return products
+
+    # Get the most popular products, counted by django hitcount
+    def public_popular(self):
+        products = self.hit_count_book().public()[:3]
+        return products
+
+    # Get the most popular, public products, counted by django hitcount
+    def public_recent(self):
+        products = self.hit_count().order_by('-publication_date')[:3]
+        return products
+
+    # Get the published products, counted by their own hitcount
+    def hit_count(self):
+        products = self.published().prefetch().order_by('-hit_count_generic__hits')
         return products
 
     # Exclude public products        
     def not_public(self):
         products = self.exclude(public=True)
+        return products
+
+    # Get the most popular, private products, counted by django hitcount
+    def private_popular(self):
+        products = self.hit_count().not_public()
         return products
 
 
@@ -163,7 +191,7 @@ class ProductFormat(Element):
         verbose_name_plural = _('Formats')
 
 
-class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, SectionModel):
+class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel, Element, SectionModel):
     """ An adventure or a module published by Diventi. """
     title = models.CharField(
         max_length=50, 
@@ -291,6 +319,11 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
         blank=True, 
         verbose_name = _('postcard')
     )
+    hit_count_generic = GenericRelation(
+        HitCount, 
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation'
+    ) # Counts the views on this model
 
     def image_tag(self):
         return super(Product, self).image_tag()
@@ -331,9 +364,26 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
         )
         return results
 
-    def reporting_public(self, *args, **kwargs):
-        queryset_public = Product.objects.public()
-        queryset_public = queryset_public.prefetch()
+    def reporting_public_popular(self, *args, **kwargs):
+        queryset_public = Product.objects.public_popular()        
+        results = []
+        for product in queryset_public:
+            results.append({
+                'columns': 4,
+                'name': '%(product)s' % {
+                    'product': product.title,
+                },
+                'title': product.book.hit_count.hits,
+                'description1': _('views in the last week: %(d)s') % {
+                    'd': product.book.hit_count.hits_in_last(days=7),
+                },
+                'description2': '',
+                'action': '',
+            })
+        return results
+
+    def reporting_public_recent(self, *args, **kwargs):
+        queryset_public = Product.objects.public_recent()
         results = []
         for product in queryset_public:
             results.append({
@@ -351,8 +401,7 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
         return results
 
     def reporting_private(self, *args, **kwargs):
-        queryset_not_public = Product.objects.not_public().exclude(category__meta_category=True)
-        queryset_not_public = queryset_not_public.prefetch()
+        queryset_not_public = Product.objects.private_popular()
         results = []
         for product in queryset_not_public:
             last_purchase = Purchase.objects.last_purchase(product)
@@ -367,9 +416,8 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
                     'product': product.title,
                 },
                 'title': product.customers.count(),
-                'description1': _('%(en)s english customers, %(it)s italian customers') % {
-                    'en': customers_en.count(),
-                    'it': customers_it.count(),
+                'description1': _('product views in the last week: %(d)s') % {
+                    'd': product.hit_count.hits_in_last(days=7),
                 },
                 'description2': last_purchase.get_description(prefix) if last_purchase is not None else prefix + ': -',
                 'action': '',
@@ -381,6 +429,9 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
                     'product': product.title,
                 },
                 'title': customers_en_emails.count(),
+                'description1': _('book views in the last week: %(d)s') % {
+                    'd': product.book.hit_count.hits_in_last(days=7),
+                },
                 'action': {
                     'label': _('copy emails'), 
                     'function': 'copy-emails', 
@@ -391,6 +442,9 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
                 'columns': 3,
                 'name': _('%(product)s: italian subscribers') % {
                     'product': product.title,
+                },
+                'description1': _('book views in the last week: %(d)s') % {
+                    'd': product.book.hit_count.hits_in_last(days=7),
                 },
                 'title': customers_it_emails.count(),
                 'action': {
@@ -429,6 +483,11 @@ class Product(TimeStampedModel, FeaturedModel, DiventiImageModel, Element, Secti
     _at_a_premium.boolean = True
     _at_a_premium.short_description = _('at a premium')
     at_a_premium = property(_at_a_premium)
+
+    def get_hitcounts(self):
+        return self.hit_count.hits
+    get_hitcounts.short_description = _('Hit counts')
+    get_hitcounts.admin_order_field = 'hit_count_generic__hits'
 
 
 class ProductDetail(Element, HighlightedModel):

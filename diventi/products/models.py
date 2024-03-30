@@ -416,42 +416,33 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
                     'product': product.title,
                 },
                 'title': product.customers.count(),
-                'description1': _('product views in the last week: %(d)s') % {
-                    'd': product.hit_count.hits_in_last(days=7),
-                },
+                'description1': '',
                 'description2': last_purchase.get_description(prefix) if last_purchase is not None else prefix + ': -',
                 'action': '',
             })
 
             results.append({
                 'columns': 3,
-                'name': _('%(product)s: english subscribers') % {
+                'name': _('%(product)s: product views') % {
                     'product': product.title,
                 },
-                'title': customers_en_emails.count(),
-                'description1': _('book views in the last week: %(d)s') % {
-                    'd': product.book.hit_count.hits_in_last(days=7),
+                'title': product.hit_count.hits,
+                'description1': _('product views in the last week: %(d)s') % {
+                    'd': product.hit_count.hits_in_last(days=7),
                 },
-                'action': {
-                    'label': _('copy emails'), 
-                    'function': 'copy-emails', 
-                    'parameters': customers_en_emails,
-                },
+                'action': ''
             })
             results.append({
                 'columns': 3,
-                'name': _('%(product)s: italian subscribers') % {
+                'name': _('%(product)s: book views') % {
                     'product': product.title,
                 },
+                'title': product.book.hit_count.hits,
                 'description1': _('book views in the last week: %(d)s') % {
                     'd': product.book.hit_count.hits_in_last(days=7),
                 },
                 'title': customers_it_emails.count(),
-                'action': {
-                    'label': _('copy emails'),
-                    'function': 'copy-emails',
-                    'parameters': customers_it_emails,
-                },
+                'action': ''
             })
         return results
 

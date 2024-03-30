@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Enabled role title in the search results, if present
 - [accounts] Updated redirect after a profile update to the user detail page
 - [accounts] Added games and deeds count to the user stats
+- [blog] Enabled analytics section for the latest articles 
 - [landing] Enabled menu with user avatar in desktop mode
 - [machina] Enabled user achievements
 - [packages] Updated discount visual style

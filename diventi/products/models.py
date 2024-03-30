@@ -124,7 +124,7 @@ class ProductQuerySet(FeaturedModelQuerySet):
 
     # Get the most popular, public products, counted by django hitcount
     def public_recent(self):
-        products = self.hit_count().order_by('-publication_date')[:3]
+        products = self.hit_count().public().order_by('-publication_date')[:3]
         return products
 
     # Get the published products, counted by their own hitcount
@@ -406,10 +406,6 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         for product in queryset_not_public:
             last_purchase = Purchase.objects.last_purchase(product)
             prefix = _('Last purchase')
-            customers_en = Purchase.objects.customers(product, 'en')
-            customers_en_emails = Purchase.objects.customers_emails(product, 'en')
-            customers_it = Purchase.objects.customers(product, 'it')
-            customers_it_emails = Purchase.objects.customers_emails(product, 'it')
             results.append({
                 'columns': 6,
                 'name': _('%(product)s: total customers') % {
@@ -430,6 +426,7 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
                 'description1': _('views in the last week:: %(d)s') % {
                     'd': product.hit_count.hits_in_last(days=7),
                 },
+                'description2': '',
                 'action': ''
             })
             results.append({
@@ -441,7 +438,7 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
                 'description1': _('views in the last week:: %(d)s') % {
                     'd': product.book.hit_count.hits_in_last(days=7),
                 },
-                'title': customers_it_emails.count(),
+                'description2': '',
                 'action': ''
             })
         return results

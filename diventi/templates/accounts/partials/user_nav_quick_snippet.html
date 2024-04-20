@@ -1,5 +1,5 @@
 {% load i18n %}
-<ul class="nav nav-tabs overflow-x">                        
+<ul class="nav nav-tabs overflow-x">    
     <li class="nav-item">
         <a href="{% url 'accounts:detail' object.nametag %}" class="nav-link{% if user_profile_active %} active{% endif %}">
             {% trans 'profile'|capfirst %}
@@ -12,7 +12,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{% url 'accounts:change_password' object.nametag %}" class="nav-link{% if user_password_active %} active{% endif%}">
+        <a href="{% url 'accounts:change_password' object.nametag %}" class="nav-link{% if user_password_active %} active{% endif %}">
             {% trans 'credentials'|capfirst %}
         </a>
     </li>

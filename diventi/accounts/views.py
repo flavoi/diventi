@@ -200,6 +200,26 @@ class DiventiUserPasswordChangeView(LoginRequiredMixin, DiventiActionMixin, Pass
     form_class = DiventiPasswordChangeForm
     template_name = "accounts/user_change_password_quick.html"
 
+    def user_passes_test(self, requested_user):
+        """ A user may update his own profile only. """
+        if requested_user.pk == self.request.user.pk:
+            return 1            
+        return 0
+    
+    def dispatch(self, *args, **kwargs):        
+        requested_user = get_object_or_404(DiventiUser, nametag=kwargs['nametag'])
+        if not self.user_passes_test(requested_user):
+            raise PermissionDenied(_("A user may update his own profile only."))
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        """ If we're here we assume the user is changing his own password """
+        context = super().get_context_data(**kwargs)
+        context.update(
+            {"object": self.request.user}
+        )
+        return context
+
 
 class DiventiUserPrivacyChangeView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
 

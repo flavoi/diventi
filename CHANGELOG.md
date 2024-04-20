@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED] → 2024-01-xx
+## [UNRELEASED] → 2024-04-xx
 
 ### Added
 - [core] Added a new method to send emails with the custom domain
@@ -28,6 +28,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [machina] Enabled user achievements
 - [packages] Updated discount visual style
 - [packages] Updated cards visual style
+
+### Security
+- [accounts] Added an additional control to prevent user to access the security section of others' profile
 
 ### Removed
 - [accounts] Removed unecessary context variables to display the navbar

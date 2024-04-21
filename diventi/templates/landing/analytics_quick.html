@@ -21,41 +21,100 @@
                     </div>
                 </div>
                 <div class="row mx-n2">
-                    {% for result_tuple in results %}
-                        <div class="col-12 px-2">
-                            <h2 class="h4">{{ result_tuple.0|capfirst }}</h2>
-                        </div>
-                        {% for result in result_tuple.1 %}
-                        <div class="col-lg-4 px-2">
-                            <div class="card card-fluid">
-                                <div class="card-body">
-                                    <h5 class="h3 font-weight-bolder mb-1">{{ result.title|capfirst }}</h5>
-                                    <span class="d-block h5 mt-3">{{ result.name|capfirst }}</span>
-                                    {% if result.description1 %}
-                                        <p class="text-sm text-muted">
-                                            {{ result.description1|capfirst|add:"." }}
-                                        </p>
-                                    {% endif %}
-                                    {% if result.description2 %}
-                                        <p class="text-sm text-muted">
-                                            {{ result.description2|capfirst }}
-                                        </p>
-                                    {% endif %}
-                                    {% if result.action %}
-                                    <div class="row align-items-center mt-4">
-                                        <div class="col-6">
-                                            <a href="#/" class="btn btn-sm btn-primary js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
-                                                {{ result.action.label|capfirst }}
-                                            </a>
+
+                    <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">{% trans 'all'|capfirst %}</a>
+                      {% for result_tuple in results %}
+                      <a class="nav-link" id="v-pills-{{ forloop.counter }}-tab" data-toggle="pill" href="#v-pills-{{ forloop.counter }}" role="tab" aria-controls="v-pills-{{ forloop.counter }}" aria-selected="false">{{ result_tuple.0|capfirst }}</a>
+                      {% endfor %}                      
+                    </div>
+                    
+                    <div class="tab-content w-100" id="v-pills-tabContent">
+                      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="container">
+                                {% for result_tuple in results %}
+                                    <div class="row mt-4">
+                                        <div class="col-12 px-2">
+                                            <h2 class="h4">{{ result_tuple.0|capfirst }}</h2>
                                         </div>
                                     </div>
-                                    {% endif %}
+                                    <div class="row">
+                                        {% for result in result_tuple.1 %}
+                                        <div class="col-lg-4 px-2">
+                                            <div class="card card-fluid">
+                                                <div class="card-body">
+                                                    <h5 class="h3 font-weight-bolder mb-1">{{ result.title|capfirst }}</h5>
+                                                    <span class="d-block h5 mt-3">{{ result.name|capfirst }}</span>
+                                                    {% if result.description1 %}
+                                                        <p class="text-sm text-muted">
+                                                            {{ result.description1|capfirst|add:"." }}
+                                                        </p>
+                                                    {% endif %}
+                                                    {% if result.description2 %}
+                                                        <p class="text-sm text-muted">
+                                                            {{ result.description2|capfirst }}
+                                                        </p>
+                                                    {% endif %}
+                                                    {% if result.action %}
+                                                    <div class="row align-items-center mt-4">
+                                                        <div class="col-6">
+                                                            <a href="#/" class="btn btn-sm btn-primary js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
+                                                                {{ result.action.label|capfirst }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                        </div>
+                      </div>
+                      {% for result_tuple in results %}
+                        <div class="tab-pane fade" id="v-pills-{{ forloop.counter }}" role="tabpanel" aria-labelledby="v-pills-{{ forloop.counter }}-tab">
+                            <div class="container">
+                                <div class="row mt-4">
+                                    <div class="col-12 px-2">
+                                        <h2 class="h4">{{ result_tuple.0|capfirst }}</h2>
+                                    </div>
+                                </div>
+                                <div class="row">                                
+                                    {% for result in result_tuple.1 %}
+                                        <div class="col-lg-4 px-2">
+                                        <div class="card card-fluid">
+                                            <div class="card-body">
+                                                <h5 class="h3 font-weight-bolder mb-1">{{ result.title|capfirst }}</h5>
+                                                <span class="d-block h5 mt-3">{{ result.name|capfirst }}</span>
+                                                {% if result.description1 %}
+                                                    <p class="text-sm text-muted">
+                                                        {{ result.description1|capfirst|add:"." }}
+                                                    </p>
+                                                {% endif %}
+                                                {% if result.description2 %}
+                                                    <p class="text-sm text-muted">
+                                                        {{ result.description2|capfirst }}
+                                                    </p>
+                                                {% endif %}
+                                                {% if result.action %}
+                                                <div class="row align-items-center mt-4">
+                                                    <div class="col-6">
+                                                        <a href="#/" class="btn btn-sm btn-primary js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
+                                                            {{ result.action.label|capfirst }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
-                    {% endfor %}
-                </div>
+                      {% endfor %}
+                    </div>
             </div>
         </div>
     </div>

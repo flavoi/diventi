@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import UserPassesTestMixin
+
 
 class DiventiActionMixin:
     """ Disable redirect for update and creation views. """
@@ -12,7 +14,7 @@ class DiventiActionMixin:
         return super(DiventiActionMixin, self).form_valid(form)
 
 
-class StaffRequiredMixin:
+class StaffRequiredMixin(UserPassesTestMixin):
     """ Restrict the access of a page to admins only. """
 
     def test_func(self):

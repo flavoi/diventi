@@ -1795,7 +1795,7 @@ msgstr "Errore 403: Accesso Negato"
 
 #: diventi/templates/403.html:31
 msgid "The requested resource requires an authentication."
-msgstr "La risorsa richiesta richiede autenticazione."
+msgstr "La risorsa richiesta richiede un'apposita autenticazione."
 
 #: diventi/templates/403.html:35 diventi/templates/404.html:35
 #: diventi/templates/500.html:36

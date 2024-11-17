@@ -32,7 +32,7 @@ def send_diventi_email(subject, message, from_email, recipient_list, from_name, 
         msg.set_content(message)
     msg['Subject'] = subject
     msg['From'] = formataddr((from_name, from_email))
-        
+
     for r in recipient_list:
         msg['To'] = r
         server.send_message(msg)

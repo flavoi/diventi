@@ -5,6 +5,7 @@ from .models import (
 	Section, 
 	SearchSuggestion,
     AboutArticle,
+    SectionImage,
 )
 
 
@@ -26,3 +27,8 @@ class SearchSuggestionOptions(TranslationOptions):
 @register(AboutArticle)
 class AboutArticleOptions(TranslationOptions):
     fields = ('title', 'description', 'content', 'slug')
+
+
+@register(SectionImage)
+class SectionImageTranslationOptions(TranslationOptions):
+    fields = ('label', )

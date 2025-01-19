@@ -22,6 +22,7 @@ from .models import (
     Section,
     SearchSuggestion,
     AboutArticle,
+    SectionImage,
 )
 from .forms import SectionForm
 
@@ -30,7 +31,6 @@ class FeatureInline(TranslationStackedInline):
     model = Feature
     fields = ('title', 'icon', 'icon_style', 'color', 'description',)
     extra = 0
-
 
 class SectionAdmin(DiventiTranslationAdmin):
     list_display = [
@@ -47,7 +47,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('published', 'featured')
         }),
         (_('Multimedia'), {
-            'fields': ('image', 'video', 'video_image',)
+            'fields': ('image', 'video', 'video_image','cover_primary', 'cover_secondary')
         }),
         (_('Editing'), {
             'fields': ('order_index', 'prefix', 'title', 'subtitle', 'button_label', 'description',),
@@ -92,3 +92,4 @@ class GenericArticleAdmin(DiventiTranslationAdmin):
 admin.site.register(Section, SectionAdmin)
 admin.site.register(SearchSuggestion, SearchSuggestionAdmin)
 admin.site.register(AboutArticle, GenericArticleAdmin)
+admin.site.register(SectionImage)

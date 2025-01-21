@@ -5,11 +5,11 @@
 {% block titleseparator %}{% endblock titleseparator %}
 {% block title %}{% endblock title %}
 
-{% block navbarclass %}navbar navbar-main navbar-expand-lg navbar-light{% endblock navbarclass %}
+{% block navbarclass %}navbar navbar-main navbar-expand-lg navbar-dark{% endblock navbarclass %}
 
 {% block headerclass %}header-transparent{% endblock headerclass %}
 
-{% block navbar_brand_style %}text-dark{% endblock navbar_brand_style %}
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'diventi/css/diventi-datatables.min.css' %}" />
@@ -33,7 +33,75 @@
 {% endblock extrahead %}
 
 {% block content %}
-
+<section class="slice pt-8 pb-0 bg-section-dark">
+  <div data-offset-top="">
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-6 pr-lg-6 mb-md-8 mb-xs-0 mt-xs-8">
+          {% if featured_section.subtitle %}<h6 class="text-white">- {{ featured_section.subtitle }}</h6>{% endif %}
+            <h1 class="h1 text-primary font-weight-bold h1 mb-4">{{ featured_section.prefix|capfirst }} <strong>{{ featured_section.title|capfirst }}</strong></h1>
+            <p class="lead text-white opacity-8">{{ featured_section.description|striptags|capfirst }}</p>
+            <div class="mt-5 text-left">                    
+                {% if featured_package %}
+                    <a href="{{ featured_package.get_absolute_url }}" class="btn btn-primary bg-gradient-primary btn-icon-label">
+                        <span class="btn-inner--text">{{ featured_section.button_label|capfirst }}</span>
+                        <span class="btn-inner--icon"><i data-feather="box"></i></span>
+                    </a>
+                {% endif %}
+                {% if featured_product %}
+                    <a href="{{ featured_product.get_absolute_url }}" class="btn btn-danger bg-gradient-danger btn-icon-label">
+                        <span class="btn-inner--text">{{ featured_section.button_label|capfirst }}</span>
+                        <span class="btn-inner--icon"><i data-feather="book-open"></i></span>
+                    </a>                        
+                {% endif %}
+                {% if pinned_survey %}
+                    <a href="{{ pinned_survey.get_absolute_url }}" class="btn btn-info my-2">{{ featured_section.button_label|capfirst }}</a>
+                {% endif %}
+                {% if featured_section.video %}
+                    <a href="{{ featured_section.video }}" class="btn btn-neutral btn-icon d-none d-lg-inline-block" data-fancybox="">
+                        <span class="btn-inner--text">{% trans 'play video'|capfirst %}</span>
+                        <span class="btn-inner--icon">
+                            <i data-feather="play" class="feather feather-play text-primary"></i>
+                        </span>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="d-flex mt-5">
+              <div class="col-4 col-md-auto text-sm pl-0 pr-1"><div class="text-white opacity-8">{% trans 'Licenced under' %}:</div></div>
+              <div class="col-auto col-md client-group">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.{% trans 'en' %}"><img loading="lazy" alt="{% trans 'Creative Commons License' %}" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<h6 class='text-white'>{% trans 'Creative Commons License' %}</h6>{% trans 'This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License' %}"></a>
+              </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 mt-7 mt-lg-0">
+          <div class="position-relative left-8 left-lg-0">
+            {% if featured_section.image %}
+              <figure>
+                <img alt="{{ featured_section.label }}" src="{{ featured_section.image }}" class="img-fluid rounded shadow">
+              </figure>
+            {% endif %}
+            {% if featured_section.cover_primary %}
+            <figure>
+              <img alt="{{ featured_section.cover_primary.label }}" src="{{ featured_section.cover_primary.image }}" class="img-fluid mw-lg-120 rounded-top shadow-lg zindex-100">
+            </figure>
+            {% endif %}
+          </div>
+          {% if featured_section.cover_secondary %}
+          <figure class="col-7 col-md-6 col-lg-5 px-0 position-absolute bottom-0 left-4 left-lg-n5 z-index-101 overflow-hidden" style="height:420px">
+            <img alt="{{ featured_section.cover_secondary.label }}" src="{{ featured_section.cover_secondary.image }}" class="img-fluid rounded shadow">
+          </figure>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="shape-container shape-line shape-position-bottom zindex-102">
+    <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
+      <polygon points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</section>
+<!--
 <section class="slice py-7 pt-md-9 bg-section-secondary">
     <div class="container">
         <div class="row align-items-center">
@@ -96,18 +164,20 @@
                         </a>
                     {% endif %}
                 </div>
-                <!--
+
                 <div class="d-flex align-items-center justify-content-center mt-5">
                   <div class="col-4 col-md-auto text-sm pl-0 pr-1">{% trans 'Licenced under' %}:</div>
                   <div class="col-auto col-md client-group">
                         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.{% trans 'en' %}"><img loading="lazy" alt="{% trans 'Creative Commons License' %}" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<h6 class='text-white'>{% trans 'Creative Commons License' %}</h6>{% trans 'This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License' %}"></a>
                   </div>
                 </div>
-                -->
+                
             </div>
         </div>
     </div>
 </section>
+-->
+
 <section class="slice slice-lg">
     <div class="container">
         <div class="row mb-6 justify-content-center text-center">

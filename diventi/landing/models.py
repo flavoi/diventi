@@ -131,6 +131,9 @@ class SectionModelManager(FeaturedModelManager):
         return self.get_queryset().not_featured()
 
 
+class SectionImage(DiventiImageModel):
+    pass
+
 class Section(DiventiImageModel, FeaturedModel, SectionModel):
     prefix = models.TextField(
         blank=True, 
@@ -176,6 +179,22 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         blank=True,
         null=True,
         verbose_name=_('product')
+    )
+    cover_primary = models.ForeignKey(
+        SectionImage,
+        blank=True,
+        null=True,
+        related_name='primary_sections',
+        on_delete=models.SET_NULL,
+        verbose_name = _('primary cover')
+    )
+    cover_secondary = models.ForeignKey(
+        SectionImage,
+        blank=True,
+        null=True,
+        related_name='secondary_sections',
+        on_delete=models.SET_NULL,
+        verbose_name = _('secondary cover')
     )
 
     objects = SectionModelManager()

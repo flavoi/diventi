@@ -38,6 +38,8 @@ class SectionAdmin(DiventiTranslationAdmin):
         'subtitle',
         'image_tag',
         'video_image_tag',
+        'get_cover_primary_tag',
+        'get_cover_secondary_tag',
         'order_index',
         'published',
         'featured',
@@ -62,6 +64,20 @@ class SectionAdmin(DiventiTranslationAdmin):
     actions = [make_published, make_unpublished]
     form = SectionForm
     ordering = ['-featured', 'order_index']
+
+    def get_cover_primary_tag(self, obj):
+        if obj.cover_primary:
+            return obj.cover_primary.image_tag()
+        else:
+            return '-'
+    get_cover_primary_tag.short_description = _('Primary cover')
+
+    def get_cover_secondary_tag(self, obj):
+        if obj.cover_secondary:
+            return obj.cover_secondary.image_tag()
+        else:
+            return '-'
+    get_cover_secondary_tag.short_description = _('Secondary cover')
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(SectionAdmin, self).get_form(request, obj, **kwargs)

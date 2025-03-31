@@ -70,14 +70,14 @@ class SectionAdmin(DiventiTranslationAdmin):
             return obj.cover_primary.image_tag()
         else:
             return '-'
-    get_cover_primary_tag.short_description = _('Primary cover')
+    get_cover_primary_tag.short_description = _('primary cover')
 
     def get_cover_secondary_tag(self, obj):
         if obj.cover_secondary:
             return obj.cover_secondary.image_tag()
         else:
             return '-'
-    get_cover_secondary_tag.short_description = _('Secondary cover')
+    get_cover_secondary_tag.short_description = _('secondary cover')
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(SectionAdmin, self).get_form(request, obj, **kwargs)

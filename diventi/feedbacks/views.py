@@ -78,8 +78,8 @@ def survey_questions_private(request, slug, author_name=None):
             send_diventi_email(
                 subject = _('Diventi: %(user)s has completed %(survey)s') % {'user': author_name, 'survey': survey.title,},
                 message = None,
-                from_email = 'autori@playdiventi.it',
-                recipient_list = ['autori@playdiventi.it',],
+                from_email = 'info@playdiventi.it',
+                recipient_list = ['info@playdiventi.it',],
                 from_name = 'Diventi',
                 html_message = _('Dear Diventi authors, new answers are now available for survey %(survey)s.') % {'survey': survey.title,},
             )

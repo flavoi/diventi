@@ -22,7 +22,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('reviews/', include('reviews.urls')),
     path('.well-known/', include('letsencrypt.urls')),
-    path('.well-known/', include('diventi.brave.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
 ] 
 

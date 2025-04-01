@@ -113,7 +113,6 @@ LOCAL_APPS = [
     'diventi.products',
     'diventi.feedbacks',
     'diventi.ebooks',
-    'diventi.brave',
     'diventi.tooltips',
     'diventi.payments',
     'diventi.packages',

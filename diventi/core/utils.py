@@ -19,7 +19,7 @@ def humanize_price(price, sign='EURO SIGN'):
 # Send an email using a set gmail account via smtp
 def send_diventi_email(subject, message, from_email, recipient_list, from_name, html_message):
     server = smtplib.SMTP(settings.EMAIL_HOST + ':' + str(settings.EMAIL_PORT))
-    server.ehlo('Gmail')
+    server.ehlo('Zoho')
     server.starttls()
     email_user = settings.EMAIL_HOST_USER
     email_password = settings.EMAIL_HOST_PASSWORD

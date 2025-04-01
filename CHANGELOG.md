@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [blog] Integrated plural categories for article categories
 - [blog] Added category to search results
 - [ebooks] Added the possibility to change a specific content language without the need to open the user menu
+- [landing] Added support for primary and secondary covers
 - [products] Integrated plural categories for product categories
 - [products] Added category to search results
 - [previews] Introduced preview app to generate link previews
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - [accounts] Removed unecessary context variables to display the navbar
 - [accounts] Removed comments and reviews count from the users stats
+- [brave] Removed the brave app
 - [landing] Removed user dropdown with duplicated links in respect of the user modal
 - [landing] Removed the email from the footer
 - [products] Removed layout fields and admin section and moved them to the template engine

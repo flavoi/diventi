@@ -812,6 +812,11 @@ msgstr ""
 msgid "featured"
 msgstr "in primo piano"
 
+#: diventi/core/models.py:293 diventi/templates/landing/landing_quick.html:186
+#: diventi/templates/products/product_list_quick.html:61
+msgid "support us"
+msgstr "supportaci"
+
 #: diventi/core/models.py:294
 msgid ""
 "Featured objects are displayed on the top of their page. If pinned, they are "

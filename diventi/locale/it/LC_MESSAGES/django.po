@@ -954,7 +954,7 @@ msgstr "Sezione"
 
 #: diventi/ebooks/management/commands/fetch_paper_books.py:8
 msgid "Fetch the paper books from dropbox and export them in html format"
-msgstr ""
+msgstr "Recupera il libro in formato paper e lo esporta in formato html"
 
 #: diventi/ebooks/models.py:31
 msgid "This content will appear as a brief tooltip thought the book."
@@ -985,7 +985,12 @@ msgstr "sommario"
 
 #: diventi/ebooks/models.py:85
 msgid "paper id"
-msgstr "id paper"
+msgstr "paper id"
+
+
+#: diventi/ebooks/models.py:85
+msgid "legacy paper id"
+msgstr "legacy paper id"
 
 #: diventi/ebooks/models.py:89
 msgid "file url"

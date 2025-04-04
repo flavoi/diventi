@@ -395,6 +395,9 @@ STRIPE_ENDPOINT_SECRET_KEY = get_env_variable('STRIPE_ENDPOINT_SECRET_KEY')
 # https://www.dropbox.com/developers/apps/info/xdrh4eoh3bpppnv
 
 DROPBOX_ACCESS_TOKEN = get_env_variable('DROPBOX_ACCESS_TOKEN')
+DROPBOX_APP_KEY = get_env_variable('DROPBOX_APP_KEY')
+DROPBOX_APP_SECRET = get_env_variable('DROPBOX_APP_SECRET')
+DROPBOX_ACCESS_TOKEN_F = get_env_variable('DROPBOX_ACCESS_TOKEN_F')
 DIVENTI_UNIVERSALE_PAPER_ID = get_env_variable('DIVENTI_UNIVERSALE_PAPER_ID')
 PRINT_HTML_EBOOK = False
 

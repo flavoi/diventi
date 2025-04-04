@@ -1,20 +1,29 @@
-import requests
+import requests, base64, json
 from bs4 import BeautifulSoup
+
+import dropbox
+from dropbox import DropboxOAuth2FlowNoRedirect
 
 from django.conf import settings
 from django.utils.translation import gettext as _
 from django.utils.text import slugify
 
 
-def get_dropbox_paper_soup(paper_id):
+def get_dropbox_paper_soup(paper_id, oauth=1):
     """
         Connects to dropbox API and export the Paper's content into memory
     """
     url = "https://content.dropboxapi.com/2/files/export"
-    headers = {
-        "Authorization": "Bearer {}".format(settings.DROPBOX_ACCESS_TOKEN),
-        "Dropbox-API-Arg": "{\"path\":\"%s\",\"export_format\":\"html\"}" % paper_id,
-    }
+    if oauth:
+        headers = {
+            "Authorization": "Bearer {}".format(settings.DROPBOX_ACCESS_TOKEN),
+            "Dropbox-API-Arg": "{\"path\":\"%s\",\"export_format\":\"html\"}" % paper_id,
+        }
+    else:
+        headers = {
+            "Authorization": "Bearer {}".format(settings.DROPBOX_ACCESS_TOKEN_F),
+            "Dropbox-API-Arg": "{\"path\":\"%s\",\"export_format\":\"html\"}" % paper_id,
+        }
     r = requests.post(url, headers=headers)
     r.encoding = 'utf-8'
     soup = BeautifulSoup(r.text, 'html.parser')
@@ -259,7 +268,7 @@ def render_paper_headings(paper_soup):
         the visual style to improve readability as much as possibile.
         It defers table formatting to the appropriate module.
     """
-
+    h2_title_id = ''
     for title in paper_soup.find_all('h2'):
         title['style'] = ''
         title['id'] = title['data-usually-unique-id']
@@ -379,11 +388,11 @@ def render_diventi_snippets(paper_soup, diventi_universale_soup):
                 p.parent.parent.parent.replace_with(diventi_title)
 
 
-def render_dropbox_paper_soup(book_paper_id):
+def render_dropbox_paper_soup(book_paper_id, oauth=1):
     """
         Invoke all the necessary module to completely render a book page.
     """
-    paper_soup = get_dropbox_paper_soup(book_paper_id)
+    paper_soup = get_dropbox_paper_soup(book_paper_id, oauth)
     diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
     render_diventi_snippets(paper_soup, diventi_universale_soup)
     render_paper_tables(paper_soup)

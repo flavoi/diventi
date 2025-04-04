@@ -84,6 +84,12 @@ class Book(Element, DiventiImageModel, TimeStampedModel, PublishableModel, Diven
         null = True,
         verbose_name = _('paper id')
     )
+    legacy_paper_id = models.CharField(
+        max_length = 50,
+        blank = True,
+        null = True,
+        verbose_name = _('legacy paper id')
+    )
     content_file_url = models.URLField(
         blank=True, 
         verbose_name = _('file url'),

@@ -128,7 +128,7 @@ class PaperEbookView(BookIsPublishedMixin, BookDetailView):
    
     def get_object(self, queryset=None):
         obj = super(PaperEbookView, self).get_object(queryset)
-        if not obj.paper_id:
+        if not obj.paper_id and not obj.legacy_paper_id:
             raise Http404(_('This book is not linked to a paper, please contact the authors.'))
         return obj
 

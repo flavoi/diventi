@@ -112,7 +112,7 @@ class ProductDetailView(HitCountDetailView):
 
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
-        if obj.public: 
+        if obj.public:
             return redirect('products:detail-public', slug=obj.slug)
         return super().get(request, *args, **kwargs)
 
@@ -184,7 +184,7 @@ class RedirectToPublicEbookView(PublishedProductMixin, PublicProductMixin, Redir
     def get_redirect_url(self, **kwargs):
         product = get_object_or_404(Product, slug=kwargs.get('slug'))
         ebook = get_object_or_404(Book, book_product=product)
-        if ebook.paper_id:
+        if ebook.paper_id or ebook.legacy_paper_id:
             return reverse('ebooks:book-detail-public', kwargs={'book_slug': ebook.slug})
         elif ebook.content_file_url:
             return reverse('ebooks:pdf-detail-public', kwargs={'book_slug': ebook.slug})

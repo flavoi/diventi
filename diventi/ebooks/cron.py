@@ -10,6 +10,7 @@ from django.utils.translation import (
     get_language,
     gettext_lazy as _
 )
+from django.core.exceptions import ValidationError
 
 from .models import Book
 
@@ -30,9 +31,12 @@ def fetch_paper_books():
         lan = get_language()
         print('Lingua corrente: %s' % lan)
         for book in books:
-            if book.paper_id:
+            if book.paper_id or book.legacy_paper_id:
                 print('Elaboro {}'.format(book.title_it))
-                paper_soup = render_dropbox_paper_soup(book.paper_id)
+                if book.legacy_paper_id and not book.paper_id:
+                    paper_soup = render_dropbox_paper_soup(book_paper_id=book.legacy_paper_id, oauth=1)
+                else:
+                    paper_soup = render_dropbox_paper_soup(book_paper_id=book.paper_id, oauth=0)
                 filepath = settings.BASE_DIR / 'templates/ebooks/partials/book_paper_{}_{}.html'.format(book.id, language[0]) 
                 with open(filepath, 'w', encoding='utf-8') as f:
                     print('Stampo %s' % filepath)

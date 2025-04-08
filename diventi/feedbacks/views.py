@@ -151,13 +151,13 @@ def survey_questions(request, slug, author_name=None):
     survey = get_object_or_404(Survey.objects.published(), slug=slug)
     if request.user.is_authenticated:
         return redirect(reverse('feedbacks:questions_private', args=[survey.slug,]))
-    elif request.user.is_anonymous and survey.public:    
+    elif request.user.is_anonymous and survey.public and author_name is None:    
         return redirect(reverse('feedbacks:questions_public', args=[survey.slug,]))
-    elif request.user.is_anonymous and survey.public and author_name:
-        return redirect(reverse('feedbacks:questions_public', args=[survey.slug, author_name]))
-    elif request.user.is_anonymous and not survey.public and author_name:
+    elif request.user.is_anonymous and survey.public and author_name is not None:
+        return redirect(reverse('feedbacks:questions_author_public', args=[survey.slug, author_name]))
+    elif request.user.is_anonymous and not survey.public and author_name is not None:
         return redirect(reverse('feedbacks:questions_author_private', args=[survey.slug, author_name]))
-    elif request.user.is_anonymous and not survey.public and not author_name:
+    elif request.user.is_anonymous and not survey.public and author_name is None:
         return redirect(reverse('feedbacks:questions_private', args=[survey.slug,]))
     raise Http404(_('No survey found, please go back and redo your survey.'))
 

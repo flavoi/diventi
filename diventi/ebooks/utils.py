@@ -375,7 +375,7 @@ def render_diventi_snippets(paper_soup, diventi_universale_soup):
         linked contents in Diventi Universale.
     """
     paper_mentions = paper_soup.select('.mention-content') 
-    for p in paper_mentions:    
+    for p in paper_mentions:
         mentioned_uuid = p.get('data-mentionpadid', None)
         mentioned_href = p.get('href', None)
         if mentioned_uuid: # Dropbox meta 2020
@@ -393,7 +393,7 @@ def render_dropbox_paper_soup(book_paper_id, oauth=1):
         Invoke all the necessary module to completely render a book page.
     """
     paper_soup = get_dropbox_paper_soup(book_paper_id, oauth)
-    diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID)
+    diventi_universale_soup = get_dropbox_paper_soup(settings.DIVENTI_UNIVERSALE_PAPER_ID, oauth=0)
     render_diventi_snippets(paper_soup, diventi_universale_soup)
     render_paper_tables(paper_soup)
     render_paper_fancy_images(paper_soup)

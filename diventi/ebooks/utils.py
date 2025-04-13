@@ -20,8 +20,17 @@ def get_dropbox_paper_soup(paper_id, oauth=1):
             "Dropbox-API-Arg": "{\"path\":\"%s\",\"export_format\":\"html\"}" % paper_id,
         }
     else:
+        refresh_url = "https://api.dropbox.com/oauth2/token"
+        refresh_data = {
+            'grant_type': 'refresh_token',
+            'refresh_token': settings.DROPBOX_REFRESH_TOKEN,
+            'client_id': settings.DROPBOX_APP_KEY,
+            'client_secret': settings.DROPBOX_APP_SECRET,
+        }
+        r = requests.post(refresh_url, data=refresh_data)
+        access_tokenn = r.json().get('access_token')
         headers = {
-            "Authorization": "Bearer {}".format(settings.DROPBOX_ACCESS_TOKEN_F),
+            "Authorization": "Bearer {}".format(access_tokenn),
             "Dropbox-API-Arg": "{\"path\":\"%s\",\"export_format\":\"html\"}" % paper_id,
         }
     r = requests.post(url, headers=headers)

@@ -3,16 +3,16 @@
 
 {% if user.is_authenticated %}
   <script src="https://js.stripe.com/v3"></script>
+  
+  {% if discount and related_products_value %}
+  <b>{{ price }}</b> <small class="text-muted">{{ related_products_value }}</small> <span class="badge badge-success badge-pill badge-floating">-{{ discount }}%</span>
+  {% endif %}
+
   <button class="btn btn-dark btn-icon-label btn-sm bg-danger" id="checkout-button">
       <span class="btn-inner--icon">
           <i data-feather="shopping-bag"></i>
       </span>
-      {% if discount and related_products_value %}
-        <span class="btn-inner--text" style="padding-right: 2em;">{% trans 'buy for'|capfirst %} <del>{{ related_products_value }}</del> <b>{{ price }}</b></span>
-        <span class="badge badge-success badge-pill badge-floating">-{{ discount }}%</span>
-      {% else %}
-        <span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
-      {% endif %}
+      <span class="btn-inner--text">{% trans 'buy'|capfirst %}</span>
   </button>  
   <script>
     var stripe = Stripe('{{ stripe_publishable_key }}');

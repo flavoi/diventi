@@ -39,14 +39,11 @@
     <div class="text-center mb-5 pb-lg-5" style="color: #a0aec0">
         {% with footer_text_class="text-white" %}    
             {% include "packages/partials/package_detail_actions.html" %}
-            {% if related_products_value %}
             <p class="mt-2">
-                {% trans "total value of objects"|capfirst %}: {{ related_products_value }}
                 {% if products_already_bought %}
                     &middot; <b class="text-warning">{% trans "you already own some of these items"|capfirst %}</b>
                 {% endif %}
             </p>
-            {% endif %}
         {% endwith %}
     </div>
   </div>

@@ -13,6 +13,7 @@ DATABASES = {
 }
 
 ALLOWED_HOSTS = [
+    'www.playdiventi.it', 
     'playdiventi.it', 
     'localhost',
     'flaviomarcato.pythonanywhere.com',

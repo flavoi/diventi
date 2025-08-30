@@ -1,4 +1,3 @@
-from django.conf.urls import url
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
@@ -23,6 +22,4 @@ urlpatterns = [
     path(_('<slug:slug>/questions/public/<str:author_name>/'), survey_questions_public, name='questions_author_public'),
     path(_('<slug:slug>/answers/'), AnswerListView.as_view(), name='answers'),
     path(_('<slug:slug>/survey-done/'), survey_done_quick, name='survey_done')
-    
-
 ]

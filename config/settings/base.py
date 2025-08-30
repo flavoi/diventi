@@ -117,6 +117,7 @@ LOCAL_APPS = [
     'diventi.payments',
     'diventi.packages',
     'diventi.previews',
+    'diventi.geminigm',
 ]
 
 THIRD_PARTY_APPS = [
@@ -392,7 +393,7 @@ STRIPE_ENDPOINT_SECRET_KEY = get_env_variable('STRIPE_ENDPOINT_SECRET_KEY')
 
 
 # Dropbox paper
-# https://www.dropbox.com/developers/apps/info/xdrh4eoh3bpppnv
+# https://www.dropbox.com/developers/apps/info/xdrh4eoh3bpppnv
 
 DROPBOX_ACCESS_TOKEN = get_env_variable('DROPBOX_ACCESS_TOKEN')
 DROPBOX_APP_KEY = get_env_variable('DROPBOX_APP_KEY')
@@ -419,3 +420,9 @@ EMAIL_USE_TLS = True
 INTERNAL_IPS = [
     '10.0.2.2',
 ]
+
+
+# GEMINI AI
+# https://github.com/andreger/chatbot-django-gemini?tab=readme-ov-file
+
+GEMINI_API_KEY = get_env_variable('GEMINI_API_KEY')

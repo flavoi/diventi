@@ -1,0 +1,53 @@
+<!-- templates/myapp/ingest_document.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingestione Documenti</title>
+</head>
+<body>
+    <h1>Ingestione Documenti</h1>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Carica PDF</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ pdf_form.as_p }}
+        <button type="submit" name="upload_pdf">Carica e Ingesti PDF</button>
+    </form>
+
+    <h2>Ingesti Sito Web</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ web_form.as_p }}
+        <button type="submit" name="ingest_web">Ingesti Sito Web</button>
+    </form>
+
+    <h2>Documenti Ingestiti</h2>
+    <ul>
+        {% for doc in ingested_docs %}
+            <li>
+                <strong>{{ doc.title }}</strong> -
+                {% if doc.source_url %}
+                    <a href="{{ doc.source_url }}" target="_blank">{{ doc.source_url }}</a>
+                {% elif doc.file_path %}
+                    {{ doc.file_path }}
+                {% endif %}
+                (Ingestito il: {{ doc.ingested_at|date:"d M Y H:i" }})
+            </li>
+        {% empty %}
+            <li>Nessun documento ingestito.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'geminigm:chatbot' %}">Vai alla pagina del Chatbot</a></p>
+</body>
+</html>

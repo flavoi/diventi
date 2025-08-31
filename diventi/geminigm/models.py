@@ -1,15 +1,45 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
 
 
 class ChatMessage(models.Model):
     user_message = models.TextField()
     bot_response = models.TextField()
+    author = models.OneToOneField(
+        settings.AUTH_USER_MODEL,  
+        verbose_name=_('author'),
+        null=True,
+        on_delete=models.SET_NULL,
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f_("Player: {self.user_message}, GM: {self.bot_response}")
+        return _(f"Player: {self.user_message}, GM: {self.bot_response}")
 
     class Meta:
         verbose_name = _('chat message')
         verbose_name_plural = _('chat messages')
+
+
+class IngestedDocument(models.Model):
+    title = models.CharField(
+        max_length=255, 
+        verbose_name=_('title')
+    )
+    source_url = models.URLField(
+        max_length=2000, 
+        null=True, 
+        blank=True,
+        verbose_name=_('source_url')
+    )
+    file_path = models.CharField(
+        max_length=1000, 
+        null=True, 
+        blank=True,
+        verbose_name=_('file path'),
+    )
+    ingested_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

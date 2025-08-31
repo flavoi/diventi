@@ -426,3 +426,4 @@ INTERNAL_IPS = [
 # https://github.com/andreger/chatbot-django-gemini?tab=readme-ov-file
 
 GEMINI_API_KEY = get_env_variable('GEMINI_API_KEY')
+GEMINI_INJESTION_MEDIA = PROJ_ROOT / 'chroma_db/'

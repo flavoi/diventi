@@ -2,13 +2,13 @@ from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from .views import (
-    send_message,
-    list_messages,
+    ingest_document_view,
+    chatbot_view,
 )
 
 app_name = 'geminigm'
 
 urlpatterns = [
-    path(_('send'), send_message, name='send_message'),
-    path('', list_messages, name='list_messages'),
+    path(_('ingest/'), ingest_document_view, name='ingest_document'),
+    path('', chatbot_view, name='chatbot'),
 ]

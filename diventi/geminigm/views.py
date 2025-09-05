@@ -1,16 +1,14 @@
-import os
-import markdown
-
+import os, markdown
 from google import genai
 from google.genai import types
-import markdown
+
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.contrib import messages
 
 from .models import ChatMessage, IngestedDocument
 from .forms import PDFUploadForm, WebIngestionForm
-from .utils import ingest_pdf_document, ingest_website_document, query_knowledge_base
+from .utils import ingest_pdf_document, ingest_website_document
 
 
 GEMMA = "Sei un game master (GM) che deve gestire un gioco di ruolo da tavolo con ambientazione e meccaniche personalizzate denominato Primo Contatto (che trovi in allegato).  Tratta la conversazione come una sessione di gioco continua, ricordandoti tutti i dettagli che andranno via via emergendo. Tu genererai e descriverai (in maniera concisa ma evocativa) il mondo, gli eventi e gli esiti delle azioni di Personaggi Giocanti (PG) e Personaggi Non Giocanti (PNG). Deciderai anche come i PNG agiranno. Questa chat dovrà essere inclusa nel tuo contesto per generare le risposte, per cui dovrai ricordarti esattamente gli eventi che andranno verificandosi e i nomi/descrizioni dei luoghi e dei personaggi. \
@@ -78,29 +76,30 @@ def chatbot_view(request):
         query = request.POST.get('query', '')
         
         if query:
-            # 1. Recupera i chunk più rilevanti dalla tua base di conoscenza
-            relevant_chunks = query_knowledge_base(query)
-            sources = [doc.page_content for doc in relevant_chunks]
 
-            # 2. Costruisci il prompt per Gemini (RAG)
-            # Puoi formattare il prompt in vari modi. Questo è un esempio.
             prompt = (
-                f"Basandoti sulle seguenti informazioni:\n"
+                f"Basandoti sui file allegati e alle seguenti informazioni:\n"
                 f"{' '.join(GEMMA)}\n\n"
-                f"{' '.join(sources)}\n\n"
+                #f"{' '.join(sources)}\n\n"
                 f"Rispondi alla domanda: {query}\n"
                 f"Se la risposta non è nelle informazioni fornite, di' che non lo sai."
             )
-            
-            # 3. Chiamata a Gemini API
+        
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
+                for doc in IngestedDocument.objects.all():
+                    client.files.upload(
+                      file=doc.file_path,
+                      config=dict(mime_type='application/pdf')
+                    )
+                contents = []
+                for f in client.files.list():
+                    contents.append(f)
+                contents.append('\n\n')
+                contents.append(prompt)
                 response = client.models.generate_content(
-                    model='gemini-2.0-flash',
-                    # model='gemini-2.5-pro',
-                    contents=[
-                        prompt,
-                    ],
+                    model='gemini-2.5-flash',
+                    contents=contents
                 )
                 response_text = response.text
                 ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)
@@ -110,7 +109,7 @@ def chatbot_view(request):
     context = {
         'response_text': markdown.markdown(response_text),
         'query': query,
-        'sources': sources, # Puoi visualizzare le fonti usate
+        'sources': sources,
     }
     return render(request, 'geminigm/chatbot.html', context)
 

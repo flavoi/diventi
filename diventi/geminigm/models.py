@@ -1,12 +1,12 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from django.conf import settings
 
 
 class ChatMessage(models.Model):
     user_message = models.TextField()
     bot_response = models.TextField()
-    author = models.OneToOneField(
+    author = models.ForeignKey(
         settings.AUTH_USER_MODEL,  
         verbose_name=_('author'),
         null=True,

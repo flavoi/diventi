@@ -82,37 +82,73 @@ def chatbot_view(request):
         
         if query:
 
-            prompt = (
-                f"Basandoti sui file allegati e alle seguenti informazioni:\n"
-                f"{' '.join(GEMMA)}\n\n"
-                #f"{' '.join(sources)}\n\n"
-                f"Rispondi alla domanda: {query}\n"
-                f"Se la risposta non è nelle informazioni fornite, di' che non lo sai."
-            )
-        
+            chat_messages = ChatMessage.objects.filter(author=request.user).order_by('created_at')
+            messages_history = []
+            for m in chat_messages:
+                messages_history.append(
+                    {
+                        "role": "user",
+                        "parts": [{"text": m.user_message}],
+                    }
+                )
+                messages_history.append(
+                    {
+                        "role": "model",
+                        "parts": [{"text": m.bot_response}],
+                    }
+                )
+            contents_for_gemini = messages_history
+            gemma_initial_info = " ".join(GEMMA)
+            if contents_for_gemini:
+                # Aggiungi le informazioni GEMMA all'inizio del primo messaggio user
+                # Oppure potresti creare un messaggio iniziale di sistema se la API lo supporta
+                if contents_for_gemini[0]["role"] == "user":
+                    contents_for_gemini[0]["parts"][0]["text"] = f"{gemma_initial_info}\n\n{contents_for_gemini[0]['parts'][0]['text']}"
+                else: # Se il primo messaggio è del modello (conversazione strana), aggiungi un messaggio user prima
+                    contents_for_gemini.insert(0, {
+                        "role": "user",
+                        "parts": [{"text": gemma_initial_info}]
+                    })
+            else: # Se non c'è cronologia, aggiungi le informazioni GEMMA come primo messaggio utente
+                contents_for_gemini.append({
+                    "role": "user",
+                    "parts": [{"text": gemma_initial_info}]
+                })
+
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
                 idoc_list = IngestedDocument.objects.all()
                 udoc_names = [f.name for f in client.files.list()]
+                 # Carica i file se non sono già stati caricati
                 for d in idoc_list:
                     if d.gemini_file_id not in udoc_names:
-                        uploaded_file = client.files.upload(
-                          file=d.file_path,
-                          config=dict(mime_type='application/pdf')
-                        )
+                        with open(d.file_path, 'rb') as f: # Apri il file in modalità binaria
+                            uploaded_file = client.files.upload(
+                                file=f, # Passa l'oggetto file
+                                display_name=d.file_path.split('/')[-1] # Un nome più leggibile
+                            )
                         print(f"File {d.file_path} caricato con ID Gemini: {uploaded_file.name}")
                         d.gemini_file_id = uploaded_file.name
                         d.save()
                     else:
-                        print(f"File {d.file_path} gi presente in Gemini") 
-                contents = []
-                for f in client.files.list():
-                    contents.append(f)
-                contents.append('\n\n')
-                contents.append(prompt)
+                        print(f"File {d.file_path} già presente in Gemini") 
+
+                 # Aggiungi tutti i file caricati ai contents (come riferimenti)
+                for f_gemini in client.files.list():
+                    contents_for_gemini.append(f_gemini)
+
+                # Aggiungi la nuova query dell'utente come ultimo messaggio
+                contents_for_gemini.append(
+                    {
+                        "role": "user",
+                        "parts": [{"text": query}],
+                    }
+                )
+
                 response = client.models.generate_content(
                     model='gemini-2.5-flash',
-                    contents=contents
+                    #model ='gemini-1.5-flash',
+                    contents=contents_for_gemini,
                 )
                 response_text = response.text
                 ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)

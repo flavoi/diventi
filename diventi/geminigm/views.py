@@ -87,11 +87,19 @@ def chatbot_view(request):
         
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
-                for doc in IngestedDocument.objects.all():
-                    client.files.upload(
-                      file=doc.file_path,
-                      config=dict(mime_type='application/pdf')
-                    )
+                idoc_list = IngestedDocument.objects.all()
+                udoc_names = [f.name for f in client.files.list()]
+                for d in idoc_list:
+                    if d.gemini_file_id not in udoc_names:
+                        uploaded_file = client.files.upload(
+                          file=d.file_path,
+                          config=dict(mime_type='application/pdf')
+                        )
+                        print(f"File {d.file_path} caricato con ID Gemini: {uploaded_file.name}")
+                        d.gemini_file_id = uploaded_file.name
+                        d.save()
+                    else:
+                        print(f"File {d.file_path} gi presente in Gemini") 
                 contents = []
                 for f in client.files.list():
                     contents.append(f)

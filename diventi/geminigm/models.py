@@ -31,7 +31,7 @@ class IngestedDocument(models.Model):
         max_length=2000, 
         null=True, 
         blank=True,
-        verbose_name=_('source_url')
+        verbose_name=_('source url')
     )
     file_path = models.CharField(
         max_length=1000, 
@@ -39,7 +39,16 @@ class IngestedDocument(models.Model):
         blank=True,
         verbose_name=_('file path'),
     )
-    ingested_at = models.DateTimeField(auto_now_add=True)
+    gemini_file_id = models.CharField(
+        max_length=255, 
+        null=True, 
+        blank=True,
+        verbose_name=_('ID file Gemini'),
+    )
+    ingested_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('ingestion date'),
+    )
 
     def __str__(self):
         return self.title

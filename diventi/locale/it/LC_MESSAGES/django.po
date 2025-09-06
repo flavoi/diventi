@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-21 08:38+0100\n"
+"POT-Creation-Date: 2025-09-06 16:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,41 +54,45 @@ msgstr "Molto buono"
 msgid "Excellent"
 msgstr "Eccellente"
 
-#: config/urls.py:41
+#: config/urls.py:40
 msgid "control-panel/"
 msgstr "pannello-di-controllo/"
 
-#: config/urls.py:42
+#: config/urls.py:41
 msgid "accounts/"
 msgstr "profili/"
 
-#: config/urls.py:43
+#: config/urls.py:42
 msgid "blog/"
 msgstr "blog/"
 
-#: config/urls.py:44
+#: config/urls.py:43
 msgid "comments/"
 msgstr "commenti/"
 
-#: config/urls.py:45
+#: config/urls.py:44
 msgid "feedbacks/"
 msgstr "riscontri/"
 
-#: config/urls.py:46
+#: config/urls.py:45
 msgid "ebooks/"
 msgstr "ebook/"
 
-#: config/urls.py:47
+#: config/urls.py:46
 msgid "community/"
 msgstr "community/"
 
-#: config/urls.py:48
+#: config/urls.py:47
 msgid "games/"
 msgstr "giochi/"
 
-#: config/urls.py:49
+#: config/urls.py:48
 msgid "packages/"
 msgstr "pacchetti/"
+
+#: config/urls.py:49
+msgid "geminigm/"
+msgstr "geminigm/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -448,8 +452,8 @@ msgid "User covers"
 msgstr "Copertine utente"
 
 #: diventi/blog/admin.py:26 diventi/blog/admin.py:56 diventi/ebooks/admin.py:93
-#: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:46
-#: diventi/landing/admin.py:82 diventi/packages/admin.py:58
+#: diventi/feedbacks/admin.py:56 diventi/landing/admin.py:48
+#: diventi/landing/admin.py:98 diventi/packages/admin.py:58
 #: diventi/products/admin.py:75 diventi/products/admin.py:108
 #: diventi/products/admin.py:137
 msgid "Management"
@@ -461,7 +465,7 @@ msgid "Layout"
 msgstr "Disposizione"
 
 #: diventi/blog/admin.py:32 diventi/blog/admin.py:69
-#: diventi/landing/admin.py:49 diventi/packages/admin.py:35
+#: diventi/landing/admin.py:51 diventi/packages/admin.py:35
 #: diventi/products/admin.py:81 diventi/products/admin.py:111
 msgid "Multimedia"
 msgstr "Contenuti multimediali"
@@ -469,7 +473,7 @@ msgstr "Contenuti multimediali"
 #: diventi/blog/admin.py:35 diventi/blog/admin.py:59 diventi/blog/admin.py:72
 #: diventi/ebooks/admin.py:63 diventi/ebooks/admin.py:102
 #: diventi/ebooks/admin.py:123 diventi/feedbacks/admin.py:59
-#: diventi/landing/admin.py:52 diventi/landing/admin.py:85
+#: diventi/landing/admin.py:54 diventi/landing/admin.py:101
 #: diventi/packages/admin.py:32 diventi/packages/admin.py:64
 #: diventi/products/admin.py:84 diventi/products/admin.py:114
 #: diventi/products/admin.py:140
@@ -501,14 +505,14 @@ msgstr "Categoria di articolo"
 msgid "Article Categories"
 msgstr "Categorie di articolo"
 
-#: diventi/blog/models.py:121 diventi/ebooks/models.py:121
+#: diventi/blog/models.py:121 diventi/ebooks/models.py:127
 #: diventi/products/models.py:247 diventi/products/models.py:506
 #: diventi/templates/products/product_detail_quick.html:67
 msgid "category"
 msgstr "categoria"
 
-#: diventi/blog/models.py:125 diventi/ebooks/models.py:230
-#: diventi/ebooks/models.py:281 diventi/feedbacks/models.py:200
+#: diventi/blog/models.py:125 diventi/ebooks/models.py:236
+#: diventi/ebooks/models.py:287 diventi/feedbacks/models.py:200
 #: diventi/landing/models.py:53 diventi/landing/models.py:99
 msgid "content"
 msgstr "contenuto"
@@ -518,7 +522,7 @@ msgid "hot"
 msgstr "hot"
 
 #: diventi/blog/models.py:133 diventi/ebooks/models.py:67
-#: diventi/ebooks/models.py:183 diventi/ebooks/models.py:300
+#: diventi/ebooks/models.py:189 diventi/ebooks/models.py:306
 #: diventi/feedbacks/models.py:114 diventi/landing/models.py:57
 #: diventi/landing/models.py:100 diventi/packages/models.py:83
 #: diventi/products/models.py:176 diventi/products/models.py:216
@@ -530,6 +534,7 @@ msgid "postcard"
 msgstr "cartolina"
 
 #: diventi/blog/models.py:143 diventi/feedbacks/models.py:174
+#: diventi/geminigm/models.py:15
 msgid "author"
 msgstr "autore"
 
@@ -567,7 +572,7 @@ msgstr "Lettura"
 msgid "Words number"
 msgstr "Parole"
 
-#: diventi/blog/models.py:236 diventi/ebooks/models.py:148
+#: diventi/blog/models.py:236 diventi/ebooks/models.py:154
 #: diventi/landing/models.py:72 diventi/packages/models.py:116
 #: diventi/products/models.py:477
 msgid "Hit counts"
@@ -588,14 +593,6 @@ msgstr "articolo/<slug:slug>/promuovi/"
 #: diventi/blog/urls.py:19
 msgid "article/<slug:slug>/promote/api/"
 msgstr "articolo/<slug:slug>/promuovi/api/"
-
-#: diventi/brave/apps.py:7
-msgid "Brave"
-msgstr "Brave"
-
-#: diventi/brave/urls.py:9
-msgid "brave-rewards-verification.txt/"
-msgstr "brave-rewards-verification.txt/"
 
 #: diventi/comments/apps.py:7 diventi/comments/models.py:19
 #: diventi/templates/base_quick.html:244
@@ -726,7 +723,8 @@ msgstr "promozioni"
 
 #: diventi/core/models.py:111 diventi/feedbacks/models.py:26
 #: diventi/feedbacks/models.py:65 diventi/feedbacks/models.py:112
-#: diventi/landing/models.py:144 diventi/products/models.py:198
+#: diventi/geminigm/models.py:35 diventi/landing/models.py:144
+#: diventi/products/models.py:198
 msgid "title"
 msgstr "titolo"
 
@@ -769,7 +767,7 @@ msgstr "Nessun colore"
 msgid "Color"
 msgstr "Colore"
 
-#: diventi/core/models.py:167 diventi/ebooks/models.py:128
+#: diventi/core/models.py:167 diventi/ebooks/models.py:134
 msgid "image"
 msgstr "immagine"
 
@@ -777,7 +775,7 @@ msgstr "immagine"
 msgid "label"
 msgstr "didascalia"
 
-#: diventi/core/models.py:176 diventi/ebooks/models.py:134
+#: diventi/core/models.py:176 diventi/ebooks/models.py:140
 msgid "No image"
 msgstr "Nessuna immagine"
 
@@ -807,15 +805,10 @@ msgstr ""
 "Gli oggetti appuntati vengono visualizzati nella barra superiore e nella "
 "pagina iniziale"
 
-#: diventi/core/models.py:293 diventi/templates/landing/landing_quick.html:186
+#: diventi/core/models.py:293 diventi/templates/landing/landing_quick.html:189
 #: diventi/templates/products/product_list_quick.html:61
 msgid "featured"
 msgstr "in primo piano"
-
-#: diventi/core/models.py:293 diventi/templates/landing/landing_quick.html:186
-#: diventi/templates/products/product_list_quick.html:61
-msgid "support us"
-msgstr "supportaci"
 
 #: diventi/core/models.py:294
 msgid ""
@@ -960,7 +953,7 @@ msgstr "Recupera il libro in formato paper e lo esporta in formato html"
 msgid "This content will appear as a brief tooltip thought the book."
 msgstr "Questo contenuto verrà esposto in brevi suggerimenti sparsi nel libro."
 
-#: diventi/ebooks/models.py:60 diventi/ebooks/models.py:185
+#: diventi/ebooks/models.py:60 diventi/ebooks/models.py:191
 msgid "part"
 msgstr "parte"
 
@@ -987,193 +980,192 @@ msgstr "sommario"
 msgid "paper id"
 msgstr "paper id"
 
-
-#: diventi/ebooks/models.py:85
+#: diventi/ebooks/models.py:91
 msgid "legacy paper id"
 msgstr "legacy paper id"
 
-#: diventi/ebooks/models.py:89
+#: diventi/ebooks/models.py:95
 msgid "file url"
 msgstr "url del file"
 
-#: diventi/ebooks/models.py:93 diventi/ebooks/models.py:135
+#: diventi/ebooks/models.py:99 diventi/ebooks/models.py:141
 msgid "logo"
 msgstr "logo"
 
-#: diventi/ebooks/models.py:102
+#: diventi/ebooks/models.py:108
 msgid "continuous update"
 msgstr "aggiornamento continuo"
 
-#: diventi/ebooks/models.py:143 diventi/ebooks/models.py:184
+#: diventi/ebooks/models.py:149 diventi/ebooks/models.py:190
 #: diventi/tooltips/models.py:24
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:144 diventi/templates/base_quick.html:243
+#: diventi/ebooks/models.py:150 diventi/templates/base_quick.html:243
 msgid "books"
 msgstr "libri"
 
-#: diventi/ebooks/models.py:182 diventi/ebooks/models.py:229
-#: diventi/ebooks/models.py:277 diventi/feedbacks/models.py:28
+#: diventi/ebooks/models.py:188 diventi/ebooks/models.py:235
+#: diventi/ebooks/models.py:283 diventi/feedbacks/models.py:28
 #: diventi/landing/models.py:161
 msgid "order index"
 msgstr "id ordinamento"
 
-#: diventi/ebooks/models.py:188
+#: diventi/ebooks/models.py:194
 #: diventi/templates/newable_updatedable_badge.html:3
 msgid "updated"
 msgstr "aggiornato"
 
-#: diventi/ebooks/models.py:192
+#: diventi/ebooks/models.py:198
 #: diventi/templates/newable_updatedable_badge.html:2
 msgid "new"
 msgstr "nuovo"
 
-#: diventi/ebooks/models.py:203
+#: diventi/ebooks/models.py:209
 #, python-format
 msgid "There cannot be two or more chapter with the same slug in %(book)s."
 msgstr ""
 "Non possono coesistere due o più capitoli con lo stesso slug in %(book)s."
 
-#: diventi/ebooks/models.py:222 diventi/ebooks/models.py:237
-#: diventi/ebooks/models.py:289
+#: diventi/ebooks/models.py:228 diventi/ebooks/models.py:243
+#: diventi/ebooks/models.py:295
 msgid "chapter"
 msgstr "capitolo"
 
-#: diventi/ebooks/models.py:223
+#: diventi/ebooks/models.py:229
 msgid "chapters"
 msgstr "capitoli"
 
-#: diventi/ebooks/models.py:236
+#: diventi/ebooks/models.py:242
 msgid "universal Diventi"
 msgstr "Diventi universale"
 
-#: diventi/ebooks/models.py:240
+#: diventi/ebooks/models.py:246
 msgid "universal Section"
 msgstr "Sezione universale"
 
-#: diventi/ebooks/models.py:241
+#: diventi/ebooks/models.py:247
 msgid "universal Sections"
 msgstr "Sezioni universali"
 
-#: diventi/ebooks/models.py:246
+#: diventi/ebooks/models.py:252
 msgid "initial string"
 msgstr "stringa iniziale"
 
-#: diventi/ebooks/models.py:247
+#: diventi/ebooks/models.py:253
 msgid "result string"
 msgstr "stringa risultato"
 
-#: diventi/ebooks/models.py:250
+#: diventi/ebooks/models.py:256
 msgid "replacement rule"
 msgstr "regola di sostituzione"
 
-#: diventi/ebooks/models.py:251
+#: diventi/ebooks/models.py:257
 msgid "replacement rules"
 msgstr "regole di sostituzione"
 
-#: diventi/ebooks/models.py:282
+#: diventi/ebooks/models.py:288
 msgid "This content should be simple to read aloud by our fellow game masters."
 msgstr ""
 "Questo contenuto dovrebbe essere facile da leggere ad alta voce dai nostri "
 "compagni game master."
 
-#: diventi/ebooks/models.py:286
+#: diventi/ebooks/models.py:292
 msgid "situation"
 msgstr "situazione"
 
-#: diventi/ebooks/models.py:287
+#: diventi/ebooks/models.py:293
 msgid "This content should be read by game master's eyes only."
 msgstr "Questo contenuto dovrebbe essere letto in privato dal game master."
 
-#: diventi/ebooks/models.py:290
+#: diventi/ebooks/models.py:296
 msgid "bookmark"
 msgstr "segnalibro"
 
-#: diventi/ebooks/models.py:291
+#: diventi/ebooks/models.py:297
 msgid "universal section"
 msgstr "sezione universale"
 
-#: diventi/ebooks/models.py:294
+#: diventi/ebooks/models.py:300
 msgid "Left"
 msgstr "Sinistra"
 
-#: diventi/ebooks/models.py:295
+#: diventi/ebooks/models.py:301
 msgid "Center"
 msgstr "Centrato"
 
-#: diventi/ebooks/models.py:296
+#: diventi/ebooks/models.py:302
 msgid "Right"
 msgstr "Destra"
 
-#: diventi/ebooks/models.py:298
+#: diventi/ebooks/models.py:304
 msgid "text alignment"
 msgstr "allineamento del testo"
 
-#: diventi/ebooks/models.py:299 diventi/ebooks/models.py:312
+#: diventi/ebooks/models.py:305 diventi/ebooks/models.py:318
 msgid "rules"
 msgstr "regole"
 
-#: diventi/ebooks/models.py:358 diventi/ebooks/models.py:380
-#: diventi/ebooks/models.py:405 diventi/landing/models.py:210
+#: diventi/ebooks/models.py:364 diventi/ebooks/models.py:386
+#: diventi/ebooks/models.py:411 diventi/landing/models.py:210
 #: diventi/tooltips/models.py:57
 msgid "section"
 msgstr "sezione"
 
-#: diventi/ebooks/models.py:359 diventi/landing/models.py:211
+#: diventi/ebooks/models.py:365 diventi/landing/models.py:211
 #: diventi/templates/base_quick.html:240
 msgid "sections"
 msgstr "sezioni"
 
-#: diventi/ebooks/models.py:365
+#: diventi/ebooks/models.py:371
 msgid "Location aspects"
 msgstr "Aspetti del luogo"
 
-#: diventi/ebooks/models.py:366
+#: diventi/ebooks/models.py:372
 msgid "Adventure aspects"
 msgstr "Aspetti dell'avventura"
 
-#: diventi/ebooks/models.py:367
+#: diventi/ebooks/models.py:373
 msgid "Campaign aspects"
 msgstr "Aspetti della campagna"
 
-#: diventi/ebooks/models.py:372
+#: diventi/ebooks/models.py:378
 msgid "aspect type"
 msgstr "tipo aspetto"
 
-#: diventi/ebooks/models.py:384
+#: diventi/ebooks/models.py:390
 msgid "section aspect"
 msgstr "aspetto della sezione"
 
-#: diventi/ebooks/models.py:385
+#: diventi/ebooks/models.py:391
 msgid "section aspects"
 msgstr "aspetti della sezione"
 
-#: diventi/ebooks/models.py:390
+#: diventi/ebooks/models.py:396
 msgid "Treasure"
 msgstr "Tesoro"
 
-#: diventi/ebooks/models.py:391
+#: diventi/ebooks/models.py:397
 msgid "Trap"
 msgstr "Trappola"
 
-#: diventi/ebooks/models.py:392
+#: diventi/ebooks/models.py:398
 msgid "Revelation"
 msgstr "Rivelazione"
 
-#: diventi/ebooks/models.py:397
+#: diventi/ebooks/models.py:403
 msgid "sercret type"
 msgstr "tipo di segreto"
 
-#: diventi/ebooks/models.py:409
+#: diventi/ebooks/models.py:415
 msgid "requires a skill check"
 msgstr "richiede una prova"
 
-#: diventi/ebooks/models.py:413
+#: diventi/ebooks/models.py:419
 msgid "secret"
 msgstr "segreto"
 
-#: diventi/ebooks/models.py:414
+#: diventi/ebooks/models.py:420
 msgid "secrets"
 msgstr "segreti"
 
@@ -1197,7 +1189,7 @@ msgstr "pdf/<slug:book_slug>/"
 msgid "pdf/<slug:book_slug>/public/"
 msgstr "pdf/<slug:book_slug>/pubblico/"
 
-#: diventi/ebooks/utils.py:116
+#: diventi/ebooks/utils.py:134
 msgid "Discover"
 msgstr "Scopri"
 
@@ -1302,39 +1294,39 @@ msgstr "risposte"
 msgid "Score"
 msgstr "Punteggio"
 
-#: diventi/feedbacks/urls.py:17
+#: diventi/feedbacks/urls.py:16
 msgid "<slug:slug>/new-submit/"
 msgstr "<slug:slug>/nuovo/"
 
-#: diventi/feedbacks/urls.py:18
+#: diventi/feedbacks/urls.py:17
 msgid "<slug:slug>/questions/gate/"
 msgstr "<slug:slug>/domande/accesso/"
 
-#: diventi/feedbacks/urls.py:19
+#: diventi/feedbacks/urls.py:18
 msgid "<slug:slug>/questions/gate/<str:author_name>/"
 msgstr "<slug:slug>/domande/accesso/<str:author_name>/"
 
-#: diventi/feedbacks/urls.py:20
+#: diventi/feedbacks/urls.py:19
 msgid "<slug:slug>/questions/private/"
 msgstr "<slug:slug>/domande/private/"
 
-#: diventi/feedbacks/urls.py:21
+#: diventi/feedbacks/urls.py:20
 msgid "<slug:slug>/questions/private/<str:author_name>/"
 msgstr "<slug:slug>/domande/private/<str:author_name>/"
 
-#: diventi/feedbacks/urls.py:22
+#: diventi/feedbacks/urls.py:21
 msgid "<slug:slug>/questions/public/"
 msgstr "<slug:slug>/domande/pubbliche/"
 
-#: diventi/feedbacks/urls.py:23
+#: diventi/feedbacks/urls.py:22
 msgid "<slug:slug>/questions/public/<str:author_name>/"
 msgstr "<slug:slug>/domande/pubbliche/<str:author_name>/"
 
-#: diventi/feedbacks/urls.py:24
+#: diventi/feedbacks/urls.py:23
 msgid "<slug:slug>/answers/"
 msgstr "<slug:slug>/risposte/"
 
-#: diventi/feedbacks/urls.py:25
+#: diventi/feedbacks/urls.py:24
 msgid "<slug:slug>/survey-done/"
 msgstr "<slug:slug>/sondaggio-completato/"
 
@@ -1375,7 +1367,98 @@ msgstr "Si è verificato un errore mentre processavamo il tuo sondaggio."
 msgid "This survey is not open to public, sorry."
 msgstr "Spiacente, questo sondaggio non è aperto al pubblico."
 
-#: diventi/landing/admin.py:55
+#: diventi/geminigm/apps.py:7
+msgid "GeminiGM"
+msgstr "GeminiGM"
+
+#: diventi/geminigm/management/commands/clear_ia_data.py:13
+msgid "Ripulisce tutti i dati generati da IA in questa app"
+msgstr ""
+
+#: diventi/geminigm/models.py:8
+msgid "user message"
+msgstr "messaggio dell'utente"
+
+#: diventi/geminigm/models.py:11
+msgid "bot response"
+msgstr "messaggio del bot"
+
+#: diventi/geminigm/models.py:21
+msgid "creation date"
+msgstr "data creazione"
+
+#: diventi/geminigm/models.py:28
+msgid "chat message"
+msgstr "messaggio chat"
+
+#: diventi/geminigm/models.py:29
+msgid "chat messages"
+msgstr "messaggi chat"
+
+#: diventi/geminigm/models.py:41
+msgid "source url"
+msgstr "url sorgente"
+
+#: diventi/geminigm/models.py:47
+msgid "file path"
+msgstr "percorso file"
+
+#: diventi/geminigm/models.py:53
+msgid "ID file Gemini"
+msgstr "ID file Gemini"
+
+#: diventi/geminigm/models.py:57
+msgid "ingestion date"
+msgstr "data ingestione"
+
+#: diventi/geminigm/models.py:64
+msgid "ingested document"
+msgstr "documento ingestito"
+
+#: diventi/geminigm/models.py:65
+msgid "ingested documents"
+msgstr "documenti ingestiti"
+
+#: diventi/geminigm/urls.py:12
+msgid "ingest/"
+msgstr "ingesti/"
+
+#: diventi/geminigm/views.py:16
+msgid ""
+"Sei un game master (GM) che deve gestire un gioco di ruolo da tavolo con "
+"ambientazione e meccaniche personalizzate denominato Primo Contatto (che "
+"trovi in allegato).  Tratta la conversazione come una sessione di gioco "
+"continua, ricordandoti tutti i dettagli che andranno via via emergendo. Tu "
+"genererai e descriverai (in maniera concisa ma evocativa) il mondo, gli "
+"eventi e gli esiti delle azioni di Personaggi Giocanti (PG) e Personaggi Non "
+"Giocanti (PNG). Deciderai anche come i PNG agiranno. Questa chat dovrà "
+"essere inclusa nel tuo contesto per generare le risposte, per cui dovrai "
+"ricordarti esattamente gli eventi che andranno verificandosi e i nomi/"
+"descrizioni dei luoghi e dei personaggi. Alcune note per il GM: rimani "
+"sempre in gioco come GM del gioco di ruolo, tu sei in controllo e sei "
+"responsabile di come il gioco evolverà. Cerca di mantenere le risposte "
+"concise e chiare. Evidenzia nomi, luoghi, oggetti. Le decisioni prese "
+"dovrebbero avere conseguenze e peso. Fornisci frequenti spunti narrativi per "
+"i giocatori e suggerisci possibili azioni che i personaggi potrebbero "
+"intraprendere. Usa creatività e varietà quando generi dei nomi di cose o "
+"persone. Non generarne di troppo simili. Il tema: la campagna è ambientata "
+"nel mondo di Primo Contatto, un pianeta Terra alternativo in cui nell'anno "
+"2020 è caduto un oggetto celeste in Sud America, disattivando in tutte le "
+"Americhe la tecnologia come la conosciamo oggi. In quel giorno fatidico "
+"alcune persone hanno visto nascere dei poteri magici dentro di loro, "
+"chiamati doti.Rispetto delle regole: Segui scrupolosamente le regole del "
+"manuale che ti è stato fornito, con le seguenti eccezioni e adattamenti "
+"specifici che abbiamo stabilito durante la sessione:Improvvisazione: In caso "
+"di domande o azioni non previste dal manuale, improvvisa risposte che si "
+"allineino al tono e al tema del gioco.Evitare il metagioco: Non rivelare "
+"statistiche esatte di nemici o esiti di prove. Descrivi gli eventi in modo "
+"narrativo, lasciando che i giocatori scoprano i dettagli.Azione Combinata: "
+"Per un'azione combinata, ogni giocatore deve superare la propria prova. Se "
+"un giocatore ha un successo eccezionale, può compensare un risultato "
+"inferiore di un altro, a discrezione del GM."
+msgstr ""
+
+#: diventi/landing/admin.py:57
 #: diventi/templates/machina/forum_conversation/forum_attachments/attachments_detail.html:8
 #: diventi/templates/machina/forum_conversation/forum_attachments/attachments_preview.html:7
 #: diventi/templates/machina/forum_conversation/partials/post_form.html:22
@@ -1383,6 +1466,14 @@ msgstr "Spiacente, questo sondaggio non è aperto al pubblico."
 #: diventi/templates/machina/forum_conversation/partials/topic_form.html:24
 msgid "Attachments"
 msgstr "Allegati"
+
+#: diventi/landing/admin.py:73 diventi/landing/models.py:189
+msgid "primary cover"
+msgstr "copertina principale"
+
+#: diventi/landing/admin.py:80 diventi/landing/models.py:197
+msgid "secondary cover"
+msgstr "copertina secondaria"
 
 #: diventi/landing/apps.py:7
 msgid "Landing"
@@ -1423,14 +1514,6 @@ msgstr "anteprima video"
 #: diventi/landing/models.py:174
 msgid "attachment label"
 msgstr "etichetta dell'allegato"
-
-#: diventi/landing/models.py:189
-msgid "primary cover"
-msgstr "copertina principale"
-
-#: diventi/landing/models.py:197
-msgid "secondary cover"
-msgstr "copertina secondaria"
 
 #: diventi/landing/models.py:204
 msgid "Video image"
@@ -1853,7 +1936,7 @@ msgstr ""
 "funzionalità."
 
 #: diventi/templates/accounts/detail.html:16
-#: diventi/templates/landing/landing_quick.html:361
+#: diventi/templates/landing/landing_quick.html:364
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -1908,7 +1991,7 @@ msgstr "accedi"
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:215
-#: diventi/templates/landing/landing_quick.html:349
+#: diventi/templates/landing/landing_quick.html:352
 msgid "sign up"
 msgstr "registrati"
 
@@ -2418,8 +2501,8 @@ msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
 #: diventi/templates/base_quick.html:357
-msgid "buy"
-msgstr "acquista"
+msgid "support us"
+msgstr "supportaci"
 
 #: diventi/templates/base_quick.html:432
 msgid "suggestions"
@@ -2567,7 +2650,6 @@ msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
 #: diventi/templates/ebooks/book_detail_pdf.html:63
-#: diventi/templates/packages/partials/package_detail_actions.html:27
 msgid "Sign in"
 msgstr "Accedi"
 
@@ -2682,9 +2764,9 @@ msgid "check answers"
 msgstr "visualizza risposte"
 
 #: diventi/templates/landing/about_article_quick.html:48
-#: diventi/templates/landing/landing_quick.html:62
-#: diventi/templates/landing/landing_quick.html:161
-#: diventi/templates/landing/landing_quick.html:312
+#: diventi/templates/landing/landing_quick.html:64
+#: diventi/templates/landing/landing_quick.html:164
+#: diventi/templates/landing/landing_quick.html:315
 msgid "play video"
 msgstr "avvia il video"
 
@@ -2696,23 +2778,23 @@ msgstr "copiato"
 msgid "whoops, not copied"
 msgstr "ops, la copia è fallita"
 
-#: diventi/templates/landing/landing_quick.html:70
-#: diventi/templates/landing/landing_quick.html:170
+#: diventi/templates/landing/landing_quick.html:73
+#: diventi/templates/landing/landing_quick.html:173
 msgid "Licenced under"
 msgstr "Rilasciato con"
 
-#: diventi/templates/landing/landing_quick.html:72
-#: diventi/templates/landing/landing_quick.html:172
+#: diventi/templates/landing/landing_quick.html:75
+#: diventi/templates/landing/landing_quick.html:175
 msgid "en"
 msgstr "it"
 
-#: diventi/templates/landing/landing_quick.html:72
-#: diventi/templates/landing/landing_quick.html:172
+#: diventi/templates/landing/landing_quick.html:75
+#: diventi/templates/landing/landing_quick.html:175
 msgid "Creative Commons License"
 msgstr "Licenza Creative Commons"
 
-#: diventi/templates/landing/landing_quick.html:72
-#: diventi/templates/landing/landing_quick.html:172
+#: diventi/templates/landing/landing_quick.html:75
+#: diventi/templates/landing/landing_quick.html:175
 msgid ""
 "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 "
 "International License"
@@ -2720,23 +2802,23 @@ msgstr ""
 "Quest'opera è distribuita con Licenza Creative Commons Attribuzione - "
 "Condividi allo stesso modo 4.0 Internazionale"
 
-#: diventi/templates/landing/landing_quick.html:187
+#: diventi/templates/landing/landing_quick.html:190
 msgid "our latest contents"
 msgstr "i nostri ultimi contenuti"
 
-#: diventi/templates/landing/landing_quick.html:344
+#: diventi/templates/landing/landing_quick.html:347
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
-#: diventi/templates/landing/landing_quick.html:345
+#: diventi/templates/landing/landing_quick.html:348
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
-#: diventi/templates/landing/landing_quick.html:356
+#: diventi/templates/landing/landing_quick.html:359
 msgid "Hello"
 msgstr "Ciao"
 
-#: diventi/templates/landing/landing_quick.html:357
+#: diventi/templates/landing/landing_quick.html:360
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -3421,35 +3503,20 @@ msgid "Forum index"
 msgstr "Pagina iniziale"
 
 #: diventi/templates/packages/package_detail_quick.html:44
-msgid "total value of objects"
-msgstr "valore totale degli oggetti"
-
-#: diventi/templates/packages/package_detail_quick.html:46
 msgid "you already own some of these items"
 msgstr "possiedi già alcuni dei seguenti oggetti"
 
-#: diventi/templates/packages/package_detail_quick.html:65
+#: diventi/templates/packages/package_detail_quick.html:62
 msgid "in short"
 msgstr "in breve"
 
-#: diventi/templates/packages/package_detail_quick.html:69
+#: diventi/templates/packages/package_detail_quick.html:66
 msgid "what is included"
 msgstr "cos'è incluso"
 
-#: diventi/templates/packages/package_detail_quick.html:84
+#: diventi/templates/packages/package_detail_quick.html:81
 msgid "in your collection, already"
 msgstr "già nella tua collezione"
-
-#: diventi/templates/packages/partials/package_detail_actions.html:19
-#: diventi/templates/packages/partials/package_detail_actions.html:22
-#: diventi/templates/products/partials/pay_button.html:11
-#: diventi/templates/products/partials/pay_button.html:14
-msgid "buy for"
-msgstr "acquista per"
-
-#: diventi/templates/packages/partials/package_detail_actions.html:27
-msgid "to add this object in your collection"
-msgstr "per aggiungere questo oggetto alla tua collezione"
 
 #: diventi/templates/products/checkout_done_quick.html:5
 #: diventi/templates/products/checkout_done_quick.html:20
@@ -3484,6 +3551,11 @@ msgstr ""
 #: diventi/templates/products/checkout_failed_quick.html:26
 msgid "try again"
 msgstr "prova di nuovo"
+
+#: diventi/templates/products/partials/pay_button.html:11
+#: diventi/templates/products/partials/pay_button.html:14
+msgid "buy for"
+msgstr "acquista per"
 
 #: diventi/templates/products/partials/product_detail_actions.html:34
 msgid "you've already answered"
@@ -3652,6 +3724,21 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "Brave"
+#~ msgstr "Brave"
+
+#~ msgid "brave-rewards-verification.txt/"
+#~ msgstr "brave-rewards-verification.txt/"
+
+#~ msgid "buy"
+#~ msgstr "acquista"
+
+#~ msgid "total value of objects"
+#~ msgstr "valore totale degli oggetti"
+
+#~ msgid "to add this object in your collection"
+#~ msgstr "per aggiungere questo oggetto alla tua collezione"
 
 #, python-format
 #~ msgid "product views in the last week: %(d)s"

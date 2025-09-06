@@ -1,0 +1,47 @@
+<!-- templates/myapp/chatbot.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La mia avventura di Primo Contatto</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .chat-container { max-width: 800px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        .message-box { background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+        .user-query { font-weight: bold; color: blue; }
+        .bot-response { color: green; }
+        .sources { font-size: 0.8em; color: gray; margin-top: 10px; border-top: 1px dashed #eee; padding-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h1>La mia avventura di Primo Contatto</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="query" placeholder="Fai una domanda..." style="width: 70%; padding: 8px;">
+            <button type="submit">Invia</button>
+        </form>
+
+        {% if query %}
+            <div class="message-box">
+                <p class="user-query">Tu: {{ query }}</p>
+                <div class="bot-response">GM: {{ response_text|safe }}</div>
+                {% if sources %}
+                    <div class="sources">
+                        <strong>Fonti utilizzate:</strong>
+                        <ul>
+                            {% for source in sources %}
+                                <li>{{ source|truncatechars:100 }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <p><a href="{% url 'geminigm:ingest_document' %}">Torna alla pagina di Ingestione</a></p>
+    </div>
+</body>
+</html>

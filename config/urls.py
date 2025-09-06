@@ -46,4 +46,5 @@ urlpatterns += i18n_patterns(
     path(_('community/'), include(machina_urls)),
     path(_('games/'), include('diventi.products.urls', namespace='products')),
     path(_('packages/'), include('diventi.packages.urls', namespace='packages')),
+    path(_('geminigm/'), include('diventi.geminigm.urls', namespace='geminigm')),
 )

@@ -5,9 +5,9 @@ from .models import IngestedDocument
 
 # --- Funzioni di Ingestione ---
 
-def ingest_pdf_document(pdf_path: str, title: str):
+def ingest_pdf_document(pdf_path: str, title: str, gemini_file_id=''):
     try:
-        IngestedDocument.objects.create(title=title, file_path=pdf_path)
+        IngestedDocument.objects.create(title=title, file_path=pdf_path, gemini_file_id=gemini_file_id)
         return True, f"PDF '{title}' ingestito con successo (incluse tabelle e elementi di liste)."
     except Exception as e:
         return False, f"Errore durante l'ingestione del PDF: {e}"

@@ -44,7 +44,9 @@ def ingest_document_view(request):
                     for chunk in pdf_file.chunks():
                         destination.write(chunk)
 
-                success, msg = ingest_pdf_document(file_path, title)
+                client = genai.Client(api_key=settings.GEMINI_API_KEY)
+                gemini_file_id = client.files.upload(file=file_path)
+                success, msg = ingest_pdf_document(file_path, title, gemini_file_id)
                 if success:
                     messages.success(request, msg)
                 else:
@@ -117,21 +119,7 @@ def chatbot_view(request):
 
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
-                idoc_list = IngestedDocument.objects.all()
-                udoc_names = [f.name for f in client.files.list()]
-                 # Carica i file se non sono già stati caricati
-                for d in idoc_list:
-                    if d.gemini_file_id not in udoc_names:
-                        with open(d.file_path, 'rb') as f: # Apri il file in modalità binaria
-                            uploaded_file = client.files.upload(
-                                file=f, # Passa l'oggetto file
-                                display_name=d.file_path.split('/')[-1] # Un nome più leggibile
-                            )
-                        print(f"File {d.file_path} caricato con ID Gemini: {uploaded_file.name}")
-                        d.gemini_file_id = uploaded_file.name
-                        d.save()
-                    else:
-                        print(f"File {d.file_path} già presente in Gemini") 
+                
 
                  # Aggiungi tutti i file caricati ai contents (come riferimenti)
                 for f_gemini in client.files.list():

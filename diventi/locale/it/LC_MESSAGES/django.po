@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 21:27+0200\n"
+"POT-Creation-Date: 2025-09-06 16:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,7 @@ msgstr "pacchetti/"
 
 #: config/urls.py:49
 msgid "geminigm/"
-msgstr ""
+msgstr "geminigm/"
 
 #: diventi/accounts/apps.py:7
 msgid "Accounts"
@@ -534,7 +534,7 @@ msgid "postcard"
 msgstr "cartolina"
 
 #: diventi/blog/models.py:143 diventi/feedbacks/models.py:174
-#: diventi/geminigm/models.py:11
+#: diventi/geminigm/models.py:15
 msgid "author"
 msgstr "autore"
 
@@ -723,7 +723,7 @@ msgstr "promozioni"
 
 #: diventi/core/models.py:111 diventi/feedbacks/models.py:26
 #: diventi/feedbacks/models.py:65 diventi/feedbacks/models.py:112
-#: diventi/geminigm/models.py:28 diventi/landing/models.py:144
+#: diventi/geminigm/models.py:35 diventi/landing/models.py:144
 #: diventi/products/models.py:198
 msgid "title"
 msgstr "titolo"
@@ -1369,37 +1369,59 @@ msgstr "Spiacente, questo sondaggio non è aperto al pubblico."
 
 #: diventi/geminigm/apps.py:7
 msgid "GeminiGM"
+msgstr "GeminiGM"
+
+#: diventi/geminigm/management/commands/clear_ia_data.py:13
+msgid "Ripulisce tutti i dati generati da IA in questa app"
 msgstr ""
 
-#: diventi/geminigm/management/commands/clear_ia_data.py:12
-msgid "Clean ingested entries and every chat messages"
-msgstr ""
+#: diventi/geminigm/models.py:8
+msgid "user message"
+msgstr "messaggio dell'utente"
+
+#: diventi/geminigm/models.py:11
+msgid "bot response"
+msgstr "messaggio del bot"
 
 #: diventi/geminigm/models.py:21
-#, fuzzy
-#| msgid "courtesy message"
+msgid "creation date"
+msgstr "data creazione"
+
+#: diventi/geminigm/models.py:28
 msgid "chat message"
-msgstr "messaggio di cortesia"
+msgstr "messaggio chat"
 
-#: diventi/geminigm/models.py:22
-#, fuzzy
-#| msgid "My messages"
+#: diventi/geminigm/models.py:29
 msgid "chat messages"
-msgstr "I miei messaggi"
+msgstr "messaggi chat"
 
-#: diventi/geminigm/models.py:34
-msgid "source_url"
-msgstr ""
+#: diventi/geminigm/models.py:41
+msgid "source url"
+msgstr "url sorgente"
 
-#: diventi/geminigm/models.py:40
-#, fuzzy
-#| msgid "Profile update"
+#: diventi/geminigm/models.py:47
 msgid "file path"
-msgstr "Aggiornamento profilo"
+msgstr "percorso file"
+
+#: diventi/geminigm/models.py:53
+msgid "ID file Gemini"
+msgstr "ID file Gemini"
+
+#: diventi/geminigm/models.py:57
+msgid "ingestion date"
+msgstr "data ingestione"
+
+#: diventi/geminigm/models.py:64
+msgid "ingested document"
+msgstr "documento ingestito"
+
+#: diventi/geminigm/models.py:65
+msgid "ingested documents"
+msgstr "documenti ingestiti"
 
 #: diventi/geminigm/urls.py:12
 msgid "ingest/"
-msgstr ""
+msgstr "ingesti/"
 
 #: diventi/landing/admin.py:57
 #: diventi/templates/machina/forum_conversation/forum_attachments/attachments_detail.html:8

@@ -1,18 +1,25 @@
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
 
 class ChatMessage(models.Model):
-    user_message = models.TextField()
-    bot_response = models.TextField()
+    user_message = models.TextField(
+        verbose_name=_('user message'),
+    )
+    bot_response = models.TextField(
+        verbose_name=_('bot response'),
+    )
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,  
         verbose_name=_('author'),
         null=True,
         on_delete=models.SET_NULL,
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('creation date'),
+    )
 
     def __str__(self):
         return _(f"Player: {self.user_message}, GM: {self.bot_response}")
@@ -52,3 +59,7 @@ class IngestedDocument(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _('ingested document')
+        verbose_name_plural = _('ingested documents')

@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 
 from django.utils.translation import gettext_lazy as _
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import ChatMessage, IngestedDocument
 from .forms import PDFUploadForm, WebIngestionForm
@@ -22,6 +23,7 @@ Evitare il metagioco: Non rivelare statistiche esatte di nemici o esiti di prove
 Azione Combinata: Per un'azione combinata, ogni giocatore deve superare la propria prova. Se un giocatore ha un successo eccezionale, può compensare un risultato inferiore di un altro, a discrezione del GM.")
 
 
+@staff_member_required
 def ingest_document_view(request):
     pdf_form = PDFUploadForm()
     web_form = WebIngestionForm()
@@ -69,6 +71,7 @@ def ingest_document_view(request):
     return render(request, 'geminigm/ingest_document.html', context)
 
 
+@staff_member_required
 def chatbot_view(request):
     response_text = ""
     query = ""

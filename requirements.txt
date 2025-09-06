@@ -2,6 +2,7 @@ acme==0.26.1
 aiohappyeyeballs==2.6.1
 aiohttp==3.12.15
 aiosignal==1.4.0
+annotated-types==0.7.0
 anyio==4.10.0
 asn1crypto==0.24.0
 async-timeout==4.0.3
@@ -142,7 +143,9 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pybase64==1.4.2
 pycparser==2.18
+pydantic==2.11.7
 pydantic-settings==2.10.1
+pydantic_core==2.33.2
 Pygments==2.19.2
 pylatexenc==2.10
 pyOpenSSL==18.0.0
@@ -187,15 +190,12 @@ typing-inspection==0.4.1
 typing_extensions==4.15.0
 uritemplate==3.0.1
 urllib3==1.26.5
-uvicorn==0.35.0
-uvloop==0.21.0
 watchfiles==1.1.0
 wcwidth==0.1.7
 websockets==15.0.1
 Whoosh==2.7.4
 xlsxwriter==3.2.5
 yarl==1.20.1
-zipp==3.23.0
 zope.component==4.4.1
 zope.deferredimport==4.3.1
 zope.deprecation==4.4.0
@@ -203,4 +203,3 @@ zope.event==4.3.0
 zope.hookable==5.0.1
 zope.interface==5.4.0
 zope.proxy==4.3.5
-zstandard==0.24.0

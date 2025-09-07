@@ -46,7 +46,7 @@ def ingest_document_view(request):
 
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
                 gemini_file_id = client.files.upload(file=file_path)
-                success, msg = ingest_pdf_document(file_path, title, gemini_file_id)
+                success, msg = ingest_pdf_document(file_path, title, gemini_file_id.name)
                 if success:
                     messages.success(request, msg)
                 else:
@@ -88,15 +88,13 @@ def chatbot_view(request):
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
                 chat_messages = ChatMessage.objects.filter(author=request.user).order_by('created_at')
-                messages_history = []
                 for m in chat_messages:
-                    messages_history.append(
+                    contents_for_gemini.append(
                         f'Messaggio utente: {m.user_message} del {m.created_at}',
                     )
-                    messages_history.append(
+                    contents_for_gemini.append(
                         f'Risposta del sistema: {m.bot_response} del {m.created_at}',
                     )
-                contents_for_gemini.append(messages_history)
                 
                 for f_gemini in client.files.list():
                     contents_for_gemini.append(f_gemini)

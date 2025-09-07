@@ -22,7 +22,7 @@ class ChatMessage(models.Model):
     )
 
     def __str__(self):
-        return _(f"Player: {self.user_message}, GM: {self.bot_response}")
+        return self.user_message
 
     class Meta:
         verbose_name = _('chat message')
@@ -63,3 +63,54 @@ class IngestedDocument(models.Model):
     class Meta:
         verbose_name = _('ingested document')
         verbose_name_plural = _('ingested documents')
+
+
+class GemmaIstructionQuerySet(models.QuerySet):
+
+    # Returns the latest gemma that has active status
+    def active(self):
+        gemma = self.order_by('created_at')
+        gemma = gemma.filter(active=True)
+        gemma = gemma.first()
+        return gemma
+
+
+class GemmaIstruction(models.Model):
+    title = models.CharField(
+        max_length=50,
+        verbose_name=_('title'),
+    )
+    description = models.TextField(
+        verbose_name=_('description'),
+    )
+    active = models.BooleanField(default=False)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('ingestion date'),
+    )
+
+    objects = GemmaIstructionQuerySet.as_manager()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Gemma istruction')
+        verbose_name_plural = _('Gemma istructions')
+
+
+class WelcomeMessage(models.Model):
+    bot_response = models.TextField(
+        verbose_name=_('bot response'),
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('creation date'),
+    )
+
+    def __str__(self):
+        return self.bot_response
+
+    class Meta:
+        verbose_name = _('Welcome message')
+        verbose_name_plural = _('Welcome messages')

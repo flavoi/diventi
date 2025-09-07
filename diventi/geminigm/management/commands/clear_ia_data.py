@@ -1,5 +1,4 @@
-import os
-import shutil
+import os, shutil
 from google import genai
 
 from django.core.management.base import BaseCommand, CommandError

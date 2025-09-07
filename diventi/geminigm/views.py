@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
 
-from .models import ChatMessage, IngestedDocument
+from .models import ChatMessage, IngestedDocument, WelcomeMessage
 from .forms import PDFUploadForm, WebIngestionForm
 from .utils import ingest_pdf_document, ingest_website_document
 
@@ -120,20 +120,8 @@ def chatbot_view(request):
                 response_text = f"Errore durante la generazione della risposta da Gemini: {e}"
     else:
         try:
-            client = genai.Client(api_key=settings.GEMINI_API_KEY)
-            for f_gemini in client.files.list():
-                contents_for_gemini.append(f_gemini)
-            contents_for_gemini.append('Mostra un breve messaggio di benvenuto con un riepilogo del gioco. Massimo due paragrafi.')
-                            
-            response = client.models.generate_content(
-                model='gemini-2.5-flash-lite',
-                #model='gemini-2.5-flash',
-                #model ='gemini-1.5-flash',
-                contents=contents_for_gemini,
-                config=types.GenerateContentConfig(
-                    system_instruction=GEMMA),
-            )
-            response_text = response.text           
+            response_text = WelcomeMessage.objects.latest('created_at').bot_response
+                      
         except Exception as e:
             response_text = f"Errore durante la generazione della risposta da Gemini: {e}"
     

@@ -77,76 +77,71 @@ def ingest_document_view(request):
 def chatbot_view(request):
     response_text = ""
     query = ""
-    sources = []
+    contents_for_gemini = []
 
     if request.method == 'POST':
         query = request.POST.get('query', '')
         
         if query:
 
-            chat_messages = ChatMessage.objects.filter(author=request.user).order_by('created_at')
-            messages_history = []
-            for m in chat_messages:
-                messages_history.append(
-                    {
-                        "role": "user",
-                        "parts": [{"text": m.user_message}],
-                    }
-                )
-                messages_history.append(
-                    {
-                        "role": "model",
-                        "parts": [{"text": m.bot_response}],
-                    }
-                )
-            contents_for_gemini = messages_history
-            gemma_initial_info = " ".join(GEMMA)
-            if contents_for_gemini:
-                # Aggiungi le informazioni GEMMA all'inizio del primo messaggio user
-                # Oppure potresti creare un messaggio iniziale di sistema se la API lo supporta
-                if contents_for_gemini[0]["role"] == "user":
-                    contents_for_gemini[0]["parts"][0]["text"] = f"{gemma_initial_info}\n\n{contents_for_gemini[0]['parts'][0]['text']}"
-                else: # Se il primo messaggio è del modello (conversazione strana), aggiungi un messaggio user prima
-                    contents_for_gemini.insert(0, {
-                        "role": "user",
-                        "parts": [{"text": gemma_initial_info}]
-                    })
-            else: # Se non c'è cronologia, aggiungi le informazioni GEMMA come primo messaggio utente
-                contents_for_gemini.append({
-                    "role": "user",
-                    "parts": [{"text": gemma_initial_info}]
-                })
-
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
-                
 
-                 # Aggiungi tutti i file caricati ai contents (come riferimenti)
+                chat_messages = ChatMessage.objects.filter(author=request.user).order_by('created_at')
+                messages_history = []
+                for m in chat_messages:
+                    messages_history.append(
+                        f'Messaggio utente: {m.user_message} del {m.created_at}',
+                    )
+                    messages_history.append(
+                        f'Risposta del sistema: {m.bot_response} del {m.created_at}',
+                    )
+                contents_for_gemini.append(messages_history)
+                
                 for f_gemini in client.files.list():
                     contents_for_gemini.append(f_gemini)
 
-                # Aggiungi la nuova query dell'utente come ultimo messaggio
                 contents_for_gemini.append(
-                    {
-                        "role": "user",
-                        "parts": [{"text": query}],
-                    }
+                    f"Dati i file allegati, le istruzioni di sistema e la cronologia dei messaggi, rispondi alla domanda dell'utente: {query}.",
                 )
-
+                contents_for_gemini.append(
+                    f"Se non riesci a recuperare le informazioni necessarie dichiaralo e improvvisa contenuti usando ciò che hai.",
+                )
+                            
                 response = client.models.generate_content(
-                    model='gemini-2.5-flash',
+                    model='gemini-2.5-flash-lite',
+                    #model='gemini-2.5-flash',
                     #model ='gemini-1.5-flash',
                     contents=contents_for_gemini,
+                    config=types.GenerateContentConfig(
+                        system_instruction=GEMMA),
                 )
                 response_text = response.text
                 ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)
             except Exception as e:
                 response_text = f"Errore durante la generazione della risposta da Gemini: {e}"
+    else:
+        try:
+            client = genai.Client(api_key=settings.GEMINI_API_KEY)
+            for f_gemini in client.files.list():
+                contents_for_gemini.append(f_gemini)
+            contents_for_gemini.append('Mostra un breve messaggio di benvenuto con un riepilogo del gioco. Massimo due paragrafi.')
+                            
+            response = client.models.generate_content(
+                model='gemini-2.5-flash-lite',
+                #model='gemini-2.5-flash',
+                #model ='gemini-1.5-flash',
+                contents=contents_for_gemini,
+                config=types.GenerateContentConfig(
+                    system_instruction=GEMMA),
+            )
+            response_text = response.text           
+        except Exception as e:
+            response_text = f"Errore durante la generazione della risposta da Gemini: {e}"
     
     context = {
         'response_text': markdown.markdown(response_text),
         'query': query,
-        'sources': sources,
     }
     return render(request, 'geminigm/chatbot.html', context)
 

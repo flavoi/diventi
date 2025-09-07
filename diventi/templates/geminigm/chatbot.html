@@ -24,9 +24,11 @@
             <button type="submit">Invia</button>
         </form>
 
-        {% if query %}
+        {% if response_text %}
             <div class="message-box">
-                <p class="user-query">Tu: {{ query }}</p>
+                {% if query %}
+                    <p class="user-query">Tu: {{ query }}</p>
+                {% endif %}
                 <div class="bot-response">GM: {{ response_text|safe }}</div>
                 {% if sources %}
                     <div class="sources">

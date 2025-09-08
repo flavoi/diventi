@@ -30,7 +30,7 @@ class Command(BaseCommand):
         contents_for_gemini = []
         for f_gemini in client.files.list():
             contents_for_gemini.append(f_gemini)
-        contents_for_gemini.append('Mostra un breve messaggio di benvenuto con un riepilogo del gioco. Massimo due paragrafi.')
+        contents_for_gemini.append('Mostra un breve messaggio di benvenuto con un riepilogo del gioco. Massimo due paragrafi. Non rispondere "Certamente", oppure "ho capito", riporta direttamente la risposta.')
         gemma = GemmaIstruction.objects.active()
         response = client.models.generate_content(
             model='gemini-2.5-flash-lite',

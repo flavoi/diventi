@@ -41,6 +41,7 @@
     <link rel="preload" href="{% static 'quick-v110/css/quick-website.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="{% static 'diventi/css/diventi-admin-colors.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @font-face {
             font-family: Kravitz;
@@ -319,9 +320,20 @@
                                 </li>
 
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
-                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "play"|capfirst %}</a>
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "explore"|capfirst %}</a>
                                     <div class="dropdown-menu dropdown-menu-md p-0">
-                                        <div class="list-group list-group-flush px-lg-4">                                            
+                                        <div class="list-group list-group-flush px-lg-4">
+                                            <a href="{% url 'products:list' %}" class="list-group-item list-group-item-action" role="button">
+                                                <div class="d-flex">
+                                                    <span class="h6">
+                                                        <i data-feather="globe"></i>
+                                                    </span>
+                                                    <div class="ml-3">
+                                                        <h6 class="heading mb-0">{% trans 'all games'|capfirst %}</h6>
+                                                        <small class="text-sm">{% trans "explore our collection"|capfirst %}.</small>
+                                                    </div>
+                                                </div>
+                                            </a>                                            
                                             {% if pinned_products_nav %}
                                             {% for pinned_product in pinned_products_nav %}
                                             <a href="{{ pinned_product.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
@@ -351,6 +363,12 @@
                                         </div>
                                     </div>
                                 </li>
+
+                                {% if user.is_staff %}
+                                <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-scroll mr-1"></i> {% trans "play"|capfirst %}</a>                                    
+                                </li>
+                                {% endif %}
 
                                 {% if pinned_packages %}
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">

@@ -1,44 +1,108 @@
-<!-- templates/myapp/chatbot.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La mia avventura di Primo Contatto</title>
-    <style>
-        body { font-family: sans-serif; margin: 20px; }
-        .chat-container { max-width: 800px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
-        .message-box { background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
-        .user-query { font-weight: bold; color: blue; }
-        .bot-response { color: green; }
-        .sources { font-size: 0.8em; color: gray; margin-top: 10px; border-top: 1px dashed #eee; padding-top: 5px; }
-        #chat-history { margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
-        .loading-indicator { display: none; margin-top: 10px; color: gray; }
-    </style>
-</head>
-<body>
-    <div class="chat-container">
-        <h1>La mia avventura di Primo Contatto</h1>
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
 
-        <!-- Mostra il messaggio di benvenuto iniziale -->
-        <div class="message-box">
-            <div class="bot-response">GM: {{ welcome_message|safe }}</div>
+{% block title %}La mia avventura di Primo Contatto{% endblock title %}
+
+{% block extrahead %}
+
+<style>
+
+    /* Regola la posizione del titolo a seconda dell'altezza della sezione */
+    .slice-lg { /* Ho mantenuto slice-lg per consistenza con il tuo CSS, anche se la sezione principale è slice */
+        position: relative; /* Necessario per posizionare il titolo assoluto */
+        padding-top: 10rem !important; /* Aumenta il padding per il titolo */
+        padding-bottom: 5rem !important;
+    }
+
+    /* Adattamento per schermi più piccoli, riduce la dimensione del titolo */
+    @media (max-width: 991.98px) {
+        .page-title-background {
+            font-size: 5rem;
+        }
+        .slice-lg {
+            padding-top: 8rem !important;
+        }
+    }
+    @media (max-width: 575.98px) {
+        .page-title-background {
+            font-size: 3rem;
+        }
+        .slice-lg {
+            padding-top: 6rem !important;
+        }
+    }
+
+    /* Stile per la textarea per il messaggio */
+    #user-query-input {
+        resize: none; /* Disabilita il ridimensionamento manuale della textarea */
+        max-height: 150px; /* Altezza massima prima di mostrare la scrollbar interna */
+    }
+</style>
+{% endblock extrahead %}
+
+{% block content %}
+    <section class="pt-5 bg-section-secondary">
+      <div class="container">
+          <div class="col-lg-9 mx-auto"> {# Aggiunto mx-auto per centrare il titolo #}
+            <h2 class="mb-0 text-center">
+              La mia avventura di Primo Contatto
+            </h2>
+          </div>
+      </div>
+    </section>
+
+{# Ho cambiato slice-lg con slice e regolato il padding per il titolo di sfondo se lo vuoi ancora #}
+<section class="slice bg-section-secondary">
+    <div class="container position-relative zindex-1">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-body p-4">
+                        <div id="chat-history" class="chat-history" style="min-height: 500px; max-height: 70vh; overflow-y: auto; display: flex; flex-direction: column;">
+                            <!-- Messaggio di benvenuto iniziale -->
+                            <div class="media media-comment mb-3">
+                                <div class="avatar avatar-sm rounded-circle shadow mr-3 welcome-avatar-icon">
+                                    <i class="fa-solid fa-hand-sparkles"></i>
+                                </div>
+                                <div class="media-body">
+                                    <div class="media-comment-bubble welcome-message-bubble p-3">
+                                        <h6 class="mt-0 mb-1">Diventi Diventi GM</h6>
+                                        <p class="mb-0">{{ welcome_message|safe }}</p> {# Rimosso text-sm #}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Qui verranno aggiunti i messaggi della chat -->
+                        </div>
+
+                        <form id="chat-form" class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group mb-0 d-flex align-items-end">
+                                <textarea name="query" id="user-query-input" class="form-control form-control-flush pr-2" placeholder="Scrivi un messaggio al Diventi GM..." rows="1" required></textarea>
+                                <button type="submit" id="send-button" class="btn btn-primary rounded-pill ml-2" data-toggle="tooltip" data-placement="top" title="Invia messaggio (Ctrl + Invio)">
+                                    Invia
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="loading-indicator text-center mt-3" id="loading-indicator" style="display: none;">
+                            <span class="text-primary loading-ellipsis" id="ellipsis-animation"></span>
+                            <p class="text-muted text-sm mt-2">Il Diventi GM sta pensando...</p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{% url 'geminigm:ingest_document' %}" class="btn btn-sm btn-link text-muted">{% trans "Torna alla pagina di Ingestione" %}</a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div id="chat-history">
-            <!-- Qui verranno aggiunti i messaggi della chat -->
-        </div>
-
-        <form id="chat-form">
-            {% csrf_token %} <!-- Questo è fondamentale per la sicurezza CSRF -->
-            <input type="text" name="query" id="user-query-input" placeholder="Fai una domanda..." style="width: 70%; padding: 8px;">
-            <button type="submit" id="send-button">Invia</button>
-        </form>
-
-        <div class="loading-indicator" id="loading-indicator">GM sta pensando...</div>
-
-        <p><a href="{% url 'geminigm:ingest_document' %}">Torna alla pagina di Ingestione</a></p>
     </div>
+</section>
+{% endblock content %}
+
+{% block extrascript %}
+    {{ block.super }} {# Mantiene gli script del base_quick.html #}
+    <script src="{% static 'quick-v110/libs/autosize/dist/autosize.min.js' %}"></script> {# Assicurati che autosize.min.js sia caricato #}
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -48,14 +112,42 @@
             const loadingIndicator = document.getElementById('loading-indicator');
             const sendButton = document.getElementById('send-button');
 
-            // Funzione per ottenere il token CSRF
+            // Inizializza autosize per la textarea
+            autosize(userQueryInput);
+
+            // Inizializza i tooltip di Bootstrap
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Funzione per scrollare la chat in basso (rimane, ma non verrà chiamata automaticamente)
+            function scrollToBottom() {
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+
+            // Scrolla in basso all'inizio, utile per il messaggio di benvenuto
+            // Questo è l'unico punto in cui lo scroll automatico avviene per impostazione predefinita.
+            scrollToBottom(); 
+
+            userQueryInput.addEventListener('keydown', function(event) {
+                // Se solo Invio è premuto, non fare nulla (la textarea gestisce la nuova riga)
+                if (event.key === 'Enter' && !(event.ctrlKey || event.metaKey)) {
+                    return;
+                }
+
+                // Se Ctrl (o Cmd su Mac) + Invio è premuto
+                if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                    event.preventDefault(); // Impedisce il default (nuova riga nel textarea)
+                    if (userQueryInput.value.trim() !== '') {
+                        chatForm.dispatchEvent(new Event('submit')); // Invia il form
+                    }
+                }
+            });
+            
             function getCookie(name) {
                 let cookieValue = null;
                 if (document.cookie && document.cookie !== '') {
                     const cookies = document.cookie.split(';');
                     for (let i = 0; i < cookies.length; i++) {
                         const cookie = cookies[i].trim();
-                        // Does this cookie string begin with the name we want?
                         if (cookie.substring(0, name.length + 1) === (name + '=')) {
                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                             break;
@@ -67,65 +159,233 @@
             const csrftoken = getCookie('csrftoken');
 
             chatForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Previeni il ricaricamento della pagina
+                event.preventDefault();
 
                 const userQuery = userQueryInput.value.trim();
                 if (!userQuery) {
-                    return; // Non inviare query vuote
+                    return;
                 }
 
-                // Aggiungi subito la query dell'utente alla cronologia
                 const userMessageBox = document.createElement('div');
-                userMessageBox.className = 'message-box';
-                userMessageBox.innerHTML = `<p class="user-query">Tu: ${userQuery}</p>`;
+                userMessageBox.className = 'media media-comment mb-3'; 
+                userMessageBox.innerHTML = `
+                    <div class="avatar avatar-sm rounded-circle shadow mr-3 player-avatar-icon">
+                        <i class="fa-solid fa-dice-d20"></i>
+                    </div>
+                    <div class="media-body">
+                        <div class="media-comment-bubble user-message-bubble py-2 px-3">
+                            <h6 class="mt-0 mb-1">Tu</h6> {# Rimosso text-sm #}
+                            <p class="mb-0">${userQuery.replace(/\n/g, '')}</p> {# Rimosso text-sm #}
+                        </div>
+                    </div>
+                `;
                 chatHistory.appendChild(userMessageBox);
-                chatHistory.scrollTop = chatHistory.scrollHeight; // Scrolla in basso
+                userQueryInput.value = ''; // Pulisci la textarea
+                autosize.update(userQueryInput); // Aggiorna autosize dopo aver svuotato
 
-                userQueryInput.value = ''; // Pulisci l'input
-                sendButton.disabled = true; // Disabilita il pulsante
-                loadingIndicator.style.display = 'block'; // Mostra l'indicatore di caricamento
+                loadingIndicator.style.display = 'block';
 
-                fetch('{% url 'geminigm:send_message_ajax' %}', { // Assicurati che l'URL sia corretto
+                fetch('{% url 'geminigm:send_message_ajax' %}', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded', // Per dati form
-                        'X-CSRFToken': csrftoken // Invia il token CSRF
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': csrftoken
                     },
                     body: `query=${encodeURIComponent(userQuery)}`
                 })
                 .then(response => response.json())
                 .then(data => {
-                    loadingIndicator.style.display = 'none'; // Nascondi l'indicatore
-                    sendButton.disabled = false; // Riabilita il pulsante
+                    loadingIndicator.style.display = 'none';
 
                     if (data.success) {
                         const botMessageBox = document.createElement('div');
-                        botMessageBox.className = 'message-box';
-                        botMessageBox.innerHTML = `<div class="bot-response">GM: ${data.bot_response}</div>`;
+                        botMessageBox.className = 'media media-comment mb-3';
+                        botMessageBox.innerHTML = `
+                            <div class="avatar avatar-sm rounded-circle shadow mr-3 gm-avatar-icon">
+                                <i class="fa-solid fa-scroll"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="media-comment-bubble bubble-light py-2 px-3">
+                                    <h6 class="mt-0 mb-1">Diventi GM</h6> {# Rimosso text-sm #}
+                                    <p class="mb-0">${data.bot_response.replace(/\n/g, '')}</p> {# Rimosso text-sm #}
+                                </div>
+                            </div>
+                        `;
                         chatHistory.appendChild(botMessageBox);
                     } else {
-                        // Gestisci l'errore
                         const errorMessageBox = document.createElement('div');
-                        errorMessageBox.className = 'message-box';
-                        errorMessageBox.style.backgroundColor = '#ffe0e0'; // Colore di sfondo per errore
-                        errorMessageBox.innerHTML = `<p style="color: red;">Errore: ${data.error}</p>`;
+                        errorMessageBox.className = 'media media-comment mb-3';
+                        errorMessageBox.innerHTML = `
+                            <div class="avatar avatar-sm rounded-circle shadow mr-3 gm-avatar-icon">
+                                <i class="fa-solid fa-scroll"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="media-comment-bubble bubble-light py-2 px-3 bg-danger text-white">
+                                    <h6 class="mt-0 mb-1">Errore Diventi GM</h6> {# Rimosso text-sm #}
+                                    <p class="mb-0">Errore: ${data.error}</p> {# Rimosso text-sm #}
+                                </div>
+                            </div>
+                        `;
                         chatHistory.appendChild(errorMessageBox);
                     }
-                    chatHistory.scrollTop = chatHistory.scrollHeight; // Scrolla in basso
                 })
                 .catch(error => {
-                    loadingIndicator.style.display = 'none'; // Nascondi l'indicatore
-                    sendButton.disabled = false; // Riabilita il pulsante
+                    loadingIndicator.style.display = 'none';
                     console.error('Errore nella richiesta AJAX:', error);
                     const errorMessageBox = document.createElement('div');
-                    errorMessageBox.className = 'message-box';
-                    errorMessageBox.style.backgroundColor = '#ffe0e0';
-                    errorMessageBox.innerHTML = `<p style="color: red;">Errore di rete o del server. Riprova più tardi.</p>`;
+                    errorMessageBox.className = 'media media-comment mb-3';
+                    errorMessageBox.innerHTML = `
+                        <div class="avatar avatar-sm rounded-circle shadow mr-3 gm-avatar-icon">
+                            <i class="fa-solid fa-scroll"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="media-comment-bubble bubble-light py-2 px-3 bg-danger text-white">
+                                <h6 class="mt-0 mb-1">Errore di Connessione</h6> {# Rimosso text-sm #}
+                                <p class="mb-0">Errore di rete o del server. Riprova più tardi.</p> {# Rimosso text-sm #}
+                            </div>
+                        </div>
+                    `;
                     chatHistory.appendChild(errorMessageBox);
-                    chatHistory.scrollTop = chatHistory.scrollHeight;
                 });
             });
         });
     </script>
-</body>
-</html>
+    <style>
+        .chat-history {
+            height: 400px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        /* Stile per le bolle del Diventi GM (precedentemente bubble-light) */
+        .media-comment-bubble.bubble-light {
+            background-color: #f8f9fa; /* Grigio chiaro */
+            border: 1px solid #e9ecef;
+            color: #212529; /* Testo nero */
+            margin-right: auto; /* Per assicurarsi che non si espanda a destra inutilmente */
+            margin-left: 0; /* Forza l'allineamento a sinistra */
+        }
+
+        /* Nuovo stile per la bolla dell'utente */
+        .media-comment-bubble.user-message-bubble {
+            background-color: #e0f7fa; /* Un azzurro molto chiaro e soft */
+            border: 1px solid #b2ebf2; /* Bordo leggermente più scuro */
+            color: #212529; /* Testo nero */
+            margin-right: auto; /* Forza l'allineamento a sinistra */
+            margin-left: 0; 
+        }
+        .media-comment-bubble.user-message-bubble h6 {
+            color: #212529 !important; /* Testo nero per il titolo dell'utente */
+        }
+        
+        /* Stile generale per le bolle di chat */
+        .media-comment-bubble {
+            padding: 0.5rem 0.75rem !important; /* Nuovo padding per tutte le bolle */
+            border-radius: 0.75rem; /* Rendi gli angoli più arrotondati */
+            max-width: 80%; /* Limita la larghezza delle bolle per una migliore leggibilità */
+            word-wrap: break-word; /* Assicura che il testo lungo vada a capo */
+        }
+        .media-comment-bubble h6 {
+            font-size: 0.9375rem !important; /* Aumentato leggermente per i titoli */
+            margin-bottom: 0.25rem !important; /* Spazio ridotto tra titolo e testo */
+        }
+        .media-comment-bubble p {
+            font-size: 0.9375rem !important; /* Aumentato leggermente per tutti i messaggi (15px) */
+        }
+
+
+        .gm-avatar-icon, .player-avatar-icon, .welcome-avatar-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #adb5bd;
+            color: #fff;
+            font-size: 1.25rem;
+            flex-shrink: 0; /* Impedisce all'avatar di rimpicciolirsi */
+        }
+        
+        .gm-avatar-icon {
+            background-color: #28a745; /* Verde per il Diventi GM */
+        }
+
+        .player-avatar-icon {
+            background-color: #007bff; /* Blu per il Giocatore */
+        }
+
+        /* Stile specifico per il messaggio di benvenuto */
+        .welcome-avatar-icon {
+            background-color: #ffc107; /* Giallo/arancione per l'icona di benvenuto */
+            color: #343a40; /* Testo scuro per l'icona */
+        }
+
+        .welcome-message-bubble {
+            background-color: #fff3cd; /* Sfondo giallo chiaro */
+            border: 1px solid #ffeeba; /* Bordo più scuro del giallo */
+            color: #856404; /* Testo scuro per contrasto */
+        }
+        .welcome-message-bubble h6 {
+             color: #856404 !important; /* Colore del titolo nel messaggio di benvenuto */
+        }
+
+        /* Assicura che gli elementi media siano sempre allineati a sinistra */
+        .media {
+            align-items: flex-start; /* Allinea l'avatar in alto con il messaggio */
+        }
+        .media .media-body {
+            flex-grow: 1; /* Permette al media-body di espandersi */
+            margin-left: 0; /* Rimuovi eventuali margini a sinistra/destra indesiderati */
+            margin-right: auto; /* Spinge la bolla verso sinistra */
+        }
+
+           /* CSS per l'animazione dei puntini di sospensione */
+        .loading-ellipsis {
+            display: inline-block; /* Per applicare l'animazione correttamente */
+            overflow: hidden; /* Nasconde i puntini extra */
+            height: 1.1em; /* Altezza per evitare che la riga salti */
+            text-align: left; /* Allinea i puntini a sinistra */
+            min-width: 1.5em; /* Larghezza minima per contenere i puntini */
+            vertical-align: bottom; /* Allinea i puntini alla base del testo */
+        }
+        .loading-ellipsis::after {
+            content: '...';
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+            animation-name: ellipsis;
+            animation-timing-function: linear;
+            font-size: 1.5em; /* Rende i puntini un po' più grandi */
+            line-height: 0; /* Ajusta l'altezza della riga per i puntini */
+        }
+
+        @keyframes ellipsis {
+            to {
+                width: 1.5em;
+            }
+        }
+        
+        /* Keyframes per nascondere e mostrare i puntini in sequenza */
+        @keyframes ellipsis {
+            0%   { content: ''; }
+            33%  { content: '.'; }
+            66%  { content: '..'; }
+            100% { content: '...'; }
+        }
+
+        .chat-history::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-history::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .chat-history::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        .chat-history::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+{% endblock extrascript %}

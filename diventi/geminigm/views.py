@@ -1,17 +1,20 @@
 import os, markdown
+import json # Importa il modulo json
 from google import genai
 from google.genai import types
 
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.contrib import messages
+from django.http import JsonResponse # Importa JsonResponse
+from django.views.decorators.csrf import csrf_exempt # Potrebbe servire per i test, ma è meglio gestirlo con i token CSRF di Django
 
 from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import (
-    ChatMessage, 
-    IngestedDocument, 
+    ChatMessage,
+    IngestedDocument,
     WelcomeMessage,
     GemmaIstruction,
 )
@@ -72,27 +75,38 @@ def ingest_document_view(request):
 
 @staff_member_required
 def chatbot_view(request):
-    response_text = ""
-    query = ""
-    contents_for_gemini = []
+    # Questa view ora serve solo per caricare la pagina iniziale della chat
+    welcome_message = ""
+    try:
+        welcome_message = WelcomeMessage.objects.latest('created_at').bot_response
+    except WelcomeMessage.DoesNotExist:
+        welcome_message = "Benvenuto nella tua avventura di Primo Contatto!"
 
+    context = {
+        'welcome_message': markdown.markdown(welcome_message),
+    }
+    return render(request, 'geminigm/chatbot.html', context)
+
+
+@staff_member_required
+#@csrf_exempt # Rimuovi questa riga in produzione e usa i token CSRF
+def send_message_ajax(request):
     if request.method == 'POST':
-        query = request.POST.get('query', '')
-        
-        if query:
+        query = request.POST.get('query', '') # Prendi la query dal corpo della richiesta POST
 
+        if query:
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
+                contents_for_gemini = []
 
-                chat_messages = ChatMessage.objects.filter(author=request.user).order_by('created_at')
-                for m in chat_messages:
-                    contents_for_gemini.append(
-                        f'Messaggio utente: {m.user_message} del {m.created_at}',
-                    )
-                    contents_for_gemini.append(
-                        f'Risposta del sistema: {m.bot_response} del {m.created_at}',
-                    )
-                
+                # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
+                chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
+                # Inverti l'ordine per avere i messaggi più vecchi prima
+                for m in reversed(chat_messages):
+                    contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
+                    contents_for_gemini.append(f'Risposta del sistema: {m.bot_response}')
+
+                # Aggiungi i file ingestiti come contesto
                 for f_gemini in client.files.list():
                     contents_for_gemini.append(f_gemini)
 
@@ -102,31 +116,25 @@ def chatbot_view(request):
                 contents_for_gemini.append(
                     f"Se non riesci a recuperare le informazioni necessarie dichiaralo e improvvisa contenuti usando ciò che hai.",
                 )
-                            
+
                 gemma = GemmaIstruction.objects.active()
 
                 response = client.models.generate_content(
                     model='gemini-2.5-flash-lite',
-                    #model='gemini-2.5-flash',
-                    #model ='gemini-1.5-flash',
                     contents=contents_for_gemini,
                     config=types.GenerateContentConfig(
                         system_instruction=gemma),
                 )
                 response_text = response.text
                 ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)
-            except Exception as e:
-                response_text = f"Errore durante la generazione della risposta da Gemini: {e}"
-    else:
-        try:
-            response_text = WelcomeMessage.objects.latest('created_at').bot_response
-                      
-        except Exception as e:
-            response_text = f"Errore durante la generazione della risposta da Gemini: {e}"
-    
-    context = {
-        'response_text': markdown.markdown(response_text),
-        'query': query,
-    }
-    return render(request, 'geminigm/chatbot.html', context)
 
+                # Restituisci la risposta come JSON
+                return JsonResponse({'success': True, 'bot_response': markdown.markdown(response_text)})
+
+            except Exception as e:
+                error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
+                return JsonResponse({'success': False, 'error': error_message})
+        else:
+            return JsonResponse({'success': False, 'error': 'La query non può essere vuota.'})
+    else:
+        return JsonResponse({'success': False, 'error': 'Metodo non consentito.'}, status=405)

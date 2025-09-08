@@ -12,39 +12,120 @@
         .user-query { font-weight: bold; color: blue; }
         .bot-response { color: green; }
         .sources { font-size: 0.8em; color: gray; margin-top: 10px; border-top: 1px dashed #eee; padding-top: 5px; }
+        #chat-history { margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
+        .loading-indicator { display: none; margin-top: 10px; color: gray; }
     </style>
 </head>
 <body>
     <div class="chat-container">
         <h1>La mia avventura di Primo Contatto</h1>
 
-        <form method="post">
-            {% csrf_token %}
-            <input type="text" name="query" placeholder="Fai una domanda..." style="width: 70%; padding: 8px;">
-            <button type="submit">Invia</button>
+        <!-- Mostra il messaggio di benvenuto iniziale -->
+        <div class="message-box">
+            <div class="bot-response">GM: {{ welcome_message|safe }}</div>
+        </div>
+
+        <div id="chat-history">
+            <!-- Qui verranno aggiunti i messaggi della chat -->
+        </div>
+
+        <form id="chat-form">
+            {% csrf_token %} <!-- Questo è fondamentale per la sicurezza CSRF -->
+            <input type="text" name="query" id="user-query-input" placeholder="Fai una domanda..." style="width: 70%; padding: 8px;">
+            <button type="submit" id="send-button">Invia</button>
         </form>
 
-        {% if response_text %}
-            <div class="message-box">
-                {% if query %}
-                    <p class="user-query">Tu: {{ query }}</p>
-                {% endif %}
-                <div class="bot-response">GM: {{ response_text|safe }}</div>
-                {% if sources %}
-                    <div class="sources">
-                        <strong>Fonti utilizzate:</strong>
-                        <ul>
-                            {% for source in sources %}
-                                <li>{{ source|truncatechars:100 }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
-            </div>
-        {% endif %}
+        <div class="loading-indicator" id="loading-indicator">GM sta pensando...</div>
 
         <p><a href="{% url 'geminigm:ingest_document' %}">Torna alla pagina di Ingestione</a></p>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatForm = document.getElementById('chat-form');
+            const userQueryInput = document.getElementById('user-query-input');
+            const chatHistory = document.getElementById('chat-history');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const sendButton = document.getElementById('send-button');
+
+            // Funzione per ottenere il token CSRF
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            const csrftoken = getCookie('csrftoken');
+
+            chatForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Previeni il ricaricamento della pagina
+
+                const userQuery = userQueryInput.value.trim();
+                if (!userQuery) {
+                    return; // Non inviare query vuote
+                }
+
+                // Aggiungi subito la query dell'utente alla cronologia
+                const userMessageBox = document.createElement('div');
+                userMessageBox.className = 'message-box';
+                userMessageBox.innerHTML = `<p class="user-query">Tu: ${userQuery}</p>`;
+                chatHistory.appendChild(userMessageBox);
+                chatHistory.scrollTop = chatHistory.scrollHeight; // Scrolla in basso
+
+                userQueryInput.value = ''; // Pulisci l'input
+                sendButton.disabled = true; // Disabilita il pulsante
+                loadingIndicator.style.display = 'block'; // Mostra l'indicatore di caricamento
+
+                fetch('{% url 'geminigm:send_message_ajax' %}', { // Assicurati che l'URL sia corretto
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded', // Per dati form
+                        'X-CSRFToken': csrftoken // Invia il token CSRF
+                    },
+                    body: `query=${encodeURIComponent(userQuery)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loadingIndicator.style.display = 'none'; // Nascondi l'indicatore
+                    sendButton.disabled = false; // Riabilita il pulsante
+
+                    if (data.success) {
+                        const botMessageBox = document.createElement('div');
+                        botMessageBox.className = 'message-box';
+                        botMessageBox.innerHTML = `<div class="bot-response">GM: ${data.bot_response}</div>`;
+                        chatHistory.appendChild(botMessageBox);
+                    } else {
+                        // Gestisci l'errore
+                        const errorMessageBox = document.createElement('div');
+                        errorMessageBox.className = 'message-box';
+                        errorMessageBox.style.backgroundColor = '#ffe0e0'; // Colore di sfondo per errore
+                        errorMessageBox.innerHTML = `<p style="color: red;">Errore: ${data.error}</p>`;
+                        chatHistory.appendChild(errorMessageBox);
+                    }
+                    chatHistory.scrollTop = chatHistory.scrollHeight; // Scrolla in basso
+                })
+                .catch(error => {
+                    loadingIndicator.style.display = 'none'; // Nascondi l'indicatore
+                    sendButton.disabled = false; // Riabilita il pulsante
+                    console.error('Errore nella richiesta AJAX:', error);
+                    const errorMessageBox = document.createElement('div');
+                    errorMessageBox.className = 'message-box';
+                    errorMessageBox.style.backgroundColor = '#ffe0e0';
+                    errorMessageBox.innerHTML = `<p style="color: red;">Errore di rete o del server. Riprova più tardi.</p>`;
+                    chatHistory.appendChild(errorMessageBox);
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                });
+            });
+        });
+    </script>
 </body>
 </html>

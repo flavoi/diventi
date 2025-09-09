@@ -38,26 +38,210 @@
         resize: none; /* Disabilita il ridimensionamento manuale della textarea */
         max-height: 150px; /* Altezza massima prima di mostrare la scrollbar interna */
     }
+
+    /* --- NUOVE REGOLE CSS PER LE CARD LATERALI --- */
+    .pg-sheet-column .card, .summary-card .card { /* Seleziona le card all'interno delle colonne laterali */
+        background-color: #f0f4f8; /* Un grigio-azzurro molto chiaro per differenziarle */
+        border: 1px solid #dee2e6; /* Un bordo leggermente più visibile */
+    }
+    .pg-sheet-column .card-header, .summary-card .card-header {
+        background-color: #e9edf2; /* Un colore leggermente più scuro per l'header */
+        border-bottom: 1px solid #dee2e6;
+    }
+    .pg-sheet-column .card-header h5, .summary-card .card-header h5 {
+        color: #34495e !important; /* Un colore del testo leggermente più scuro per i titoli */
+    }
+
+    /* Stile per l'icona chevron */
+    .pg-sheet-column .card-header i, .summary-card .card-header i {
+        transition: transform 0.3s ease; /* Aggiunge una transizione fluida */
+    }
+    .pg-sheet-column .card-header[aria-expanded="false"] i, .summary-card .card-header[aria-expanded="false"] i {
+        transform: rotate(-90deg); /* Ruota l'icona quando la card è chiusa */
+    }
+
+    /* --- CSS ESISTENTE --- */
+    .chat-history {
+        height: 400px;
+        overflow-y: auto;
+        padding-right: 15px;
+    }
+
+    /* Stile per le bolle del Diventi GM (precedentemente bubble-light) */
+    .media-comment-bubble.bubble-light {
+        background-color: #f8f9fa; /* Grigio chiaro */
+        border: 1px solid #e9ecef;
+        color: #212529; /* Testo nero */
+        margin-right: auto; /* Per assicurarsi che non si espanda a destra inutilmente */
+        margin-left: 0; /* Forza l'allineamento a sinistra */
+    }
+
+    /* Nuovo stile per la bolla dell'utente */
+    .media-comment-bubble.user-message-bubble {
+        background-color: #e0f7fa; /* Un azzurro molto chiaro e soft */
+        border: 1px solid #b2ebf2; /* Bordo leggermente più scuro */
+        color: #212529; /* Testo nero */
+        margin-right: auto; /* Forza l'allineamento a sinistra */
+        margin-left: 0;
+    }
+    .media-comment-bubble.user-message-bubble h6 {
+        color: #212529 !important; /* Testo nero per il titolo dell'utente */
+    }
+
+    /* Stile generale per le bolle di chat */
+    .media-comment-bubble {
+        padding: 0.5rem 0.75rem !important; /* Nuovo padding per tutte le bolle */
+        border-radius: 0.75rem; /* Rendi gli angoli più arrotondati */
+        max-width: 80%; /* Limita la larghezza delle bolle per una migliore leggibilità */
+        word-wrap: break-word; /* Assicura che il testo lungo vada a capo */
+    }
+    .media-comment-bubble h6 {
+        font-size: 0.9375rem !important; /* Aumentato leggermente per i titoli */
+        margin-bottom: 0.25rem !important; /* Spazio ridotto tra titolo e testo */
+    }
+    .media-comment-bubble p {
+        font-size: 0.9375rem !important; /* Aumentato leggermente per tutti i messaggi (15px) */
+    }
+
+
+    .gm-avatar-icon, .player-avatar-icon, .welcome-avatar-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #adb5bd;
+        color: #fff;
+        font-size: 1.25rem;
+        flex-shrink: 0; /* Impedisce all'avatar di rimpicciolirsi */
+    }
+
+    .gm-avatar-icon {
+        background-color: #28a745; /* Verde per il Diventi GM */
+    }
+
+    .player-avatar-icon {
+        background-color: #007bff; /* Blu per il Giocatore */
+    }
+
+    /* Stile specifico per il messaggio di benvenuto */
+    .welcome-avatar-icon {
+        background-color: #ffc107; /* Giallo/arancione per l'icona di benvenuto */
+        color: #343a40; /* Testo scuro per l'icona */
+    }
+
+    .welcome-message-bubble {
+        background-color: #fff3cd; /* Sfondo giallo chiaro */
+        border: 1px solid #ffeeba; /* Bordo più scuro del giallo */
+        color: #856404; /* Testo scuro per contrasto */
+    }
+    .welcome-message-bubble h6 {
+        color: #856404 !important; /* Colore del titolo nel messaggio di benvenuto */
+    }
+
+    /* Assicura che gli elementi media siano sempre allineati a sinistra */
+    .media {
+        align-items: flex-start; /* Allinea l'avatar in alto con il messaggio */
+    }
+    .media .media-body {
+        flex-grow: 1; /* Permette al media-body di espandersi */
+        margin-left: 0; /* Rimuovi eventuali margini a sinistra/destra indesiderati */
+        margin-right: auto; /* Spinge la bolla verso sinistra */
+    }
+
+    /* CSS per l'animazione dei puntini di sospensione */
+    .loading-ellipsis {
+        display: inline-block; /* Per applicare l'animazione correttamente */
+        overflow: hidden; /* Nasconde i puntini extra */
+        height: 1.1em; /* Altezza per evitare che la riga salti */
+        text-align: left; /* Allinea i puntini a sinistra */
+        min-width: 1.5em; /* Larghezza minima per contenere i puntini */
+        vertical-align: bottom; /* Allinea i puntini alla base del testo */
+    }
+    .loading-ellipsis::after {
+        content: '...';
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-name: ellipsis;
+        animation-timing-function: linear;
+        font-size: 1.5em; /* Rende i puntini un po' più grandi */
+        line-height: 0; /* Ajusta l'altezza della riga per i puntini */
+    }
+
+    @keyframes ellipsis {
+        to {
+            width: 1.5em;
+        }
+    }
+
+    /* Keyframes per nascondere e mostrare i puntini in sequenza */
+    @keyframes ellipsis {
+        0%   { content: ''; }
+        33%  { content: '.'; }
+        66%  { content: '..'; }
+        100% { content: '...'; }
+    }
+
+    .chat-history::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .chat-history::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .chat-history::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    .chat-history::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 </style>
 {% endblock extrahead %}
 
 {% block content %}
-    <section class="pt-5 bg-section-secondary">
-      <div class="container">
-          <div class="col-lg-9 mx-auto"> {# Aggiunto mx-auto per centrare il titolo #}
-            <h2 class="mb-0 text-center">
-              La mia avventura di Primo Contatto
-            </h2>
-          </div>
-      </div>
-    </section>
 
-{# Ho cambiato slice-lg con slice e regolato il padding per il titolo di sfondo se lo vuoi ancora #}
+
+<section class="pt-5 bg-section-secondary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="row align-items-center">
+          <div class="col">
+            <span class="surtitle">Primo Contatto</span>
+            <h1 class="h2 mb-0">{% trans 'my adventure'|capfirst %}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="slice bg-section-secondary">
-    <div class="container position-relative zindex-1">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="card shadow-lg border-0 rounded-lg">
+    <div class="container-fluid position-relative zindex-1">
+        <div class="row">
+            <div class="col-lg-3 order-1 order-md-1">
+                <div class="card shadow-lg pg-sheet-column sticky-card">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-translucent-info" id="pgSheetHeader" data-toggle="collapse" href="#pgSheetCollapse" role="button" aria-expanded="true" aria-controls="pgSheetCollapse">
+                        <h5 class="mb-0 text-dark">{% trans "character sheet"|capfirst %}</h5>
+                        <i class="fa-solid fa-chevron-down d-lg-none"></i>
+                    </div>
+                    <div class="collapse d-lg-block" id="pgSheetCollapse">
+                        <div class="card-body p-3" id="pg-sheet-content">
+                            <p class="card-text text-dark small">
+                                {% if scheda_pg %}
+                                    {{ scheda_pg|safe }}
+                                {% else %}
+                                    {% trans "No character sheet is available, please ask the GM to create one!" %}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-3 order-md-2">
+                <div class="card">
                     <div class="card-body p-4">
                         <div id="chat-history" class="chat-history" style="min-height: 500px; max-height: 70vh; overflow-y: auto; display: flex; flex-direction: column;">
                             <!-- Messaggio di benvenuto iniziale -->
@@ -67,8 +251,8 @@
                                 </div>
                                 <div class="media-body">
                                     <div class="media-comment-bubble welcome-message-bubble p-3">
-                                        <h6 class="mt-0 mb-1">Diventi Diventi GM</h6>
-                                        <p class="mb-0">{{ welcome_message|safe }}</p> {# Rimosso text-sm #}
+                                        <h6 class="mt-0 mb-1">Diventi GM</h6>
+                                        <p class="mb-0">{{ welcome_message|safe }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -78,20 +262,39 @@
                         <form id="chat-form" class="mt-4">
                             {% csrf_token %}
                             <div class="form-group mb-0 d-flex align-items-end">
-                                <textarea name="query" id="user-query-input" class="form-control form-control-flush pr-2" placeholder="Scrivi un messaggio al Diventi GM..." rows="1" required></textarea>
-                                <button type="submit" id="send-button" class="btn btn-primary rounded-pill ml-2" data-toggle="tooltip" data-placement="top" title="Invia messaggio (Ctrl + Invio)">
-                                    Invia
+                                <textarea name="query" id="user-query-input" class="form-control form-control-flush pr-2" placeholder="{% trans 'send a message to Diventi GM...'|capfirst %}" rows="1" required></textarea>
+                                <button type="submit" id="send-button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="{% trans 'send message (Ctrl + Enter)'|capfirst %}">
+                                    {% trans 'send'|capfirst %}
                                 </button>
                             </div>
                         </form>
 
                         <div class="loading-indicator text-center mt-3" id="loading-indicator" style="display: none;">
                             <span class="text-primary loading-ellipsis" id="ellipsis-animation"></span>
-                            <p class="text-muted text-sm mt-2">Il Diventi GM sta pensando...</p>
+                            <p class="text-muted text-sm mt-2">{% trans "Diventi GM is thinking..." %}</p>
                         </div>
                     </div>
-                    <div class="card-footer text-center">
-                        <a href="{% url 'geminigm:ingest_document' %}" class="btn btn-sm btn-link text-muted">{% trans "Torna alla pagina di Ingestione" %}</a>
+                    <div class="card-footer py-3 text-center border-0 position-relative">
+                        <a href="{% url 'geminigm:ingest_document' %}" class="text-xs ls-1 text-uppercase font-weight-bold stretched-link">{% trans "go to ingestion page"|capfirst %}</a></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 order-2 order-md-3">
+                <div class="card shadow-lg summary-card sticky-card">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-translucent-success" id="summaryHeader" data-toggle="collapse" href="#summaryCollapse" role="button" aria-expanded="true" aria-controls="summaryCollapse">
+                        <h5 class="mb-0 text-dark">{% trans "the adventure so far"|capfirst %}</h5>
+                        <i class="fa-solid fa-chevron-down d-lg-none"></i>
+                    </div>
+                    <div class="collapse d-lg-block" id="summaryCollapse">
+                        <div class="card-body p-3" id="adventure-summary-content">
+                            <p class="card-text text-dark small">
+                                {% if summary %}
+                                    {{ summary|safe }}
+                                {% else %}
+                                    {% trans "No summary is available. Please start playing to see the relevant events in this section." %}
+                                {% endif %}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,9 +304,6 @@
 {% endblock content %}
 
 {% block extrascript %}
-    {{ block.super }} {# Mantiene gli script del base_quick.html #}
-    <script src="{% static 'quick-v110/libs/autosize/dist/autosize.min.js' %}"></script> {# Assicurati che autosize.min.js sia caricato #}
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const chatForm = document.getElementById('chat-form');
@@ -112,32 +312,34 @@
             const loadingIndicator = document.getElementById('loading-indicator');
             const sendButton = document.getElementById('send-button');
 
+            // Nuovi riferimenti agli elementi dove inserire i dati
+            const pgSheetContent = document.getElementById('pg-sheet-content'); // Corretto ID
+            const adventureSummaryContent = document.getElementById('adventure-summary-content'); // Nuovo ID
+
             // Inizializza autosize per la textarea
             autosize(userQueryInput);
 
             // Inizializza i tooltip di Bootstrap
             $('[data-toggle="tooltip"]').tooltip();
 
-            // Funzione per scrollare la chat in basso (rimane, ma non verrà chiamata automaticamente)
+            // Funzione per scrollare la chat in basso
             function scrollToBottom() {
-                chatHistory.scrollTop = chatHistory.scrollHeight;
+                setTimeout(() => {
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                }, 0); 
             }
 
             // Scrolla in basso all'inizio, utile per il messaggio di benvenuto
-            // Questo è l'unico punto in cui lo scroll automatico avviene per impostazione predefinita.
             scrollToBottom(); 
 
             userQueryInput.addEventListener('keydown', function(event) {
-                // Se solo Invio è premuto, non fare nulla (la textarea gestisce la nuova riga)
                 if (event.key === 'Enter' && !(event.ctrlKey || event.metaKey)) {
                     return;
                 }
-
-                // Se Ctrl (o Cmd su Mac) + Invio è premuto
                 if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
-                    event.preventDefault(); // Impedisce il default (nuova riga nel textarea)
+                    event.preventDefault();
                     if (userQueryInput.value.trim() !== '') {
-                        chatForm.dispatchEvent(new Event('submit')); // Invia il form
+                        chatForm.dispatchEvent(new Event('submit'));
                     }
                 }
             });
@@ -158,6 +360,71 @@
             }
             const csrftoken = getCookie('csrftoken');
 
+            // --- FUNZIONI PER RECUPERARE E AGGIORNARE LE CARD ---
+
+            function fetchPgSheet() {
+                fetch('{% url 'geminigm:get_pg_sheet_ajax' %}', {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && pgSheetContent) {
+                        pgSheetContent.innerHTML = `<p class="card-text text-dark small">${data.scheda_pg || '{% trans "No character sheet is available." %}'}</p>`;
+                    } else if (pgSheetContent) {
+                        pgSheetContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your character sheet" %}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Character sheet error:', error);
+                    if (pgSheetContent) {
+                        pgSheetContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your character sheet." %}</p>`;
+                    }
+                });
+            }
+
+            function fetchSummary() {
+                fetch('{% url 'geminigm:get_adventure_summary_ajax' %}', {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && adventureSummaryContent) {
+                        adventureSummaryContent.innerHTML = `<p class="card-text text-dark small">${data.summary || '{% trans "No summary is available." %}'}</p>`;
+                    } else if (adventureSummaryContent) {
+                        adventureSummaryContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your summary." %}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nel caricamento del riassunto dell\'avventura:', error);
+                    if (adventureSummaryContent) {
+                        adventureSummaryContent.innerHTML = `<p class="card-text text-danger small">{% trans "A network error occured while generating your summary." %}</p>`;
+                    }
+                });
+            }
+
+            // Chiama le funzioni al caricamento iniziale della pagina
+            fetchPgSheet();
+            fetchSummary();
+            // --- FINE FUNZIONI ---
+
             chatForm.addEventListener('submit', function(event) {
                 event.preventDefault();
 
@@ -167,21 +434,23 @@
                 }
 
                 const userMessageBox = document.createElement('div');
-                userMessageBox.className = 'media media-comment mb-3'; 
+                userMessageBox.className = 'media media-comment mb-3';
                 userMessageBox.innerHTML = `
                     <div class="avatar avatar-sm rounded-circle shadow mr-3 player-avatar-icon">
                         <i class="fa-solid fa-dice-d20"></i>
                     </div>
                     <div class="media-body">
                         <div class="media-comment-bubble user-message-bubble py-2 px-3">
-                            <h6 class="mt-0 mb-1">Tu</h6> {# Rimosso text-sm #}
-                            <p class="mb-0">${userQuery.replace(/\n/g, '')}</p> {# Rimosso text-sm #}
+                            <h6 class="mt-0 mb-1">Tu</h6>
+                            <p class="mb-0">${userQuery.replace(/\n/g, '')}</p>
                         </div>
                     </div>
                 `;
                 chatHistory.appendChild(userMessageBox);
-                userQueryInput.value = ''; // Pulisci la textarea
-                autosize.update(userQueryInput); // Aggiorna autosize dopo aver svuotato
+                scrollToBottom();
+
+                userQueryInput.value = '';
+                autosize.update(userQueryInput);
 
                 loadingIndicator.style.display = 'block';
 
@@ -206,12 +475,18 @@
                             </div>
                             <div class="media-body">
                                 <div class="media-comment-bubble bubble-light py-2 px-3">
-                                    <h6 class="mt-0 mb-1">Diventi GM</h6> {# Rimosso text-sm #}
-                                    <p class="mb-0">${data.bot_response.replace(/\n/g, '')}</p> {# Rimosso text-sm #}
+                                    <h6 class="mt-0 mb-1">Diventi GM</h6>
+                                    <p class="mb-0">${data.bot_response.replace(/\n/g, '')}</p>
                                 </div>
                             </div>
                         `;
                         chatHistory.appendChild(botMessageBox);
+
+                        // --- CHIAMATE PER AGGIORNARE LE CARD DOPO LA RISPOSTA DEL BOT ---
+                        fetchPgSheet();
+                        fetchSummary();
+                        // --- FINE CHIAMATE ---
+
                     } else {
                         const errorMessageBox = document.createElement('div');
                         errorMessageBox.className = 'media media-comment mb-3';
@@ -221,13 +496,14 @@
                             </div>
                             <div class="media-body">
                                 <div class="media-comment-bubble bubble-light py-2 px-3 bg-danger text-white">
-                                    <h6 class="mt-0 mb-1">Errore Diventi GM</h6> {# Rimosso text-sm #}
-                                    <p class="mb-0">Errore: ${data.error}</p> {# Rimosso text-sm #}
+                                    <h6 class="mt-0 mb-1">Errore Diventi GM</h6>
+                                    <p class="mb-0">Errore: ${data.error}</p>
                                 </div>
                             </div>
                         `;
                         chatHistory.appendChild(errorMessageBox);
                     }
+                    scrollToBottom();
                 })
                 .catch(error => {
                     loadingIndicator.style.display = 'none';
@@ -240,152 +516,15 @@
                         </div>
                         <div class="media-body">
                             <div class="media-comment-bubble bubble-light py-2 px-3 bg-danger text-white">
-                                <h6 class="mt-0 mb-1">Errore di Connessione</h6> {# Rimosso text-sm #}
-                                <p class="mb-0">Errore di rete o del server. Riprova più tardi.</p> {# Rimosso text-sm #}
+                                <h6 class="mt-0 mb-1">Errore di Connessione</h6>
+                                <p class="mb-0">Errore di rete o del server. Riprova più tardi.</p>
                             </div>
                         </div>
                     `;
                     chatHistory.appendChild(errorMessageBox);
+                    scrollToBottom();
                 });
             });
         });
     </script>
-    <style>
-        .chat-history {
-            height: 400px;
-            overflow-y: auto;
-            padding-right: 15px;
-        }
-
-        /* Stile per le bolle del Diventi GM (precedentemente bubble-light) */
-        .media-comment-bubble.bubble-light {
-            background-color: #f8f9fa; /* Grigio chiaro */
-            border: 1px solid #e9ecef;
-            color: #212529; /* Testo nero */
-            margin-right: auto; /* Per assicurarsi che non si espanda a destra inutilmente */
-            margin-left: 0; /* Forza l'allineamento a sinistra */
-        }
-
-        /* Nuovo stile per la bolla dell'utente */
-        .media-comment-bubble.user-message-bubble {
-            background-color: #e0f7fa; /* Un azzurro molto chiaro e soft */
-            border: 1px solid #b2ebf2; /* Bordo leggermente più scuro */
-            color: #212529; /* Testo nero */
-            margin-right: auto; /* Forza l'allineamento a sinistra */
-            margin-left: 0; 
-        }
-        .media-comment-bubble.user-message-bubble h6 {
-            color: #212529 !important; /* Testo nero per il titolo dell'utente */
-        }
-        
-        /* Stile generale per le bolle di chat */
-        .media-comment-bubble {
-            padding: 0.5rem 0.75rem !important; /* Nuovo padding per tutte le bolle */
-            border-radius: 0.75rem; /* Rendi gli angoli più arrotondati */
-            max-width: 80%; /* Limita la larghezza delle bolle per una migliore leggibilità */
-            word-wrap: break-word; /* Assicura che il testo lungo vada a capo */
-        }
-        .media-comment-bubble h6 {
-            font-size: 0.9375rem !important; /* Aumentato leggermente per i titoli */
-            margin-bottom: 0.25rem !important; /* Spazio ridotto tra titolo e testo */
-        }
-        .media-comment-bubble p {
-            font-size: 0.9375rem !important; /* Aumentato leggermente per tutti i messaggi (15px) */
-        }
-
-
-        .gm-avatar-icon, .player-avatar-icon, .welcome-avatar-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #adb5bd;
-            color: #fff;
-            font-size: 1.25rem;
-            flex-shrink: 0; /* Impedisce all'avatar di rimpicciolirsi */
-        }
-        
-        .gm-avatar-icon {
-            background-color: #28a745; /* Verde per il Diventi GM */
-        }
-
-        .player-avatar-icon {
-            background-color: #007bff; /* Blu per il Giocatore */
-        }
-
-        /* Stile specifico per il messaggio di benvenuto */
-        .welcome-avatar-icon {
-            background-color: #ffc107; /* Giallo/arancione per l'icona di benvenuto */
-            color: #343a40; /* Testo scuro per l'icona */
-        }
-
-        .welcome-message-bubble {
-            background-color: #fff3cd; /* Sfondo giallo chiaro */
-            border: 1px solid #ffeeba; /* Bordo più scuro del giallo */
-            color: #856404; /* Testo scuro per contrasto */
-        }
-        .welcome-message-bubble h6 {
-             color: #856404 !important; /* Colore del titolo nel messaggio di benvenuto */
-        }
-
-        /* Assicura che gli elementi media siano sempre allineati a sinistra */
-        .media {
-            align-items: flex-start; /* Allinea l'avatar in alto con il messaggio */
-        }
-        .media .media-body {
-            flex-grow: 1; /* Permette al media-body di espandersi */
-            margin-left: 0; /* Rimuovi eventuali margini a sinistra/destra indesiderati */
-            margin-right: auto; /* Spinge la bolla verso sinistra */
-        }
-
-           /* CSS per l'animazione dei puntini di sospensione */
-        .loading-ellipsis {
-            display: inline-block; /* Per applicare l'animazione correttamente */
-            overflow: hidden; /* Nasconde i puntini extra */
-            height: 1.1em; /* Altezza per evitare che la riga salti */
-            text-align: left; /* Allinea i puntini a sinistra */
-            min-width: 1.5em; /* Larghezza minima per contenere i puntini */
-            vertical-align: bottom; /* Allinea i puntini alla base del testo */
-        }
-        .loading-ellipsis::after {
-            content: '...';
-            animation-duration: 1.5s;
-            animation-iteration-count: infinite;
-            animation-name: ellipsis;
-            animation-timing-function: linear;
-            font-size: 1.5em; /* Rende i puntini un po' più grandi */
-            line-height: 0; /* Ajusta l'altezza della riga per i puntini */
-        }
-
-        @keyframes ellipsis {
-            to {
-                width: 1.5em;
-            }
-        }
-        
-        /* Keyframes per nascondere e mostrare i puntini in sequenza */
-        @keyframes ellipsis {
-            0%   { content: ''; }
-            33%  { content: '.'; }
-            66%  { content: '..'; }
-            100% { content: '...'; }
-        }
-
-        .chat-history::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .chat-history::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .chat-history::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
-
-        .chat-history::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    </style>
 {% endblock extrascript %}

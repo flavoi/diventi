@@ -129,7 +129,10 @@ def send_message_ajax(request):
                 ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)
 
                 # Restituisci la risposta come JSON
-                return JsonResponse({'success': True, 'bot_response': markdown.markdown(response_text)})
+                return JsonResponse({
+                    'success': True, 
+                    'bot_response': markdown.markdown(response_text),
+                })
 
             except Exception as e:
                 error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
@@ -138,3 +141,89 @@ def send_message_ajax(request):
             return JsonResponse({'success': False, 'error': 'La query non può essere vuota.'})
     else:
         return JsonResponse({'success': False, 'error': 'Metodo non consentito.'}, status=405)
+
+
+@staff_member_required
+#@csrf_exempt # Rimuovi questa riga in produzione e usa i token CSRF
+def get_adventure_summary_ajax(request):
+    try:
+        client = genai.Client(api_key=settings.GEMINI_API_KEY)
+        contents_for_gemini = []
+
+        # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
+        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
+        # Inverti l'ordine per avere i messaggi più vecchi prima
+        for m in reversed(chat_messages):
+            contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
+            contents_for_gemini.append(f'Risposta del sistema: {m.bot_response}')
+
+        # Aggiungi i file ingestiti come contesto
+        for f_gemini in client.files.list():
+            contents_for_gemini.append(f_gemini)
+
+        contents_for_gemini.append(
+            f"Fai il riassunto degli avvenimenti più importanti avvenuti nell'avventura che l'utente sta giocando. Massimo due paragrafi discorsivi.",
+        )
+
+        gemma = GemmaIstruction.objects.active()
+
+        summary = client.models.generate_content(
+            model='gemini-2.5-flash-lite',
+            contents=contents_for_gemini,
+            config=types.GenerateContentConfig(
+                system_instruction=gemma),
+        )
+        summary_text = summary.text
+
+        # Restituisci la risposta come JSON
+        return JsonResponse({
+            'success': True, 
+            'summary': markdown.markdown(summary_text),
+        })
+
+    except Exception as e:
+        error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
+        return JsonResponse({'success': False, 'error': error_message})
+
+
+@staff_member_required
+#@csrf_exempt # Rimuovi questa riga in produzione e usa i token CSRF
+def get_pg_sheet_ajax(request):
+    try:
+        client = genai.Client(api_key=settings.GEMINI_API_KEY)
+        contents_for_gemini = []
+
+        # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
+        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
+        # Inverti l'ordine per avere i messaggi più vecchi prima
+        for m in reversed(chat_messages):
+            contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
+            contents_for_gemini.append(f'Risposta del sistema: {m.bot_response}')
+
+        # Aggiungi i file ingestiti come contesto
+        for f_gemini in client.files.list():
+            contents_for_gemini.append(f_gemini)
+
+        contents_for_gemini.append(
+            f"Riporta le caratteristiche del personaggio che l'utente sta interpretando nell'avventura in un elenco puntato ordinato. Quando riporti una dote scrivi il nome in grassetto, l'effetto in modalità libera e quello in modalità a turni e infine l'elenco degli elementi che la compongono (flussi, poteri, attrezzi). Descrivi brevemente l'effetto dei sottosistemi della MTM. Riporta le relazioni per ultime e descrivile in un breve paragrafo. Difesa, punti vita e iperio potrebbero stare in un'unica riga. Non riportare frasi introduttive come 'ecco le caratteristiche, 'certamente' oppure 'ok rispondo', riporta direttamente il contenuto della risposta.",
+        )
+
+        gemma = GemmaIstruction.objects.active()
+
+        scheda_pg = client.models.generate_content(
+            model='gemini-2.5-flash-lite',
+            contents=contents_for_gemini,
+            config=types.GenerateContentConfig(
+                system_instruction=gemma),
+        )
+        scheda_pg_text = scheda_pg.text
+
+        # Restituisci la risposta come JSON
+        return JsonResponse({
+            'success': True, 
+            'scheda_pg': markdown.markdown(scheda_pg_text),
+        })
+
+    except Exception as e:
+        error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
+        return JsonResponse({'success': False, 'error': error_message})

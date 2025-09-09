@@ -162,7 +162,7 @@ def get_adventure_summary_ajax(request):
             contents_for_gemini.append(f_gemini)
 
         contents_for_gemini.append(
-            f"Fai il riassunto degli avvenimenti più importanti avvenuti nell'avventura che l'utente sta giocando. Massimo due paragrafi discorsivi.",
+            f"Fai il riassunto degli avvenimenti più importanti avvenuti nell'avventura che l'utente sta giocando. Massimo due paragrafi discorsivi. Evita frasi introduttive come 'ok, ho capito', o 'va bene', o similari; scrivi direttamente il contenuto del riassunto",
         )
 
         gemma = GemmaIstruction.objects.active()

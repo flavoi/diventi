@@ -2544,7 +2544,7 @@ msgstr "gioca"
 
 #: diventi/templates/base_quick.html:277
 msgid "play with AI"
-msgstr ""
+msgstr "gioca con l'IA"
 
 #: diventi/templates/base_quick.html:278
 msgid "your Primo Contatto adventure"

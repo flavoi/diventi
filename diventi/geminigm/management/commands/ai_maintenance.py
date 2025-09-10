@@ -22,7 +22,7 @@ class Command(BaseCommand):
         for d in IngestedDocument.objects.all():
             try:
                 client.files.get(name=d.gemini_file_id)
-                print(f"Documento locale {d.gemini_file_id} presente anche in gemini")
+                print(f"Documento locale {d.gemini_file_id} presente anche in gemini, nessuna azione necessaria")
             except Exception as e:
                 print(f"File {d.gemini_file_id} non trovato, lo ricarico in Gemini e mi annoto nuovo ID")
                 gemini_file = client.files.upload(file=d.file_path)

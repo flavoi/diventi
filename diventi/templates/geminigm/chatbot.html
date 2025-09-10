@@ -230,8 +230,8 @@
                     <div class="collapse d-lg-block" id="pgSheetCollapse">
                         <div class="card-body p-3" id="pg-sheet-content">
                             <p class="card-text text-dark small">
-                                {% if scheda_pg %}
-                                    {{ scheda_pg|safe }}
+                                {% if character_sheet %}
+                                    {{ character_sheet|safe }}
                                 {% else %}
                                     {% trans "No character sheet is available, please ask the GM to create one!" %}
                                 {% endif %}
@@ -363,7 +363,7 @@
             // --- FUNZIONI PER RECUPERARE E AGGIORNARE LE CARD ---
 
             function fetchPgSheet() {
-                fetch('{% url 'geminigm:get_pg_sheet_ajax' %}', {
+                fetch('{% url 'geminigm:get_char_sheet_ajax' %}', {
                     method: 'GET',
                     headers: {
                         'X-CSRFToken': csrftoken,
@@ -378,7 +378,7 @@
                 })
                 .then(data => {
                     if (data.success && pgSheetContent) {
-                        pgSheetContent.innerHTML = `<p class="card-text text-dark small">${data.scheda_pg || '{% trans "No character sheet is available." %}'}</p>`;
+                        pgSheetContent.innerHTML = `<p class="card-text text-dark small">${data.character_sheet || '{% trans "No character sheet is available." %}'}</p>`;
                     } else if (pgSheetContent) {
                         pgSheetContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your character sheet" %}</p>`;
                     }

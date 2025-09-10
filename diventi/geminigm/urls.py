@@ -5,7 +5,7 @@ from .views import (
     ingest_document_view,
     chatbot_view,
     send_message_ajax,
-    get_pg_sheet_ajax,
+    get_char_sheet_ajax,
     get_adventure_summary_ajax,
 )
 
@@ -16,5 +16,5 @@ urlpatterns = [
     path('', chatbot_view, name='chatbot'),
     path('send_message_ajax/', send_message_ajax, name='send_message_ajax'),    
     path('get_adventure_summary_ajax/', get_adventure_summary_ajax, name='get_adventure_summary_ajax'),
-    path('get_pg_sheet_ajax/', get_pg_sheet_ajax, name='get_pg_sheet_ajax'),
+    path('get_char_sheet_ajax/', get_char_sheet_ajax, name='get_char_sheet_ajax'),
 ]

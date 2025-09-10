@@ -97,7 +97,12 @@ def send_message_ajax(request):
         if query:
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
+                gemma = GemmaIstruction.objects.active()
+
                 contents_for_gemini = []
+
+                # Passa le istruzioni di sistema
+                contents_for_gemini.append(gemma.system_instruction)
 
                 # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
                 chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
@@ -117,18 +122,13 @@ def send_message_ajax(request):
                     f"Se non riesci a recuperare le informazioni necessarie dichiaralo e improvvisa contenuti usando ciò che hai.",
                 )
 
-                gemma = GemmaIstruction.objects.active()
-
                 response = client.models.generate_content(
                     model='gemini-2.5-flash-lite',
                     contents=contents_for_gemini,
-                    config=types.GenerateContentConfig(
-                        system_instruction=gemma),
                 )
                 response_text = response.text
                 ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)
 
-                # Restituisci la risposta come JSON
                 return JsonResponse({
                     'success': True, 
                     'bot_response': markdown.markdown(response_text),
@@ -144,11 +144,15 @@ def send_message_ajax(request):
 
 
 @staff_member_required
-#@csrf_exempt # Rimuovi questa riga in produzione e usa i token CSRF
 def get_adventure_summary_ajax(request):
     try:
         client = genai.Client(api_key=settings.GEMINI_API_KEY)
+        gemma = GemmaIstruction.objects.active()
+
         contents_for_gemini = []
+
+        # Passa le istruzioni di sistema
+        contents_for_gemini.append(gemma.system_instruction)
 
         # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
         chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
@@ -161,17 +165,15 @@ def get_adventure_summary_ajax(request):
         for f_gemini in client.files.list():
             contents_for_gemini.append(f_gemini)
 
-        contents_for_gemini.append(
-            f"Fai il riassunto degli avvenimenti più importanti avvenuti nell'avventura che l'utente sta giocando. Massimo due paragrafi discorsivi. Evita frasi introduttive come 'ok, ho capito', o 'va bene', o similari; scrivi direttamente il contenuto del riassunto. Se non ci sono eventi da riassumere, dì semplicemente che non hai informazioni e consiglia al giocatore di cominciare un'avventura con il GM.",
-        )
-
         gemma = GemmaIstruction.objects.active()
+
+        contents_for_gemini.append(
+            gemma.summary_istruction,
+        )
 
         summary = client.models.generate_content(
             model='gemini-2.5-flash-lite',
             contents=contents_for_gemini,
-            config=types.GenerateContentConfig(
-                system_instruction=gemma),
         )
         summary_text = summary.text
 
@@ -187,11 +189,15 @@ def get_adventure_summary_ajax(request):
 
 
 @staff_member_required
-#@csrf_exempt # Rimuovi questa riga in produzione e usa i token CSRF
-def get_pg_sheet_ajax(request):
+def get_char_sheet_ajax(request):
     try:
         client = genai.Client(api_key=settings.GEMINI_API_KEY)
+        gemma = GemmaIstruction.objects.active()
+
         contents_for_gemini = []
+
+        # Passa le istruzioni di sistema
+        contents_for_gemini.append(gemma.system_instruction)
 
         # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
         chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
@@ -205,23 +211,19 @@ def get_pg_sheet_ajax(request):
             contents_for_gemini.append(f_gemini)
 
         contents_for_gemini.append(
-            f"Riporta le caratteristiche del personaggio che l'utente sta interpretando nell'avventura in un elenco puntato ordinato. Quando riporti una dote scrivi il nome in grassetto, l'effetto in modalità libera e quello in modalità a turni e infine l'elenco degli elementi che la compongono (flussi, poteri, attrezzi). Descrivi brevemente l'effetto dei sottosistemi della MTM. Riporta le relazioni per ultime e descrivile in un breve paragrafo. Difesa, punti vita e iperio potrebbero stare in un'unica riga. Non riportare frasi introduttive come 'ecco le caratteristiche, 'certamente' oppure 'ok rispondo', riporta direttamente il contenuto della risposta.",
-        )
+            gemma.character_sheet_istruction,
+        )        
 
-        gemma = GemmaIstruction.objects.active()
-
-        scheda_pg = client.models.generate_content(
+        character_sheet = client.models.generate_content(
             model='gemini-2.5-flash-lite',
             contents=contents_for_gemini,
-            config=types.GenerateContentConfig(
-                system_instruction=gemma),
         )
-        scheda_pg_text = scheda_pg.text
+        character_sheet_text = character_sheet.text
 
         # Restituisci la risposta come JSON
         return JsonResponse({
             'success': True, 
-            'scheda_pg': markdown.markdown(scheda_pg_text),
+            'character_sheet': markdown.markdown(character_sheet_text),
         })
 
     except Exception as e:

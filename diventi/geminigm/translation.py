@@ -10,4 +10,4 @@ class IngestedDocumentTranslationOptions(TranslationOptions):
 
 @register(GemmaIstruction)
 class GemmaIstructionTranslationOptions(TranslationOptions):
-    fields = ('title',)
+    fields = ('title', 'system_instruction', 'summary_istruction', 'character_sheet_istruction', 'welcome_message_istruction')

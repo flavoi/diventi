@@ -20,26 +20,30 @@ class Command(BaseCommand):
 
         # Verifica che i documenti ingestiti siano presenti in Gemini e se non lo sono li ricarica
         for d in IngestedDocument.objects.all():
-            if client.files.get(name=d.gemini_file_id):
+            try:
+                client.files.get(name=d.gemini_file_id)
                 print(f"Documento locale {d.gemini_file_id} presente anche in gemini")
-            else:
-                gemini_file = client.files.upload(d.file_path)
+            except Exception as e:
+                print(e)
+                gemini_file = client.files.upload(file=d.file_path)
                 d.gemini_file_id = gemini_file.name
 
         # Rigenera un nuovo messaggio di benvenuto
         contents_for_gemini = []
+        gemma = GemmaIstruction.objects.active()
+
+        # Passa le istruzioni di sistema
+        contents_for_gemini.append(gemma.system_instruction)
+
+        # Aggiungi i file ingestiti come contesto
         for f_gemini in client.files.list():
             contents_for_gemini.append(f_gemini)
-        contents_for_gemini.append('Mostra un breve messaggio di benvenuto con un riepilogo del gioco. Massimo due paragrafi. Non rispondere "Certamente", oppure "ho capito", riporta direttamente la risposta.')
-        gemma = GemmaIstruction.objects.active()
+
+        contents_for_gemini.append(gemma.welcome_message_istruction)
+        
         response = client.models.generate_content(
             model='gemini-2.5-flash-lite',
-            #model='gemini-2.5-flash',
-            #model ='gemini-1.5-flash',
             contents=contents_for_gemini,
-            config=types.GenerateContentConfig(
-                system_instruction=gemma),
         )
-        print(WelcomeMessage.objects.create(bot_response=response.text))
         
         

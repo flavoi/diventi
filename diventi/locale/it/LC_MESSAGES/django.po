@@ -2557,7 +2557,7 @@ msgstr "su di noi"
 
 #: diventi/templates/base_quick.html:323
 msgid "explore"
-msgstr ""
+msgstr "esplora"
 
 #: diventi/templates/base_quick.html:332 diventi/templates/base_quick.html:358
 #: diventi/templates/products/product_list_quick.html:118

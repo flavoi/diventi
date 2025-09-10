@@ -1,16 +1,17 @@
 import os, markdown
-import json # Importa il modulo json
+import json
 from google import genai
 from google.genai import types
 
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.contrib import messages
-from django.http import JsonResponse # Importa JsonResponse
-from django.views.decorators.csrf import csrf_exempt # Potrebbe servire per i test, ma è meglio gestirlo con i token CSRF di Django
-
+from django.http import JsonResponse
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
+
+from diventi.accounts.utils import can_playtest
 
 from .models import (
     ChatMessage,
@@ -74,7 +75,7 @@ def ingest_document_view(request):
     return render(request, 'geminigm/ingest_document.html', context)
 
 
-@staff_member_required
+@user_passes_test(can_playtest)
 def chatbot_view(request):
     # Questa view ora serve solo per caricare la pagina iniziale della chat
     welcome_message = ""
@@ -89,8 +90,7 @@ def chatbot_view(request):
     return render(request, 'geminigm/chatbot.html', context)
 
 
-@staff_member_required
-#@csrf_exempt # Rimuovi questa riga in produzione e usa i token CSRF
+@user_passes_test(can_playtest)
 def send_message_ajax(request):
     if request.method == 'POST':
         query = request.POST.get('query', '') # Prendi la query dal corpo della richiesta POST
@@ -144,7 +144,7 @@ def send_message_ajax(request):
         return JsonResponse({'success': False, 'error': 'Metodo non consentito.'}, status=405)
 
 
-@staff_member_required
+@user_passes_test(can_playtest)
 def get_adventure_summary_ajax(request):
     try:
         client = genai.Client(api_key=settings.GEMINI_API_KEY)
@@ -192,7 +192,7 @@ def get_adventure_summary_ajax(request):
         return JsonResponse({'success': False, 'error': error_message})
 
 
-@staff_member_required
+@user_passes_test(can_playtest)
 def get_char_sheet_ajax(request):
     try:
         client = genai.Client(api_key=settings.GEMINI_API_KEY)

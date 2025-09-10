@@ -42,10 +42,16 @@ class Command(BaseCommand):
             contents_for_gemini.append(f_gemini)
 
         contents_for_gemini.append(gemma.welcome_message_istruction)
+
+        try:
+            response = client.models.generate_content(
+                model='gemini-2.5-flash-lite',
+                contents=contents_for_gemini,
+            )
+            print(f"Nuovo messaggio di benvenuto generato con successo")
+        except Exception as e:
+                error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
         
-        response = client.models.generate_content(
-            model='gemini-2.5-flash-lite',
-            contents=contents_for_gemini,
-        )
+
         
         

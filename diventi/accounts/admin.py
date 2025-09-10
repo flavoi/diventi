@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext_lazy as _
 
 from diventi.core.admin import (
     DiventiTranslationAdmin,
@@ -21,15 +22,15 @@ from .models import (
 class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('nametag', 'first_name', 'language', 'has_agreed_gdpr', 'bio', 'avatar', 'cover', 'profilepic', 'role')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
+        (_('Personal info'), {'fields': ('nametag', 'first_name', 'language', 'has_agreed_gdpr', 'bio', 'avatar', 'cover', 'profilepic', 'role')}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     limited_fieldsets = (
         (None, {'fields': ('email',)}),
-        ('Personal info', {'fields': ('nametag', 'first_name', 'last_name', 'language', 'bio', 'avatar', 'profilepic')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+        (_('Personal info'), {'fields': ('nametag', 'first_name', 'last_name', 'language', 'bio', 'avatar', 'profilepic')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
@@ -40,8 +41,8 @@ class DiventiUserAdmin(UserAdmin, DiventiTranslationAdmin):
     form = auth_admin.UserChangeForm
     add_form = auth_admin.UserCreationForm
     change_password_form = auth_admin.AdminPasswordChangeForm
-    list_display = ('email', 'first_name', 'last_login', 'date_joined', 'language', 'has_agreed_gdpr', 'is_superuser')
-    list_filter = ('role', 'language', 'groups')
+    list_display = ('email', 'first_name', 'last_login', 'date_joined', 'language', 'has_agreed_gdpr', 'is_superuser',)
+    list_filter = ('role', 'language', 'groups', 'is_superuser')
     search_fields = ('first_name', 'last_name', 'email')
     ordering = ('-date_joined',)
     readonly_fields = ('nametag', 'last_login', 'date_joined',)
@@ -82,4 +83,3 @@ admin.site.register(DiventiAvatar, DiventiAvatarAdmin)
 admin.site.register(DiventiProfilePic, DiventiProfilePicAdmin)
 admin.site.register(Role, RoleAdmin)
 admin.site.register(Award, AwardAdmin)
-

@@ -263,7 +263,7 @@
                                     </div>
                                 </li>
                                 {% endif %}
-                                {% if user.is_staff %}
+                                {% if user.is_staff or perms.accounts.can_playtest %}
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                   <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'play'|capfirst %}</a>
                                   <div class="dropdown-menu dropdown-menu-md p-0">

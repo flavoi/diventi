@@ -1,3 +1,5 @@
+from functools import wraps
+
 from reviews.models import Review
 
 from machina.apps.forum_member.models import ForumProfile
@@ -80,4 +82,8 @@ def get_user_data(user, self=None):
         'articles_count': articles_count,
     }
     return user_data
-        
+
+
+
+def can_playtest(user): 
+    return user.has_perm('accounts.can_playtest')

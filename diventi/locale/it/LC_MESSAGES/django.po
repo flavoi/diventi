@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 10:44+0200\n"
+"POT-Creation-Date: 2025-09-10 11:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,97 +224,103 @@ msgstr "lingua"
 msgid "subscriber status"
 msgstr "privilegi di iscritto"
 
-#: diventi/accounts/models.py:158
+#: diventi/accounts/models.py:153
+#, fuzzy
+#| msgid "latest articles"
+msgid "playtester status"
+msgstr "ultimi articoli"
+
+#: diventi/accounts/models.py:161
 msgid "avatar"
 msgstr "avatar"
 
-#: diventi/accounts/models.py:165 diventi/products/models.py:316
+#: diventi/accounts/models.py:168 diventi/products/models.py:316
 msgid "cover"
 msgstr "copertina"
 
-#: diventi/accounts/models.py:172
+#: diventi/accounts/models.py:175
 msgid "profilepic"
 msgstr "foto profilo"
 
-#: diventi/accounts/models.py:176
+#: diventi/accounts/models.py:179
 msgid "bio"
 msgstr "biografia"
 
-#: diventi/accounts/models.py:183
+#: diventi/accounts/models.py:186
 msgid "role"
 msgstr "ruolo"
 
-#: diventi/accounts/models.py:188
+#: diventi/accounts/models.py:191
 #: diventi/templates/accounts/user_detail_quick.html:51
 #: diventi/templates/accounts/user_detail_quick.html:118
 #: diventi/templates/accounts/user_detail_quick_modal.html:58
 msgid "deeds"
 msgstr "premi"
 
-#: diventi/accounts/models.py:195
+#: diventi/accounts/models.py:198
 msgid "User"
 msgstr "Utente"
 
-#: diventi/accounts/models.py:196
+#: diventi/accounts/models.py:199
 #: diventi/templates/accounts/subscribers.html:19
 msgid "Users"
 msgstr "Utenti"
 
-#: diventi/accounts/models.py:208
+#: diventi/accounts/models.py:211
 msgid "account"
 msgstr "profilo"
 
-#: diventi/accounts/models.py:251
+#: diventi/accounts/models.py:254
 #, python-format
 msgid "%(prefix)s: %(last_sub)s on %(date_joined)s"
 msgstr "%(prefix)s: %(last_sub)s - %(date_joined)s"
 
-#: diventi/accounts/models.py:262
+#: diventi/accounts/models.py:265
 msgid "Last subscriber"
 msgstr "Ultimo iscritto"
 
-#: diventi/accounts/models.py:265
+#: diventi/accounts/models.py:268
 msgid "users count"
 msgstr "conteggio utenti"
 
-#: diventi/accounts/models.py:267
+#: diventi/accounts/models.py:270
 #, python-format
 msgid "%(en)s english subscribers, %(it)s italian subscribers"
 msgstr "%(en)s iscritti inglesi, %(it)s iscritti italiani"
 
-#: diventi/accounts/models.py:276
+#: diventi/accounts/models.py:279
 msgid "english subscribers"
 msgstr "iscritti inglesi"
 
-#: diventi/accounts/models.py:278 diventi/accounts/models.py:284
+#: diventi/accounts/models.py:281 diventi/accounts/models.py:287
 msgid "copy emails"
 msgstr "copia le email"
 
-#: diventi/accounts/models.py:282
+#: diventi/accounts/models.py:285
 msgid "italian subscribers"
 msgstr "iscritti italiani"
 
-#: diventi/accounts/models.py:331
+#: diventi/accounts/models.py:334
 msgid "deed"
 msgstr "premio"
 
-#: diventi/accounts/models.py:336
+#: diventi/accounts/models.py:339
 msgid "awarded user"
 msgstr "utente premiato"
 
-#: diventi/accounts/models.py:340
+#: diventi/accounts/models.py:343
 msgid "notified"
 msgstr "notificato"
 
-#: diventi/accounts/models.py:346
+#: diventi/accounts/models.py:349
 msgid "Award"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:347
+#: diventi/accounts/models.py:350
 msgid "Awards"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:351
+#: diventi/accounts/models.py:354
 #, python-format
 msgid "Award: %(id)s"
 msgstr "Riconoscimento: %(id)s"

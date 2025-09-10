@@ -195,6 +195,9 @@ class DiventiUser(AbstractUser):
         verbose_name = _('User')
         verbose_name_plural = _('Users')
         ordering = ('nametag', )
+        permissions = (
+            ("can_playtest", _("Can access playtest material")),
+        )
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

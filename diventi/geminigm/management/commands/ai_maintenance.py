@@ -24,9 +24,10 @@ class Command(BaseCommand):
                 client.files.get(name=d.gemini_file_id)
                 print(f"Documento locale {d.gemini_file_id} presente anche in gemini")
             except Exception as e:
-                print(e)
+                print(f"File {d.gemini_file_id} non trovato, lo ricarico in Gemini e mi annoto nuovo ID")
                 gemini_file = client.files.upload(file=d.file_path)
                 d.gemini_file_id = gemini_file.name
+                d.save()
                 print(f"Caricato nuovo file {d.gemini_file_id} da {d.file_path}")
 
         # Rigenera un nuovo messaggio di benvenuto

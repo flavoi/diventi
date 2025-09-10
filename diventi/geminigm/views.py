@@ -171,11 +171,14 @@ def get_adventure_summary_ajax(request):
             gemma.summary_istruction,
         )
 
-        summary = client.models.generate_content(
-            model='gemini-2.5-flash-lite',
-            contents=contents_for_gemini,
-        )
-        summary_text = summary.text
+        if chat_messages:
+            summary = client.models.generate_content(
+                model='gemini-2.5-flash-lite',
+                contents=contents_for_gemini,
+            )
+            summary_text = summary.text
+        else:
+            summary_text = ''
 
         # Restituisci la risposta come JSON
         return JsonResponse({
@@ -214,11 +217,14 @@ def get_char_sheet_ajax(request):
             gemma.character_sheet_istruction,
         )        
 
-        character_sheet = client.models.generate_content(
-            model='gemini-2.5-flash-lite',
-            contents=contents_for_gemini,
-        )
-        character_sheet_text = character_sheet.text
+        if chat_messages:
+            character_sheet = client.models.generate_content(
+                model='gemini-2.5-flash-lite',
+                contents=contents_for_gemini,
+            )
+            character_sheet_text = character_sheet.text
+        else:
+            character_sheet_text = ''
 
         # Restituisci la risposta come JSON
         return JsonResponse({

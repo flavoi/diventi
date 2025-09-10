@@ -448,7 +448,7 @@
                 })
                 .then(data => {
                     if (data.success && pgSheetContent) {
-                        pgSheetContent.innerHTML = `<p class="card-text text-dark small">${data.character_sheet || '{% trans "No character sheet is available." %}'}</p>`;
+                        pgSheetContent.innerHTML = `<p class="card-text text-dark small">${data.character_sheet || '{% trans "No character sheet is available, please ask the GM to create one!" %}'}</p>`;
                     } else if (pgSheetContent) {
                         pgSheetContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your character sheet" %}</p>`;
                     }
@@ -477,7 +477,7 @@
                 })
                 .then(data => {
                     if (data.success && adventureSummaryContent) {
-                        adventureSummaryContent.innerHTML = `<p class="card-text text-dark small">${data.summary || '{% trans "No summary is available." %}'}</p>`;
+                        adventureSummaryContent.innerHTML = `<p class="card-text text-dark small">${data.summary || '{% trans "No summary is available. Please start playing to see the relevant events in this section." %}'}</p>`;
                     } else if (adventureSummaryContent) {
                         adventureSummaryContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your summary." %}</p>`;
                     }

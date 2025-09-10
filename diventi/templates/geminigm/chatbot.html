@@ -345,9 +345,11 @@
                             <p class="text-muted text-sm mt-2">{% trans "Diventi GM is thinking..." %}</p>
                         </div>
                     </div>
+                    {% if user.is_staff %}
                     <div class="card-footer py-3 text-center border-0 position-relative">
                         <a href="{% url 'geminigm:ingest_document' %}" class="text-xs ls-1 text-uppercase font-weight-bold stretched-link">{% trans "go to ingestion page"|capfirst %}</a></a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-lg-3 order-2 order-md-3">

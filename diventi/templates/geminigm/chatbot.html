@@ -197,6 +197,76 @@
     .chat-history::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+    /* --- NUOVE REGOLE SPECIFICHE PER MOBILE --- */
+
+    @media (max-width: 767.98px) { /* Applica queste regole per schermi inferiori a 768px (tipico per mobile) */
+
+        /* Nasconde gli avatar su mobile */
+        .media .avatar {
+            display: none !important;
+        }
+
+        /* Allinea il media-body per occupare tutta la larghezza quando l'avatar è nascosto */
+        .media .media-body {
+            margin-left: 0 !important; /* Rimuove il margine che prima compensava l'avatar */
+            max-width: 100%; /* Permette al media-body di espandersi */
+        }
+
+        /* Aumenta la larghezza massima delle bolle per occupare più spazio disponibile */
+        .media-comment-bubble {
+            max-width: 95% !important; /* Aumenta la larghezza massima delle bolle */
+            padding: 0.4rem 0.6rem !important; /* Riduci leggermente il padding delle bolle */
+        }
+
+        /* Ridimensiona i font per una migliore leggibilità su schermi piccoli */
+        .media-comment-bubble h6 {
+            font-size: 0.875rem !important; /* 14px per i nomi */
+            margin-bottom: 0.15rem !important;
+        }
+
+        .media-comment-bubble p {
+            font-size: 0.875rem !important; /* 14px per il testo del messaggio */
+        }
+
+        /* Riduci ulteriormente il padding della card principale della chat */
+        .card-body.p-4 {
+            padding: 0.75rem !important; /* Riduci il padding generale della card della chat */
+        }
+
+        /* Riduci l'altezza minima della chat history per dare più spazio agli altri elementi */
+        #chat-history {
+            min-height: 400px; /* Mantieni un'altezza ragionevole */
+            max-height: 60vh !important; /* Adatta l'altezza massima allo schermo mobile */
+        }
+
+        /* Riduci la dimensione del bottone "Invia" e la textarea */
+        #user-query-input {
+            font-size: 0.875rem !important; /* Diminuisci il font della textarea */
+            max-height: 100px; /* Riduci l'altezza massima della textarea */
+        }
+
+        #send-button {
+            padding: 0.375rem 0.75rem !important; /* Riduci il padding del bottone */
+            font-size: 0.875rem !important; /* Riduci il font del bottone */
+        }
+
+        /* Assicurati che il contenitore della chat e le bolle si espandano correttamente */
+        .chat-history {
+            padding-right: 5px; /* Riduci il padding a destra per la scrollbar */
+        }
+    }
+
+    /* Regole per la card laterale del PG Sheet su mobile */
+    @media (max-width: 991.98px) {
+        .pg-sheet-column .card, .summary-card .card {
+            margin-bottom: 1rem; /* Aggiungi un po' di margine tra le card su mobile */
+        }
+        /* Forza la visualizzazione delle icone chevron su schermi medi e piccoli */
+        .pg-sheet-column .card-header i, .summary-card .card-header i {
+            display: inline-block !important;
+        }
+    }
 </style>
 {% endblock extrahead %}
 

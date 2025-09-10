@@ -95,12 +95,15 @@ class GemmaIstruction(models.Model):
         verbose_name=_('summary istruction'),
     )
     character_sheet_istruction = models.TextField(
-        verbose_name=_('charcater sheet istruction'),
+        verbose_name=_('character sheet istruction'),
     )
     welcome_message_istruction = models.TextField(
         verbose_name=_('welcome message istruction')
     )
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(
+        default=False,
+        verbose_name=_('active'),
+    )
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name=_('creation date'),

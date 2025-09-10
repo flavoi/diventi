@@ -2877,7 +2877,7 @@ msgid ""
 "this section."
 msgstr ""
 "Nessun riassunto disponibile. Inizia a giocare per vedere gli eventi più "
-"rilevati qui!"
+"rilevanti qui!"
 
 #: diventi/templates/geminigm/chatbot.html:381
 msgid "No character sheet is available."

@@ -27,6 +27,7 @@ class Command(BaseCommand):
                 print(e)
                 gemini_file = client.files.upload(file=d.file_path)
                 d.gemini_file_id = gemini_file.name
+                print(f"Caricato nuovo file {d.gemini_file_id} da {d.file_path}")
 
         # Rigenera un nuovo messaggio di benvenuto
         contents_for_gemini = []

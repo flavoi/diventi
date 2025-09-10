@@ -22,6 +22,7 @@ from .forms import PDFUploadForm, WebIngestionForm
 from .utils import ingest_pdf_document, ingest_website_document
 
 
+HISTORY_DEPTH = 85
 
 @staff_member_required
 def ingest_document_view(request):
@@ -105,7 +106,7 @@ def send_message_ajax(request):
                 contents_for_gemini.append(gemma.system_instruction)
 
                 # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-                chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
+                chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
                 # Inverti l'ordine per avere i messaggi più vecchi prima
                 for m in reversed(chat_messages):
                     contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
@@ -155,7 +156,7 @@ def get_adventure_summary_ajax(request):
         contents_for_gemini.append(gemma.system_instruction)
 
         # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
+        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
         # Inverti l'ordine per avere i messaggi più vecchi prima
         for m in reversed(chat_messages):
             contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
@@ -203,7 +204,7 @@ def get_char_sheet_ajax(request):
         contents_for_gemini.append(gemma.system_instruction)
 
         # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:100]
+        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
         # Inverti l'ordine per avere i messaggi più vecchi prima
         for m in reversed(chat_messages):
             contents_for_gemini.append(f'Messaggio utente: {m.user_message}')

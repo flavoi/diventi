@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 09:11+0200\n"
+"POT-Creation-Date: 2025-09-10 10:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -549,7 +549,7 @@ msgstr "articolo"
 #: diventi/blog/models.py:162
 #: diventi/templates/accounts/user_detail_quick.html:115
 #: diventi/templates/accounts/user_detail_quick_modal.html:55
-#: diventi/templates/base_quick.html:237
+#: diventi/templates/base_quick.html:236
 msgid "articles"
 msgstr "articoli"
 
@@ -595,7 +595,6 @@ msgid "article/<slug:slug>/promote/api/"
 msgstr "articolo/<slug:slug>/promuovi/api/"
 
 #: diventi/comments/apps.py:7 diventi/comments/models.py:19
-#: diventi/templates/base_quick.html:245
 msgid "comments"
 msgstr "commenti"
 
@@ -787,7 +786,7 @@ msgstr "Immagine"
 msgid "There must be only one object at a time. Please fix!"
 msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 
-#: diventi/core/models.py:214
+#: diventi/core/models.py:214 diventi/geminigm/models.py:105
 msgid "active"
 msgstr "attiva"
 
@@ -1001,7 +1000,7 @@ msgstr "aggiornamento continuo"
 msgid "book"
 msgstr "libro"
 
-#: diventi/ebooks/models.py:150 diventi/templates/base_quick.html:244
+#: diventi/ebooks/models.py:150 diventi/templates/base_quick.html:243
 msgid "books"
 msgstr "libri"
 
@@ -1113,7 +1112,7 @@ msgid "section"
 msgstr "sezione"
 
 #: diventi/ebooks/models.py:365 diventi/landing/models.py:211
-#: diventi/templates/base_quick.html:241
+#: diventi/templates/base_quick.html:240
 msgid "sections"
 msgstr "sezioni"
 
@@ -1270,7 +1269,7 @@ msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:127
 #: diventi/templates/accounts/user_detail_quick.html:303
-#: diventi/templates/base_quick.html:240
+#: diventi/templates/base_quick.html:239
 msgid "surveys"
 msgstr "sondaggi"
 
@@ -1384,12 +1383,12 @@ msgstr ""
 msgid "user message"
 msgstr "messaggio dell'utente"
 
-#: diventi/geminigm/models.py:11 diventi/geminigm/models.py:121
+#: diventi/geminigm/models.py:11 diventi/geminigm/models.py:124
 msgid "bot response"
 msgstr "messaggio del bot"
 
-#: diventi/geminigm/models.py:21 diventi/geminigm/models.py:106
-#: diventi/geminigm/models.py:125
+#: diventi/geminigm/models.py:21 diventi/geminigm/models.py:109
+#: diventi/geminigm/models.py:128
 msgid "creation date"
 msgstr "data creazione"
 
@@ -1506,19 +1505,19 @@ msgstr "istruzione per la scheda personaggio"
 msgid "welcome message istruction"
 msgstr "istruzione per il messaggio di benvenuto"
 
-#: diventi/geminigm/models.py:115
+#: diventi/geminigm/models.py:118
 msgid "Gemma istruction"
 msgstr "Istruzione della Gemma"
 
-#: diventi/geminigm/models.py:116
+#: diventi/geminigm/models.py:119
 msgid "Gemma istructions"
 msgstr "Istruzioni della Gemma"
 
-#: diventi/geminigm/models.py:132
+#: diventi/geminigm/models.py:135
 msgid "Welcome message"
 msgstr "Messaggio di benvenuto"
 
-#: diventi/geminigm/models.py:133
+#: diventi/geminigm/models.py:136
 msgid "Welcome messages"
 msgstr "Messaggi di bevenuto"
 
@@ -1615,12 +1614,12 @@ msgstr "analitica/"
 msgid "about/<slug:slug>/"
 msgstr "su-di-noi/<slug:slug>/"
 
-#: diventi/landing/views.py:81 diventi/templates/base_quick.html:238
+#: diventi/landing/views.py:81 diventi/templates/base_quick.html:237
 msgid "users"
 msgstr "utenti"
 
 #: diventi/landing/views.py:82 diventi/packages/models.py:95
-#: diventi/templates/base_quick.html:246
+#: diventi/templates/base_quick.html:245
 msgid "packages"
 msgstr "pacchetti"
 
@@ -2051,14 +2050,14 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick.html:212 diventi/templates/base_quick.html:413
+#: diventi/templates/base_quick.html:211 diventi/templates/base_quick.html:414
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
 msgstr "accedi"
 
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
-#: diventi/templates/base_quick.html:216
+#: diventi/templates/base_quick.html:215
 #: diventi/templates/landing/landing_quick.html:352
 msgid "sign up"
 msgstr "registrati"
@@ -2409,7 +2408,7 @@ msgstr "modifica"
 #: diventi/templates/accounts/user_detail_quick.html:159
 #: diventi/templates/accounts/user_detail_quick_modal.html:64
 #: diventi/templates/accounts/user_detail_quick_modal.html:78
-#: diventi/templates/base_quick.html:239
+#: diventi/templates/base_quick.html:238
 msgid "projects"
 msgstr "progetti"
 
@@ -2500,87 +2499,99 @@ msgstr "Aggiorna preferenza"
 msgid "general information"
 msgstr "informazioni generali"
 
-#: diventi/templates/base_quick.html:153
+#: diventi/templates/base_quick.html:152
 msgid "loading"
 msgstr "caricamento"
 
-#: diventi/templates/base_quick.html:166
+#: diventi/templates/base_quick.html:165
 msgid ""
 "we uses cookies to ensure we give you the best experience on our website."
 msgstr "usiamo i cookie per ottimizzare la tua esperienza nel nostro sito web."
 
-#: diventi/templates/base_quick.html:220
+#: diventi/templates/base_quick.html:219
 msgid "manage"
 msgstr "gestisci"
 
-#: diventi/templates/base_quick.html:230
+#: diventi/templates/base_quick.html:229
 msgid "control panel for authors only"
 msgstr "pannello di controllo riservato agli autori"
 
-#: diventi/templates/base_quick.html:247
+#: diventi/templates/base_quick.html:244
+msgid "istruzioni IA"
+msgstr ""
+
+#: diventi/templates/base_quick.html:246
 msgid "forum posts"
 msgstr "Post del forum"
 
-#: diventi/templates/base_quick.html:248
+#: diventi/templates/base_quick.html:247
 msgid "search suggenstions"
 msgstr "suggerimenti"
 
-#: diventi/templates/base_quick.html:258
+#: diventi/templates/base_quick.html:257
 #: diventi/templates/landing/analytics_quick.html:9
 #: diventi/templates/landing/analytics_quick.html:19
 msgid "analytics"
 msgstr "analitica"
 
-#: diventi/templates/base_quick.html:259
+#: diventi/templates/base_quick.html:258
 msgid "a tool to measure the website performance"
 msgstr "uno strumento per misurare le prestazioni del sito"
 
-#: diventi/templates/base_quick.html:269
+#: diventi/templates/base_quick.html:268
+msgid "play"
+msgstr "gioca"
+
+#: diventi/templates/base_quick.html:277
+msgid "play with AI"
+msgstr ""
+
+#: diventi/templates/base_quick.html:278
+msgid "your Primo Contatto adventure"
+msgstr "la tua avventura di Primo Contatto"
+
+#: diventi/templates/base_quick.html:287
 msgid "participate"
 msgstr "partecipa"
 
-#: diventi/templates/base_quick.html:272 diventi/templates/base_quick.html:549
+#: diventi/templates/base_quick.html:290 diventi/templates/base_quick.html:550
 msgid "community"
 msgstr "community"
 
-#: diventi/templates/base_quick.html:282
+#: diventi/templates/base_quick.html:300
 msgid "join in our latest discussions"
 msgstr "unisciti ai nostri ultimi dibattiti"
 
-#: diventi/templates/base_quick.html:294
+#: diventi/templates/base_quick.html:312
 msgid "read and comment our latest news"
 msgstr "leggi e commenta le nostre ultime notizie"
 
-#: diventi/templates/base_quick.html:300
+#: diventi/templates/base_quick.html:318
 msgid "about us"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:323
+#: diventi/templates/base_quick.html:341
 msgid "explore"
 msgstr "esplora"
 
-#: diventi/templates/base_quick.html:332 diventi/templates/base_quick.html:358
+#: diventi/templates/base_quick.html:365
 #: diventi/templates/products/product_list_quick.html:118
 msgid "all games"
 msgstr "tutti i giochi"
 
-#: diventi/templates/base_quick.html:333 diventi/templates/base_quick.html:359
+#: diventi/templates/base_quick.html:366
 msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
-#: diventi/templates/base_quick.html:369
-msgid "play"
-msgstr "gioca"
-
-#: diventi/templates/base_quick.html:375
+#: diventi/templates/base_quick.html:376
 msgid "support us"
 msgstr "supportaci"
 
-#: diventi/templates/base_quick.html:450
+#: diventi/templates/base_quick.html:451
 msgid "suggestions"
 msgstr "suggerimenti"
 
-#: diventi/templates/base_quick.html:516
+#: diventi/templates/base_quick.html:517
 msgid ""
 "Diventi is a role-playing community that embraces fun, encourages "
 "storytelling and helps game masters to create outstanding adventures"
@@ -2589,11 +2600,11 @@ msgstr ""
 "incoraggia l'interpretazione e aiuta i game master a realizzare avventure "
 "straordinarie"
 
-#: diventi/templates/base_quick.html:541
+#: diventi/templates/base_quick.html:542
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:560
+#: diventi/templates/base_quick.html:561
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -2835,43 +2846,49 @@ msgstr ""
 msgid "check answers"
 msgstr "visualizza risposte"
 
-#: diventi/templates/geminigm/chatbot.html:213
+#: diventi/templates/geminigm/chatbot.html:5
+msgid "my Primo Contatto adventure"
+msgstr "la mia avventura di Primo Contatto"
+
+#: diventi/templates/geminigm/chatbot.html:284
 msgid "my adventure"
 msgstr "la mia avventura"
 
-#: diventi/templates/geminigm/chatbot.html:227
+#: diventi/templates/geminigm/chatbot.html:298
 msgid "character sheet"
 msgstr "scheda personaggio"
 
-#: diventi/templates/geminigm/chatbot.html:236
+#: diventi/templates/geminigm/chatbot.html:307
+#: diventi/templates/geminigm/chatbot.html:452
 msgid "No character sheet is available, please ask the GM to create one!"
 msgstr "Scheda personaggio non disponbile, chiedi al GM di crearne una!"
 
-#: diventi/templates/geminigm/chatbot.html:265
+#: diventi/templates/geminigm/chatbot.html:336
 msgid "send a message to Diventi GM..."
 msgstr "invia messaggio a Diventi GM..."
 
-#: diventi/templates/geminigm/chatbot.html:266
+#: diventi/templates/geminigm/chatbot.html:337
 msgid "send message (Ctrl + Enter)"
 msgstr "invia messaggio (Ctrl + Invio)"
 
-#: diventi/templates/geminigm/chatbot.html:267
+#: diventi/templates/geminigm/chatbot.html:338
 msgid "send"
 msgstr "invia"
 
-#: diventi/templates/geminigm/chatbot.html:274
+#: diventi/templates/geminigm/chatbot.html:345
 msgid "Diventi GM is thinking..."
 msgstr "Diventi GM sta pensando..."
 
-#: diventi/templates/geminigm/chatbot.html:278
+#: diventi/templates/geminigm/chatbot.html:349
 msgid "go to ingestion page"
 msgstr "vai alla pagina di ingestione"
 
-#: diventi/templates/geminigm/chatbot.html:285
+#: diventi/templates/geminigm/chatbot.html:356
 msgid "the adventure so far"
 msgstr "l'avventura fino ad ora"
 
-#: diventi/templates/geminigm/chatbot.html:294
+#: diventi/templates/geminigm/chatbot.html:365
+#: diventi/templates/geminigm/chatbot.html:481
 msgid ""
 "No summary is available. Please start playing to see the relevant events in "
 "this section."
@@ -2879,31 +2896,23 @@ msgstr ""
 "Nessun riassunto disponibile. Inizia a giocare per vedere gli eventi più "
 "rilevanti qui!"
 
-#: diventi/templates/geminigm/chatbot.html:381
-msgid "No character sheet is available."
-msgstr "Schede personaggio non disponbile."
-
-#: diventi/templates/geminigm/chatbot.html:383
+#: diventi/templates/geminigm/chatbot.html:454
 msgid "An error occured while generating your character sheet"
 msgstr ""
 "È stato sollevato un errore durante la generazione della tua scheda "
 "personaggio"
 
-#: diventi/templates/geminigm/chatbot.html:389
+#: diventi/templates/geminigm/chatbot.html:460
 msgid "An error occured while generating your character sheet."
 msgstr ""
 "È stato sollevato un errore durante la generazione della tua scheda "
 "personaggio."
 
-#: diventi/templates/geminigm/chatbot.html:410
-msgid "No summary is available."
-msgstr "Nessun riassunto disponibile"
-
-#: diventi/templates/geminigm/chatbot.html:412
+#: diventi/templates/geminigm/chatbot.html:483
 msgid "An error occured while generating your summary."
 msgstr "È stato sollevato un errore durante la creazione del tuo riassunto."
 
-#: diventi/templates/geminigm/chatbot.html:418
+#: diventi/templates/geminigm/chatbot.html:489
 msgid "A network error occured while generating your summary."
 msgstr ""
 "È stato sollevato un errore di rete durante la creazione del tuo riassunto."
@@ -3870,6 +3879,12 @@ msgstr "link della menzione"
 msgid "Tooltip"
 msgstr "Suggerimento"
 
+#~ msgid "No character sheet is available."
+#~ msgstr "Schede personaggio non disponbile."
+
+#~ msgid "No summary is available."
+#~ msgstr "Nessun riassunto disponibile"
+
 #~ msgid "Brave"
 #~ msgstr "Brave"
 
@@ -4278,9 +4293,6 @@ msgstr "Suggerimento"
 
 #~ msgid "you have no open situations"
 #~ msgstr "non hai situazioni aperte"
-
-#~ msgid "your past adventures"
-#~ msgstr "le tue avventure passate"
 
 #~ msgid "you have yet to complete a whole adventure"
 #~ msgstr "devi ancora completare un'avventura"

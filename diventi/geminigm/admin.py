@@ -26,7 +26,7 @@ class GemmaIstructionAdmin(DiventiTranslationAdmin):
     readonly_fields = ['created_at',]
 
 
-class WelcomeMessageAdmin(admin.ModelAdmin):
+class WelcomeMessageAdmin(DiventiTranslationAdmin):
     list_display = ['bot_response', 'created_at',]
     readonly_fields = ['created_at',]
 

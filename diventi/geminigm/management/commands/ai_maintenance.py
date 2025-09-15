@@ -4,6 +4,7 @@ from google.genai import types
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import gettext as _
 from django.conf import settings
+from django.utils import translation
 
 from diventi.geminigm.models import (
     IngestedDocument,
@@ -30,28 +31,35 @@ class Command(BaseCommand):
                 d.save()
                 print(f"Caricato nuovo file {d.gemini_file_id} da {d.file_path}")
 
-        # Rigenera un nuovo messaggio di benvenuto
+        wm = WelcomeMessage.objects.create()
+
+        # Genera un nuovo messaggio di benvenuto in lingua IT
+        translation.activate('it')
         contents_for_gemini = []
         gemma = GemmaIstruction.objects.active()
-
-        # Passa le istruzioni di sistema
         contents_for_gemini.append(gemma.system_instruction)
-
-        # Aggiungi i file ingestiti come contesto
+        contents_for_gemini.append(gemma.welcome_message_istruction)
         for f_gemini in client.files.list():
             contents_for_gemini.append(f_gemini)
-
-        contents_for_gemini.append(gemma.welcome_message_istruction)
 
         try:
             response = client.models.generate_content(
                 model='gemini-2.5-flash-lite',
                 contents=contents_for_gemini,
             )
-            print(f"Nuovo messaggio di benvenuto generato con successo")
+            response_text_it = response.text
+            wm.bot_response = response_text_it
+            wm.save()
+            print(f"Nuovo messaggio di benvenuto IT generato con successo")
+            translation.activate('en')
+            response = client.models.generate_content(
+                model='gemini-2.5-flash-lite',
+                contents=f'traduci in inglese "{response_text_it}". Non tradurre Primo Contatto e non riportare frasi come "ecco la traduzione", riporta direttamente il risultato',
+            )
+            wm.bot_response=response.text
+            wm.save()
+            print(f"Nuovo messaggio di benvenuto EN generato con successo")
         except Exception as e:
-                error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
-        
-
+            print(f"Errore durante la generazione della risposta da Gemini: {e}")
         
         

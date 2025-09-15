@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import IngestedDocument, GemmaIstruction
+from .models import IngestedDocument, GemmaIstruction, WelcomeMessage
 
 
 @register(IngestedDocument)
@@ -11,3 +11,8 @@ class IngestedDocumentTranslationOptions(TranslationOptions):
 @register(GemmaIstruction)
 class GemmaIstructionTranslationOptions(TranslationOptions):
     fields = ('title', 'system_instruction', 'summary_istruction', 'character_sheet_istruction', 'welcome_message_istruction')
+
+
+@register(WelcomeMessage)
+class IngestedDocumentTranslationOptions(TranslationOptions):
+    fields = ('bot_response',)

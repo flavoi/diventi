@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 14:52+0200\n"
+"POT-Creation-Date: 2025-09-15 08:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2866,45 +2866,45 @@ msgstr "visualizza risposte"
 msgid "my Primo Contatto adventure"
 msgstr "la mia avventura di Primo Contatto"
 
-#: diventi/templates/geminigm/chatbot.html:284
+#: diventi/templates/geminigm/chatbot.html:22
 msgid "my adventure"
 msgstr "la mia avventura"
 
-#: diventi/templates/geminigm/chatbot.html:298
+#: diventi/templates/geminigm/chatbot.html:37
 msgid "character sheet"
 msgstr "scheda personaggio"
 
-#: diventi/templates/geminigm/chatbot.html:307
-#: diventi/templates/geminigm/chatbot.html:452
+#: diventi/templates/geminigm/chatbot.html:45
+#: diventi/templates/geminigm/chatbot.html:195
 msgid "No character sheet is available, please ask the GM to create one!"
 msgstr "Scheda personaggio non disponbile, chiedi al GM di crearne una!"
 
-#: diventi/templates/geminigm/chatbot.html:336
+#: diventi/templates/geminigm/chatbot.html:76
 msgid "send a message to Diventi GM..."
 msgstr "invia messaggio a Diventi GM..."
 
-#: diventi/templates/geminigm/chatbot.html:337
+#: diventi/templates/geminigm/chatbot.html:77
 msgid "send message (Ctrl + Enter)"
 msgstr "invia messaggio (Ctrl + Invio)"
 
-#: diventi/templates/geminigm/chatbot.html:338
+#: diventi/templates/geminigm/chatbot.html:78
 msgid "send"
 msgstr "invia"
 
-#: diventi/templates/geminigm/chatbot.html:345
+#: diventi/templates/geminigm/chatbot.html:85
 msgid "Diventi GM is thinking..."
 msgstr "Diventi GM sta pensando..."
 
-#: diventi/templates/geminigm/chatbot.html:349
+#: diventi/templates/geminigm/chatbot.html:90
 msgid "go to ingestion page"
 msgstr "vai alla pagina di ingestione"
 
-#: diventi/templates/geminigm/chatbot.html:356
+#: diventi/templates/geminigm/chatbot.html:99
 msgid "the adventure so far"
 msgstr "l'avventura fino ad ora"
 
-#: diventi/templates/geminigm/chatbot.html:365
-#: diventi/templates/geminigm/chatbot.html:481
+#: diventi/templates/geminigm/chatbot.html:107
+#: diventi/templates/geminigm/chatbot.html:224
 msgid ""
 "No summary is available. Please start playing to see the relevant events in "
 "this section."
@@ -2912,23 +2912,23 @@ msgstr ""
 "Nessun riassunto disponibile. Inizia a giocare per vedere gli eventi più "
 "rilevanti qui!"
 
-#: diventi/templates/geminigm/chatbot.html:454
+#: diventi/templates/geminigm/chatbot.html:197
 msgid "An error occured while generating your character sheet"
 msgstr ""
 "È stato sollevato un errore durante la generazione della tua scheda "
 "personaggio"
 
-#: diventi/templates/geminigm/chatbot.html:460
+#: diventi/templates/geminigm/chatbot.html:203
 msgid "An error occured while generating your character sheet."
 msgstr ""
 "È stato sollevato un errore durante la generazione della tua scheda "
 "personaggio."
 
-#: diventi/templates/geminigm/chatbot.html:483
+#: diventi/templates/geminigm/chatbot.html:226
 msgid "An error occured while generating your summary."
 msgstr "È stato sollevato un errore durante la creazione del tuo riassunto."
 
-#: diventi/templates/geminigm/chatbot.html:489
+#: diventi/templates/geminigm/chatbot.html:232
 msgid "A network error occured while generating your summary."
 msgstr ""
 "È stato sollevato un errore di rete durante la creazione del tuo riassunto."

@@ -8,7 +8,10 @@ from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth.decorators import user_passes_test
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import (
+    gettext_lazy as _,
+    get_language,
+)
 from django.contrib.admin.views.decorators import staff_member_required
 
 from diventi.accounts.utils import can_playtest
@@ -128,6 +131,14 @@ def send_message_ajax(request):
                     contents=contents_for_gemini,
                 )
                 response_text = response.text
+
+                lan = get_language()
+                if lan == 'en':
+                    response = client.models.generate_content(
+                        model='gemini-2.5-flash-lite',
+                        contents=f'traduci in inglese {response_text}. Non riportare frasi introduttive o finali, limitati a resistuire la traduzione.',
+                    )
+                    response_text = response.text
                 ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)
 
                 return JsonResponse({

@@ -1,9 +1,12 @@
-import os, markdown
-import json
+import os, markdown, json
 from google import genai
 from google.genai import types
 
-from django.shortcuts import redirect, render
+from django.shortcuts import (
+    redirect, 
+    render,
+    get_object_or_404,
+)
 from django.conf import settings
 from django.contrib import messages
 from django.http import JsonResponse
@@ -13,8 +16,15 @@ from django.utils.translation import (
     get_language,
 )
 from django.contrib.admin.views.decorators import staff_member_required
+from django.views import View
+from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, 
+    UserPassesTestMixin,
+)
 
 from diventi.accounts.utils import can_playtest
+from diventi.products.models import Product
 
 from .models import (
     ChatMessage,
@@ -23,7 +33,11 @@ from .models import (
     GemmaIstruction,
 )
 from .forms import PDFUploadForm, WebIngestionForm
-from .utils import ingest_pdf_document, ingest_website_document
+from .utils import (
+    ingest_pdf_document, 
+    ingest_website_document,
+    user_has_access_to_ai,
+)
 
 
 HISTORY_DEPTH = 85
@@ -78,9 +92,79 @@ def ingest_document_view(request):
     return render(request, 'geminigm/ingest_document.html', context)
 
 
-@user_passes_test(can_playtest)
-def chatbot_view(request):
-    # Questa view ora serve solo per caricare la pagina iniziale della chat
+class UserHasProductMixin(UserPassesTestMixin):
+    """ 
+        This view checks if the user has bought the product
+        related to the requested gemma. 
+        It assumes to have the slug of the book object available
+        in gemma_slug get parameter.
+    """
+
+    permission_denied_message = _('This gemma is not in your collection, please check your profile.')
+
+    def test_func(self):
+        gemma_slug = self.kwargs.get('gemma_slug', None)
+        gemma = get_object_or_404(GemmaIstruction, slug=gemma_slug)
+        product = gemma.gemma_product
+        user_has_access = user_has_access_to_ai(product=product, user=self.request.user)
+        if not user_has_access:
+            self.permission_denied_message = _('This gemma is not in your collection, please check your profile.')        
+        return user_has_access 
+
+
+class PublicGemmaMixin(UserPassesTestMixin):
+    """
+        Returns the gemma if the product is public, or else it redirects to the default view.
+    """
+    def test_func(self):
+        gemma_slug = self.kwargs.get('gemma_slug', None)
+        gemma = get_object_or_404(GemmaIstruction, slug=gemma_slug)
+        product = get_object_or_404(Product, id=gemma.gemma_product.id)
+        gemma_is_public_test = product.public
+        if not gemma_is_public_test:
+            self.permission_denied_message = _("This gemma has no content attached, please contact the authors.")
+        return gemma_is_public_test
+
+
+class GemmaDetailView(DetailView):
+    """ Returns the gemma. """
+    
+    model = GemmaIstruction
+    slug_url_kwarg = 'gemma_slug'
+    template_name = 'geminigm/gemma_detail.html'
+
+    def get_queryset(self, **kwargs):
+        queryset = super().get_queryset(**kwargs)
+        return queryset.active().product()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['bought'] = self.object.gemma_product.user_has_already_bought(self.request.user)
+        welcome_message = ""
+        try:
+            welcome_message = WelcomeMessage.objects.latest('created_at').bot_response
+        except WelcomeMessage.DoesNotExist:
+            welcome_message = _("Welcome to your Primo Contatto adventure!")
+        context['welcome_message'] = markdown.markdown(welcome_message)
+        return context
+
+
+class PublicGemmaView(PublicGemmaMixin, GemmaDetailView):
+    """
+        Renders the gemma regardless of the user or their collection.
+    """
+    pass
+
+
+class PrivateGemmaView(LoginRequiredMixin, UserHasProductMixin, GemmaDetailView):
+    """
+        Renders the gemma if and only if the user is authenticated 
+        and has the product in their collection.
+    """
+    pass
+
+
+def chatbot_view(request, gemma_slug=None):
     welcome_message = ""
     try:
         welcome_message = WelcomeMessage.objects.latest('created_at').bot_response
@@ -93,15 +177,16 @@ def chatbot_view(request):
     return render(request, 'geminigm/chatbot.html', context)
 
 
-@user_passes_test(can_playtest)
-def send_message_ajax(request):
+def send_message_ajax(request, gemma_slug):
     if request.method == 'POST':
-        query = request.POST.get('query', '') # Prendi la query dal corpo della richiesta POST
+        query = request.POST.get('query', '')
+        gemma = get_object_or_404(GemmaIstruction, slug=gemma_slug)
+        product = gemma.gemma_product
+        user_has_access = user_has_access_to_ai(product=product, user=request.user)
 
-        if query:
+        if query and user_has_access:
             try:
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
-                gemma = GemmaIstruction.objects.active()
 
                 contents_for_gemini = []
 
@@ -150,99 +235,104 @@ def send_message_ajax(request):
                 error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
                 return JsonResponse({'success': False, 'error': error_message})
         else:
-            return JsonResponse({'success': False, 'error': 'La query non può essere vuota.'})
+            return JsonResponse({'success': False, 'error': 'La query non può essere vuota e l\'utente deve essere abilitato.'})
     else:
         return JsonResponse({'success': False, 'error': 'Metodo non consentito.'}, status=405)
 
 
-@user_passes_test(can_playtest)
-def get_adventure_summary_ajax(request):
+def get_adventure_summary_ajax(request, gemma_slug):
     try:
         client = genai.Client(api_key=settings.GEMINI_API_KEY)
-        gemma = GemmaIstruction.objects.active()
+        gemma = get_object_or_404(GemmaIstruction, slug=gemma_slug)
+        product = gemma.gemma_product
+        user_has_access = user_has_access_to_ai(product=product, user=request.user)
 
-        contents_for_gemini = []
+        if user_has_access:
+            contents_for_gemini = []
 
-        # Passa le istruzioni di sistema
-        contents_for_gemini.append(gemma.system_instruction)
+            # Passa le istruzioni di sistema
+            contents_for_gemini.append(gemma.system_instruction)
 
-        # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
-        # Inverti l'ordine per avere i messaggi più vecchi prima
-        for m in reversed(chat_messages):
-            contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
-            contents_for_gemini.append(f'Risposta del sistema: {m.bot_response}')
+            # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
+            chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
+            # Inverti l'ordine per avere i messaggi più vecchi prima
+            for m in reversed(chat_messages):
+                contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
+                contents_for_gemini.append(f'Risposta del sistema: {m.bot_response}')
 
-        # Aggiungi i file ingestiti come contesto
-        for f_gemini in client.files.list():
-            contents_for_gemini.append(f_gemini)
+            # Aggiungi i file ingestiti come contesto
+            for f_gemini in client.files.list():
+                contents_for_gemini.append(f_gemini)
 
-        gemma = GemmaIstruction.objects.active()
-
-        contents_for_gemini.append(
-            gemma.summary_istruction,
-        )
-
-        if chat_messages:
-            summary = client.models.generate_content(
-                model='gemini-2.5-flash-lite',
-                contents=contents_for_gemini,
+            contents_for_gemini.append(
+                gemma.summary_istruction,
             )
-            summary_text = summary.text
+            if chat_messages:
+                summary = client.models.generate_content(
+                    model='gemini-2.5-flash-lite',
+                    contents=contents_for_gemini,
+                )
+                summary_text = summary.text
+            else:        
+                summary_text = ''
+
+            return JsonResponse({
+                'success': True, 
+                'summary': markdown.markdown(summary_text),
+            })
         else:
-            summary_text = ''
-
-        # Restituisci la risposta come JSON
-        return JsonResponse({
-            'success': True, 
-            'summary': markdown.markdown(summary_text),
-        })
-
+            raise Exception
+        
     except Exception as e:
         error_message = f"Errore durante la generazione della risposta da Gemini: {e}"
         return JsonResponse({'success': False, 'error': error_message})
 
 
-@user_passes_test(can_playtest)
-def get_char_sheet_ajax(request):
+def get_char_sheet_ajax(request, gemma_slug):
     try:
         client = genai.Client(api_key=settings.GEMINI_API_KEY)
-        gemma = GemmaIstruction.objects.active()
+        gemma = get_object_or_404(GemmaIstruction, slug=gemma_slug)
+        product = gemma.gemma_product
+        user_has_access = user_has_access_to_ai(product=product, user=request.user)
 
-        contents_for_gemini = []
+        if user_has_access:
+            contents_for_gemini = []
 
-        # Passa le istruzioni di sistema
-        contents_for_gemini.append(gemma.system_instruction)
+            # Passa le istruzioni di sistema
+            contents_for_gemini.append(gemma.system_instruction)
 
-        # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-        chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
-        # Inverti l'ordine per avere i messaggi più vecchi prima
-        for m in reversed(chat_messages):
-            contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
-            contents_for_gemini.append(f'Risposta del sistema: {m.bot_response}')
+            # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
+            chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
+            # Inverti l'ordine per avere i messaggi più vecchi prima
+            for m in reversed(chat_messages):
+                contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
+                contents_for_gemini.append(f'Risposta del sistema: {m.bot_response}')
 
-        # Aggiungi i file ingestiti come contesto
-        for f_gemini in client.files.list():
-            contents_for_gemini.append(f_gemini)
+            # Aggiungi i file ingestiti come contesto
+            for f_gemini in client.files.list():
+                contents_for_gemini.append(f_gemini)
 
-        contents_for_gemini.append(
-            gemma.character_sheet_istruction,
-        )        
+            contents_for_gemini.append(
+                gemma.character_sheet_istruction,
+            ) 
+ 
+            if chat_messages:
+                character_sheet = client.models.generate_content(
+                    model='gemini-2.5-flash-lite',
+                    contents=contents_for_gemini,
+                )
+                character_sheet_text = character_sheet.text
+            else:
+                character_sheet_text = ''
 
-        if chat_messages:
-            character_sheet = client.models.generate_content(
-                model='gemini-2.5-flash-lite',
-                contents=contents_for_gemini,
-            )
-            character_sheet_text = character_sheet.text
+            # Restituisci la risposta come JSON
+            return JsonResponse({
+                'success': True, 
+                'character_sheet': markdown.markdown(character_sheet_text),
+            })
+        
         else:
-            character_sheet_text = ''
-
-        # Restituisci la risposta come JSON
-        return JsonResponse({
-            'success': True, 
-            'character_sheet': markdown.markdown(character_sheet_text),
-        })
+            raise Exception
 
     except Exception as e:
         error_message = f"Errore durante la generazione della risposta da Gemini: {e}"

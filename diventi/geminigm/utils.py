@@ -1,9 +1,7 @@
 # myapp/utils.py
 from django.conf import settings
-from .models import IngestedDocument
+from .models import IngestedDocument, GemmaIstruction
 
-
-# --- Funzioni di Ingestione ---
 
 def ingest_pdf_document(pdf_path: str, title: str, gemini_file_id=''):
     try:
@@ -22,3 +20,7 @@ def ingest_website_document(url: str, title: str):
 
     except Exception as e:
         return False, f"Errore durante l'ingestione del sito web: {e}"
+
+
+def user_has_access_to_ai(product, user):
+    return product.user_has_already_bought(user) or product.user_has_authored(user) or (user.has_perm('accounts.can_playtest') and product.playtest_material)

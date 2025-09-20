@@ -28,11 +28,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse
-from django.shortcuts import (
-    render,
-    redirect
-)
-
 from logging import getLogger
 
 from hitcount.views import (
@@ -54,6 +49,8 @@ from .models import (
 from diventi.ebooks.models import (
     Book
 )
+
+from diventi.geminigm.models import GemmaIstruction
 
 from .forms import UserCollectionUpdateForm
 from .utils import (
@@ -183,11 +180,17 @@ class RedirectToPublicEbookView(PublishedProductMixin, PublicProductMixin, Redir
     
     def get_redirect_url(self, **kwargs):
         product = get_object_or_404(Product, slug=kwargs.get('slug'))
-        ebook = get_object_or_404(Book, book_product=product)
-        if ebook.paper_id or ebook.legacy_paper_id:
+        ebook = Book.objects.filter(book_product=product).first()
+        gemma = GemmaIstruction.objects.filter(gemma_product=product).first()
+        if gemma:
+            return reverse('geminigm:gemma_public', kwargs={'gemma_slug': gemma.slug})
+        elif ebook.paper_id or ebook.legacy_paper_id:
             return reverse('ebooks:book-detail-public', kwargs={'book_slug': ebook.slug})
         elif ebook.content_file_url:
             return reverse('ebooks:pdf-detail-public', kwargs={'book_slug': ebook.slug})
+        else:
+            msg = _('This product has no content attached, please contact the authors.')
+            raise Http404(msg) 
 
 
 class AddToUserCollectionView(FreeProductMixin, ProductUpdateView):

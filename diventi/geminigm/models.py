@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.urls import reverse
+
+from diventi.products.models import Product
 
 
 class ChatMessage(models.Model):
@@ -71,7 +74,19 @@ class GemmaIstructionQuerySet(models.QuerySet):
     def active(self):
         gemma = self.order_by('created_at')
         gemma = gemma.filter(active=True)
-        gemma = gemma.first()
+        return gemma
+
+    # Fetch the product related to the gemma
+    def product(self):
+        gemma = self.select_related('gemma_product')
+        return gemma
+
+    def playable(self, user):
+        gemma = self.active().product()
+        gemma_public = gemma.filter(gemma_product__public=True)
+        if user.has_perm('accounts.can_playtest'):
+            gemma_playtest = gemma.filter(gemma_product__playtest_material=True)
+        gemma = gemma_public | gemma_playtest
         return gemma
 
 
@@ -87,6 +102,10 @@ class GemmaIstruction(models.Model):
     title = models.CharField(
         max_length=50,
         verbose_name=_('title'),
+    )
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug'),
     )
     system_instruction = models.TextField(
         verbose_name=_('system istruction'),
@@ -108,11 +127,22 @@ class GemmaIstruction(models.Model):
         auto_now_add=True,
         verbose_name=_('creation date'),
     )
+    gemma_product = models.OneToOneField(
+        Product, 
+        null = True, 
+        blank = True, 
+        related_name = 'gemma', 
+        on_delete = models.SET_NULL, 
+        verbose_name = _('product'),
+    )
 
     objects = GemmaIstructionQuerySet.as_manager()
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('geminigm:gemma_private', args=[self.slug,])
 
     class Meta:
         verbose_name = _('Gemma istruction')

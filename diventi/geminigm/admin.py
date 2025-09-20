@@ -24,7 +24,8 @@ class IngestedDocumentAdmin(DiventiTranslationAdmin):
 class GemmaIstructionAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'active', 'created_at',]
     readonly_fields = ['created_at',]
-
+    prepopulated_fields = {"slug": ("title",)}
+    
 
 class WelcomeMessageAdmin(DiventiTranslationAdmin):
     list_display = ['bot_response', 'created_at',]

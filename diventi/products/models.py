@@ -324,6 +324,11 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         object_id_field='object_pk',
         related_query_name='hit_count_generic_relation'
     ) # Counts the views on this model
+    playtest_material = models.BooleanField(
+        default=False,
+        verbose_name=_('playtest material'),
+        help_text = _('Playtest products can be accessed by users with a playtest permission')
+    )
 
     def image_tag(self):
         return super(Product, self).image_tag()

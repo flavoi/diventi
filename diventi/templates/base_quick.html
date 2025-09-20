@@ -263,22 +263,24 @@
                                     </div>
                                 </li>
                                 {% endif %}
-                                {% if user.is_staff or perms.accounts.can_playtest %}
+                                {% if playable_gemmas_nav %}
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                   <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'play'|capfirst %}</a>
                                   <div class="dropdown-menu dropdown-menu-md p-0">
                                     <div class="list-group list-group-flush px-lg-4">
-                                      <a href="{% url 'geminigm:chatbot' %}" class="list-group-item list-group-item-action" role="button">
-                                        <div class="d-flex">
-                                          <span class="h6">
-                                            <i data-feather="book"></i>
-                                          </span>
-                                          <div class="ml-3">
-                                            <h6 class="heading mb-0">{% trans "play with AI"|capfirst %}</h6>
-                                            <small class="text-sm">{% trans "your Primo Contatto adventure"|capfirst %}.</small>
-                                          </div>
-                                        </div>
-                                      </a>
+                                        {% for gemma in playable_gemmas_nav %}
+                                          <a href="{% url 'geminigm:gemma_private' gemma.slug %}" class="list-group-item list-group-item-action" role="button">
+                                            <div class="d-flex">
+                                              <span class="h6">
+                                                <i data-feather="book"></i>
+                                              </span>
+                                              <div class="ml-3">
+                                                <h6 class="heading mb-0">{{ gemma.title|capfirst }}</h6>
+                                                <small class="text-sm">{{ gemma.gemma_product.description|capfirst }}</small>
+                                              </div>
+                                            </div>
+                                          </a>
+                                        {% endfor %}                                        
                                     </div>
                                   </div>
                                 </li>

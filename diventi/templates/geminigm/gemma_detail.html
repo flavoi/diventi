@@ -1,0 +1,344 @@
+{% extends 'base_quick.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "my Primo Contatto adventure"|capfirst %}{% endblock title %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preload" href="{% static 'diventi/css/diventi-geminigm.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+{% endblock extrahead %}
+
+{% block content %}
+
+
+<section class="pt-5 bg-section-secondary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="row align-items-center">
+          <div class="col">
+            <span class="surtitle">Primo Contatto</span>
+            <h1 class="h2 mb-0">{% trans 'my adventure'|capfirst %}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slice bg-section-secondary">
+    <div class="container-fluid position-relative zindex-1">
+        <div class="row">
+            <div class="col-lg-3 order-1 order-md-1">
+                <div id="accordion-1" class="accordion accordion-spaced">
+                    <div class="card" style="">
+                      <div aria-controls="collapse-1" aria-expanded="true" class="card-header py-4 bg-translucent-info" data-target="#collapse-1" data-toggle="collapse" id="heading-1" role="button">
+                        <h6 class="mb-0">{% trans "character sheet"|capfirst %}</h6>
+                      </div>
+                      <div aria-labelledby="heading-1" class="collapse show" data-parent="#accordion-1" id="collapse-1">
+                        <div class="card-body" id="pg-sheet-content">
+                          <p class="card-text text-dark small">
+                                {% if character_sheet %}
+                                    {{ character_sheet|safe }}
+                                {% else %}
+                                    {% trans "No character sheet is available, please ask the GM to create one!" %}
+                                {% endif %}
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6 order-3 order-md-2">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div id="chat-history" class="chat-history" style="min-height: 500px; max-height: 70vh; overflow-y: auto; display: flex; flex-direction: column;">
+                            <!-- Messaggio di benvenuto iniziale -->
+                            <div class="media media-comment mb-3">
+                                <div class="avatar avatar-sm rounded-circle shadow mr-3 welcome-avatar-icon">
+                                    <i class="fa-solid fa-hand-sparkles"></i>
+                                </div>
+                                <div class="media-body">
+                                    <div class="media-comment-bubble welcome-message-bubble p-3">
+                                        <h6 class="mt-0 mb-1">Diventi GM</h6>
+                                        <p class="mb-0">{{ welcome_message|safe }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Qui verranno aggiunti i messaggi della chat -->
+                        </div>
+
+                        <form id="chat-form" class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group mb-0 d-flex align-items-end">
+                                <textarea name="query" id="user-query-input" class="form-control form-control-flush pr-2" placeholder="{% trans 'send a message to Diventi GM...'|capfirst %}" rows="1" required></textarea>
+                                <button type="submit" id="send-button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="{% trans 'send message (Ctrl + Enter)'|capfirst %}">
+                                    {% trans 'send'|capfirst %}
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="loading-indicator text-center mt-3" id="loading-indicator" style="display: none;">
+                            <span class="text-primary loading-ellipsis" id="ellipsis-animation"></span>
+                            <p class="text-muted text-sm mt-2">{% trans "Diventi GM is thinking..." %}</p>
+                        </div>
+                    </div>
+                    {% if user.is_staff %}
+                    <div class="card-footer py-3 text-center border-0 position-relative">
+                        <a href="{% url 'geminigm:ingest_document' %}" class="text-xs ls-1 text-uppercase font-weight-bold stretched-link">{% trans "go to ingestion page"|capfirst %}</a></a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-3 order-2 order-md-3">
+                <div id="accordion-2" class="accordion accordion-spaced">
+                    <div class="card" style="">
+                      <div aria-controls="collapse-2" aria-expanded="true" class="card-header py-4 bg-translucent-success" data-target="#collapse-2" data-toggle="collapse" id="heading-2" role="button">
+                        <h6 class="mb-0">{% trans "the adventure so far"|capfirst %}</h6>
+                      </div>
+                      <div aria-labelledby="heading-2" class="collapse show" data-parent="#accordion-2" id="collapse-2">
+                        <div class="card-body" id="adventure-summary-content">
+                          <p class="card-text text-dark small">
+                                {% if summary %}
+                                    {{ summary|safe }}
+                                {% else %}
+                                    {% trans "No summary is available. Please start playing to see the relevant events in this section." %}
+                                {% endif %}
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block extrascript %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatForm = document.getElementById('chat-form');
+            const userQueryInput = document.getElementById('user-query-input');
+            const chatHistory = document.getElementById('chat-history');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const sendButton = document.getElementById('send-button');
+
+            // Nuovi riferimenti agli elementi dove inserire i dati
+            const pgSheetContent = document.getElementById('pg-sheet-content'); // Corretto ID
+            const adventureSummaryContent = document.getElementById('adventure-summary-content'); // Nuovo ID
+
+            // Inizializza autosize per la textarea
+            autosize(userQueryInput);
+
+            // Inizializza i tooltip di Bootstrap
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Funzione per scrollare la chat in basso
+            function scrollToBottom() {
+                setTimeout(() => {
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                }, 0); 
+            }
+
+            // Scrolla in basso all'inizio, utile per il messaggio di benvenuto
+            scrollToBottom(); 
+
+            userQueryInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' && !(event.ctrlKey || event.metaKey)) {
+                    return;
+                }
+                if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                    event.preventDefault();
+                    if (userQueryInput.value.trim() !== '') {
+                        chatForm.dispatchEvent(new Event('submit'));
+                    }
+                }
+            });
+            
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            const csrftoken = getCookie('csrftoken');
+
+            // --- FUNZIONI PER RECUPERARE E AGGIORNARE LE CARD ---
+
+            function fetchPgSheet() {
+                fetch('{% url 'geminigm:get_char_sheet_ajax' object.slug %}', {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && pgSheetContent) {
+                        pgSheetContent.innerHTML = `<p class="card-text text-dark small">${data.character_sheet || '{% trans "No character sheet is available, please ask the GM to create one!" %}'}</p>`;
+                    } else if (pgSheetContent) {
+                        pgSheetContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your character sheet" %}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Character sheet error:', error);
+                    if (pgSheetContent) {
+                        pgSheetContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your character sheet." %}</p>`;
+                    }
+                });
+            }
+
+            function fetchSummary() {
+                fetch('{% url 'geminigm:get_adventure_summary_ajax' object.slug %}', {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && adventureSummaryContent) {
+                        adventureSummaryContent.innerHTML = `<p class="card-text text-dark small">${data.summary || '{% trans "No summary is available. Please start playing to see the relevant events in this section." %}'}</p>`;
+                    } else if (adventureSummaryContent) {
+                        adventureSummaryContent.innerHTML = `<p class="card-text text-danger small">{% trans "An error occured while generating your summary." %}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nel caricamento del riassunto dell\'avventura:', error);
+                    if (adventureSummaryContent) {
+                        adventureSummaryContent.innerHTML = `<p class="card-text text-danger small">{% trans "A network error occured while generating your summary." %}</p>`;
+                    }
+                });
+            }
+
+            // Chiama le funzioni al caricamento iniziale della pagina
+            fetchPgSheet();
+            fetchSummary();
+            // --- FINE FUNZIONI ---
+
+            chatForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const userQuery = userQueryInput.value.trim();
+                if (!userQuery) {
+                    return;
+                }
+
+                const userMessageBox = document.createElement('div');
+                userMessageBox.className = 'media media-comment mb-3';
+                userMessageBox.innerHTML = `
+                    <div class="avatar avatar-sm rounded-circle shadow mr-3 player-avatar-icon">
+                        <i class="fa-solid fa-dice-d20"></i>
+                    </div>
+                    <div class="media-body">
+                        <div class="media-comment-bubble user-message-bubble py-2 px-3">
+                            <h6 class="mt-0 mb-1">Tu</h6>
+                            <p class="mb-0">${userQuery.replace(/\n/g, '')}</p>
+                        </div>
+                    </div>
+                `;
+                chatHistory.appendChild(userMessageBox);
+                scrollToBottom();
+
+                userQueryInput.value = '';
+                autosize.update(userQueryInput);
+
+                loadingIndicator.style.display = 'block';
+
+                fetch('{% url 'geminigm:send_message_ajax' object.slug %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': csrftoken
+                    },
+                    body: `query=${encodeURIComponent(userQuery)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loadingIndicator.style.display = 'none';
+
+                    if (data.success) {
+                        const botMessageBox = document.createElement('div');
+                        botMessageBox.className = 'media media-comment mb-3';
+                        botMessageBox.innerHTML = `
+                            <div class="avatar avatar-sm rounded-circle shadow mr-3 gm-avatar-icon">
+                                <i class="fa-solid fa-scroll"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="media-comment-bubble bubble-light py-2 px-3">
+                                    <h6 class="mt-0 mb-1">Diventi GM</h6>
+                                    <p class="mb-0">${data.bot_response.replace(/\n/g, '')}</p>
+                                </div>
+                            </div>
+                        `;
+                        chatHistory.appendChild(botMessageBox);
+
+                        // --- CHIAMATE PER AGGIORNARE LE CARD DOPO LA RISPOSTA DEL BOT ---
+                        fetchPgSheet();
+                        fetchSummary();
+                        // --- FINE CHIAMATE ---
+
+                    } else {
+                        const errorMessageBox = document.createElement('div');
+                        errorMessageBox.className = 'media media-comment mb-3';
+                        errorMessageBox.innerHTML = `
+                            <div class="avatar avatar-sm rounded-circle shadow mr-3 gm-avatar-icon">
+                                <i class="fa-solid fa-scroll"></i>
+                            </div>
+                            <div class="media-body">
+                                <div class="media-comment-bubble bubble-light py-2 px-3 bg-danger text-white">
+                                    <h6 class="mt-0 mb-1">Errore Diventi GM</h6>
+                                    <p class="mb-0">Errore: ${data.error}</p>
+                                </div>
+                            </div>
+                        `;
+                        chatHistory.appendChild(errorMessageBox);
+                    }
+                    scrollToBottom();
+                })
+                .catch(error => {
+                    loadingIndicator.style.display = 'none';
+                    console.error('Errore nella richiesta AJAX:', error);
+                    const errorMessageBox = document.createElement('div');
+                    errorMessageBox.className = 'media media-comment mb-3';
+                    errorMessageBox.innerHTML = `
+                        <div class="avatar avatar-sm rounded-circle shadow mr-3 gm-avatar-icon">
+                            <i class="fa-solid fa-scroll"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="media-comment-bubble bubble-light py-2 px-3 bg-danger text-white">
+                                <h6 class="mt-0 mb-1">Errore di Connessione</h6>
+                                <p class="mb-0">Errore di rete o del server. Riprova più tardi.</p>
+                            </div>
+                        </div>
+                    `;
+                    chatHistory.appendChild(errorMessageBox);
+                    scrollToBottom();
+                });
+            });
+        });
+    </script>
+{% endblock extrascript %}

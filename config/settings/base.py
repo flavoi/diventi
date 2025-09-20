@@ -61,6 +61,7 @@ TEMPLATES = [
                 'diventi.products.context.project_categories',
                 'diventi.products.context.pinned_projects',
                 'diventi.packages.context.pinned_packages',
+                'diventi.geminigm.context.playable_gemmas',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',

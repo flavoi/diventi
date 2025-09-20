@@ -4,10 +4,14 @@
 <div class="mt-1">
 {% if user.is_authenticated %}
     {% if product.book.published and bought %}
-            <a href='{{ product.book.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
-                {% trans "read online"|capfirst %}
-            </a>        
-    {% elif product.book.published and product.unfolded %}
+        <a href='{{ product.book.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
+            {% trans "read online"|capfirst %}
+        </a>
+    {% elif product.gemma.active and product.unfolded and bought or product.gemma.active and not product.unfolded %}
+        <a href='{{ product.gemma.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
+            {% trans "play"|capfirst %}
+        </a>
+    {% elif product.book.published and product.unfolded or product.gemma.active and product.unfolded %}
     
         {% if product.at_a_premium %}
           {% with object=package %}

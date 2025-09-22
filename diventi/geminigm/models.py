@@ -84,6 +84,7 @@ class GemmaIstructionQuerySet(models.QuerySet):
     def playable(self, user):
         gemma = self.active().product()
         gemma_public = gemma.filter(gemma_product__public=True)
+        gemma_playtest = gemma.none()
         if user.has_perm('accounts.can_playtest'):
             gemma_playtest = gemma.filter(gemma_product__playtest_material=True)
         gemma = gemma_public | gemma_playtest
@@ -102,6 +103,11 @@ class GemmaIstruction(models.Model):
     title = models.CharField(
         max_length=50,
         verbose_name=_('title'),
+    )
+    short_description = models.TextField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('short description')
     )
     slug = models.SlugField(
         unique=True, 

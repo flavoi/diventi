@@ -23,4 +23,9 @@ def ingest_website_document(url: str, title: str):
 
 
 def user_has_access_to_ai(product, user):
-    return product.user_has_already_bought(user) or product.user_has_authored(user) or (user.has_perm('accounts.can_playtest') and product.playtest_material)
+    user_can_access = 0
+    user_can_access = product.user_has_already_bought(user)
+    user_can_access = user_can_access or product.user_has_authored(user)
+    user_can_access = user_can_access or (user.has_perm('accounts.can_playtest') and product.playtest_material)
+    user_can_access = user_can_access or product.public
+    return user_can_access

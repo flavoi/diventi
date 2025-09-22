@@ -5,7 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED] → 2024-04-xx
+
+## [1.2.0] → 2025-09-22
+
+### Added
+- [geminigm] Introduced GeminiGM: an app that can generate messages as an artificial game master
+
+### Changed
+- [accounts] Enabled the playtester permission to user groups
+- [landing] Renamed the play tab to explore tab
+- [products] Enabled playtest material flag to tag a product as accesible from playtester users
+
+### Security
+- [accounts] Updated permission logic to enable or disable playtester access
+
+### Removed
+
+### Fixed
+- [products] Fixed a problem that prevented some translations to be displayed in the admin
+
+
+## [1.1.0] → 2024-04-30
 
 ### Added
 - [core] Added a new method to send emails with the custom domain

@@ -100,7 +100,7 @@ class UserHasProductMixin(UserPassesTestMixin):
         in gemma_slug get parameter.
     """
 
-    permission_denied_message = _('This gemma is not in your collection, please check your profile.')
+    permission_denied_message = _('This game is not in your collection, please check your profile.')
 
     def test_func(self):
         gemma_slug = self.kwargs.get('gemma_slug', None)
@@ -108,7 +108,7 @@ class UserHasProductMixin(UserPassesTestMixin):
         product = gemma.gemma_product
         user_has_access = user_has_access_to_ai(product=product, user=self.request.user)
         if not user_has_access:
-            self.permission_denied_message = _('This gemma is not in your collection, please check your profile.')        
+            self.permission_denied_message = _('This game is not in your collection, please check your profile.')        
         return user_has_access 
 
 

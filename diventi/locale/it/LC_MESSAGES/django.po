@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-15 08:29+0200\n"
+"POT-Creation-Date: 2025-09-22 22:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:207
+#: config/settings/base.py:208
 msgid "Italian"
 msgstr "Italiano"
 
-#: config/settings/base.py:208
+#: config/settings/base.py:209
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:292
+#: config/settings/base.py:293
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:302
+#: config/settings/base.py:303
 msgid "Callout"
 msgstr "Didascalia"
 
-#: config/settings/base.py:342
+#: config/settings/base.py:343
 msgid "Terrible"
 msgstr "Terribile"
 
-#: config/settings/base.py:343
+#: config/settings/base.py:344
 msgid "Poor"
 msgstr "Scarso"
 
-#: config/settings/base.py:344
+#: config/settings/base.py:345
 msgid "Average"
 msgstr "Medio"
 
-#: config/settings/base.py:345
+#: config/settings/base.py:346
 msgid "Very Good"
 msgstr "Molto buono"
 
-#: config/settings/base.py:346
+#: config/settings/base.py:347
 msgid "Excellent"
 msgstr "Eccellente"
 
@@ -199,7 +199,7 @@ msgstr "Foto profilo"
 msgid "Profile pictures"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:120 diventi/products/models.py:330
+#: diventi/accounts/models.py:120 diventi/products/models.py:335
 msgid "Cover"
 msgstr "Copertina"
 
@@ -522,7 +522,7 @@ msgid "Article Categories"
 msgstr "Categorie di articolo"
 
 #: diventi/blog/models.py:121 diventi/ebooks/models.py:127
-#: diventi/products/models.py:247 diventi/products/models.py:506
+#: diventi/products/models.py:247 diventi/products/models.py:511
 #: diventi/templates/products/product_detail_quick.html:67
 msgid "category"
 msgstr "categoria"
@@ -539,9 +539,10 @@ msgstr "hot"
 
 #: diventi/blog/models.py:133 diventi/ebooks/models.py:67
 #: diventi/ebooks/models.py:189 diventi/ebooks/models.py:306
-#: diventi/feedbacks/models.py:114 diventi/landing/models.py:57
-#: diventi/landing/models.py:100 diventi/packages/models.py:83
-#: diventi/products/models.py:176 diventi/products/models.py:216
+#: diventi/feedbacks/models.py:114 diventi/geminigm/models.py:114
+#: diventi/landing/models.py:57 diventi/landing/models.py:100
+#: diventi/packages/models.py:83 diventi/products/models.py:176
+#: diventi/products/models.py:216
 msgid "slug"
 msgstr "slug"
 
@@ -550,7 +551,7 @@ msgid "postcard"
 msgstr "cartolina"
 
 #: diventi/blog/models.py:143 diventi/feedbacks/models.py:174
-#: diventi/geminigm/models.py:15
+#: diventi/geminigm/models.py:18
 msgid "author"
 msgstr "autore"
 
@@ -569,13 +570,13 @@ msgstr "articolo"
 msgid "articles"
 msgstr "articoli"
 
-#: diventi/blog/models.py:172 diventi/products/models.py:334
+#: diventi/blog/models.py:172 diventi/products/models.py:339
 msgid "Postcard"
 msgstr "Cartolina"
 
 #: diventi/blog/models.py:197 diventi/blog/models.py:215
 #: diventi/landing/models.py:85 diventi/packages/models.py:129
-#: diventi/products/models.py:377 diventi/products/models.py:395
+#: diventi/products/models.py:382 diventi/products/models.py:400
 #, python-format
 msgid "views in the last week: %(d)s"
 msgstr "visite nell'ultima settimana: %(d)s"
@@ -590,7 +591,7 @@ msgstr "Parole"
 
 #: diventi/blog/models.py:236 diventi/ebooks/models.py:154
 #: diventi/landing/models.py:72 diventi/packages/models.py:116
-#: diventi/products/models.py:477
+#: diventi/products/models.py:482
 msgid "Hit counts"
 msgstr "Visite"
 
@@ -724,7 +725,7 @@ msgstr "creato"
 msgid "modified"
 msgstr "modificato"
 
-#: diventi/core/models.py:70 diventi/products/models.py:461
+#: diventi/core/models.py:70 diventi/products/models.py:466
 msgid "published"
 msgstr "pubblicato"
 
@@ -738,7 +739,7 @@ msgstr "promozioni"
 
 #: diventi/core/models.py:111 diventi/feedbacks/models.py:26
 #: diventi/feedbacks/models.py:65 diventi/feedbacks/models.py:112
-#: diventi/geminigm/models.py:35 diventi/geminigm/models.py:89
+#: diventi/geminigm/models.py:38 diventi/geminigm/models.py:105
 #: diventi/landing/models.py:144 diventi/products/models.py:198
 msgid "title"
 msgstr "titolo"
@@ -794,7 +795,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:177 diventi/products/models.py:518
+#: diventi/core/models.py:177 diventi/products/models.py:523
 msgid "Image"
 msgstr "Immagine"
 
@@ -802,7 +803,7 @@ msgstr "Immagine"
 msgid "There must be only one object at a time. Please fix!"
 msgstr "Può esistere un solo oggetto per volta. Sistemare!"
 
-#: diventi/core/models.py:214 diventi/geminigm/models.py:105
+#: diventi/core/models.py:214 diventi/geminigm/models.py:130
 msgid "active"
 msgstr "attiva"
 
@@ -952,7 +953,7 @@ msgstr ""
 msgid "Autocomplete ..."
 msgstr "Completamento automatico ..."
 
-#: diventi/ebooks/forms.py:27 diventi/products/models.py:509
+#: diventi/ebooks/forms.py:27 diventi/products/models.py:514
 msgid "Chapter"
 msgstr "Capitolo"
 
@@ -980,10 +981,11 @@ msgstr "parti"
 msgid "short title"
 msgstr "titolo breve"
 
-#: diventi/ebooks/models.py:74 diventi/landing/models.py:181
-#: diventi/products/models.py:339 diventi/products/models.py:487
-#: diventi/products/models.py:505 diventi/products/models.py:515
-#: diventi/products/models.py:562 diventi/tooltips/models.py:65
+#: diventi/ebooks/models.py:74 diventi/geminigm/models.py:142
+#: diventi/landing/models.py:181 diventi/products/models.py:344
+#: diventi/products/models.py:492 diventi/products/models.py:510
+#: diventi/products/models.py:520 diventi/products/models.py:567
+#: diventi/tooltips/models.py:65
 msgid "product"
 msgstr "prodotto"
 
@@ -1386,7 +1388,7 @@ msgstr "Spiacente, questo sondaggio non è aperto al pubblico."
 msgid "GeminiGM"
 msgstr "GeminiGM"
 
-#: diventi/geminigm/management/commands/ai_maintenance.py:16
+#: diventi/geminigm/management/commands/ai_maintenance.py:17
 msgid ""
 "Verifica i file caricati in gemini e crea un nuovo messaggio di benvenuto"
 msgstr ""
@@ -1395,52 +1397,52 @@ msgstr ""
 msgid "Ripulisce tutti i dati generati da IA in questa app"
 msgstr ""
 
-#: diventi/geminigm/models.py:8
+#: diventi/geminigm/models.py:11
 msgid "user message"
 msgstr "messaggio dell'utente"
 
-#: diventi/geminigm/models.py:11 diventi/geminigm/models.py:124
+#: diventi/geminigm/models.py:14 diventi/geminigm/models.py:160
 msgid "bot response"
 msgstr "messaggio del bot"
 
-#: diventi/geminigm/models.py:21 diventi/geminigm/models.py:109
-#: diventi/geminigm/models.py:128
+#: diventi/geminigm/models.py:24 diventi/geminigm/models.py:134
+#: diventi/geminigm/models.py:164
 msgid "creation date"
 msgstr "data creazione"
 
-#: diventi/geminigm/models.py:28
+#: diventi/geminigm/models.py:31
 msgid "chat message"
 msgstr "messaggio chat"
 
-#: diventi/geminigm/models.py:29
+#: diventi/geminigm/models.py:32
 msgid "chat messages"
 msgstr "messaggi chat"
 
-#: diventi/geminigm/models.py:41
+#: diventi/geminigm/models.py:44
 msgid "source url"
 msgstr "url sorgente"
 
-#: diventi/geminigm/models.py:47
+#: diventi/geminigm/models.py:50
 msgid "file path"
 msgstr "percorso file"
 
-#: diventi/geminigm/models.py:53
+#: diventi/geminigm/models.py:56
 msgid "ID file Gemini"
 msgstr "ID file Gemini"
 
-#: diventi/geminigm/models.py:57
+#: diventi/geminigm/models.py:60
 msgid "ingestion date"
 msgstr "data ingestione"
 
-#: diventi/geminigm/models.py:64
+#: diventi/geminigm/models.py:67
 msgid "ingested document"
 msgstr "documento ingestito"
 
-#: diventi/geminigm/models.py:65
+#: diventi/geminigm/models.py:68
 msgid "ingested documents"
 msgstr "documenti ingestiti"
 
-#: diventi/geminigm/models.py:78
+#: diventi/geminigm/models.py:94
 msgid ""
 "Sei un game master (GM) che deve gestire un gioco di ruolo da tavolo con "
 "ambientazione e meccaniche personalizzate denominato Primo Contatto (che "
@@ -1475,7 +1477,7 @@ msgid ""
 "inferiore di un altro, a discrezione del GM."
 msgstr ""
 
-#: diventi/geminigm/models.py:80
+#: diventi/geminigm/models.py:96
 msgid ""
 "Fai il riassunto degli avvenimenti più importanti avvenuti nell'avventura "
 "che l'utente sta giocando. Massimo due paragrafi discorsivi. Evita frasi "
@@ -1485,7 +1487,7 @@ msgid ""
 "giocatore di cominciare un'avventura con il GM."
 msgstr ""
 
-#: diventi/geminigm/models.py:82
+#: diventi/geminigm/models.py:98
 msgid ""
 "Riporta le caratteristiche del personaggio che l'utente sta interpretando "
 "nell'avventura in un elenco puntato ordinato. Quando riporti una dote scrivi "
@@ -1498,48 +1500,73 @@ msgid ""
 "rispondo', riporta direttamente il contenuto della risposta."
 msgstr ""
 
-#: diventi/geminigm/models.py:84
+#: diventi/geminigm/models.py:100
 msgid ""
 "Mostra un breve messaggio di benvenuto con un riepilogo del gioco. Massimo "
 "due paragrafi. Non rispondere 'Certamente', oppure 'ho capito', riporta "
 "direttamente la risposta."
 msgstr ""
 
-#: diventi/geminigm/models.py:92
+#: diventi/geminigm/models.py:110 diventi/packages/models.py:48
+#: diventi/products/models.py:203
+msgid "short description"
+msgstr "descrizione breve"
+
+#: diventi/geminigm/models.py:117
 msgid "system istruction"
 msgstr "istruzione per il modello"
 
-#: diventi/geminigm/models.py:95
+#: diventi/geminigm/models.py:120
 msgid "summary istruction"
 msgstr "istruzione per il riassunto"
 
-#: diventi/geminigm/models.py:98
+#: diventi/geminigm/models.py:123
 msgid "character sheet istruction"
 msgstr "istruzione per la scheda personaggio"
 
-#: diventi/geminigm/models.py:101
+#: diventi/geminigm/models.py:126
 msgid "welcome message istruction"
 msgstr "istruzione per il messaggio di benvenuto"
 
-#: diventi/geminigm/models.py:118
+#: diventi/geminigm/models.py:154
 msgid "Gemma istruction"
 msgstr "Istruzione della Gemma"
 
-#: diventi/geminigm/models.py:119
+#: diventi/geminigm/models.py:155
 msgid "Gemma istructions"
 msgstr "Istruzioni della Gemma"
 
-#: diventi/geminigm/models.py:135
+#: diventi/geminigm/models.py:171
 msgid "Welcome message"
 msgstr "Messaggio di benvenuto"
 
-#: diventi/geminigm/models.py:136
+#: diventi/geminigm/models.py:172
 msgid "Welcome messages"
 msgstr "Messaggi di bevenuto"
 
-#: diventi/geminigm/urls.py:15
+#: diventi/geminigm/urls.py:17
 msgid "ingest/"
 msgstr "ingesti/"
+
+#: diventi/geminigm/urls.py:19
+msgid "gemma/<slug:gemma_slug>/public/"
+msgstr "gemma/<slug:gemma_slug>/pubblico/"
+
+#: diventi/geminigm/views.py:103 diventi/geminigm/views.py:111
+msgid "This game is not in your collection, please check your profile."
+msgstr ""
+"Questo gioco non è presente nella tua collezione, per favore controlla il "
+"tuo profilo."
+
+#: diventi/geminigm/views.py:125
+msgid "This gemma has no content attached, please contact the authors."
+msgstr ""
+"Questo gioco non è collegato ad alcun contenuto, per favore contatta gli "
+"autori."
+
+#: diventi/geminigm/views.py:147
+msgid "Welcome to your Primo Contatto adventure!"
+msgstr "Ti diamo il benvenuto nella tua avventura di Primo Contatto!"
 
 #: diventi/landing/admin.py:57
 #: diventi/templates/machina/forum_conversation/forum_attachments/attachments_detail.html:8
@@ -1566,7 +1593,7 @@ msgstr "Pagina di atterraggio"
 msgid "about article"
 msgstr "articolo su di noi"
 
-#: diventi/landing/models.py:95 diventi/landing/views.py:85
+#: diventi/landing/models.py:95 diventi/landing/views.py:84
 msgid "about articles"
 msgstr "articoli su di noi"
 
@@ -1630,36 +1657,36 @@ msgstr "analitica/"
 msgid "about/<slug:slug>/"
 msgstr "su-di-noi/<slug:slug>/"
 
-#: diventi/landing/views.py:81 diventi/templates/base_quick.html:237
+#: diventi/landing/views.py:80 diventi/templates/base_quick.html:237
 msgid "users"
 msgstr "utenti"
 
-#: diventi/landing/views.py:82 diventi/packages/models.py:95
+#: diventi/landing/views.py:81 diventi/packages/models.py:95
 #: diventi/templates/base_quick.html:245
 msgid "packages"
 msgstr "pacchetti"
 
-#: diventi/landing/views.py:83
+#: diventi/landing/views.py:82
 msgid "popular articles"
 msgstr "articoli popolari"
 
-#: diventi/landing/views.py:84
+#: diventi/landing/views.py:83
 msgid "latest articles"
 msgstr "ultimi articoli"
 
-#: diventi/landing/views.py:86
+#: diventi/landing/views.py:85
 msgid "private products"
 msgstr "prodotti privati"
 
-#: diventi/landing/views.py:87
+#: diventi/landing/views.py:86
 msgid "popular public products"
 msgstr "prodotti pubblici popolari"
 
-#: diventi/landing/views.py:88
+#: diventi/landing/views.py:87
 msgid "latest public products"
 msgstr "ultimi prodotti pubblici"
 
-#: diventi/landing/views.py:116
+#: diventi/landing/views.py:115
 msgid "This page is not available yet."
 msgstr "Questa pagina non è ancora disponibile."
 
@@ -1678,10 +1705,6 @@ msgstr "Prezzatura"
 #: diventi/packages/apps.py:7
 msgid "Packages"
 msgstr "Pacchetti"
-
-#: diventi/packages/models.py:48 diventi/products/models.py:203
-msgid "short description"
-msgstr "descrizione breve"
 
 #: diventi/packages/models.py:53 diventi/products/models.py:208
 msgid "abstract"
@@ -1823,88 +1846,96 @@ msgstr "forum correlati"
 msgid "formats"
 msgstr "formati"
 
-#: diventi/products/models.py:340
+#: diventi/products/models.py:329
+msgid "playtest material"
+msgstr "materiale di playtest"
+
+#: diventi/products/models.py:330
+msgid "Playtest products can be accessed by users with a playtest permission"
+msgstr "Contenuti di playtest possono essere visionati da utenti con permessi di playtest"
+
+#: diventi/products/models.py:345
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:346
+#: diventi/products/models.py:351
 msgid "application"
 msgstr "applicazione"
 
-#: diventi/products/models.py:408
+#: diventi/products/models.py:413
 msgid "Last purchase"
 msgstr "Ultimo acquisto"
 
-#: diventi/products/models.py:411
+#: diventi/products/models.py:416
 #, python-format
 msgid "%(product)s: total customers"
 msgstr "%(product)s: clienti totali"
 
-#: diventi/products/models.py:422
+#: diventi/products/models.py:427
 #, python-format
 msgid "%(product)s: product views"
 msgstr "%(product)s: visite al prodotto"
 
-#: diventi/products/models.py:426 diventi/products/models.py:438
+#: diventi/products/models.py:431 diventi/products/models.py:443
 #, python-format
 msgid "views in the last week:: %(d)s"
 msgstr "visite nell'ultima settimana: %(d)s"
 
-#: diventi/products/models.py:434
+#: diventi/products/models.py:439
 #, python-format
 msgid "%(product)s: book views"
 msgstr "%(product)s: visite al libro "
 
-#: diventi/products/models.py:463 diventi/templates/publishable_badge.html:4
+#: diventi/products/models.py:468 diventi/templates/publishable_badge.html:4
 msgid "draft"
 msgstr "bozza"
 
-#: diventi/products/models.py:472
+#: diventi/products/models.py:477
 msgid "at a premium"
 msgstr "a pagamento"
 
-#: diventi/products/models.py:492
+#: diventi/products/models.py:497
 msgid "Detail"
 msgstr "Dettaglio"
 
-#: diventi/products/models.py:493
+#: diventi/products/models.py:498
 msgid "Details"
 msgstr "Dettagli"
 
-#: diventi/products/models.py:499
+#: diventi/products/models.py:504
 msgid "Chapter category"
 msgstr "Categoria di capitolo"
 
-#: diventi/products/models.py:500
+#: diventi/products/models.py:505
 msgid "Chapter categories"
 msgstr "Categorie di capitolo"
 
-#: diventi/products/models.py:510
+#: diventi/products/models.py:515
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:519
+#: diventi/products/models.py:524
 msgid "Images"
 msgstr "Immagini"
 
-#: diventi/products/models.py:563
+#: diventi/products/models.py:568
 msgid "customer"
 msgstr "cliente"
 
-#: diventi/products/models.py:568
+#: diventi/products/models.py:573
 msgid "Purchase"
 msgstr "Acquisto"
 
-#: diventi/products/models.py:569
+#: diventi/products/models.py:574
 msgid "Purchases"
 msgstr "Acquisti"
 
-#: diventi/products/models.py:573
+#: diventi/products/models.py:578
 #, python-format
 msgid "Purchase: %(id)s"
 msgstr "Acquisto: %(id)s"
 
-#: diventi/products/models.py:578
+#: diventi/products/models.py:583
 #, python-format
 msgid "%(prefix)s: %(last_pur)s on %(created)s"
 msgstr "%(prefix)s: %(last_pur)s - %(created)s"
@@ -1942,28 +1973,33 @@ msgstr "<slug:slug>/check-out/fallito/"
 msgid "last purchase: %(last_sub)s on %(date_joined)s"
 msgstr "ultimo acquisto: %(last_sub)s - %(date_joined)s"
 
-#: diventi/products/utils.py:21 diventi/products/views.py:208
+#: diventi/products/utils.py:21 diventi/products/views.py:211
 msgid "The user has this product already."
 msgstr "L'utente possiede già questo prodotto."
 
-#: diventi/products/views.py:198
+#: diventi/products/views.py:192
+msgid "This product has no content attached, please contact the authors."
+msgstr ""
+"Questo prodotto non ha contenuti allegati, per favore contatta gli autori."
+
+#: diventi/products/views.py:201
 msgid "This item has been added to you collection"
 msgstr "Questo oggetto è stato aggiunto alla tua collezione"
 
-#: diventi/products/views.py:222
+#: diventi/products/views.py:225
 #, python-format
 msgid "%(p)s has been added in your collection."
 msgstr "%(p)s è stato aggiunto alla tua collezione."
 
-#: diventi/products/views.py:227
+#: diventi/products/views.py:230
 msgid "The requested product is not public."
 msgstr "Il prodotto richiesto non è pubblico."
 
-#: diventi/products/views.py:236
+#: diventi/products/views.py:239
 msgid "This product has been dropped from your collection"
 msgstr "Questo prodotto è stato rimosso dalla tua collezione"
 
-#: diventi/products/views.py:243
+#: diventi/products/views.py:246
 msgid "The user hasn't got this product already."
 msgstr "L'utente non ha ancora questo prodotto."
 
@@ -2066,7 +2102,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick.html:211 diventi/templates/base_quick.html:414
+#: diventi/templates/base_quick.html:211 diventi/templates/base_quick.html:416
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
 msgstr "accedi"
@@ -2246,7 +2282,7 @@ msgstr "Profilo"
 #: diventi/templates/accounts/user.html:69
 #: diventi/templates/accounts/user_detail_quick.html:240
 #: diventi/templates/accounts/user_detail_quick_modal.html:108
-#: diventi/templates/products/partials/product_detail_actions.html:38
+#: diventi/templates/products/partials/product_detail_actions.html:42
 msgid "collection"
 msgstr "collezione"
 
@@ -2555,59 +2591,52 @@ msgid "a tool to measure the website performance"
 msgstr "uno strumento per misurare le prestazioni del sito"
 
 #: diventi/templates/base_quick.html:268
+#: diventi/templates/products/partials/product_detail_actions.html:12
 msgid "play"
 msgstr "gioca"
 
-#: diventi/templates/base_quick.html:277
-msgid "play with AI"
-msgstr "gioca con l'IA"
-
-#: diventi/templates/base_quick.html:278
-msgid "your Primo Contatto adventure"
-msgstr "la tua avventura di Primo Contatto"
-
-#: diventi/templates/base_quick.html:287
+#: diventi/templates/base_quick.html:289
 msgid "participate"
 msgstr "partecipa"
 
-#: diventi/templates/base_quick.html:290 diventi/templates/base_quick.html:550
+#: diventi/templates/base_quick.html:292 diventi/templates/base_quick.html:552
 msgid "community"
 msgstr "community"
 
-#: diventi/templates/base_quick.html:300
+#: diventi/templates/base_quick.html:302
 msgid "join in our latest discussions"
 msgstr "unisciti ai nostri ultimi dibattiti"
 
-#: diventi/templates/base_quick.html:312
+#: diventi/templates/base_quick.html:314
 msgid "read and comment our latest news"
 msgstr "leggi e commenta le nostre ultime notizie"
 
-#: diventi/templates/base_quick.html:318
+#: diventi/templates/base_quick.html:320
 msgid "about us"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:341
+#: diventi/templates/base_quick.html:343
 msgid "explore"
 msgstr "esplora"
 
-#: diventi/templates/base_quick.html:365
+#: diventi/templates/base_quick.html:367
 #: diventi/templates/products/product_list_quick.html:118
 msgid "all games"
 msgstr "tutti i giochi"
 
-#: diventi/templates/base_quick.html:366
+#: diventi/templates/base_quick.html:368
 msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
-#: diventi/templates/base_quick.html:376
+#: diventi/templates/base_quick.html:378
 msgid "support us"
 msgstr "supportaci"
 
-#: diventi/templates/base_quick.html:451
+#: diventi/templates/base_quick.html:453
 msgid "suggestions"
 msgstr "suggerimenti"
 
-#: diventi/templates/base_quick.html:517
+#: diventi/templates/base_quick.html:519
 msgid ""
 "Diventi is a role-playing community that embraces fun, encourages "
 "storytelling and helps game masters to create outstanding adventures"
@@ -2616,11 +2645,11 @@ msgstr ""
 "incoraggia l'interpretazione e aiuta i game master a realizzare avventure "
 "straordinarie"
 
-#: diventi/templates/base_quick.html:542
+#: diventi/templates/base_quick.html:544
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:561
+#: diventi/templates/base_quick.html:563
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -2744,7 +2773,7 @@ msgstr "questo contenuto è nella tua collezione"
 
 #: diventi/templates/ebooks/book_detail_pdf.html:52
 #: diventi/templates/ebooks/book_detail_pdf.html:57
-#: diventi/templates/products/partials/product_detail_actions.html:22
+#: diventi/templates/products/partials/product_detail_actions.html:26
 msgid "Add to collection"
 msgstr "Aggiungi alla collezione"
 
@@ -2863,48 +2892,61 @@ msgid "check answers"
 msgstr "visualizza risposte"
 
 #: diventi/templates/geminigm/chatbot.html:5
+#: diventi/templates/geminigm/gemma_detail.html:5
 msgid "my Primo Contatto adventure"
 msgstr "la mia avventura di Primo Contatto"
 
 #: diventi/templates/geminigm/chatbot.html:22
+#: diventi/templates/geminigm/gemma_detail.html:22
 msgid "my adventure"
 msgstr "la mia avventura"
 
 #: diventi/templates/geminigm/chatbot.html:37
+#: diventi/templates/geminigm/gemma_detail.html:37
 msgid "character sheet"
 msgstr "scheda personaggio"
 
 #: diventi/templates/geminigm/chatbot.html:45
 #: diventi/templates/geminigm/chatbot.html:195
+#: diventi/templates/geminigm/gemma_detail.html:45
+#: diventi/templates/geminigm/gemma_detail.html:195
 msgid "No character sheet is available, please ask the GM to create one!"
 msgstr "Scheda personaggio non disponbile, chiedi al GM di crearne una!"
 
 #: diventi/templates/geminigm/chatbot.html:76
+#: diventi/templates/geminigm/gemma_detail.html:76
 msgid "send a message to Diventi GM..."
 msgstr "invia messaggio a Diventi GM..."
 
 #: diventi/templates/geminigm/chatbot.html:77
+#: diventi/templates/geminigm/gemma_detail.html:77
 msgid "send message (Ctrl + Enter)"
 msgstr "invia messaggio (Ctrl + Invio)"
 
 #: diventi/templates/geminigm/chatbot.html:78
+#: diventi/templates/geminigm/gemma_detail.html:78
 msgid "send"
 msgstr "invia"
 
 #: diventi/templates/geminigm/chatbot.html:85
+#: diventi/templates/geminigm/gemma_detail.html:85
 msgid "Diventi GM is thinking..."
 msgstr "Diventi GM sta pensando..."
 
 #: diventi/templates/geminigm/chatbot.html:90
+#: diventi/templates/geminigm/gemma_detail.html:90
 msgid "go to ingestion page"
 msgstr "vai alla pagina di ingestione"
 
 #: diventi/templates/geminigm/chatbot.html:99
+#: diventi/templates/geminigm/gemma_detail.html:99
 msgid "the adventure so far"
 msgstr "l'avventura fino ad ora"
 
 #: diventi/templates/geminigm/chatbot.html:107
 #: diventi/templates/geminigm/chatbot.html:224
+#: diventi/templates/geminigm/gemma_detail.html:107
+#: diventi/templates/geminigm/gemma_detail.html:224
 msgid ""
 "No summary is available. Please start playing to see the relevant events in "
 "this section."
@@ -2913,22 +2955,26 @@ msgstr ""
 "rilevanti qui!"
 
 #: diventi/templates/geminigm/chatbot.html:197
+#: diventi/templates/geminigm/gemma_detail.html:197
 msgid "An error occured while generating your character sheet"
 msgstr ""
 "È stato sollevato un errore durante la generazione della tua scheda "
 "personaggio"
 
 #: diventi/templates/geminigm/chatbot.html:203
+#: diventi/templates/geminigm/gemma_detail.html:203
 msgid "An error occured while generating your character sheet."
 msgstr ""
 "È stato sollevato un errore durante la generazione della tua scheda "
 "personaggio."
 
 #: diventi/templates/geminigm/chatbot.html:226
+#: diventi/templates/geminigm/gemma_detail.html:226
 msgid "An error occured while generating your summary."
 msgstr "È stato sollevato un errore durante la creazione del tuo riassunto."
 
 #: diventi/templates/geminigm/chatbot.html:232
+#: diventi/templates/geminigm/gemma_detail.html:232
 msgid "A network error occured while generating your summary."
 msgstr ""
 "È stato sollevato un errore di rete durante la creazione del tuo riassunto."
@@ -3727,27 +3773,27 @@ msgstr "prova di nuovo"
 msgid "buy for"
 msgstr "acquista per"
 
-#: diventi/templates/products/partials/product_detail_actions.html:34
+#: diventi/templates/products/partials/product_detail_actions.html:38
 msgid "you've already answered"
 msgstr "hai già risposto, grazie"
 
-#: diventi/templates/products/partials/product_detail_actions.html:38
+#: diventi/templates/products/partials/product_detail_actions.html:42
 msgid "you can"
 msgstr "puoi"
 
-#: diventi/templates/products/partials/product_detail_actions.html:38
+#: diventi/templates/products/partials/product_detail_actions.html:42
 msgid "check your answers here"
 msgstr "visualizzare le tue risposte qui"
 
-#: diventi/templates/products/partials/product_detail_actions.html:38
+#: diventi/templates/products/partials/product_detail_actions.html:42
 msgid "or"
 msgstr "o"
 
-#: diventi/templates/products/partials/product_detail_actions.html:38
+#: diventi/templates/products/partials/product_detail_actions.html:42
 msgid "in your collection"
 msgstr "nella tua collezione"
 
-#: diventi/templates/products/partials/product_detail_actions.html:51
+#: diventi/templates/products/partials/product_detail_actions.html:55
 msgid "Sign in and buy for "
 msgstr "Accedi e acquista per "
 
@@ -3894,6 +3940,9 @@ msgstr "link della menzione"
 #: diventi/tooltips/models.py:76
 msgid "Tooltip"
 msgstr "Suggerimento"
+
+#~ msgid "play with AI"
+#~ msgstr "gioca con l'IA"
 
 #, fuzzy
 #~| msgid "latest articles"

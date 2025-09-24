@@ -114,10 +114,8 @@ LOCAL_APPS = [
     'diventi.products',
     'diventi.feedbacks',
     'diventi.ebooks',
-    'diventi.tooltips',
     'diventi.payments',
     'diventi.packages',
-    'diventi.previews',
     'diventi.geminigm',
 ]
 
@@ -135,7 +133,6 @@ THIRD_PARTY_APPS = [
     'widget_tweaks',
     'haystack',
     'fullurl',
-    'django_crontab',
     'hitcount',
 #    'debug_toolbar',
 ]

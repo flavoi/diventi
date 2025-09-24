@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{% trans "my Primo Contatto adventure"|capfirst %}{% endblock title %}
+{% block title %}{{ gemma.title|capfirst }}{% endblock title %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,8 +18,8 @@
       <div class="col-lg-9">
         <div class="row align-items-center">
           <div class="col">
-            <span class="surtitle">Primo Contatto</span>
-            <h1 class="h2 mb-0">{% trans 'my adventure'|capfirst %}</h1>
+            <span class="surtitle">{{ gemma.title|capfirst }}</span>
+            <h1 class="h2 mb-0">{{ gemma.short_description|capfirst }}</h1>
           </div>
         </div>
       </div>

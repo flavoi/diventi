@@ -137,6 +137,13 @@ class WelcomeMessage(models.Model):
         auto_now_add=True,
         verbose_name=_('creation date'),
     )
+    gemma = models.ForeignKey(
+        GemmaIstruction, 
+        null = True, 
+        related_name = 'welcome_messages', 
+        verbose_name = _('gemma'), 
+        on_delete = models.SET_NULL,
+    )
 
     def __str__(self):
         return self.bot_response

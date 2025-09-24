@@ -28,7 +28,7 @@ class GemmaIstructionAdmin(DiventiTranslationAdmin):
     
 
 class WelcomeMessageAdmin(DiventiTranslationAdmin):
-    list_display = ['bot_response', 'created_at',]
+    list_display = ['bot_response', 'created_at', 'gemma']
     readonly_fields = ['created_at',]
 
 

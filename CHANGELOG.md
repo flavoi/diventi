@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Updated permission logic to enable or disable playtester access
 
 ### Removed
+- [previews] Removed legacy previews app
+- [reviews] Removed legacy reviews app
+- [tooltips] Removed legacy tooltips app
 
 ### Fixed
 - [products] Fixed a problem that prevented some translations to be displayed in the admin

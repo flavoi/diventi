@@ -36,11 +36,10 @@ class Command(BaseCommand):
         
         gemma = GemmaIstruction.objects.active()
 
-        for f_gemini in client.files.list():
-            contents_for_gemini.append(f_gemini)
-
         for g in gemma:
             contents_for_gemini = []
+            for f_gemini in client.files.list():
+                contents_for_gemini.append(f_gemini)
             contents_for_gemini.append(g.system_instruction)
             contents_for_gemini.append(g.welcome_message_istruction)
             try:

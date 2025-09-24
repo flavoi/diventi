@@ -29,7 +29,6 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
     path('payments/', include('diventi.payments.urls', namespace='payments')),
-    path('previews/', include('diventi.previews.urls', namespace='previews')),
     path('403/', TemplateView.as_view(template_name='403.html')),
     path('404/', TemplateView.as_view(template_name='404.html')),
     path('500/', TemplateView.as_view(template_name='500.html')),

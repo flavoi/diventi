@@ -6,32 +6,6 @@ from django.urls import reverse
 from diventi.products.models import Product
 
 
-class ChatMessage(models.Model):
-    user_message = models.TextField(
-        verbose_name=_('user message'),
-    )
-    bot_response = models.TextField(
-        verbose_name=_('bot response'),
-    )
-    author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,  
-        verbose_name=_('author'),
-        null=True,
-        on_delete=models.SET_NULL,
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name=_('creation date'),
-    )
-
-    def __str__(self):
-        return self.user_message
-
-    class Meta:
-        verbose_name = _('chat message')
-        verbose_name_plural = _('chat messages')
-
-
 class IngestedDocument(models.Model):
     title = models.CharField(
         max_length=255, 
@@ -170,3 +144,37 @@ class WelcomeMessage(models.Model):
     class Meta:
         verbose_name = _('Welcome message')
         verbose_name_plural = _('Welcome messages')
+
+
+
+class ChatMessage(models.Model):
+    user_message = models.TextField(
+        verbose_name=_('user message'),
+    )
+    bot_response = models.TextField(
+        verbose_name=_('bot response'),
+    )
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,  
+        verbose_name=_('author'),
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('creation date'),
+    )
+    gemma = models.ForeignKey(
+        GemmaIstruction, 
+        null = True, 
+        related_name = 'chat_messages', 
+        verbose_name = _('gemma'), 
+        on_delete = models.SET_NULL,
+    )
+
+    def __str__(self):
+        return self.user_message
+
+    class Meta:
+        verbose_name = _('chat message')
+        verbose_name_plural = _('chat messages')

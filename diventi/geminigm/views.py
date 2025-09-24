@@ -224,7 +224,7 @@ def send_message_ajax(request, gemma_slug):
                         contents=f'traduci in inglese {response_text}. Non riportare frasi introduttive o finali, limitati a resistuire la traduzione.',
                     )
                     response_text = response.text
-                ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user)
+                ChatMessage.objects.create(user_message=query, bot_response=response_text, author=request.user, gemma=gemma)
 
                 return JsonResponse({
                     'success': True, 

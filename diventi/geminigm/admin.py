@@ -10,9 +10,9 @@ from diventi.core.admin import DiventiTranslationAdmin
 
 
 class ChatMessageAdmin(admin.ModelAdmin):
-    list_display = ['user_message', 'created_at', 'author']
+    list_display = ['user_message', 'created_at', 'author', 'gemma']
     readonly_fields = ['created_at',]
-    search_fields = ('author__first_name','author__email','author__nametag')
+    search_fields = ('author__first_name','author__email','author__nametag', 'gemma__title')
     ordering = ('-created_at',)
 
 

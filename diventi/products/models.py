@@ -373,14 +373,20 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         queryset_public = Product.objects.public_popular()        
         results = []
         for product in queryset_public:
+            if hasattr(product, "book"):
+                title = product.book.hit_count.hits
+                description = product.book.hit_count.hits_in_last(days=7) 
+            else:
+                title = ''
+                description = ''
             results.append({
                 'columns': 4,
                 'name': '%(product)s' % {
                     'product': product.title,
                 },
-                'title': product.book.hit_count.hits,
+                'title': title,
                 'description1': _('views in the last week: %(d)s') % {
-                    'd': product.book.hit_count.hits_in_last(days=7),
+                    'd': description,
                 },
                 'description2': '',
                 'action': '',
@@ -391,14 +397,20 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         queryset_public = Product.objects.public_recent()
         results = []
         for product in queryset_public:
+            if hasattr(product, "book"):
+                title = product.book.hit_count.hits
+                description = product.book.hit_count.hits_in_last(days=7)
+            else:
+                title = '-'
+                description = '-'
             results.append({
                 'columns': 4,
                 'name': '%(product)s' % {
                     'product': product.title,
                 },
-                'title': product.book.hit_count.hits,
+                'title': title,
                 'description1': _('views in the last week: %(d)s') % {
-                    'd': product.book.hit_count.hits_in_last(days=7),
+                    'd': description,
                 },
                 'description2': '',
                 'action': '',
@@ -434,14 +446,22 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
                 'description2': '',
                 'action': ''
             })
+
+            if hasattr(product, "book"):
+                title = product.book.hit_count.hits
+                description = product.book.hit_count.hits_in_last(days=7)
+            else:
+                title = '-'
+                description = '-'
+
             results.append({
                 'columns': 3,
                 'name': _('%(product)s: book views') % {
                     'product': product.title,
                 },
-                'title': product.book.hit_count.hits,
+                'title': title,
                 'description1': _('views in the last week:: %(d)s') % {
-                    'd': product.book.hit_count.hits_in_last(days=7),
+                    'd': description,
                 },
                 'description2': '',
                 'action': ''

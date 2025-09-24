@@ -142,7 +142,7 @@ class GemmaDetailView(DetailView):
         context['bought'] = self.object.gemma_product.user_has_already_bought(self.request.user)
         welcome_message = ""
         try:
-            welcome_message = WelcomeMessage.objects.latest('created_at').bot_response
+            welcome_message = WelcomeMessage.objects.filter(gemma=self.object.id).latest('created_at').bot_response
         except WelcomeMessage.DoesNotExist:
             welcome_message = _("Welcome to your Primo Contatto adventure!")
         context['welcome_message'] = markdown.markdown(welcome_message)

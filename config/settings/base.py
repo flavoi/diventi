@@ -127,9 +127,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'captcha',
     'mptt',
-    #'boto',
     'letsencrypt',
-    'reviews',
     'widget_tweaks',
     'haystack',
     'fullurl',
@@ -331,20 +329,6 @@ LOGGING = {
         },
     },
 }
-
-
-# Reviews config
-# https://github.com/andreynovikov/django-rated-reviews
-
-REVIEW_RATING_CHOICES = (
-    ('1', _('Terrible')),
-    ('2', _('Poor')),
-    ('3', _('Average')),
-    ('4', _('Very Good')),
-    ('5', _('Excellent')),
-)
-
-REVIEW_PUBLISH_UNMODERATED = True
 
 
 # Haystack config

@@ -1,7 +1,5 @@
 from functools import wraps
 
-from reviews.models import Review
-
 from machina.apps.forum_member.models import ForumProfile
 from machina.apps.forum.models import Forum
 from machina.apps.forum_conversation.models import Post
@@ -37,7 +35,6 @@ def get_user_data(user, self=None):
         projects = Product.objects.none()
         projects_count = 0
         projects_categories = ProductCategory.objects.none()
-    ratings_count = Review.objects.filter(user=user).count()
     achievements = Award.objects.filter(awarded_user=user).related()
     achievements_count = achievements.count()
     comments_count = DiventiComment.objects.filter(user=user).count()
@@ -69,7 +66,6 @@ def get_user_data(user, self=None):
         'projects': projects,
         'projects_count': projects_count,
         'projects_categories': projects_categories,
-        'ratings_count': ratings_count,
         'achievements_count': achievements_count,
         'achievements': achievements,
         'comments_count': comments_count,

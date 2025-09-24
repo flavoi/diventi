@@ -142,6 +142,14 @@ class ProductQuerySet(FeaturedModelQuerySet):
         products = self.hit_count().not_public()
         return products
 
+    # Return products that are not playtest material, for non-playtester
+    def published(self):
+        products = self.filter(published=True)
+        current_user = CuserMiddleware.get_user()
+        if not current_user.has_perm('accounts.can_playtest'): 
+            products = products.exclude(playtest_material=True)
+        return products
+
 
 class ProductCategoryQuerySet(models.QuerySet):
 

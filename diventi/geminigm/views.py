@@ -132,6 +132,7 @@ class GemmaDetailView(DetailView):
     model = GemmaIstruction
     slug_url_kwarg = 'gemma_slug'
     template_name = 'geminigm/gemma_detail.html'
+    context_object_name = 'gemma'
 
     def get_queryset(self, **kwargs):
         queryset = super().get_queryset(**kwargs)

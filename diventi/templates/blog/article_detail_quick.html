@@ -39,7 +39,7 @@
                     {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                 {% endwith %}
                 <h1 class="h2 text-white mt-3 mb-1 pr-5">{{ article.title|capfirst }}</h1>
-                <p class="lead text-white mb-1 pb-5 pr-5">{{ article.description|capfirst|safe }}</p>
+                <p class="lead text-white mb-1 pb-5 pr-5">{{ article.description|capfirst|striptags }}</p>
             </div>
         </div>
     </div>

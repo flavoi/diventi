@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] → 2026-01-xx
+
+### Added
+- [landing] Introduced Pages: a way to group up sections that can be themed and displayed in the landing page
+- [products] Introduced Sessions: a feature that tracks payment operations carried out by any user
+
+### Changed
+- [accounts] Enabled links for pdf attachements in the collection section
+- [blog] Enabled pinned articles to be displayed on the landing page without the need to be marked as featured too
+- [payments] Enabled anonymous users to buy pdfs from the website without signing up
+
+### Security
+- [payments] Moved the stripe checkout management on the server side
+
+### Removed
+- [landing] Removed legacy dependancies from the business logic
+
+### Fixed
+- [machinima] Fixed a problem that prevented some pages to be displayed. due to legacy dependacies being broken
+
 
 ## [1.2.0] → 2025-09-22
 

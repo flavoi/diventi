@@ -12,7 +12,7 @@
   <meta property="og:article:modified_time" content="{{ article.modified|date:'c' }}" />
   <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <meta property="og:image" content="{{ article.image }}" />
-  <meta property="og:description" content="{{ article.description }}" />
+  <meta property="og:description" content="{{ article.description|safe }}" />
 {% endblock base_opengraph %}
 
 {% block title %}{{ article.title }}{% endblock title %}
@@ -39,7 +39,7 @@
                     {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
                 {% endwith %}
                 <h1 class="h2 text-white mt-3 mb-1 pr-5">{{ article.title|capfirst }}</h1>
-                <p class="lead text-white mb-1 pb-5 pr-5">{{ article.description|capfirst }}</p>
+                <p class="lead text-white mb-1 pb-5 pr-5">{{ article.description|capfirst|safe }}</p>
             </div>
         </div>
     </div>
@@ -117,7 +117,7 @@
                                 {{ article.title|capfirst }}
                             </a>
                         <p class="mt-3 mb-0 lh-170">
-                            {{ article.description|truncatechars:200 }}
+                            {{ article.description|truncatechars:200|safe }}
                         </p>
                     </div>
                     <div class="card-footer border-0 delimiter-top">

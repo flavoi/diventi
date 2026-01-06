@@ -80,7 +80,7 @@
                         <a href="{% url 'blog:detail' article.slug %}" class="d-block h5 mb-3 text-white stretched-link">{{ article.title }}</a>
                         <!-- Text -->
                         <p class="mb-0 text-white">
-                            {{ article.description|truncatechars:200 }}
+                            {{ article.description|truncatechars:200|safe }}
                         </p>
                     </div>
                     <!-- Meta -->

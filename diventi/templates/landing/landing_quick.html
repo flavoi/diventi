@@ -122,7 +122,7 @@
                             {{ pinned_article.title|capfirst }}
                         </a>
                         <p class="mt-3 mb-0 lh-170">
-                            {{ pinned_article.description|truncatechars:200 }}
+                            {{ pinned_article.description|truncatechars:200|safe }}
                         </p>
                     </div>
                 </div>

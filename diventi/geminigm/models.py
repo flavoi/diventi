@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.urls import reverse
 
+from cuser.middleware import CuserMiddleware
+
 from diventi.products.models import Product
 
 
@@ -145,6 +147,17 @@ class WelcomeMessage(models.Model):
         verbose_name_plural = _('Welcome messages')
 
 
+class ChatMessageQuerySet(models.QuerySet):
+
+    # Fetch the last HISTORY_DEPTH messages relevant for the selected AI agent (gemma)
+    def history(self, gemma):
+        HISTORY_DEPTH = 85
+        current_user = CuserMiddleware.get_user() # The user that is operating in the session
+        messages = self.filter(gemma=gemma)
+        messages = messages.filter(author=current_user)
+        messages = messages.order_by('-created_at')[:HISTORY_DEPTH]
+        return messages
+
 
 class ChatMessage(models.Model):
     user_message = models.TextField(
@@ -170,6 +183,8 @@ class ChatMessage(models.Model):
         verbose_name = _('gemma'), 
         on_delete = models.SET_NULL,
     )
+
+    objects = ChatMessageQuerySet.as_manager()
 
     def __str__(self):
         return self.user_message

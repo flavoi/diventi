@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.sites.models import Site
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Q
 
 from modeltranslation.admin import (
     TranslationTabularInline, 
@@ -23,39 +24,39 @@ from .models import (
     SearchSuggestion,
     AboutArticle,
     SectionImage,
+    LandingPage,
 )
 from .forms import SectionForm
 
 
 class FeatureInline(TranslationStackedInline):
     model = Feature
-    fields = ('title', 'icon', 'icon_style', 'color', 'description',)
+    fields = ('title', 'prefix', 'subtitle', 'icon', 'color', 'description',)
     extra = 0
+
 
 class SectionAdmin(DiventiTranslationAdmin):
     list_display = [
         'title',
-        'subtitle',
-        'image_tag',
-        'video_image_tag',
-        'get_cover_primary_tag',
-        'get_cover_secondary_tag',
-        'order_index',
-        'published',
         'featured',
+        'subtitle',
+        'video_image_tag',
+        'cover_primary_tag',
+        'cover_secondary',
+        'order_index',
     ]
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'featured')
+            'fields': ('featured',)
         }),
         (_('Multimedia'), {
-            'fields': ('image', 'video', 'video_image','cover_primary', 'cover_secondary')
+            'fields': ('video', 'video_image','cover_primary', 'cover_secondary')
         }),
         (_('Editing'), {
-            'fields': ('order_index', 'prefix', 'title', 'subtitle', 'button_label', 'description',),
+            'fields': ('order_index', 'prefix', 'title', 'subtitle', 'button_label', 'description', 'slug'),
         }),
         (_('Attachments'), {
-            'fields': ('attachment_label', 'attached_product',),
+            'fields': ('attached_product', 'attached_section'),
         }),
     )
     inlines = [        
@@ -64,20 +65,14 @@ class SectionAdmin(DiventiTranslationAdmin):
     actions = [make_published, make_unpublished]
     form = SectionForm
     ordering = ['-featured', 'order_index']
+    prepopulated_fields = {"slug": ("title",)}
 
-    def get_cover_primary_tag(self, obj):
+    def cover_primary_tag(self, obj):
         if obj.cover_primary:
             return obj.cover_primary.image_tag()
         else:
             return '-'
-    get_cover_primary_tag.short_description = _('primary cover')
-
-    def get_cover_secondary_tag(self, obj):
-        if obj.cover_secondary:
-            return obj.cover_secondary.image_tag()
-        else:
-            return '-'
-    get_cover_secondary_tag.short_description = _('secondary cover')
+    cover_primary_tag.short_description = _('primary cover')
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(SectionAdmin, self).get_form(request, obj, **kwargs)
@@ -90,10 +85,10 @@ class SearchSuggestionAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     fields = ('title', 'icon', 'description',)
 
 
-class GenericArticleAdmin(DiventiTranslationAdmin):
+class AboutArticleAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'get_hitcounts', 'published', 'publication_date']
     readonly_fields = ['created', 'modified', 'publication_date']
-    prepopulated_fields = {"slug": ("title",)} 
+    prepopulated_fields = {"slug": ("title",)}
     fieldsets = (
         (_('Management'), {
             'fields': ('published',)
@@ -105,7 +100,35 @@ class GenericArticleAdmin(DiventiTranslationAdmin):
     actions = [make_published, make_unpublished]
 
 
+class LandingPageAdmin(DiventiTranslationAdmin):
+    list_display = ['title', 'featured', 'published', 'enable_pinned_content', 'enable_signin', ]
+    readonly_fields = ['created', 'modified', 'publication_date']
+    prepopulated_fields = {"slug": ("title",)}
+    fieldsets = (
+        (_('Management'), {
+            'fields': ('published', 'featured'),
+        }),
+        (_('Content'), {
+            'fields': ('enable_pinned_content', 'enable_signin', 'sections', ),
+        }),
+        (_('Editing'), {
+            'fields': ('title', 'description', 'theme', 'slug', 'publication_date'),
+        }),
+    )
+    prepopulated_fields = {"slug": ("title",)}
+    actions = [make_published, make_unpublished]
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(LandingPageAdmin, self).get_form(request, obj, **kwargs)
+        queryset = Section.objects.filter(
+            Q(landing_pages=obj) | Q(landing_pages__isnull=True)
+        ).filter(section__isnull=True)
+        form.base_fields['sections'].queryset = queryset
+        return form
+
+
 admin.site.register(Section, SectionAdmin)
 admin.site.register(SearchSuggestion, SearchSuggestionAdmin)
-admin.site.register(AboutArticle, GenericArticleAdmin)
+admin.site.register(AboutArticle, AboutArticleAdmin)
 admin.site.register(SectionImage)
+admin.site.register(LandingPage, LandingPageAdmin)

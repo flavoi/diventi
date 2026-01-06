@@ -8,6 +8,7 @@ from django.conf import settings
 from django.utils.html import mark_safe
 
 from cuser.middleware import CuserMiddleware
+from ckeditor.fields import RichTextField
 
 
 COLORS_CHOICES = (
@@ -136,7 +137,7 @@ class Element(models.Model):
         max_length = 1,
         verbose_name = _('icon style')
     )
-    description = models.TextField(blank=True, verbose_name=_('description'))
+    description = RichTextField(blank=True, verbose_name=_('description'))
     color = models.CharField(blank=True, choices=COLORS_CHOICES, max_length=30, default='default', verbose_name=_('color'))
 
     def __str__(self):

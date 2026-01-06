@@ -1,0 +1,46 @@
+{% load i18n %}
+{% load fullurl %}
+
+<!-- Includi la libreria Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<!-- Il bottone di acquisto -->
+<button class="btn btn-primary w-100 btn-lg" id="checkout-button">
+    <i class="fas fa-shopping-cart me-2"></i> {% trans 'buy now'|upper %}
+</button>
+
+<script>
+  // Inizializza Stripe con la tua chiave pubblica
+  var stripe = Stripe('{{ stripe_publishable_key }}');
+
+  var checkoutButton = document.querySelector('#checkout-button');
+
+  checkoutButton.addEventListener('click', function () {    
+    fetch('{% fullurl "payments:create_checkout_session" product.slug %}', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(function (response) {
+      // Controlla se la risposta è ok
+      if (!response.ok) {
+        return response.json().then(error => { throw error; });
+      }
+      return response.json();
+    })
+    .then(function (session) {      
+      return stripe.redirectToCheckout({ sessionId: session.id });
+    })
+    .then(function (result) {      
+      if (result.error) {
+        alert(result.error.message);
+      }
+    })
+    .catch(function (error) {
+      console.error('Error:', error);
+      alert("{% trans 'Error 500: Webservice currently unavailable' %}");
+    });
+  });
+</script>

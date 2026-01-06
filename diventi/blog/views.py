@@ -28,7 +28,7 @@ class ArticlesListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(ArticlesListView, self).get_context_data(*args, **kwargs)
         context['categories'] = ArticleCategory.objects.filter(article__in=Article.objects.history()).distinct()
-        context['hot_articles'] = Article.objects.hot()
+        context['hot_articles'] = Article.objects.pinned_list()
         context['blogcover'] = BlogCover.objects.active()
         return context
 

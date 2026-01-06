@@ -7,8 +7,9 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
+from django.urls import reverse
 
 from diventi.products.models import (
     Product,
@@ -87,3 +88,51 @@ def stripe_webhook(request):
             },
         )
     return HttpResponse(status=200)
+
+
+def create_checkout_session(request, product_slug):
+    if request.method != 'POST':
+        return JsonResponse({'error': _('Method not allowed')}, status=405)
+
+    product = get_object_or_404(Product, slug=product_slug)
+    stripe.api_key = settings.STRIPE_SECRET_KEY   
+
+    # 1. Ottieni l'URL relativo
+    try:
+        # MODIFICA URL: Costruiamo l'URL includendo il tag di Stripe nel path.
+        # Usiamo un placeholder "__PID__" per evitare che Django codifichi le parentesi graffe { }
+        # se le passassimo direttamente nel reverse.
+        placeholder = "__PID__"
+        success_rel_url = reverse('products:checkout_done_pdf', args=[product_slug, placeholder])    
+        cancel_rel_url = reverse('products:checkout_failed', args=[product_slug])
+    except Exception as e:
+         return JsonResponse({'error': _(f'URL configuration error: {str(e)}')}, status=500)
+
+    # 2. Trasformalo in URL assoluto
+    success_url = request.build_absolute_uri(success_rel_url)
+    success_url = success_url.replace(placeholder, '{CHECKOUT_SESSION_ID}')
+    cancel_url = request.build_absolute_uri(cancel_rel_url)
+
+    # 3. Configura i parametri per Stripe
+    session_params = {
+        'payment_method_types': ['card', 'paypal'],
+        'line_items': [{         
+            'price': product.stripe_price,
+            'quantity': 1,
+        }],
+        'mode': 'payment',
+        'success_url': success_url,
+        'cancel_url': cancel_url,
+    }
+
+    # 4. Se l'utente è loggato, passa la sua email
+    if request.user.is_authenticated and request.user.email:
+        session_params['customer_email'] = request.user.email
+        session_params['client_reference_id'] = str(request.user.nametag) 
+
+    try:
+        # Crea la sessione con i parametri dinamici
+        session = stripe.checkout.Session.create(**session_params)
+        return JsonResponse({'id': session.id})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)

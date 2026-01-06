@@ -5,6 +5,7 @@ from django.utils.html import mark_safe
 from django.urls import reverse
 from django.db.models import Prefetch
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.exceptions import ObjectDoesNotExist
 
 from cuser.middleware import CuserMiddleware
 from ckeditor.fields import RichTextField
@@ -110,16 +111,19 @@ class PolicyArticle(TimeStampedModel, PublishableModel, Element):
 class SectionModelQuerySet(FeaturedModelQuerySet):
 
     def prefetch(self):
-        sections = self.select_related('about_article')
+        sections = self.select_related('cover_primary')
+        sections = self.select_related('cover_secondary')
         sections = sections.select_related('attached_product')
-        sections = section.prefetch_related('features')
+        sections = sections.select_related('attached_section')
+        sections = sections.prefetch_related('attached_section__features')
+        sections = sections.prefetch_related('features')
         return sections
 
     # Get the not featured object that can be selected to appear on the landing page
     def not_featured(self):
-        not_featured_models = self.published().filter(featured=False)
-        not_featured_models = not_featured_models.order_by('order_index')
-        return not_featured_models
+        sections = self.filter(featured=False)
+        sections = sections.order_by('order_index')
+        return sections
 
 
 class SectionModelManager(FeaturedModelManager):
@@ -132,9 +136,17 @@ class SectionModelManager(FeaturedModelManager):
 
 
 class SectionImage(DiventiImageModel):
-    pass
+
+    class Meta:
+        verbose_name = _('section image')
+        verbose_name_plural = _('section images')
+
 
 class Section(DiventiImageModel, FeaturedModel, SectionModel):
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug'),
+    )
     prefix = models.TextField(
         blank=True, 
         verbose_name=_('prefix text')
@@ -168,17 +180,21 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         blank=True,
         verbose_name=_('video image')
     )
-    attachment_label = models.CharField(
-        blank=True, 
-        max_length=50, 
-        verbose_name=_('attachment label')
-    )
     attached_product = models.OneToOneField(
         Product,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
+        related_name='section',
         verbose_name=_('product')
+    )
+    attached_section = models.OneToOneField(
+        'self',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='section',
+        verbose_name=_('section')
     )
     cover_primary = models.ForeignKey(
         SectionImage,
@@ -212,7 +228,21 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
 
 
 class Feature(Element): 
-    section = models.ForeignKey(Section, null=True, related_name='features', on_delete=models.SET_NULL)
+    section = models.ForeignKey(
+        Section, 
+        null=True, 
+        related_name='features', 
+        on_delete=models.SET_NULL
+    )
+    prefix = models.TextField(
+        blank=True, 
+        verbose_name=_('prefix text')
+    )
+    subtitle = models.CharField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('subtitle')
+    )
 
     class Meta:
         verbose_name = _('feature')
@@ -226,5 +256,54 @@ class SearchSuggestion(Element):
         verbose_name_plural = _('search suggestions')
 
 
+class LandingPageQuerySet(FeaturedModelQuerySet):
+    
+    pass
+
+
+class LandingPage(Element, FeaturedModel, TimeStampedModel):
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug'),
+    )
+    enable_pinned_content = models.BooleanField(
+        default=True,
+        verbose_name=_('enable pinned content'),
+    )
+    enable_signin = models.BooleanField(
+        default=True,
+        verbose_name=_('enable sign in section'),
+    )
+    sections = models.ManyToManyField(
+        Section,
+        related_name = 'landing_pages', 
+        blank = True, 
+        verbose_name = _('sections'),
+    )
+    THEME_CHOICES = (
+        ('landing/landing_quick.html', 'quick classic'),
+        ('landing/landing_quick_onepage.html', 'quick onepage'),
+        ('landing/landing_custom_onepage.html', 'custom onepage')
+
+    )
+    THEME_DEFAULT = 'landing/landing_quick.html'
+    theme = models.CharField(
+        max_length=50,
+        choices=THEME_CHOICES, 
+        default=THEME_DEFAULT, 
+        verbose_name=_('theme')
+    )
+
+    objects = LandingPageQuerySet.as_manager()
+
+    def __str__(self):
+        return '%s' % (self.title)
+
+    def get_absolute_url(self):
+        return reverse('landing:page_detail', args=[str(self.slug)])
+
+    class Meta:
+        verbose_name = _('page')
+        verbose_name_plural = _('pages')
 
 

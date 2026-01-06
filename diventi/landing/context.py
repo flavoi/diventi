@@ -3,6 +3,7 @@
     This script contains useful informations for landing templates.
 """
 from .models import (
+    LandingPage,
 	Section,
 	SearchSuggestion,
     AboutArticle,
@@ -11,7 +12,8 @@ from .models import (
 
 def graph_section(request):
     """ Show featured sections to improve social networks sharing capabilities """
-    graph_section = Section.objects.featured()
+    page = LandingPage.objects.featured()
+    graph_section = page.sections.featured()
     context = {
         'graph_section': graph_section,
     }

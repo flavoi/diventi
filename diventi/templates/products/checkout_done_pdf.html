@@ -1,0 +1,18 @@
+{% load i18n %}
+<html>
+    <head>
+        <title>{% trans 'Thank you for your purchase!' %}</title>
+        <style>
+            body { font-family: sans-serif; text-align: center; padding: 50px; }
+            .btn { background-color: #ea580c; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+            .btn:hover { background-color: #c2410c; }
+        </style>
+    </head>
+    <body>
+        <h1>{% trans 'Thank you for your purchase!' %}</h1>
+        <p>{% trans 'Your order has been confirmed.' %}
+        <p>{% trans 'Here is your secure link to download the manual.' %}</p>
+        <br>
+        <a href="{{ response_url }}" class="btn">{% trans 'Download' %} PDF</a>
+    </body>
+</html>

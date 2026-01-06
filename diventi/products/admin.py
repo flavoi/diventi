@@ -19,6 +19,8 @@ from .models import (
     ProductDetail, 
     ProductFormat,
     ProductCover,
+    ProductImage,
+    ProductDownloadSession,
 )
 from .forms import ProductForm
 
@@ -45,41 +47,25 @@ class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     extra = 0
 
 
-class ChapterInline(TranslationStackedInline):
-    model = Chapter
-    fields = ('title', 'description', 'icon', 'icon_style', 'color')
-    extra = 0
-
-
-class ImagePreviewInline(TranslationStackedInline):
-    model = ImagePreview
-    fields = ('title', 'description', 'image')
-    extra = 0
-
-
-class ImagePreviewAdmin(DiventiTranslationAdmin):
-    list_display = ('title', 'image_tag', 'product')
-    fields = ('title', 'description', 'image', 'product')
-
-
 class ProductAdmin(DiventiTranslationAdmin):
-    list_display = ['title', 'image_tag', 'published', 'unfolded', 'pinned', 'featured', '_at_a_premium', 'public', 'playtest_material', 'product_survey', 'category', 'publication_date', 'modified']    
+    list_display = ['title', 'cover_primary_tag', 'cover_secondary_tag', 'published', 'unfolded', 'pinned', 'featured', 'public', 'playtest_material', 'category', 'publication_date', 'modified']    
     inlines = [
-        ChapterInline,
-        ImagePreviewInline,
         ProductDetailInline,        
     ]
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']
     fieldsets = (
+        (_('Content'), {
+            'fields': ('file',)
+        }),
         (_('Management'), {
-            'fields': ('published', 'unfolded', 'product_survey', 'pinned', 'featured', 'public', 'playtest_material')
+            'fields': ('published', 'unfolded', 'pinned', 'featured', 'public', 'playtest_material')
         }),
         (_('Pricing'), {
             'fields': ('stripe_product', 'stripe_price',)
         }),
         (_('Multimedia'), {
-            'fields': ('image',),
+            'fields': ('cover_primary', 'cover_secondary'),
         }),
         (_('Editing'), {
             'fields': ('title', 'short_description', 'abstract', 'description', 'category', 'authors', 'formats', 'courtesy_short_message', 'courtesy_message', 'slug'),
@@ -101,6 +87,20 @@ class ProductAdmin(DiventiTranslationAdmin):
         form.author_field = 'authors'
         return form
 
+    def cover_primary_tag(self, obj):
+        if obj.cover_primary:
+            return obj.cover_primary.image_tag()
+        else:
+            return '-'
+    cover_primary_tag.short_description = _('primary cover')
+
+    def cover_secondary_tag(self, obj):
+        if obj.cover_secondary:
+            return obj.cover_secondary.image_tag()
+        else:
+            return '-'
+    cover_secondary_tag.short_description = _('secondary cover')
+
 
 class ProductCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     list_display = ('title', 'color_tag', 'meta_category')
@@ -116,11 +116,6 @@ class ProductCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
         }),
     )
     prepopulated_fields = {"slug": ("title",)}
-
-
-class ChapterCategoryAdmin(DiventiTranslationAdmin):
-    list_display = ('title',)
-    fields = ('title',)
 
 
 class PurchaseAdmin(admin.ModelAdmin):
@@ -144,9 +139,15 @@ class ProductCoverAdmin(DiventiTranslationAdmin):
     actions = [deactivate]
 
 
+class ProductDownloadSessionAdmin(admin.ModelAdmin):
+    list_display = ('session_id', 'product', 'created', 'user', 'stripe_email', 'is_valid')
+    search_fields = ['user__first_name', 'user__nametag', 'product__title', 'product__slug', 'stripe_email']
+
+
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ImagePreview, ImagePreviewAdmin)
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(Purchase, PurchaseAdmin)
 admin.site.register(ProductFormat, ProductFormatAdmin)
 admin.site.register(ProductCover, ProductCoverAdmin)
+admin.site.register(ProductImage)
+admin.site.register(ProductDownloadSession, ProductDownloadSessionAdmin)

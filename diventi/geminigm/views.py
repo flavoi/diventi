@@ -40,8 +40,6 @@ from .utils import (
 )
 
 
-HISTORY_DEPTH = 85
-
 @staff_member_required
 def ingest_document_view(request):
     pdf_form = PDFUploadForm()
@@ -195,7 +193,7 @@ def send_message_ajax(request, gemma_slug):
                 contents_for_gemini.append(gemma.system_instruction)
 
                 # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-                chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
+                chat_messages = ChatMessage.objects.history(gemma=gemma)
                 # Inverti l'ordine per avere i messaggi più vecchi prima
                 for m in reversed(chat_messages):
                     contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
@@ -213,7 +211,7 @@ def send_message_ajax(request, gemma_slug):
                 )
 
                 response = client.models.generate_content(
-                    model='gemini-2.5-flash-lite',
+                    model='gemini-3-flash-preview',
                     contents=contents_for_gemini,
                 )
                 response_text = response.text
@@ -221,7 +219,7 @@ def send_message_ajax(request, gemma_slug):
                 lan = get_language()
                 if lan == 'en':
                     response = client.models.generate_content(
-                        model='gemini-2.5-flash-lite',
+                        model='gemini-3-flash-preview',
                         contents=f'traduci in inglese {response_text}. Non riportare frasi introduttive o finali, limitati a resistuire la traduzione.',
                     )
                     response_text = response.text
@@ -255,7 +253,7 @@ def get_adventure_summary_ajax(request, gemma_slug):
             contents_for_gemini.append(gemma.system_instruction)
 
             # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-            chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
+            chat_messages = ChatMessage.objects.history(gemma=gemma)
             # Inverti l'ordine per avere i messaggi più vecchi prima
             for m in reversed(chat_messages):
                 contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
@@ -268,9 +266,10 @@ def get_adventure_summary_ajax(request, gemma_slug):
             contents_for_gemini.append(
                 gemma.summary_istruction,
             )
+            
             if chat_messages:
                 summary = client.models.generate_content(
-                    model='gemini-2.5-flash-lite',
+                    model='gemini-3-flash-preview',
                     contents=contents_for_gemini,
                 )
                 summary_text = summary.text
@@ -303,7 +302,8 @@ def get_char_sheet_ajax(request, gemma_slug):
             contents_for_gemini.append(gemma.system_instruction)
 
             # Ottieni solo gli ultimi N messaggi per limitare la cronologia e non saturare il contesto
-            chat_messages = ChatMessage.objects.filter(author=request.user).order_by('-created_at')[:HISTORY_DEPTH]
+            chat_messages = ChatMessage.objects.history(gemma=gemma)
+
             # Inverti l'ordine per avere i messaggi più vecchi prima
             for m in reversed(chat_messages):
                 contents_for_gemini.append(f'Messaggio utente: {m.user_message}')
@@ -311,7 +311,7 @@ def get_char_sheet_ajax(request, gemma_slug):
 
             # Aggiungi i file ingestiti come contesto
             for f_gemini in client.files.list():
-                contents_for_gemini.append(f_gemini)
+                contents_for_gemini.append(f_gemini)                
 
             contents_for_gemini.append(
                 gemma.character_sheet_istruction,
@@ -319,7 +319,7 @@ def get_char_sheet_ajax(request, gemma_slug):
  
             if chat_messages:
                 character_sheet = client.models.generate_content(
-                    model='gemini-2.5-flash-lite',
+                    model='gemini-3-flash-preview',
                     contents=contents_for_gemini,
                 )
                 character_sheet_text = character_sheet.text

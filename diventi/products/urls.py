@@ -11,6 +11,8 @@ from .views import (
     CheckoutFailedTemplateView,
     RedirectToPublicEbookView,
     add_public_product_to_user_collection_view,
+    checkout_done_pdf,
+    user_product_download,
 )
 
 app_name = 'products'
@@ -25,4 +27,6 @@ urlpatterns = [
     path(_('<slug:slug>/public/'), RedirectToPublicEbookView.as_view(), name='detail-public'),
     path(_('<slug:slug>/checkout/done/'), CheckoutDoneTemplateView.as_view(), name='checkout_done'),
     path(_('<slug:slug>/checkout/failed/'), CheckoutFailedTemplateView.as_view(), name='checkout_failed'),
+    path(_('<slug:slug>/checkout/done/session/<str:session_id>/pdf/'), checkout_done_pdf, name='checkout_done_pdf'),
+    path(_('<slug:slug>/download/'), user_product_download, name='user_product_download'),
 ]

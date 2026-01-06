@@ -19,12 +19,12 @@ from .forms import ArticleForm
 
 
 class ArticleAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
-    list_display = ['title', 'category','image_tag', 'postcard_tag', 'get_hitcounts', 'get_readtime', 'hot', 'published', 'publication_date', 'created']
+    list_display = ['title', 'category','image_tag', 'postcard_tag', 'get_hitcounts', 'get_readtime', 'published',  'featured', 'pinned', 'publication_date', 'created']
     readonly_fields = ['created', 'modified', 'publication_date']
     prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (
         (_('Management'), {
-            'fields': ('published', 'hot')
+            'fields': ('published', 'pinned', 'featured')
         }),
         (_('Layout'), {
             'fields': ('col_lg', 'col_md')

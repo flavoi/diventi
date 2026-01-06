@@ -6,17 +6,18 @@ from .models import (
 	SearchSuggestion,
     AboutArticle,
     SectionImage,
+    LandingPage,
 )
 
 
 @register(Feature)
 class FeatureTranslationOptions(TranslationOptions):
-    fields = ('title', 'description',)
+    fields = ('prefix', 'title', 'subtitle', 'description',)
 
 
 @register(Section)
 class SectionTranslationOptions(TranslationOptions):
-    fields = ('prefix', 'title', 'subtitle', 'description', 'button_label','attachment_label',)
+    fields = ('slug', 'prefix', 'title', 'subtitle', 'description', 'button_label',)
 
 
 @register(SearchSuggestion)
@@ -32,3 +33,8 @@ class AboutArticleOptions(TranslationOptions):
 @register(SectionImage)
 class SectionImageTranslationOptions(TranslationOptions):
     fields = ('label', )
+
+
+@register(LandingPage)
+class FeatureTranslationOptions(TranslationOptions):
+    fields = ('title', 'description', 'slug')

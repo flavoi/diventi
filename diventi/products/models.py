@@ -5,7 +5,8 @@ from django.db import models
 from django.db.models import Prefetch, Q, Count
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
-from django.utils.translation import gettext_lazy as _, gettext
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 from django.contrib.humanize.templatetags.humanize import naturalday
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericRelation
@@ -20,7 +21,6 @@ from .fields import ProtectedFileField
 
 from diventi.feedbacks.models import Survey
 from diventi.blog.models import Article
-
 from diventi.core.models import (
     Element,
     DiventiImageModel,
@@ -39,12 +39,19 @@ from diventi.core.models import (
 
 class ProductCover(DiventiCoverModel, Element):
     """
-        Stores cover images for the blog page.
+        Stores cover images for the product page.
     """
 
     class Meta:
         verbose_name = _('Product Cover')
         verbose_name_plural = _('Product Covers')
+
+
+class ProductImage(DiventiImageModel):
+
+    class Meta:
+        verbose_name = _('section image')
+        verbose_name_plural = _('section images')
 
 
 class ProductQuerySet(FeaturedModelQuerySet):
@@ -61,6 +68,8 @@ class ProductQuerySet(FeaturedModelQuerySet):
         products = products.prefetch_related('related_articles')
         products = products.select_related('product_survey')
         products = products.select_related('related_forum_topic')
+        products = products.select_related('cover_primary')
+        products = products.select_related('cover_secondary')
         return products
 
     # Fetch the products purchased by the user
@@ -104,7 +113,10 @@ class ProductQuerySet(FeaturedModelQuerySet):
 
     # Get the latest product that has public access
     def latest_public(self):
-        product = self.published().filter(public=True).latest('publication_date')
+        try:
+            product = self.published().filter(public=True).latest('publication_date')
+        except self.model.DoesNotExist:
+            product = self.none()
         return product
 
     # Get public products only
@@ -319,13 +331,21 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         blank = True, 
         verbose_name = _('survey')
     )
-    image = models.URLField(
-        blank=True, 
-        verbose_name = _('cover')
+    cover_primary = models.ForeignKey(
+        ProductImage,
+        blank = True,
+        null = True,
+        related_name = 'products_primary',
+        on_delete = models.SET_NULL,
+        verbose_name = _('primary cover')
     )
-    postcard = models.URLField(
-        blank=True, 
-        verbose_name = _('postcard')
+    cover_secondary = models.ForeignKey(
+        ProductImage,
+        blank = True,
+        null = True,
+        related_name = 'products_secondary',
+        on_delete = models.SET_NULL,
+        verbose_name = _('secondary cover')
     )
     hit_count_generic = GenericRelation(
         HitCount, 
@@ -495,7 +515,7 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         else:
             return _('draft')
 
-    # Returns true if the product is free
+    # Returns true if the product has to be paid by the customer
     def _at_a_premium(self):
         if self.stripe_product and self.stripe_price:
             return True
@@ -614,3 +634,47 @@ class Purchase(TimeStampedModel):
             'created': naturalday(self.created),
         }
         return description
+
+
+class ProductDownloadSession(TimeStampedModel):
+    session_id = models.CharField(
+        max_length = 255, 
+        unique = True,
+        db_index = True,
+        verbose_name = _('session id')
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete = models.SET_NULL, 
+        null = True, 
+        blank = True,
+        verbose_name = _('user')
+    )
+    stripe_email = models.EmailField(
+        max_length = 255, 
+        null = True, 
+        blank = True,
+        verbose_name = _('stripe email')
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete = models.SET_NULL,
+        verbose_name = _('product'),
+        null = True,
+    )
+
+    def is_valid(self, validity_minutes=15):
+        """Controlla se siamo ancora nella finestra temporale valida."""
+        now = timezone.now()
+        diff = now - self.created
+        # Trasforma la differenza in minuti
+        diff_minutes = diff.total_seconds() / 60
+        return diff_minutes < validity_minutes
+
+    def get_absolute_url(self):
+        return reverse('products:checkout_done_pdf', args=[str(self.product.slug), self.session_id])
+
+    class Meta:
+        verbose_name = _('Download session')
+        verbose_name_plural = _('Download sessions')
+

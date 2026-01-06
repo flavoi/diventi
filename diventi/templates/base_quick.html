@@ -182,8 +182,8 @@
     <!-- Header -->
     <header class="{% block headerclass %}{% endblock headerclass %}" id="header-main">
         <!-- Navbar -->
-        {% block navbar %}        
-            <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main">               
+        {% block navbar %}
+            <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main" style="{% block navbarstyle %} {% endblock navbarstyle %}">
                 <div class="container">
                         <!-- Toggler -->
                         <button class="navbar-toggler order-{% if user.is_authenticated %}1{% else %}2{% endif %} ml-n3 ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -201,6 +201,7 @@
                                     <i data-feather="x"></i>
                                 </button>
                             </div>
+                            {% block navbar_links %}
                             <ul class="navbar-nav ml-lg-auto mr-3">
                                 {% if user.is_anonymous %}
                                 <div class="d-lg-none px-4 text-center mt-5 mb-3">
@@ -399,11 +400,10 @@
                                 {% endif %}
 
                                 {% block extranav %}{% endblock extranav %}
-
                             </ul>
+                            {% endblock %}
                             {% if user.is_authenticated %}
-                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">       
-                                
+                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                             </ul> 
                             {% endif %}
                             {% if not user.is_authenticated %}
@@ -420,13 +420,13 @@
                             {% endif %}
                         </div>
                         {% if user.is_authenticated %}
-                    <div class="order-lg-4 order-3 ml-lg-3">
-                        <a class="" href="#modal-profile" role="button" data-toggle="modal">
-                            <span class="avatar rounded-circle">
-                                <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}">
-                            </span>
-                        </a>
-                    </div>
+                        <div class="order-lg-4 order-3 ml-lg-3">
+                            <a class="" href="#modal-profile" role="button" data-toggle="modal">
+                                <span class="avatar rounded-circle">
+                                    <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}">
+                                </span>
+                            </a>
+                        </div>
                     {% endif %}
             </nav>
         {% endblock navbar %}
@@ -504,11 +504,7 @@
     {% block footer %}
     <footer class="position-relative" id="footer-main">
         <div class="footer pt-lg-7 footer-dark bg-dark">
-            <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
-                <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="{% block footercolor %}fill-section-secondary{% endblock footercolor %}">
-                    <polygon points="2560 0 2560 100 0 100"></polygon>
-                </svg>
-            </div>
+        
             <div class="container pt-4">
                 {% block extrafooter %}{% endblock extrafooter %}
                 <div class="row">

@@ -1,45 +1,33 @@
 from itertools import chain
 
-from django.urls import reverse
+from django.conf import settings
 from django.views.generic.detail import DetailView
 from django.views.generic import (
     ListView,
     TemplateView,
-    RedirectView
 )
-
-from django.views.generic.edit import CreateView
 from django.utils.translation import (
     ugettext_lazy as _,
     get_language,
 )
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
-from django.http import HttpResponseNotFound
+from django.http import Http404
 
 from hitcount.views import HitCountDetailView
 
-from diventi.accounts.forms import DiventiUserInitForm
-
 from diventi.accounts.models import DiventiUser
 from diventi.products.models import Product
+from diventi.products.utils import get_product_context
 from diventi.blog.models import Article
-from diventi.ebooks.models import Book
 from diventi.feedbacks.models import Survey
 from diventi.packages.models import Package
-
 from diventi.core.views import StaffRequiredMixin
 
 from .models import (
     Section,
     AboutArticle,
+    LandingPage,
 )
-
-from diventi.ebooks.utils import (
-    get_paper_filename,
-    parse_paper_soup,
-    make_paper_toc,
-)
+from .utils import get_landing_context
 
 
 class LandingSearchView(ListView):
@@ -94,42 +82,6 @@ class DashboardView(StaffRequiredMixin, ListView):
         return context
 
 
-def get_landing_context(request):
-    sections = Section.objects.not_featured()
-
-    featured_product = Product.objects.pinned_list().featured()
-    pinned_product = Product.objects.pinned()
-    latest_public_product = Product.objects.latest_public()
-    latest_article = Article.objects.hottest()
-    pinned_survey = Survey.objects.pinned()
-    featured_package = Package.objects.pinned_list().featured()
-    pinned_package = Package.objects.pinned()
-
-    featured_section = Section.objects.featured()
-    if featured_section:
-        pass
-    elif sections.exists():
-        featured_section = sections.first()
-        sections = sections.exclude(id=featured_section.id)
-    else:
-        return HttpResponseNotFound(_('This page is not available yet.'))
-
-    sections = Section.objects.not_featured()
-
-    context = {
-        'featured_product': featured_product,
-        'pinned_product': pinned_product,
-        'featured_section': featured_section,
-        'sections': sections,
-        'latest_article': latest_article,
-        'latest_public_product': latest_public_product,
-        'pinned_survey': pinned_survey,
-        'featured_package': featured_package,
-        'pinned_package': pinned_package,
-    }
-    return context
-
-
 class LandingTemplateView(TemplateView):
     """ Renders the landing page with all necessary context. """
 
@@ -137,8 +89,10 @@ class LandingTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(LandingTemplateView, self).get_context_data(**kwargs)
-        landing_context = get_landing_context(self.request)
-        context = {**context, **landing_context} # Merge the two dictionaries
+        page = LandingPage.objects.featured()
+        landing_context = get_landing_context(self.request, page=page)
+        context = {**context, **landing_context}
+        self.template_name = page.theme
         return context
 
 
@@ -149,6 +103,20 @@ class AboutArticleDetailView(HitCountDetailView):
     count_hit = True
     template_name  = "landing/about_article_quick.html"
 
+
+class LandingPageDetailView(DetailView, StaffRequiredMixin):
+    """ Renders a landing page """
+
+    template_name = "landing/landing_quick.html"
+    model = LandingPage
+    context_object_name = 'page'
+
+    def get_context_data(self, **kwargs):
+        context = super(LandingPageDetailView, self).get_context_data(**kwargs)     
+        landing_context = get_landing_context(self.request, self.object)
+        self.template_name = self.object.theme
+        context = {**context, **landing_context}     
+        return context
 
 
 

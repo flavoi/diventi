@@ -24,7 +24,6 @@ def send_diventi_email(subject, message, from_email, recipient_list, from_name, 
     email_user = settings.EMAIL_HOST_USER
     email_password = settings.EMAIL_HOST_PASSWORD
     server.login(email_user,email_password)
-
     msg = EmailMessage()
     if html_message:
         msg.set_content(html_message, subtype='html')

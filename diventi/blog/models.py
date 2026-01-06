@@ -17,7 +17,9 @@ from diventi.core.models import (
     TimeStampedModel, 
     PromotableModel, 
     PublishableModel,
+    FeaturedModel,
     PublishableModelQuerySet,
+    FeaturedModelQuerySet,
     DiventiImageModel, 
     DiventiCoverModel, 
     Element,
@@ -45,7 +47,7 @@ class ArticleCategory(Element):
         verbose_name_plural = _('Article Categories')
 
 
-class ArticleQuerySet(PublishableModelQuerySet):
+class ArticleQuerySet(FeaturedModelQuerySet):
     
     # Selet articles' related objects
     def prefetch(self):
@@ -63,7 +65,7 @@ class ArticleQuerySet(PublishableModelQuerySet):
 
     # Get the list of published articles but excludes the hot ones
     def history_but_not_hot(self):
-        articles = self.history().exclude(hot=True)
+        articles = self.history().exclude(featured=True)
         return articles
 
     # Get the list of published articles of a certain category
@@ -110,7 +112,7 @@ class ArticleQuerySet(PublishableModelQuerySet):
         return articles
 
 
-class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageModel, DiventiColModel, Element, HitCountMixin):
+class Article(TimeStampedModel, PromotableModel, FeaturedModel, DiventiImageModel, DiventiColModel, Element, HitCountMixin):
     """
         Blog posts are built upon a specific category and are always 
         introduced by a nice heading picture.
@@ -123,10 +125,6 @@ class Article(TimeStampedModel, PromotableModel, PublishableModel, DiventiImageM
     )    
     content = RichTextField(
         verbose_name=_('content')
-    )
-    hot = models.BooleanField(
-        default=False, 
-        verbose_name=_('hot')
     )
     slug = models.SlugField(
         unique=True,

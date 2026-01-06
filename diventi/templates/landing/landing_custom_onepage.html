@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primo Contatto | GdR Modern Fantasy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Palette Arancione */
+            --primary-color: #ea580c; /* Arancione Scuro/Vibrante */
+            --secondary-color: #475569; /* Grigio Ardesia */
+            --bg-light: #fff7ed; /* Crema chiarissimo */
+            --text-dark: #1e293b; /* Blu scuro quasi nero */
+            --accent: #f97316; /* Arancione chiaro per hover */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0;
+            /* Sfumatura calda verso il bianco */
+            background: linear-gradient(180deg, var(--bg-light) 0%, #ffffff 100%);
+            overflow: hidden;
+        }
+
+        .hero-img {
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-img:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Cards e Features */
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--bg-light); /* Sfondo icona caldo */
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-clean {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .card-clean:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Buttons */
+        .btn-primary-clean {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(234, 88, 12, 0.2); /* Ombra arancione */
+            transition: all 0.2s;
+        }
+
+        .btn-primary-clean:hover {
+            background-color: #c2410c; /* Arancione più scuro al passaggio del mouse */
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 10px rgba(234, 88, 12, 0.25);
+        }
+
+        .btn-outline-clean {
+            border: 2px solid #cbd5e1;
+            color: var(--text-dark);
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-clean:hover {
+            border-color: var(--text-dark);
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        /* Character Tags */
+        .badge-clean {
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background-color: var(--text-dark);
+            color: white;
+            border-radius: 20px;
+            padding: 60px;
+            margin-top: 60px;
+        }
+        
+        .pricing-section h2, .pricing-section p {
+            color: white;
+        }
+
+        .check-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .check-list i {
+            color: var(--accent); /* Spunta arancione chiaro */
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: var(--bg-light);
+            padding: 40px 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 80px;
+        }
+        
+        /* Utilità per testo arancione */
+        .text-primary-custom {
+            color: var(--primary-color) !important;
+        }
+
+        .footer-logo { max-width: 200px; height: auto; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">PRIMO <span>CONTATTO</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#ambientazione">Ambientazione</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sistema">Il Sistema</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#personaggi">Agenti</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary-clean" href="#acquista">Acquista PDF</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center flex-lg-row-reverse">
+                <!-- Immagine di Copertina a Destra -->
+                <div class="col-lg-6 mb-5 mb-lg-0 text-center text-lg-end">
+                    <!-- Sostituisci "copertina.png" con il nome esatto del tuo file immagine -->
+                    <img src="{{ featured_section.cover_primary.image }}" alt="{{ featured_section.cover_primary.label }}" class="img-fluid hero-img" style="max-height: 600px;">
+                </div>                
+                <!-- Testo a Sinistra -->
+                <div class="col-lg-6">
+                    <span class="text-primary-custom fw-bold text-uppercase ls-1">Gioco di Ruolo Modern Fantasy</span>
+                    <h1 class="display-3 my-3">Quando la tecnologia tace, <span style="color: var(--primary-color);">la magia si risveglia.</span></h1>
+                    <p class="lead text-secondary mb-4">
+                        È l’anno 2020: un enorme cristallo celeste è caduto in Sud America, decimando la popolazione e disattivando qualunque interfaccia radio: è il Primo Contatto, la creazione della prima bolla di magia.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#acquista" class="btn btn-primary-clean btn-lg">Ottieni il manuale</a>
+                        <a href="#ambientazione" class="btn btn-outline-clean btn-lg">Scopri di più</a>
+                    </div>
+                    <div class="mt-4 pt-4 border-top">
+                        <small class="text-muted d-block mb-2">Include:</small>
+                        <div class="d-flex gap-4 text-secondary">
+                            <span><i class="fas fa-book me-2"></i>Regolamento</span>
+                            <span><i class="fas fa-dungeon me-2"></i>Ambientazione</span>
+                            <span><i class="fas fa-dice-d20 me-2"></i>Avventura</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ambientazione (Intro PlayDiventi) -->
+    <section id="ambientazione" class="py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Un Mondo come il nostro, ma diverso.</h2>
+                    <p class="text-secondary">
+                        In Primo Contatto magia e tecnologia coesistono e interagiscono come facce della stessa medaglia.
+                        Il confine tra i due mondi si fa sempre più labile.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card-clean p-4 h-100">
+                        <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                        <h4>La Bolla</h4>
+                        <p class="text-secondary text-sm">
+                            Un campo di energia invisibile avvolge il continente del Sud America. Al suo interno, l'elettricità svanisce e le leggi della fisica moderna sembrano piegarsi. Tu sei intrappolato qui.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-clean p-4 h-100">
+                        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                        <h4>L'iperio</h4>
+                        <p class="text-secondary text-sm">
+                            Una nuova risorsa energetica pulsante. È la chiave per riattivare la tecnologia dormiente o per alimentare incantesimi devastanti.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-clean p-4 h-100">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <h4>Le forze in gioco</h4>
+                        <p class="text-secondary text-sm">
+                            Scegli da che parte stare: le militarizzate NNU, gli abili sabotatori noti come Cuspidi, o i tenaci Sopravvissuti che cercano di ristabilire una parvenza di normalità.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sistema di Gioco -->
+    <section id="sistema" class="py-5 bg-light" style="background-color: var(--bg-light) !important;">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <h2 class="mb-4">Sistema Diventi</h2>
+                    <p class="text-secondary mb-4">
+                        Un regolamento strutturato ma flessibile, pensato per supportare sia la narrazione che la tattica.
+                    </p>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-3 text-primary-custom"><i class="fas fa-scroll fa-2x"></i></div>
+                        <div>
+                            <h5>Modalità ibrida</h5>
+                            <p class="text-secondary small">Alterna fluidamente la <strong>modalità libera</strong> per l'esplorazione e la <strong>modalità a turni</strong> per i conflitti tattici.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="me-3 text-primary-custom"><i class="fas fa-scroll fa-2x"></i></div>
+                        <div>
+                            <h5>Magia modulare</h5>
+                            <p class="text-secondary small">Crea le tue <strong>Doti</strong> combinando flussi, poteri e attrezzi. Nessuna lista rigida, solo la tua creatività.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="me-3 text-primary-custom"><i class="fas fa-scroll fa-2x"></i></div>
+                        <div>
+                            <h5>MTM: tecnologia sospesa</h5>
+                            <p class="text-secondary small">La tua <strong>Macchina di Tattica Militare</strong> è potente, ma dormiente. Spendi <b>iperio</b> per risvegliare temporaneamente la tecnologia e scatenare effetti avanzati.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+                    <div class="card-clean p-5 text-center bg-white shadow-lg border-0">
+                        <h3 class="mb-4">Le Caratteristiche</h3>
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="p-3 rounded" style="background-color: var(--bg-light);">
+                                    <i class="fas fa-fist-raised mb-2 text-primary-custom"></i>
+                                    <h5 class="mb-0">Audacia</h5>
+                                    <small class="text-muted">Forza & coraggio</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3 rounded" style="background-color: var(--bg-light);">
+                                    <i class="fas fa-brain mb-2 text-primary-custom"></i>
+                                    <h5 class="mb-0">Maestria</h5>
+                                    <small class="text-muted">Tecnica & mente</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3 rounded" style="background-color: var(--bg-light);">
+                                    <i class="fas fa-star mb-2 text-primary-custom"></i>
+                                    <h5 class="mb-0">Destino</h5>
+                                    <small class="text-muted">Fortuna & fato</small>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-muted small">Usa il d20 per superare le prove. Semplice, agile, familiare.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personaggi -->
+    <section id="personaggi" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-2">
+                <h2>Gli Agenti</h2>
+                <p class="text-secondary">Esempi di personaggi giocabili inclusi nel manuale.</p>
+            </div>
+            <div class="row g-4">
+                <!-- Alejandro -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-clean p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="fw-bold text-dark">Alejandro Alivera</h5>
+                            <span class="badge bg-primary text-white">NNU</span>
+                        </div>
+                        <p class="small text-muted mb-3">Medico-Sciamano</p>
+                        <div class="mb-3">
+                            <span class="badge-clean">Nativo</span>
+                            <span class="badge-clean">Elementale</span>
+                        </div>
+                        <p class="text-secondary small">Specializzato nel distinguere sostanze nocive e benefiche. Usa un bastone totemico per curare gli alleati.</p>
+                    </div>
+                </div>
+
+                <!-- Ambra -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-clean p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="fw-bold text-dark">Ambra</h5>
+                            <span class="badge bg-warning text-dark">SOPRAVVISSUTI</span>
+                        </div>
+                        <p class="small text-muted mb-3">Prodigio Scientifico</p>
+                        <div class="mb-3">
+                            <span class="badge-clean">Forestiera</span>
+                            <span class="badge-clean">Tecnologica</span>
+                        </div>
+                        <p class="text-secondary small">Ex scienziata brillante. Ha l'intuizione geniale per superare ogni ostacolo. Controlla lo spaziotempo.</p>
+                    </div>
+                </div>
+
+                <!-- Byte -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-clean p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="fw-bold text-dark">Byte</h5>
+                            <span class="badge bg-danger text-white">CUSPIDI</span>
+                        </div>
+                        <p class="small text-muted mb-3">Agente Ricondizionato</p>
+                        <div class="mb-3">
+                            <span class="badge-clean">Post-Umano</span>
+                            <span class="badge-clean">Tecnologico</span>
+                        </div>
+                        <p class="text-secondary small">Un cyborg che crede di essere umano. Può forzare l'uso della tecnologia senza spendere Iperio.</p>
+                    </div>
+                </div>
+                
+                <!-- Kane -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-clean p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="fw-bold text-dark">Kane</h5>
+                            <span class="badge bg-warning text-dark">SOPRAVVISSUTI</span>
+                        </div>
+                        <p class="small text-muted mb-3">Esploratore d'avanguardia</p>
+                        <div class="mb-3">
+                            <span class="badge-clean">Iperiano</span>
+                            <span class="badge-clean">Elementale</span>
+                        </div>
+                        <p class="text-secondary small">Pelle blu e forza bruta. I suoi sensi percepiscono i giacimenti di Iperio nelle vicinanze.</p>
+                    </div>
+                </div>
+
+                <!-- Will -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-clean p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="fw-bold text-dark">Will Taylor</h5>
+                            <span class="badge bg-primary text-white">NNU</span>
+                        </div>
+                        <p class="small text-muted mb-3">Marine</p>
+                        <div class="mb-3">
+                            <span class="badge-clean">Forestiero</span>
+                            <span class="badge-clean">Psichico</span>
+                        </div>
+                        <p class="text-secondary small">Addestramento militare tattico. Analizza veicoli al volo e usa l'Adrenalina per combattere.</p>
+                    </div>
+                </div>
+
+                <!-- Yxir -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-clean p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="fw-bold text-dark">Yxir</h5>
+                            <span class="badge bg-danger text-white">CUSPIDI</span>
+                        </div>
+                        <p class="small text-muted mb-3">Oracolo</p>
+                        <div class="mb-3">
+                            <span class="badge-clean">Iperiana</span>
+                            <span class="badge-clean">Siderea</span>
+                        </div>
+                        <p class="text-secondary small">Pelle smeraldo. Riconosce la natura delle Doti sconosciute. Legata al mistero dell'Antimateria.</p>
+                    </div>
+                </div>            
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Acquisto / CTA -->
+    <section id="acquista" class="container pb-5 mb-5">
+        <div class="pricing-section shadow-lg">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <h2 class="display-5 mb-3 fw-bold">Inizia la tua avventura.</h2>
+                    <p class="lead mb-4" style="opacity: 0.9;">
+                        Acquista ora il manuale completo di Primo Contatto in formato PDF.
+                        Tutto ciò che ti serve per giocare, in un unico file ottimizzato.
+                    </p>
+                    <ul class="list-unstyled check-list">
+                        <li><i class="fas fa-check-circle"></i> Manuale base completo (126 Pagine)</li>
+                        <li><i class="fas fa-check-circle"></i> Avventura introduttiva "Il vulcano dormiente"</li>
+                        <li><i class="fas fa-check-circle"></i> 6 Schede personaggio pronte all'uso</li>
+                        <li><i class="fas fa-check-circle"></i> Mappe e diagrammi del mondo</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 text-center">
+                    {% with product=featured_product %}
+                    <div class="bg-white text-dark p-4 rounded-3 shadow-lg">
+                        <span class="text-muted text-uppercase fw-bold small">Pacchetto Digitale</span>
+                        <h3 class="display-4 fw-bold my-2 text-primary-custom">{{ price }}</h3>
+                        <p class="text-muted small mb-4">IVA inclusa - Download Immediato</p>
+                        {% include "products/partials/pay_button_pdf.html" %}
+                        <div class="mt-3 small text-muted">
+                            <i class="fab fa-cc-visa mx-1"></i>
+                            <i class="fab fa-cc-mastercard mx-1"></i>
+                            <i class="fab fa-cc-apple-pay mx-1"></i>
+                        </div>
+                    </div>
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <img src="https://diventi-assets.s3.amazonaws.com/media/ebooks/pc/primo-contatto-logo.svg" alt="Primo Contatto Logo" class="footer-logo">            
+            <p class="text-secondary mb-4">Un gioco di ruolo basato sul sistema Diventi.</p>
+            <div class="mb-4">
+                <a href="#" class="text-secondary mx-3 fs-5 hover-primary"><i class="fab fa-discord"></i></a>
+                <a href="#" class="text-secondary mx-3 fs-5 hover-primary"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-secondary mx-3 fs-5 hover-primary"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="small text-muted mb-0">&copy; 2025 Diventi. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

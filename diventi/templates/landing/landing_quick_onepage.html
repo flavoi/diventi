@@ -1,0 +1,327 @@
+{% extends 'base_quick.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ landing_page.title }}{% endblock title %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'diventi/css/diventi-datatables.min.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        
+        :root {
+            /* Palette Arancione */
+            --primary-color: #ea580c; /* Arancione Scuro/Vibrante */
+            --secondary-color: #475569; /* Grigio Ardesia */
+            --bg-light: #fff7ed; /* Crema chiarissimo */
+            --text-dark: #1e293b; /* Blu scuro quasi nero */
+            --accent: #f97316; /* Arancione chiaro per hover */
+        }
+    </style>
+
+{% endblock extrahead %}
+
+{% block headerclass %}header{% endblock headerclass %}
+
+{% block navbarclass %}fixed-top {% if featured_section.cover_primary  %}navbar-dark bg-section-dark{% else %}navbar-light{% endif %}{% endblock navbarclass %}
+
+{% block navbarstyle %}position: fixed !important; top: 0; width: 100%; z-index: 1030;{% endblock navbarstyle %}
+
+{% block navbar_brand_style %}{% if featured_section.cover_primary %}text-white{% else %}text-dark{% endif %}{% endblock navbar_brand_style %}
+
+{% block navbar_links %}
+    <ul class="navbar-nav ml-lg-auto mr-3">
+        {% if user.is_anonymous %}
+        <div class="d-lg-none px-4 text-center mt-5 mb-3">
+            <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-block btn-sm btn-primary">
+                <span class="btn-inner--icon">
+                    <i data-feather="user" class="mb-1 mr-0"></i>
+                </span>
+                <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
+            </a>
+        </div>
+        {% endif %}
+        {% for section in sections %}                           
+        <li class="nav-item">
+            {% if section.attached_product.unfolded %}
+                <a href="#acquista" class="btn btn-sm btn-primary ml-2 mt-2">
+                    {% trans 'buy'|capfirst %} {% for f in section.attached_product.formats.all %}{{ f.title }}{% endfor %}
+                </a>                
+            {% else %}
+                <a class="nav-link" href="#{{ section.slug }}">{{ section.button_label }}</a>
+            {% endif %}
+        </li>          
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+<section class="slice pt-8 pb-0 bg-section-dark">
+  <div data-offset-top="">
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0 order-lg-1 order-2">          
+            {% if featured_section.subtitle %}
+              <h6 class="text-primary">- {{ featured_section.subtitle }}</h6>
+            {% endif %}
+            <h1 class="h1 text-white font-weight-bold h1 mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-primary">{{ featured_section.title }}</strong></h1>
+            <p class="kbd text-secondary opacity-8">{{ featured_section.description|striptags|capfirst }}</p>
+            <div class="mt-5 text-left">
+                <a href="#acquista" class="btn btn-primary btn-lg">
+                    {{ featured_section.button_label|capfirst }}
+                </a>                
+            </div>
+            {% if featured_section.features.all %}
+            <div class="mt-0 pt-0">
+                <hr class="opacity-6" />
+                <p class="text-muted d-block mb-2">{% trans 'includes'|capfirst %}:</p>
+                <div class="d-flex gap-4 text-secondary opacity-8">
+                    {% for feature in featured_section.features.all %}
+                    <span><i class="fas fa-{{ feature.icon }} {% if not forloop.first %}ml-3{% endif %} mr-1 "></i>{{ feature.title }}</span>
+                    {% endfor %}
+                </div>
+            </div> 
+            {% endif %}
+        </div>
+        <div class="col-lg-6 mb-5 text-center text-lg-end order-lg-2 order-1">          
+            {% if featured_section.cover_primary %}
+            <a data-caption="" data-fancybox="" href="{{ featured_section.cover_secondary.image|default:featured_section.cover_primary.image }}">
+                <img alt="{{ featured_section.cover_primary.label }}" src="{{ featured_section.cover_primary.image }}" class="img-fluid hover-translate-y-n3 hover-shadow-lg" style="max-height: 600px;">
+            </a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if landing_page.enable_pinned_content %}
+<section class="slice slice-lg">
+    <div class="container">
+        <div class="row mb-6 justify-content-center text-center">
+            <div class="col-lg-8 col-md-10">
+                <span class="badge badge-primary badge-pill">{% trans 'featured'|capfirst %}</span>
+                <h3 class="mt-4">{% trans 'our latest contents'|capfirst %}</h3>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            {% for pinned_article in pinned_articles %} 
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
+                    <div class="position-relative overflow-hidden">
+                        <a href="{{ pinned_article.get_absolute_url }}" class="d-block">
+                            <img loading="lazy" src="{{ pinned_article.postcard }}" alt="{{ pinned_article.title|capfirst }}" class="card-img-top">
+                        </a>
+                    </div>
+                    <div class="card-body py-4">
+                        <small class="d-block text-sm text-{{ pinned_article.category.color }} mb-2"><strong>{{ pinned_article.category|capfirst }}</strong> 
+                            {% with pinned_article as object %}
+                                {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                            {% endwith %}
+                        </small> 
+                        <a href="{{ pinned_article.get_absolute_url }}" class="h5 stretched-link lh-150">
+                            {{ pinned_article.title|capfirst }}
+                        </a>
+                        <p class="mt-3 mb-0 lh-170">
+                            {{ pinned_article.description|truncatechars:200 }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% for pinned_product in pinned_products %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
+                    <div class="position-relative overflow-hidden">
+                        <a href="{{ pinned_product.get_absolute_url }}" class="d-block">
+                            <img loading="lazy" src="{{ pinned_product.cover_secondary.image }}" alt="{{ pinned_product.title|capfirst }}" class="card-img-top">
+                        </a>
+                    </div>
+                    <div class="card-body py-4">
+                        <small class="d-block text-sm text-{{ pinned_product.category.color }} mb-2"><strong>{{ pinned_product.category|capfirst }}</strong> {% with pinned_product as object %}
+                                {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
+                                {% endwith %}</small> 
+                            <a href="{{ pinned_product.get_absolute_url }}" class="h5 stretched-link lh-150">
+                                {{ pinned_product.title|capfirst }}
+                            </a>
+                        <p class="mt-3 mb-0 lh-170">
+                            {{ pinned_product.abstract|truncatechars:200 }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% for section in sections %}
+<section id="{{ section.slug }}" class="slice pt-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
+    {% if section.attached_product %}
+        {% if section.attached_product.unfolded %}
+        <div id="acquista" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
+            <div class="jumbotron bg-black shadow-lg border-0 rounded-lg py-2 mt-5">
+                <div class="card-body px-4">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 mb-4 mb-lg-0">
+                            <h2 class="display-5 mb-3 text-secondary">{{ section.attached_product.short_description }}</h2>
+                            <p class="lead mb-4 text-secondary opacity-8">
+                                {{ section.attached_product.abstract }}
+                            </p>
+                            {% if section.attached_product.details %}
+                            <ul class="list-unstyled check-list text-secondary">
+                                {% for detail in section.attached_product.details.all %}
+                                    <li><i class="fas fa-check-circle mr-1"></i>{{ detail.title }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-5 text-center">                    
+                            <div class="bg-white text-dark p-4 rounded shadow-lg">
+                                {% with product=section.attached_product %}
+                                {% for f in section.attached_product.formats.all %}
+                                <span class="text-muted font-weight-bolder text-uppercase small">{{ f.title }}</span>
+                                {% endfor %}
+                                <h3 class="display-4 fw-bold my-2 text-primary">{{ price }}</h3>
+                                <p class="text-muted small mb-4">IVA inclusa - Download Immediato</p>
+                                {% if user_has_already_bought %}
+                                    <p class="text-warning mt-2">{% trans "in your collection, already"|capfirst %}</p>
+                                {% endif %}
+                                {% include "products/partials/pay_button_pdf.html" %}
+                                <div class="mt-3 small text-muted">
+                                    <i class="fab fa-cc-visa mx-1"></i>
+                                    <i class="fab fa-cc-mastercard mx-1"></i>
+                                    <i class="fab fa-cc-apple-pay mx-1"></i>
+                                </div>
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% elif section.attached_section %}
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <h2 class="mb-4">{{ section.title|capfirst }}</h2>
+                <p class="text-muted mb-4">
+                    {{ section.description|capfirst }}
+                </p>
+                
+                {% for feature in section.features.all %}
+                <div class="d-flex mb-4">
+                    <div class="mr-3 text-primary"><i class="fas fa-{{ feature.icon|default:'scroll' }} fa-2x"></i></div>
+                    <div>
+                        <h5>{{ feature.title|capfirst }}</h5>
+                        <p class="text-muted small opacity-8">{{ feature.description|capfirst }}</p>
+                    </div>
+                </div>
+                {% endfor %}                
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="card p-5 text-center bg-white shadow-lg border-0">
+                    <h3 class="mb-4">{{ section.attached_section.title }}</h3>
+                    <div class="row g-3">
+                        {% for feature in section.attached_section.features.all %}
+                        <div class="col-4">
+                            <div class="p-3 rounded bg-light">
+                                <i class="fas fa-{{ feature.icon|default:'x'}} mb-2 text-primary"></i>
+                                <h5 class="mb-0">{{ feature.title }}</h5>
+                                <small class="text-muted">{{ feature.description }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="mt-4 text-muted small">{{ section.attached_section.description|capfirst }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container py-5">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="mb-3">{{ section.title }}</h2>
+                <p class="text-muted">
+                    {{ section.description|capfirst }}
+                </p>
+            </div>
+        </div> 
+        <div class="row g-4">
+            {% for feature in section.features.all %}
+            <div class="col-md-4">
+                <div class="card hover-translate-y-n10 hover-shadow-lg h-100">
+                    <div class="card-body pb-0 mb-0">
+                        {% if feature.icon %}
+                        <div class="pb-4">
+                            <div class="icon bg-dark text-white rounded-circle icon-shape shadow">
+                                <i class="fas fa-{{ feature.icon }}"></i>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="pt-2">
+                            <div class="d-flex justify-content-between align-items-start mb-0">
+                                <h5 class="text-dark">{{ feature.title}}</h5>
+                                <span class="badge bg-{{ feature.color }} text-white">{{ feature.prefix|upper }}</span>
+                            </div>                            
+                            {% if feature.subtitle %}
+                            <p class="text-muted mb-3">
+                                {{ feature.subtitle }}
+                            </p>
+                            {% endif %}
+                            <p class="text-muted mb-0">
+                                {{ feature.description|safe }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}      
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endfor %}
+
+{% if landing_page.enable_signin %}
+<section class="slice slice-lg pt-md-9 bg-section-secondary pb-0 mb-0">
+  <div class="container">
+    <div class="card shadow-lg border-0 zindex-100">
+      <div class="card-body px-5 py-5 text-center text-md-left">
+        {% if not user.is_authenticated %}
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h4 class="h5 mb-2">{% trans "Join our community" %}.</h4>
+            <p class="mb-0">{% trans "Sign up to know more and start exploring." %}</p>
+          </div>
+          <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+            <a href="{% url 'accounts:signup' %}" class="btn btn-primary my-2">
+              {% trans 'sign up'|capfirst %}
+            </a>
+          </div>
+        </div>
+        {% else %}
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h4 class="h5 mb-2">{% trans "Hello" %} {{ user.first_name }}!</h4>
+            <p class="mb-0">{% trans "You have signed in. Feel free to explore or deep dive into your profile." %}</p>
+          </div>
+          <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+            <a href="{% url 'accounts:detail' user.nametag %}" class="btn btn-primary my-2">
+              {% trans "Manage profile" %}
+            </a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock content %}
+

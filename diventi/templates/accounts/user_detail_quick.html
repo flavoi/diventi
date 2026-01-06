@@ -259,6 +259,12 @@
                                                         {% trans "read online"|capfirst %}
                                                     </span>
                                                 </a>
+                                            {% elif product.file %}
+                                                <a href="{% url 'products:user_product_download' product.slug %}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
+                                                    <span class="btn-inner--text ml-1">
+                                                        {% trans "download"|capfirst %}
+                                                    </span>
+                                                </a>
                                             {% else %}
                                                 {% trans "not available" as default_courtesy_short_message %}
                                                 <div class="d-block stretched-link" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">

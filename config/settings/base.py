@@ -117,6 +117,7 @@ LOCAL_APPS = [
     'diventi.payments',
     'diventi.packages',
     'diventi.geminigm',
+    'diventi.previews',
 ]
 
 THIRD_PARTY_APPS = [

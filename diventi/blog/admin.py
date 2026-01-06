@@ -41,6 +41,7 @@ class ArticleAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     )
     form = ArticleForm
     actions = [make_published, make_unpublished]
+    search_fields = ['title',]
     list_filter = ('category',)
     ordering = ('-created','publication_date',)
 

@@ -31,33 +31,122 @@
 
 {% block navbar_links %}
     <ul class="navbar-nav ml-lg-auto mr-3">
+        <li class="nav-item" data-toggle="hover">
         {% if user.is_anonymous %}
-        <div class="d-lg-none px-4 text-center mt-5 mb-3">
-            <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-block btn-sm btn-primary">
-                <span class="btn-inner--icon">
-                    <i data-feather="user" class="mb-1 mr-0"></i>
-                </span>
-                <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
+        <div class="d-lg-none">
+            <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="nav-link">
+                {% trans "sign in"|capfirst %}
             </a>
         </div>
+        </li>
+        {% elif user.is_staff %}
+        <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "manage"|capfirst %}</a>
+            <div class="dropdown-menu dropdown-menu-md p-0">
+                <div class="list-group list-group-flush px-lg-4">
+                    <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
+                        <div class="d-flex">
+                            <span class="h6">
+                                <i data-feather="settings"></i>
+                            </span>
+                            <div class="ml-3">
+                                <h6 class="heading mb-0">Admin</h6>
+                                <small class="text-sm">{% trans "control panel for authors only"|capfirst %}.</small>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="py-3 d-none d-lg-block">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="{% url 'admin:blog_article_changelist' %}" class="dropdown-item">{% trans "articles"|capfirst %}</a>
+                                <a href="{% url 'admin:accounts_diventiuser_changelist' %}" class="dropdown-item">{% trans "users"|capfirst %}</a>
+                                <a href="{% url 'admin:products_product_changelist' %}" class="dropdown-item">{% trans "projects"|capfirst %}</a>
+                                <a href="{% url 'admin:feedbacks_survey_changelist' %}" class="dropdown-item">{% trans "surveys"|capfirst %}</a>
+                                <a href="{% url 'admin:landing_section_changelist' %}" class="dropdown-item">{% trans "sections"|capfirst %}</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="{% url 'admin:ebooks_book_changelist' %}" class="dropdown-item">{% trans "books"|capfirst %}</a>
+                                <a href="{% url 'admin:geminigm_gemmaistruction_changelist' %}" class="dropdown-item">{% trans "AI settings"|capfirst %}</a>
+                                <a href="{% url 'admin:packages_package_changelist' %}" class="dropdown-item">{% trans "packages"|capfirst %}</a>
+                                <a href="{% url 'admin:forum_conversation_post_changelist' %}" class="dropdown-item">{% trans "forum posts"|capfirst %}</a>
+                                <a href="{% url 'admin:landing_searchsuggestion_changelist' %}" class="dropdown-item">{% trans "search suggenstions"|capfirst %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'landing:analytics' %}" class="list-group-item list-group-item-action" role="button">
+                        <div class="d-flex">
+                            <span class="h6">
+                                <i data-feather="bar-chart-2"></i>
+                            </span>
+                            <div class="ml-3">
+                                <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
+                                <small class="text-sm">{% trans "a tool to measure the website performance"|capfirst %}.</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </li>
         {% endif %}
-        {% for section in sections %}                           
+        <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
+            <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "navigate"|capfirst %}</a>
+            <div class="dropdown-menu dropdown-menu-md p-0">
+              <div class="list-group list-group-flush px-lg-4">
+                {% for section in sections %}                
+                {% if not section.attached_product.unfolded %}
+                    <a href="#{{ section.slug }}" class="list-group-item list-group-item-action" role="button">
+                        <div class="d-flex">
+                            <span class="h6">
+                                <i data-feather="bookmark"></i>
+                            </span>
+                            <div class="ml-3">
+                                <h6 class="heading mb-0">{{ section.button_label|capfirst }}</h6>
+                                <small class="text-sm">{{ section.short_description|capfirst }}</small>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+                {% if forloop.last %}
+                    <a href="#top" class="list-group-item list-group-item-action" role="button">
+                        <div class="d-flex">
+                            <span class="h6">
+                                <i data-feather="arrow-up-right"></i>
+                            </span>
+                            <div class="ml-3">
+                                <h6 class="heading mb-0">{% trans 'back to top'|capfirst %}</h6>
+                                <small class="text-sm">{{ featured_section.short_description|capfirst }}</small>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            </li>
+        {% for section in sections %}                          
         <li class="nav-item">
             {% if section.attached_product.unfolded %}
-                <a href="#acquista" class="btn btn-sm btn-primary ml-2 mt-2">
+                <a href="#acquista" class="btn btn-block btn-sm btn-primary mt-lg-2">
                     {% trans 'buy'|capfirst %} {% for f in section.attached_product.formats.all %}{{ f.title }}{% endfor %}
-                </a>                
-            {% else %}
-                <a class="nav-link" href="#{{ section.slug }}">{{ section.button_label }}</a>
+                </a>                            
             {% endif %}
         </li>          
         {% endfor %}
     </ul>
-{% endblock %}
+{% endblock navbar_links %}
+
+{% block navbar_user_signin %}
+<ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+  <li class="nav-item">                                
+    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="nav-link">
+        {% trans "sign in"|capfirst %}
+    </a>
+  </li>
+</ul>
+{% endblock navbar_user_signin %}
 
 {% block content %}
-
-<section class="slice pt-8 pb-0 bg-section-dark">
+<section class="slice pt-8 pb-0 bg-section-dark" id="top">
   <div data-offset-top="">
     <div class="container position-relative">
       <div class="row align-items-center">

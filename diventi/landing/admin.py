@@ -53,7 +53,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('video', 'video_image','cover_primary', 'cover_secondary')
         }),
         (_('Editing'), {
-            'fields': ('order_index', 'prefix', 'title', 'subtitle', 'button_label', 'description', 'slug'),
+            'fields': ('order_index', 'prefix', 'title', 'subtitle', 'short_description', 'button_label', 'description', 'slug'),
         }),
         (_('Attachments'), {
             'fields': ('attached_product', 'attached_section'),
@@ -64,6 +64,7 @@ class SectionAdmin(DiventiTranslationAdmin):
     ]
     actions = [make_published, make_unpublished]
     form = SectionForm
+    list_filter = ['landing_pages',]
     ordering = ['-featured', 'order_index']
     prepopulated_fields = {"slug": ("title",)}
 

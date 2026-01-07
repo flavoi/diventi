@@ -164,6 +164,11 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         blank=True, 
         verbose_name=_('description')
     )
+    short_description = models.TextField(
+        blank=True, 
+        max_length=50, 
+        verbose_name=_('short description')
+    )
     button_label = models.CharField(
         blank=True, 
         max_length=50, 

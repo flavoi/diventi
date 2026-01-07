@@ -401,13 +401,14 @@
 
                                 {% block extranav %}{% endblock extranav %}
                             </ul>
-                            {% endblock %}
+                            {% endblock %}                            
                             {% if user.is_authenticated %}
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                             </ul> 
-                            {% endif %}
+                            {% endif %}                            
                             {% if not user.is_authenticated %}
-                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">                            
+                            {% block navbar_user_signin %}
+                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                               <li class="nav-item">                                
                                 <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-sm btn-primary btn-icon ml-3">
                                     <span class="btn-inner--icon">
@@ -417,9 +418,11 @@
                                 </a>
                               </li>
                             </ul>
+                            {% endblock navbar_user_signin %}
                             {% endif %}
                         </div>
                         {% if user.is_authenticated %}
+                        {% block navbar_user_profile %}
                         <div class="order-lg-4 order-3 ml-lg-3">
                             <a class="" href="#modal-profile" role="button" data-toggle="modal">
                                 <span class="avatar rounded-circle">
@@ -427,7 +430,8 @@
                                 </span>
                             </a>
                         </div>
-                    {% endif %}
+                        {% endblock navbar_user_profile %}
+                        {% endif %}
             </nav>
         {% endblock navbar %}
     </header>

@@ -104,7 +104,7 @@ class AboutArticleDetailView(HitCountDetailView):
     template_name  = "landing/about_article_quick.html"
 
 
-class LandingPageDetailView(DetailView, StaffRequiredMixin):
+class LandingPageDetailView(StaffRequiredMixin, DetailView):
     """ Renders a landing page """
 
     template_name = "landing/landing_quick.html"

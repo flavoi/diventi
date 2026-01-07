@@ -12,8 +12,11 @@ from .models import (
 
 def graph_section(request):
     """ Show featured sections to improve social networks sharing capabilities """
-    page = LandingPage.objects.featured()
-    graph_section = page.sections.featured()
+    try:
+        page = LandingPage.objects.featured()
+        graph_section = page.sections.featured()
+    except:
+        graph_section = LandingPage.objects.none()
     context = {
         'graph_section': graph_section,
     }

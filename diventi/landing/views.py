@@ -111,6 +111,10 @@ class LandingPageDetailView(StaffRequiredMixin, DetailView):
     model = LandingPage
     context_object_name = 'page'
 
+    def get_queryset(self):
+        qs = super(LandingPageDetailView, self).get_queryset()
+        return qs.published()
+
     def get_context_data(self, **kwargs):
         context = super(LandingPageDetailView, self).get_context_data(**kwargs)     
         landing_context = get_landing_context(self.request, self.object)

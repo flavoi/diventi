@@ -152,7 +152,14 @@
       <div class="row align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0 order-lg-1 order-2">          
             {% if featured_section.subtitle %}
-              <h6 class="text-primary">- {{ featured_section.subtitle }}</h6>
+              <h6 class="text-primary">
+                - {{ featured_section.subtitle }}
+                {% with landing_page as object %} 
+                {% if user.is_staff %}
+                    <span class="ml-1">{% include 'publishable_badge.html' %}</span>
+                {% endif %}
+            {% endwith %}
+              </h6>              
             {% endif %}
             <h1 class="h1 text-white font-weight-bold h1 mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-primary">{{ featured_section.title }}</strong></h1>
             <p class="kbd text-secondary opacity-8">{{ featured_section.description|striptags|capfirst }}</p>

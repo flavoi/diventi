@@ -38,8 +38,16 @@
     <div class="container position-relative">
       <div class="row align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0 order-lg-1 order-2">                        
-          {% if featured_section.subtitle %}
-          <h6 class="text-muted">- {{ featured_section.subtitle }}</h6>{% endif %}
+            {% if featured_section.subtitle %}
+                <h6 class="text-muted">            
+                - {{ featured_section.subtitle }}
+                {% with landing_page as object %} 
+                    {% if user.is_staff %}
+                        <span class="ml-1">{% include 'publishable_badge.html' %}</span>
+                    {% endif %}
+                {% endwith %}
+            </h6>
+            {% endif %}
             <h1 class="h6 text-muted font-weight-bold h1 mb-4">{{ featured_section.prefix|capfirst }} <strong class="h1 mb-3">{{ featured_section.title }}</strong></h1>
             <p class="lead text-muted">{{ featured_section.description|striptags|capfirst }}</p>
             <div class="mt-5 text-left">                    

@@ -103,7 +103,7 @@ def create_checkout_session(request, product_slug):
         # Usiamo un placeholder "__PID__" per evitare che Django codifichi le parentesi graffe { }
         # se le passassimo direttamente nel reverse.
         placeholder = "__PID__"
-        success_rel_url = reverse('products:checkout_done_pdf', args=[product_slug, placeholder])    
+        success_rel_url = reverse('products:checkout_done_pdf', args=[product_slug, placeholder])
         cancel_rel_url = reverse('products:checkout_failed', args=[product_slug])
     except Exception as e:
          return JsonResponse({'error': _(f'URL configuration error: {str(e)}')}, status=500)

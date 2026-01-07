@@ -1,35 +1,46 @@
 {% load i18n %}
 {% load fullurl %}
 
-{% if user.is_authenticated %}
-  <script src="https://js.stripe.com/v3"></script>
-  <button class="btn btn-dark btn-icon-label btn-sm bg-danger" id="checkout-button">
-      <span class="btn-inner--icon">
-          <i data-feather="shopping-bag"></i>
-      </span>
-      {% if discount and related_products_value %}
-        <span class="btn-inner--text" style="padding-right: 2em;">{% trans 'buy for'|capfirst %} <b>{{ price }}</b> <small><del>{{ related_products_value }}</del></small></span>
-        <span class="badge badge-success badge-pill badge-floating">-{{ discount }}%</span>
-      {% else %}
-        <span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
-      {% endif %}
-  </button>  
-  <script>
-    var stripe = Stripe('{{ stripe_publishable_key }}');
+<!-- Includi la libreria Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
 
-    var checkoutButton = document.querySelector('#checkout-button');
-    checkoutButton.addEventListener('click', function () {
-      stripe.redirectToCheckout({
-        lineItems: [{
-          price: '{{ product.stripe_price }}',
-          quantity: 1,          
-        }],
-        customerEmail: '{{ request.user.email }}',
-        clientReferenceId: '{{ request.user.nametag }}',
-        mode: 'payment',
-        successUrl: '{% fullurl "products:checkout_done" product.slug %}',
-        cancelUrl: '{% fullurl "products:checkout_failed" product.slug %}',
-      });
+<!-- Il bottone di acquisto -->
+<button class="{% block button_style %}btn btn-primary w-100 btn-lg{% endblock button_style %}" id="checkout-button">
+    {% block button_text %}<i class="fas fa-shopping-cart me-2"></i> {% trans 'buy now'|upper %}{% endblock button_text %}
+</button>
+
+<script>
+  // Inizializza Stripe con la tua chiave pubblica
+  var stripe = Stripe('{{ stripe_publishable_key }}');
+
+  var checkoutButton = document.querySelector('#checkout-button');
+
+  checkoutButton.addEventListener('click', function () {    
+    fetch('{% fullurl "payments:create_checkout_session" product.slug %}', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(function (response) {
+      // Controlla se la risposta è ok
+      if (!response.ok) {
+        return response.json().then(error => { throw error; });
+      }
+      return response.json();
+    })
+    .then(function (session) {      
+      return stripe.redirectToCheckout({ sessionId: session.id });
+    })
+    .then(function (result) {      
+      if (result.error) {
+        alert(result.error.message);
+      }
+    })
+    .catch(function (error) {
+      console.error('Error:', error);
+      alert("{% trans 'Error 500: Webservice currently unavailable' %}");
     });
-  </script>
-{% endif %}
+  });
+</script>

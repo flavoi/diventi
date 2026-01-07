@@ -319,13 +319,16 @@ def checkout_done_pdf(request, slug, session_id):
             add_product_to_user_collection(product, user=request.user)
         except Http404:
             pass
-    
-    # --- D. GENERAZIONE PRESIGNED URL S3 ---
-    response_url = get_s3_safe_url(product)
 
-    return render(request, 'products/checkout_done_pdf.html', {
-        'response_url': response_url,
-    })
+    # --- D1. PAGINA DI OK IN CASO DI PRODOTTO WEB ---
+    if product.book:
+        return redirect(reverse('products:checkout_done', kwargs={'slug': slug}))
+    else:
+        # --- D2. GENERAZIONE PRESIGNED URL S3 IN CASO DI PRODOTTO FILE ---
+        response_url = get_s3_safe_url(product)
+        return render(request, 'products/checkout_done_pdf.html', {
+            'response_url': response_url,
+        })
 
 
 @login_required

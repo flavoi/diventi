@@ -1,7 +1,10 @@
 import stripe, boto3
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django.contrib.humanize.templatetags.humanize import naturalday
+
+from botocore.exceptions import ClientError
 
 from diventi.core.utils import (
     humanize_price,

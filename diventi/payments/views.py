@@ -6,10 +6,11 @@ from django.utils import translation
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext as _, get_language
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.urls import reverse
+from django.db.models import Q
 
 from diventi.products.models import (
     Product,
@@ -91,10 +92,19 @@ def stripe_webhook(request):
 
 
 def create_checkout_session(request, product_slug):
+
     if request.method != 'POST':
         return JsonResponse({'error': _('Method not allowed')}, status=405)
 
-    product = get_object_or_404(Product, slug=product_slug)
+    try:
+        product = Product.objects.get(
+            Q(slug_it=product_slug) | Q(slug_en=product_slug)
+        )
+    except Product.DoesNotExist:    
+        return JsonResponse({'error': _('Product not found')}, status=404)
+    except NameError:
+        return JsonResponse({'error': _('Server Error: Product model not imported')}, status=500)
+    
     stripe.api_key = settings.STRIPE_SECRET_KEY   
 
     # 1. Ottieni l'URL relativo
@@ -112,6 +122,7 @@ def create_checkout_session(request, product_slug):
     success_url = request.build_absolute_uri(success_rel_url)
     success_url = success_url.replace(placeholder, '{CHECKOUT_SESSION_ID}')
     cancel_url = request.build_absolute_uri(cancel_rel_url)
+    current_language = get_language()
 
     # 3. Configura i parametri per Stripe
     session_params = {
@@ -123,6 +134,7 @@ def create_checkout_session(request, product_slug):
         'mode': 'payment',
         'success_url': success_url,
         'cancel_url': cancel_url,
+        'locale': current_language if current_language else 'auto',
     }
 
     # 4. Se l'utente è loggato, passa la sua email

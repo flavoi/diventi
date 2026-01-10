@@ -62,7 +62,6 @@ class SectionAdmin(DiventiTranslationAdmin):
     inlines = [        
         FeatureInline,
     ]
-    actions = [make_published, make_unpublished]
     form = SectionForm
     list_filter = ['landing_pages',]
     ordering = ['-featured', 'order_index']

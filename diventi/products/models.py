@@ -1,5 +1,5 @@
 from functools import reduce
-import operator
+import operator, stripe
 
 from django.db import models
 from django.db.models import Prefetch, Q, Count
@@ -7,9 +7,11 @@ from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.contrib.humanize.templatetags.humanize import naturalday
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils.functional import cached_property
 
 from machina.apps.forum_conversation.models import Topic
 
@@ -35,6 +37,7 @@ from diventi.core.models import (
     FeaturedModel,
     FeaturedModelQuerySet
 )
+from diventi.core.utils import humanize_price
 
 
 class ProductCover(DiventiCoverModel, Element):
@@ -357,6 +360,21 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         verbose_name=_('playtest material'),
         help_text = _('Playtest products can be accessed by users with a playtest permission')
     )
+
+    @cached_property
+    def price_description(self):
+        """
+        Recupera il prezzo da Stripe formattato con valuta.
+        """
+        if not self.stripe_price:
+            return None
+        try:
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            stripe_price = stripe.Price.retrieve(self.stripe_price)
+            price = humanize_price(float(stripe_price['unit_amount_decimal']))
+            return price
+        except Exception:
+            return "N/A"
 
     def image_tag(self):
         return super(Product, self).image_tag()

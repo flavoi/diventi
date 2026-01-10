@@ -280,7 +280,7 @@
                                 {% for f in section.attached_product.formats.all %}
                                 <span class="text-muted font-weight-bolder text-uppercase small">{{ f.title }}</span>
                                 {% endfor %}
-                                <h3 class="display-4 fw-bold my-2 text-primary">{{ price }}</h3>
+                                <h3 class="display-4 fw-bold my-2 text-primary">{{ section.attached_product.price_description }}</h3>
                                 <p class="text-muted small mb-4">IVA inclusa - Download Immediato</p>
                                 {% if user_has_already_bought %}
                                     <p class="text-warning mt-2">{% trans "in your collection, already"|capfirst %}</p>

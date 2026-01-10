@@ -67,7 +67,7 @@ def get_s3_safe_url(product):
     try:
         response_url = s3_client.generate_presigned_url(
             'get_object',
-            Params={'Bucket': settings.AWS_STORAGE_BUCKET_NAME, 'Key': product.file.name},
+            Params={'Bucket': settings.AWS_STORAGE_BUCKET_NAME, 'Key': settings.MEDIA_ROOT[1:] + product.file.name},
             ExpiresIn=3600
         )
         return response_url

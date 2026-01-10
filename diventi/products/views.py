@@ -23,11 +23,12 @@ from django.http import (
     HttpResponseForbidden,
     HttpResponse,
 )
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, get_language
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse
+from django.db.models import Q
 
 from logging import getLogger
 
@@ -267,10 +268,21 @@ class CheckoutFailedTemplateView(TemplateView):
 def checkout_done_pdf(request, slug, session_id):
     # Configurazione validità
     VALIDITY_MINUTES = 15
-    product = get_object_or_404(Product, slug=slug)
+
+    try:
+        product = Product.objects.get(
+            Q(slug_it=slug) | Q(slug_en=slug)
+        )
+    except Product.DoesNotExist:    
+        return HttpResponseForbidden(_('Product not found'))
+    except NameError:
+        return HttpResponseForbidden(_('Server Error: Product model not imported'))
 
     if not session_id:
         return HttpResponseForbidden(_("The link is not valid."))
+
+    if product.user_has_already_bought(request.user):
+        return redirect(reverse('products:user_product_download', kwargs=({'slug': slug,})))
 
     # A. VERIFICA DATABASE (Il controllo più veloce e sicuro)
     # Cerchiamo se questo session_id è già stato usato in passato.
@@ -321,7 +333,7 @@ def checkout_done_pdf(request, slug, session_id):
             pass
 
     # --- D1. PAGINA DI OK IN CASO DI PRODOTTO WEB ---
-    if product.book:
+    if hasattr(product, 'book'):
         return redirect(reverse('products:checkout_done', kwargs={'slug': slug}))
     else:
         # --- D2. GENERAZIONE PRESIGNED URL S3 IN CASO DI PRODOTTO FILE ---

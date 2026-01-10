@@ -32,11 +32,12 @@ def get_landing_context(request, page):
         'featured_section': featured_section,
         'featured_product': featured_product,
         'pinned_products': pinned_products,        
-        'pinned_articles': pinned_articles,        
+        'pinned_articles': pinned_articles,      
         'pinned_survey': pinned_survey,
         'featured_package': featured_package,
         'pinned_packages': pinned_packages,
     }
+    featured_product_context = {}
     if featured_product.unfolded:
         featured_product_context = get_product_context(request, featured_product)
     context = {**context, **featured_product_context}

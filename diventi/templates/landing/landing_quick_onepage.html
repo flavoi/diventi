@@ -166,7 +166,10 @@
             <div class="mt-5 text-left">
                 <a href="#acquista" class="btn btn-primary btn-lg">
                     {{ featured_section.button_label|capfirst }}
-                </a>                
+                </a>
+                <a href="#content-1" class="btn btn-outline-secondary btn-lg">
+                    {% trans 'explore'|capfirst %}
+                </a>           
             </div>
             {% if featured_section.features.all %}
             <div class="mt-0 pt-0">
@@ -254,6 +257,7 @@
 {% endif %}
 
 {% for section in sections %}
+<div id="content-1"></div>
 <section id="{{ section.slug }}" class="slice pt-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
     {% if section.attached_product %}
         {% if section.attached_product.unfolded %}
@@ -349,7 +353,7 @@
         </div> 
         <div class="row g-4">
             {% for feature in section.features.all %}
-            <div class="col-md-4">
+            <div class="col-md-4 py-2">
                 <div class="card hover-translate-y-n10 hover-shadow-lg h-100">
                     <div class="card-body pb-0 mb-0">
                         {% if feature.icon %}
@@ -421,3 +425,4 @@
 
 {% endblock content %}
 
+{% block footer_style %}footer-dark bg-dark{% endblock footer_style %}

@@ -507,8 +507,7 @@
 
     {% block footer %}
     <footer class="position-relative" id="footer-main">
-        <div class="footer pt-lg-7 footer-dark bg-dark">
-        
+        <div class="footer {% block footer_style %}pt-lg-7 footer-dark bg-dark{% endblock footer_style %}">
             <div class="container pt-4">
                 {% block extrafooter %}{% endblock extrafooter %}
                 <div class="row">
@@ -524,8 +523,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/flavoi/diventi" target="_blank">
-                                <i data-feather="github"></i>
+                            <a class="nav-link" href="mailto:info@playdiventi.it" target="_blank">
+                                <i data-feather="mail"></i>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -78,28 +78,9 @@
                             <span class="d-block h6 mb-4">{% trans "projects"|capfirst %}</span>
                         </div>
                         <div class="mt-2 mb-6 pt-4 border-top">
-                            {% for product in authenticated_user_data.projects %}
-                                <div class="row align-items-center mb-4">
-                                    <div class="col-auto">                                        
-                                        <div class="icon icon-shape {% if product.book.published %}bg-soft-{{ product.category.color }} text-{{ product.category.color }}{% else %}bg-soft-secondary text-secondary{% endif%}">
-                                            <i data-feather="book"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col pl-0">
-                                        {% if product.book.published %}
-                                        <span class="h6 text-sm mb-0">
-                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a>
-                                        </span>                                        
-                                        {% else %}
-                                        <span class="h6 text-sm mb-0" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
-                                            <a tabindex="0" href="{{ product.book.get_absolute_url }}" class="btn-link disabled">{{product.title|capfirst }}</a></span>
-                                        {% endif %}
-                                        <p class="mb-0 text-sm">{{ product.category }}</p>
-                                    </div>                                    
-                                </div>
-                                {% empty %}
-                                <p class="text-sm text-black-50 text-center">{% trans "This collection is empty." %}</p>
-                            {% endfor %}               
+                            {% with collection=authenticated_user_data.projects %}
+                                {% include 'accounts/partials/user_collection_modal_quick.html' %}
+                            {% endwith %}       
                         </div>
                     </div>
                     {% endif %}
@@ -108,32 +89,9 @@
                             <span class="d-block h6 mb-4">{% trans "collection"|capfirst %}</span>
                         </div>
                         <div class="mt-2 pt-4 border-top">
-                            {% for product in authenticated_user_data.collection %}
-                                <div class="row align-items-center mb-4">
-                                    <div class="col-auto">                                        
-                                        <div class="icon icon-shape {% if product.book.published or product.file %}bg-soft-{{ product.category.color }} text-{{ product.category.color }}{% else %}bg-soft-secondary text-secondary{% endif%}">
-                                            <i data-feather="book"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col pl-0">
-                                        {% if product.book.published %}
-                                        <span class="h6 text-sm mb-0">
-                                            <a href="{{ product.book.get_absolute_url }}" class="btn-link">{{ product.title|capfirst }}</a>
-                                        </span>   
-                                        {% elif product.file %}                                     
-                                        <span class="h6 text-sm mb-0">
-                                            <a href="{% url 'products:user_product_download' product.slug %}" class="btn-link">{{ product.title|capfirst }}</a>
-                                        </span>   
-                                        {% else %}
-                                        <span class="h6 text-sm mb-0" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
-                                            <a tabindex="0" href="{{ product.book.get_absolute_url }}" class="btn-link disabled">{{product.title|capfirst }}</a></span>
-                                        {% endif %}
-                                        <p class="mb-0 text-sm">{{ product.category }}</p>
-                                    </div>                                    
-                                </div>
-                                {% empty %}
-                                <p class="text-sm text-black-50 text-center">{% trans "This collection is empty." %}</p>
-                            {% endfor %}               
+                            {% with collection=authenticated_user_data.collection %}
+                                {% include 'accounts/partials/user_collection_modal_quick.html' %}
+                            {% endwith %}
                         </div>
                     </div>
                 </div>

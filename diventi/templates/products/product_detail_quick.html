@@ -49,13 +49,9 @@
                                     {% if product.related_forum_topic %}
                                     {% with product.related_forum_topic as topic %}    
                                         {% if topic and user.is_authenticated %}
-                                        <div class="mt-1 ml-1">                                            
+                                        <div class="mt-1 ml-1">
                                             <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-secondary btn-sm btn-icon bg-light-info" target="_blank">
-                                                
-                                                    <i data-feather="align-center" class=" mr-1 mb-1"></i>
-                                                
-                                                    {% trans "comment on"|capfirst %}
-                                                
+                                                <i data-feather="align-center" class=" mr-1 mb-1"></i>{% trans "comment on"|capfirst %}
                                             </a>
                                         </div>
                                         {% endif %}
@@ -71,7 +67,7 @@
                     <div class="col-lg-6 order-1">
                       <div class="card border-0">
                         <figure>
-                          <img loading="lazy" alt="{{ product.title|capfirst }}" src="{{ product.image }}" class="card-img">
+                          <img loading="lazy" alt="{{ product.title|capfirst }}" src="{% if product.image %}{{ product.image }}{% else %}{{ product.cover_primary.image }}{% endif %}" class="card-img">
                         </figure>
                       </div>
                     </div>

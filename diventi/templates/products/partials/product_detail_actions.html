@@ -7,11 +7,15 @@
         <a href='{{ product.book.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
             {% trans "read online"|capfirst %}
         </a>
+    {% elif product.file and bought %}
+        <a href="{% url 'products:user_product_download' product.slug %}" class="btn btn-secondary btn-sm btn-icon bg-light-warning">
+            {% trans "download"|capfirst %}
+        </a>        
     {% elif product.gemma.active and product.unfolded and bought or product.gemma.active and not product.unfolded %}
         <a href='{{ product.gemma.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
             {% trans "play"|capfirst %}
         </a>
-    {% elif product.book.published and product.unfolded or product.gemma.active and product.unfolded %}
+    {% elif product.book.published and product.unfolded or product.gemma.active and product.unfolded or product.file and product.unfolded %}
         {% if product.at_a_premium %}
             {% include "products/partials/pay_button_web.html" %}
         {% else %}
@@ -47,7 +51,7 @@
     {% endif %}
 
 {% else %}
-    {% if product.book.published and product.unfolded %}
+    {% if product.book.published and product.unfolded or product.file and product.unfolded %}
         <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-secondary btn-sm btn-icon bg-light-success">
             <i data-feather="user-check" class=" mr-1 mb-1"></i> {% trans "Sign in and buy for " %}{{ price }}</a>
     {% elif not product.unfolded and product.product_survey and product.product_survey.public %}

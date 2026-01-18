@@ -346,7 +346,7 @@ def checkout_done_pdf(request, slug, session_id):
 @login_required
 def user_product_download(request, slug):
     product = get_object_or_404(Product, slug=slug)
-    if product.user_has_already_bought(request.user):
+    if product.user_has_already_bought(request.user) or product.user_has_authored(request.user):
         response_url = get_s3_safe_url(product)
         return render(request, 'products/checkout_done_pdf.html', {
             'response_url': response_url,

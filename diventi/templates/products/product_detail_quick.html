@@ -92,12 +92,12 @@
                 <div class="card card-fluid hover-translate-y-n10 hover-shadow-lg">
                     <div class="card-body">
                         <div class="pb-4">
-                            <i data-feather="bookmark" style="height: 50px; width: 50px;"></i>
+                            <i class="fa-solid fa-{{ chapter.icon }} fa-2x text-{{ chapter.color|default:'dark' }}"></i>
                         </div>
                         <div class="pt-2 pb-3">
                             <h5>{{ chapter.title|capfirst }}</h5>
                             <p class="text-muted mb-0">
-                                {{ chapter.description|capfirst }}
+                                {{ chapter.description|safe|striptags }}
                             </p>
                         </div>
                     </div>

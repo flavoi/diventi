@@ -34,6 +34,12 @@ def make_unpublished(modeladmin, request, queryset):
 make_unpublished.short_description = _("Mark selected products as hidden")
 
 
+class ChapterDetailInline(TranslationStackedInline):
+    model = Chapter
+    fields = ('title', 'description', 'icon', 'color')
+    extra = 0
+
+
 class ProductDetailInline(TranslationStackedInline):
     model = ProductDetail
     fields = ('title', 'description', 'icon', 'highlighted')
@@ -50,7 +56,8 @@ class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
 class ProductAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'cover_primary_tag', 'cover_secondary_tag', 'published', 'unfolded', 'pinned', 'featured', 'public', 'playtest_material', 'category', 'publication_date', 'modified']    
     inlines = [
-        ProductDetailInline,        
+        ProductDetailInline, 
+        ChapterDetailInline,       
     ]
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ['created', 'modified','publication_date']

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - [accounts] Enabled links for pdf attachements in the collection section
 - [blog] Enabled pinned articles to be displayed on the landing page without the need to be marked as featured too
+- [landing] Changed reporting logic from sync to async to improve analytics response time 
 - [payments] Enabled anonymous users to buy pdfs from the website without signing up
 
 ### Security

@@ -1,0 +1,37 @@
+<!-- landing/partials/_analytics_card.html -->
+<div class="row mt-4">
+    <div class="col-12 px-2">
+        <h2 class="h4">{{ title|capfirst }}</h2>
+    </div>
+</div>
+<div class="row">
+    {% for result in data %}
+    <div class="col-lg-4 px-2">
+        <div class="card card-fluid">
+            <div class="card-body">
+                <h5 class="h3 font-weight-bolder mb-1">{{ result.title|capfirst }}</h5>
+                <span class="d-block h5 mt-3">{{ result.name|capfirst }}</span>
+                {% if result.description1 %}
+                    <p class="text-sm text-muted">
+                        {{ result.description1|capfirst|add:"." }}
+                    </p>
+                {% endif %}
+                {% if result.description2 %}
+                    <p class="text-sm text-muted">
+                        {{ result.description2|capfirst }}
+                    </p>
+                {% endif %}
+                {% if result.action %}
+                <div class="row align-items-center mt-4">
+                    <div class="col-6">
+                        <a href="#/" class="btn btn-sm btn-primary js-tooltip {{ result.action.function }}" id="{{ result.action.function }}-{{ forloop.counter }}" data-toggle="tooltip" data-placement="bottom" data-action-parameters="{% for v in result.action.parameters %}{{ v }};{% endfor %}" title="{{ result.action.label|capfirst }}">
+                            {{ result.action.label|capfirst }}
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

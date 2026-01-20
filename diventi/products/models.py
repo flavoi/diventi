@@ -73,7 +73,11 @@ class ProductQuerySet(FeaturedModelQuerySet):
         products = products.select_related('related_forum_topic')
         products = products.select_related('cover_primary')
         products = products.select_related('cover_secondary')
+        products = products.select_related('book')
         return products
+
+    def prefetch_hitcount(self):
+        return self.prefetch_related('book__hit_count_generic')
 
     # Fetch the products purchased by the user
     def user_collection(self, user):
@@ -129,7 +133,10 @@ class ProductQuerySet(FeaturedModelQuerySet):
 
     # Get the published products, counted by their book hitcount
     def hit_count_book(self):
-        products = self.published().prefetch().order_by('-book__hit_count_generic__hits')
+        products = self.published()
+        products = products.prefetch()
+        products = products.prefetch_hitcount()
+        products = products.order_by('-book__hit_count_generic__hits')
         return products
 
     # Get the most popular products, counted by django hitcount
@@ -139,12 +146,17 @@ class ProductQuerySet(FeaturedModelQuerySet):
 
     # Get the most popular, public products, counted by django hitcount
     def public_recent(self):
-        products = self.hit_count().public().order_by('-publication_date')[:3]
+        products = self.hit_count()
+        products = products.public()
+        products = products.order_by('-publication_date')[:3]
         return products
 
     # Get the published products, counted by their own hitcount
     def hit_count(self):
-        products = self.published().prefetch().order_by('-hit_count_generic__hits')
+        products = self.published()
+        products = products.prefetch()
+        products = products.prefetch_hitcount()
+        products = products.order_by('-hit_count_generic__hits')
         return products
 
     # Exclude public products        

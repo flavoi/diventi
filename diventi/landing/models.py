@@ -38,14 +38,21 @@ from diventi.blog.models import (
 
 class AboutArticleQuerySet(PublishableModelQuerySet):
 
+    def prefetch_hitcount(self):
+        articles = self.prefetch_related('hit_count_generic')
+        return articles
+
     # Get the published articles, counted by django hitcount
     def hit_count(self):
-        articles = self.published().order_by('-hit_count_generic__hits')
+        articles = self.published()
+        articles = articles.prefetch_hitcount()
+        articles = articles.order_by('-hit_count_generic__hits')
         return articles
 
     # Get the most viewed articles, counted by django hitcount
     def popular(self):
-        articles = self.hit_count()[:3]
+        articles = self.hit_count()
+        articles = articles[:3]
         return articles
 
 
@@ -76,19 +83,20 @@ class AboutArticle(TimeStampedModel, PublishableModel, Element, HitCountMixin):
     def reporting(self, *args, **kwargs):
         queryset = AboutArticle.objects.popular()
         results = []
-        for article in queryset:
-            results.append({
-                'columns': 4,
-                'name': '%(article)s' % {
-                    'article': article.title,
-                },
-                'title': article.hit_count.hits,
-                'description1': _('views in the last week: %(d)s') % {
-                    'd': article.hit_count.hits_in_last(days=7),
-                },
-                'description2': '',
-                'action': '',
-            })
+        if queryset:
+            for article in queryset:
+                results.append({
+                    'columns': 4,
+                    'name': '%(article)s' % {
+                        'article': article.title,
+                    },
+                    'title': article.hit_count.hits,
+                    'description1': _('views in the last week: %(d)s') % {
+                        'd': article.hit_count.hits_in_last(days=7),
+                    },
+                    'description2': '',
+                    'action': '',
+                })
         return results
 
     class Meta:

@@ -6,11 +6,13 @@ from django.views.generic import (
     ListView,
     TemplateView,
 )
+from django.views import View
 from django.utils.translation import (
     ugettext_lazy as _,
     get_language,
 )
-from django.http import Http404
+from django.http import Http404, JsonResponse
+from django.template.loader import render_to_string
 
 from hitcount.views import HitCountDetailView
 
@@ -59,12 +61,13 @@ class LandingSearchView(ListView):
 class DashboardView(StaffRequiredMixin, ListView):
     """ Report relevant piece of contents of any supported app. """
 
-    template_name = "landing/analytics_quick.html"
+    template_name = "landing/analytics2_quick.html"
     context_object_name = 'results'
     model = Section
 
     def get_queryset(self):
         results = []
+        """
         results.append((_('users'), DiventiUser.reporting(self)))
         results.append((_('packages'), Package.reporting(self)))
         results.append((_('popular articles'), Article.reporting_popular(self)))
@@ -73,6 +76,15 @@ class DashboardView(StaffRequiredMixin, ListView):
         results.append((_('private products'), Product.reporting_private(self)))
         results.append((_('popular public products'), Product.reporting_public_popular(self)))
         results.append((_('latest public products'), Product.reporting_public_recent(self)))
+        """
+        results.append((_('users'), 'users'))
+        results.append((_('packages'), 'packages'))
+        results.append((_('popular articles'), 'articles_popular'))
+        results.append((_('latest articles'), 'articles_latest'))
+        results.append((_('about articles'), 'about_articles'))
+        results.append((_('private products'), 'products_private'))
+        results.append((_('popular public products'), 'products_public_popular'))
+        results.append((_('latest public products'), 'products_public_latest'))
         return results
 
     def get_context_data(self, **kwargs):
@@ -80,6 +92,50 @@ class DashboardView(StaffRequiredMixin, ListView):
         featured_section = Section.objects.featured()
         context['featured_section'] = featured_section
         return context
+
+
+class AnalyticsCardView(StaffRequiredMixin, View):
+    def get(self, request, card_type):
+        results = []        
+
+        # Eseguiamo solo la query richiesta
+        if card_type == 'users':
+            data = DiventiUser.reporting(self)
+            title = _('users')
+        elif card_type == 'packages':
+            data = Package.reporting(self)
+            title = _('packages')
+        elif card_type == 'articles_popular':
+            data = Article.reporting_popular(self)
+            title = _('popular articles')
+        elif card_type == 'articles_latest':
+            data = Article.reporting_latest(self)
+            title = _('latest articles')
+        elif card_type == 'about_articles':
+            data = AboutArticle.reporting(self)
+            title = _('about articles')
+        elif card_type == 'products_private':
+            data = Product.reporting_private(self)
+            title = _('private products')
+        elif card_type == 'products_public_popular':
+            data = Product.reporting_public_popular(self)
+            title = _('popular public products')
+        elif card_type == 'products_public_latest':
+            data = Product.reporting_public_recent(self)
+            title = _('latest public products')
+        else:
+            return JsonResponse({'error': 'Invalid card type'}, status=400)
+
+
+        # Rendiamo solo il pezzetto di HTML relativo alla card
+        # Creiamo un template parziale '_card_partial.html' che contiene 
+        # solo la logica interna del tuo attule loop
+        html = render_to_string('landing/partials/_analytics_card.html', {
+            'title': title,
+            'data': data, 
+        }, request=request)
+
+        return JsonResponse({'html': html})
 
 
 class LandingTemplateView(TemplateView):
@@ -121,6 +177,3 @@ class LandingPageDetailView(StaffRequiredMixin, DetailView):
         self.template_name = self.object.theme
         context = {**context, **landing_context}     
         return context
-
-
-

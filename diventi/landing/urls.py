@@ -8,6 +8,7 @@ from .views import (
     LandingTemplateView,
     AboutArticleDetailView,
     LandingPageDetailView,
+    AnalyticsCardView,
 )
 
 app_name = 'landing'
@@ -16,6 +17,7 @@ urlpatterns = [
     path('', LandingTemplateView.as_view(), name='home'),
     path(_('search/'), LandingSearchView.as_view(), name='search'),
     path(_('analytics/'), DashboardView.as_view(), name='analytics'),
+    path(_('analytics/card/<str:card_type>/'), AnalyticsCardView.as_view(), name='analytics_card'),
     path(_('about/<slug:slug>/'), AboutArticleDetailView.as_view(), name='about'),
     path(_('page/<slug:slug>/'), LandingPageDetailView.as_view(), name='page_detail'),
 ]

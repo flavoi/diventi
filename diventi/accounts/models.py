@@ -24,7 +24,7 @@ class DiventiUserQuerySet(models.QuerySet):
     def is_active(self):
         return self.filter(is_active=True)
 
-    # Fetch all users that agreed to GDPR
+    # Fetch all users that agreed to GDPR
     def has_agreed_gdpr(self):
         users = self.is_active()
         users = self.filter(has_agreed_gdpr=True)
@@ -85,6 +85,9 @@ class DiventiUserManager(UserManager):
 
     def last_subscriber(self, lan):
         return self.get_queryset().last_subscriber(lan)
+
+    def is_active(self):
+        return self.get_queryset().is_active()
 
         
 class DiventiAvatarQuerySet(models.QuerySet):
@@ -259,7 +262,7 @@ class DiventiUser(AbstractUser):
         return description
 
     def reporting(self, *args, **kwargs):
-        queryset = DiventiUser.objects.all().is_active()
+        queryset = DiventiUser.objects.is_active()
         results = [] 
         last_subscriber = queryset.last_subscriber()
         prefix = _('Last subscriber')

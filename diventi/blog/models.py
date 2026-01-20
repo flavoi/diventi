@@ -57,6 +57,10 @@ class ArticleQuerySet(FeaturedModelQuerySet):
         articles = articles.prefetch_related('promotions')
         return articles
 
+    def prefetch_hitcount(self):
+        articles = self.prefetch_related('hit_count_generic')
+        return articles
+
     # Get the list of published articles from the most recent to the least 
     def history(self):
         articles = self.published()
@@ -98,7 +102,10 @@ class ArticleQuerySet(FeaturedModelQuerySet):
 
     # Get the published articles, counted by django hitcount
     def hit_count(self):
-        articles = self.published().prefetch().order_by('-hit_count_generic__hits')
+        articles = self.published()
+        articles = articles.prefetch()
+        articles = articles.prefetch_hitcount()
+        articles = articles.order_by('-hit_count_generic__hits')
         return articles
 
     # Get the most viewed articles, counted by django hitcount

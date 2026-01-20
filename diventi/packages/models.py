@@ -32,6 +32,14 @@ class PackageQuerySet(FeaturedModelQuerySet):
         packages = packages.prefetch_related('faq')
         return packages
 
+    def prefetch_hitcount(self):
+        packages = self.prefetch_related('hit_count_generic')
+        return packages
+
+    def hitcount(self):
+        packages = self.published()
+        return packages
+
 
 class Package(TimeStampedModel, FeaturedModel, Element, HitCountMixin):
     """
@@ -117,7 +125,7 @@ class Package(TimeStampedModel, FeaturedModel, Element, HitCountMixin):
     get_hitcounts.admin_order_field = 'hit_count_generic__hits'
 
     def reporting(self, *args, **kwargs):
-        queryset = Package.objects.published()
+        queryset = Package.objects.hitcount()
         results = []
         for package in queryset:
             results.append({

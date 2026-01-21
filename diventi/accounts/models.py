@@ -43,13 +43,13 @@ class DiventiUserQuerySet(models.QuerySet):
     # Returns the users that set "lan" as main language
     def subscribers(self, lan):
         users = self.is_active()
-        users = self.filter(language=lan)
+        users = users.has_agreed_gdpr()
+        users = users.filter(language=lan)
         return users
 
     # Returns the emails of users that set "lan" as main language
     def subscribers_emails(self, lan):
         users = self.subscribers(lan)
-        users = users.has_agreed_gdpr()
         emails = users.values_list('email', flat=True)
         return emails
 
@@ -268,7 +268,7 @@ class DiventiUser(AbstractUser):
         prefix = _('Last subscriber')
         results.append({
             'columns': 6,
-            'name': _("users count"),
+            'name': _("active users"),
             'title': queryset.count(),
             'description1': _('%(en)s english subscribers, %(it)s italian subscribers') % {
                 'en': queryset.subscribers('en').count(),
@@ -277,18 +277,12 @@ class DiventiUser(AbstractUser):
             'description2': last_subscriber.get_description(prefix) if last_subscriber is not None else prefix + ': -',
             'action': '',
         })
-        results.append({
-            'columns': 3,
-            'name': _("english subscribers"),
-            'title': queryset.subscribers_emails('en').count(),
-            'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('en')},
-        })
-        results.append({
-            'columns': 3,
-            'name': _("italian subscribers"),
-            'title': queryset.subscribers_emails('it').count(),
-            'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('it')},
-        })
+        #results.append({
+        #    'columns': 3,
+        #    'name': _("english subscribers"),
+        #    'title': queryset.subscribers_emails('en').count(),
+        #    'action': {'label': _('copy emails'), 'function': 'copy-emails', 'parameters': queryset.subscribers_emails('en')},
+        #})
         return results
 
     def __str__(self):

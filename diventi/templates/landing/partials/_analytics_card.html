@@ -1,14 +1,14 @@
 {% load i18n %}
 
 <div class="row mt-4">
-    <div class="col-12 px-2">
-        <h2 class="h4">{{ title|capfirst }}</h2>
+    <div class="col-12">
+        <h2 class="h4 mx-1">{{ title|capfirst }}</h2>
     </div>
 </div>
 <div class="row">
     {% for result in data %}
-    <div class="col-lg-4 px-2">
-        <div class="card card-fluid">
+    <div class="col-lg-4">
+        <div class="card card-fluid mx-1">
             <div class="card-body">
                 <h5 class="h3 font-weight-bolder mb-1">{{ result.title|capfirst }}</h5>
                 <span class="d-block h5 mt-3">{{ result.name|capfirst }}</span>

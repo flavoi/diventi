@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-21 13:52+0100\n"
+"POT-Creation-Date: 2026-01-25 21:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,15 +82,27 @@ msgstr "anteprime/"
 msgid "payments/"
 msgstr "pagamenti/"
 
-#: diventi/accounts/admin.py:25 diventi/accounts/admin.py:32
+#: diventi/accounts/admin.py:70
+msgid "Export emails to CSV (All languages)"
+msgstr "Esporta le email in CSV (tutte le lingue)"
+
+#: diventi/accounts/admin.py:75
+msgid "Export emails to CSV (Italian only)"
+msgstr "Esporta le email in CSV (solo IT)"
+
+#: diventi/accounts/admin.py:80
+msgid "Export emails to CSV (English only)"
+msgstr "Esporta le email in CSV (solo EN)"
+
+#: diventi/accounts/admin.py:86 diventi/accounts/admin.py:93
 msgid "Personal info"
 msgstr "Profilo personale"
 
-#: diventi/accounts/admin.py:26
+#: diventi/accounts/admin.py:87
 msgid "Permissions"
 msgstr "Permessi"
 
-#: diventi/accounts/admin.py:28 diventi/accounts/admin.py:33
+#: diventi/accounts/admin.py:89 diventi/accounts/admin.py:94
 msgid "Important dates"
 msgstr "Date fondamentali"
 
@@ -286,27 +298,27 @@ msgstr "utenti attivi"
 msgid "%(en)s english subscribers, %(it)s italian subscribers"
 msgstr "%(en)s iscritti inglesi, %(it)s iscritti italiani"
 
-#: diventi/accounts/models.py:325
+#: diventi/accounts/models.py:331
 msgid "deed"
 msgstr "premio"
 
-#: diventi/accounts/models.py:330
+#: diventi/accounts/models.py:336
 msgid "awarded user"
 msgstr "utente premiato"
 
-#: diventi/accounts/models.py:334
+#: diventi/accounts/models.py:340
 msgid "notified"
 msgstr "notificato"
 
-#: diventi/accounts/models.py:340
+#: diventi/accounts/models.py:346
 msgid "Award"
 msgstr "Riconoscimento"
 
-#: diventi/accounts/models.py:341
+#: diventi/accounts/models.py:347
 msgid "Awards"
 msgstr "Riconoscimenti"
 
-#: diventi/accounts/models.py:345
+#: diventi/accounts/models.py:351
 #, python-format
 msgid "Award: %(id)s"
 msgstr "Riconoscimento: %(id)s"

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.2.1] → 2026-01-xx
 
 ### Added
+- [accounts] Introduced admin actions to export email of users that has agreed to gdpr
 - [landing] Introduced Pages: a way to group up sections that can be themed and displayed in the landing page
 - [products] Introduced Sessions: a feature that tracks payment operations carried out by any user
 

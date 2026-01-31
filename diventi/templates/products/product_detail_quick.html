@@ -37,30 +37,31 @@
                             <ul class="list-group">
                               <li class="list-group-item">{{ product.description|capfirst }}</li>
                               <li class="list-group-item">
+                                    <div class="d-flex justify-content-left">
+                                        {% include "products/partials/product_detail_actions.html" %}
+                                        {% if product.related_forum_topic %}
+                                        {% with product.related_forum_topic as topic %}    
+                                            {% if topic and user.is_authenticated %}
+                                            <div class="mt-1 ml-1">
+                                                <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-secondary btn-sm btn-icon bg-light-info" target="_blank">
+                                                    <i data-feather="align-center" class=" mr-1 mb-1"></i>{% trans "comment on"|capfirst %}
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                        {% endwith %}
+                                        {% endif %}
+                                    </div>
+                              </li>
+                              <li class="list-group-item">
                                 <b>{% trans "format"|capfirst %}:</b> {% for format in product.formats.all %}
                                     <a tabindex="0" class="text-muted text-underline--dashed" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ format.title }}" data-content="{{ format.description }}">
                                         {{ format.title|lower }}
                                     </a>
                                 {% endfor %}
-                            </li>                            
-                            <li class="list-group-item">
-                                <div class="d-flex justify-content-left">
-                                    {% include "products/partials/product_detail_actions.html" %}
-                                    {% if product.related_forum_topic %}
-                                    {% with product.related_forum_topic as topic %}    
-                                        {% if topic and user.is_authenticated %}
-                                        <div class="mt-1 ml-1">
-                                            <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-secondary btn-sm btn-icon bg-light-info" target="_blank">
-                                                <i data-feather="align-center" class=" mr-1 mb-1"></i>{% trans "comment on"|capfirst %}
-                                            </a>
-                                        </div>
-                                        {% endif %}
-                                    {% endwith %}
-                                    {% endif %}
-                                </div>
-                            </li>                            
-                              <li class="list-group-item"><b>{% trans 'Last update date' %}:</b> {{ product.modified|date:'M d, Y' }}</li>
-                              <li class="list-group-item"><b>{% trans 'category'|capfirst %}:</b> <a href="{% url 'products:list_category' product.category.slug %}" target="_blank" class="text-{{ product.category.color|default:'primary' }}">{{ product.category|lower }}</a></li>
+                             </li>                              
+                              <li class="list-group-item"><b>{% trans 'category'|capfirst %}:</b> <a href="{% url 'products:list_category' product.category.slug %}" target="_blank" class="text-{{ product.category.color|default:'primary' }}">{{ product.category|lower }}</a>
+                              </li>
+                              <li class="list-group-item"><b>{% trans 'Last update date' %}:</b> {{ product.modified|date:'M d, Y' }}</li>                              
                             </ul>
                         </div>                        
                     </div>

@@ -1,16 +1,20 @@
 {% load i18n %}
 {% load fullurl %}
 
-<!-- Includi la libreria Stripe JS -->
 <script src="https://js.stripe.com/v3/"></script>
 
-<!-- Il bottone di acquisto -->
-<button class="{% block button_style %}btn btn-primary w-100 btn-lg{% endblock button_style %}" id="checkout-button">
-    {% block button_text %}<i class="fas fa-shopping-cart me-2"></i> {% trans 'buy now'|upper %}{% endblock button_text %}
+<button class="{% block button_style %}btn btn-primary btn-icon-label btn-sm{% endblock button_style %}" id="checkout-button">
+    {% block button_text %}
+      {% if price %}
+        <span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
+      {% else %}
+        <i class="fas fa-shopping-cart me-2"></i> {% trans 'buy now'|upper %}
+      {% endif %}
+    {% endblock button_text %}
 </button>
 
 <script>
-  // Inizializza Stripe con la tua chiave pubblica
+  
   var stripe = Stripe('{{ stripe_publishable_key }}');
 
   var checkoutButton = document.querySelector('#checkout-button');

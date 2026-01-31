@@ -17,7 +17,7 @@
         </a>
     {% elif product.book.published and product.unfolded or product.gemma.active and product.unfolded or product.file and product.unfolded %}
         {% if product.at_a_premium %}
-            {% include "products/partials/pay_button_web.html" %}
+            {% include "products/partials/pay_button.html" %}
         {% else %}
           <form action="{% url 'products:add' product.slug %}" method="POST">
               {% csrf_token %}

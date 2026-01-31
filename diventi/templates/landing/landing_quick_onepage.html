@@ -277,26 +277,32 @@
                             </ul>
                             {% endif %}
                         </div>
+                        
                         <div class="col-lg-5 text-center">                    
                             <div class="bg-white text-dark p-4 rounded shadow-lg">
                                 {% with product=section.attached_product %}
+                                <span class="text-muted font-weight-bolder text-uppercase small">
                                 {% for f in section.attached_product.formats.all %}
-                                <span class="text-muted font-weight-bolder text-uppercase small">{{ f.title }}</span>
-                                {% endfor %}
+                                    {{ f.title }}
+                                {% endfor %} {% trans 'edition' %}
+                                </span>
                                 <h3 class="display-4 fw-bold my-2 text-primary">{{ section.attached_product.price_description }}</h3>
-                                <p class="text-muted small mb-4">IVA inclusa - Download Immediato</p>
+                                <p class="text-muted small mb-4">{% trans "start to play now"|capfirst %}!</p>
                                 {% if user_has_already_bought %}
                                     <p class="text-warning mt-2">{% trans "in your collection, already"|capfirst %}</p>
                                 {% endif %}
-                                {% include "products/partials/pay_button_pdf.html" %}
+                                <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-primary btn-block btn-lg shadow hover-translate-y-n3">
+                                    <i class="fas fa-book-open mr-2"></i> {% trans 'go to download page'|upper %}
+                                </a>
                                 <div class="mt-3 small text-muted">
-                                    <i class="fab fa-cc-visa mx-1"></i>
-                                    <i class="fab fa-cc-mastercard mx-1"></i>
-                                    <i class="fab fa-cc-apple-pay mx-1"></i>
+                                    <span class="avatar rounded-circle">
+                                        <img src="{% static 'brand/avatar-default.jpg' %}" loading="lazy" data-src="{% static 'brand/avatar-default.jpg' %}" alt="Diventi">
+                                    </span>
                                 </div>
                                 {% endwith %}
                             </div>
                         </div>
+                                                
                     </div>
                 </div>
             </div>
@@ -387,7 +393,7 @@
 {% endfor %}
 
 {% if landing_page.enable_signin %}
-<section class="slice slice-lg pt-md-9 bg-section-secondary pb-0 mb-0">
+<section class="slice bg-section-secondary">
   <div class="container">
     <div class="card shadow-lg border-0 zindex-100">
       <div class="card-body px-5 py-5 text-center text-md-left">

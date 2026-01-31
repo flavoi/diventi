@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 21:51+0100\n"
+"POT-Creation-Date: 2026-01-31 14:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2102,7 +2102,7 @@ msgstr ""
 
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/landing/landing_quick.html:260
-#: diventi/templates/landing/landing_quick_onepage.html:414
+#: diventi/templates/landing/landing_quick_onepage.html:420
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -2166,7 +2166,7 @@ msgstr "accedi"
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/base_quick.html:217
 #: diventi/templates/landing/landing_quick.html:248
-#: diventi/templates/landing/landing_quick_onepage.html:402
+#: diventi/templates/landing/landing_quick_onepage.html:408
 msgid "sign up"
 msgstr "registrati"
 
@@ -3040,22 +3040,22 @@ msgid "our latest contents"
 msgstr "i nostri ultimi contenuti"
 
 #: diventi/templates/landing/landing_quick.html:243
-#: diventi/templates/landing/landing_quick_onepage.html:397
+#: diventi/templates/landing/landing_quick_onepage.html:403
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing_quick.html:244
-#: diventi/templates/landing/landing_quick_onepage.html:398
+#: diventi/templates/landing/landing_quick_onepage.html:404
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
 #: diventi/templates/landing/landing_quick.html:255
-#: diventi/templates/landing/landing_quick_onepage.html:409
+#: diventi/templates/landing/landing_quick_onepage.html:415
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing_quick.html:256
-#: diventi/templates/landing/landing_quick_onepage.html:410
+#: diventi/templates/landing/landing_quick_onepage.html:416
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
@@ -3078,10 +3078,22 @@ msgstr "acquista"
 msgid "includes"
 msgstr "include"
 
-#: diventi/templates/landing/landing_quick_onepage.html:289
+#: diventi/templates/landing/landing_quick_onepage.html:287
+msgid "edition"
+msgstr "edizione"
+
+#: diventi/templates/landing/landing_quick_onepage.html:290
+msgid "start to play now"
+msgstr "inizia a giocare ora"
+
+#: diventi/templates/landing/landing_quick_onepage.html:292
 #: diventi/templates/packages/package_detail_quick.html:81
 msgid "in your collection, already"
 msgstr "già nella tua collezione"
+
+#: diventi/templates/landing/landing_quick_onepage.html:295
+msgid "go to download page"
+msgstr "vai alla pagina di download"
 
 #: diventi/templates/landing/search_results_quick.html:4
 #: diventi/templates/landing/search_results_quick.html:15

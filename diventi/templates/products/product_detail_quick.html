@@ -52,17 +52,51 @@
                                         {% endif %}
                                     </div>
                               </li>
-                              <li class="list-group-item">
-                                <b>{% trans "format"|capfirst %}:</b> {% for format in product.formats.all %}
-                                    <a tabindex="0" class="text-muted text-underline--dashed" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ format.title }}" data-content="{{ format.description }}">
-                                        {{ format.title|lower }}
-                                    </a>
-                                {% endfor %}
-                             </li>                              
-                              <li class="list-group-item"><b>{% trans 'category'|capfirst %}:</b> <a href="{% url 'products:list_category' product.category.slug %}" target="_blank" class="text-{{ product.category.color|default:'primary' }}">{{ product.category|lower }}</a>
+                              {% if product.imagepreviews.all %}
+                                <li class="list-group-item p-0 mt-3">
+                                    
+                                    <div class="bg-translucent-secondary px-3 py-2 border-bottom">
+                                        <small class="text-muted font-weight-bold text-uppercase">{% trans "preview"|capfirst %}</small>
+                                    </div>
+                                    
+                                    <div class="list-group list-group-flush">
+                                        {% for preview in product.imagepreviews.all %}
+                                        <a href="{{ preview.image }}" 
+                                           class="list-group-item list-group-item-action d-flex align-items-center px-3 py-2"
+                                           data-fancybox="sidebar-gallery" 
+                                           data-caption="{{ preview.label|default:preview.title }}">                                            
+                                            <img src="{{ preview.image }}" 
+                                                 alt="{{ preview.label|default:preview.title }}" 
+                                                 class="rounded border mr-3" 
+                                                 style="width: 48px; height: 48px; object-fit: cover; object-position: top;">
+                                            
+                                            
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <h6 class="text-sm mb-0 text-truncate">{{ preview.label|default:preview.title|capfirst }}</h6>
+                                                <small class="text-muted"><i class="fas fa-search-plus mr-1"></i>{% trans "zoom" %}</small>
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+                                    </div>
+                                </li>
+                                {% endif %}
+                                <li class="list-group-item p-0 mt-3">
+                                    <div class="bg-translucent-secondary px-3 py-2 border-bottom">
+                                        <small class="text-muted font-weight-bold text-uppercase">{% trans "details"|capfirst %}</small>
+                                    </div>
+                                </li>                              
+                                <li class="list-group-item">
+                                    <b>{% trans "format"|capfirst %}:</b> {% for format in product.formats.all %}
+                                        <a tabindex="0" class="text-muted text-underline--dashed" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ format.title }}" data-content="{{ format.description }}">
+                                            {{ format.title|lower }}
+                                        </a>
+                                    {% endfor %}
+                                </li>                              
+                                <li class="list-group-item"><b>{% trans 'category'|capfirst %}:</b> <a href="{% url 'products:list_category' product.category.slug %}" target="_blank" class="text-{{ product.category.color|default:'primary' }}">{{ product.category|lower }}</a>
                               </li>
-                              <li class="list-group-item"><b>{% trans 'Last update date' %}:</b> {{ product.modified|date:'M d, Y' }}</li>                              
+                                <li class="list-group-item"><b>{% trans 'Last update date' %}:</b> {{ product.modified|date:'M d, Y' }}</li>                              
                             </ul>
+
                         </div>                        
                     </div>
                     <div class="col-lg-6 order-1">
@@ -70,7 +104,7 @@
                         <figure>
                           <img loading="lazy" alt="{{ product.title|capfirst }}" src="{% if product.image %}{{ product.image }}{% else %}{{ product.cover_primary.image }}{% endif %}" class="card-img">
                         </figure>
-                      </div>
+                      </div>                      
                     </div>
                 </div>
             </div>

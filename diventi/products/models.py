@@ -74,6 +74,7 @@ class ProductQuerySet(FeaturedModelQuerySet):
         products = products.select_related('cover_primary')
         products = products.select_related('cover_secondary')
         products = products.select_related('book')
+        products = products.prefetch_related('imagepreviews')
         return products
 
     def prefetch_hitcount(self):

@@ -46,6 +46,12 @@ class ProductDetailInline(TranslationStackedInline):
     extra = 0
 
 
+class ImagePreviewInline(TranslationStackedInline):
+    model = ImagePreview
+    fields = ('title', 'label', 'image')
+    extra = 0
+
+
 class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     model = ProductFormat
     list_display = ['title', 'icon_tag', 'color_tag']
@@ -56,6 +62,7 @@ class ProductFormatAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
 class ProductAdmin(DiventiTranslationAdmin):
     list_display = ['title', 'cover_primary_tag', 'cover_secondary_tag', 'published', 'unfolded', 'pinned', 'featured', 'public', 'playtest_material', 'category', 'publication_date', 'modified']    
     inlines = [
+        ImagePreviewInline,
         ProductDetailInline, 
         ChapterDetailInline,       
     ]

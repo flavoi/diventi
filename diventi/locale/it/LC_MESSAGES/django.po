@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-01 10:38+0100\n"
+"POT-Creation-Date: 2026-02-01 11:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3865,17 +3865,16 @@ msgid "Sign in and buy for "
 msgstr "Accedi e acquista per "
 
 #: diventi/templates/products/product_detail_quick.html:59
-msgid "preview"
-msgstr "anteprima"
+msgid "previews"
+msgstr "anteprime"
 
 #: diventi/templates/products/product_detail_quick.html:76
 msgid "zoom"
 msgstr "zoom"
 
 #: diventi/templates/products/product_detail_quick.html:85
-#: diventi/templates/products/product_detail_quick.html:197
-msgid "details"
-msgstr "dettagli"
+msgid "info"
+msgstr "info"
 
 #: diventi/templates/products/product_detail_quick.html:89
 msgid "format"
@@ -3896,6 +3895,10 @@ msgstr "non ci sono cratteristiche chiave da mostrare, per ora"
 #: diventi/templates/products/product_detail_quick.html:157
 msgid "our latest updates"
 msgstr "i nostri ultimi aggiornamenti"
+
+#: diventi/templates/products/product_detail_quick.html:197
+msgid "details"
+msgstr "dettagli"
 
 #: diventi/templates/products/product_detail_quick.html:199
 msgid "here's a roundown of what you can expect from"
@@ -3992,6 +3995,9 @@ msgstr "questo contenuto dovrebbe essere aperto prima della pubblicazione."
 #: diventi/templates/unfoldable_badge.html:4
 msgid "not open to buy"
 msgstr "non acquistabile"
+
+#~ msgid "preview"
+#~ msgstr "anteprima"
 
 #~ msgid "edition"
 #~ msgstr "edizione"

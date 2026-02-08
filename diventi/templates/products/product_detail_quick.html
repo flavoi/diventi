@@ -1,4 +1,4 @@
-{% extends 'base_quick.html' %}
+f{% extends 'base_quick.html' %}
 {% load core_extras %}
 {% load i18n %}
 {% load static %}
@@ -87,7 +87,7 @@
                                 </li>                              
                                 <li class="list-group-item">
                                     <b>{% trans "format"|capfirst %}:</b> {% for format in product.formats.all %}
-                                        <a tabindex="0" class="text-muted text-underline--dashed" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ format.title }}" data-content="{{ format.description }}">
+                                        <a tabindex="0" class="text-muted text-underline--dashed" href="#/" data-container="body" data-toggle="popover" data-placement="bottom" title="{{ format.title }}" data-content="{{ format.description|striptags }}">
                                             {{ format.title|lower }}
                                         </a>
                                     {% endfor %}

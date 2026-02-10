@@ -260,13 +260,22 @@
 <section id="{{ section.slug }}" class="slice pt-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
     {% if section.attached_product %}
         {% if section.attached_product.unfolded %}
-        <div id="acquista" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
-            <div class="jumbotron bg-black shadow-lg border-0 rounded-lg py-2 mt-5">
-                <div class="card-body px-4">
-                    <div class="row align-items-center">
-                        <div class="col-lg-7 mb-4 mb-lg-0">
-                            <h2 class="display-5 mb-3 text-secondary">{{ section.attached_product.short_description }}</h2>
-                            <p class="lead mb-4 text-secondary opacity-8">
+        <div id="acquista" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">            
+            
+            <div class="card bg-section-dark border-0 rounded-lg" style="max-width: 100%;">
+                <div class="card-body px-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center align-items-center mb-3">
+                                <div>
+                                    <div class="icon icon-sm icon-shape bg-primary text-white rounded-circle mr-3">
+                                        <i class="fa fa-dice-d20"></i>
+                                    </div>
+                                </div>
+                                <span class="h6 text-white mb-0">{{ section.attached_product.title }}</span>
+                            </div>
+                            <h5 class="text-white pt-4">{{ section.attached_product.short_description }}</h5>
+                            <p class="text-white opacity-8">
                                 {{ section.attached_product.abstract }}
                             </p>
                             {% if section.attached_product.details %}
@@ -277,32 +286,14 @@
                             </ul>
                             {% endif %}
                         </div>
-                        
-                        <div class="col-lg-5 text-center">                    
-                            <div class="bg-white text-dark p-4 rounded shadow-lg">
-                                {% with product=section.attached_product %}
-                                <span class="text-muted font-weight-bolder text-uppercase small">
-                                {% for f in section.attached_product.formats.all %}
-                                    {{ f.title }}
-                                {% endfor %}
+                        <div class="col-12 col-md-6 mt-4 mt-md-0 pr-4 pb-3 d-flex align-items-end justify-content-md-end">
+                            <a href="#" class="btn btn-white btn-icon">
+                                <span class="btn-inner--text">{% trans 'visit the download page'|upper %}</span>
+                                <span class="btn-inner--icon">
+                                    <i data-feather="arrow-right" class="text-primary"></i>
                                 </span>
-                                <h3 class="display-4 fw-bold my-2 text-primary">{{ section.attached_product.price_description }}</h3>
-                                <p class="text-muted small mb-4">{% trans "start to play now"|capfirst %}!</p>
-                                {% if user_has_already_bought %}
-                                    <p class="text-warning mt-2">{% trans "in your collection, already"|capfirst %}</p>
-                                {% endif %}
-                                <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-primary btn-block btn-lg shadow hover-translate-y-n3">
-                                    <i class="fas fa-book-open mr-2"></i> {% trans 'go to download page'|upper %}
-                                </a>
-                                <div class="mt-3 small text-muted">
-                                    <span class="avatar rounded-circle">
-                                        <img src="{% static 'brand/avatar-default.jpg' %}" loading="lazy" data-src="{% static 'brand/avatar-default.jpg' %}" alt="Diventi">
-                                    </span>
-                                </div>
-                                {% endwith %}
-                            </div>
+                            </a>
                         </div>
-                                                
                     </div>
                 </div>
             </div>

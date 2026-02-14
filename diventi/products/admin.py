@@ -48,7 +48,7 @@ class ProductDetailInline(TranslationStackedInline):
 
 class ImagePreviewInline(TranslationStackedInline):
     model = ImagePreview
-    fields = ('title', 'label', 'image')
+    fields = ('title', 'image')
     extra = 0
 
 

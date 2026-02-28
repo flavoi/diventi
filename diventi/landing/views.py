@@ -61,22 +61,12 @@ class LandingSearchView(ListView):
 class DashboardView(StaffRequiredMixin, ListView):
     """ Report relevant piece of contents of any supported app. """
 
-    template_name = "landing/analytics2_quick.html"
+    template_name = "landing/analytics_quick.html"
     context_object_name = 'results'
     model = Section
 
     def get_queryset(self):
         results = []
-        """
-        results.append((_('users'), DiventiUser.reporting(self)))
-        results.append((_('packages'), Package.reporting(self)))
-        results.append((_('popular articles'), Article.reporting_popular(self)))
-        results.append((_('latest articles'), Article.reporting_latest(self)))
-        results.append((_('about articles'), AboutArticle.reporting(self)))
-        results.append((_('private products'), Product.reporting_private(self)))
-        results.append((_('popular public products'), Product.reporting_public_popular(self)))
-        results.append((_('latest public products'), Product.reporting_public_recent(self)))
-        """
         results.append((_('users'), 'users'))
         results.append((_('packages'), 'packages'))
         results.append((_('popular articles'), 'articles_popular'))

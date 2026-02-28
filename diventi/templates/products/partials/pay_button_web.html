@@ -1,0 +1,8 @@
+{% extends 'products/partials/pay_button.html' %}
+{% load i18n %}
+
+{% block button_style %}btn btn-dark btn-icon-label btn-sm bg-danger{% endblock button_style %}
+
+{% block button_text %}
+<span class="btn-inner--text">{% trans 'buy for'|capfirst %} {{ price }}</span>
+{% endblock %}

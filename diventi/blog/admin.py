@@ -26,9 +26,6 @@ class ArticleAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
         (_('Management'), {
             'fields': ('published', 'pinned', 'featured')
         }),
-        (_('Layout'), {
-            'fields': ('col_lg', 'col_md')
-        }),
         (_('Multimedia'), {
             'fields': ('image', 'postcard'),
         }),

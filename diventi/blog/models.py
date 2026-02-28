@@ -79,7 +79,7 @@ class ArticleQuerySet(FeaturedModelQuerySet):
 
     # Get the featured articles
     def hot(self):
-        articles = self.history().filter(hot=True)
+        articles = self.history().pinned_list()
         return articles
 
     # Get the hottest article

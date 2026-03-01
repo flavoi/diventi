@@ -1,4 +1,4 @@
-{% extends 'base_quick.html' %}
+x{% extends 'base_quick.html' %}
 {% load i18n %}
 {% load static %}
 {% load comments %}
@@ -12,7 +12,7 @@
   <meta property="og:article:modified_time" content="{{ article.modified|date:'c' }}" />
   <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <meta property="og:image" content="{{ article.image }}" />
-  <meta property="og:description" content="{{ article.description|safe }}" />
+  <meta property="og:description" content="{{ article.description|striptags }}" />
 {% endblock base_opengraph %}
 
 {% block title %}{{ article.title }}{% endblock title %}

@@ -114,8 +114,8 @@
                         <div class="media align-items-center">
                             <div><span class="badge badge-lg badge-dot mr-3"><i class="bg-{{ article.category.color }}"></i></span></div>
                             <div class="media-body">
-                              <a href="{{ article.get_absolute_url }}" class="h6 stretched-link mb-0">{{ article.title|capfirst }}</a>
-                              <p>{{ article.description|capfirst|truncatechars:100 }}</p>
+                              <a href="{{ article.get_absolute_url }}" class="h6 stretched-link mb-0">{{ article.title|capfirst|striptags }}</a>
+                              <p>{{ article.description|capfirst|striptags|truncatechars:100 }}</p>
                             </div>
                               {% with article as object %} 
                                 {% if user.is_staff %}{% include 'publishable_badge.html' %}{% endif %}

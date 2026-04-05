@@ -41,6 +41,10 @@ class ArticleCategory(Element):
     """
         Defines the main argument of any article.
     """
+    slug = models.SlugField(
+        unique=True,
+        verbose_name=_('slug')
+    )
 
     class Meta:
         verbose_name = _('Article Category')
@@ -74,7 +78,7 @@ class ArticleQuerySet(FeaturedModelQuerySet):
 
     # Get the list of published articles of a certain category
     def category(self, category_title):
-        articles = self.history().filter(category__title=category_title)
+        articles = self.history().filter(category__title_plural=category_title)
         return articles
 
     # Get the featured articles

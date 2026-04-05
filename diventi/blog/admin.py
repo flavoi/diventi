@@ -63,12 +63,13 @@ class BlogCoverAdmin(DiventiTranslationAdmin):
 
 class ArticleCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
     list_display = ('title', 'color_tag')
+    prepopulated_fields = {"slug": ("title",)} 
     fieldsets = (
         (_('Multimedia'), {
             'fields': ('color',),
         }),
         (_('Editing'), {
-            'fields': ('title', 'title_plural'),
+            'fields': ('title', 'title_plural', 'slug'),
         }),
     )
 

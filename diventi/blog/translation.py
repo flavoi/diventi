@@ -7,7 +7,7 @@ from .models import ArticleCategory, Article, BlogCover
 
 @register(ArticleCategory)
 class ArticleCategoryTranslationOptions(TranslationOptions):
-    fields = ('title', 'title_plural')
+    fields = ('title', 'title_plural', 'slug')
 
 
 @register(Article)

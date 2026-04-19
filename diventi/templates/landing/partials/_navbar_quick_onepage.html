@@ -58,6 +58,7 @@
         </div>
     </li>
     {% endif %}
+    {% if sections %}
     <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
         <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "navigate"|capfirst %}</a>
         <div class="dropdown-menu dropdown-menu-md p-0">
@@ -93,6 +94,7 @@
           </div>
         </div>
     </li>
+    {% endif %}
     <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
         <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "Discover"|capfirst %}</a>
         <div class="dropdown-menu dropdown-menu-md p-0">
@@ -110,7 +112,7 @@
                 </a>
           </div>
           <div class="list-group list-group-flush px-lg-4">
-                <a href="{% url 'blog:home' %}" class="list-group-item list-group-item-action" role="button">
+                <a href="{% url 'forum:index' %}" class="list-group-item list-group-item-action" role="button">
                     <div class="d-flex">
                         <span class="h6">
                             <i data-feather="layout"></i>
@@ -122,32 +124,36 @@
                     </div>
                 </a>
           </div>
-          <a href="{% url 'products:list' %}" class="list-group-item list-group-item-action" role="button">
-            <div class="d-flex">
-                <span class="h6">
-                    <i data-feather="globe"></i>
-                </span>
-                <div class="ml-3">
-                    <h6 class="heading mb-0">{% trans 'all games'|capfirst %}</h6>
-                    <small class="text-sm">{% trans "explore our collection"|capfirst %}.</small>
-                </div>
-            </div>
-        </a>
+          <div class="list-group list-group-flush px-lg-4">
+                <a href="{% url 'products:list' %}" class="list-group-item list-group-item-action" role="button">
+                    <div class="d-flex">
+                        <span class="h6">
+                            <i data-feather="globe"></i>
+                        </span>
+                        <div class="ml-3">
+                            <h6 class="heading mb-0">{% trans 'all games'|capfirst %}</h6>
+                            <small class="text-sm">{% trans "explore our collection"|capfirst %}.</small>
+                        </div>
+                    </div>
+                </a>
+          </div>          
           {% if pinned_products_nav %}
             {% for pinned_product in pinned_products_nav %}
-            <a href="{{ pinned_product.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
-                <div class="d-flex">
-                    <span class="h6">
-                        <i data-feather="bookmark"></i>
-                    </span>
-                    <div class="ml-3">
-                        <h6 class="heading mb-0">{{ pinned_product.title|capfirst }}</h6>
-                        <small class="text-sm">{{ pinned_product.short_description|capfirst }}</small>
+            <div class="list-group list-group-flush px-lg-4">
+                <a href="{{ pinned_product.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
+                    <div class="d-flex">
+                        <span class="h6">
+                            <i data-feather="bookmark"></i>
+                        </span>
+                        <div class="ml-3">
+                            <h6 class="heading mb-0">{{ pinned_product.title|capfirst }}</h6>
+                            <small class="text-sm">{{ pinned_product.short_description|capfirst }}</small>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>            
             {% endfor %}
-            {% endif %}        
+          {% endif %}        
         </div>
     </li>
     {% for section in sections %}                          

@@ -35,13 +35,13 @@ urlpatterns += [
 
 urlpatterns += i18n_patterns(
     path('', include('diventi.landing.urls', namespace='landing')),    
+    path(_('community/'), include(machina_urls)),
     path(_('control-panel/'), admin.site.urls),
     path(_('accounts/'), include('diventi.accounts.urls', namespace='accounts')),
     path(_('blog/'), include('diventi.blog.urls', namespace='blog')),    
     path(_('comments/'), include('diventi.comments.urls', namespace='comments')),
     path(_('feedbacks/'), include('diventi.feedbacks.urls', namespace='feedbacks')),
     path(_('ebooks/'), include('diventi.ebooks.urls', namespace='ebooks')),
-    path(_('community/'), include(machina_urls)),
     path(_('games/'), include('diventi.products.urls', namespace='products')),
     path(_('packages/'), include('diventi.packages.urls', namespace='packages')),
     path(_('gemma/'), include('diventi.geminigm.urls', namespace='geminigm')),

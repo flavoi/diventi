@@ -42,7 +42,6 @@ class ArticleCategory(Element):
         Defines the main argument of any article.
     """
     slug = models.SlugField(
-        unique=True,
         verbose_name=_('slug')
     )
 

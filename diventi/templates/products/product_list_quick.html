@@ -99,7 +99,7 @@
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
                         <a href="{{ product.get_absolute_url }}" class="d-block">
-                            <img loading="lazy" src="{{ product.image }}" alt="{{ product.title|capfirst }}" class="card-img-top">
+                            <img loading="lazy" src="{% if product.image %}{{ product.image }}{% else %}{{ product.cover_secondary.image }}{% endif %}" alt="{{ product.title|capfirst }}" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body py-4">

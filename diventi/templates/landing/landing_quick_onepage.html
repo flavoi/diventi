@@ -16,6 +16,19 @@
             --text-dark: #1e293b; /* Blu scuro quasi nero */
             --accent: #f97316; /* Arancione chiaro per hover */
         }
+        .card-terminal {
+            background-color: #0f172a !important; /* Un blu/nero più profondo */
+            border-left: 4px solid var(--primary-color) !important;
+            box-shadow: 0 10px 30px rgba(234, 88, 12, 0.15) !important;
+        }
+        .shadow-primary {
+            box-shadow: 0 0 15px rgba(234, 88, 12, 0.4);
+        }
+        .shadow-glow-white:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
     </style>
 
 {% endblock extrahead %}
@@ -43,20 +56,20 @@
 {% endblock navbar_user_signin %}
 
 {% block content %}
-<section class="slice pt-8 pb-0 bg-section-dark" id="top">
+<section class="slice pt-7 pb-0 bg-section-dark" id="top">
   <div data-offset-top="">
     <div class="container position-relative">
       <div class="row align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0 order-lg-1 order-2">          
-            {% if featured_section.subtitle %}
-              <h6 class="text-primary">
+            {% if featured_section.subtitle %}            
+              <h6 class="text-primary diventi-font-title">
                 - {{ featured_section.subtitle }}
                 {% with landing_page as object %} 
-                {% if user.is_staff %}
-                    <span class="ml-1">{% include 'publishable_badge.html' %}</span>
-                {% endif %}
-            {% endwith %}
-              </h6>              
+                    {% if user.is_staff %}
+                        <span class="ml-1">{% include 'publishable_badge.html' %}</span>
+                    {% endif %}
+                {% endwith %}
+              </h6>            
             {% endif %}
             <h1 class="h1 text-white font-weight-bold h1 mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-primary">{{ featured_section.title }}</strong></h1>
             <p class="kbd text-secondary opacity-8">{{ featured_section.description|striptags|capfirst }}</p>
@@ -158,16 +171,15 @@
 <section id="{{ section.slug }}" class="slice pt-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
     {% if section.attached_product %}
         {% if section.attached_product.unfolded %}
-        <div id="acquista" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">            
-            
-            <div class="card bg-section-dark border-0 rounded-lg" style="max-width: 100%;">
+        <div id="acquista" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
+            <div class="card bg-section-dark border-0 rounded-lg shadow-inherit card-terminal"style="max-width: 100%; overflow: hidden;">
                 <div class="card-body px-5">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="d-flex align-items-center align-items-center mb-3">
                                 <div>
                                     <div class="icon icon-sm icon-shape bg-primary text-white rounded-circle mr-3">
-                                        <i class="fa fa-dice-d20"></i>
+                                        <i class="fas fa-download"></i>
                                     </div>
                                 </div>
                                 <span class="h6 text-white mb-0">{{ section.attached_product.title }}</span>
@@ -179,13 +191,13 @@
                             {% if section.attached_product.details %}
                             <ul class="list-unstyled check-list text-secondary">
                                 {% for detail in section.attached_product.details.all %}
-                                    <li><i class="fas fa-check-circle mr-1"></i>{{ detail.title }}</li>
+                                    <li><i class="fas fa-atom mr-2 text-primary text-sm"></i>{{ detail.title }}</li>
                                 {% endfor %}
                             </ul>
                             {% endif %}
                         </div>
-                        <div class="col-12 col-md-6 mt-4 mt-md-0 pr-4 pb-3 d-flex align-items-end justify-content-md-end">
-                            <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-white btn-icon">
+                        <div class="col-12 col-md-5 mt-4 mt-md-0 pr-4 pb-3 d-flex align-items-end justify-content-md-end">
+                            <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-white btn-icon shadow-glow-white">
                                 <span class="btn-inner--text">{% trans 'visit the download page'|upper %}</span>
                                 <span class="btn-inner--icon">
                                     <i data-feather="arrow-right" class="text-primary"></i>
@@ -194,6 +206,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-footer bg-transparent border-0 p-0" style="height: 4px; background: linear-gradient(90deg, var(--primary-color), transparent);"></div>
             </div>
         </div>
         {% endif %}
@@ -210,7 +223,7 @@
                 <div class="d-flex mb-4">
                     <div class="mr-3 text-primary"><i class="fas fa-{{ feature.icon|default:'scroll' }} fa-2x"></i></div>
                     <div>
-                        <h5>{{ feature.title|capfirst }}</h5>
+                        <h5 class="h5">{{ feature.title|capfirst }}</h5>
                         <p class="text-muted small opacity-8">{{ feature.description|capfirst|striptags|safe }}</p>
                     </div>
                 </div>
@@ -218,7 +231,7 @@
             </div>
             <div class="col-lg-6 offset-lg-1">
                 <div class="card p-5 text-center bg-white shadow-lg border-0">
-                    <h3 class="mb-4">{{ section.attached_section.title }}</h3>
+                    <h3 class="mb-4 diventi-font-title ">{{ section.attached_section.title }}</h3>
                     <div class="row g-3">
                         {% for feature in section.attached_section.features.all %}
                         <div class="col-md-4 col-12 py-1">
@@ -259,7 +272,7 @@
                         {% endif %}
                         <div class="pt-2">
                             <div class="d-flex justify-content-between align-items-start mb-0">
-                                <h5 class="text-dark">{{ feature.title}}</h5>
+                                <h5 class="text-dark">{{ feature.title }}</h5>
                                 <span class="badge bg-{{ feature.color }} text-white">{{ feature.prefix|upper }}</span>
                             </div>                            
                             {% if feature.subtitle %}

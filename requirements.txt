@@ -33,7 +33,7 @@ dataclasses-json==0.6.7
 dill==0.4.0
 distro==1.5.0
 dj-database-url==0.5.0
-Django==2.2.28
+Django==4.2.26
 django-autocomplete-light==3.5.1
 django-braces==1.13.0
 django-ckeditor==5.7.1

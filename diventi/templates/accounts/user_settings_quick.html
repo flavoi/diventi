@@ -7,6 +7,10 @@
     <link href="{% static 'diventi/css/diventi-user.min.css' %}" rel="stylesheet"/>
 {% endblock extrahead %}
 
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
+
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
+
 {% block title %}{{ object.get_full_name }} &middot; {% trans 'settings'|capfirst %}{% endblock title %}
 
 {% block content %}

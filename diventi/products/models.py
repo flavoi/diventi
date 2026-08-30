@@ -374,6 +374,35 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         help_text = _('Playtest products can be accessed by users with a playtest permission')
     )
 
+    @property
+    def get_cover_url(self):
+        """
+        Restituisce l'URL dell'immagine disponibile (image, cover_secondary, cover_primary)
+        o l'immagine di default su S3 se nessuna copertina è presente.
+        """
+        if self.cover_secondary and self.cover_secondary.image:
+            return self.cover_secondary.image
+        if self.cover_primary and self.cover_primary.image:
+            return self.cover_primary.image   
+        if self.image:
+            return self.image
+        return 'https://diventi-assets.s3.us-east-1.amazonaws.com/media/cover-blog-diventi.jpg'
+
+    @property
+    def is_available(self):
+        """Verifica se il prodotto ha almeno una risorsa fruibile."""
+        has_book = bool(hasattr(self, 'book') and self.book.published)
+        has_gemma = bool(hasattr(self, 'gemma') and self.gemma.active)
+        has_file = bool(self.file)
+        return has_book or has_gemma or has_file
+
+    @property
+    def can_be_played(self):
+        """Verifica le condizioni per accedere a Gemma."""
+        if not (hasattr(self, 'gemma') and self.gemma.active):
+            return False
+        return not self.unfolded or (self.unfolded and getattr(self, 'bought', False))
+
     @cached_property
     def price_description(self):
         """

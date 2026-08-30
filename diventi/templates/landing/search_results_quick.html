@@ -1,64 +1,97 @@
 {% extends 'base_quick.html' %}
 {% load i18n %}
+{% load static %}
 
-{% block title %}{% trans "search results"|capfirst %}{% endblock title %}
+{% block title %}{% trans "search results"|capfirst %}: {{ search_query }}{% endblock title %}
+
+{% block headerclass %}header-transparent{% endblock headerclass %}
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
 {% block content %}
-<section class="mt-6">
-    <div class="container d-flex align-items-center text-center text-lg-left py-5 py-lg-6 border-bottom">
-        <div class="col px-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12 text-center">
-                    <h2 class="h1 mb-2">{% trans "search results"|capfirst %}</h2>
-                    <h6 class="font-weight-light text-muted">{% trans "query"|capfirst %}: "{{ search_query }}"</h6>
+
+<!-- HERO HEADER RICERCA -->
+<section class="slice slice-lg py-6 bg-cover bg-size--cover bg-gradient-gray-dark position-relative">
+    <div class="container d-flex align-items-center pt-5">
+        <div class="col py-4">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-8 col-lg-7 text-center">
+                    <span class="badge badge-primary badge-pill text-xs font-weight-bold uppercase mb-2">
+                        {% trans "Search Engine" %}
+                    </span>
+                    <h1 class="display-4 text-white font-weight-bold diventi-font-title mb-2">
+                        {% trans "search results"|capfirst %}
+                    </h1>
+                    <p class="lead text-white-50 text-sm mb-0">
+                        {% trans "Query" %}: <strong class="text-white">"{{ search_query }}"</strong>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="slice bg-section-secondary">
+<!-- RISULTATI DI RICERCA -->
+<section class="slice py-5 bg-section-secondary">
     <div class="container">
-        <div class="row row-grid justify-content-between">
-            <div class="col-lg-8 mx-auto">
-                {% for result in results %}                
-                <div class="card hover-translate-y-n10 hover-shadow-lg">
-                  <div class="card-body">
-                    <div class="pb-2">
-                        <small class="d-block text-sm text-{{ result.category.color|default:'info' }} mb-2">
-                            <strong>
-                                {% if result.category %}
-                                    {{ result.category|capfirst }}
-                                {% else %}
-                                    {{ result.class_name|capfirst }}
-                                {% endif %}
-                            </strong> 
-                            {% with result as object %}
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                
+                {% for result in results %}
+                <div class="card border-0 shadow-sm hover-shadow-lg hover-translate-y-n3 rounded-lg mb-3 overflow-hidden transition-all">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <div>
+                                <span class="badge badge-soft-{{ result.category.color|default:'primary' }} badge-pill text-xs font-weight-bold">
+                                    {% if result.category %}
+                                        {{ result.category|capfirst }}
+                                    {% else %}
+                                        {{ result.class_name|capfirst }}
+                                    {% endif %}
+                                </span>
                                 {% if user.is_staff %}
-                                    <span class="ml-1">{% include 'publishable_badge.html' %}</span>
+                                    <span class="ml-1">{% include 'publishable_badge.html' with object=result %}</span>
                                 {% endif %}
-                            {% endwith %}
-                        </small>
+                            </div>
+                        </div>
+
+                        <h3 class="h5 font-weight-bold text-dark mb-2">
+                            <a href="{{ result.get_absolute_url }}" class="text-dark hover-text-primary stretched-link lh-140">
+                                {{ result.title|capfirst }}
+                            </a>
+                        </h3>
+
+                        <p class="text-muted text-sm mb-0 lh-160">
+                            {% if result.abstract %}
+                                {{ result.abstract|striptags|truncatechars:180 }}
+                            {% else %}
+                                {{ result.description|striptags|truncatechars:180 }}
+                            {% endif %}
+                        </p>
                     </div>
-                    <div class="pb-3">
-                      <h5><a href="{{ result.get_absolute_url }}" class="h5">{{ result.title }}</a></h5>
-                      <p class="text-muted mb-0">
-                        {% if result.abstract %}
-                            {{ result.abstract|striptags }}
-                        {% else %}
-                            {{ result.description|striptags }}
-                        {% endif %}
-                      </p>
-                    </div>
-                  </div>
                 </div>
                 {% empty %}
-                    <div class="text-center">
-                        <h4>{% trans "No items found" %}.</h4>
-                    </div>            
+                
+                <!-- SCHEDA STATO VUOTO -->
+                <div class="card border-0 shadow-sm p-5 text-center rounded-lg">
+                    <div class="icon icon-shape bg-soft-warning text-warning rounded-circle mx-auto mb-3" style="width: 64px; height: 64px;">
+                        <i data-feather="search" style="width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3 class="h4 font-weight-bold text-dark mb-2">{% trans "No items found" %}</h3>
+                    <p class="text-muted text-sm mb-4">
+                        {% trans "We couldn't find any content matching your query" %} <strong>"{{ search_query }}"</strong>.
+                    </p>
+                    <div>
+                        <a href="{% url 'landing:home' %}" class="btn btn-sm btn-primary">
+                            {% trans "Back to Home" %}
+                        </a>
+                    </div>
+                </div>
                 {% endfor %}
+
             </div>
         </div>
     </div>
 </section>
+
 {% endblock content %}

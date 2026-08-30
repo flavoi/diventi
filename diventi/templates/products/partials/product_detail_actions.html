@@ -1,72 +1,86 @@
 {% load i18n %}
 
 <div class="d-flex justify-content-center">
-<div class="mt-1">
-{% if user.is_authenticated %}
-    {% if product.book.published and bought %}
-        <a href='{{ product.book.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
-            {% trans "read online"|capfirst %}
-        </a>
-    {% elif product.file and bought %}
-        <a href="{% url 'products:user_product_download' product.slug %}" class="btn btn-secondary btn-sm btn-icon bg-light-warning">
-            {% trans "download"|capfirst %}
-        </a>        
-    {% elif product.gemma.active and product.unfolded and bought or product.gemma.active and not product.unfolded %}
-        <a href='{{ product.gemma.get_absolute_url }}' class="btn btn-secondary btn-sm btn-icon bg-light-warning">
-            {% trans "play"|capfirst %}
-        </a>
-    {% elif product.book.published and product.unfolded or product.gemma.active and product.unfolded or product.file and product.unfolded %}
-        {% if product.at_a_premium %}
-            {% include "products/partials/pay_button.html" %}
+    <div class="mt-1">
+    {% if user.is_authenticated %}
+        
+        {% if bought %}
+            <!-- RISORSE ACQUISTATE -->
+            {% if product.book.published %}
+                <a href="{{ product.book.get_absolute_url }}" class="btn btn-secondary btn-sm btn-icon bg-light-warning">
+                    {% trans "read online"|capfirst %}
+                </a>
+            {% elif product.file %}
+                <a href="{% url 'products:user_product_download' product.slug %}" class="btn btn-secondary btn-sm btn-icon bg-light-warning">
+                    {% trans "download"|capfirst %}
+                </a>
+            {% elif product.gemma.active %}
+                <a href="{{ product.gemma.get_absolute_url }}" class="btn btn-secondary btn-sm btn-icon bg-light-warning">
+                    {% trans "play"|capfirst %}
+                </a>
+            {% endif %}
+
+        {% elif product.unfolded %}
+            <!-- PRODOTTO DISPONIBILE ALL'ACQUISTO / AGGIUNTA -->
+            {% if product.gemma.active and not bought %}
+                <a href="{{ product.gemma.get_absolute_url }}" class="btn btn-secondary btn-sm btn-icon bg-light-warning">
+                    {% trans "play"|capfirst %}
+                </a>
+            {% elif product.at_a_premium %}
+                {% include "products/partials/pay_button.html" %}
+            {% else %}
+                <form action="{% url 'products:add' product.slug %}" method="POST">
+                    {% csrf_token %}
+                    {{ add_collection_form }}
+                    {% if add_collection_form.errors %}
+                        <div class="text-danger text-xs mt-1">{{ add_collection_form.errors }}</div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-secondary btn-icon-label btn-sm btn-icon bg-light-danger">
+                        <span class="btn-inner--text">{% trans "Add to collection" %}</span>
+                    </button>               
+                </form>
+            {% endif %}
+
+        {% elif product.product_survey %}
+            <!-- SONDAGGI / FEEDBACK -->
+            {% if not survey_answered %}
+                <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn btn-primary {{ button_action_class|default:'' }} btn-sm btn-icon-label">
+                    <span class="btn-inner--text">{{ product.product_survey.title }}</span>
+                </a>
+            {% else %}
+                <a class="btn btn-success btn-sm btn-icon disabled" tabindex="-1" aria-disabled="true">
+                    <span class="btn-inner--text">{% trans "you've already answered"|capfirst %}!</span>
+                </a>
+                <div class="mt-1 text-center">
+                    <small class="text-muted">
+                        {% trans "you can"|capfirst %} <a href="{% url 'feedbacks:answers' product.product_survey.slug %}">{% trans "check your answers here" %}</a> {% trans 'or' %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}">{% trans "in your collection" %}</a>.
+                    </small>
+                </div>
+            {% endif %}
+
         {% else %}
-          <form action="{% url 'products:add' product.slug %}" method="POST">
-              {% csrf_token %}
-              {{ add_collection_form }}
-              {{ add_collection_form.errors }}
-              <button type="submit" class="btn btn-secondary btn-icon-label btn-sm btn-icon bg-light-danger">
-                <span class="btn-inner--text">{% trans "Add to collection" %}</span>
-              </button>               
-          </form>
+            <!-- MESSAGGIO DI CORTESIA -->
+            <a class="btn btn-soft-dark btn-sm {{ button_action_class|default:'' }} disabled" data-toggle="tooltip" data-placement="bottom" title="{{ product.courtesy_message }}" tabindex="-1" aria-disabled="true">
+                {{ product.courtesy_short_message }}
+            </a>
         {% endif %}
-    
-    {% elif not product.unfolded and product.product_survey %}
-        {% if not survey_answered %}
-            <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn btn-primary {{ button_action_class }} btn-sm btn-icon-label">
+
+    {% else %}
+        <!-- UTENTE ANONIMO -->
+        {% if product.unfolded and product.is_available %}
+            <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-primary btn-sm btn-icon shadow-none font-weight-bold">
+                <i data-feather="user-check" class="mr-1 mb-1"></i> {% trans "Sign in and buy for " %}{{ price }}
+            </a>
+        {% elif not product.unfolded and product.product_survey and product.product_survey.public %}
+            <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-secondary btn-sm bg-light-primary btn-icon-label">
                 <span class="btn-inner--text">{{ product.product_survey.title }}</span>
             </a>
         {% else %}
-            <a class="btn btn-success btn-sm btn-icon disabled">
-                <span class="btn-inner--text">{% trans "you've already answered"|capfirst %}!</span>
+            <a class="btn btn-soft-dark btn-sm {{ button_action_class|default:'' }} disabled" data-toggle="tooltip" data-placement="bottom" title="{{ product.courtesy_message }}" tabindex="-1" aria-disabled="true">
+                {{ product.courtesy_short_message }}
             </a>
-            <div class="mt-1">
-                <small>
-                    {% trans "you can"|capfirst %} <a href="{% url 'feedbacks:answers' product.product_survey.slug %}"> {% trans "check your answers here" %}</a> {% trans 'or' %} <a href="{% url 'accounts:detail' user.nametag %}#{% trans 'collection' %}"> {% trans "in your collection" %}</a>.
-                </small>
-            </div>
         {% endif %}
-    {% else %}
-        <a class="btn btn-soft-dark btn-sm {{ button_action_class }} disabled" data-toggle="tooltip" data-placement="bottom" title="{{ product.courtesy_message }}" disabled>
-            {{ product.courtesy_short_message }}
-        </a>
-    {% endif %}
 
-{% else %}
-    {% if product.book.published and product.unfolded or product.file and product.unfolded %}
-        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-secondary btn-sm btn-icon bg-light-success">
-            <i data-feather="user-check" class=" mr-1 mb-1"></i> {% trans "Sign in and buy for " %}{{ price }}</a>
-    {% elif not product.unfolded and product.product_survey and product.product_survey.public %}
-    <div class="mt-1">
-        <a href="{% url 'feedbacks:new_answers_gate' product.product_survey.slug %}" class="btn {{ button_action_class|default:'btn-primary' }} btn-secondary btn-sm bg-light-primary btn-icon-label">
-            <span class="btn-inner--text">{{ product.product_survey.title }}</span>
-        </a>
-    </div>
-    {% else %}
-    <div class="mt-1">
-        <a class="btn btn-soft-dark btn-sm {{ button_action_class }} disabled" data-toggle="tooltip" data-placement="bottom" title="{{ product.courtesy_message }}" disabled>
-            {{ product.courtesy_short_message }}
-        </a>
-    </div>
     {% endif %}
-{% endif %}
     </div>
 </div>

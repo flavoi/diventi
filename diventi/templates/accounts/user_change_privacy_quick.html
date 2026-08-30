@@ -4,6 +4,10 @@
 
 {% block title %}{{ object.get_full_name }} &middot; {% trans 'privacy'|capfirst %}{% endblock title %}
 
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
+
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
+
 {% block content %}
 <section class="pt-5 bg-section-secondary">
    <div class="container">
@@ -40,7 +44,7 @@
                            <div class="list-group list-group-flush">
                               <div class="list-group-item d-flex w-100 justify-content-between">
                                  <div>
-                                    <h6 class="font-weight-light mb-1">{{ form.has_agreed_gdpr.label }} <span data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}"><i class="far fa-info-circle"></i></span></h6>
+                                    <h6 class="font-weight-light mb-1">{{ form.has_agreed_gdpr.label }} <span data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}"><i class="fa fa-info-circle"></i></span></h6>
                                     <span class="text-sm text-muted">{% for choice in form.has_agreed_gdpr %}
                                        <div class="custom-control custom-radio">
                                        {{ choice.tag }}

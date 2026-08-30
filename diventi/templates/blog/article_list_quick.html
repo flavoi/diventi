@@ -28,12 +28,13 @@
 
 {% block content %}
 <!-- HEADER / HERO BLOG -->
-<section class="slice slice-lg py-6 bg-cover bg-size--cover bg-gradient-gray-dark position-relative">
+<section class="slice slice-lg py-6 bg-cover bg-size--cover bg-gradient-blue position-relative">
     <div class="container d-flex align-items-center pt-5">
         <div class="col py-4">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-8 col-lg-7 text-center">
-                    <h1 class="display-4 text-white font-weight-bold mb-2">{{ blogcover.title }}</h1>
+                    <h1 class="display-4 text-white font-weight-bold diventi-font-title mb-2">
+                    {{ blogcover.title }}</h1>
                     <p class="lead text-white-50 text-sm mb-0">{{ blogcover.description }}</p>
                 </div>
             </div>
@@ -55,11 +56,14 @@
                         </a>
                     </li>
                     {% endif %}
+                    
+                    {% with category_param=c.slug|default:c.title_plural|default:c.title|lower %}
                     <li class="nav-item">
-                        <a class="nav-link py-2 px-3 text-sm {% ifequal c.title view.kwargs.category %}active{% endifequal %}" href="{% url 'blog:list_category' c.title_plural|default:c.title %}">
+                        <a class="nav-link py-2 px-3 text-sm {% if view.kwargs.category|lower == category_param or view.kwargs.category|lower == c.title|lower %}active{% endif %}" href="{% url 'blog:list_category' c.title_plural|default:c.title %}">
                             {{ c.title_plural|default:c.title|capfirst }}
                         </a>
                     </li>
+                    {% endwith %}
                     {% endfor %}
                 </ul>
             </div>
@@ -69,8 +73,14 @@
 
 <!-- ARTICOLI IN EVIDENZA (HOT ARTICLES) -->
 {% if hot_articles %}
-<section class="slice pt-5 pb-4 bg-section-secondary">
+<section class="slice pt-5 pb-4 bg-section-secondary border-bottom">
     <div class="container">
+        <div class="mb-4">
+            <h2 class="h3 font-weight-bold text-dark mb-0">
+                {% trans "Hot stories" %}
+            </h2>
+        </div>
+
         <div class="row">
             {% for article in hot_articles %}
             <div class="col-md-6 d-flex align-items-stretch mb-4">
@@ -91,9 +101,9 @@
                                 <span class="badge badge-primary badge-pill font-weight-bold">
                                     {{ article.category }} 
                                 </span>
-                                {% with article as object %}
-                                    {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
-                                {% endwith %}
+                                {% if user.is_staff %}
+                                    <span class="ml-1">{% include 'publishable_badge.html' with object=article %}</span>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -108,11 +118,11 @@
                         </p>
                     </div>
 
-                    <!-- Card Footer (Autore con z-index isolato) -->
+                    <!-- Card Footer (Autore) -->
                     <div class="card-footer bg-transparent border-top border-white-10 position-relative zindex-20 py-3">
                         <div class="d-flex align-items-center">
                             <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-sm rounded-circle mr-3">
-                                <img src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}" loading="lazy">
+                                <img src="{% if article.author.avatar.image %}{{ article.author.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}" loading="lazy">
                             </a>
                             <div>
                                 <a href="{{ article.author.get_absolute_url }}" class="h6 text-white text-xs font-weight-bold mb-0">
@@ -131,8 +141,15 @@
 {% endif %}
 
 <!-- GRIGLIA TUTTI GLI ARTICOLI -->
-<section class="slice pt-4 pb-5 bg-section-secondary">
+<section class="slice pt-5 pb-5 bg-section-secondary">
     <div class="container">
+        <!-- Intestazione Sezione Tutti gli Articoli -->
+        <div class="mb-4">
+            <h2 class="h4 font-weight-bold text-dark mb-0">
+                {% trans "All articles" %}
+            </h2>
+        </div>
+
         <div class="row">
             {% for article in articles %}
             <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-4">
@@ -152,9 +169,9 @@
                             <span class="badge badge-soft-{{ article.category.color|default:'primary' }} badge-pill text-xs font-weight-bold">
                                 {{ article.category }}
                             </span>
-                            {% with article as object %} 
-                                {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
-                            {% endwith %}
+                            {% if user.is_staff %}
+                                <span class="ml-1">{% include 'publishable_badge.html' with object=article %}</span>
+                            {% endif %}
                         </div>
 
                         <a href="{{ article.get_absolute_url }}" class="h5 text-dark font-weight-bold stretched-link mb-2 lh-140">

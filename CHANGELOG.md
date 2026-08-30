@@ -5,28 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.x.x] → 2026-xx-xx
+## [1.3.0] → 2026-08-30
 
 ### Added
 - [accounts] Introduced admin actions to export email of users that has agreed to gdpr
 - [landing] Introduced Pages: a way to group up sections that can be themed and displayed in the landing page
 - [products] Introduced Sessions: a feature that tracks payment operations carried out by any user
-- [geminigm[ Introduced a new section addon feature that enable the user to generate fantasy content on the landing page.
+- [geminigm] Introduced a new section addon feature that enable the user to generate fantasy content on the landing page
 
 ### Changed
-- [accounts] Enabled links for pdf attachements in the collection section
+- [all] Refreshed hero sections visual style, unified brand typography, and aligned navigation dropdowns with a Semantic Color Coding system (Blog, Forum, Products)
+- [accounts] Enabled links for pdf attachments in the collection section
 - [blog] Enabled pinned articles to be displayed on the landing page without the need to be marked as featured too
-- [landing] Changed reporting logic from sync to async to improve analytics response time 
+- [forum] Redesigned base layout and top navigation toolbar to align with the new site UI theme and custom Terracotta palette
+- [landing] Changed reporting logic from sync to async to improve analytics response time
 - [payments] Enabled anonymous users to buy pdfs from the website without signing up
+- [products] Optimized Front End rendering and database performance on detail and list views by enabling relationship prefetching and fixing N+1 queries
 
 ### Security
 - [payments] Moved the stripe checkout management on the server side
 
 ### Removed
-- [landing] Removed legacy dependancies from the business logic
+- [landing] Removed legacy dependencies from the business logic
 
 ### Fixed
-- [machinima] Fixed a problem that prevented some pages to be displayed. due to legacy dependacies being broken
+- [forum] Fixed machina layout dependencies and link handling on category navigation
+- [machina] Fixed a problem that prevented some pages to be displayed due to legacy dependencies being broken
 
 
 ## [1.2.0] → 2025-09-22

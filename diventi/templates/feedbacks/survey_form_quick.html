@@ -2,122 +2,153 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{{ survey.title}}{% endblock title %}
+{% block title %}{{ survey.title }}{% endblock title %}
 
-{% block headerclass %}header-transparent{% endblock headerclass %}
-
-{% block navbarclass %}navbar-light{% endblock navbarclass %}
+{% block headerclass %}header{% endblock headerclass %}
 
 {% block content %}
 
-<!-- Title section -->
-<section class="slice pt-6 mt-5 bg-light-secondary">
+<!-- Intestazione Sezione (Nativa Quick Scura) -->
+<section class="slice pt-6 pb-5 bg-section-dark">
     <div class="container">
         {% with survey as object %}
-            {% if user.is_staff %}<div class="text-center">{% include 'publishable_badge.html' %}</div>{% endif %}
+            {% if user.is_staff %}
+            <div class="text-center mb-2">
+                {% include 'publishable_badge.html' %}
+            </div>
+            {% endif %}
         {% endwith %}
-        <div class="row row align-items-center justify-content-center">
-            <div class="col-md-7 col-lg-10 text-center">
-                <h1 class="mb-0 mx-2">
+        
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-9 col-lg-8 text-center">
+                <a href="{% url 'landing:home' %}" class="d-inline-block mb-3">
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                         data-src="{% static 'brand/avatar-default.jpg' %}" 
+                         alt="Diventi" 
+                         class="avatar avatar-lg rounded-circle">
+                </a>
+                
+                <h1 class="diventi-font-title h2 text-white font-weight-bold mb-3">
                     {{ survey.title }}
                 </h1>
-                <span class="lead opacity-8">{% trans "You are answering as" %} <strong>{{ author_name }}</strong>.</span>
+                
+                <p class="lead text-secondary opacity-8 mb-0">
+                    {% trans "You are answering as" %} <strong class="text-white">{{ author_name }}</strong>.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Answer form section -->
-<section class="slice slice-sm bg-section-secondary">
+<!-- Main Form Section -->
+<section class="slice py-5 bg-section-secondary">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <!-- Alert Errori Globali Formset -->
                 {% if formset.non_form_errors %}
-                    <div class="alert-messages">         
-                        {% for error in formset.non_form_errors %}
-                          <div class="alert alert-group alert-danger alert-icon" role="alert">
-                              <div class="alert-group-prepend">
-                                  <span class="alert-group-icon text-">
-                                      <i data-feather="alert-triangle"></i>
-                                  </span>
-                              </div>
-                              <div class="alert-content">
-                                  {{ error|striptags }}
-                              </div>
-                          </div>
-                        {% endfor %}
-                    </div> 
+                <div class="alert-messages mb-4">         
+                    {% for error in formset.non_form_errors %}
+                    <div class="alert alert-group alert-danger alert-icon" role="alert">
+                        <div class="alert-group-prepend">
+                            <span class="alert-group-icon">
+                                <i data-feather="alert-triangle"></i>
+                            </span>
+                        </div>
+                        <div class="alert-content">
+                            {{ error|striptags }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div> 
                 {% endif %}
+
                 <form method="post">
-                    <div class="row my-3">                    
-                        {% csrf_token %}
-                        {{ formset.management_form }}
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+
+                    <div class="row">
                         {% for form in formset %}
+                            
+                            <!-- Titolo del gruppo di domande -->
                             {% ifchanged form.group_title.value %}
-                            <div class="col-lg-12 px-2">
-                                <h3 class="h5 mb-3 mt-2">{{ form.group_title.value }}</h3>
+                            <div class="col-12 mt-5 pt-3 mb-4">
+                                <div class="border-bottom border-gray-300 pb-2">
+                                    <h3 class="diventi-font-title h5 text-primary font-weight-bold mb-0 text-uppercase tracking-wide">
+                                        {{ form.group_title.value }}
+                                    </h3>
+                                </div>
                             </div>
                             {% endifchanged %}
-                            <div class="col-lg-4 px-2">
-                                {% if form.is_closed %}
-                                <div class="card card-fluid">
-                                    <div class="list-group list-group-flush">
-                                        <div class="list-group-item d-flex w-100 justify-content-between">
-                                            <div>                                                
-                                                 <h6 class="font-weight-light mb-1">{{ form.content.label }}</h6>
-                                                {% if form.content.errors %}
-                                                    <div class="text-danger">
-                                                        {% for error in form.content.errors %}
-                                                            {{ error|escape }}
-                                                        {% endfor %}
-                                                    </div>
-                                                {% endif %}
-                                                <div class="text-sm text-muted">               
-                                                    {% for choice in form.content %}
-                                                    <div class="custom-control custom-radio">
-                                                        {{ choice.tag }}
-                                                        <label class="custom-control-label" for="{{ choice.id_for_label }}">
-                                                            {{ choice.choice_label }}
-                                                        </label>
-                                                    </div>
-                                                    {% endfor %}                                            
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% else %}
-                                <div class="form-group mb-4">
-                                    <label class="form-control-label">{{ form.content.label }}</label>
-                                    {% if form.content.errors %}
-                                        <div class="text-danger">
+
+                            <!-- Domanda Singola in Card Nativa Quick -->
+                            <div class="col-12 mb-3">
+                                <div class="card card-fluid shadow-sm border-0">
+                                    <div class="card-body">
+                                        
+                                        <!-- Label Domanda -->
+                                        <label class="form-control-label h6 text-dark font-weight-bold mb-3">
+                                            {{ form.content.label }}
+                                        </label>
+
+                                        <!-- Gestione Errori Specifici -->
+                                        {% if form.content.errors %}
+                                        <div class="text-danger mb-3 text-sm">
                                             {% for error in form.content.errors %}
                                                 {{ error|escape }}
                                             {% endfor %}
                                         </div>
-                                    {% endif %}
-                                    {{ form.content }}
-                                </div>                        
-                                {% endif %}
-                                {{ form.author_name }}
-                                {{ form.group_title }}
-                                {{ form.group_description }}
-                                {{ form.survey }}
-                                {{ form.question }}
+                                        {% endif %}
+
+                                        <!-- Render Opzioni (Chiusa / Radio) vs Risposta Aperta -->
+                                        {% if form.is_closed %}
+                                            <div class="list-group list-group-flush border rounded">
+                                                {% for choice in form.content %}
+                                                <div class="list-group-item py-2">
+                                                    <div class="custom-control custom-radio">
+                                                        {{ choice.tag }}
+                                                        <label class="custom-control-label text-sm text-dark font-weight-normal" for="{{ choice.id_for_label }}">
+                                                            {{ choice.choice_label }}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            <div class="form-group mb-0">
+                                                {{ form.content }}
+                                            </div>
+                                        {% endif %}
+
+                                        <!-- Campi Nascosti del Formset -->
+                                        {{ form.author_name }}
+                                        {{ form.group_title }}
+                                        {{ form.group_description }}
+                                        {{ form.survey }}
+                                        {{ form.question }}
+
+                                    </div>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 px-2">
-                            <button type="submit" class="btn btn-sm btn-primary">{% trans 'save'|capfirst %}</button>
+
+                    <!-- Pulsante Salva Nativo Quick -->
+                    <div class="row mt-4 mb-5">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">
+                                {% trans 'save'|capfirst %}
+                            </button>
                         </div>
                     </div>
-                    <hr>
+
                 </form>
             </div>
         </div>
     </div>
 </section>
+
 {% endblock content %}
 
 {% block footer %}{% endblock footer %}

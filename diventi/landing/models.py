@@ -34,6 +34,7 @@ from diventi.blog.models import (
     Article,
     ArticleCategory,
 )
+from diventi.geminigm.models import SectionAddon
 
 
 class AboutArticleQuerySet(PublishableModelQuerySet):
@@ -124,6 +125,7 @@ class SectionModelQuerySet(FeaturedModelQuerySet):
         sections = sections.select_related('attached_product')
         sections = sections.select_related('attached_section')
         sections = sections.select_related('attached_survey')
+        sections = sections.select_related('attached_addon')
         sections = sections.prefetch_related('attached_section__features')
         sections = sections.prefetch_related('features')
         return sections
@@ -217,6 +219,14 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         null=True,
         related_name='section',
         verbose_name=_('survey')
+    )
+    attached_addon = models.OneToOneField(
+        SectionAddon,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='section',
+        verbose_name=_('addon')
     )
     cover_primary = models.ForeignKey(
         SectionImage,

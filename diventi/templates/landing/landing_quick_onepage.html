@@ -259,8 +259,23 @@
 
 {% for section in sections %}
 <div id="content-1"></div>
-<section id="{{ section.slug }}" class="slice pt-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
-    {% if section.attached_product %}
+<section id="{{ section.slug }}" class="slice pt-5 {% if forloop.counter|divisibleby:2 %}{% else%}bg-light{% endif %}">
+    {% if section.attached_addon %}
+    <div class="container">
+        <div class="row mb-6 justify-content-center text-center">
+            <div class="col-lg-8 col-md-10">
+                <span class="badge badge-primary badge-pill">{{ section.prefix }}</span>
+                <h3 class="mt-4">{{ section.title }}</h3>
+                <p class="text-muted">
+                    {{ section.description|safe }}
+                </p>
+            </div>
+        </div>    
+        <div class="row justify-content-md-center">
+            {% include section.attached_addon.addon_template %}
+        </div>
+    </div>
+    {% elif section.attached_product %}
         {% if section.attached_product.unfolded %}
         <div id="diventi" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
             <div class="card bg-section-dark border-0 rounded-lg shadow-inherit card-terminal" style="max-width: 100%; overflow: hidden;">
@@ -386,38 +401,36 @@
 {% endfor %}
 
 {% with featured_section as section %}
-<section id="diventi" class="slice pt-5 bg-light">
+<section id="diventi" class="slice py-6 bg-section-dark border-top border-gray-800">
     {% if section.attached_product %}
-    <div class="container py-5">
-        <div class="card bg-section-dark border-0 rounded-lg shadow-inherit card-terminal" style="max-width: 100%; overflow: hidden;">
-            <div class="card-body px-5">
-                <div class="row">
+    <div class="container py-3">
+        <div class="card bg-dark border border-gray-800 rounded-lg shadow-2xl card-terminal" style="max-width: 100%; overflow: hidden;">
+            <div class="card-body px-4 px-md-5 py-5">
+                <div class="row align-items-center">
                     <div class="col-md-7">
                         <div class="d-flex align-items-center mb-3">
-                            <div>
-                                <div class="icon icon-sm icon-shape bg-primary text-white rounded-circle mr-3">
-                                    <i class="fas fa-download"></i>
-                                </div>
+                            <div class="icon icon-sm icon-shape bg-primary text-white rounded-circle mr-3">
+                                <i class="fas fa-download"></i>
                             </div>
                             <span class="h6 text-white mb-0">{{ section.attached_product.title }}</span>
                         </div>
-                        <h5 class="text-white pt-4">{{ section.attached_product.short_description }}</h5>
-                        <p class="text-white opacity-8">
+                        <h5 class="text-white pt-2 font-weight-bold">{{ section.attached_product.short_description }}</h5>
+                        <p class="text-secondary opacity-8 text-sm">
                             {{ section.attached_product.abstract }}
                         </p>
                         {% if section.attached_product.details %}
-                        <ul class="list-unstyled check-list text-secondary">
+                        <ul class="list-unstyled check-list text-secondary mt-3">
                             {% for detail in section.attached_product.details.all %}
-                                <li><i class="fas fa-atom mr-2 text-primary text-sm"></i>{{ detail.title }}</li>
+                                <li class="mb-2"><i class="fas fa-atom mr-2 text-primary text-sm"></i>{{ detail.title }}</li>
                             {% endfor %}
                         </ul>
                         {% endif %}
                     </div>
-                    <div class="col-12 col-md-5 mt-4 mt-md-0 pr-4 pb-3 d-flex align-items-end justify-content-md-end">
-                        <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-white btn-icon shadow-glow-white">
+                    <div class="col-12 col-md-5 mt-4 mt-md-0 text-md-right">
+                        <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-primary btn-lg shadow-primary">
                             <span class="btn-inner--text">{% trans 'visit the download page'|upper %}</span>
-                            <span class="btn-inner--icon">
-                                <i data-feather="arrow-right" class="text-primary"></i>
+                            <span class="btn-inner--icon ml-2">
+                                <i class="fas fa-arrow-right"></i>
                             </span>
                         </a>
                     </div>
@@ -427,46 +440,45 @@
         </div>
     </div>
     {% elif section.attached_section %}
-    <div class="container py-5">
+    <!-- Altri casi con testo adattato al background scuro -->
+    <div class="container py-3">
         <div class="row align-items-center">
-            <div class="col-lg-5">
-                <h2 class="mb-4">{{ section.title|capfirst }}</h2>
-                <p class="text-muted mb-4">
+            <div class="col-lg-5 text-white">
+                <h2 class="mb-4 text-white">{{ section.title|capfirst }}</h2>
+                <p class="text-secondary mb-4 opacity-8">
                     {{ section.description|capfirst }}
                 </p>
-                
                 {% for feature in section.features.all %}
                 <div class="d-flex mb-4">
                     <div class="mr-3 text-primary"><i class="fas fa-{{ feature.icon|default:'scroll' }} fa-2x"></i></div>
                     <div>
-                        <h5 class="h5">{{ feature.title|capfirst }}</h5>
-                        <p class="text-muted small opacity-8">{{ feature.description|capfirst|striptags|safe }}</p>
+                        <h5 class="h5 text-white">{{ feature.title|capfirst }}</h5>
+                        <p class="text-secondary small opacity-8">{{ feature.description|capfirst|striptags|safe }}</p>
                     </div>
                 </div>
-                {% endfor %}                
+                {% endfor %}                 
             </div>
             <div class="col-lg-6 offset-lg-1">
-                <div class="card p-5 text-center bg-white shadow-lg border-0">
-                    <h3 class="mb-4 diventi-font-title ">{{ section.attached_section.title }}</h3>
+                <div class="card p-5 text-center bg-dark border border-gray-800 shadow-xl">
+                    <h3 class="mb-4 diventi-font-title text-white">{{ section.attached_section.title }}</h3>
                     <div class="row g-3">
                         {% for feature in section.attached_section.features.all %}
                         <div class="col-md-4 col-12 py-1">
-                            <div class="p-3 rounded bg-light">
+                            <div class="p-3 rounded bg-neutral-900 border border-gray-800">
                                 <i class="fas fa-{{ feature.icon|default:'x'}} mb-2 text-primary"></i>
-                                <h5 class="mb-0">{{ feature.title|capfirst }}</h5>
-                                <small class="text-muted">{{ feature.description|capfirst|striptags|safe }}</small>
+                                <h5 class="mb-0 text-white text-sm">{{ feature.title|capfirst }}</h5>
+                                <small class="text-muted text-xs">{{ feature.description|capfirst|striptags|safe }}</small>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
-                    <p class="mt-4 text-muted small">{{ section.attached_section.description|capfirst }}</p>
+                    <p class="mt-4 text-secondary small opacity-8">{{ section.attached_section.description|capfirst }}</p>
                 </div>
             </div>
         </div>
     </div>
     {% elif section.attached_survey %}
-    <div class="container py-5">
-        <!-- Griglia per restringere la card su laptop (col-lg-8) e monitor desktop (col-xl-7) -->
+    <div class="container py-3">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8 col-xl-7">
                 <div class="card card-terminal-dark p-4 p-md-5 text-center text-white shadow-xl">
@@ -486,12 +498,10 @@
                         {{ section.attached_survey.description|safe }}
                     </div>
 
-                    <!-- Input Form -->
                     <div class="mb-4">
                         <form action="{% url 'feedbacks:new_answers_gate' slug=section.attached_survey.slug %}" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="survey" value="{{ section.attached_survey.pk }}">
-                            
                             <div class="input-group input-group-lg shadow-sm">
                                 <input type="text" name="author_name" placeholder="{% trans 'enter your email or username'|capfirst %}" class="form-control text-sm bg-transparent text-white border-gray-800 rounded-left" required>
                                 <div class="input-group-append">
@@ -508,7 +518,6 @@
                         <p class="mb-0">{{ section.subtitle }}</p>
                     </div>
                     {% endif %}
-
                 </div>
             </div>
         </div>

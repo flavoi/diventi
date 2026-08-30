@@ -16,6 +16,7 @@ from django.utils.translation import (
     get_language,
 )
 from django.contrib.admin.views.decorators import staff_member_required
+from django.views.decorators.http import require_POST
 from django.views import View
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import (
@@ -31,6 +32,7 @@ from .models import (
     IngestedDocument,
     WelcomeMessage,
     GemmaIstruction,
+    SectionAddon,
 )
 from .forms import PDFUploadForm, WebIngestionForm
 from .utils import (
@@ -38,6 +40,93 @@ from .utils import (
     ingest_website_document,
     user_has_access_to_ai,
 )
+
+
+@require_POST
+def generate_spell_name_ajax(request, section_addon_slug):
+    """
+    Riceve le parole dell'Arcanum via POST (forma, fonte, portata),
+    recupera le istruzioni di sistema dal modello GemmaIstruction collegato alla Sezione
+    e invoca Gemini per generare nome e descrizione.
+    """
+    forma = request.POST.get('forma', '').strip()
+    fonte = request.POST.get('fonte', '').strip()
+    portata = request.POST.get('portata', '').strip()
+
+    if not (forma and fonte and portata):
+        return JsonResponse(
+            {'success': False, 'error': _('Tutti e tre i componenti magici sono obbligatori.')}, 
+            status=400
+        )
+
+    try:
+        client = genai.Client(api_key=settings.GEMINI_API_KEY)
+
+        # 1. Recupera la Sezione
+        section_addon = get_object_or_404(SectionAddon, slug=section_addon_slug)
+
+        if not section_addon.enable_ai:
+            raise Exception(f'Abilitare la funzionalità IA per questo addon: {section_addon}')
+
+        # 2. Controllo di sicurezza: verifica che l'addon abbia una Gemma assegnata
+        if not section_addon.gemma:
+            raise Exception(f'Nessuna istruzione Gemma (GemmaIstruction) associata a questo addon dall\'Admin: {section_addon}')
+
+        # 2. Costruisci il prompt combinando le istruzioni da DB con i dati dinamici scelti dall'utente
+        base_instruction = section_addon.gemma.system_instruction
+        
+        prompt = f"""
+        {base_instruction}
+
+        Componenti selezionati dall'utente:
+        - Forma: {forma}
+        - Fonte: {fonte}
+        - Portata: {portata}
+
+        Genera un output in formato JSON valido con esattamente due chiavi:
+        1. "name": Un nome unico, epico ed evocativo per l'incantesimo.
+        2. "description": Una breve frase narrativa (massimo 25 parole) che descriva l'effetto visivo quando viene invocato.
+
+        Rispondi ESCLUSIVAMENTE con un oggetto JSON valido. Non includere blocchi di codice markdown.
+        """
+
+        # 3. Gestione multilingua
+        lan = get_language()
+        if lan == 'en':
+            prompt += " Genera sia il campo 'name' che 'description' direttamente in lingua inglese. Non riportare frasi introduttive o finali, limitati a restituire il JSON con i valori tradotti."
+
+        response = client.models.generate_content(
+            model='gemini-3.5-flash-lite',
+            contents=prompt,
+        )
+
+        # 4. Parsing sicuro della risposta JSON
+        raw_text = response.text.strip()
+        if raw_text.startswith('```'):
+            raw_text = raw_text.split('\n', 1)[-1]
+            if raw_text.endswith('```'):
+                raw_text = raw_text.rsplit('\n', 1)[0]
+            raw_text = raw_text.replace('```json', '').replace('```', '').strip()
+
+        data = json.loads(raw_text)
+
+        return JsonResponse({
+            'success': True,
+            'name': data.get('name', f"{forma} di {fonte}"),
+            'description': data.get('description', '')
+        })
+
+    except Exception as e:
+        # STAMPA IL TRACEBACK COMPLETO NEL TERMINALE DI RUNSERVER
+        print("\n" + "="*50)
+        print(" [DEBUG AJAX ERROR] ")
+        traceback.print_exc()
+        print("="*50 + "\n")
+
+        return JsonResponse(
+            {'success': False, 'error': _("Errore durante l'evocazione dell'Arcanum: %(error)s") % {'error': str(e)}}, 
+            status=500
+        )
 
 
 @staff_member_required

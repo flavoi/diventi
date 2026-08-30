@@ -1,0 +1,218 @@
+{% load i18n %}
+
+<div class="container">
+    
+    <!-- Card Strutturata Stile Quick Chiaro -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-10">
+            <div class="card border-0 shadow-sm rounded-lg bg-white p-4 p-md-5">
+                <div class="row align-items-stretch">
+                    
+                    <!-- Colonna Controlli -->
+                    <div class="col-md-6 border-right-md border-light pr-md-5 mb-4 mb-md-0 d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="h6 font-weight-bold text-uppercase tracking-wide text-dark mb-4">
+                                {% trans "Compose the Formula" %}
+                            </h5>
+                            
+                            <!-- 1. FORMA -->
+                            <div class="form-group mb-3 text-left">
+                                <label class="form-control-label small font-weight-bold text-muted">
+                                    1. {% trans "SHAPE (Structure)" %}
+                                </label>
+                                <select id="spell-forma" class="custom-select custom-select-sm border-gray-300" onchange="updateStats()">
+                                    {% for feature in section.features.all %}
+                                        {% if feature.prefix|lower == 'forma' or feature.prefix|lower == 'shape' %}
+                                        <option value="{{ feature.subtitle }}" data-word="{{ feature.title }}" data-desc="{{ feature.description|striptags }}">
+                                            {{ feature.title }} ({% trans "Shape" %} {{ feature.subtitle }})
+                                        </option>
+                                        {% endif %}
+                                    {% empty %}
+                                        <option value="-1" data-word="{% trans 'Trail' %}" data-desc="{% trans 'a subtle flick of energy' %}">{% trans "Trail" %} ({% trans "Shape" %} -1)</option>
+                                        <option value="0" data-word="{% trans 'Ring' %}" data-desc="{% trans 'a concentrated circular surge' %}" selected>{% trans "Ring" %} ({% trans "Shape" %} +0)</option>
+                                        <option value="1" data-word="{% trans 'Orb' %}" data-desc="{% trans 'a condensed and powerful sphere' %}">{% trans "Orb" %} ({% trans "Shape" %} +1)</option>
+                                        <option value="2" data-word="{% trans 'Cathedral' %}" data-desc="{% trans 'an imposing magical architecture' %}">{% trans "Cathedral" %} ({% trans "Shape" %} +2)</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- 2. FONTE -->
+                            <div class="form-group mb-3 text-left">
+                                <label class="form-control-label small font-weight-bold text-muted">
+                                    2. {% trans "SOURCE (Element)" %}
+                                </label>
+                                <select id="spell-fonte" class="custom-select custom-select-sm border-gray-300" onchange="updateStats()">
+                                    {% for feature in section.features.all %}
+                                        {% if feature.prefix|lower == 'fonte' or feature.prefix|lower == 'source' %}
+                                        <option value="{{ feature.subtitle }}" data-word="{{ feature.title }}" data-desc="{{ feature.description|striptags }}">
+                                            {{ feature.title }} ({% trans "Source" %} {{ feature.subtitle }})
+                                        </option>
+                                        {% endif %}
+                                    {% empty %}
+                                        <option value="-1" data-word="{% trans 'Spark' %}" data-desc="{% trans 'made of faint glowing dust' %}">{% trans "Spark" %} ({% trans "Source" %} -1)</option>
+                                        <option value="0" data-word="{% trans 'Wave' %}" data-desc="{% trans 'of pure water and fluid force' %}">{% trans "Wave" %} ({% trans "Source" %} +0)</option>
+                                        <option value="1" data-word="{% trans 'Lightning' %}" data-desc="{% trans 'of pure celestial electric discharge' %}" selected>{% trans "Lightning" %} ({% trans "Source" %} +1)</option>
+                                        <option value="2" data-word="{% trans 'Eclipse' %}" data-desc="{% trans 'of cosmic shadow and oblivion' %}">{% trans "Eclipse" %} ({% trans "Source" %} +2)</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- 3. PORTATA -->
+                            <div class="form-group mb-4 text-left">
+                                <label class="form-control-label small font-weight-bold text-muted">
+                                    3. {% trans "RANGE (Action Radius)" %}
+                                </label>
+                                <select id="spell-portata" class="custom-select custom-select-sm border-gray-300" onchange="updateStats()">
+                                    {% for feature in section.features.all %}
+                                        {% if feature.prefix|lower == 'portata' or feature.prefix|lower == 'impatto' or feature.prefix|lower == 'range' %}
+                                        <option value="{{ feature.subtitle }}" data-word="{{ feature.title }}" data-desc="{{ feature.description|striptags }}">
+                                            {{ feature.title }} ({{ feature.prefix|capfirst }} {{ feature.subtitle }})
+                                        </option>
+                                        {% endif %}
+                                    {% empty %}
+                                        <option value="-1" data-word="{% trans 'Whisper' %}" data-desc="{% trans 'acting on personal touch.' %}">{% trans "Whisper" %} ({% trans "Range" %} -1)</option>
+                                        <option value="0" data-word="{% trans 'Thrust' %}" data-desc="{% trans 'unleashed against a single close target.' %}">{% trans "Thrust" %} ({% trans "Range" %} +0)</option>
+                                        <option value="1" data-word="{% trans 'Burst' %}" data-desc="{% trans 'expanding to strike short-range targets.' %}" selected>{% trans "Burst" %} ({% trans "Range" %} +1)</option>
+                                        <option value="2" data-word="{% trans 'Cataclysm' %}" data-desc="{% trans 'engulfing an entire high-altitude area.' %}">{% trans "Cataclysm" %} ({% trans "Range" %} +2)</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Pulsante Evocazione IA -->
+                        {% if section.attached_addon.enable_ai %}
+                        <div class="pt-2">
+                            <button type="button" class="btn btn-primary btn-block font-weight-bold shadow-none" onclick="generateAISpellName()">
+                                {% trans "Evoke a great spell" %}!
+                            </button>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Colonna Risultato Codificato -->
+                    <div class="col-md-6 pl-md-5 d-flex flex-column justify-content-between text-left">
+                        <div class="p-4 rounded bg-neutral-100 border border-light h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <span class="badge badge-soft-primary text-uppercase font-weight-bold py-1 px-2 text-xs mb-3">
+                                    {% trans "CODIFIED SPELL" %}
+                                </span>
+                                <h4 id="spell-name" class="h5 text-dark font-weight-bold mb-2">
+                                    {% trans "Ring of Lightning (Burst)" %}
+                                </h4>
+                                <p id="spell-desc" class="text-muted text-sm mb-4 lh-160">
+                                    {% trans "A circular surge of pure celestial energy expanding to strike short-range targets." %}
+                                </p>
+                            </div>
+                            
+                            <div class="pt-3 border-top border-gray-200">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="text-muted text-xs font-weight-bold uppercase">{% trans "TOTAL INTENSITY:" %}</span>
+                                    <span id="spell-intensity" class="badge badge-pill badge-primary font-weight-bold px-3">2</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted text-xs font-weight-bold uppercase">{% trans "HP REMOVED FROM OPPONENTS:" %}</span>
+                                    <span id="spell-damage" class="text-dark font-weight-bold">3 HP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+// Stringhe localizzate renderizzate dal motore di template di Django
+const i18nLoading = "{% trans 'The Arcanum is processing...' %}";
+const i18nHpUnit = "{% trans 'HP' %}";
+
+function updateStats() {
+    const formaElem = document.getElementById('spell-forma');
+    const fonteElem = document.getElementById('spell-fonte');
+    const portataElem = document.getElementById('spell-portata');
+
+    if (!formaElem || !fonteElem || !portataElem) return;
+
+    const vForma = parseInt(formaElem.value, 10) || 0;
+    const vFonte = parseInt(fonteElem.value, 10) || 0;
+    const vPortata = parseInt(portataElem.value, 10) || 0;
+
+    const intensity = vForma + vFonte + vPortata;
+    const damage = Math.max(0, intensity + 1);
+
+    document.getElementById('spell-intensity').innerText = intensity;
+    document.getElementById('spell-damage').innerText = `${damage} ${i18nHpUnit}`;
+}
+
+function calculateSpellFallback() {
+    const formaElem = document.getElementById('spell-forma');
+    const fonteElem = document.getElementById('spell-fonte');
+    const portataElem = document.getElementById('spell-portata');
+
+    if (!formaElem || !fonteElem || !portataElem) return;
+
+    const selForma = formaElem.options[formaElem.selectedIndex];
+    const selFonte = fonteElem.options[fonteElem.selectedIndex];
+    const selPortata = portataElem.options[portataElem.selectedIndex];
+
+    const wForma = selForma.dataset.word || selForma.text;
+    const wFonte = selFonte.dataset.word || selFonte.text;
+    const wPortata = selPortata.dataset.word || selPortata.text;
+
+    const dForma = selForma.dataset.desc || "";
+    const dFonte = selFonte.dataset.desc || "";
+    const dPortata = selPortata.dataset.desc || "";
+
+    document.getElementById('spell-name').innerText = `${wForma} - ${wFonte} (${wPortata})`;
+    document.getElementById('spell-desc').innerText = `${dForma} ${dFonte} ${dPortata}`.trim();
+}
+
+function generateAISpellName() {
+    const formaElem = document.getElementById('spell-forma');
+    const fonteElem = document.getElementById('spell-fonte');
+    const portataElem = document.getElementById('spell-portata');
+
+    const selForma = formaElem.options[formaElem.selectedIndex];
+    const selFonte = fonteElem.options[fonteElem.selectedIndex];
+    const selPortata = portataElem.options[portataElem.selectedIndex];
+
+    const wForma = selForma.dataset.word || selForma.text;
+    const wFonte = selFonte.dataset.word || selFonte.text;
+    const wPortata = selPortata.dataset.word || selPortata.text;
+
+    const spellNameElem = document.getElementById('spell-name');
+    const spellDescElem = document.getElementById('spell-desc');
+
+    // Utilizzo della variabile JS localizzata con l'icona di caricamento
+    spellNameElem.innerHTML = `<i class="fas fa-spinner fa-spin text-primary mr-2"></i>${i18nLoading}`;
+
+    const formData = new FormData();
+    formData.append('forma', wForma);
+    formData.append('fonte', wFonte);
+    formData.append('portata', wPortata);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    fetch("{% url 'geminigm:generate_spell_name_ajax' section.attached_addon.slug %}", {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            spellNameElem.innerText = data.name;
+            spellDescElem.innerText = data.description;
+        } else {
+            calculateSpellFallback();
+        }
+    })
+    .catch(error => {
+        calculateSpellFallback();
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    updateStats();
+});
+</script>

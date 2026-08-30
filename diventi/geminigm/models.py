@@ -85,12 +85,15 @@ class GemmaIstruction(models.Model):
         verbose_name=_('system istruction'),
     )
     summary_istruction = models.TextField(
+        blank = True,
         verbose_name=_('summary istruction'),
     )
     character_sheet_istruction = models.TextField(
+        blank = True,
         verbose_name=_('character sheet istruction'),
     )
     welcome_message_istruction = models.TextField(
+        blank = True,
         verbose_name=_('welcome message istruction')
     )
     active = models.BooleanField(
@@ -108,7 +111,7 @@ class GemmaIstruction(models.Model):
         related_name = 'gemma', 
         on_delete = models.SET_NULL, 
         verbose_name = _('product'),
-    )
+    )    
 
     objects = GemmaIstructionQuerySet.as_manager()
 
@@ -192,3 +195,45 @@ class ChatMessage(models.Model):
     class Meta:
         verbose_name = _('chat message')
         verbose_name_plural = _('chat messages')
+
+
+class SectionAddon(models.Model):
+    TEMPLATE_CHOICES = (
+        ('geminigm/partials/_arcanum_builder.html', _("Arcanum Forge (Spell Calculator + AI)")),
+        ('geminigm/partials/_astral_generator.html', _("d20 Astral Companion Generator")),
+        ('geminigm/partials/_diventigm.html', _("Diventi AI GM")),
+    )
+    title = models.CharField(
+        max_length=50,
+        verbose_name=_("title")
+    )
+    addon_template = models.CharField(
+        max_length=255,
+        choices=TEMPLATE_CHOICES,
+        default='geminigm/partials/_diventigm.html',
+        verbose_name=_("addon template path"),
+        help_text=_("Path to the partial template file to be included dynamically.")
+    )
+    enable_ai = models.BooleanField(
+        default=True,
+        verbose_name=_("enable AI features")
+    )
+    gemma = models.OneToOneField(
+        GemmaIstruction, 
+        null = True, 
+        blank = True, 
+        related_name = 'sectionaddon', 
+        on_delete = models.SET_NULL, 
+        verbose_name = _('gemma istruction'),
+    )
+    slug = models.SlugField(
+        unique=True, 
+        verbose_name=_('slug'),
+    )
+
+    def __str__(self):
+        return f"{self.title} -> {self.addon_template}"
+
+    class Meta:
+        verbose_name = _("section addon")
+        verbose_name_plural = _("section addons")

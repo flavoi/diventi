@@ -4,9 +4,17 @@ from .models import (
     IngestedDocument,
     GemmaIstruction,
     WelcomeMessage,
+    SectionAddon,
 )
 
 from diventi.core.admin import DiventiTranslationAdmin
+
+
+class SectionAddonAdmin(admin.ModelAdmin):
+    list_display = ('title', 'addon_template', 'enable_ai')
+    list_filter = ('addon_template', 'enable_ai')
+    search_fields = ('title', 'addon_template')
+    prepopulated_fields = {"slug": ("title",)}
 
 
 class ChatMessageAdmin(admin.ModelAdmin):
@@ -36,5 +44,6 @@ admin.site.register(ChatMessage, ChatMessageAdmin)
 admin.site.register(IngestedDocument, IngestedDocumentAdmin)
 admin.site.register(GemmaIstruction, GemmaIstructionAdmin)
 admin.site.register(WelcomeMessage, WelcomeMessageAdmin)
+admin.site.register(SectionAddon, SectionAddonAdmin)
 
 

@@ -7,7 +7,6 @@
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'diventi/css/diventi-datatables.min.css' %}" />    
     <style>
-        
         :root {
             /* Palette Arancione */
             --primary-color: #ea580c; /* Arancione Scuro/Vibrante */
@@ -29,17 +28,54 @@
             transform: translateY(-2px);
             transition: all 0.3s ease;
         }
+
+        .hero-feature-chip {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        /* Unica regola custom per la card dark del sondaggio */
+        .card-terminal-dark {
+            background-color: #0b0f19 !important; /* Blu notte profondo */
+            border: 1px solid rgba(56, 189, 248, 0.2) !important;
+            border-left: 4px solid #38bdf8 !important; /* Accento Azzurro Astral */
+            border-radius: 12px !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-terminal-dark .form-control {
+            border-color: rgba(255, 255, 255, 0.15) !important;
+            color: #ffffff !important;
+        }
+
+        .card-terminal-dark .form-control:focus {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3) !important;
+        }
+
+        .card-terminal-dark .form-control::placeholder {
+            color: #94a3b8 !important;
+        }
     </style>
 
 {% endblock extrahead %}
 
 {% block headerclass %}header{% endblock headerclass %}
 
-{% block navbarclass %}fixed-top {% if featured_section.cover_primary  %}navbar-dark bg-section-dark{% else %}navbar-light{% endif %}{% endblock navbarclass %}
+{% block navbarclass %}fixed-top navbar-dark bg-section-dark{% endblock navbarclass %}
 
 {% block navbarstyle %}position: fixed !important; top: 0; width: 100%; z-index: 1030;{% endblock navbarstyle %}
 
-{% block navbar_brand_style %}{% if featured_section.cover_primary %}text-white{% else %}text-dark{% endif %}{% endblock navbar_brand_style %}
+{% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
 {% block navbar_links %}
     {% include "landing/partials/_navbar_quick_onepage.html" %}
@@ -56,52 +92,107 @@
 {% endblock navbar_user_signin %}
 
 {% block content %}
-<section class="slice pt-7 pb-0 bg-section-dark" id="top">
+<section class="slice pt-7 pb-5 bg-section-dark" id="top">
   <div data-offset-top="">
-    <div class="container position-relative">
+    {% if featured_section.cover_primary %}
+    <div class="container position-relative">    
       <div class="row align-items-center">
-        <div class="col-lg-6 mb-5 mb-lg-0 order-lg-1 order-2">          
-            {% if featured_section.subtitle %}            
-              <h6 class="text-primary diventi-font-title">
-                - {{ featured_section.subtitle }}
-                {% with landing_page as object %} 
-                    {% if user.is_staff %}
-                        <span class="ml-1">{% include 'publishable_badge.html' %}</span>
-                    {% endif %}
-                {% endwith %}
-              </h6>            
-            {% endif %}
-            <h1 class="h1 text-white font-weight-bold h1 mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-primary">{{ featured_section.title }}</strong></h1>
-            <p class="kbd text-secondary opacity-8">{{ featured_section.description|striptags|capfirst }}</p>
-            <div class="mt-5 text-left">
-                <a href="#acquista" class="btn btn-primary btn-lg">
-                    {{ featured_section.button_label|capfirst }}
-                </a>
-                <a href="#content-1" class="btn btn-outline-secondary btn-lg">
-                    {% trans 'explore'|capfirst %}
-                </a>           
-            </div>
-            {% if featured_section.features.all %}
-            <div class="mt-0 pt-0">
-                <hr class="opacity-6" />
-                <p class="text-muted d-block mb-2">{% trans 'includes'|capfirst %}:</p>
-                <div class="d-flex gap-4 text-secondary opacity-8">
-                    {% for feature in featured_section.features.all %}
-                    <span><i class="fas fa-{{ feature.icon }} {% if not forloop.first %}ml-3{% endif %} mr-1 "></i>{{ feature.title }}</span>
-                    {% endfor %}
+            <div class="col-lg-6 mb-5 mb-lg-0 order-lg-1 order-2">          
+                {% if featured_section.subtitle %}            
+                  <h6 class="text-primary diventi-font-title">
+                    - {{ featured_section.subtitle }}
+                    {% with landing_page as object %} 
+                        {% if user.is_staff %}
+                            <span class="ml-1">{% include 'publishable_badge.html' %}</span>
+                        {% endif %}
+                    {% endwith %}
+                  </h6>            
+                {% endif %}
+                <h1 class="h1 text-white font-weight-bold h1 mb-4">{{ featured_section.prefix|capfirst }} <strong class="text-primary">{{ featured_section.title }}</strong></h1>
+                <p class="kbd text-secondary opacity-8">{{ featured_section.description|striptags|capfirst }}</p>
+                <div class="mt-5 text-left">
+                    <a href="#diventi" class="btn btn-primary btn-lg">
+                        {{ featured_section.button_label|capfirst }}
+                    </a>
+                    {% if landing_page.enable_pinned_content %}
+                    <a href="#content-1" class="btn btn-outline-secondary btn-lg">
+                        {% trans 'explore'|capfirst %}
+                    </a>          
+                    {% endif %} 
                 </div>
-            </div> 
-            {% endif %}
+                {% if featured_section.features.all %}
+                <div class="mt-0 pt-0">
+                    <hr class="opacity-6" />
+                    <p class="text-muted d-block mb-2">{% trans 'includes'|capfirst %}:</p>
+                    <div class="d-flex gap-4 text-secondary opacity-8">
+                        {% for feature in featured_section.features.all %}
+                        <span><i class="fas fa-{{ feature.icon }} {% if not forloop.first %}ml-3{% endif %} mr-1 "></i>{{ feature.title }}</span>
+                        {% endfor %}
+                    </div>
+                </div> 
+                {% endif %}
+            </div>
+            <div class="col-lg-6 mb-5 text-center text-lg-end order-lg-2 order-1">          
+                <a data-caption="" data-fancybox="" href="{{ featured_section.cover_secondary.image|default:'https://diventi-assets.s3.us-east-1.amazonaws.com/media/cover-blog-diventi.jpg' }}">
+                    <img alt="{{ featured_section.cover_primary.label }}" src="{{ featured_section.cover_primary.image }}" class="img-fluid hover-translate-y-n3 hover-shadow-lg" style="max-height: 600px;">
+                </a>
+            </div>               
+      </div>
+    </div>
+    {% else %}
+    <div class="container position-relative z-1 text-center">
+        <!-- Status Badge -->
+        <div class="mb-3">
+            <span class="badge badge-pill bg-dark py-2 px-3 text-info" style="font-size: 0.72rem;">
+                <i class="fa-solid fa-circle text-warning mr-1" style="font-size: 0.5rem;"></i> {{ featured_section.prefix|upper }} 
+            </span>
         </div>
-        <div class="col-lg-6 mb-5 text-center text-lg-end order-lg-2 order-1">          
-            {% if featured_section.cover_primary %}
-            <a data-caption="" data-fancybox="" href="{{ featured_section.cover_secondary.image|default:featured_section.cover_primary.image }}">
-                <img alt="{{ featured_section.cover_primary.label }}" src="{{ featured_section.cover_primary.image }}" class="img-fluid hover-translate-y-n3 hover-shadow-lg" style="max-height: 600px;">
+
+        <!-- Main Headline -->
+        <h1 class="font-tech text-white font-weight-bold display-4 mb-4 uppercase">
+            {{ featured_section.title|safe|upper }}
+        </h1>
+
+        <!-- Lead Copy -->
+        <span class="text-slate-300 mx-auto mb-5" style="max-width: 780px; font-size: 1.15rem; color: #cbd5e1; font-weight: 300; line-height: 1.6;">
+            {{ featured_section.description|safe }}
+        </span>
+
+        <!-- Action Buttons -->
+        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center mb-5" style="gap: 12px;">
+            <a href="#diventi" class="btn btn-primary btn-lg btn-icon-label">
+                <span class="btn-inner--icon">
+                    <i class="fa fa-dice-d20"></i>
+                </span>
+                <span class="btn-inner--text">{{ featured_section.button_label }}</span>
+            </a>
+            {% if landing_page.enable_pinned_content %}
+            <a href="#content-1" class="btn btn-outline-light btn-lg font-tech">
+                {% trans 'explore'|capfirst %}
             </a>
             {% endif %}
         </div>
-      </div>
+
+        <!-- Core Feature Chips Grid -->
+        {% if featured_section.features.all %}
+        <div class="pt-4 border-top border-dark max-w-4xl mx-auto">
+            <div class="row g-3 justify-content-center">
+                {% for feature in featured_section.features.all %}
+                <div class="col-6 col-md-3 mb-2">
+                    <div class="hero-feature-chip w-100 text-left">
+                        <i class="fa-solid fa-{{ feature.icon|default:'dice-d20' }} text-{{ feature.color }} mr-3" style="font-size: 1.1rem;"></i>
+                        <div>
+                            <small class="d-block text-muted font-tech font-weight-bold" style="font-size: 0.65rem;">{{ feature.title|upper }}</small>
+                            <span class="text-white text-sm font-weight-bold">{{ feature.subtitle|capfirst }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}                
+            </div>
+        </div>
+        {% endif %}
     </div>
+    {% endif %}
   </div>
 </section>
 
@@ -144,7 +235,7 @@
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
                     <div class="position-relative overflow-hidden">
                         <a href="{{ pinned_product.get_absolute_url }}" class="d-block">
-                            <img loading="lazy" src="{{ pinned_product.cover_secondary.image }}" alt="{{ pinned_product.title|capfirst }}" class="card-img-top">
+                            <img loading="lazy" src="{{ pinned_product.cover_secondary.image|default:'https://diventi-assets.s3.us-east-1.amazonaws.com/media/cover-blog-diventi.jpg' }}" alt="{{ pinned_product.title|capfirst }}" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body py-4">
@@ -171,12 +262,12 @@
 <section id="{{ section.slug }}" class="slice pt-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
     {% if section.attached_product %}
         {% if section.attached_product.unfolded %}
-        <div id="acquista" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
-            <div class="card bg-section-dark border-0 rounded-lg shadow-inherit card-terminal"style="max-width: 100%; overflow: hidden;">
+        <div id="diventi" class="container py-5 {% if forloop.counter|divisibleby:2 %}bg-light{% else%}{% endif %}">
+            <div class="card bg-section-dark border-0 rounded-lg shadow-inherit card-terminal" style="max-width: 100%; overflow: hidden;">
                 <div class="card-body px-5">
                     <div class="row">
                         <div class="col-md-7">
-                            <div class="d-flex align-items-center align-items-center mb-3">
+                            <div class="d-flex align-items-center mb-3">
                                 <div>
                                     <div class="icon icon-sm icon-shape bg-primary text-white rounded-circle mr-3">
                                         <i class="fas fa-download"></i>
@@ -216,7 +307,7 @@
             <div class="col-lg-5">
                 <h2 class="mb-4">{{ section.title|capfirst }}</h2>
                 <p class="text-muted mb-4">
-                    {{ section.description|capfirst }}
+                    {{ section.description|safe }}
                 </p>
                 
                 {% for feature in section.features.all %}
@@ -254,7 +345,7 @@
             <div class="col-lg-8">
                 <h2 class="mb-3">{{ section.title }}</h2>
                 <p class="text-muted">
-                    {{ section.description|capfirst }}
+                    {{ section.description|safe }}
                 </p>
             </div>
         </div> 
@@ -293,6 +384,138 @@
     {% endif %}
 </section>
 {% endfor %}
+
+{% with featured_section as section %}
+<section id="diventi" class="slice pt-5 bg-light">
+    {% if section.attached_product %}
+    <div class="container py-5">
+        <div class="card bg-section-dark border-0 rounded-lg shadow-inherit card-terminal" style="max-width: 100%; overflow: hidden;">
+            <div class="card-body px-5">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="d-flex align-items-center mb-3">
+                            <div>
+                                <div class="icon icon-sm icon-shape bg-primary text-white rounded-circle mr-3">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                            </div>
+                            <span class="h6 text-white mb-0">{{ section.attached_product.title }}</span>
+                        </div>
+                        <h5 class="text-white pt-4">{{ section.attached_product.short_description }}</h5>
+                        <p class="text-white opacity-8">
+                            {{ section.attached_product.abstract }}
+                        </p>
+                        {% if section.attached_product.details %}
+                        <ul class="list-unstyled check-list text-secondary">
+                            {% for detail in section.attached_product.details.all %}
+                                <li><i class="fas fa-atom mr-2 text-primary text-sm"></i>{{ detail.title }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-md-5 mt-4 mt-md-0 pr-4 pb-3 d-flex align-items-end justify-content-md-end">
+                        <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-white btn-icon shadow-glow-white">
+                            <span class="btn-inner--text">{% trans 'visit the download page'|upper %}</span>
+                            <span class="btn-inner--icon">
+                                <i data-feather="arrow-right" class="text-primary"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 p-0" style="height: 4px; background: linear-gradient(90deg, var(--primary-color), transparent);"></div>
+        </div>
+    </div>
+    {% elif section.attached_section %}
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <h2 class="mb-4">{{ section.title|capfirst }}</h2>
+                <p class="text-muted mb-4">
+                    {{ section.description|capfirst }}
+                </p>
+                
+                {% for feature in section.features.all %}
+                <div class="d-flex mb-4">
+                    <div class="mr-3 text-primary"><i class="fas fa-{{ feature.icon|default:'scroll' }} fa-2x"></i></div>
+                    <div>
+                        <h5 class="h5">{{ feature.title|capfirst }}</h5>
+                        <p class="text-muted small opacity-8">{{ feature.description|capfirst|striptags|safe }}</p>
+                    </div>
+                </div>
+                {% endfor %}                
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="card p-5 text-center bg-white shadow-lg border-0">
+                    <h3 class="mb-4 diventi-font-title ">{{ section.attached_section.title }}</h3>
+                    <div class="row g-3">
+                        {% for feature in section.attached_section.features.all %}
+                        <div class="col-md-4 col-12 py-1">
+                            <div class="p-3 rounded bg-light">
+                                <i class="fas fa-{{ feature.icon|default:'x'}} mb-2 text-primary"></i>
+                                <h5 class="mb-0">{{ feature.title|capfirst }}</h5>
+                                <small class="text-muted">{{ feature.description|capfirst|striptags|safe }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="mt-4 text-muted small">{{ section.attached_section.description|capfirst }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% elif section.attached_survey %}
+    <div class="container py-5">
+        <!-- Griglia per restringere la card su laptop (col-lg-8) e monitor desktop (col-xl-7) -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+                <div class="card card-terminal-dark p-4 p-md-5 text-center text-white shadow-xl">
+                    {% if section.attached_survey.prefix %}
+                    <div class="mb-3">
+                        <span class="badge badge-pill badge-soft-info bg-dark py-2 px-3 font-tech text-xs">
+                            {{ section.attached_survey.prefix }}
+                        </span>
+                    </div>
+                    {% endif %}
+                    
+                    <h2 class="diventi-font-title h1 text-white text-uppercase font-weight-bold mb-3">
+                        {{ section.attached_survey.title|upper }}
+                    </h2>
+                    
+                    <div class="text-secondary text-sm opacity-8 mx-auto mb-4 lh-160">
+                        {{ section.attached_survey.description|safe }}
+                    </div>
+
+                    <!-- Input Form -->
+                    <div class="mb-4">
+                        <form action="{% url 'feedbacks:new_answers_gate' slug=section.attached_survey.slug %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="survey" value="{{ section.attached_survey.pk }}">
+                            
+                            <div class="input-group input-group-lg shadow-sm">
+                                <input type="text" name="author_name" placeholder="{% trans 'enter your email or username'|capfirst %}" class="form-control text-sm bg-transparent text-white border-gray-800 rounded-left" required>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-info text-sm font-weight-bold px-4 rounded-right text-nowrap">
+                                        {{ section.button_label }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    {% if section.subtitle %}
+                    <div class="pt-3 border-top border-gray-800 d-flex justify-content-center align-items-center text-muted text-xs text-uppercase">
+                        <p class="mb-0">{{ section.subtitle }}</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endwith %}
 
 {% if landing_page.enable_signin %}
 <section class="slice bg-section-secondary">

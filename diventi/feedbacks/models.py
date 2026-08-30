@@ -5,6 +5,8 @@ from django.utils.html import mark_safe
 from django.urls import reverse, reverse_lazy
 from django.template.defaultfilters import truncatechars
 
+from ckeditor.fields import RichTextField
+
 from cuser.middleware import CuserMiddleware
 
 from diventi.core.models import (
@@ -109,16 +111,26 @@ class Survey(TimeStampedModel, DiventiImageModel, PublishableModel):
     """
         A collection of questions and answers centered around a specifi title.
     """
-    title = models.CharField(max_length=60, verbose_name=_('title'))
-    description = models.TextField(blank=True, verbose_name=_('description'))
+    prefix = models.TextField(
+        blank=True, 
+        verbose_name=_('prefix text')
+    )
+    title = models.CharField(
+        max_length=SHORT_STRINGS_LENGTH, 
+        verbose_name=_('title')
+    )
+    subtitle = models.CharField(
+        blank=True, 
+        max_length=SHORT_STRINGS_LENGTH,
+        verbose_name=_('subtitle')
+    )
+    description = RichTextField(
+        blank=True, 
+        verbose_name=_('description')
+    )
     slug = models.SlugField(unique=True, verbose_name=_('slug'))
     question_groups = models.ManyToManyField(QuestionGroup, related_name='surveys', verbose_name=_('question groups'))
     public = models.BooleanField(verbose_name=_('public'))
-    pinned = models.BooleanField(
-        default = True,
-        verbose_name = _('pinned'),
-        help_text = _('Pinned surveys appear on the landing page') 
-    )
     
     objects = SurveyQuerySet.as_manager()
 

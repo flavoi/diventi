@@ -162,7 +162,7 @@ class LandingPageDetailView(StaffRequiredMixin, DetailView):
         return qs.published()
 
     def get_context_data(self, **kwargs):
-        context = super(LandingPageDetailView, self).get_context_data(**kwargs)     
+        context = super(LandingPageDetailView, self).get_context_data(**kwargs)        
         landing_context = get_landing_context(self.request, self.object)
         self.template_name = self.object.theme
         context = {**context, **landing_context}     

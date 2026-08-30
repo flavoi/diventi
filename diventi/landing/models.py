@@ -123,6 +123,7 @@ class SectionModelQuerySet(FeaturedModelQuerySet):
         sections = self.select_related('cover_secondary')
         sections = sections.select_related('attached_product')
         sections = sections.select_related('attached_section')
+        sections = sections.select_related('attached_survey')
         sections = sections.prefetch_related('attached_section__features')
         sections = sections.prefetch_related('features')
         return sections
@@ -168,7 +169,7 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         max_length=50, 
         verbose_name=_('subtitle')
     )
-    description = models.TextField(
+    description = RichTextField(
         blank=True, 
         verbose_name=_('description')
     )
@@ -208,6 +209,14 @@ class Section(DiventiImageModel, FeaturedModel, SectionModel):
         null=True,
         related_name='section',
         verbose_name=_('section')
+    )
+    attached_survey = models.OneToOneField(
+        Survey,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='section',
+        verbose_name=_('survey')
     )
     cover_primary = models.ForeignKey(
         SectionImage,

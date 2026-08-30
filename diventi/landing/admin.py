@@ -31,7 +31,7 @@ from .forms import SectionForm
 
 class FeatureInline(TranslationStackedInline):
     model = Feature
-    fields = ('title', 'prefix', 'subtitle', 'icon', 'color', 'description',)
+    fields = ('prefix', 'title', 'subtitle', 'icon', 'color', 'description',)
     extra = 0
 
 
@@ -56,7 +56,7 @@ class SectionAdmin(DiventiTranslationAdmin):
             'fields': ('order_index', 'prefix', 'title', 'subtitle', 'short_description', 'button_label', 'description', 'slug'),
         }),
         (_('Attachments'), {
-            'fields': ('attached_product', 'attached_section'),
+            'fields': ('attached_product', 'attached_section', 'attached_survey'),
         }),
     )
     inlines = [        

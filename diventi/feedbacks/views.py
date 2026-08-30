@@ -190,7 +190,10 @@ def new_answers_gate(request, slug):
             return redirect(reverse('feedbacks:questions', args=[slug,]))
     elif survey.public:
         if request.method == 'POST':
-            form = FeaturedSurveyInitForm(request.POST)
+            post_data = request.POST.copy()
+            if 'survey' not in post_data or not post_data['survey']:
+                post_data['survey'] = survey.pk
+            form = FeaturedSurveyInitForm(post_data)            
             if form.is_valid():
                 author_name = form.cleaned_data['author_name']
                 user_has_answered = Answer.objects.filter(author_name=author_name, survey=survey).exists()
@@ -200,6 +203,7 @@ def new_answers_gate(request, slug):
                 else:
                     return redirect(reverse('feedbacks:questions_author', args=[slug, author_name]))
             else:
+                print("Errori form:", form.errors)
                 messages.warning(request, _('There was an error while processing your survey.'))
                 return redirect(reverse('feedbacks:new_answers_gate', args=[survey.slug,]))
         else:

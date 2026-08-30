@@ -17,8 +17,8 @@
             <div>
                <div class="mb-5 text-center">
                   <a href="{% url 'landing:home' %}"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% static 'brand/avatar-default.jpg' %}" alt="Diventi" class="avatar avatar-lg"></a>
-                  <h6 class="h3 mb-1">{{ survey.title }}</h6>
-                  <p class="text-muted mb-0">{{ survey.description }}</p>
+                  <h6 class="h3 mb-1">{{ survey.title|capfirst }}</h6>
+                  <p class="text-muted mb-0">{{ survey.description|safe }}</p>
                </div>
                {% if form.non_field_errors %}
                    <div class="alert-messages">         

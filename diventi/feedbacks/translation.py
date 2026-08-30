@@ -11,7 +11,7 @@ from .models import (
 
 @register(Survey)
 class SurveyTranslationOptions(TranslationOptions):
-    fields = ('title', 'description', 'slug')
+    fields = ('prefix', 'title', 'subtitle', 'description', 'slug')
 
 
 @register(Question)

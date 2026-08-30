@@ -13,12 +13,8 @@ def get_landing_context(request, page):
         raise Http404(_('This page is not available yet.'))
     sections = page.sections.all().prefetch()
     featured_section = sections.featured()
-    featured_product = Product.objects.featured()
     pinned_products = Product.objects.pinned_list().prefetch()
     pinned_articles = Article.objects.pinned_list().prefetch()
-    pinned_survey = Survey.objects.pinned()
-    featured_package = Package.objects.prefetch().featured()
-    pinned_packages = Package.objects.pinned_list().prefetch()
     if featured_section:
         pass
     elif sections.exists():
@@ -30,15 +26,7 @@ def get_landing_context(request, page):
         'landing_page': page,
         'sections': sections,
         'featured_section': featured_section,
-        'featured_product': featured_product,
-        'pinned_products': pinned_products,        
-        'pinned_articles': pinned_articles,      
-        'pinned_survey': pinned_survey,
-        'featured_package': featured_package,
-        'pinned_packages': pinned_packages,
+        'pinned_products': pinned_products,
+        'pinned_articles': pinned_articles,
     }
-    featured_product_context = {}
-    if featured_product.unfolded:
-        featured_product_context = get_product_context(request, featured_product)
-    context = {**context, **featured_product_context}
     return context

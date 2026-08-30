@@ -15,6 +15,35 @@
   <meta property="og:description" content="{{ article.description|striptags }}" />
 {% endblock base_opengraph %}
 
+{% block extrahead %}
+    {% if article.image %}
+    <link rel="preload" as="image" href="{{ article.image }}">
+    {% endif %}
+    <style>
+        /* Stili per la formattazione dei contenuti dinamici dell'articolo */
+        .article-body p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+        .article-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .article-body h2, .article-body h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+{% endblock extrahead %}
+
 {% block title %}{{ article.title }}{% endblock title %}
 
 {% block headerclass %}header-transparent{% endblock headerclass %}
@@ -24,117 +53,141 @@
 {% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
 {% block content %}
-<div class="min-vh-100 py-9 py-lg-0 bg-cover bg-size--cover" style="background-image:url({{ article.image }})">
-    <span class="mask bg-dark opacity-5"></span>
-</div>
-<section class="section-half-rounded bg-transparent pt-5 pb-10 mt-n17 zindex-100">
-    <div class="jumbotron section-inner left-0 rounded-top-right bg-primary overflow-hidden col-xl-10 col-lg-11"></div>
-    <div class="container">
-        <div class="row row-grid align-items-center">
-            <div class="col-xl-9 col-lg-11 offset-lg-1 offset-xl-2">
-                <span class="badge badge-white badge-pill shadow font-weight-light mr-1">
-                    {{ article.category }}
-                </span>
-                {% with article as object %}
-                    {% if user.is_staff %}<span class="ml-1">{% include 'publishable_badge.html' %}</span>{% endif %}
-                {% endwith %}
-                <h1 class="h2 text-white mt-3 mb-1 pr-5">{{ article.title|capfirst }}</h1>
-                <p class="lead text-white mb-1 pb-5 pr-5">{{ article.description|capfirst|striptags }}</p>
+
+<!-- HERO HEADER ARTICOLO -->
+<section class="slice slice-lg pt-8 pb-6 bg-cover bg-size--cover position-relative overflow-hidden" style="background-image: url('{{ article.image|default:'https://diventi-assets.s3.us-east-1.amazonaws.com/media/cover-blog-diventi.jpg' }}'); min-height: 420px;">
+    <!-- Sfumatura di sfondo per contrasto e leggibilità del testo -->
+    <div class="position-absolute w-100 h-100" style="background: linear-gradient(to bottom, rgba(11, 15, 25, 0.6) 0%, rgba(11, 15, 25, 0.9) 100%); top: 0; left: 0;"></div>
+    
+    <div class="container position-relative zindex-10 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 col-lg-10 text-center text-md-left">
+                <div class="mb-3">
+                    <span class="badge badge-primary badge-pill font-weight-bold px-3 py-2">
+                        {{ article.category }}
+                    </span>
+                    {% with article as object %}
+                        {% if user.is_staff %}<span class="ml-2">{% include 'publishable_badge.html' %}</span>{% endif %}
+                    {% endwith %}
+                </div>
+                
+                <h1 class="display-4 text-white font-weight-bold mb-3">
+                    {{ article.title|capfirst }}
+                </h1>
+                
+                <p class="lead text-white-50 lh-180 mb-0">
+                    {{ article.description|capfirst|striptags }}
+                </p>
             </div>
         </div>
-    </div>
-</section>
-<section class="section-half-rounded bg-transparent pt-5 mt-n10 zindex-101">
-    <div class="jumbotron section-inner right-0 rounded-0 overflow-hidden col-xl-10 col-lg-12"></div>
-    <div class="container pb-6">
-        <div class="row row-grid align-items-center">
-            <div class="col-xl-8 col-lg-10 offset-xl-2 offset-lg-1">
-                <article>
-                    {{ article.content|safe }}
-                    <p>[{% trans "Photo" %} &copy; {{ article.label }}]</p>
-                </article>
-                <div class="row align-items-center mt-5 py-4 border-top border-bottom">
-                    <div class="col mb-3 mb-lg-0">
-                        <div class="media align-items-center">
-                            <div>
-                                <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-lg rounded-circle mr-3">
-                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}">
-                                </a>
-                            </div>
-                            <div class="media-body"><span class="d-block mb-0"><a class="h6" href="{{ article.author.get_absolute_url }}">{{ article.author.get_full_name }}</a>
-                            {% for a in article.author.deeds.all %}
-                                {% include 'accounts/partials/achievement_badge.html' %}
-                            {% endfor %}</span>
-                            <span class="text-sm text-muted">{% trans "published on"|capfirst %} {{ article.publication_date|date:"d/m/Y" }}</span></span></div>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item pr-4">
-                                <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" href="{% url 'blog:promote-toggle' article.slug %}" data-promotions="{{ article.promotions.count }}" class="btn btn-link btn-promote text-{% if article.user_has_promoted %}primary{% else %}muted{% endif %} {% if not user.is_authenticated %}disabled{% endif %}">
-                                    <i data-feather="thumbs-up" class="mr-1 mb-1"></i> {{ article.promotions.count }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-5" name="comments">                    
-                    {% include "comments/comments.html" %}                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shape-container shape-position-bottom">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2560px" height="100px" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="injected-svg svg-inject fill-section-secondary">
-            <polygon id="Path" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
     </div>
 </section>
 
+<!-- CONTENUTO DELL'ARTICOLO -->
+<section class="slice py-5 bg-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                
+                <!-- Corpo del testo -->
+                <article class="article-body">
+                    {{ article.content|safe }}
+                    {% if article.label %}
+                    <p class="text-muted text-xs italic mt-4">[{% trans "Photo" %} &copy; {{ article.label }}]</p>
+                    {% endif %}
+                </article>
+
+                <!-- Box Autore & Social Promotion -->
+                <div class="row align-items-center mt-5 py-4 border-top border-bottom border-gray-200">
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <div class="media align-items-center">
+                            <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-lg rounded-circle mr-3">
+                                <img src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}" loading="lazy">
+                            </a>
+                            <div class="media-body">
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <a class="h6 font-weight-bold text-dark mb-0 mr-2" href="{{ article.author.get_absolute_url }}">
+                                        {{ article.author.get_full_name }}
+                                    </a>
+                                    {% for a in article.author.deeds.all %}
+                                        {% include 'accounts/partials/achievement_badge.html' %}
+                                    {% endfor %}
+                                </div>
+                                <span class="d-block text-xs text-muted mt-1">
+                                    {% trans "published on"|capfirst %} {{ article.publication_date|date:"d/m/Y" }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 text-md-right">
+                        <a data-href="{% url 'blog:promote-toggle-api' article.slug %}" 
+                           href="{% url 'blog:promote-toggle' article.slug %}" 
+                           data-promotions="{{ article.promotions.count }}" 
+                           class="btn btn-sm btn-neutral shadow-sm btn-promote text-{% if article.user_has_promoted %}primary{% else %}muted{% endif %} {% if not user.is_authenticated %}disabled{% endif %}">
+                            <i data-feather="thumbs-up" class="mr-1"></i> {{ article.promotions.count }}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sezione Commenti -->
+                <div class="mt-5" id="comments">                    
+                    {% include "comments/comments.html" %}                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ARTICOLI CORRELATI (KEEP READING) -->
 {% if related_articles %}
 <section class="slice slice-lg bg-section-secondary">
     <div class="container">
-        <div class="row align-items-center mb-5">
+        <div class="row align-items-center mb-4">
             <div class="col-12 col-md">
-                <h3 class="h4 mb-0">{% trans "keep reading"|capfirst %}</h3>
+                <h3 class="h4 font-weight-bold mb-0">{% trans "Keep reading" %}</h3>
             </div>
-            <div class="col-12 col-md-auto">
-                <a href="{% url 'blog:home' %}" class="btn btn-sm btn-neutral d-none d-md-inline">{% trans "view all"|capfirst %}</a>
+            <div class="col-12 col-md-auto mt-2 mt-md-0">
+                <a href="{% url 'blog:home' %}" class="btn btn-sm btn-neutral font-weight-bold">{% trans "View all" %}</a>
             </div>
         </div>
+        
         <div class="row">
             {% for article in related_articles %}
-            <div class="col-xl-4 col-md-6">
-                <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid">
-                    <div class="position-relative overflow-hidden">
-                        <a href="{{ article.get_absolute_url }}" class="d-block">
-                            <img loading="lazy" src="{{ article.image }}" alt="{{ article.title|capfirst }}" class="card-img-top">
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card hover-translate-y-n3 hover-shadow-lg border-0 shadow-sm overflow-hidden h-100">
+                    <div class="position-relative overflow-hidden" style="height: 180px;">
+                        <a href="{{ article.get_absolute_url }}" class="d-block h-100">
+                            <img src="{{ article.image|default:'https://diventi-assets.s3.us-east-1.amazonaws.com/media/cover-blog-diventi.jpg' }}" 
+                                 alt="{{ article.title|capfirst }}" 
+                                 class="w-100 h-100" 
+                                 style="object-fit: cover;" 
+                                 loading="lazy">
                         </a>
                     </div>
-                    <div class="card-body py-4">
-                        <small class="d-block text-sm text-{{ article.category.color }} mb-2"><strong>{{ article.category|capfirst }}</strong></small> 
-                            <a href="{{ article.get_absolute_url }}" class="h5 stretched-link lh-150">
-                                {{ article.title|capfirst }}
-                            </a>
-                        <p class="mt-3 mb-0 lh-170">
-                            {{ article.description|truncatechars:200|safe }}
+                    
+                    <div class="card-body p-4 d-flex flex-column">
+                        <small class="d-block text-xs font-weight-bold text-uppercase text-primary mb-2">
+                            {{ article.category }}
+                        </small> 
+                        
+                        <a href="{{ article.get_absolute_url }}" class="h5 text-dark font-weight-bold stretched-link mb-2 lh-140">
+                            {{ article.title|capfirst }}
+                        </a>
+                        
+                        <p class="text-muted text-sm mb-4 flex-grow-1 lh-160">
+                            {{ article.description|truncatechars:120|safe }}
                         </p>
-                    </div>
-                    <div class="card-footer border-0 delimiter-top">
-                        <div class="row align-items-center">
-                            <div class="col-auto">                           
-                                <span class="avatar avatar-sm bg-primary rounded-circle">
-                                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}">
-                                </span><span class="text-sm mb-0 ml-0 avatar-content">{{ article.author.get_full_name }}</span>
-                            </a>
+                        
+                        <div class="pt-3 border-top border-gray-100 d-flex align-items-center justify-content-between text-xs text-muted">
+                            <div class="d-flex align-items-center">
+                                <span class="avatar avatar-xs rounded-circle mr-2">
+                                    <img src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}" loading="lazy">
+                                </span>
+                                <span>{{ article.author.get_full_name }}</span>
                             </div>
-                            <div class="col text-right text-right">
-                                <div class="actions">
-                                    <a href="#/" class="action-item">
-                                        <small>{{ article.get_readtime }} {% trans "read" %}</small>
-                                    </a>
-                                </div>
-                            </div>
+                            <span>{{ article.get_readtime }}</span>
                         </div>
                     </div>
                 </div>
@@ -146,4 +199,3 @@
 {% endif %}
 
 {% endblock content %}
-

@@ -80,20 +80,6 @@
 
 {% block navbar_brand_style %}text-white{% endblock navbar_brand_style %}
 
-{% block navbar_links %}
-    {% include "landing/partials/_navbar_quick_onepage.html" %}
-{% endblock navbar_links %}
-
-{% block navbar_user_signin %}
-<ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
-  <li class="nav-item">                                
-    <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="nav-link">
-        {% trans "sign in"|capfirst %}
-    </a>
-  </li>
-</ul>
-{% endblock navbar_user_signin %}
-
 {% block content %}
 
 <!-- HERO SECTION -->

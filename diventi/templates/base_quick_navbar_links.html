@@ -1,24 +1,24 @@
 {% load i18n %}
 
 <ul class="navbar-nav ml-lg-auto mr-3">
-    <li class="nav-item" data-toggle="hover">
+    <!-- LINK SIGN IN MOBILE -->
     {% if user.is_anonymous %}
-    <div class="d-lg-none">
+    <li class="nav-item d-lg-none">
         <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="nav-link">
             {% trans "sign in"|capfirst %}
         </a>
-    </div>
     </li>
-    {% elif user.is_staff %}
+    {% endif %}
+
+    <!-- DROPDOWN MANAGE (Per lo Staff) -->
+    {% if user.is_staff %}
     <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "manage"|capfirst %}</a>
         <div class="dropdown-menu dropdown-menu-md p-0">
             <div class="list-group list-group-flush px-lg-4">
                 <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
                     <div class="d-flex">
-                        <span class="h6">
-                            <i data-feather="settings"></i>
-                        </span>
+                        <span class="h6"><i data-feather="settings"></i></span>
                         <div class="ml-3">
                             <h6 class="heading mb-0">Admin</h6>
                             <small class="text-sm">{% trans "control panel for authors only"|capfirst %}.</small>
@@ -45,9 +45,7 @@
                 </div>
                 <a href="{% url 'landing:analytics' %}" class="list-group-item list-group-item-action" role="button">
                     <div class="d-flex">
-                        <span class="h6">
-                            <i data-feather="bar-chart-2"></i>
-                        </span>
+                        <span class="h6"><i data-feather="bar-chart-2"></i></span>
                         <div class="ml-3">
                             <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
                             <small class="text-sm">{% trans "a tool to measure the website performance"|capfirst %}.</small>
@@ -58,6 +56,8 @@
         </div>
     </li>
     {% endif %}
+
+    <!-- DROPDOWN NAVIGATE (Ancore della Landing Page resi intelligenti) -->
     {% if sections %}
     <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
         <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "navigate"|capfirst %}</a>
@@ -65,11 +65,10 @@
           <div class="list-group list-group-flush px-lg-4">
             {% for section in sections %}                
                 {% if not section.attached_product.unfolded %}
-                    <a href="#{{ section.slug }}" class="list-group-item list-group-item-action" role="button">
+                    <!-- Se siamo sulla Landing va all'ancora #, altrimenti va a /#section.slug -->
+                    <a href="{% if request.resolver_match.url_name == 'home' %}#{{ section.slug }}{% else %}{% url 'landing:home' %}#{{ section.slug }}{% endif %}" class="list-group-item list-group-item-action" role="button">
                         <div class="d-flex">
-                            <span class="h6">
-                                <i data-feather="bookmark"></i>
-                            </span>
+                            <span class="h6"><i data-feather="bookmark"></i></span>
                             <div class="ml-3">
                                 <h6 class="heading mb-0">{{ section.button_label|capfirst }}</h6>
                                 <small class="text-sm">{{ section.short_description|capfirst }}</small>
@@ -78,11 +77,9 @@
                     </a>
                 {% endif %}
                 {% if forloop.last %}
-                    <a href="#top" class="list-group-item list-group-item-action" role="button">
+                    <a href="{% if request.resolver_match.url_name == 'home' %}#top{% else %}{% url 'landing:home' %}{% endif %}" class="list-group-item list-group-item-action" role="button">
                         <div class="d-flex">
-                            <span class="h6">
-                                <i data-feather="arrow-up-right"></i>
-                            </span>
+                            <span class="h6"><i data-feather="arrow-up-right"></i></span>
                             <div class="ml-3">
                                 <h6 class="heading mb-0">{% trans 'back to top'|capfirst %}</h6>
                                 <small class="text-sm">{{ featured_section.short_description|capfirst }}</small>
@@ -95,15 +92,17 @@
         </div>
     </li>
     {% endif %}
+
+    <!-- DROPDOWN DISCOVER (Pagine e sezioni esterne) -->
     <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
         <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "Discover"|capfirst %}</a>
         <div class="dropdown-menu dropdown-menu-md p-0">
+          
+          <!-- Link Blog -->
           <div class="list-group list-group-flush px-lg-4">
                 <a href="{% url 'blog:home' %}" class="list-group-item list-group-item-action" role="button">
                     <div class="d-flex">
-                        <span class="h6">
-                            <i data-feather="book"></i>
-                        </span>
+                        <span class="h6"><i data-feather="book"></i></span>
                         <div class="ml-3">
                             <h6 class="heading mb-0">{% trans 'Blog' %}</h6>
                             <small class="text-sm">{% trans 'News, updates, and intel from the Bubble' %}.</small>
@@ -111,12 +110,12 @@
                     </div>
                 </a>
           </div>
+
+          <!-- Link Forum -->
           <div class="list-group list-group-flush px-lg-4">
                 <a href="{% url 'forum:index' %}" class="list-group-item list-group-item-action" role="button">
                     <div class="d-flex">
-                        <span class="h6">
-                            <i data-feather="layout"></i>
-                        </span>
+                        <span class="h6"><i data-feather="layout"></i></span>
                         <div class="ml-3">
                             <h6 class="heading mb-0">{% trans 'Forum' %}</h6>
                             <small class="text-sm">{% trans "join in our latest discussions"|capfirst %}.</small>
@@ -124,27 +123,27 @@
                     </div>
                 </a>
           </div>
+
+          <!-- Link All Games -->
           <div class="list-group list-group-flush px-lg-4">
                 <a href="{% url 'products:list' %}" class="list-group-item list-group-item-action" role="button">
                     <div class="d-flex">
-                        <span class="h6">
-                            <i data-feather="globe"></i>
-                        </span>
+                        <span class="h6"><i data-feather="globe"></i></span>
                         <div class="ml-3">
                             <h6 class="heading mb-0">{% trans 'all games'|capfirst %}</h6>
                             <small class="text-sm">{% trans "explore our collection"|capfirst %}.</small>
                         </div>
                     </div>
                 </a>
-          </div>          
+          </div>         
+
+          <!-- Prodotti in evidenza -->
           {% if pinned_products_nav %}
             {% for pinned_product in pinned_products_nav %}
             <div class="list-group list-group-flush px-lg-4">
                 <a href="{{ pinned_product.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
                     <div class="d-flex">
-                        <span class="h6">
-                            <i data-feather="bookmark"></i>
-                        </span>
+                        <span class="h6"><i data-feather="bookmark"></i></span>
                         <div class="ml-3">
                             <h6 class="heading mb-0">{{ pinned_product.title|capfirst }}</h6>
                             <small class="text-sm">{{ pinned_product.short_description|capfirst }}</small>
@@ -156,13 +155,23 @@
           {% endif %}        
         </div>
     </li>
-    {% for section in sections %}                          
+
+    <!-- BOTTONI AZIONE (Aggiungi/Acquista) -->
+    {% for section in sections %}                        
+    {% if section.attached_product.unfolded %}
     <li class="nav-item">
-        {% if section.attached_product.unfolded %}
-            <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-block btn-sm btn-primary mt-lg-2 mx-lg-3">
-                {% trans 'buy'|capfirst %}
-            </a>                            
-        {% endif %}
+        <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-block btn-sm btn-primary mt-lg-2 mx-lg-3">
+            {% trans 'buy'|capfirst %}
+        </a>                                            
     </li>          
-    {% endfor %}        
+    {% endif %}
+    {% endfor %}
+
+    {% if not user.is_authenticated %}    
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:signin' %}?next={{ request.path }}">
+            {% trans "sign in"|capfirst %}
+        </a>
+    </li>
+    {% endif %}     
 </ul>

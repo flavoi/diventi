@@ -4,13 +4,15 @@
 
 {% block title %}{{ survey.title }}{% endblock title %}
 
-{% block headerclass %}header{% endblock headerclass %}
+{% block headerclass %}header-transparent{% endblock headerclass %}
+
+{% block navbarclass %}navbar-dark bg-dark{% endblock navbarclass %}
 
 {% block content %}
 
-<!-- Intestazione Sezione (Nativa Quick Scura) -->
-<section class="slice pt-6 pb-5 bg-section-dark">
-    <div class="container">
+<!-- Intestazione Sezione -->
+<section class="slice slice-lg py-6 bg-cover bg-size--cover bg-gradient-dark position-relative">
+    <div class="container pt-5">
         {% with survey as object %}
             {% if user.is_staff %}
             <div class="text-center mb-2">

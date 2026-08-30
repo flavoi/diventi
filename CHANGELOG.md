@@ -5,12 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.2.1] → 2026-01-xx
+## [1.x.x] → 2026-xx-xx
 
 ### Added
 - [accounts] Introduced admin actions to export email of users that has agreed to gdpr
 - [landing] Introduced Pages: a way to group up sections that can be themed and displayed in the landing page
 - [products] Introduced Sessions: a feature that tracks payment operations carried out by any user
+- [geminigm[ Introduced a new section addon feature that enable the user to generate fantasy content on the landing page.
 
 ### Changed
 - [accounts] Enabled links for pdf attachements in the collection section

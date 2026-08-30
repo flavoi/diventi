@@ -55,7 +55,7 @@ def generate_spell_name_ajax(request, section_addon_slug):
 
     if not (forma and fonte and portata):
         return JsonResponse(
-            {'success': False, 'error': _('Tutti e tre i componenti magici sono obbligatori.')}, 
+            {'success': False, 'error': 'Tutti e tre i componenti magici sono obbligatori.'}, 
             status=400
         )
 
@@ -124,7 +124,7 @@ def generate_spell_name_ajax(request, section_addon_slug):
         print("="*50 + "\n")
 
         return JsonResponse(
-            {'success': False, 'error': _("Errore durante l'evocazione dell'Arcanum: %(error)s") % {'error': str(e)}}, 
+            {'success': False, 'error': "Errore durante l'evocazione dell'Arcanum: %(error)s" % {'error': str(e)}}, 
             status=500
         )
 

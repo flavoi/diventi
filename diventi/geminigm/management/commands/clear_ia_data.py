@@ -9,7 +9,7 @@ from diventi.geminigm.models import IngestedDocument, ChatMessage
 
 
 class Command(BaseCommand):
-    help = _('Ripulisce tutti i dati generati da IA in questa app')
+    help = 'Ripulisce tutti i dati generati da IA in questa app'
 
     def handle(self, *args, **options):
         client = genai.Client(api_key=settings.GEMINI_API_KEY)

@@ -18,7 +18,7 @@
                             <!-- 1. FORMA -->
                             <div class="form-group mb-3 text-left">
                                 <label class="form-control-label small font-weight-bold text-muted">
-                                    1. {% trans "SHAPE (Structure)" %}
+                                    1. {% trans "SHAPE" %}
                                 </label>
                                 <select id="spell-forma" class="custom-select custom-select-sm border-gray-300" onchange="updateStats()">
                                     {% for feature in section.features.all %}
@@ -39,7 +39,7 @@
                             <!-- 2. FONTE -->
                             <div class="form-group mb-3 text-left">
                                 <label class="form-control-label small font-weight-bold text-muted">
-                                    2. {% trans "SOURCE (Element)" %}
+                                    2. {% trans "SOURCE" %}
                                 </label>
                                 <select id="spell-fonte" class="custom-select custom-select-sm border-gray-300" onchange="updateStats()">
                                     {% for feature in section.features.all %}
@@ -60,7 +60,7 @@
                             <!-- 3. PORTATA -->
                             <div class="form-group mb-4 text-left">
                                 <label class="form-control-label small font-weight-bold text-muted">
-                                    3. {% trans "RANGE (Action Radius)" %}
+                                    3. {% trans "RANGE" %}
                                 </label>
                                 <select id="spell-portata" class="custom-select custom-select-sm border-gray-300" onchange="updateStats()">
                                     {% for feature in section.features.all %}
@@ -70,10 +70,10 @@
                                         </option>
                                         {% endif %}
                                     {% empty %}
-                                        <option value="-1" data-word="{% trans 'Whisper' %}" data-desc="{% trans 'acting on personal touch.' %}">{% trans "Whisper" %} ({% trans "Range" %} -1)</option>
-                                        <option value="0" data-word="{% trans 'Thrust' %}" data-desc="{% trans 'unleashed against a single close target.' %}">{% trans "Thrust" %} ({% trans "Range" %} +0)</option>
-                                        <option value="1" data-word="{% trans 'Burst' %}" data-desc="{% trans 'expanding to strike short-range targets.' %}" selected>{% trans "Burst" %} ({% trans "Range" %} +1)</option>
-                                        <option value="2" data-word="{% trans 'Cataclysm' %}" data-desc="{% trans 'engulfing an entire high-altitude area.' %}">{% trans "Cataclysm" %} ({% trans "Range" %} +2)</option>
+                                        <option value="-1" data-word="{% trans 'Whisper' %}" data-desc="{% trans 'acting on personal touch' %}">{% trans "Whisper" %} ({% trans "Range" %} -1)</option>
+                                        <option value="0" data-word="{% trans 'Thrust' %}" data-desc="{% trans 'unleashed against a single close target' %}">{% trans "Thrust" %} ({% trans "Range" %} +0)</option>
+                                        <option value="1" data-word="{% trans 'Burst' %}" data-desc="{% trans 'expanding to strike short-range targets' %}" selected>{% trans "Burst" %} ({% trans "Range" %} +1)</option>
+                                        <option value="2" data-word="{% trans 'Cataclysm' %}" data-desc="{% trans 'engulfing an entire high-altitude area' %}">{% trans "Cataclysm" %} ({% trans "Range" %} +2)</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -97,7 +97,7 @@
                                     {% trans "CODIFIED SPELL" %}
                                 </span>
                                 <h4 id="spell-name" class="h5 text-dark font-weight-bold mb-2">
-                                    {% trans "Ring of Lightning (Burst)" %}
+                                    {% trans "Ring of Lightning" %}
                                 </h4>
                                 <p id="spell-desc" class="text-muted text-sm mb-4 lh-160">
                                     {% trans "A circular surge of pure celestial energy expanding to strike short-range targets." %}

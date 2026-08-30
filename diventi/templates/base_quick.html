@@ -34,39 +34,45 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
     <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">    
+    
+    <!-- CSS Preloads & Main Styles -->
     <link rel="preload" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-    <!-- Main visual style -->
     <noscript><link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}"></noscript>
+    
     <link rel="preload" href="{% static 'quick-v110/css/quick-website.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}"></noscript>
+    
     <link rel="preload" href="{% static 'diventi/css/diventi-admin-colors.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <noscript><link rel="stylesheet" href="{% static 'quick-v110/css/quick-website.css' %}"></noscript>
-
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS In-line Ottimizzato -->
     <style>
         @font-face {
             font-family: Kravitz;
-            src:url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
-            url('{% static "fonts/Kravitz.woff" %}') format('woff');
+            src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
+                 url('{% static "fonts/Kravitz.woff" %}') format('woff');
             font-weight: 400;
-            font-style: normal
+            font-style: normal;
+            font-display: swap;
         }
 
         @font-face {
             font-family: 'Kravitz Extra Thermal';
-            src:url('{ % static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
-            url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
+            src: url('{% static "fonts/KravitzExtraThermal.woff2" %}') format('woff2'),
+                 url('{% static "fonts/KravitzExtraThermal.woff" %}') format('woff');
             font-weight: 400;
-            font-style: normal
+            font-style: normal;
+            font-display: swap;
         }
 
         @font-face {
             font-family: 'Kravitz Thermal';
-            src:url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
-            url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
+            src: url('{% static "fonts/KravitzThermal.woff2" %}') format('woff2'),
+                 url('{% static "fonts/KravitzThermal.woff" %}') format('woff');
             font-weight: 400;
-            font-style: normal
+            font-style: normal;
+            font-display: swap;
         }
 
         .diventi-font {
@@ -74,18 +80,17 @@
             font-weight: 400;
             font-style: normal;
             font-size: 32px;
-            }
+        }
 
         .diventi-font-awesome::after {
             font-family: "Font Awesome 5 Pro"; 
             font-weight: 900; 
             content: "\f007";
-          }
+        }
 
-        .honeypot 
-            {
-                display: none;
-            }
+        .honeypot {
+            display: none;
+        }
 
         .diventi-font-title {
             font-family: 'Rajdhani', sans-serif;
@@ -98,20 +103,16 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-    </style>
 
-    <!-- Preloader -->
-    <style>
+        .badge-soft-purple {
+            color: #6b21a8 !important; /* Testo viola scuro ed elegante */
+            background-color: #f3e8ff !important; /* Sfondo viola chiaro/sfumato */
+        }
+
+        /* Preloader Styles */
         @keyframes hidePreloader {
-            0% {
-                width: 100%;
-                height: 100%;
-            }
-
-            100% {
-                width: 0;
-                height: 0;
-            }
+            0% { width: 100%; height: 100%; }
+            100% { width: 0; height: 0; }
         }
 
         body>div.preloader {
@@ -129,39 +130,34 @@
             justify-content: center;
         }
 
-        body:not(.loaded)>div.preloader {
-            opacity: 1;
-        }
-
-        body:not(.loaded) {
-            overflow: hidden;
-        }
-
-        body.loaded>div.preloader {
-            animation: hidePreloader .5s linear .5s forwards;
-        }
-        body.modal-open {
-            overflow: visible;
-        }
-        .modal-open[style] {
-            padding-right: 0px !important;
-        }
+        body:not(.loaded)>div.preloader { opacity: 1; }
+        body:not(.loaded) { overflow: hidden; }
+        body.loaded>div.preloader { animation: hidePreloader .5s linear .5s forwards; }
+        body.modal-open { overflow: visible; }
+        .modal-open[style] { padding-right: 0px !important; }
     </style>
-    <script>
-        window.addEventListener("load", function() {
-            setTimeout(function() {
-                document.querySelector('body').classList.add('loaded');
-            }, 300);
-        });
-    </script>
+
+    <!-- Core & Plugin JS Spostati nel HEAD con DEFER -->
+    <script src="{% static 'quick-v110/libs/jquery/dist/jquery.min.js' %}" defer></script> 
+    <script src="{% static 'quick-v110/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'quick-v110/libs/svg-injector/dist/svg-injector.min.js' %}" defer></script>
+    <script src="{% static 'quick-v110/libs/feather-icons/dist/feather.min.js' %}" defer></script>
+
+    <script src="{% static 'quick-v110/libs/typed.js/lib/typed.min.js' %}" defer></script>
+    <script src="{% static 'quick-v110/libs/in-view/dist/in-view.min.js' %}" defer></script>
+    <script src="{% static 'quick-v110/libs/sticky-kit/dist/sticky-kit.min.js' %}" defer></script>
+    <script src="{% static 'quick-v110/libs/imagesloaded/imagesloaded.pkgd.min.js' %}" defer></script>
+    <script src="{% static 'quick-v110/libs/autosize/dist/autosize.min.js' %}" defer></script>
+    <script src="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js' %}" defer></script>
+
+    <script src="{% static 'quick-v110/js/quick-website.js' %}" defer></script>
+    <script src="{% static 'diventi/js/diventi-defer-img.min.gz.js' %}" defer></script>
 
     {% block extrahead %}{% endblock extrahead %}
-
 </head>
 
 <body {% block extrabody %}{% endblock extrabody%}>
     {% block preloadermodal %}
-    <!-- Preloader -->
     <div class="preloader">
         <div class="spinner-border text-primary" role="status">
             <span class="sr-only">{% trans 'loading'|capfirst %}...</span>
@@ -170,17 +166,13 @@
     {% endblock preloadermodal %}
 
     {% block cookiesmodal %}
-    <!-- Cookies modal -->
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-cookies" data-backdrop="false" aria-labelledby="modal-cookies" aria-hidden="true">
         <div class="modal-dialog modal-dialog-aside left-4 right-4 bottom-4">
             <div class="modal-content bg-dark-dark">
                 <div class="modal-body">
-                    <!-- Text -->
                     <p class="text-sm text-white mb-3">
                         {% trans "we uses cookies to ensure we give you the best experience on our website."|capfirst %}
                     </p>
-                    <!-- Buttons -->
-                    <!--<a href="." class="btn btn-sm btn-white" target="_blank">Learn more</a>-->
                     <button type="button" class="btn btn-sm btn-primary mr-2" data-dismiss="modal">OK</button>
                 </div>
             </div>
@@ -189,28 +181,23 @@
     {% endblock cookiesmodal %}
 
     {% block usermodal %}
-    <!-- User profile modal -->
     {% include 'accounts/user_detail_quick_modal.html' %}
     {% endblock usermodal %}
     
     {% block header %}
-    <!-- Header -->
     <header class="{% block headerclass %}{% endblock headerclass %}" id="header-main">
-        <!-- Navbar -->
         {% block navbar %}
             <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main" style="{% block navbarstyle %} {% endblock navbarstyle %}">
                 <div class="container">
-                        <!-- Toggler -->
                         <button class="navbar-toggler order-{% if user.is_authenticated %}1{% else %}2{% endif %} ml-n3 ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <!-- Brand -->                        
+                        
                         <a class="navbar-brand diventi-font order-{% if user.is_authenticated %}2{% else %}1{% endif %} {% block navbar_brand_style %}text-dark{% endblock navbar_brand_style %}" href="{% url 'landing:home' %}">
                             Diventi
                         </a>
-                        <!-- Collapse -->
+                        
                         <div class="collapse navbar-collapse navbar-collapse-overlay order-lg-3" id="navbar-main-collapse">
-                            <!-- Toggler -->
                             <div class="position-relative">
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                                     <i data-feather="x"></i>
@@ -237,9 +224,7 @@
                                         <div class="list-group list-group-flush px-lg-4">
                                             <a href="{% url 'admin:index' %}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
-                                                    <span class="h6">
-                                                        <i data-feather="settings"></i>
-                                                    </span>
+                                                    <span class="h6"><i data-feather="settings"></i></span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">Admin</h6>
                                                         <small class="text-sm">{% trans "control panel for authors only"|capfirst %}.</small>
@@ -266,9 +251,7 @@
                                             </div>
                                             <a href="{% url 'landing:analytics' %}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
-                                                    <span class="h6">
-                                                        <i data-feather="bar-chart-2"></i>
-                                                    </span>
+                                                    <span class="h6"><i data-feather="bar-chart-2"></i></span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">{% trans "analytics"|capfirst %}</h6>
                                                         <small class="text-sm">{% trans "a tool to measure the website performance"|capfirst %}.</small>
@@ -279,6 +262,7 @@
                                     </div>
                                 </li>
                                 {% endif %}
+
                                 {% if playable_gemmas_nav %}
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                   <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'play'|capfirst %}</a>
@@ -287,9 +271,7 @@
                                         {% for gemma in playable_gemmas_nav %}
                                           <a href="{% url 'geminigm:gemma_private' gemma.slug %}" class="list-group-item list-group-item-action" role="button">
                                             <div class="d-flex">
-                                              <span class="h6">
-                                                <i data-feather="type"></i>
-                                              </span>
+                                              <span class="h6"><i data-feather="type"></i></span>
                                               <div class="ml-3">
                                                 <h6 class="heading mb-0">{{ gemma.title|capfirst }}</h6>
                                                 <small class="text-sm">{{ gemma.short_description|capfirst }}</small>
@@ -301,47 +283,39 @@
                                   </div>
                                 </li>
                                 {% endif %}
+
                                 <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
                                   <a class="nav-link" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">{% trans "participate"|capfirst %}</a>
                                   <div class="dropdown-menu dropdown-menu-md p-0">
                                         <div class="dropdown-body py-3 pl-4">
                                           <h6 class="dropdown-header text-info">{% trans "community"|capfirst %}</h6>
                                           <div class="list-group list-group-flush">
-
                                             <div class="list-group-item bg-transparent border-0 px-0 py-2">
                                               <div class="media d-flex">
-                                                <span class="h6">
-                                                  <i data-feather="layout" class="feather feather-layout"></i>
-                                                </span>
+                                                <span class="h6"><i data-feather="layout" class="feather feather-layout"></i></span>
                                                 <div class="media-body ml-2">
                                                   <a href="{% url 'forum:index' %}" class="d-block heading h6 mb-0">Forum</a>
                                                   <small class="text-sm text-muted mb-0">{% trans "join in our latest discussions"|capfirst %}.</small>
                                                 </div>
                                               </div>
                                             </div>
-
                                             <div class="list-group-item bg-transparent border-0 px-0 py-2">
                                               <div class="media d-flex">
-                                                <span class="h6">
-                                                  <i data-feather="align-center" class="feather feather-layout"></i>
-                                                </span>
+                                                <span class="h6"><i data-feather="align-center" class="feather feather-layout"></i></span>
                                                 <div class="media-body ml-2">
                                                   <a href="{% url 'blog:home' %}" class="d-block heading h6 mb-0">Blog</a>
                                                   <small class="text-sm text-muted mb-0">{% trans "read and comment our latest news"|capfirst %}.</small>
                                                 </div>
                                               </div>
                                             </div>
-
                                           </div>
+
                                           <h6 class="dropdown-header text-info mt-4">{% trans "about us"|capfirst %}</h6>
                                           <div class="list-group list-group-flush">
-                                            
                                             {% for article in about_us_articles %}
                                             <div class="list-group-item bg-transparent border-0 px-0 py-2">
                                               <div class="media d-flex">
-                                                <span class="h6">
-                                                  <i data-feather="columns" class="feather feather-layout"></i>
-                                                </span>
+                                                <span class="h6"><i data-feather="columns" class="feather feather-layout"></i></span>
                                                 <div class="media-body ml-2">
                                                   <a href="{{ article.get_absolute_url }}" class="d-block heading h6 mb-0">{{ article.title|capfirst }}</a>
                                                   <small class="text-sm text-muted mb-0">{{ article.description|capfirst }}</small>
@@ -351,7 +325,6 @@
                                             {% endfor %}
                                           </div>
                                         </div>
-
                                   </div>
                                 </li>
 
@@ -363,9 +336,7 @@
                                             {% for pinned_product in pinned_products_nav %}
                                             <a href="{{ pinned_product.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
-                                                    <span class="h6">
-                                                        <i data-feather="bookmark"></i>
-                                                    </span>
+                                                    <span class="h6"><i data-feather="bookmark"></i></span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">{{ pinned_product.title|capfirst }}</h6>
                                                         <small class="text-sm">{{ pinned_product.short_description|capfirst }}</small>
@@ -376,9 +347,7 @@
                                             {% endif %}
                                             <a href="{% url 'products:list' %}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
-                                                    <span class="h6">
-                                                        <i data-feather="globe"></i>
-                                                    </span>
+                                                    <span class="h6"><i data-feather="globe"></i></span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">{% trans 'all games'|capfirst %}</h6>
                                                         <small class="text-sm">{% trans "explore our collection"|capfirst %}.</small>
@@ -394,13 +363,10 @@
                                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans "support us"|capfirst %}</a>
                                     <div class="dropdown-menu dropdown-menu-md p-0">
                                         <div class="list-group list-group-flush px-lg-4">
-                                            
                                             {% for pinned_package in pinned_packages %}
                                             <a href="{{ pinned_package.get_absolute_url }}" class="list-group-item list-group-item-action" role="button">
                                                 <div class="d-flex">
-                                                    <span class="h6">
-                                                        <i data-feather="shopping-bag"></i>
-                                                    </span>
+                                                    <span class="h6"><i data-feather="shopping-bag"></i></span>
                                                     <div class="ml-3">
                                                         <h6 class="heading mb-0">{{ pinned_package.title|capfirst }}</h6>
                                                         <small class="text-sm">{{ pinned_package.short_description|capfirst }}</small>
@@ -408,7 +374,6 @@
                                                 </div>
                                             </a>
                                             {% endfor %}
-                                            
                                         </div>
                                     </div>
                                 </li>                                
@@ -418,17 +383,14 @@
                             </ul>
                             {% endblock %}                            
                             {% if user.is_authenticated %}
-                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
-                            </ul> 
+                            <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto"></ul> 
                             {% endif %}                            
                             {% if not user.is_authenticated %}
                             {% block navbar_user_signin %}
                             <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
                               <li class="nav-item">                                
                                 <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="btn btn-sm btn-primary btn-icon ml-3">
-                                    <span class="btn-inner--icon">
-                                        <i data-feather="user" class="mb-1 mr-0"></i>
-                                    </span>
+                                    <span class="btn-inner--icon"><i data-feather="user" class="mb-1 mr-0"></i></span>
                                     <span class="btn-inner--text">{% trans "sign in"|capfirst %}</span>
                                 </a>
                               </li>
@@ -439,9 +401,9 @@
                         {% if user.is_authenticated %}
                         {% block navbar_user_profile %}
                         <div class="order-lg-4 order-3 ml-lg-3">
-                            <a class="" href="#modal-profile" role="button" data-toggle="modal">
+                            <a href="#modal-profile" role="button" data-toggle="modal">
                                 <span class="avatar rounded-circle">
-                                    <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" loading=lazy data-src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}">
+                                    <img src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" loading="lazy" alt="{{ user.get_full_name }}">
                                 </span>
                             </a>
                         </div>
@@ -460,9 +422,7 @@
                     <div class="form-group">
                         <div class="input-group input-group-merge input-group-flush">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i data-feather="search"></i>
-                                </span>
+                                <span class="input-group-text"><i data-feather="search"></i></span>
                             </div>                            
                             <input type="text" class="form-control" id="search_text" name="q" {% if search_query %}value='{{ search_query }}'{% endif %}>
                         </div>
@@ -490,7 +450,6 @@
     {% endblock omnisearch %}
 
     {% if messages %}
-        <!-- Messages -->
         {% for message in messages %}
         <div class="fixed-top">
             <div class="col-lg-4 col-md-6 mx-auto">
@@ -528,29 +487,21 @@
                 <div class="row">
                   <div class="col-lg-4 mb-5 mb-lg-0">
                     <a href="{% url 'landing:home' %}">
-                        <img loading=lazy src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" alt="Diventi" class="img-fluid" style="width: 228px;" id="footer-logo">
+                        <img loading="lazy" src="https://diventi-assets.s3.amazonaws.com/static/brand/diventi-logo-transparent-white.png" alt="Diventi" class="img-fluid" style="width: 228px;" id="footer-logo">
                     </a>
                     <p class="mt-4 text-sm opacity-8 pr-lg-4">{% trans "Diventi is a role-playing community that embraces fun, encourages storytelling and helps game masters to create outstanding adventures" %}.</p>
                     <ul class="nav mt-4">
                         <li class="nav-item">
-                            <a class="nav-link pl-0" href="https://www.youtube.com/feed/my_videos" target="_blank">
-                                <i data-feather="youtube"></i>
-                            </a>
+                            <a class="nav-link pl-0" href="https://www.youtube.com/feed/my_videos" target="_blank"><i data-feather="youtube"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="mailto:info@playdiventi.it" target="_blank">
-                                <i data-feather="mail"></i>
-                            </a>
+                            <a class="nav-link" href="mailto:info@playdiventi.it" target="_blank"><i data-feather="mail"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.instagram.com/playdiventi/" target="_blank">
-                                <i data-feather="instagram"></i>
-                            </a>
+                            <a class="nav-link" href="https://www.instagram.com/playdiventi/" target="_blank"><i data-feather="instagram"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.facebook.com/playdiventi" target="_blank">
-                                <i data-feather="facebook"></i>
-                            </a>
+                            <a class="nav-link" href="https://www.facebook.com/playdiventi" target="_blank"><i data-feather="facebook"></i></a>
                         </li>
                     </ul>
                   </div>
@@ -583,59 +534,42 @@
     </footer>
     {% endblock footer %}
 
-    <!-- Core JS  -->
-    <script src="{% static 'quick-v110/libs/jquery/dist/jquery.min.js' %}"></script>    
-    <script src="{% static 'quick-v110/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'quick-v110/libs/svg-injector/dist/svg-injector.min.js' %}"></script>
-    <script src="{% static 'quick-v110/libs/feather-icons/dist/feather.min.js' %}"></script>
-    <!-- Optional JS -->
-    <script src="{% static 'quick-v110/libs/typed.js/lib/typed.min.js' %}"></script>
-    <script src="{% static 'quick-v110/libs/in-view/dist/in-view.min.js' %}"></script>
-    <script src="{% static 'quick-v110/libs/sticky-kit/dist/sticky-kit.min.js' %}"></script>
-    <script src="{% static 'quick-v110/libs/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-    <script src="{% static 'quick-v110/libs/autosize/dist/autosize.min.js' %}"></script>
-    <!-- Page JS -->
-    <script src="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js' %}"></script>
-    <!-- Quick JS -->
-    <script src="{% static 'quick-v110/js/quick-website.js' %}"></script>
-    <script src="{% static 'diventi/js/diventi-defer-img.min.gz.js' %}"></script>
-    <!-- Feather Icons -->
+    <!-- Inizializzazioni JS (Gestite dopo che i file DEFER sono stati scaricati) -->
     <script type="text/javascript">
-        feather.replace({
-            'width': '1em',
-            'height': '1em'
-        })
-    </script>
-    <script type="text/javascript">
-    $(function () {
-        $('.searchs').on('click', function () {
-            var text = $('#search_text');
-            text.val($(this).attr('data-value'));
-            $('#search_text').focus()
+        document.addEventListener("DOMContentLoaded", function() {
+            // Gestione Preloader
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+
+            // Inizializzazione Feather Icons
+            if (typeof feather !== 'undefined') {
+                feather.replace({
+                    'width': '1em',
+                    'height': '1em'
+                });
+            }
+
+            // Gestione Omnisearch & Modali con jQuery
+            $('.searchs').on('click', function () {
+                var text = $('#search_text');
+                text.val($(this).attr('data-value'));
+                $('#search_text').focus();
+            });
+
+            $('.search').on('click', function () {
+                $('#modal-profile').modal('hide');
+                $('#modal-profile').on('hidden.bs.modal', function () {
+                  $('#search_text').focus();
+               });            
+            });
+
+            // Popovers e Tooltips
+            if (typeof $().popover === 'function') {
+                $('[data-toggle="popover"]').popover();
+                $('[data-toggle="tooltip"]').tooltip();
+            }
         });
-    });
-    </script>
-    <script type="text/javascript">
-    $(function () {
-        $('.search').on('click', function () {
-            $('#modal-profile').modal('hide');
-            $('#modal-profile').on('hidden.bs.modal', function () {
-              $('#search_text').focus()
-           });            
-        });
-    });
-    </script>
-    <!-- Popovers -->
-    <script type="text/javascript">
-        $(function () {
-      $('[data-toggle="popover"]').popover()
-    })
-    </script>
-    <!-- Tooltips -->
-    <script>
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-        })
     </script>
 
     {% block extrascript %}{% endblock extrascript %}

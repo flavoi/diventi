@@ -228,8 +228,9 @@ class DiventiUserUpdateForm(forms.ModelForm):
             }),
         }
 
+    # Assegna queryset vuoti per evitare query al database durante l'importazione dei file
     avatar = DiventiAvatarChoiceField(
-        queryset = DiventiAvatar.objects.all(),
+        queryset = DiventiAvatar.objects.none(),
         widget = DiventiAvatarSelect(attrs = {
             'class': 'image-picker show-labels show-html'
         }),
@@ -237,7 +238,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
     )
 
     cover = DiventiCoverChoiceField(
-        queryset = DiventiCover.objects.all(),
+        queryset = DiventiCover.objects.none(),
         widget = DiventiCoverSelect(attrs = {
             'class': 'image-picker show-labels show-html'
         }),
@@ -252,9 +253,15 @@ class DiventiUserUpdateForm(forms.ModelForm):
             avatar_queryset = avatar_queryset.filter(staff_only=False)  
         return avatar_queryset
 
+    def get_cover_queryset(self):
+        """ Fetch covers if present in database."""
+        return DiventiCover.objects.all()
+
     def __init__(self, *args, **kwargs):
         super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)
+        # Popola i queryset solo a runtime quando il form viene istanziato
         self.fields['avatar'].queryset = self.get_avatar_queryset()
+        self.fields['cover'].queryset = self.get_cover_queryset()
 
 
 class DiventiUserPrivacyChangeForm(forms.ModelForm):

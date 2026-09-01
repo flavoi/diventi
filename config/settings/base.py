@@ -217,6 +217,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Django default autofield
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Django sites
 # https://docs.djangoproject.com/en/1.11/ref/contrib/sites/

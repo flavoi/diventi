@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Specific Unbit deployment
+# Specific PythonAnywhere deployment
 
 from .production import *
 
@@ -13,6 +13,8 @@ DATABASES = {
 }
 
 ALLOWED_HOSTS = [
+    'www.playdiventi.it', 
     'playdiventi.it', 
     'localhost',
+    'flaviomarcato.pythonanywhere.com',
 ]

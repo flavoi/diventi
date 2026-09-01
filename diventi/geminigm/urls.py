@@ -10,6 +10,7 @@ from .views import (
     PrivateGemmaView,
     PublicGemmaView,
     generate_spell_name_ajax,
+    generate_astral_description_ajax,
 )
 
 app_name = 'geminigm'
@@ -22,4 +23,5 @@ urlpatterns = [
     path('get_char_sheet_ajax/<slug:gemma_slug>/', get_char_sheet_ajax, name='get_char_sheet_ajax'),
     path('<slug:gemma_slug>/', PrivateGemmaView.as_view(), name='gemma_private'),
     path('ajax/generate-spell-name/<slug:section_addon_slug>/', generate_spell_name_ajax, name='generate_spell_name_ajax'),
+    path('ajax/generate-astral-description/<slug:section_addon_slug>/',generate_astral_description_ajax, name='generate_astral_description_ajax'),
 ]

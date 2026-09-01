@@ -43,6 +43,92 @@ from .utils import (
 
 
 @require_POST
+def generate_astral_description_ajax(request, section_addon_slug):
+    """
+    Riceve i dettagli del compagno astrale (nome, colore, specie, personalità, capacità),
+    recupera le istruzioni da GemmaIstruction e invoca Gemini per elaborare
+    una descrizione in linguaggio naturale fluida e narrativa.
+    """
+    name = request.POST.get('name', '').strip()
+    colore = request.POST.get('colore', '').strip()
+    specie = request.POST.get('specie', '').strip()
+    personalita = request.POST.get('personalita', '').strip()
+    capacita = request.POST.get('capacita', '').strip()
+
+    if not (colore and specie and personalita):
+        return JsonResponse(
+            {'success': False, 'error': 'Parametri insufficienti per manifestare l\'astrale.'}, 
+            status=400
+        )
+
+    try:
+        client = genai.Client(api_key=settings.GEMINI_API_KEY)
+
+        # 1. Recupera la Sezione e le relative istruzioni Gemma
+        section_addon = get_object_or_404(SectionAddon, slug=section_addon_slug)
+
+        if not section_addon.enable_ai or not section_addon.gemma:
+            raise Exception('Funzionalità IA non abilitata o istruzione Gemma non associata.')
+
+        base_instruction = section_addon.gemma.system_instruction
+
+        # 2. Costruzione del Prompt
+        prompt = f"""
+        {base_instruction}
+
+        Dati del compagno astrale scelti dall'utente:
+        - Nome: {name or 'Senza nome'}
+        - Veste visiva / Colore: {colore}
+        - Specie / Forma: {specie}
+        - Personalità / Aspetto: {personalita}
+        - Capacità speciale: {capacita}
+
+        Genera un output in formato JSON valido con una singola chiave:
+        "description": Una frase o breve paragrafo narrativo (massimo 45 parole) in linguaggio naturale che descriva in modo scorrevole, evocativo e coeso l'aspetto visivo e il comportamento del compagno astrale quando si manifesta.
+
+        Rispondi ESCLUSIVAMENTE con un oggetto JSON valido. Non includere blocchi di codice markdown o testo aggiuntivo.
+        """
+
+        # 3. Gestione multilingua
+        lan = get_language()
+        if lan == 'en':
+            prompt += " Genera il valore del campo 'description' direttamente in lingua inglese."
+        else:
+            prompt += " Genera il valore del campo 'description' in lingua italiana."
+
+        response = client.models.generate_content(
+            model='gemini-3.5-flash-lite',
+            contents=prompt,
+        )
+
+        # 4. Parsing sicuro del JSON
+        raw_text = response.text.strip()
+        if raw_text.startswith('```'):
+            raw_text = raw_text.split('\n', 1)[-1]
+            if raw_text.endswith('```'):
+                raw_text = raw_text.rsplit('\n', 1)[0]
+            raw_text = raw_text.replace('```json', '').replace('```', '').strip()
+
+        data = json.loads(raw_text)
+
+        return JsonResponse({
+            'success': True,
+            'description': data.get('description', '')
+        })
+
+    except Exception as e:
+        print("\n" + "="*50)
+        print(" [DEBUG ASTRAL AI ERROR] ")
+        traceback.print_exc()
+        print("="*50 + "\n")
+
+        return JsonResponse(
+            {'success': False, 'error': f"Errore durante l'elaborazione dell'Astrale: {str(e)}"}, 
+            status=500
+        )
+        
+
+@require_POST
 def generate_spell_name_ajax(request, section_addon_slug):
     """
     Riceve le parole dell'Arcanum via POST (forma, fonte, portata),

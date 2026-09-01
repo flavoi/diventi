@@ -155,17 +155,6 @@
         </div>
     </li>
 
-    <!-- BOTTONI AZIONE -->
-    {% for section in sections %}                        
-    {% if section.attached_product.unfolded %}
-    <li class="nav-item">
-        <a href="{{ section.attached_product.get_absolute_url }}" class="btn btn-block btn-sm btn-primary mt-lg-2 mx-lg-3">
-            {% trans 'buy'|capfirst %}
-        </a>                                            
-    </li>          
-    {% endif %}
-    {% endfor %}
-
     {% if not user.is_authenticated %}    
     <li class="nav-item">
         <a class="nav-link" href="{% url 'accounts:signin' %}?next={{ request.path }}">

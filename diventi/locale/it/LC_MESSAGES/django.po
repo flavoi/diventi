@@ -2737,8 +2737,6 @@ msgid "join in our latest discussions"
 msgstr "unisciti ai nostri ultimi dibattiti"
 
 #: diventi/templates/base_quick_navbar_links.html:132
-#, fuzzy
-#| msgid "games list"
 msgid "games catalog"
 msgstr "catalogo dei giochi"
 
@@ -2759,10 +2757,8 @@ msgid "published on"
 msgstr "pubblicato il"
 
 #: diventi/templates/blog/article_detail_quick.html:149
-#, fuzzy
-#| msgid "keep reading"
 msgid "Keep reading"
-msgstr "continua a leggere"
+msgstr "Continua a leggere"
 
 #: diventi/templates/blog/article_detail_quick.html:152
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60

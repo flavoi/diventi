@@ -201,7 +201,6 @@ class SectionAddon(models.Model):
     TEMPLATE_CHOICES = (
         ('geminigm/partials/_arcanum_builder.html', _("Arcanum Forge (Spell Calculator + AI)")),
         ('geminigm/partials/_astral_generator.html', _("d20 Astral Companion Generator")),
-        ('geminigm/partials/_diventigm.html', _("Diventi AI GM")),
     )
     title = models.CharField(
         max_length=50,

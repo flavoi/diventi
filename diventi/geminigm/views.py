@@ -386,7 +386,7 @@ def send_message_ajax(request, gemma_slug):
                 )
 
                 response = client.models.generate_content(
-                    model='gemini-3-flash-preview',
+                    model='gemini-3.1-flash-lite',
                     contents=contents_for_gemini,
                 )
                 response_text = response.text
@@ -394,7 +394,7 @@ def send_message_ajax(request, gemma_slug):
                 lan = get_language()
                 if lan == 'en':
                     response = client.models.generate_content(
-                        model='gemini-3-flash-preview',
+                        model='gemini-3.1-flash-lite',
                         contents=f'traduci in inglese {response_text}. Non riportare frasi introduttive o finali, limitati a resistuire la traduzione.',
                     )
                     response_text = response.text
@@ -444,7 +444,7 @@ def get_adventure_summary_ajax(request, gemma_slug):
             
             if chat_messages:
                 summary = client.models.generate_content(
-                    model='gemini-3-flash-preview',
+                    model='gemini-3.1-flash-lite',
                     contents=contents_for_gemini,
                 )
                 summary_text = summary.text
@@ -494,7 +494,7 @@ def get_char_sheet_ajax(request, gemma_slug):
  
             if chat_messages:
                 character_sheet = client.models.generate_content(
-                    model='gemini-3-flash-preview',
+                    model='gemini-3.1-flash-lite',
                     contents=contents_for_gemini,
                 )
                 character_sheet_text = character_sheet.text

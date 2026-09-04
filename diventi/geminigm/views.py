@@ -97,7 +97,7 @@ def generate_astral_description_ajax(request, section_addon_slug):
             prompt += " Genera il valore del campo 'description' in lingua italiana."
 
         response = client.models.generate_content(
-            model='gemini-3.5-flash-lite',
+            model='gemini-3.1-flash-lite',
             contents=prompt,
         )
 
@@ -180,9 +180,9 @@ def generate_spell_name_ajax(request, section_addon_slug):
         lan = get_language()
         if lan == 'en':
             prompt += " Genera sia il campo 'name' che 'description' direttamente in lingua inglese. Non riportare frasi introduttive o finali, limitati a restituire il JSON con i valori tradotti."
-
+        
         response = client.models.generate_content(
-            model='gemini-3.5-flash-lite',
+            model='gemini-3.1-flash-lite',
             contents=prompt,
         )
 

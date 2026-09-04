@@ -302,7 +302,10 @@ def render_paper_headings(paper_soup):
             title_tag['id'] = h2_title_id + '-' + slugify(title.text)
             title_tag.string = title.text
             title.replace_with(title_tag)
-    paper_soup.select_one('.ace-line').extract()
+    #paper_soup.select_one('.ace-line').extract()
+    ace_line = paper_soup.select_one(".ace-line")
+    if ace_line is not None:
+        ace_line.extract()
     return paper_soup
 
 

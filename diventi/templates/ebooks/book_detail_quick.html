@@ -52,64 +52,61 @@
 
 {% block content %}
 
-<section class="section-half-rounded pt-5 pt-lg-8 pb-7 pb-lg-10">
+<section class="section-half-rounded pt-5 pt-lg-8 pb-6 pb-lg-8">
   <div class="jumbotron section-inner left-0 rounded-right bg-translucent-dark overflow-hidden col-lg-11">
-    <img loading="lazy" src="{{ book.book_product.image }}" alt="Image" class="img-as-bg blend-mode--multiply">
+    <img loading="lazy" src="{{ book.book_product.image }}" alt="{{ paper_title }}" class="img-as-bg blend-mode--multiply">
   </div>
-  <div class="container pt-5 pb-7">
+  <div class="container pt-5 pb-5">
     <div class="row align-items-center">
-      <div class="col-lg-7">
-        <span class="badge badge-{{ book.book_product.category.color }} badge-pill">{{ book.book_product.category }}</span>
-        <h1 class="display-4 text-white mt-4 lh-110">{{ paper_title|capfirst }}</h1>
-        <p class="lead mb-4 text-white mt-4">{{ book.book_product.abstract|capfirst }}</p>
-        <div class="d-flex justify-content-left">
-            <div class="mt-5">
-                <span class="badge badge-white badge-lg badge-pill shadow font-weight-light">
-                <i data-feather="book-open" class="mr-1"></i> {% trans 'time to read'|capfirst %}: <strong class="eta"></strong> (<span class="words"></span> {% trans 'words' %})
-                </span>
-            </div>
+      <div class="col-lg-8">
+        <!-- Categoria -->
+        <span class="badge badge-{{ book.book_product.category.color }} badge-pill text-uppercase tracking-wide">
+          {{ book.book_product.category }}
+        </span>
+
+        <!-- Titolo e Abstract -->
+        <h1 class="display-4 text-white mt-3 lh-110 font-weight-bold">{{ paper_title|capfirst }}</h1>
+        <p class="lead text-white-50 mt-3 mb-4 lh-160" style="max-width: 680px;">
+          {{ book.book_product.abstract|capfirst }}
+        </p>
+
+        <!-- PULSANTI D'AZIONE IN CHIARO -->
+        <div class="d-flex flex-wrap align-items-center mt-4" style="gap: 12px;">
+          
+        {% if bought or authored %}
+          {% with current_lang=request.resolver_match.kwargs.language_code %}
+          <div class="btn-group" role="group" aria-label="Language Selector">
+            <!-- Tasto IT -->
+            <a href="{% url 'ebooks:book-detail-customlan' book.slug 'it' %}" 
+               class="btn btn-sm btn-outline-light d-inline-flex align-items-center font-weight-bold shadow-sm {% if current_lang == 'it' or not current_lang %}active bg-white text-dark{% endif %}">
+              <img src="{% static 'quick-v110/img/icons/flags/it.svg' %}" alt="IT" class="mr-1" style="width: 16px;">
+              IT
+            </a>
+
+            <!-- Tasto EN -->
+            <a href="{% url 'ebooks:book-detail-customlan' book.slug 'en' %}" 
+               class="btn btn-sm btn-outline-light d-inline-flex align-items-center font-weight-bold shadow-sm {% if current_lang == 'en' %}active bg-white text-dark{% endif %}">
+              <img src="{% static 'quick-v110/img/icons/flags/gb.svg' %}" alt="EN" class="mr-1" style="width: 16px;">
+              EN
+            </a>
+          </div>
+          {% endwith %}
+        {% endif %}
+          
+          {% if book.book_product.related_forum_topic %}
+            {% with book.book_product.related_forum_topic as topic %}
+              <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" 
+                 class="btn btn-sm btn-info font-weight-bold shadow-sm">
+                {% trans 'comment on forum'|capfirst %}
+              </a>
+            {% endwith %}
+          {% endif %}
+
         </div>
-        <div class="d-flex justify-content-left mt-3">
-            {% if bought or authored %}
-                <div class="dropdown">
-                    <button class="btn btn-primary btn-sm btn-icon-only btn-icon rounded-circle dropdown-animate ml-1" type="button" data-toggle="dropdown" aria-expanded="false">
-                        <span class="btn-inner--icon">
-                            <i data-feather="globe"></i> 
-                        </span>
-                    </button>          
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'en' %}">
-                            <img src="{% static 'quick-v110/img/icons/flags/gb.svg' %}"> {% trans "english"|capfirst %} (EN)
-                        </a>
-                        <a class="dropdown-item" href="{% url 'ebooks:book-detail-customlan' book.slug 'it' %}">
-                            <img src="{% static 'quick-v110/img/icons/flags/it.svg' %}"> {% trans "italian"|capfirst %} (IT)
-                        </a>
-                    </div>            
-                </div>
-            {% endif %}
-            {% if book.book_product.related_forum_topic %}
-                {% with book.book_product.related_forum_topic as topic %}
-                <div class="dropdown">
-                    <button class="btn btn-info btn-sm btn-icon-only btn-icon rounded-circle dropdown-animate ml-1" type="button" data-toggle="dropdown" aria-expanded="false">                        
-                        <span class="btn-inner--icon">
-                            <i data-feather="align-center"></i> 
-                        </span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}">
-                            <img src="{% static 'quick-v110/img/svg/icons/Inbox.svg' %}"> {% trans 'comment on'|capfirst %} (forum)
-                        </a>
-                    </div>
-                </div>
-                {% endwith %}
-            {% endif %}
-        </div>
-       </div>
       </div>
     </div>
   </div>
 </section>
-
 <section class="slice mt-0 pt-0">
     <div class="container py-4 py-lg-5">
         <div class="row">
@@ -206,16 +203,6 @@
 {% block footercolor %}{% endblock footercolor %}
 
 {% block extrascript %}
-    <script src="{% static 'readingtime/readingtime.js' %}"></script>
-    <script>
-        $('article').readingTime({
-            readingTimeTarget: '.eta',
-            wordCountTarget: '.words',
-        });
-        $(document).ready(function() { 
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
     <script src="{% static 'diventi/js/diventi-datatables.js' %}"></script>
     <script src="{% static 'diventi/js/diventi-sortable.min.js' %}"></script>
     <script>

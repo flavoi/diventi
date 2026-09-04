@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 14:31+0200\n"
+"POT-Creation-Date: 2026-09-04 17:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -484,7 +484,7 @@ msgstr "Contenuti"
 msgid "Related"
 msgstr "Correlazioni"
 
-#: diventi/blog/apps.py:7 diventi/templates/base_quick_navbar_links.html:106
+#: diventi/blog/apps.py:7 diventi/templates/base_quick_navbar_links.html:97
 msgid "Blog"
 msgstr "Blog"
 
@@ -548,7 +548,7 @@ msgstr "articolo"
 #: diventi/blog/models.py:170
 #: diventi/templates/accounts/user_detail_quick.html:118
 #: diventi/templates/accounts/user_detail_quick_modal.html:55
-#: diventi/templates/base_quick_navbar_links.html:31
+#: diventi/templates/base_quick_navbar_links.html:22
 msgid "articles"
 msgstr "articoli"
 
@@ -1008,7 +1008,7 @@ msgid "book"
 msgstr "libro"
 
 #: diventi/ebooks/models.py:150
-#: diventi/templates/base_quick_navbar_links.html:38
+#: diventi/templates/base_quick_navbar_links.html:29
 msgid "books"
 msgstr "libri"
 
@@ -1121,7 +1121,7 @@ msgstr "sezione"
 
 #: diventi/ebooks/models.py:365 diventi/landing/models.py:259
 #: diventi/landing/models.py:313
-#: diventi/templates/base_quick_navbar_links.html:35
+#: diventi/templates/base_quick_navbar_links.html:26
 msgid "sections"
 msgstr "sezioni"
 
@@ -1198,7 +1198,7 @@ msgid "pdf/<slug:book_slug>/public/"
 msgstr "pdf/<slug:book_slug>/pubblico/"
 
 #: diventi/ebooks/utils.py:134
-#: diventi/templates/base_quick_navbar_links.html:97
+#: diventi/templates/base_quick_navbar_links.html:88
 msgid "Discover"
 msgstr "Scopri"
 
@@ -1285,7 +1285,7 @@ msgstr "sondaggio"
 
 #: diventi/feedbacks/models.py:139
 #: diventi/templates/accounts/user_detail_quick.html:312
-#: diventi/templates/base_quick_navbar_links.html:34
+#: diventi/templates/base_quick_navbar_links.html:25
 msgid "surveys"
 msgstr "sondaggi"
 
@@ -1653,13 +1653,13 @@ msgid "This page is not available yet."
 msgstr "Questa pagina non è ancora disponibile."
 
 #: diventi/landing/views.py:70 diventi/landing/views.py:94
-#: diventi/templates/base_quick_navbar_links.html:32
+#: diventi/templates/base_quick_navbar_links.html:23
 msgid "users"
 msgstr "utenti"
 
 #: diventi/landing/views.py:71 diventi/landing/views.py:97
 #: diventi/packages/models.py:103
-#: diventi/templates/base_quick_navbar_links.html:40
+#: diventi/templates/base_quick_navbar_links.html:31
 msgid "packages"
 msgstr "pacchetti"
 
@@ -2183,8 +2183,7 @@ msgstr "La tua password è stata modificata. Ora puoi rieffettuare l'accesso."
 #: diventi/templates/accounts/signin_quick.html:20
 #: diventi/templates/accounts/signin_quick.html:65
 #: diventi/templates/accounts/signup_quick.html:129
-#: diventi/templates/base_quick_navbar_links.html:8
-#: diventi/templates/base_quick_navbar_links.html:161
+#: diventi/templates/base_quick_navbar_links.html:153
 #: diventi/templates/feedbacks/author_form_quick.html:5
 msgid "sign in"
 msgstr "accedi"
@@ -2542,7 +2541,7 @@ msgstr "modifica"
 #: diventi/templates/accounts/user_detail_quick.html:162
 #: diventi/templates/accounts/user_detail_quick_modal.html:64
 #: diventi/templates/accounts/user_detail_quick_modal.html:78
-#: diventi/templates/base_quick_navbar_links.html:33
+#: diventi/templates/base_quick_navbar_links.html:24
 msgid "projects"
 msgstr "progetti"
 
@@ -2677,64 +2676,64 @@ msgstr "community"
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
-#: diventi/templates/base_quick_navbar_links.html:16
+#: diventi/templates/base_quick_navbar_links.html:7
 msgid "manage"
 msgstr "gestisci"
 
-#: diventi/templates/base_quick_navbar_links.html:24
+#: diventi/templates/base_quick_navbar_links.html:15
 msgid "control panel for authors only"
 msgstr "pannello di controllo riservato agli autori"
 
-#: diventi/templates/base_quick_navbar_links.html:39
+#: diventi/templates/base_quick_navbar_links.html:30
 msgid "AI settings"
 msgstr "impostazioni IA"
 
-#: diventi/templates/base_quick_navbar_links.html:41
+#: diventi/templates/base_quick_navbar_links.html:32
 msgid "forum posts"
 msgstr "Post del forum"
 
-#: diventi/templates/base_quick_navbar_links.html:42
+#: diventi/templates/base_quick_navbar_links.html:33
 msgid "search suggenstions"
 msgstr "suggerimenti"
 
-#: diventi/templates/base_quick_navbar_links.html:50
+#: diventi/templates/base_quick_navbar_links.html:41
 #: diventi/templates/landing/analytics_quick.html:8
 #: diventi/templates/landing/analytics_quick.html:18
 msgid "analytics"
 msgstr "analitica"
 
-#: diventi/templates/base_quick_navbar_links.html:51
+#: diventi/templates/base_quick_navbar_links.html:42
 msgid "a tool to measure the website performance"
 msgstr "uno strumento per misurare le prestazioni del sito"
 
-#: diventi/templates/base_quick_navbar_links.html:63
+#: diventi/templates/base_quick_navbar_links.html:54
 msgid "navigate"
 msgstr "naviga"
 
-#: diventi/templates/base_quick_navbar_links.html:83
+#: diventi/templates/base_quick_navbar_links.html:74
 msgid "back to top"
 msgstr "torna all'inizio"
 
-#: diventi/templates/base_quick_navbar_links.html:107
+#: diventi/templates/base_quick_navbar_links.html:98
 msgid "News, updates, and intel from the Bubble"
 msgstr "Notizie, aggiornamenti e segreti dalla Bolla"
 
-#: diventi/templates/base_quick_navbar_links.html:119
+#: diventi/templates/base_quick_navbar_links.html:110
 #: diventi/templates/machina/board_base.html:20
 #: diventi/templates/machina/forum/index.html:6
 #: diventi/templates/machina/forum_moderation/moderation_queue/list.html:36
 msgid "Forum"
 msgstr "Forum"
 
-#: diventi/templates/base_quick_navbar_links.html:120
+#: diventi/templates/base_quick_navbar_links.html:111
 msgid "join in our latest discussions"
 msgstr "unisciti ai nostri ultimi dibattiti"
 
-#: diventi/templates/base_quick_navbar_links.html:132
+#: diventi/templates/base_quick_navbar_links.html:123
 msgid "games catalog"
 msgstr "catalogo dei giochi"
 
-#: diventi/templates/base_quick_navbar_links.html:133
+#: diventi/templates/base_quick_navbar_links.html:124
 msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
@@ -2777,7 +2776,7 @@ msgstr "Nessun articolo è stato ancora pubblicato"
 
 #: diventi/templates/blog/article_list_quick.html:210
 #: diventi/templates/blog/article_list_quick.html:213
-#: diventi/templates/ebooks/book_detail_quick.html:233
+#: diventi/templates/ebooks/book_detail_quick.html:223
 #: diventi/templates/products/product_list_filtered_quick.html:138
 #: diventi/templates/products/product_list_filtered_quick.html:141
 #: diventi/templates/products/product_list_quick.html:165
@@ -2787,7 +2786,7 @@ msgstr "Precedente"
 
 #: diventi/templates/blog/article_list_quick.html:226
 #: diventi/templates/blog/article_list_quick.html:229
-#: diventi/templates/ebooks/book_detail_quick.html:234
+#: diventi/templates/ebooks/book_detail_quick.html:224
 #: diventi/templates/products/product_list_filtered_quick.html:154
 #: diventi/templates/products/product_list_filtered_quick.html:157
 #: diventi/templates/products/product_list_quick.html:181
@@ -2877,55 +2876,39 @@ msgstr "contenuti simili"
 msgid "view all"
 msgstr "visualizza tutto"
 
-#: diventi/templates/ebooks/book_detail_quick.html:68
-msgid "time to read"
-msgstr "tempo di lettura"
-
-#: diventi/templates/ebooks/book_detail_quick.html:68
-msgid "words"
-msgstr "parole"
-
-#: diventi/templates/ebooks/book_detail_quick.html:82
-msgid "english"
-msgstr "inglese"
-
-#: diventi/templates/ebooks/book_detail_quick.html:85
-msgid "italian"
-msgstr "italiano"
-
-#: diventi/templates/ebooks/book_detail_quick.html:100
-msgid "comment on"
-msgstr "commenta"
+#: diventi/templates/ebooks/book_detail_quick.html:103
+msgid "comment on forum"
+msgstr "commenta sul forum"
 
 #: diventi/templates/ebooks/book_detail_quick.html:121
 msgid "table of contents"
 msgstr "indice"
 
-#: diventi/templates/ebooks/book_detail_quick.html:226
+#: diventi/templates/ebooks/book_detail_quick.html:216
 msgid "Display _MENU_ records per page"
 msgstr "Mostra _MENU_ righe per pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:227
+#: diventi/templates/ebooks/book_detail_quick.html:217
 msgid "Nothing found - sorry"
 msgstr "Nessun risultato trovato"
 
-#: diventi/templates/ebooks/book_detail_quick.html:228
+#: diventi/templates/ebooks/book_detail_quick.html:218
 msgid "Showing page _PAGE_ of _PAGES_"
 msgstr "Pagina _PAGE_ di _PAGES_"
 
-#: diventi/templates/ebooks/book_detail_quick.html:229
+#: diventi/templates/ebooks/book_detail_quick.html:219
 msgid "No records available"
 msgstr "Nessun risultato disponibile"
 
-#: diventi/templates/ebooks/book_detail_quick.html:230
+#: diventi/templates/ebooks/book_detail_quick.html:220
 msgid "(filtered from _MAX_ total records)"
 msgstr "(filtrato da _MAX_ righe totali)"
 
-#: diventi/templates/ebooks/book_detail_quick.html:232
+#: diventi/templates/ebooks/book_detail_quick.html:222
 msgid "First page"
 msgstr "Prima pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:237
+#: diventi/templates/ebooks/book_detail_quick.html:227
 msgid "Filter records"
 msgstr "Filtra le righe"
 
@@ -2942,11 +2925,11 @@ msgstr "Sondaggio"
 msgid "send survey"
 msgstr "invia sondaggio"
 
-#: diventi/templates/feedbacks/answer_list_quick.html:22
+#: diventi/templates/feedbacks/answer_list_quick.html:20
 msgid "You have answered as"
 msgstr "Hai risposto come"
 
-#: diventi/templates/feedbacks/answer_list_quick.html:60
+#: diventi/templates/feedbacks/answer_list_quick.html:58
 msgid "you have not answered this survey, yet."
 msgstr "devi ancora rispondere a questo sondaggio."
 
@@ -4345,7 +4328,8 @@ msgstr "Nessun gioco trovato per questa categoria"
 
 #: diventi/templates/products/product_list_filtered_quick.html:122
 msgid "Try exploring other categories or view all our available games."
-msgstr "Prova ad esplorare altre categorie per vedere tutti i giochi disponibili."
+msgstr ""
+"Prova ad esplorare altre categorie per vedere tutti i giochi disponibili."
 
 #: diventi/templates/products/product_list_filtered_quick.html:124
 msgid "View all games"
@@ -4445,6 +4429,18 @@ msgstr "questo contenuto dovrebbe essere aperto prima della pubblicazione."
 #: diventi/templates/unfoldable_badge.html:4
 msgid "not open to buy"
 msgstr "non acquistabile"
+
+#~ msgid "time to read"
+#~ msgstr "tempo di lettura"
+
+#~ msgid "words"
+#~ msgstr "parole"
+
+#~ msgid "english"
+#~ msgstr "inglese"
+
+#~ msgid "italian"
+#~ msgstr "italiano"
 
 #, fuzzy
 #~| msgid "category"

@@ -1,15 +1,6 @@
 {% load i18n %}
 
 <ul class="navbar-nav ml-lg-auto mr-3">
-    <!-- LINK SIGN IN MOBILE -->
-    {% if user.is_anonymous %}
-    <li class="nav-item d-lg-none">
-        <a href="{% url 'accounts:signin' %}?next={{ request.path }}" class="nav-link">
-            {% trans "sign in"|capfirst %}
-        </a>
-    </li>
-    {% endif %}
-
     <!-- DROPDOWN MANAGE (Per lo Staff - Icone Neutre) -->
     {% if user.is_staff %}
     <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover">
@@ -155,8 +146,9 @@
         </div>
     </li>
 
+    <!-- LINK SIGN IN UNICO (In cima su Mobile, in fondo su Desktop) -->
     {% if not user.is_authenticated %}    
-    <li class="nav-item">
+    <li class="nav-item order-first order-lg-last">
         <a class="nav-link" href="{% url 'accounts:signin' %}?next={{ request.path }}">
             {% trans "sign in"|capfirst %}
         </a>

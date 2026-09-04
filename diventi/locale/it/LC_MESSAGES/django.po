@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 21:15+0200\n"
+"POT-Creation-Date: 2026-09-04 14:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "Italiano"
 msgid "English"
 msgstr "Inglese"
 
-#: config/settings/base.py:289
+#: config/settings/base.py:291
 msgid "Base block"
 msgstr "Blocco base"
 
-#: config/settings/base.py:299
+#: config/settings/base.py:301
 msgid "Callout"
 msgstr "Didascalia"
 
@@ -127,7 +127,7 @@ msgstr "Indirizzo email"
 msgid "name@example.com"
 msgstr "nome@esempio.com"
 
-#: diventi/accounts/forms.py:140 diventi/accounts/forms.py:266
+#: diventi/accounts/forms.py:140 diventi/accounts/forms.py:273
 msgid "Can we send you emails?"
 msgstr "Possiamo inviarti email?"
 
@@ -199,7 +199,7 @@ msgstr "Foto profilo"
 msgid "Profile pictures"
 msgstr "Foto profilo"
 
-#: diventi/accounts/models.py:123 diventi/products/models.py:423
+#: diventi/accounts/models.py:123 diventi/products/models.py:422
 msgid "Cover"
 msgstr "Copertina"
 
@@ -516,7 +516,7 @@ msgid "Article Categories"
 msgstr "Categorie di articolo"
 
 #: diventi/blog/models.py:133 diventi/ebooks/models.py:127
-#: diventi/products/models.py:283 diventi/products/models.py:619
+#: diventi/products/models.py:282 diventi/products/models.py:618
 #: diventi/templates/products/product_detail_quick.html:143
 msgid "category"
 msgstr "categoria"
@@ -536,7 +536,7 @@ msgstr "cartolina"
 msgid "author"
 msgstr "autore"
 
-#: diventi/blog/models.py:158 diventi/products/models.py:315
+#: diventi/blog/models.py:158 diventi/products/models.py:314
 #: diventi/templates/products/product_detail_quick.html:198
 msgid "related articles"
 msgstr "articoli correlati"
@@ -552,13 +552,13 @@ msgstr "articolo"
 msgid "articles"
 msgstr "articoli"
 
-#: diventi/blog/models.py:180 diventi/products/models.py:427
+#: diventi/blog/models.py:180 diventi/products/models.py:426
 msgid "Postcard"
 msgstr "Cartolina"
 
 #: diventi/blog/models.py:205 diventi/blog/models.py:223
 #: diventi/landing/models.py:95 diventi/packages/models.py:137
-#: diventi/products/models.py:476 diventi/products/models.py:500
+#: diventi/products/models.py:475 diventi/products/models.py:499
 #, python-format
 msgid "views in the last week: %(d)s"
 msgstr "visite nell'ultima settimana: %(d)s"
@@ -573,7 +573,7 @@ msgstr "Parole"
 
 #: diventi/blog/models.py:244 diventi/ebooks/models.py:154
 #: diventi/landing/models.py:81 diventi/packages/models.py:124
-#: diventi/products/models.py:590
+#: diventi/products/models.py:589
 msgid "Hit counts"
 msgstr "Visite"
 
@@ -707,7 +707,7 @@ msgstr "creato"
 msgid "modified"
 msgstr "modificato"
 
-#: diventi/core/models.py:71 diventi/products/models.py:574
+#: diventi/core/models.py:71 diventi/products/models.py:573
 msgid "published"
 msgstr "pubblicato"
 
@@ -778,7 +778,7 @@ msgstr "didascalia"
 msgid "No image"
 msgstr "Nessuna immagine"
 
-#: diventi/core/models.py:178 diventi/products/models.py:631
+#: diventi/core/models.py:178 diventi/products/models.py:630
 msgid "Image"
 msgstr "Immagine"
 
@@ -943,7 +943,7 @@ msgstr ""
 msgid "Autocomplete ..."
 msgstr "Completamento automatico ..."
 
-#: diventi/ebooks/forms.py:27 diventi/products/models.py:622
+#: diventi/ebooks/forms.py:27 diventi/products/models.py:621
 msgid "Chapter"
 msgstr "Capitolo"
 
@@ -972,10 +972,10 @@ msgid "short title"
 msgstr "titolo breve"
 
 #: diventi/ebooks/models.py:74 diventi/geminigm/models.py:113
-#: diventi/landing/models.py:205 diventi/products/models.py:432
-#: diventi/products/models.py:600 diventi/products/models.py:618
-#: diventi/products/models.py:628 diventi/products/models.py:675
-#: diventi/products/models.py:722
+#: diventi/landing/models.py:205 diventi/products/models.py:431
+#: diventi/products/models.py:599 diventi/products/models.py:617
+#: diventi/products/models.py:627 diventi/products/models.py:674
+#: diventi/products/models.py:721
 msgid "product"
 msgstr "prodotto"
 
@@ -1274,12 +1274,12 @@ msgstr "prefisso"
 msgid "subtitle"
 msgstr "sottotitolo"
 
-#: diventi/feedbacks/models.py:133 diventi/products/models.py:292
+#: diventi/feedbacks/models.py:133 diventi/products/models.py:291
 msgid "public"
 msgstr "pubblico"
 
 #: diventi/feedbacks/models.py:138 diventi/feedbacks/models.py:145
-#: diventi/landing/models.py:221 diventi/products/models.py:348
+#: diventi/landing/models.py:221 diventi/products/models.py:347
 msgid "survey"
 msgstr "sondaggio"
 
@@ -1538,7 +1538,7 @@ msgid "Attachments"
 msgstr "Allegati"
 
 #: diventi/landing/admin.py:75 diventi/landing/models.py:237
-#: diventi/products/admin.py:109 diventi/products/models.py:356
+#: diventi/products/admin.py:109 diventi/products/models.py:355
 msgid "primary cover"
 msgstr "copertina principale"
 
@@ -1584,7 +1584,7 @@ msgid "addon"
 msgstr ""
 
 #: diventi/landing/models.py:245 diventi/products/admin.py:116
-#: diventi/products/models.py:364
+#: diventi/products/models.py:363
 msgid "secondary cover"
 msgstr "copertina secondaria"
 
@@ -1703,27 +1703,27 @@ msgstr "Pacchetti"
 msgid "abstract"
 msgstr "sommario"
 
-#: diventi/packages/models.py:67 diventi/products/models.py:309
+#: diventi/packages/models.py:67 diventi/products/models.py:308
 msgid "related products"
 msgstr "prodotti correlati"
 
-#: diventi/packages/models.py:72 diventi/products/models.py:333
+#: diventi/packages/models.py:72 diventi/products/models.py:332
 msgid "stripe price"
 msgstr "prezzo stripe"
 
-#: diventi/packages/models.py:79 diventi/products/models.py:340
+#: diventi/packages/models.py:79 diventi/products/models.py:339
 msgid "stripe product"
 msgstr "prodotto stripe"
 
-#: diventi/packages/models.py:83 diventi/products/models.py:298
+#: diventi/packages/models.py:83 diventi/products/models.py:297
 msgid "short courtesy messages"
 msgstr "breve messaggio di cortesia"
 
-#: diventi/packages/models.py:86 diventi/products/models.py:302
+#: diventi/packages/models.py:86 diventi/products/models.py:301
 msgid "courtesy message"
 msgstr "messaggio di cortesia"
 
-#: diventi/packages/models.py:87 diventi/products/models.py:303
+#: diventi/packages/models.py:87 diventi/products/models.py:302
 msgid "Folded products return this message to all users"
 msgstr "I prodotti aperti restituiscono questo messaggio a tutti gli utenti"
 
@@ -1839,141 +1839,141 @@ msgstr "clienti"
 msgid "file"
 msgstr "file"
 
-#: diventi/products/models.py:287
+#: diventi/products/models.py:286
 msgid "unfolded"
 msgstr "aperto"
 
-#: diventi/products/models.py:288
+#: diventi/products/models.py:287
 msgid "Unfolded products can be bought by users"
 msgstr "I prodotti aperti possono essere acquistati dagli utenti"
 
-#: diventi/products/models.py:293
+#: diventi/products/models.py:292
 msgid "Public products diplay their content to anonimous users"
 msgstr ""
 "I prodotti pubblici visualizzano i loro contenuti anche agli autenti anonimi"
 
-#: diventi/products/models.py:322
+#: diventi/products/models.py:321
 msgid "related forum topic"
 msgstr "forum correlati"
 
-#: diventi/products/models.py:328
+#: diventi/products/models.py:327
 msgid "formats"
 msgstr "formati"
 
-#: diventi/products/models.py:373
+#: diventi/products/models.py:372
 msgid "playtest material"
 msgstr "materiale di playtest"
 
-#: diventi/products/models.py:374
+#: diventi/products/models.py:373
 msgid "Playtest products can be accessed by users with a playtest permission"
 msgstr ""
 "Contenuti di playtest possono essere visionati da utenti con permessi di "
 "playtest"
 
-#: diventi/products/models.py:433
+#: diventi/products/models.py:432
 msgid "products"
 msgstr "prodotti"
 
-#: diventi/products/models.py:439
+#: diventi/products/models.py:438
 msgid "application"
 msgstr "applicazione"
 
-#: diventi/products/models.py:513
+#: diventi/products/models.py:512
 msgid "Last purchase"
 msgstr "Ultimo acquisto"
 
-#: diventi/products/models.py:516
+#: diventi/products/models.py:515
 #, python-format
 msgid "%(product)s: total customers"
 msgstr "%(product)s: clienti totali"
 
-#: diventi/products/models.py:527
+#: diventi/products/models.py:526
 #, python-format
 msgid "%(product)s: product views"
 msgstr "%(product)s: visite al prodotto"
 
-#: diventi/products/models.py:531 diventi/products/models.py:551
+#: diventi/products/models.py:530 diventi/products/models.py:550
 #, python-format
 msgid "views in the last week:: %(d)s"
 msgstr "visite nell'ultima settimana: %(d)s"
 
-#: diventi/products/models.py:547
+#: diventi/products/models.py:546
 #, python-format
 msgid "%(product)s: book views"
 msgstr "%(product)s: visite al libro "
 
-#: diventi/products/models.py:576 diventi/templates/publishable_badge.html:4
+#: diventi/products/models.py:575 diventi/templates/publishable_badge.html:4
 msgid "draft"
 msgstr "bozza"
 
-#: diventi/products/models.py:585
+#: diventi/products/models.py:584
 msgid "at a premium"
 msgstr "a pagamento"
 
-#: diventi/products/models.py:605
+#: diventi/products/models.py:604
 msgid "Detail"
 msgstr "Dettaglio"
 
-#: diventi/products/models.py:606
+#: diventi/products/models.py:605
 #: diventi/templates/products/product_detail_quick.html:239
 msgid "Details"
 msgstr "Dettagli"
 
-#: diventi/products/models.py:612
+#: diventi/products/models.py:611
 msgid "Chapter category"
 msgstr "Categoria di capitolo"
 
-#: diventi/products/models.py:613
+#: diventi/products/models.py:612
 msgid "Chapter categories"
 msgstr "Categorie di capitolo"
 
-#: diventi/products/models.py:623
+#: diventi/products/models.py:622
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: diventi/products/models.py:632
+#: diventi/products/models.py:631
 msgid "Images"
 msgstr "Immagini"
 
-#: diventi/products/models.py:676
+#: diventi/products/models.py:675
 msgid "customer"
 msgstr "cliente"
 
-#: diventi/products/models.py:681
+#: diventi/products/models.py:680
 msgid "Purchase"
 msgstr "Acquisto"
 
-#: diventi/products/models.py:682
+#: diventi/products/models.py:681
 msgid "Purchases"
 msgstr "Acquisti"
 
-#: diventi/products/models.py:686
+#: diventi/products/models.py:685
 #, python-format
 msgid "Purchase: %(id)s"
 msgstr "Acquisto: %(id)s"
 
-#: diventi/products/models.py:691
+#: diventi/products/models.py:690
 #, python-format
 msgid "%(prefix)s: %(last_pur)s on %(created)s"
 msgstr "%(prefix)s: %(last_pur)s - %(created)s"
 
-#: diventi/products/models.py:704
+#: diventi/products/models.py:703
 msgid "session id"
 msgstr "id sessione"
 
-#: diventi/products/models.py:711
+#: diventi/products/models.py:710
 msgid "user"
 msgstr "utente"
 
-#: diventi/products/models.py:717
+#: diventi/products/models.py:716
 msgid "stripe email"
 msgstr "email stripe"
 
-#: diventi/products/models.py:738
+#: diventi/products/models.py:737
 msgid "Download session"
 msgstr "Sessione di download"
 
-#: diventi/products/models.py:739
+#: diventi/products/models.py:738
 msgid "Download sessions"
 msgstr "Sessioni di download"
 
@@ -2758,7 +2758,7 @@ msgstr "Visualizza tutto"
 
 #: diventi/templates/blog/article_list_quick.html:55
 #: diventi/templates/landing/analytics_quick.html:25
-#: diventi/templates/products/product_list_filtered_quick.html:55
+#: diventi/templates/products/product_list_filtered_quick.html:51
 #: diventi/templates/products/product_list_quick.html:50
 msgid "all"
 msgstr "tutto"
@@ -2778,8 +2778,8 @@ msgstr "Nessun articolo è stato ancora pubblicato"
 #: diventi/templates/blog/article_list_quick.html:210
 #: diventi/templates/blog/article_list_quick.html:213
 #: diventi/templates/ebooks/book_detail_quick.html:233
-#: diventi/templates/products/product_list_filtered_quick.html:142
-#: diventi/templates/products/product_list_filtered_quick.html:145
+#: diventi/templates/products/product_list_filtered_quick.html:138
+#: diventi/templates/products/product_list_filtered_quick.html:141
 #: diventi/templates/products/product_list_quick.html:165
 #: diventi/templates/products/product_list_quick.html:168
 msgid "Previous"
@@ -2788,8 +2788,8 @@ msgstr "Precedente"
 #: diventi/templates/blog/article_list_quick.html:226
 #: diventi/templates/blog/article_list_quick.html:229
 #: diventi/templates/ebooks/book_detail_quick.html:234
-#: diventi/templates/products/product_list_filtered_quick.html:158
-#: diventi/templates/products/product_list_filtered_quick.html:161
+#: diventi/templates/products/product_list_filtered_quick.html:154
+#: diventi/templates/products/product_list_filtered_quick.html:157
 #: diventi/templates/products/product_list_quick.html:181
 #: diventi/templates/products/product_list_quick.html:184
 msgid "Next"
@@ -3258,8 +3258,11 @@ msgstr "Aria celestiale"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:105
 msgid ""
-"A light blue aura envelopes the creature and, upon taking flight, subtle harmless electric discharges intermittently burst into the air."
-msgstr "Un'aura azzurra avvolge la creatura e, prendendo il volo, sottili scariche elettriche inoffensive si sprigionano a intermittenza nell'aria."
+"A light blue aura envelopes the creature and, upon taking flight, subtle "
+"harmless electric discharges intermittently burst into the air."
+msgstr ""
+"Un'aura azzurra avvolge la creatura e, prendendo il volo, sottili scariche "
+"elettriche inoffensive si sprigionano a intermittenza nell'aria."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:106
 msgid "Brown Rock"
@@ -3267,8 +3270,11 @@ msgstr "Roccia bruna"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:106
 msgid ""
-"Its body recalls the warm tones of the earth, and its stride produces a deep rumble scented with mineral dust."
-msgstr "Il suo corpo richiama i toni caldi della terra, e il suo passo produce un cupo brontolio profumato di polvere minerale."
+"Its body recalls the warm tones of the earth, and its stride produces a deep "
+"rumble scented with mineral dust."
+msgstr ""
+"Il suo corpo richiama i toni caldi della terra, e il suo passo produce un "
+"cupo brontolio profumato di polvere minerale."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:107
 msgid "Soot Black"
@@ -3276,8 +3282,11 @@ msgstr "Nero fuliggine"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:107
 msgid ""
-"Thin shadow scales and ash dust float along its back and coat, shrouding the creature in a persistent hazy cloud."
-msgstr "Sottili scaglie d'ombra e polvere di cenere fluttuano lungo la sua schiena e il suo mantello, avvolgendo la creatura in una persistente nuvola nebbiosa."
+"Thin shadow scales and ash dust float along its back and coat, shrouding the "
+"creature in a persistent hazy cloud."
+msgstr ""
+"Sottili scaglie d'ombra e polvere di cenere fluttuano lungo la sua schiena e "
+"il suo mantello, avvolgendo la creatura in una persistente nuvola nebbiosa."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:108
 msgid "Flame Red"
@@ -3285,8 +3294,11 @@ msgstr "Rosso fiamma"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:108
 msgid ""
-"Vivid scarlet tones cover its body, while harmless sparks of hot air emerge from the fur on its head and back."
-msgstr "Vivaci tonalità scarlatte ricoprono il suo corpo, mentre innocue scintille di aria calda emergono dalla pelliccia sulla sua testa e sulla schiena."
+"Vivid scarlet tones cover its body, while harmless sparks of hot air emerge "
+"from the fur on its head and back."
+msgstr ""
+"Vivaci tonalità scarlatte ricoprono il suo corpo, mentre innocue scintille "
+"di aria calda emergono dalla pelliccia sulla sua testa e sulla schiena."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:109
 msgid "Ice White"
@@ -3294,8 +3306,11 @@ msgstr "Bianco ghiaccio"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:109
 msgid ""
-"A pristine white mantle covers the creature, emanating a persistent light frost and calling forth veils of mist as it moves."
-msgstr "Un mantello bianco immacolato copre la creatura, emanando una brina leggera e persistente e richiamando veli di nebbia mentre si muove."
+"A pristine white mantle covers the creature, emanating a persistent light "
+"frost and calling forth veils of mist as it moves."
+msgstr ""
+"Un mantello bianco immacolato copre la creatura, emanando una brina leggera "
+"e persistente e richiamando veli di nebbia mentre si muove."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:113
 msgid "Hawk"
@@ -3319,8 +3334,11 @@ msgstr "Testardo"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:121
 msgid ""
-"Never turns back from a target or planned route, refusing to change its mind until it gets what it wants."
-msgstr "Non torna mai indietro da un obiettivo o da un percorso pianificato, rifiutandosi di cambiare idea finché non ottiene ciò che vuole."
+"Never turns back from a target or planned route, refusing to change its mind "
+"until it gets what it wants."
+msgstr ""
+"Non torna mai indietro da un obiettivo o da un percorso pianificato, "
+"rifiutandosi di cambiare idea finché non ottiene ciò che vuole."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:122
 msgid "Playful"
@@ -3328,8 +3346,11 @@ msgstr "Giocoso"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:122
 msgid ""
-"Loves to slither between legs, wrap around limbs, or hide small objects just for the fun of playing pranks."
-msgstr "Ama sgusciare tra le gambe, avvolgersi attorno agli arti o nascondere piccoli oggetti solo per il gusto di fare scherzi."
+"Loves to slither between legs, wrap around limbs, or hide small objects just "
+"for the fun of playing pranks."
+msgstr ""
+"Ama sgusciare tra le gambe, avvolgersi attorno agli arti o nascondere "
+"piccoli oggetti solo per il gusto di fare scherzi."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:123
 msgid "Competitive"
@@ -3337,8 +3358,11 @@ msgstr "Competitivo"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:123
 msgid ""
-"Always seeks to surpass anyone in height, speed, or endurance, treating every obstacle as a personal challenge."
-msgstr "Cerca sempre di superare chiunque in altezza, velocità o resistenza, trattando ogni ostacolo come una sfida personale."
+"Always seeks to surpass anyone in height, speed, or endurance, treating "
+"every obstacle as a personal challenge."
+msgstr ""
+"Cerca sempre di superare chiunque in altezza, velocità o resistenza, "
+"trattando ogni ostacolo come una sfida personale."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:124
 msgid "Affectionate"
@@ -3346,8 +3370,11 @@ msgstr "Affezionato"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:124
 msgid ""
-"Constantly seeks physical contact with the mage knight and allies, rubbing against them or protecting them with its presence."
-msgstr "Cerca costantemente il contatto fisico con il mago cavaliere e gli alleati, sfregandosi contro di loro o proteggendoli con la sua presenza."
+"Constantly seeks physical contact with the mage knight and allies, rubbing "
+"against them or protecting them with its presence."
+msgstr ""
+"Cerca costantemente il contatto fisico con il mago cavaliere e gli alleati, "
+"sfregandosi contro di loro o proteggendoli con la sua presenza."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:125
 msgid "Generous"
@@ -3355,8 +3382,11 @@ msgstr "Generoso"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:125
 msgid ""
-"Always places its size and strength at the service of the party, taking on others difficulties without hesitation."
-msgstr "Mette sempre la sua mole e la sua forza al servizio del gruppo, facendosi carico delle difficoltà altrui senza esitazione."
+"Always places its size and strength at the service of the party, taking on "
+"others difficulties without hesitation."
+msgstr ""
+"Mette sempre la sua mole e la sua forza al servizio del gruppo, facendosi "
+"carico delle difficoltà altrui senza esitazione."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:129
 msgid "Broad Feathered Wings"
@@ -3364,8 +3394,11 @@ msgstr "Grandi ali piumate"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:129
 msgid ""
-"A violent flap of wings creates a gust of wind that pushes up to two adjacent targets into a far zone."
-msgstr "Un violento battito d'ali crea una raffica di vento che spinge fino a due bersagli adiacenti in una zona lontana."
+"A violent flap of wings creates a gust of wind that pushes up to two "
+"adjacent targets into a far zone."
+msgstr ""
+"Un violento battito d'ali crea una raffica di vento che spinge fino a due "
+"bersagli adiacenti in una zona lontana."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:130
 msgid "Tempered Scales"
@@ -3373,8 +3406,11 @@ msgstr "Scaglie temprate"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:130
 msgid ""
-"Hardens its scales like diamond, halving all non-magical damage taken until the start of its next turn."
-msgstr "Indurisce le scaglie come il diamante, dimezzando tutti i danni non magici subiti fino all'inizio del suo prossimo turno."
+"Hardens its scales like diamond, halving all non-magical damage taken until "
+"the start of its next turn."
+msgstr ""
+"Indurisce le scaglie come il diamante, dimezzando tutti i danni non magici "
+"subiti fino all'inizio del suo prossimo turno."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:131
 msgid "Steel Claws"
@@ -3382,8 +3418,11 @@ msgstr "Artigli d'acciaio"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:131
 msgid ""
-"Engages a target in combat or flight, applying the destabilized aspect for 1 turn without spending Hunt or Action Points."
-msgstr "Ingaggia un bersaglio in combattimento o in fuga, applicando l'aspetto destabilizzato per 1 turno senza spendere Punti Caccia."
+"Engages a target in combat or flight, applying the destabilized aspect for 1 "
+"turn without spending Hunt or Action Points."
+msgstr ""
+"Ingaggia un bersaglio in combattimento o in fuga, applicando l'aspetto "
+"destabilizzato per 1 turno senza spendere Punti Caccia."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:132
 msgid "Bone Antlers"
@@ -3391,8 +3430,12 @@ msgstr "Palchi d'osso"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:132
 msgid ""
-"Focuses magic through its branches to create a bubble of Astral energy around itself: all adjacent targets regain 1 HP."
-msgstr "Concentra le sue energie attraverso i suoi rami per creare una bolla di energia astrale attorno a sé: tutti i bersagli adiacenti recuperano 1 Punto Vita (PV)."
+"Focuses magic through its branches to create a bubble of Astral energy "
+"around itself: all adjacent targets regain 1 HP."
+msgstr ""
+"Concentra le sue energie attraverso i suoi rami per creare una bolla di "
+"energia astrale attorno a sé: tutti i bersagli adiacenti recuperano 1 Punto "
+"Vita (PV)."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:133
 msgid "Crystalline Horn"
@@ -3400,8 +3443,11 @@ msgstr "Corno cristallino"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:133
 msgid ""
-"Focuses its frontal horn to project a bolt of astral energy that automatically strikes any target at its same altitude."
-msgstr "Concentra il suo corno frontale per proiettare un dardo di energia astrale che colpisce automaticamente qualsiasi bersaglio alla sua stessa altitudine."
+"Focuses its frontal horn to project a bolt of astral energy that "
+"automatically strikes any target at its same altitude."
+msgstr ""
+"Concentra il suo corno frontale per proiettare un dardo di energia astrale "
+"che colpisce automaticamente qualsiasi bersaglio alla sua stessa altitudine."
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:174
 msgid "Astral Companion"
@@ -4288,38 +4334,26 @@ msgstr "caratteristiche chiave"
 msgid "games list"
 msgstr "catalogo dei giochi"
 
-#: diventi/templates/products/product_list_filtered_quick.html:29
-#, fuzzy
-#| msgid "category"
-msgid "Category"
-msgstr "categoria"
-
-#: diventi/templates/products/product_list_filtered_quick.html:79
-#, fuzzy
-#| msgid "No items found"
+#: diventi/templates/products/product_list_filtered_quick.html:75
 msgid "games found"
-msgstr "Nessun risultato trovato"
+msgstr "giochi trovati"
 
-#: diventi/templates/products/product_list_filtered_quick.html:125
+#: diventi/templates/products/product_list_filtered_quick.html:121
 #: diventi/templates/products/product_list_quick.html:153
 msgid "No games found in this category"
-msgstr ""
+msgstr "Nessun gioco trovato per questa categoria"
 
-#: diventi/templates/products/product_list_filtered_quick.html:126
+#: diventi/templates/products/product_list_filtered_quick.html:122
 msgid "Try exploring other categories or view all our available games."
-msgstr ""
+msgstr "Prova ad esplorare altre categorie per vedere tutti i giochi disponibili."
 
-#: diventi/templates/products/product_list_filtered_quick.html:128
-#, fuzzy
-#| msgid "all games"
+#: diventi/templates/products/product_list_filtered_quick.html:124
 msgid "View all games"
-msgstr "tutti i giochi"
+msgstr "Vedi tutti i giochi"
 
 #: diventi/templates/products/product_list_quick.html:29
-#, fuzzy
-#| msgid "games list"
 msgid "Games List"
-msgstr "catalogo dei giochi"
+msgstr "Catalogo dei giochi"
 
 #: diventi/templates/products/product_list_quick.html:116
 msgid "all games"
@@ -4411,6 +4445,11 @@ msgstr "questo contenuto dovrebbe essere aperto prima della pubblicazione."
 #: diventi/templates/unfoldable_badge.html:4
 msgid "not open to buy"
 msgstr "non acquistabile"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "Category"
+#~ msgstr "categoria"
 
 #~ msgid "Diventi AI GM"
 #~ msgstr "Diventi GM IA"

@@ -122,7 +122,7 @@
                     <div class="card-footer bg-transparent border-top border-white-10 position-relative zindex-20 py-3">
                         <div class="d-flex align-items-center">
                             <a href="{{ article.author.get_absolute_url }}" class="avatar avatar-sm rounded-circle mr-3">
-                                <img src="{% if article.author.avatar.image %}{{ article.author.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}" loading="lazy">
+                                <img src="{% if article.author.avatar.image %}{{ article.author.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ article.author.get_full_name }}" loading="lazy">
                             </a>
                             <div>
                                 <a href="{{ article.author.get_absolute_url }}" class="h6 text-white text-xs font-weight-bold mb-0">

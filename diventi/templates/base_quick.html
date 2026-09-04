@@ -326,7 +326,7 @@
                                 {% for ss in search_suggestions %}                                
                                 <li>
                                     <a class="list-link searchs" id="search_suggestion" href="{% url 'landing:search' %}?q={{ ss.title|capfirst }}" data-value="{{ ss.title|capfirst }}">
-                                        <span>{{ ss.title|capfirst }}</span> &middot; {{ ss.description }}
+                                        <span>{{ ss.title|capfirst }}</span> &middot; {{ ss.description|striptags }}
                                     </a>
                                 </li>  
                                 {% endfor %}                              

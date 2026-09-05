@@ -3,10 +3,10 @@
 {% load i18n %}
 
 {% block base_opengraph %}
-    <meta property="og:title" content="Diventi games list" />
+    <meta property="og:title" content="{{ productcover.title|default:_('Games List') }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
+    <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.jpeg' %}" />
 {% endblock base_opengraph %}
 
 {% block title %}{% trans 'games list'|capfirst %}{% endblock title %}

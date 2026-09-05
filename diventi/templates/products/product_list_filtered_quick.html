@@ -6,7 +6,7 @@
     <meta property="og:title" content="Diventi: {{ filtered_category.title_plural|capfirst }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.png' %}" />
+    <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.jpeg' %}" />
 {% endblock base_opengraph %}
 
 {% block title %}{% trans 'games list'|capfirst %}: {{ filtered_category.title_plural|lower }}{% endblock title %}

@@ -120,21 +120,22 @@ class PolicyArticle(TimeStampedModel, PublishableModel, Element):
 class SectionModelQuerySet(FeaturedModelQuerySet):
 
     def prefetch(self):
-        sections = self.select_related('cover_primary')
-        sections = self.select_related('cover_secondary')
-        sections = sections.select_related('attached_product')
-        sections = sections.select_related('attached_section')
-        sections = sections.select_related('attached_survey')
-        sections = sections.select_related('attached_addon')
-        sections = sections.prefetch_related('attached_section__features')
-        sections = sections.prefetch_related('features')
-        return sections
+        return self.select_related(
+            'cover_primary',
+            'cover_secondary',
+            'attached_product',
+            'attached_product__category',
+            'attached_product__cover_primary',
+            'attached_section',
+            'attached_survey',
+            'attached_addon'
+        ).prefetch_related(
+            'features',
+            'attached_section__features'
+        )
 
-    # Get the not featured object that can be selected to appear on the landing page
     def not_featured(self):
-        sections = self.filter(featured=False)
-        sections = sections.order_by('order_index')
-        return sections
+        return self.filter(featured=False).order_by('order_index')
 
 
 class SectionModelManager(FeaturedModelManager):

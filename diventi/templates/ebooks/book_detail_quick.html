@@ -95,12 +95,18 @@
           
           {% if book.book_product.related_forum_topic %}
             {% with book.book_product.related_forum_topic as topic %}
+              <!--
               <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" 
                  class="btn btn-sm btn-info font-weight-bold shadow-sm">
                 {% trans 'comment on forum'|capfirst %}
-              </a>
+              </a>-->
+              <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-white btn-sm text-dark font-weight-bold shadow-sm ml-2" target="_blank">
+                <i class="fa-solid fa-comments mr-1" style="color: #ea580c;"></i>
+                {% trans 'comment on forum'|capfirst %}
+                </a>
             {% endwith %}
           {% endif %}
+
 
         </div>
       </div>

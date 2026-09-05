@@ -5,104 +5,104 @@
 <div class="modal fade fixed-right" id="modal-profile" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-vertical" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <!-- Close button -->
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Modal content -->
-                <div class="px-4">
-
-                    <!-- Avatar -->
-                    <div class="d-flex my-4">
-                        <div class="avatar-parent-child mx-auto">
-                            <img loading=lazy src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle">
-                            <span class="avatar-child avatar-badge bg-success"></span>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <a href="{% url 'accounts:detail' user.nametag %}">
-                            <span class="h5">{{ user.get_full_name }}</span>
-                        </a>
-                    </div>
-                    <div class="text-center mb-1">
-                        <a href="{% url 'accounts:settings' user.nametag %}">
-                            <button type="button" class="btn btn-soft-primary rounded-circle btn-xs btn-icon-only" data-toggle="tooltip" data-placement="bottom" title="{% trans 'customize your profile'|capfirst %}">
-                                <span class="btn-inner--icon">
-                                    <i data-feather="edit"></i>
-                                </span>
-                            </button>
-                        </a>
-                        <a href="#" data-action="omnisearch-open" data-target="#omnisearch">
-                            <button type="button" class="btn btn-secondary rounded-circle btn-xs btn-icon-only search" data-toggle="tooltip" data-placement="bottom" title="{% trans 'search contents'|capfirst %}">
-                                <span class="btn-inner--icon">
-                                    <i data-feather="search"></i>
-                                </span>
-                            </button>
-                        </a>
-                    </div>
-                    <div class="text-center mb-4">
-                        <span class="d-block text-muted">{{ user.email }}</span>
-                    </div>          
-                
-                    <!-- Profile stats -->
-                    <div class="d-flex mb-5">
-                        <div class="col-4 text-center">
-                            {% if authenticated_user_data.articles_count %}
-                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.articles_count }}</p>
-                                <span class="d-block text-sm">{% trans "articles"|capfirst %}</span>
-                            {% else %}
-                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.achievements_count }}</p>
-                                <span class="d-block text-sm">{% trans "deeds"|capfirst %}</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-4 text-center">
-                            {% if authenticated_user_data.has_user_authored %}
-                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.projects_count }}</p>
-                                <span class="d-block text-sm">{% trans "projects"|capfirst %}</span>
-                            {% else %}
-                                <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.collection_count }}</p>
-                                <span class="d-block text-sm">{% trans "games"|capfirst %}</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-4 text-center">
-                            <p class="h5 font-weight-bolder text-warning mb-0">{{ authenticated_user_data.forum_posts }}</p>
-                            <span class="d-block text-sm">{% trans "posts"|capfirst %}</span>
-                        </div>
-                    </div>
-                    {% if authenticated_user_data.projects %}
-                    <div>
-                        <div class="text-center mb-1">
-                            <span class="d-block h6 mb-4">{% trans "projects"|capfirst %}</span>
-                        </div>
-                        <div class="mt-2 mb-6 pt-4 border-top">
-                            {% with collection=authenticated_user_data.projects %}
-                                {% include 'accounts/partials/user_collection_modal_quick.html' %}
-                            {% endwith %}       
-                        </div>
-                    </div>
-                    {% endif %}
-                    <div>
-                        <div class="text-center mb-1">
-                            <span class="d-block h6 mb-4">{% trans "collection"|capfirst %}</span>
-                        </div>
-                        <div class="mt-2 pt-4 border-top">
-                            {% with collection=authenticated_user_data.collection %}
-                                {% include 'accounts/partials/user_collection_modal_quick.html' %}
-                            {% endwith %}
-                        </div>
-                    </div>
-                </div>
             
-                <div class="modal-footer py-3 mt-auto">
-                    <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-neutral btn-icon rounded-pill">
-                        <span class="btn-inner--icon"><i data-feather="log-out"></i></span>
-                        <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
-                    </a>
-                </div>
+            <!-- Modal Header / User Profile -->
+            <div class="modal-header d-flex align-items-center justify-content-between border-0 pb-0">
+                <span class="text-xs font-weight-bold text-uppercase text-muted">{% trans "account"|capfirst %}</span>
+                <button type="button" class="close pl-2" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="modal-body px-4 pt-2">
+                
+                <!-- Profile Identity -->
+                <div class="text-center my-3">
+                    <div class="avatar-parent-child mx-auto mb-3" style="width: fit-content;">
+                        <img loading="lazy" src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle shadow-sm">
+                        <span class="avatar-child avatar-badge bg-success"></span>
+                    </div>
+                    
+                    <!-- Nome Utente con Edit Inline -->
+                    <div class="d-flex align-items-center justify-content-center mb-1">
+                        <a href="{% url 'accounts:detail' user.nametag %}" class="h5 mb-0 text-dark font-weight-bold">
+                            {{ user.get_full_name }}
+                        </a>
+                        <a href="{% url 'accounts:settings' user.nametag %}" class="btn btn-soft-primary btn-xs btn-icon-only rounded-circle ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans 'customize your profile'|capfirst %}">
+                            <span class="btn-inner--icon">
+                                <i data-feather="edit-2" style="width: 12px; height: 12px;"></i>
+                            </span>
+                        </a>
+                    </div>
+                    <small class="text-muted d-block mb-3">{{ user.email }}</small>
+                </div>
+
+                <!-- Stats Container (Quick Box Style) -->
+                <div class="py-3 px-2 bg-secondary rounded mb-4">
+                    <div class="row no-gutters text-center">
+                        <div class="col-4">
+                            {% if authenticated_user_data.articles_count %}
+                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.articles_count }}</span>
+                                <span class="text-xs text-muted">{% trans "articles"|capfirst %}</span>
+                            {% else %}
+                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.achievements_count }}</span>
+                                <span class="text-xs text-muted">{% trans "deeds"|capfirst %}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-4 border-left border-right">
+                            {% if authenticated_user_data.has_user_authored %}
+                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.projects_count }}</span>
+                                <span class="text-xs text-muted">{% trans "projects"|capfirst %}</span>
+                            {% else %}
+                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.collection_count }}</span>
+                                <span class="text-xs text-muted">{% trans "games"|capfirst %}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-4">
+                            <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.forum_posts }}</span>
+                            <span class="text-xs text-muted">{% trans "posts"|capfirst %}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                {% if authenticated_user_data.projects %}
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-xs font-weight-bold text-uppercase text-muted">{% trans "projects"|capfirst %}</span>
+                        <span class="badge badge-pill badge-soft-primary text-xs">{{ authenticated_user_data.projects_count }}</span>
+                    </div>
+                    <div class="delimiter-top pt-3">
+                        {% with collection=authenticated_user_data.projects %}
+                            {% include 'accounts/partials/user_collection_modal_quick.html' %}
+                        {% endwith %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Collection Section -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-xs font-weight-bold text-uppercase text-muted">{% trans "collection"|capfirst %}</span>
+                    </div>
+                    <div class="delimiter-top pt-3">
+                        {% with collection=authenticated_user_data.collection %}
+                            {% include 'accounts/partials/user_collection_modal_quick.html' %}
+                        {% endwith %}
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sticky Modal Footer -->
+            <div class="modal-footer border-top py-3">
+                <a href="{% url 'accounts:signout' %}" class="btn btn-block btn-sm btn-soft-danger btn-icon rounded-pill">
+                    <span class="btn-inner--icon"><i data-feather="log-out"></i></span>
+                    <span class="btn-inner--text">{% trans "sign out"|capfirst %}</span>
+                </a>
+            </div>
+
         </div>
     </div>
 </div>

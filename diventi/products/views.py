@@ -59,23 +59,23 @@ from .utils import (
 
 
 class ProductListView(ListView):
-    """
-        Displays the list of published products.
-    """
     model = Product
     template_name = 'products/product_list_quick.html'
     context_object_name = 'products'
     paginate_by = 6
 
     def get_queryset(self):
-        products = Product.objects.published().order_by('-publication_date')
-        products = products.exclude(category__meta_category=True)
-        return products
+        return (
+            Product.objects.published()
+            .prefetch_basic()
+            .exclude(category__meta_category=True)
+            .order_by('-publication_date')
+        )
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProductListView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['categories'] = ProductCategory.objects.visible()
-        context['hot_products'] = (Product.objects.hot() | Product.objects.pinned_list()).distinct()
+        context['hot_products'] = Product.objects.published().hot().prefetch_basic()[:4]
         context['productcover'] = ProductCover.objects.active()
         return context
 
@@ -99,9 +99,6 @@ class ProductListViewByCategory(ProductListView):
 
 
 class ProductDetailView(HitCountDetailView):
-    """
-        Renders the product contents.
-    """
     model = Product
     context_object_name = 'product'
     template_name = 'products/product_detail_quick.html'
@@ -113,23 +110,23 @@ class ProductDetailView(HitCountDetailView):
             return redirect('products:detail-public', slug=obj.slug)
         return super().get(request, *args, **kwargs)
 
-    # Returns published products with preloaded relationships
     def get_queryset(self):
-        qs = super(ProductDetailView, self).get_queryset()
-        return qs.published().prefetch()
+        # Usa il prefetch dedicato ai dettagli invece del prefetch globale pesante
+        return super().get_queryset().published().prefetch_detail()
 
     def get_context_data(self, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         user = self.request.user
-        context['add_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
-        context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug })
+        
+        context['add_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug})
+        context['drop_collection_form'] = UserCollectionUpdateForm(initial={'slug': self.object.slug})
+        
+        # Ora user_has_already_bought esegue una singola query EXISTS ultrasfida
         context['bought'] = self.object.user_has_already_bought(user)
         context['featured_detail'] = self.object.details.highlighted_or_first()
-        
-        # Sfrutta le relazioni già pre-caricate in memoria
         context['latest_articles'] = self.object.related_articles.all()[:3]
         
-        if self.object.at_a_premium:            
+        if self.object.at_a_premium:           
             context['price'] = self.object.price_description
             context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
             
@@ -284,8 +281,9 @@ def checkout_done_pdf(request, slug, session_id):
     if not session_id:
         return HttpResponseForbidden(_("The link is not valid."))
 
-    if product.user_has_already_bought(request.user):
-        return redirect(reverse('products:user_product_download', kwargs=({'slug': slug,})))
+    if request.user.is_authenticated and product.user_has_already_bought(request.user):
+        response_url = get_s3_safe_url(product)
+        return render(request, 'products/checkout_done_pdf.html', {'response_url': response_url})
 
     # A. VERIFICA DATABASE (Il controllo più veloce e sicuro)
     # Cerchiamo se questo session_id è già stato usato in passato.

@@ -32,29 +32,26 @@ from .models import (
 from .utils import get_landing_context
 
 
-class LandingSearchView(ListView):
-    """ Search for every content in the project. """
+class LandingSearchView(TemplateView):
+    """ Search for content in the project with bounded result sets. """
 
     template_name = "landing/search_results_quick.html"
-    context_object_name = 'results'
-    model = Section
-
-    def get_queryset(self):
-        results = super(LandingSearchView, self).get_queryset()
-        query = self.request.GET.get('q')
-        if query:
-            articles = Article.search(self, query)
-            products = Product.search(self, query)
-            users = DiventiUser.search(self, query)
-            packages = Package.search(self, query)
-            results = list(chain(products, articles, users, packages))
-        else:
-            results = None
-        return results
 
     def get_context_data(self, **kwargs):
-        context = super(LandingSearchView, self).get_context_data(**kwargs)
-        context['search_query'] = self.request.GET.get('q')
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q', '').strip()
+        
+        results = []
+        if query:
+            # Limita i risultati per ciascuna categoria a un massimo (es. 5) per evitare saturazione RAM
+            products = Product.search(self, query).select_related('category')[:5]
+            articles = Article.search(self, query)[:5]
+            users = DiventiUser.search(self, query)[:5]
+            packages = Package.search(self, query)[:5]
+            results = list(chain(products, articles, users, packages))
+
+        context['results'] = results
+        context['search_query'] = query
         return context
 
 

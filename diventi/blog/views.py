@@ -23,12 +23,13 @@ class ArticlesListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Article.objects.history_but_not_hot().prefetch()
+        return Article.objects.history_but_not_hot().prefetch_basic()
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ArticlesListView, self).get_context_data(*args, **kwargs)
-        context['categories'] = ArticleCategory.objects.filter(article__in=Article.objects.history()).distinct()
-        context['hot_articles'] = Article.objects.pinned_list()
+        context = super().get_context_data(*args, **kwargs)
+        # Query diretta e leggera sulle sole categorie con articoli pubblicati
+        context['categories'] = ArticleCategory.objects.filter(article__published=True).distinct()
+        context['hot_articles'] = Article.objects.pinned_list().prefetch_basic()
         context['blogcover'] = BlogCover.objects.active()
         return context
 
@@ -40,8 +41,8 @@ class ArticlesListViewByCategory(ArticlesListView):
         return queryset.category(category_title=self.kwargs['category'])
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ArticlesListViewByCategory, self).get_context_data(*args, **kwargs)
-        context['hot_articles'] = Article.objects.hot().category(category_title=self.kwargs['category'])
+        context = super().get_context_data(*args, **kwargs)
+        context['hot_articles'] = Article.objects.hot().category(category_title=self.kwargs['category']).prefetch_basic()
         return context
 
 
@@ -52,14 +53,13 @@ class ArticleDetailView(HitCountDetailView):
     template_name = 'blog/article_detail_quick.html'
     count_hit = True
 
-    # Returns only published articles
     def get_queryset(self):
-        qs = super(ArticleDetailView, self).get_queryset()
-        return qs.published().prefetch()
+        return super().get_queryset().published().prefetch_detail()
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
-        context['related_articles'] = self.object.related_articles.prefetch()
+        context = super().get_context_data(*args, **kwargs)
+        # Usa il prefetch dedicato senza rieseguire query ridondanti
+        context['related_articles'] = self.object.related_articles.prefetch_basic()
         return context
 
 
@@ -70,7 +70,8 @@ class ArticlePromoteToggleView(RedirectView):
         article = get_object_or_404(Article, slug=slug)
         user = self.request.user
         if user.is_authenticated:
-            if user in article.promotions.all():
+            # Controllo EXISTS ultrarapido senza caricare la lista utenti
+            if article.promotions.filter(pk=user.pk).exists():
                 article.promotions.remove(user)
             else:
                 article.promotions.add(user)
@@ -88,16 +89,15 @@ class ArticlePromoteToggleAPIView(APIView):
         updated = False
         promoted = False
         if user.is_authenticated:
-            if user in article.promotions.all():
+            if article.promotions.filter(pk=user.pk).exists():
                 article.promotions.remove(user)
                 promoted = False
             else:
                 article.promotions.add(user)
                 promoted = True
             updated = True
-        promotions = {
+            
+        return Response({
             'updated': updated,
             'promoted': promoted,
-        }
-        return Response(promotions)
-
+        })

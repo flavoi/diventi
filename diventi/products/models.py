@@ -59,23 +59,31 @@ class ProductImage(DiventiImageModel):
 
 class ProductQuerySet(FeaturedModelQuerySet):
 
-    # Prefetch all relevant data
+    def prefetch_basic(self):
+        """Prefetch leggero per liste ed elenchi generali."""
+        return self.select_related(
+            'category', 
+            'product_survey', 
+            'related_forum_topic',
+            'cover_primary',
+            'cover_secondary',
+            'book'
+        )
+
+    def prefetch_detail(self):
+        """Prefetch completo usato esclusivamente nella pagina di dettaglio."""
+        return self.prefetch_basic().prefetch_related(
+            'chapters',
+            'authors',
+            'formats',
+            'related_products',
+            'related_articles',
+            'imagepreviews',
+            'details'
+        )
+
     def prefetch(self):
-        products = self.prefetch_related('chapters')
-        products = products.prefetch_related('authors')
-        products = products.prefetch_related('related_products')
-        products = products.prefetch_related('customers')
-        products = products.prefetch_related('details')
-        products = products.select_related('category')
-        products = products.prefetch_related('formats')
-        products = products.prefetch_related('related_articles')
-        products = products.select_related('product_survey')
-        products = products.select_related('related_forum_topic')
-        products = products.select_related('cover_primary')
-        products = products.select_related('cover_secondary')
-        products = products.select_related('book')
-        products = products.prefetch_related('imagepreviews')
-        return products
+        return self.prefetch_detail()
 
     def prefetch_hitcount(self):
         return self.prefetch_related('book__hit_count_generic')
@@ -555,13 +563,17 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
             })
         return results
 
-    # Return True if the user has added the product to his collections
     def user_has_already_bought(self, user):
-        return user in self.customers.all()
+        """Controllo rapido EXISTS a DB senza caricare oggetti M2M in memoria."""
+        if not user or not user.is_authenticated:
+            return False
+        return self.customers.filter(pk=user.pk).exists()
 
-    # Return True if the user has authored this collection
     def user_has_authored(self, user):
-        return user in self.authors.all()
+        """Controllo rapido EXISTS per gli autori."""
+        if not user or not user.is_authenticated:
+            return False
+        return self.authors.filter(pk=user.pk).exists()
 
     # Returns the default currency of any product
     def get_currency(self):

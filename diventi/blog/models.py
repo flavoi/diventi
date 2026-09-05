@@ -52,74 +52,53 @@ class ArticleCategory(Element):
 
 class ArticleQuerySet(FeaturedModelQuerySet):
     
-    # Selet articles' related objects
+    def prefetch_basic(self):
+        """Prefetch basilare per liste ed elenchi generali."""
+        return self.select_related('category', 'author')
+
+    def prefetch_detail(self):
+        """Prefetch completo per la pagina di dettaglio del singolo articolo."""
+        return self.prefetch_basic().prefetch_related(
+            'related_articles',
+            'promotions'
+        )
+
+    # Mantieni retrocompatibilità
     def prefetch(self):
-        articles = self.select_related('category')
-        articles = articles.select_related('author')
-        articles = articles.prefetch_related('related_articles')
-        articles = articles.prefetch_related('promotions')
-        return articles
+        return self.prefetch_basic()
 
     def prefetch_hitcount(self):
-        articles = self.prefetch_related('hit_count_generic')
-        return articles
+        return self.prefetch_related('hit_count_generic')
 
-    # Get the list of published articles from the most recent to the least 
     def history(self):
-        articles = self.published()
-        articles = articles.order_by('-publication_date')
-        return articles
+        return self.published().order_by('-publication_date')
 
-    # Get the list of published articles but excludes the hot ones
     def history_but_not_hot(self):
-        articles = self.history().exclude(featured=True)
-        return articles
+        return self.history().exclude(featured=True)
 
-    # Get the list of published articles of a certain category
     def category(self, category_title):
-        articles = self.history().filter(category__title_plural=category_title)
-        return articles
+        return self.history().filter(category__title_plural=category_title)
 
-    # Get the featured articles
     def hot(self):
-        articles = self.history().pinned_list()
-        return articles
+        return self.history().pinned_list()
 
-    # Get the hottest article
     def hottest(self):
-        article = self.hot().latest('publication_date')
-        return article
+        return self.hot().latest('publication_date')
 
-    # Fetch all the promotions related to the article
-    def promotions(self):
-        article = self.prefetch_related('promotions')
-        return article
-
-    # Get the most recent article
     def current(self):
         try:
-            article = self.hottest()
+            return self.hottest()
         except Article.DoesNotExist:
-            article = self.published().latest('publication_date')
-        return article
+            return self.published().latest('publication_date')
 
-    # Get the published articles, counted by django hitcount
     def hit_count(self):
-        articles = self.published()
-        articles = articles.prefetch()
-        articles = articles.prefetch_hitcount()
-        articles = articles.order_by('-hit_count_generic__hits')
-        return articles
+        return self.published().prefetch_basic().prefetch_hitcount().order_by('-hit_count_generic__hits')
 
-    # Get the most viewed articles, counted by django hitcount
     def popular(self):
-        articles = self.hit_count()[:3]
-        return articles
+        return self.hit_count()[:3]
 
-    # Get the latest articles, counted by django hitcount
     def popular_recent(self):
-        articles = self.hit_count().order_by('-publication_date')[:3]
-        return articles
+        return self.hit_count().order_by('-publication_date')[:3]
 
 
 class Article(TimeStampedModel, PromotableModel, FeaturedModel, DiventiImageModel, DiventiColModel, Element, HitCountMixin):

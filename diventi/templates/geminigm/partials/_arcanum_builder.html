@@ -123,10 +123,15 @@
     </div>
 </div>
 
+<!-- In cima, prima dello script dell'Arcanum -->
+{% trans 'The Arcanum is gathering power...' as arcanum_loading_msg %}
+{% trans 'The Arcanum must recover power... Try again later.' as arcanum_fallback_msg %}
+{% trans 'HP' as hp_msg %}
+
 <script type="text/javascript">
-// Stringhe localizzate renderizzate dal motore di template di Django
-const i18nLoading = "{% trans 'The Arcanum is processing...' %}";
-const i18nHpUnit = "{% trans 'HP' %}";
+const i18nLoading = "{{ arcanum_loading_msg|escapejs }}";
+const i18nFallbackMsg = "{{ arcanum_fallback_msg|escapejs }}";
+const i18nHpUnit = "{{ hp_msg|escapejs }}";
 
 function updateStats() {
     const formaElem = document.getElementById('spell-forma');
@@ -166,7 +171,10 @@ function calculateSpellFallback() {
     const dPortata = selPortata.dataset.desc || "";
 
     document.getElementById('spell-name').innerText = `${wForma} - ${wFonte} (${wPortata})`;
-    document.getElementById('spell-desc').innerText = `${dForma} ${dFonte} ${dPortata}`.trim();
+
+    // Concatenazione testo locale + Avviso visivo di mancata risposta dell'IA
+    const baseDescription = `${dForma} ${dFonte} ${dPortata}`.trim();
+    document.getElementById('spell-desc').innerHTML = `${baseDescription}<br><small class="text-warning font-italic mt-2 d-block"><i class="fa-solid fa-triangle-exclamation mr-1"></i>${i18nFallbackMsg}</small>`;
 }
 
 function generateAISpellName() {
@@ -185,8 +193,11 @@ function generateAISpellName() {
     const spellNameElem = document.getElementById('spell-name');
     const spellDescElem = document.getElementById('spell-desc');
 
-    // Utilizzo della variabile JS localizzata con l'icona di caricamento
-    spellNameElem.innerHTML = `<i class="fas fa-spinner fa-spin text-primary mr-2"></i>${i18nLoading}`;
+    // 1. Rimuove il nome statico durante il caricamento dell'IA
+    spellNameElem.innerText = "";
+
+    // 2. Mostra la stringa di caricamento in formato testo semplice nel paragrafo descrittivo
+    spellDescElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-primary mr-2"></i>${i18nLoading}`;
 
     const formData = new FormData();
     formData.append('forma', wForma);
@@ -211,8 +222,4 @@ function generateAISpellName() {
         calculateSpellFallback();
     });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    updateStats();
-});
 </script>

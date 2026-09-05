@@ -69,6 +69,20 @@
         .card-terminal-dark .form-control::placeholder {
             color: #94a3b8 !important;
         }
+
+        /* Stile campo disattivato per utente autenticato */
+        .card-terminal-dark .form-control[readonly] {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            color: #94a3b8 !important; /* Testo grigio smorzato */
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            cursor: not-allowed;
+        }
+
+        /* Rimuove l'illuminazione (glow) al click/focus */
+        .card-terminal-dark .form-control[readonly]:focus {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            box-shadow: none !important;
+        }
     </style>
 {% endblock extrahead %}
 
@@ -506,7 +520,14 @@
                             {% csrf_token %}
                             <input type="hidden" name="survey" value="{{ section.attached_survey.pk }}">
                             <div class="input-group input-group-lg shadow-sm">
-                                <input type="text" name="author_name" placeholder="{% trans 'enter your email or username'|capfirst %}" class="form-control text-sm bg-transparent text-white border-gray-800 rounded-left" required>
+                                <input type="text" 
+                                       name="author_name" 
+                                       placeholder="{% trans 'enter your email or username'|capfirst %}" 
+                                       class="form-control text-sm bg-transparent text-white border-gray-800 rounded-left" 
+                                       {% if user.is_authenticated %}
+                                           value="{{ user.get_diventi_username }}" readonly
+                                       {% endif %}
+                                       required>
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-info text-sm font-weight-bold px-4 rounded-right text-nowrap">
                                         {{ section.button_label }}

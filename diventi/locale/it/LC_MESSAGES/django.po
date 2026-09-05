@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 17:06+0200\n"
+"POT-Creation-Date: 2026-09-05 12:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -805,8 +805,8 @@ msgstr ""
 "pagina iniziale"
 
 #: diventi/core/models.py:294 diventi/templates/landing/landing_quick.html:110
-#: diventi/templates/landing/landing_quick_onepage.html:207
-#: diventi/templates/products/product_list_quick.html:71
+#: diventi/templates/landing/landing_quick_onepage.html:221
+#: diventi/templates/products/product_list_quick.html:73
 msgid "featured"
 msgstr "in primo piano"
 
@@ -2130,7 +2130,7 @@ msgstr ""
 
 #: diventi/templates/accounts/detail.html:16
 #: diventi/templates/landing/landing_quick.html:260
-#: diventi/templates/landing/landing_quick_onepage.html:558
+#: diventi/templates/landing/landing_quick_onepage.html:579
 msgid "Manage profile"
 msgstr "Gestisci profilo"
 
@@ -2191,7 +2191,7 @@ msgstr "accedi"
 #: diventi/templates/accounts/password_reset_confirm_quick.html:5
 #: diventi/templates/accounts/signup_quick.html:5
 #: diventi/templates/landing/landing_quick.html:248
-#: diventi/templates/landing/landing_quick_onepage.html:546
+#: diventi/templates/landing/landing_quick_onepage.html:567
 msgid "sign up"
 msgstr "registrati"
 
@@ -2630,32 +2630,30 @@ msgstr "Aggiorna preferenza"
 msgid "general information"
 msgstr "informazioni generali"
 
-#: diventi/templates/base_quick.html:210
+#: diventi/templates/base_quick.html:244
 msgid "loading"
 msgstr "caricamento"
 
-#: diventi/templates/base_quick.html:221
+#: diventi/templates/base_quick.html:255
 msgid ""
 "we uses cookies to ensure we give you the best experience on our website."
 msgstr "usiamo i cookie per ottimizzare la tua esperienza nel nostro sito web."
 
-#: diventi/templates/base_quick.html:275
+#: diventi/templates/base_quick.html:309
 msgid "Search content"
 msgstr "Ricerca contenuto"
 
-#: diventi/templates/base_quick.html:277
-#: diventi/templates/machina/forum_search/search.html:5
-#: diventi/templates/machina/forum_search/search.html:11
-#: diventi/templates/machina/forum_search/search.html:32
-#: diventi/templates/machina/forum_search/search.html:42
-msgid "Search"
+#: diventi/templates/base_quick.html:311
+#, fuzzy
+#| msgid "Search"
+msgid "Search..."
 msgstr "Ricerca"
 
-#: diventi/templates/base_quick.html:322
+#: diventi/templates/base_quick.html:356
 msgid "suggestions"
 msgstr "suggerimenti"
 
-#: diventi/templates/base_quick.html:382
+#: diventi/templates/base_quick.html:416
 msgid ""
 "Diventi is a role-playing community that embraces fun, encourages "
 "storytelling and helps game masters to create outstanding adventures"
@@ -2664,15 +2662,15 @@ msgstr ""
 "incoraggia l'interpretazione e aiuta i game master a realizzare avventure "
 "straordinarie"
 
-#: diventi/templates/base_quick.html:399
+#: diventi/templates/base_quick.html:433
 msgid "about"
 msgstr "su di noi"
 
-#: diventi/templates/base_quick.html:407
+#: diventi/templates/base_quick.html:441
 msgid "community"
 msgstr "community"
 
-#: diventi/templates/base_quick.html:418
+#: diventi/templates/base_quick.html:452
 msgid "Made with passion by Diventi's team"
 msgstr "Sviluppato con passione dagli autori Diventi"
 
@@ -2737,60 +2735,60 @@ msgstr "catalogo dei giochi"
 msgid "explore our collection"
 msgstr "esplora la nostra collezione"
 
-#: diventi/templates/blog/article_detail_quick.html:96
+#: diventi/templates/blog/article_detail_quick.html:98
 msgid "Photo"
 msgstr "Foto"
 
-#: diventi/templates/blog/article_detail_quick.html:117
+#: diventi/templates/blog/article_detail_quick.html:119
 msgid "published on"
 msgstr "pubblicato il"
 
-#: diventi/templates/blog/article_detail_quick.html:149
+#: diventi/templates/blog/article_detail_quick.html:151
 msgid "Keep reading"
 msgstr "Continua a leggere"
 
-#: diventi/templates/blog/article_detail_quick.html:152
+#: diventi/templates/blog/article_detail_quick.html:154
 #: diventi/templates/machina/forum_member/forum_profile_detail.html:60
 #: diventi/templates/products/product_detail_quick.html:200
 msgid "View all"
 msgstr "Visualizza tutto"
 
-#: diventi/templates/blog/article_list_quick.html:55
+#: diventi/templates/blog/article_list_quick.html:57
 #: diventi/templates/landing/analytics_quick.html:25
-#: diventi/templates/products/product_list_filtered_quick.html:51
-#: diventi/templates/products/product_list_quick.html:50
+#: diventi/templates/products/product_list_filtered_quick.html:53
+#: diventi/templates/products/product_list_quick.html:52
 msgid "all"
 msgstr "tutto"
 
-#: diventi/templates/blog/article_list_quick.html:80
+#: diventi/templates/blog/article_list_quick.html:82
 msgid "Hot stories"
 msgstr "In evidenza"
 
-#: diventi/templates/blog/article_list_quick.html:149
+#: diventi/templates/blog/article_list_quick.html:151
 msgid "All articles"
 msgstr "Tutti gli articoli"
 
-#: diventi/templates/blog/article_list_quick.html:198
+#: diventi/templates/blog/article_list_quick.html:200
 msgid "There are no posts yet"
 msgstr "Nessun articolo è stato ancora pubblicato"
 
-#: diventi/templates/blog/article_list_quick.html:210
-#: diventi/templates/blog/article_list_quick.html:213
-#: diventi/templates/ebooks/book_detail_quick.html:223
-#: diventi/templates/products/product_list_filtered_quick.html:138
-#: diventi/templates/products/product_list_filtered_quick.html:141
-#: diventi/templates/products/product_list_quick.html:165
-#: diventi/templates/products/product_list_quick.html:168
+#: diventi/templates/blog/article_list_quick.html:212
+#: diventi/templates/blog/article_list_quick.html:215
+#: diventi/templates/ebooks/book_detail_quick.html:220
+#: diventi/templates/products/product_list_filtered_quick.html:140
+#: diventi/templates/products/product_list_filtered_quick.html:143
+#: diventi/templates/products/product_list_quick.html:167
+#: diventi/templates/products/product_list_quick.html:170
 msgid "Previous"
 msgstr "Precedente"
 
-#: diventi/templates/blog/article_list_quick.html:226
-#: diventi/templates/blog/article_list_quick.html:229
-#: diventi/templates/ebooks/book_detail_quick.html:224
-#: diventi/templates/products/product_list_filtered_quick.html:154
-#: diventi/templates/products/product_list_filtered_quick.html:157
-#: diventi/templates/products/product_list_quick.html:181
-#: diventi/templates/products/product_list_quick.html:184
+#: diventi/templates/blog/article_list_quick.html:228
+#: diventi/templates/blog/article_list_quick.html:231
+#: diventi/templates/ebooks/book_detail_quick.html:221
+#: diventi/templates/products/product_list_filtered_quick.html:156
+#: diventi/templates/products/product_list_filtered_quick.html:159
+#: diventi/templates/products/product_list_quick.html:183
+#: diventi/templates/products/product_list_quick.html:186
 msgid "Next"
 msgstr "Successivo"
 
@@ -2867,48 +2865,48 @@ msgid "playing"
 msgstr "giocare a"
 
 #: diventi/templates/ebooks/book_detail_pdf.html:102
-#: diventi/templates/ebooks/book_detail_quick.html:172
+#: diventi/templates/ebooks/book_detail_quick.html:169
 msgid "related contents"
 msgstr "contenuti simili"
 
 #: diventi/templates/ebooks/book_detail_pdf.html:105
-#: diventi/templates/ebooks/book_detail_quick.html:175
+#: diventi/templates/ebooks/book_detail_quick.html:172
 msgid "view all"
 msgstr "visualizza tutto"
 
-#: diventi/templates/ebooks/book_detail_quick.html:103
+#: diventi/templates/ebooks/book_detail_quick.html:100
 msgid "comment on forum"
 msgstr "commenta sul forum"
 
-#: diventi/templates/ebooks/book_detail_quick.html:121
+#: diventi/templates/ebooks/book_detail_quick.html:118
 msgid "table of contents"
 msgstr "indice"
 
-#: diventi/templates/ebooks/book_detail_quick.html:216
+#: diventi/templates/ebooks/book_detail_quick.html:213
 msgid "Display _MENU_ records per page"
 msgstr "Mostra _MENU_ righe per pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:217
+#: diventi/templates/ebooks/book_detail_quick.html:214
 msgid "Nothing found - sorry"
 msgstr "Nessun risultato trovato"
 
-#: diventi/templates/ebooks/book_detail_quick.html:218
+#: diventi/templates/ebooks/book_detail_quick.html:215
 msgid "Showing page _PAGE_ of _PAGES_"
 msgstr "Pagina _PAGE_ di _PAGES_"
 
-#: diventi/templates/ebooks/book_detail_quick.html:219
+#: diventi/templates/ebooks/book_detail_quick.html:216
 msgid "No records available"
 msgstr "Nessun risultato disponibile"
 
-#: diventi/templates/ebooks/book_detail_quick.html:220
+#: diventi/templates/ebooks/book_detail_quick.html:217
 msgid "(filtered from _MAX_ total records)"
 msgstr "(filtrato da _MAX_ righe totali)"
 
-#: diventi/templates/ebooks/book_detail_quick.html:222
+#: diventi/templates/ebooks/book_detail_quick.html:219
 msgid "First page"
 msgstr "Prima pagina"
 
-#: diventi/templates/ebooks/book_detail_quick.html:227
+#: diventi/templates/ebooks/book_detail_quick.html:224
 msgid "Filter records"
 msgstr "Filtra le righe"
 
@@ -3182,9 +3180,13 @@ msgstr "INTESITA` TOTALE"
 msgid "HP REMOVED FROM OPPONENTS:"
 msgstr "PV RIMOSSI DAI BERSAGLI:"
 
+#: diventi/templates/geminigm/partials/_arcanum_builder.html:127
+msgid "The Arcanum is gathering power..."
+msgstr "L'Arcanum sta accumulando potere..."
+
 #: diventi/templates/geminigm/partials/_arcanum_builder.html:128
-msgid "The Arcanum is processing..."
-msgstr "L'Arcanum sta processando..."
+msgid "The Arcanum must recover power... Try again later."
+msgstr "L'Arcanum deve ricaricarsi... Riprova più tardi."
 
 #: diventi/templates/geminigm/partials/_arcanum_builder.html:129
 msgid "HP"
@@ -3223,7 +3225,7 @@ msgid "ASTRAL COMPANION"
 msgstr "COMPAGNO ASTRALE"
 
 #: diventi/templates/geminigm/partials/_astral_generator.html:69
-#: diventi/templates/geminigm/partials/_astral_generator.html:114
+#: diventi/templates/geminigm/partials/_astral_generator.html:120
 msgid "Serpent"
 msgstr "Serpente"
 
@@ -3235,11 +3237,15 @@ msgstr "CAPACITA` SPECIALE:"
 msgid "Your astral is landing..."
 msgstr "Il tuo Astrale sta arrivando..."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:105
+#: diventi/templates/geminigm/partials/_astral_generator.html:102
+msgid "The bond must recover... Try again later."
+msgstr "Il legame deve ricostituirsi... Riprova più tardi."
+
+#: diventi/templates/geminigm/partials/_astral_generator.html:111
 msgid "Celestial Air"
 msgstr "Aria celestiale"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:105
+#: diventi/templates/geminigm/partials/_astral_generator.html:111
 msgid ""
 "A light blue aura envelopes the creature and, upon taking flight, subtle "
 "harmless electric discharges intermittently burst into the air."
@@ -3247,11 +3253,11 @@ msgstr ""
 "Un'aura azzurra avvolge la creatura e, prendendo il volo, sottili scariche "
 "elettriche inoffensive si sprigionano a intermittenza nell'aria."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:106
+#: diventi/templates/geminigm/partials/_astral_generator.html:112
 msgid "Brown Rock"
 msgstr "Roccia bruna"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:106
+#: diventi/templates/geminigm/partials/_astral_generator.html:112
 msgid ""
 "Its body recalls the warm tones of the earth, and its stride produces a deep "
 "rumble scented with mineral dust."
@@ -3259,11 +3265,11 @@ msgstr ""
 "Il suo corpo richiama i toni caldi della terra, e il suo passo produce un "
 "cupo brontolio profumato di polvere minerale."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:107
+#: diventi/templates/geminigm/partials/_astral_generator.html:113
 msgid "Soot Black"
 msgstr "Nero fuliggine"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:107
+#: diventi/templates/geminigm/partials/_astral_generator.html:113
 msgid ""
 "Thin shadow scales and ash dust float along its back and coat, shrouding the "
 "creature in a persistent hazy cloud."
@@ -3271,11 +3277,11 @@ msgstr ""
 "Sottili scaglie d'ombra e polvere di cenere fluttuano lungo la sua schiena e "
 "il suo mantello, avvolgendo la creatura in una persistente nuvola nebbiosa."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:108
+#: diventi/templates/geminigm/partials/_astral_generator.html:114
 msgid "Flame Red"
 msgstr "Rosso fiamma"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:108
+#: diventi/templates/geminigm/partials/_astral_generator.html:114
 msgid ""
 "Vivid scarlet tones cover its body, while harmless sparks of hot air emerge "
 "from the fur on its head and back."
@@ -3283,11 +3289,11 @@ msgstr ""
 "Vivaci tonalità scarlatte ricoprono il suo corpo, mentre innocue scintille "
 "di aria calda emergono dalla pelliccia sulla sua testa e sulla schiena."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:109
+#: diventi/templates/geminigm/partials/_astral_generator.html:115
 msgid "Ice White"
 msgstr "Bianco ghiaccio"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:109
+#: diventi/templates/geminigm/partials/_astral_generator.html:115
 msgid ""
 "A pristine white mantle covers the creature, emanating a persistent light "
 "frost and calling forth veils of mist as it moves."
@@ -3295,27 +3301,27 @@ msgstr ""
 "Un mantello bianco immacolato copre la creatura, emanando una brina leggera "
 "e persistente e richiamando veli di nebbia mentre si muove."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:113
+#: diventi/templates/geminigm/partials/_astral_generator.html:119
 msgid "Hawk"
 msgstr "Falco"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:115
+#: diventi/templates/geminigm/partials/_astral_generator.html:121
 msgid "Goat"
 msgstr "Capra"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:116
+#: diventi/templates/geminigm/partials/_astral_generator.html:122
 msgid "Leopard"
 msgstr "Leopardo"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:117
+#: diventi/templates/geminigm/partials/_astral_generator.html:123
 msgid "Bull"
 msgstr "Toro"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:121
+#: diventi/templates/geminigm/partials/_astral_generator.html:127
 msgid "Stubborn"
 msgstr "Testardo"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:121
+#: diventi/templates/geminigm/partials/_astral_generator.html:127
 msgid ""
 "Never turns back from a target or planned route, refusing to change its mind "
 "until it gets what it wants."
@@ -3323,11 +3329,11 @@ msgstr ""
 "Non torna mai indietro da un obiettivo o da un percorso pianificato, "
 "rifiutandosi di cambiare idea finché non ottiene ciò che vuole."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:122
+#: diventi/templates/geminigm/partials/_astral_generator.html:128
 msgid "Playful"
 msgstr "Giocoso"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:122
+#: diventi/templates/geminigm/partials/_astral_generator.html:128
 msgid ""
 "Loves to slither between legs, wrap around limbs, or hide small objects just "
 "for the fun of playing pranks."
@@ -3335,11 +3341,11 @@ msgstr ""
 "Ama sgusciare tra le gambe, avvolgersi attorno agli arti o nascondere "
 "piccoli oggetti solo per il gusto di fare scherzi."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:123
+#: diventi/templates/geminigm/partials/_astral_generator.html:129
 msgid "Competitive"
 msgstr "Competitivo"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:123
+#: diventi/templates/geminigm/partials/_astral_generator.html:129
 msgid ""
 "Always seeks to surpass anyone in height, speed, or endurance, treating "
 "every obstacle as a personal challenge."
@@ -3347,11 +3353,11 @@ msgstr ""
 "Cerca sempre di superare chiunque in altezza, velocità o resistenza, "
 "trattando ogni ostacolo come una sfida personale."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:124
+#: diventi/templates/geminigm/partials/_astral_generator.html:130
 msgid "Affectionate"
 msgstr "Affezionato"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:124
+#: diventi/templates/geminigm/partials/_astral_generator.html:130
 msgid ""
 "Constantly seeks physical contact with the mage knight and allies, rubbing "
 "against them or protecting them with its presence."
@@ -3359,11 +3365,11 @@ msgstr ""
 "Cerca costantemente il contatto fisico con il mago cavaliere e gli alleati, "
 "sfregandosi contro di loro o proteggendoli con la sua presenza."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:125
+#: diventi/templates/geminigm/partials/_astral_generator.html:131
 msgid "Generous"
 msgstr "Generoso"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:125
+#: diventi/templates/geminigm/partials/_astral_generator.html:131
 msgid ""
 "Always places its size and strength at the service of the party, taking on "
 "others difficulties without hesitation."
@@ -3371,11 +3377,11 @@ msgstr ""
 "Mette sempre la sua mole e la sua forza al servizio del gruppo, facendosi "
 "carico delle difficoltà altrui senza esitazione."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:129
+#: diventi/templates/geminigm/partials/_astral_generator.html:135
 msgid "Broad Feathered Wings"
 msgstr "Grandi ali piumate"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:129
+#: diventi/templates/geminigm/partials/_astral_generator.html:135
 msgid ""
 "A violent flap of wings creates a gust of wind that pushes up to two "
 "adjacent targets into a far zone."
@@ -3383,11 +3389,11 @@ msgstr ""
 "Un violento battito d'ali crea una raffica di vento che spinge fino a due "
 "bersagli adiacenti in una zona lontana."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:130
+#: diventi/templates/geminigm/partials/_astral_generator.html:136
 msgid "Tempered Scales"
 msgstr "Scaglie temprate"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:130
+#: diventi/templates/geminigm/partials/_astral_generator.html:136
 msgid ""
 "Hardens its scales like diamond, halving all non-magical damage taken until "
 "the start of its next turn."
@@ -3395,11 +3401,11 @@ msgstr ""
 "Indurisce le scaglie come il diamante, dimezzando tutti i danni non magici "
 "subiti fino all'inizio del suo prossimo turno."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:131
+#: diventi/templates/geminigm/partials/_astral_generator.html:137
 msgid "Steel Claws"
 msgstr "Artigli d'acciaio"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:131
+#: diventi/templates/geminigm/partials/_astral_generator.html:137
 msgid ""
 "Engages a target in combat or flight, applying the destabilized aspect for 1 "
 "turn without spending Hunt or Action Points."
@@ -3407,11 +3413,11 @@ msgstr ""
 "Ingaggia un bersaglio in combattimento o in fuga, applicando l'aspetto "
 "destabilizzato per 1 turno senza spendere Punti Caccia."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:132
+#: diventi/templates/geminigm/partials/_astral_generator.html:138
 msgid "Bone Antlers"
 msgstr "Palchi d'osso"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:132
+#: diventi/templates/geminigm/partials/_astral_generator.html:138
 msgid ""
 "Focuses magic through its branches to create a bubble of Astral energy "
 "around itself: all adjacent targets regain 1 HP."
@@ -3420,11 +3426,11 @@ msgstr ""
 "energia astrale attorno a sé: tutti i bersagli adiacenti recuperano 1 Punto "
 "Vita (PV)."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:133
+#: diventi/templates/geminigm/partials/_astral_generator.html:139
 msgid "Crystalline Horn"
 msgstr "Corno cristallino"
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:133
+#: diventi/templates/geminigm/partials/_astral_generator.html:139
 msgid ""
 "Focuses its frontal horn to project a bolt of astral energy that "
 "automatically strikes any target at its same altitude."
@@ -3432,7 +3438,7 @@ msgstr ""
 "Concentra il suo corno frontale per proiettare un dardo di energia astrale "
 "che colpisce automaticamente qualsiasi bersaglio alla sua stessa altitudine."
 
-#: diventi/templates/geminigm/partials/_astral_generator.html:174
+#: diventi/templates/geminigm/partials/_astral_generator.html:181
 msgid "Astral Companion"
 msgstr "Compagno Astrale"
 
@@ -3443,48 +3449,48 @@ msgid "play video"
 msgstr "avvia il video"
 
 #: diventi/templates/landing/landing_quick.html:111
-#: diventi/templates/landing/landing_quick_onepage.html:208
+#: diventi/templates/landing/landing_quick_onepage.html:222
 msgid "our latest contents"
 msgstr "i nostri ultimi contenuti"
 
 #: diventi/templates/landing/landing_quick.html:243
-#: diventi/templates/landing/landing_quick_onepage.html:541
+#: diventi/templates/landing/landing_quick_onepage.html:562
 msgid "Join our community"
 msgstr "Unisciti alla nostra community"
 
 #: diventi/templates/landing/landing_quick.html:244
-#: diventi/templates/landing/landing_quick_onepage.html:542
+#: diventi/templates/landing/landing_quick_onepage.html:563
 msgid "Sign up to know more and start exploring."
 msgstr "Registrati per saperne di più e accedere ai contenuti."
 
 #: diventi/templates/landing/landing_quick.html:255
-#: diventi/templates/landing/landing_quick_onepage.html:553
+#: diventi/templates/landing/landing_quick_onepage.html:574
 msgid "Hello"
 msgstr "Ciao"
 
 #: diventi/templates/landing/landing_quick.html:256
-#: diventi/templates/landing/landing_quick_onepage.html:554
+#: diventi/templates/landing/landing_quick_onepage.html:575
 msgid ""
 "You have signed in. Feel free to explore or deep dive into your profile."
 msgstr ""
 "Hai effettuato l'accesso. Ora puoi esplorare il sito o personalizzare il tuo "
 "profilo."
 
-#: diventi/templates/landing/landing_quick_onepage.html:119
-#: diventi/templates/landing/landing_quick_onepage.html:174
+#: diventi/templates/landing/landing_quick_onepage.html:133
+#: diventi/templates/landing/landing_quick_onepage.html:188
 msgid "explore"
 msgstr "esplora"
 
-#: diventi/templates/landing/landing_quick_onepage.html:126
+#: diventi/templates/landing/landing_quick_onepage.html:140
 msgid "includes"
 msgstr "include"
 
-#: diventi/templates/landing/landing_quick_onepage.html:310
-#: diventi/templates/landing/landing_quick_onepage.html:435
+#: diventi/templates/landing/landing_quick_onepage.html:324
+#: diventi/templates/landing/landing_quick_onepage.html:449
 msgid "visit the download page"
 msgstr "visita la pagina di download"
 
-#: diventi/templates/landing/landing_quick_onepage.html:509
+#: diventi/templates/landing/landing_quick_onepage.html:525
 msgid "enter your email or username"
 msgstr "inserisci la tua email o il tuo username"
 
@@ -3525,13 +3531,13 @@ msgstr "torna all'inizio"
 msgid "A place to discuss adventures, game rules, and developments"
 msgstr "uno spazio in cui parlare di avventure e sviluppi futuri"
 
-#: diventi/templates/machina/board_base.html:32
+#: diventi/templates/machina/board_base.html:35
 #, fuzzy
 #| msgid "The Diventi team"
 msgid "Diventi Forum"
 msgstr "Gli autori Diventi"
 
-#: diventi/templates/machina/board_base.html:35
+#: diventi/templates/machina/board_base.html:38
 msgid ""
 "Join the discussions, ask rules questions, and stay tuned for the latest "
 "developments."
@@ -3539,15 +3545,15 @@ msgstr ""
 "Unisciti alle discussioni, fai domande sulle regole e resta aggiornato sugli "
 "ultimi sviluppi."
 
-#: diventi/templates/machina/board_base.html:57
+#: diventi/templates/machina/board_base.html:60
 msgid "Subscriptions"
 msgstr "Iscrizioni"
 
-#: diventi/templates/machina/board_base.html:60
+#: diventi/templates/machina/board_base.html:63
 msgid "View my posts"
 msgstr "Visualzza i miei post"
 
-#: diventi/templates/machina/board_base.html:67
+#: diventi/templates/machina/board_base.html:70
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:5
 #: diventi/templates/machina/forum_moderation/moderation_queue/detail.html:10
 #: diventi/templates/machina/forum_moderation/moderation_queue/list.html:5
@@ -4137,6 +4143,13 @@ msgstr "Confermi di voler sbloccare questo argomento?"
 msgid "Change topic type"
 msgstr "Cambio il tipo di argomento"
 
+#: diventi/templates/machina/forum_search/search.html:5
+#: diventi/templates/machina/forum_search/search.html:11
+#: diventi/templates/machina/forum_search/search.html:32
+#: diventi/templates/machina/forum_search/search.html:42
+msgid "Search"
+msgstr "Ricerca"
+
 #: diventi/templates/machina/forum_search/search.html:18
 msgid "Search forums"
 msgstr "Cerca forum"
@@ -4317,29 +4330,29 @@ msgstr "caratteristiche chiave"
 msgid "games list"
 msgstr "catalogo dei giochi"
 
-#: diventi/templates/products/product_list_filtered_quick.html:75
+#: diventi/templates/products/product_list_filtered_quick.html:77
 msgid "games found"
 msgstr "giochi trovati"
 
-#: diventi/templates/products/product_list_filtered_quick.html:121
-#: diventi/templates/products/product_list_quick.html:153
+#: diventi/templates/products/product_list_filtered_quick.html:123
+#: diventi/templates/products/product_list_quick.html:155
 msgid "No games found in this category"
 msgstr "Nessun gioco trovato per questa categoria"
 
-#: diventi/templates/products/product_list_filtered_quick.html:122
+#: diventi/templates/products/product_list_filtered_quick.html:124
 msgid "Try exploring other categories or view all our available games."
 msgstr ""
 "Prova ad esplorare altre categorie per vedere tutti i giochi disponibili."
 
-#: diventi/templates/products/product_list_filtered_quick.html:124
+#: diventi/templates/products/product_list_filtered_quick.html:126
 msgid "View all games"
 msgstr "Vedi tutti i giochi"
 
-#: diventi/templates/products/product_list_quick.html:29
+#: diventi/templates/products/product_list_quick.html:31
 msgid "Games List"
 msgstr "Catalogo dei giochi"
 
-#: diventi/templates/products/product_list_quick.html:116
+#: diventi/templates/products/product_list_quick.html:118
 msgid "all games"
 msgstr "tutti i giochi"
 
@@ -4429,6 +4442,9 @@ msgstr "questo contenuto dovrebbe essere aperto prima della pubblicazione."
 #: diventi/templates/unfoldable_badge.html:4
 msgid "not open to buy"
 msgstr "non acquistabile"
+
+#~ msgid "The Arcanum must recover power..."
+#~ msgstr "L'Arcanum deve recuperare potere..."
 
 #~ msgid "time to read"
 #~ msgstr "tempo di lettura"

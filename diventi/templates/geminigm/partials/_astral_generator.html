@@ -1,8 +1,6 @@
 {% load i18n %}
 
 <div class="container">
-    
-    <!-- Card Strutturata Stile Quick Chiaro -->
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
             <div class="card border-0 shadow-sm rounded-lg bg-white p-4 p-md-5">
@@ -48,7 +46,7 @@
                             </div>
                         </div>
 
-                        <!-- Unico Pulsante: Manifest an Astral -->
+                        <!-- Pulsante Evocazione -->
                         <div class="pt-2">
                             <button type="button" class="btn btn-primary btn-block font-weight-bold shadow-none" onclick="manifestAstral()">
                                 {% trans "Manifest an Astral" %}
@@ -60,7 +58,6 @@
                     <div class="col-md-6 pl-md-5 d-flex flex-column justify-content-between text-left">
                         <div class="p-4 rounded bg-secondary border border-gray-300 h-100 d-flex flex-column justify-content-between shadow-xs">
                             <div>
-                                <!-- Header Card -->
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <span class="badge badge-soft-primary badge-pill text-xs text-uppercase font-weight-bold">
                                         {% trans "ASTRAL COMPANION" %}
@@ -74,13 +71,11 @@
                                     Kyo
                                 </h4>
 
-                                <!-- Spazio Centrale: Descrizione (Senza Titoletto) -->
                                 <div class="mb-3">
                                     <p id="display-main-description" class="text-dark text-sm mb-0 lh-160"></p>
                                 </div>
                             </div>
 
-                            <!-- Parte Inferiore: Capacità Speciale Separata -->
                             <div>
                                 <hr class="my-3 border-gray-300">
                                 <div>
@@ -97,40 +92,45 @@
     </div>
 </div>
 
+<!-- Variabili di traduzione Django -->
+{% trans 'Your astral is landing...' as astral_landing_msg %}
+{% trans 'The bond must recover... Try again later.' as astral_fallback_msg %}
+
 <script type="text/javascript">
-const i18nAstralLanding = "{% trans 'Your astral is landing...' %}";
+const i18nAstralLanding = "{{ astral_landing_msg|escapejs }}";
+
 const isAIEnabled = {% if section.attached_addon.enable_ai %}true{% else %}false{% endif %};
 
 const TABELLA_COLORI = {
-    1: { nome: "{% trans 'Celestial Air' %}", desc: "{% trans 'A light blue aura envelopes the creature and, upon taking flight, subtle harmless electric discharges intermittently burst into the air.' %}" },
-    2: { nome: "{% trans 'Brown Rock' %}", desc: "{% trans 'Its body recalls the warm tones of the earth, and its stride produces a deep rumble scented with mineral dust.' %}" },
-    3: { nome: "{% trans 'Soot Black' %}", desc: "{% trans 'Thin shadow scales and ash dust float along its back and coat, shrouding the creature in a persistent hazy cloud.' %}" },
-    4: { nome: "{% trans 'Flame Red' %}", desc: "{% trans 'Vivid scarlet tones cover its body, while harmless sparks of hot air emerge from the fur on its head and back.' %}" },
-    5: { nome: "{% trans 'Ice White' %}", desc: "{% trans 'A pristine white mantle covers the creature, emanating a persistent light frost and calling forth veils of mist as it moves.' %}" }
+    1: { nome: "{% trans 'Celestial Air'|escapejs %}", desc: "{% trans 'A light blue aura envelopes the creature and, upon taking flight, subtle harmless electric discharges intermittently burst into the air.'|escapejs %}" },
+    2: { nome: "{% trans 'Brown Rock'|escapejs %}", desc: "{% trans 'Its body recalls the warm tones of the earth, and its stride produces a deep rumble scented with mineral dust.'|escapejs %}" },
+    3: { nome: "{% trans 'Soot Black'|escapejs %}", desc: "{% trans 'Thin shadow scales and ash dust float along its back and coat, shrouding the creature in a persistent hazy cloud.'|escapejs %}" },
+    4: { nome: "{% trans 'Flame Red'|escapejs %}", desc: "{% trans 'Vivid scarlet tones cover its body, while harmless sparks of hot air emerge from the fur on its head and back.'|escapejs %}" },
+    5: { nome: "{% trans 'Ice White'|escapejs %}", desc: "{% trans 'A pristine white mantle covers the creature, emanating a persistent light frost and calling forth veils of mist as it moves.'|escapejs %}" }
 };
 
 const TABELLA_SPECIE = {
-    1: { specie: "{% trans 'Hawk' %}" },
-    2: { specie: "{% trans 'Serpent' %}" },
-    3: { specie: "{% trans 'Goat' %}" },
-    4: { specie: "{% trans 'Leopard' %}" },
-    5: { specie: "{% trans 'Bull' %}" }
+    1: { specie: "{% trans 'Hawk'|escapejs %}" },
+    2: { specie: "{% trans 'Serpent'|escapejs %}" },
+    3: { specie: "{% trans 'Goat'|escapejs %}" },
+    4: { specie: "{% trans 'Leopard'|escapejs %}" },
+    5: { specie: "{% trans 'Bull'|escapejs %}" }
 };
 
 const TABELLA_PERSONALITA = {
-    1: { me: "{% trans 'Stubborn' %}", desc: "{% trans 'Never turns back from a target or planned route, refusing to change its mind until it gets what it wants.' %}" },
-    2: { me: "{% trans 'Playful' %}", desc: "{% trans 'Loves to slither between legs, wrap around limbs, or hide small objects just for the fun of playing pranks.' %}" },
-    3: { me: "{% trans 'Competitive' %}", desc: "{% trans 'Always seeks to surpass anyone in height, speed, or endurance, treating every obstacle as a personal challenge.' %}" },
-    4: { me: "{% trans 'Affectionate' %}", desc: "{% trans 'Constantly seeks physical contact with the mage knight and allies, rubbing against them or protecting them with its presence.' %}" },
-    5: { me: "{% trans 'Generous' %}", desc: "{% trans 'Always places its size and strength at the service of the party, taking on others difficulties without hesitation.' %}" }
+    1: { me: "{% trans 'Stubborn'|escapejs %}", desc: "{% trans 'Never turns back from a target or planned route, refusing to change its mind until it gets what it wants.'|escapejs %}" },
+    2: { me: "{% trans 'Playful'|escapejs %}", desc: "{% trans 'Loves to slither between legs, wrap around limbs, or hide small objects just for the fun of playing pranks.'|escapejs %}" },
+    3: { me: "{% trans 'Competitive'|escapejs %}", desc: "{% trans 'Always seeks to surpass anyone in height, speed, or endurance, treating every obstacle as a personal challenge.'|escapejs %}" },
+    4: { me: "{% trans 'Affectionate'|escapejs %}", desc: "{% trans 'Constantly seeks physical contact with the mage knight and allies, rubbing against them or protecting them with its presence.'|escapejs %}" },
+    5: { me: "{% trans 'Generous'|escapejs %}", desc: "{% trans 'Always places its size and strength at the service of the party, taking on others difficulties without hesitation.'|escapejs %}" }
 };
 
 const TABELLA_CAPACITA = {
-    1: { nome: "{% trans 'Broad Feathered Wings' %}", desc: "{% trans 'A violent flap of wings creates a gust of wind that pushes up to two adjacent targets into a far zone.' %}" },
-    2: { nome: "{% trans 'Tempered Scales' %}", desc: "{% trans 'Hardens its scales like diamond, halving all non-magical damage taken until the start of its next turn.' %}" },
-    3: { nome: "{% trans 'Steel Claws' %}", desc: "{% trans 'Engages a target in combat or flight, applying the destabilized aspect for 1 turn without spending Hunt or Action Points.' %}" },
-    4: { nome: "{% trans 'Bone Antlers' %}", desc: "{% trans 'Focuses magic through its branches to create a bubble of Astral energy around itself: all adjacent targets regain 1 HP.' %}" },
-    5: { nome: "{% trans 'Crystalline Horn' %}", desc: "{% trans 'Focuses its frontal horn to project a bolt of astral energy that automatically strikes any target at its same altitude.' %}" }
+    1: { nome: "{% trans 'Broad Feathered Wings'|escapejs %}", desc: "{% trans 'A violent flap of wings creates a gust of wind that pushes up to two adjacent targets into a far zone.'|escapejs %}" },
+    2: { nome: "{% trans 'Tempered Scales'|escapejs %}", desc: "{% trans 'Hardens its scales like diamond, halving all non-magical damage taken until the start of its next turn.'|escapejs %}" },
+    3: { nome: "{% trans 'Steel Claws'|escapejs %}", desc: "{% trans 'Engages a target in combat or flight, applying the destabilized aspect for 1 turn without spending Hunt or Action Points.'|escapejs %}" },
+    4: { nome: "{% trans 'Bone Antlers'|escapejs %}", desc: "{% trans 'Focuses magic through its branches to create a bubble of Astral energy around itself: all adjacent targets regain 1 HP.'|escapejs %}" },
+    5: { nome: "{% trans 'Crystalline Horn'|escapejs %}", desc: "{% trans 'Focuses its frontal horn to project a bolt of astral energy that automatically strikes any target at its same altitude.'|escapejs %}" }
 };
 
 function initAstralGenerator() {
@@ -142,7 +142,6 @@ function initAstralGenerator() {
     document.getElementById('select-specie').value = 2;  
     document.getElementById('select-personalita').value = 2; 
     
-    // Primo rendering statico all'avvio
     updateAstralCardStatic();
 
     const nameInput = document.getElementById('astral-name');
@@ -168,10 +167,9 @@ function populateSelectOptions(elementId, tableData, labelFormatter) {
     });
 }
 
-// Rendering statico locale
 function updateAstralCardStatic() {
     const nameInput = document.getElementById('astral-name');
-    const name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '{% trans "Astral Companion" %}';
+    const name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '{% trans "Astral Companion"|escapejs %}';
     
     const coloreKey = document.getElementById('select-colore').value;
     const specieKey = document.getElementById('select-specie').value;
@@ -186,12 +184,10 @@ function updateAstralCardStatic() {
 
     document.getElementById('display-name').textContent = name;
     document.getElementById('display-specie-title').textContent = `${specieObj.specie}`;
-    
     document.getElementById('display-main-description').innerText = `${coloreObj.nome}: ${coloreObj.desc} ${personalitaObj.me}: ${personalitaObj.desc}`;
     document.getElementById('display-capacita-desc').innerText = `${capacitaObj.nome}: ${capacitaObj.desc}`;
 }
 
-// Funzione unica invocata dal bottone "Manifest an Astral"
 function manifestAstral() {
     if (!isAIEnabled) {
         updateAstralCardStatic();
@@ -209,19 +205,19 @@ function manifestAstral() {
     const specieObj = TABELLA_SPECIE[specieKey];
     const personalitaObj = TABELLA_PERSONALITA[personalitaKey];
 
-    // Estrae la capacità speciale
     const randomCapacitaKey = Math.floor(Math.random() * 5) + 1;
     const capacitaObj = TABELLA_CAPACITA[randomCapacitaKey];
 
-    // Aggiorna subito intestazione e capacità
-    document.getElementById('display-name').textContent = name;
+    const mainDescElem = document.getElementById('display-main-description');
+
+    // 1. Rimuove temporaneamente il nome del compagno durante il caricamento
+    document.getElementById('display-name').textContent = "";
+    
+    // 2. Testo semplice con spinner durante l'attesa
+    mainDescElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-primary mr-2"></i>${i18nAstralLanding}`;
+
     document.getElementById('display-specie-title').textContent = `${specieObj.specie}`;
     document.getElementById('display-capacita-desc').innerText = `${capacitaObj.nome}: ${capacitaObj.desc}`;
-
-    const mainDescElem = document.getElementById('display-main-description');
-    
-    // Animazione di caricamento
-    mainDescElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-primary mr-2"></i>${i18nAstralLanding}`;
 
     const formData = new FormData();
     formData.append('name', name);
@@ -238,16 +234,17 @@ function manifestAstral() {
     .then(response => response.json())
     .then(data => {
         if (data.success && data.description) {
+            document.getElementById('display-name').textContent = name;
             mainDescElem.innerText = data.description;
         } else {
-            // Fallback statico
-            mainDescElem.innerText = `${coloreObj.nome}: ${coloreObj.desc} ${personalitaObj.me}: ${personalitaObj.desc}`;
+            updateAstralCardStatic();
+            mainDescElem.innerHTML += `<br><small class="text-warning font-italic mt-2 d-block"><i class="fa-solid fa-triangle-exclamation mr-1"></i>${i18nFallbackMsg}</small>`;
         }
     })
     .catch(error => {
         console.error("AI Astral Generation Error:", error);
-        // Fallback statico su errore di rete
-        mainDescElem.innerText = `${coloreObj.nome}: ${coloreObj.desc} ${personalitaObj.me}: ${personalitaObj.desc}`;
+        updateAstralCardStatic();
+        mainDescElem.innerHTML += `<br><small class="text-warning font-italic mt-2 d-block"><i class="fa-solid fa-triangle-exclamation mr-1"></i>${i18nFallbackMsg}</small>`;
     });
 }
 

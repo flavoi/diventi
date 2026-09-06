@@ -60,7 +60,7 @@ class ProductImage(DiventiImageModel):
 class ProductQuerySet(FeaturedModelQuerySet):
 
     def prefetch_basic(self):
-        """Prefetch leggero per liste ed elenchi generali."""
+        """Prefetch leggero per liste, schede utente e collezioni."""
         return self.select_related(
             'category', 
             'product_survey', 
@@ -71,7 +71,7 @@ class ProductQuerySet(FeaturedModelQuerySet):
         )
 
     def prefetch_detail(self):
-        """Prefetch completo usato esclusivamente nella pagina di dettaglio."""
+        """Prefetch completo usato esclusivamente nella pagina di dettaglio prodotto."""
         return self.prefetch_basic().prefetch_related(
             'chapters',
             'authors',
@@ -85,27 +85,18 @@ class ProductQuerySet(FeaturedModelQuerySet):
     def prefetch(self):
         return self.prefetch_detail()
 
-    def prefetch_hitcount(self):
-        return self.prefetch_related('book__hit_count_generic')
-
-    # Fetch the products purchased by the user
     def user_collection(self, user):
-        current_user = CuserMiddleware.get_user() # The user that is operating in the session
+        current_user = CuserMiddleware.get_user()
         products = self.filter(customers=user)
-        if current_user != user: # Hide non-published products if the user is not visiting his own profile
+        if current_user != user:
             products = products.published()
-        products = products.prefetch()
-        return products
+        # Usa prefetch_basic per non caricare capitoli e dettagli inutili
+        return products.prefetch_basic()
 
-    # Fetch the products authored by the user
     def user_authored(self, user):
         products = self.filter(authors=user)
-        products = products.prefetch()
-        return products
-
-    # Return true if the user has authored at least one product
-    def has_user_authored(self, user):
-        return self.user_authored(user).exists()
+        # Usa prefetch_basic
+        return products.prefetch_basic()
 
     # Get the list of published products of a certain category
     def category(self, category_slug):
@@ -201,9 +192,11 @@ class ProductCategoryQuerySet(models.QuerySet):
     # Returns categories related to projects authored by the user
     # Useful to display projects grouped by their categories
     def authored(self, user):
-        authored_projects = Product.objects.user_authored(user)
-        categories = self.filter(projects__pk__in=authored_projects) # Show only projects related to the user
-        categories = categories.prefetch_related(Prefetch('projects', queryset=authored_projects)).distinct()
+        authored_projects = Product.objects.user_authored(user).select_related('book')
+        categories = self.filter(projects__pk__in=authored_projects)
+        categories = categories.prefetch_related(
+            Prefetch('projects', queryset=authored_projects)
+        ).distinct()
         return categories
 
 

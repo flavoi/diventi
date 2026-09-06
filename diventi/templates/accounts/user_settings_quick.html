@@ -26,7 +26,7 @@
             </div>
             <div class="row align-items-center mt-4">
                <div class="col">
-                  {% include 'accounts/partials/user_nav_quick_snippet.html' with user_settings_active=1 %}
+                  {% include 'accounts/partials/_user_nav_quick_snippet.html' with user_settings_active=1 %}
                </div>
             </div>
          </div>
@@ -42,7 +42,8 @@
                <div class="col-lg-12">                  
                   <div>
                      <h5 class="mb-3">{% trans 'general information'|capfirst %}</h5>
-                     <form method="POST" action="{% url 'accounts:settings' object.nametag %}">
+                     <div id="respsettings"></div>
+                     <form method="POST" action="{% url 'accounts:settings' object.nametag %}" id="frmUserSettings">
                         {% csrf_token %}
                         <div class="row">
                            <div class="col-md-6">
@@ -110,11 +111,88 @@
 {% block footer %}{% endblock footer %}
 
 {% block extrascript %}
-<script src="{% static 'image-picker-v2/js/image-picker.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'image-picker-v2/js/image-picker.min.js' %}" defer></script>
 <script type="text/javascript">
-    $(".image-picker").imagepicker({
-          hide_select : true,
-          show_label  : true,
-        })
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        if ($.fn && $.fn.imagepicker) {
+            $(".image-picker").imagepicker({
+                hide_select: true,
+                show_label: true
+            });
+        }
+
+        var $frmSettings = $('#frmUserSettings');
+        var $respSettings = $("#respsettings");
+
+        $frmSettings.on('submit', function(e) {
+            e.preventDefault();
+
+            var $submitBtn = $frmSettings.find('button[type="submit"]');
+            var originalBtnText = $submitBtn.html();
+
+            // Stato di caricamento sul pulsante
+            $submitBtn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span> Salvataggio...');
+
+            $.ajax({
+                type: $frmSettings.attr('method') || 'POST',
+                url: $frmSettings.attr('action'),
+                data: $frmSettings.serialize(),
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                success: function(resp) {
+                    if (resp && resp.redirect_url) {
+                        $frmSettings.attr('action', resp.redirect_url);
+                    }
+
+                    var msg = (resp && resp.message) ? resp.message : 'Impostazioni aggiornate.';
+
+                    // Dissolvenza per rendere evidente il refresh del messaggio a schermo
+                    $respSettings.hide().html(
+                        '<div class="alert alert-success alert-dismissible fade show mb-3" role="alert">' +
+                            '<div class="alert-content"><i class="fa fa-check-circle mr-2"></i>' + msg + '</div>' +
+                            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                        '</div>'
+                    ).fadeIn(200);
+                },
+                error: function(xhr) {
+                    var resp = xhr.responseJSON || {};
+                    var errorHtml = '';
+
+                    if (resp.error_message && typeof resp.error_message === 'object') {
+                        for (var key in resp.error_message) {
+                            if (Object.prototype.hasOwnProperty.call(resp.error_message, key)) {
+                                var rawError = resp.error_message[key];
+                                var errorText = Array.isArray(rawError) ? rawError.join(' ') : rawError;
+
+                                errorHtml += '<div class="alert alert-danger alert-dismissible fade show mb-2" role="alert">' +
+                                    '<div class="alert-content"><strong>' + key + ':</strong> ' + errorText + '</div>' +
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                        '<span aria-hidden="true">&times;</span>' +
+                                    '</button>' +
+                                '</div>';
+                            }
+                        }
+                    } else {
+                        var failText = resp.message || 'Qualcosa è andato storto. Riprova più tardi.';
+                        errorHtml = '<div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">' +
+                            '<div class="alert-content">' + failText + '</div>' +
+                            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                        '</div>';
+                    }
+
+                    $respSettings.hide().html(errorHtml).fadeIn(200);
+                },
+                complete: function() {
+                    // Ripristino pulsante
+                    $submitBtn.prop('disabled', false).html(originalBtnText);
+                }
+            });
+        });
+
+    });
 </script>
 {% endblock extrascript %}

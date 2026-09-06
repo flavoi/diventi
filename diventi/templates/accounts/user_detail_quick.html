@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    {% include 'accounts/partials/user_nav_quick_snippet.html' with user_profile_active=1 %}
+                    {% include 'accounts/partials/_user_nav_quick_snippet.html' with user_profile_active=1 %}
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
                     {% for a in user_data.achievements %}
                       <div class="col-auto text-center mb-3 px-2">
                         <div class="d-block">
-                            <a tabindex="0" class="btn btn-{{ a.deed.color }} rounded-circle btn-icon-only" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.deed.title|capfirst }}" data-content="{{ a.deed.description|capfirst }}">
+                            <a tabindex="0" class="btn btn-{{ a.deed.color }} rounded-circle btn-icon-only" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.deed.title|capfirst }}" data-content="{{ a.deed.description|capfirst|striptags }}">
                                 <span class="btn-inner--icon pt-1">
                                     <i data-feather="{{ a.deed.icon|default:'star' }}" class="text-white mb-1"></i>
                                 </span>
@@ -319,12 +319,12 @@
                                     {% if request.user == object %}
                                         <a href="{% if survey.published %}{% url 'feedbacks:answers' survey.slug %}{% endif %}" class="list-group-item list-group-item-action {% if not survey.published %}disabled{% endif %}">
                                             {{ survey.title|capfirst }}
-                                            <p class="mb-0 text-xs">{{ survey.description|capfirst }}</p>
+                                            <p class="mb-0 text-xs">{{ survey.description|capfirst|striptags }}</p>
                                         </a>
                                     {% else %}
                                         <li class="list-group-item">
                                             {{ survey.title|capfirst }}
-                                            <p class="mb-0 text-xs">{{ survey.description|capfirst }}</p>
+                                            <p class="mb-0 text-xs">{{ survey.description|capfirst|striptags }}</p>
                                         </li>
                                     {% endif %}                        
                                 {% empty %}
@@ -357,7 +357,7 @@
                                     <a href="{% url 'blog:detail' article.slug %}" class="list-group-item list-group-item-action">{{ article.title }} &middot; <small>{% blocktrans with creation_date=article.publication_date %}{{ creation_date }}{% endblocktrans %}</small> 
                                         <p class="mb-1 text-sm">
                                             <small class="text-muted">
-                                                {{ article.description|truncatechars:200 }}
+                                                {{ article.description|truncatechars:200|striptags }}
                                             </small>
                                         </p>
                                     </a>

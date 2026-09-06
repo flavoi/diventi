@@ -1,39 +1,26 @@
-"""
-    Custom context processors for the landing app.
-    This script contains useful informations for landing templates.
-"""
-from .models import (
-    LandingPage,
-	Section,
-	SearchSuggestion,
-    AboutArticle,
-)
-
+from django.core.cache import cache
+from .models import LandingPage, SearchSuggestion, AboutArticle
 
 def graph_section(request):
-    """ Show featured sections to improve social networks sharing capabilities """
     try:
         page = LandingPage.objects.featured()
-        graph_section = page.sections.featured()
-    except:
-        graph_section = LandingPage.objects.none()
-    context = {
-        'graph_section': graph_section,
-    }
-    return context
+        graph_sec = page.sections.featured()
+    except Exception:
+        graph_sec = None
+    return {'graph_section': graph_sec}
+
 
 def search_suggestions(request):
-	""" Returns the recommended search suggestions set by the authors. """
-	search_suggestions = SearchSuggestion.objects.all()
-	context = {
-		'search_suggestions': search_suggestions,
-	}
-	return context
+    suggestions = cache.get('global_search_suggestions')
+    if suggestions is None:
+        suggestions = list(SearchSuggestion.objects.all())
+        cache.set('global_search_suggestions', suggestions, 3600)
+    return {'search_suggestions': suggestions}
+
 
 def about_us_articles(request):
-    """ Returns the articles 'about us' listed in the footer. """
-    about_us_articles = AboutArticle.objects.published()
-    context = {
-        'about_us_articles': about_us_articles,
-    }
-    return context
+    about_articles = cache.get('global_about_us_articles')
+    if about_articles is None:
+        about_articles = list(AboutArticle.objects.published())
+        cache.set('global_about_us_articles', about_articles, 3600)
+    return {'about_us_articles': about_articles}

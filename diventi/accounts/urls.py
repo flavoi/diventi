@@ -19,6 +19,7 @@ from .views import (
     DiventiPasswordResetConfirmView,
     DiventiPasswordResetCompleteView,
     DiventiUserDetailRedirectView,
+    UserModalDataView,
 )
 
 app_name = 'accounts'
@@ -41,4 +42,5 @@ urlpatterns = [
     path(_('<slug:nametag>/change-password/'), DiventiUserPasswordChangeView.as_view(), name='change_password'),
     path(_('<slug:nametag>/change-privacy/'), DiventiUserPrivacyChangeView.as_view(), name='change_privacy'),
     path(_('<slug:nametag>/delete/'), DiventiUserDeleteView.as_view(), name='delete'),
+    path('ajax/modal-data/', UserModalDataView.as_view(), name='modal_data_ajax'),
 ]

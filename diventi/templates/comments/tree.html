@@ -11,7 +11,7 @@
                 <a href="{{ node.user.get_absolute_url }}">
                     <h6 class="mt-0">{{ node.user.first_name }}
                         {% for a in node.user.deeds.all %}
-                            {% include 'accounts/partials/achievement_badge.html' %}
+                            {% include 'accounts/partials/_achievement_badge.html' %}
                         {% endfor %}
                         <small>&middot; {{ node.submit_date|naturaltime }}</small>
                     </h6>

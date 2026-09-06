@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-vertical" role="document">
         <div class="modal-content">
             
-            <!-- Modal Header / User Profile -->
+            <!-- Modal Header -->
             <div class="modal-header d-flex align-items-center justify-content-between border-0 pb-0">
                 <span class="text-xs font-weight-bold text-uppercase text-muted">{% trans "account"|capfirst %}</span>
                 <button type="button" class="close pl-2" data-dismiss="modal" aria-label="Close">
@@ -14,85 +14,13 @@
                 </button>
             </div>
 
-            <!-- Modal Body (Scrollable) -->
-            <div class="modal-body px-4 pt-2">
-                
-                <!-- Profile Identity -->
-                <div class="text-center my-3">
-                    <div class="avatar-parent-child mx-auto mb-3" style="width: fit-content;">
-                        <img loading="lazy" src="{% if user.avatar.image %}{{ user.avatar.image }}{% else %}{% static 'brand/avatar-default.jpg' %}{% endif %}" alt="{{ user.get_full_name }}" class="avatar avatar-xl rounded-circle shadow-sm">
-                        <span class="avatar-child avatar-badge bg-success"></span>
-                    </div>
-                    
-                    <!-- Nome Utente con Edit Inline -->
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <a href="{% url 'accounts:detail' user.nametag %}" class="h5 mb-0 text-dark font-weight-bold">
-                            {{ user.get_full_name }}
-                        </a>
-                        <a href="{% url 'accounts:settings' user.nametag %}" class="btn btn-soft-primary btn-xs btn-icon-only rounded-circle ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans 'customize your profile'|capfirst %}">
-                            <span class="btn-inner--icon">
-                                <i data-feather="edit-2" style="width: 12px; height: 12px;"></i>
-                            </span>
-                        </a>
-                    </div>
-                    <small class="text-muted d-block mb-3">{{ user.email }}</small>
-                </div>
-
-                <!-- Stats Container (Quick Box Style) -->
-                <div class="py-3 px-2 bg-secondary rounded mb-4">
-                    <div class="row no-gutters text-center">
-                        <div class="col-4">
-                            {% if authenticated_user_data.articles_count %}
-                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.articles_count }}</span>
-                                <span class="text-xs text-muted">{% trans "articles"|capfirst %}</span>
-                            {% else %}
-                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.achievements_count }}</span>
-                                <span class="text-xs text-muted">{% trans "deeds"|capfirst %}</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-4 border-left border-right">
-                            {% if authenticated_user_data.has_user_authored %}
-                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.projects_count }}</span>
-                                <span class="text-xs text-muted">{% trans "projects"|capfirst %}</span>
-                            {% else %}
-                                <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.collection_count }}</span>
-                                <span class="text-xs text-muted">{% trans "games"|capfirst %}</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-4">
-                            <span class="h6 font-weight-bold mb-0 d-block text-primary">{{ authenticated_user_data.forum_posts }}</span>
-                            <span class="text-xs text-muted">{% trans "posts"|capfirst %}</span>
-                        </div>
+            <!-- Modal Body (Dynamic Target) -->
+            <div class="modal-body px-4 pt-2" id="modal-profile-body">
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">{% trans "loading"|capfirst %}...</span>
                     </div>
                 </div>
-
-                <!-- Projects Section -->
-                {% if authenticated_user_data.projects %}
-                <div class="mb-4">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-xs font-weight-bold text-uppercase text-muted">{% trans "projects"|capfirst %}</span>
-                        <span class="badge badge-pill badge-soft-primary text-xs">{{ authenticated_user_data.projects_count }}</span>
-                    </div>
-                    <div class="delimiter-top pt-3">
-                        {% with collection=authenticated_user_data.projects %}
-                            {% include 'accounts/partials/user_collection_modal_quick.html' %}
-                        {% endwith %}
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- Collection Section -->
-                <div class="mb-4">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-xs font-weight-bold text-uppercase text-muted">{% trans "collection"|capfirst %}</span>
-                    </div>
-                    <div class="delimiter-top pt-3">
-                        {% with collection=authenticated_user_data.collection %}
-                            {% include 'accounts/partials/user_collection_modal_quick.html' %}
-                        {% endwith %}
-                    </div>
-                </div>
-
             </div>
 
             <!-- Sticky Modal Footer -->

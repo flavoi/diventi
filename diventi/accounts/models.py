@@ -20,53 +20,42 @@ from diventi.products.models import Product
 
 class DiventiUserQuerySet(models.QuerySet):
     
-    # Return active users
+    def prefetch(self):
+        """Pre-carica le relazioni principali dell'utente (avatar, cover, ruolo)."""
+        return self.select_related('avatar', 'cover', 'role')
+
     def is_active(self):
         return self.filter(is_active=True)
 
-    # Fetch all users that agreed to GDPR
     def has_agreed_gdpr(self):
-        users = self.is_active()
-        users = self.filter(has_agreed_gdpr=True)
-        return users
+        return self.is_active().filter(has_agreed_gdpr=True)
 
-    # Fetch all users that made at least a product
     def authors(self):
-        products = Product.objects.all()
-        users = self.filter(products__in=products)
-        return users
+        return self.filter(products__isnull=False).distinct()
 
-    # Returns the emails of a group of users
     def emails(self):
         return self.values('language').annotate(total=Count('email')).order_by('language')
 
-    # Returns the users that set "lan" as main language
     def subscribers(self, lan):
-        users = self.is_active()
-        users = users.has_agreed_gdpr()
-        users = users.filter(language=lan)
-        return users
+        return self.has_agreed_gdpr().filter(language=lan)
 
-    # Returns the emails of users that set "lan" as main language
     def subscribers_emails(self, lan):
-        users = self.subscribers(lan)
-        emails = users.values_list('email', flat=True)
-        return emails
+        return self.subscribers(lan).values_list('email', flat=True)
 
-    # Returns the last user that has signed up and agreed to gdpr
-    # with "lan" as main language 
     def last_subscriber(self, lan=None):
         users = self.is_active()
         if lan:
             users = users.filter(language=lan)
-        user = users.order_by('-date_joined').first()
-        return user
+        return users.order_by('-date_joined').first()
 
 
 class DiventiUserManager(UserManager):
 
     def get_queryset(self):
         return DiventiUserQuerySet(self.model, using=self._db)
+
+    def prefetch(self):
+        return self.get_queryset().prefetch()
 
     def has_agreed_gdpr(self):
         return self.get_queryset().has_agreed_gdpr()
@@ -81,7 +70,7 @@ class DiventiUserManager(UserManager):
         return self.get_queryset().subscribers(lan)
 
     def subscribers_emails(self, lan):
-        return self.get_queryset().lan_emails(lan)
+        return self.get_queryset().subscribers_emails(lan)
 
     def last_subscriber(self, lan):
         return self.get_queryset().last_subscriber(lan)
@@ -203,9 +192,14 @@ class DiventiUser(AbstractUser):
         )
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.nametag = '-'.join((slugify(self.get_short_name()), slugify(self.pk)))
-        super().save(*args, **kwargs)
+        if not self.pk:
+            # Generazione al primo salvataggio (creazione utente)
+            super().save(*args, **kwargs)
+            self.nametag = '-'.join((slugify(self.get_short_name() or self.username), slugify(self.pk)))
+            super().save(update_fields=['nametag'])
+        else:
+            # Nei salvataggi successivi preserviamo il nametag originale
+            super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse_lazy('accounts:detail', kwargs={'nametag': self.nametag})
@@ -230,25 +224,21 @@ class DiventiUser(AbstractUser):
             return self.get_diventi_username()
 
     def search(self, query, *args, **kwargs):
-        results = DiventiUser.objects.all().select_related('role')
-        query_list = query.split()
-        queryset = results.filter(
-            reduce(operator.and_,
-                   (Q(first_name__icontains=q) for q in query_list)) |
-            reduce(operator.and_,
-                   (Q(role__title__icontains=q) for q in query_list)) |
-            reduce(operator.and_,
-                   (Q(bio__icontains=q) for q in query_list))
+        # Evitiamo la conversione in lista cieca prima del loop
+        queryset = DiventiUser.objects.select_related('role').filter(
+            Q(first_name__icontains=query) |
+            Q(role__title__icontains=query) |
+            Q(bio__icontains=query)
         )
+        
         results = []
-        for user in queryset:
-            row = {
+        for user in queryset[:5]:  # Limitazione a 5 elementi per la ricerca rapida
+            results.append({
                 'class_name': user.class_name(),
                 'title': user.get_diventi_role(),
                 'description': user.bio,
                 'get_absolute_url': user.get_absolute_url()
-            }
-            results.append(row)
+            })
         return results
 
     # Returns the description of the subscriber

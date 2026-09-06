@@ -208,7 +208,7 @@ class DiventiUserInitForm(forms.Form):
 
 class DiventiUserUpdateForm(forms.ModelForm):
 
-    class Meta:       
+    class Meta:        
         model = DiventiUser
         fields = ['first_name', 'avatar', 'cover', 'bio', 'role', 'language']
         widgets = {
@@ -217,7 +217,7 @@ class DiventiUserUpdateForm(forms.ModelForm):
             }),
             'bio': forms.Textarea(attrs={
                 'class': 'form-control', 
-                'rows': 1,
+                'rows': 3,
                 'data-toggle': 'autosize',
             }),
             'role': forms.Select(attrs={
@@ -228,7 +228,6 @@ class DiventiUserUpdateForm(forms.ModelForm):
             }),
         }
 
-    # Assegna queryset vuoti per evitare query al database durante l'importazione dei file
     avatar = DiventiAvatarChoiceField(
         queryset = DiventiAvatar.objects.none(),
         widget = DiventiAvatarSelect(attrs = {
@@ -259,9 +258,20 @@ class DiventiUserUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(DiventiUserUpdateForm, self).__init__(*args, **kwargs)
-        # Popola i queryset solo a runtime quando il form viene istanziato
-        self.fields['avatar'].queryset = self.get_avatar_queryset()
-        self.fields['cover'].queryset = self.get_cover_queryset()
+        
+        # 1. Avatar Queryset e Mappa Immagini per il Widget
+        avatar_qs = self.get_avatar_queryset()
+        self.fields['avatar'].queryset = avatar_qs
+        self.fields['avatar'].widget.image_map = {
+            obj.id: obj.image for obj in avatar_qs
+        }
+
+        # 2. Cover Queryset e Mappa Immagini per il Widget
+        cover_qs = self.get_cover_queryset()
+        self.fields['cover'].queryset = cover_qs
+        self.fields['cover'].widget.image_map = {
+            obj.id: obj.image for obj in cover_qs
+        }
 
 
 class DiventiUserPrivacyChangeForm(forms.ModelForm):

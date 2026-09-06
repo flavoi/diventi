@@ -1,26 +1,18 @@
-"""
-    Custom context processors for the products app.
-"""
-
-from django.utils import translation
-from django.utils.translation import get_language
-from django.db.models import Prefetch
-
-from .models import (
-	Product,
-	ProductCategory,
-)
-
+from django.core.cache import cache
+from .models import Product, ProductCategory
 
 def project_categories(request):
-    context = {}
-    project_categories = ProductCategory.objects.prefetch_related(Prefetch('projects', queryset=Product.objects.published()))
-    project_categories = ProductCategory.objects.visible().distinct()
-    context['project_categories'] = project_categories
-    return context
+    # Sfruttiamo il metodo visible() senza distruggere il prefetch
+    categories = cache.get('global_project_categories')
+    if categories is None:
+        categories = list(ProductCategory.objects.visible())
+        cache.set('global_project_categories', categories, 3600) # Cache per 1 ora
+    return {'project_categories': categories}
 
 
 def pinned_projects(request):
-    context = {}
-    context['pinned_products_nav'] = Product.objects.pinned_list().distinct()
-    return context
+    pinned = cache.get('global_pinned_projects')
+    if pinned is None:
+        pinned = list(Product.objects.published().hot().prefetch_basic())
+        cache.set('global_pinned_projects', pinned, 3600)
+    return {'pinned_products_nav': pinned}

@@ -21,7 +21,7 @@
             </div>
             <div class="row align-items-center mt-4">
                <div class="col">
-                  {% include 'accounts/partials/user_nav_quick_snippet.html' with user_privacy_active=1 %}
+                  {% include 'accounts/partials/_user_nav_quick_snippet.html' with user_privacy_active=1 %}
                </div>
             </div>
          </div>
@@ -44,10 +44,16 @@
                            <div class="list-group list-group-flush">
                               <div class="list-group-item d-flex w-100 justify-content-between">
                                  <div>
-                                    <h6 class="font-weight-light mb-1">{{ form.has_agreed_gdpr.label }} <span data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}"><i class="fa fa-info-circle"></i></span></h6>
-                                    <span class="text-sm text-muted">{% for choice in form.has_agreed_gdpr %}
+                                    <h6 class="font-weight-light mb-1">
+                                       {{ form.has_agreed_gdpr.label }} 
+                                       <span data-toggle="tooltip" data-placement="top" title="{% trans 'We send an average of 2 emails each month, covering faq and new content.' %}">
+                                          <i class="fa fa-info-circle"></i>
+                                       </span>
+                                    </h6>
+                                    <span class="text-sm text-muted">
+                                       {% for choice in form.has_agreed_gdpr %}
                                        <div class="custom-control custom-radio">
-                                       {{ choice.tag }}
+                                          {{ choice.tag }}
                                           <label class="custom-control-label" for="{{ choice.id_for_label }}">
                                              {{ choice.choice_label }}
                                           </label>
@@ -86,7 +92,7 @@
                               <i class="far fa-lock-alt text-success"></i>
                           </div>
                           <h4 class="h6 mb-1">{% trans "your information is safe"|capfirst %}</h4>
-                          <p class="text-muted text-sm ">{% trans "we will not sell or rent your personal contact information for any marketing purposes whatsoever"|capfirst %}.</p>
+                          <p class="text-muted text-sm">{% trans "we will not sell or rent your personal contact information for any marketing purposes whatsoever"|capfirst %}.</p>
                       </div>
                       <div class="col-md-4">
                           <div class="text-xl mb-2">
@@ -143,29 +149,52 @@
 
 {% block extrascript %}
 <script type="text/javascript">
-    var frmPrivacy = $('#frmChangePrivacy');
-    frmPrivacy.submit(function() {
-      $.ajax({
-        type: frmPrivacy.attr('method'),
-        url: frmPrivacy.attr('action'),
-        data: frmPrivacy.serialize(),
-        success: function(resp) {          
-          if (resp['message_type'] === 'success') {
-            $("#respprivacy").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + resp ['message'] + '</div>').show();
-          }
-          else {
-            console.log(resp.error_message)
-            for (var key in resp.error_message) {
-                error = resp.error_message[key];
-                $("#respprivacy").html('<div class="alert alert-' + resp['message_type'] + '" role="alert">' + key + ': ' + error + '</div>').show();
-            }
-          }
-        },
-        error: function() {
-          $("#respprivacy").html('<strong><p class="text-danger">Error!</p></strong>').show().fadeOut(3000);
-        }
-      });
-      return false;
+    document.addEventListener("DOMContentLoaded", function() {
+        var frmPrivacy = $('#frmChangePrivacy');
+        
+        frmPrivacy.on('submit', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: frmPrivacy.attr('method'),
+                url: frmPrivacy.attr('action'),
+                data: frmPrivacy.serialize(),
+                success: function(resp) {          
+                    if (resp['message_type'] === 'success') {
+                        $("#respprivacy").html(
+                            '<div class="alert alert-success alert-dismissible fade show mb-3" role="alert">' +
+                                '<div class="alert-content">' + resp['message'] + '</div>' +
+                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                    '<span aria-hidden="true">&times;</span>' +
+                                '</button>' +
+                            '</div>'
+                        ).show();
+                    } else {
+                        var errorHtml = '';
+                        for (var key in resp.error_message) {
+                            var error = resp.error_message[key];
+                            errorHtml += '<div class="alert alert-danger alert-dismissible fade show mb-2" role="alert">' +
+                                '<div class="alert-content"><strong>' + key + ':</strong> ' + error + '</div>' +
+                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                    '<span aria-hidden="true">&times;</span>' +
+                                '</button>' +
+                            '</div>';
+                        }
+                        $("#respprivacy").html(errorHtml).show();
+                    }
+                },
+                error: function() {
+                    $("#respprivacy").html(
+                        '<div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">' +
+                            '<div class="alert-content">Qualcosa è andato storto. Riprova più tardi.</div>' +
+                            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                        '</div>'
+                    ).show();
+                }
+            });
+        });
     });
 </script>
 {% endblock extrascript %}

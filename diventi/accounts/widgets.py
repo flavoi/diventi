@@ -1,63 +1,39 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
-
-from .models import DiventiAvatar, DiventiCover
-
+from django.utils.translation import gettext_lazy as _
 
 class DiventiAvatarSelect(forms.Select):    
-    
+    image_map = {}
+
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
-        index = str(index) if subindex is None else "%s_%s" % (index, subindex)
-        if attrs is None:
-            attrs = {}
-        option_attrs = self.build_attrs(self.attrs, attrs) if self.option_inherits_attrs else {}
-        option_attrs['data-img-alt'] = value
-        if value and int(value) > 0:
-            avatar = DiventiAvatar.objects.get(id=int(value))
-            option_attrs['data-img-src'] = avatar.image
-            option_attrs['data-img-class'] = 'avatar_image'
-        if selected:
-            option_attrs.update(self.checked_attribute)
-        if 'id' in option_attrs:
-            option_attrs['id'] = self.id_for_label(option_attrs['id'], index)                
-        return {
-            'name': name,
-            'value': value,
-            'label': label,
-            'selected': selected,
-            'index': index,
-            'attrs': option_attrs,
-            'type': self.input_type,
-            'template_name': self.option_template_name,
-        }
+        option = super().create_option(name, value, label, selected, index, subindex=subindex, attrs=attrs)
+        
+        if value:
+            val_id = str(value)
+            # Recupera l'URL dalla mappa pre-caricata in memoria nel form
+            img_src = self.image_map.get(val_id) or self.image_map.get(int(value) if str(value).isdigit() else None)
+            if img_src:
+                option['attrs']['data-img-src'] = img_src
+                option['attrs']['data-img-class'] = 'avatar_image'
+            
+        option['attrs']['data-img-alt'] = value
+        return option
 
 
 class DiventiCoverSelect(forms.Select):    
-    
+    image_map = {}
+
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
-        index = str(index) if subindex is None else "%s_%s" % (index, subindex)
-        if attrs is None:
-            attrs = {}
-        option_attrs = self.build_attrs(self.attrs, attrs) if self.option_inherits_attrs else {}
-        option_attrs['data-img-alt'] = value
-        if value and int(value) > 0:
-            avatar = DiventiCover.objects.get(id=int(value))
-            option_attrs['data-img-src'] = avatar.image
-            option_attrs['data-img-class'] = 'cover_image'
-        if selected:
-            option_attrs.update(self.checked_attribute)
-        if 'id' in option_attrs:
-            option_attrs['id'] = self.id_for_label(option_attrs['id'], index)                
-        return {
-            'name': name,
-            'value': value,
-            'label': label,
-            'selected': selected,
-            'index': index,
-            'attrs': option_attrs,
-            'type': self.input_type,
-            'template_name': self.option_template_name,
-        }
+        option = super().create_option(name, value, label, selected, index, subindex=subindex, attrs=attrs)
+        
+        if value:
+            val_id = str(value)
+            img_src = self.image_map.get(val_id) or self.image_map.get(int(value) if str(value).isdigit() else None)
+            if img_src:
+                option['attrs']['data-img-src'] = img_src
+                option['attrs']['data-img-class'] = 'cover_image'
+            
+        option['attrs']['data-img-alt'] = value
+        return option
 
 
 class GroupedModelChoiceField(forms.ModelChoiceField):
@@ -67,7 +43,7 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
 
     def get_queryset(self):
         queryset = []
-        if self.queryset:
+        if self.queryset is not None:
             queryset = self.queryset        
         return queryset
 
@@ -102,7 +78,7 @@ class GroupedModelChoiceField(forms.ModelChoiceField):
             return []
 
     choices = property(_get_choices, forms.ChoiceField._set_choices)
-    
+
 
 class DiventiAvatarChoiceField(GroupedModelChoiceField):
 
@@ -114,7 +90,7 @@ class DiventiAvatarChoiceField(GroupedModelChoiceField):
 
     def set_optgroup_label(self, optgroup):
         optgroup_name = _("User avatars")
-        if optgroup: # Staff_only = True
+        if optgroup: # Staff_only = True
             optgroup_name = _("Staff avatars")
         return optgroup_name
 

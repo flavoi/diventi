@@ -458,42 +458,64 @@
     </footer>
     {% endblock footer %}
 
-    <!-- Inizializzazioni JS (Gestite dopo che i file DEFER sono stati scaricati) -->
     <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            // Gestione Preloader
-            setTimeout(function() {
-                document.querySelector('body').classList.add('loaded');
-            }, 300);
+    document.addEventListener("DOMContentLoaded", function() {
+        // Gestione Preloader
+        setTimeout(function() {
+            document.querySelector('body').classList.add('loaded');
+        }, 300);
 
-            // Inizializzazione Feather Icons
-            if (typeof feather !== 'undefined') {
-                feather.replace({
-                    'width': '1em',
-                    'height': '1em'
+        // Inizializzazione Feather Icons
+        if (typeof feather !== 'undefined') {
+            feather.replace({
+                'width': '1em',
+                'height': '1em'
+            });
+        }
+
+        // Gestione Omnisearch & Modali con jQuery
+        $('.searchs').on('click', function () {
+            var text = $('#search_text');
+            text.val($(this).attr('data-value'));
+            $('#search_text').focus();
+        });
+
+        $('.search').on('click', function () {
+            $('#modal-profile').modal('hide');
+            $('#modal-profile').on('hidden.bs.modal', function () {
+              $('#search_text').focus();
+           });            
+        });
+
+        // Caricamento AJAX per il Modale Profilo Utente
+        var modalProfileLoaded = false;
+        $('#modal-profile').on('show.bs.modal', function() {
+            if (!modalProfileLoaded) {
+                $.ajax({
+                    url: "{% url 'accounts:modal_data_ajax' %}",
+                    method: "GET",
+                    success: function(response) {
+                        $('#modal-profile-body').html(response.html);
+                        modalProfileLoaded = true;
+                        
+                        // Re-inizializzazione icone Feather per gli elementi caricati dinamicamente
+                        if (typeof feather !== 'undefined') {
+                            feather.replace({'width': '1em', 'height': '1em'});
+                        }
+                    },
+                    error: function() {
+                        $('#modal-profile-body').html('<div class="alert alert-danger my-3">{% trans "Error loading profile data." %}</div>');
+                    }
                 });
             }
-
-            // Gestione Omnisearch & Modali con jQuery
-            $('.searchs').on('click', function () {
-                var text = $('#search_text');
-                text.val($(this).attr('data-value'));
-                $('#search_text').focus();
-            });
-
-            $('.search').on('click', function () {
-                $('#modal-profile').modal('hide');
-                $('#modal-profile').on('hidden.bs.modal', function () {
-                  $('#search_text').focus();
-               });            
-            });
-
-            // Popovers e Tooltips
-            if (typeof $().popover === 'function') {
-                $('[data-toggle="popover"]').popover();
-                $('[data-toggle="tooltip"]').tooltip();
-            }
         });
+
+        // Popovers e Tooltips
+        if (typeof $().popover === 'function') {
+            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="tooltip"]').tooltip();
+        }
+    });
     </script>
 
     {% block extrascript %}{% endblock extrascript %}

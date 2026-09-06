@@ -24,6 +24,10 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 from django.db.models import Count, Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from braces.views import AnonymousRequiredMixin
 
@@ -45,6 +49,22 @@ from .forms import (
 from .utils import get_user_data
 
 
+class UserModalDataView(LoginRequiredMixin, View):
+    """
+    Restituisce il contenuto aggiornato del modale utente via AJAX
+    eseguendo get_user_data solo al momento della richiesta.
+    """
+    def get(self, request, *args, **kwargs):
+        user_data = get_user_data(request.user)
+        
+        html = render_to_string(
+            'accounts/partials/_user_modal_content.html',
+            {'authenticated_user_data': user_data, 'user': request.user},
+            request=request
+        )
+        return JsonResponse({'html': html})
+
+
 class DiventiLoginView(LoginView):
 
     authentication_form = DiventiAuthenticationForm
@@ -62,56 +82,67 @@ class DiventiLogoutView(LoginRequiredMixin, LogoutView):
 
 	template_name = "accounts/signout_quick.html"
 
-
 @login_required
 @csrf_protect
 def change_password_ajax(request):
     """
-        Updates the user's password and returns the response as ajax.
+    Updates the user's password and returns the response as ajax.
     """
     message = ''
     error_message = ''
+    message_type = 'danger'
+
     if request.method == 'POST':
         form = DiventiPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important!
+            # Mantiene l'utente autenticato aggiornando l'hash della sessione
+            update_session_auth_hash(request, user)
+            
             message = _('Your password was successfully updated!')
             message_type = 'success'
-        else:  
-            error_message = {str(form.fields[field].label): error for field, error in form.errors.items()}
+        else:
+            error_message = {
+                str(form.fields[field].label or field) if field in form.fields else _('Error'): error 
+                for field, error in form.errors.items()
+            }
             message_type = 'danger'
-    data = json.dumps ({
+
+    return JsonResponse({
         'message': str(message),
         'error_message': error_message,
         'message_type': message_type,
     })
-    return HttpResponse(data, content_type='application/json')
-
 
 @login_required
 @csrf_protect
 def change_privacy_ajax(request):
     """
-        Updates user's privacy fields and returns the response as ajax.
+    Updates user's privacy fields and returns the response as ajax.
     """
     message = ''
     error_message = ''
+    message_type = 'danger'
+
     if request.method == 'POST':
         form = DiventiUserPrivacyChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+
             message = _('Your privacy was successfully updated!')
             message_type = 'success'
         else:
-            error_message = {str(form.fields[field].label): error for field, error in form.errors.items()}
+            error_message = {
+                str(form.fields[field].label or field) if field in form.fields else _('Error'): error 
+                for field, error in form.errors.items()
+            }
             message_type = 'danger'
-    data = json.dumps ({
+
+    return JsonResponse({
         'message': str(message),
         'error_message': error_message,
         'message_type': message_type,
     })
-    return HttpResponse(data, content_type='application/json')    
 
 
 class DiventiUserCreationView(AnonymousRequiredMixin, CreateView):
@@ -170,29 +201,65 @@ class DiventiUserUpdateView(LoginRequiredMixin, DiventiActionMixin, UpdateView):
     slug_url_kwarg = 'nametag'
 
     def user_passes_test(self):
-        """ A user may update his own profile only. """
-        if self.object.pk == self.request.user.pk:
-            return 1
-        return 0
+        return self.object.pk == self.request.user.pk
 
     def get_success_url(self):        
-        return reverse('accounts:detail', kwargs={'nametag': self.object.nametag})
+        return reverse('accounts:settings', kwargs={'nametag': self.object.nametag})
 
     def get_form_kwargs(self):
-        """ Inject form with additional keyword arguments. """
-        kwargs = super(DiventiUserUpdateView, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         if not self.user_passes_test():
             raise PermissionDenied(_("A user may update his own profile only."))
         return kwargs
 
+    def form_valid(self, form):
+        is_ajax = self.request.headers.get('x-requested-with') == 'XMLHttpRequest' or self.request.is_ajax()
+        
+        if is_ajax:
+            # Salviamo il modello direttamente evitando DiventiActionMixin / messages.success
+            self.object = form.save()
+            
+            changed_fields = form.changed_data
+            if changed_fields:
+                labels = [
+                    str(form.fields[f].label or f).lower() 
+                    for f in changed_fields 
+                    if f in form.fields
+                ]
+                msg = _('Updated successfully: %(fields)s') % {'fields': ', '.join(labels)}
+            else:
+                msg = str(self.success_msg)
+
+            return JsonResponse({
+                'message_type': 'success',
+                'message': msg,
+                'nametag': self.object.nametag,
+                'redirect_url': self.get_success_url(),
+            })
+            
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        is_ajax = self.request.headers.get('x-requested-with') == 'XMLHttpRequest' or self.request.is_ajax()
+        
+        if is_ajax:
+            error_message = {
+                str(form.fields[field].label or field) if field in form.fields else _('Error'): error 
+                for field, error in form.errors.items()
+            }
+            return JsonResponse({
+                'message_type': 'danger',
+                'message': str(self.fail_msg),
+                'error_message': error_message,
+            })
+            
+        return super().form_invalid(form)
+
     def get_context_data(self, **kwargs):
-        context = super(DiventiUserUpdateView, self).get_context_data(**kwargs)
-        """
-            User related objects will be available at name_data dict.
-        """
+        context = super().get_context_data(**kwargs)
         context['user_data'] = get_user_data(self.object)
         return context
-
+        
 
 class DiventiUserPasswordChangeView(LoginRequiredMixin, DiventiActionMixin, PasswordChangeView):
 
@@ -230,6 +297,7 @@ class DiventiUserPrivacyChangeView(LoginRequiredMixin, DiventiActionMixin, Updat
     slug_url_kwarg = 'nametag'
 
 
+
 class DiventiUserDetailView(DetailView):
 
     model = DiventiUser
@@ -237,8 +305,11 @@ class DiventiUserDetailView(DetailView):
     slug_field = 'nametag'
     slug_url_kwarg = 'nametag'
 
+    def get_queryset(self):
+        return super().get_queryset().prefetch()
+
     def get_context_data(self, **kwargs):
-        context = super(DiventiUserDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['user_data'] = get_user_data(self.object, self)
         return context
 
@@ -269,23 +340,22 @@ class EmailPageView(StaffRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        users = DiventiUser.objects.all()
-        users_count = users.count()                
-        users_groups = users.emails()
-        subscribers = users.has_agreed_gdpr()
-        subscribers_groups = subscribers.emails()
+        
+        # Carichiamo tutti gli utenti attivi in un'unica query
+        all_users = list(DiventiUser.objects.is_active())
+        subscribers = [u for u in all_users if u.has_agreed_gdpr]
+        
+        # Raggruppiamo in RAM senza rieseguire .filter() su DB per ogni lingua
         users_lan = {}
-        for ugroup in users_groups:
-            lan = ugroup['language']
-            users_lan[lan] = users.filter(language=lan)
+        for user in all_users:
+            users_lan.setdefault(user.language, []).append(user)
+            
         subscribers_lan = {}
-        for sgroup in subscribers_groups:
-            lan = sgroup['language']
-            subscribers_lan[lan] = subscribers.filter(language=lan)
-        context['users_count'] = users_count
-        context['users_groups'] = users_groups
+        for sub in subscribers:
+            subscribers_lan.setdefault(sub.language, []).append(sub)
+
+        context['users_count'] = len(all_users)
         context['users_lan'] = users_lan
-        context['subscribers_groups'] = subscribers_groups
         context['subscribers_lan'] = subscribers_lan
         context['msg_success'] = _('The email addresses have been copied to clipboard.')
         context['msg_failure'] = _('Something went wrong with the copy.')

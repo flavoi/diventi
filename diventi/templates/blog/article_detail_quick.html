@@ -112,7 +112,7 @@
                                         {{ article.author.get_full_name }}
                                     </a>
                                     {% for a in article.author.deeds.all %}
-                                        {% include 'accounts/partials/achievement_badge.html' %}
+                                        {% include 'accounts/partials/_achievement_badge.html' %}
                                     {% endfor %}
                                 </div>
                                 <span class="d-block text-xs text-muted mt-1">

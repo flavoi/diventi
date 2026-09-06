@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [accounts] Locked `nametag` generation strictly to user creation time to preserve permanent permalinks when editing account details
 - [accounts] Improved `bio` field layout and auto-cleared input fields on failed or successful password changes to improve UX and security
 - [accounts] Enabled links for pdf attachments in the collection section
+- [accounts] Refreshed icons and colors of products cards
 - [blog] Enabled pinned articles to be displayed on the landing page without the need to be marked as featured too
 - [blog] Standardized article QuerySets to minimize redundant database roundtrips
 - [core] Cached static context processors (categories, suggestions, about articles) to drastically cut down SQL execution times across all pages

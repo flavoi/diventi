@@ -37,8 +37,11 @@ class DiventiIconAdmin(admin.ModelAdmin):
     
     class Media:
         css = {
-            'all': ('diventi/css/diventi-admin-colors.css',)
+            'all': (
+                'diventi/css/diventi-admin-colors.css',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+            )
         }
-        js = ('quick-v110/libs/feather-icons/dist/feather.min.js', 'diventi/js/diventi-admin.js')
+        js = ('diventi/js/diventi-admin.js',)
 
         

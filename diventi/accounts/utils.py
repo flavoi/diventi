@@ -22,7 +22,13 @@ def get_user_data(user, self=None):
     # 1. Recupero Collezioni e Progetti in un'unica valutazione
     surveys = Survey.objects.user_collection(user)
     collection = Product.objects.user_collection(user=user)
-    
+    collection_count = len(collection)
+
+    if collection_count > 0:
+        collection_categories = ProductCategory.objects.collection(user=user)
+    else:
+        collection_categories = ProductCategory.objects.none()
+
     # Valutiamo i progetti d'autore usando prefetch_basic per evitare query pesanti
     projects_qs = Product.objects.user_authored(user=user)
     projects_count = projects_qs.count()
@@ -76,13 +82,13 @@ def get_user_data(user, self=None):
         'comments_count': comments_count,
         'has_user_authored': has_user_authored,
         'collection': collection,
-        'collection_count': len(collection),
+        'collection_count': collection_count,
+        'collection_categories': collection_categories,
         'forum_posts': forum_posts,
         'recent_posts': recent_posts,
         'recent_articles': recent_articles,
         'articles_count': articles_count,
     }
-
 
 def can_playtest(user): 
     return user.has_perm('accounts.can_playtest')

@@ -60,7 +60,7 @@
                         <div class="d-block">
                             <a tabindex="0" class="btn btn-{{ a.deed.color }} rounded-circle btn-icon-only" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" title="{{ a.deed.title|capfirst }}" data-content="{{ a.deed.description|capfirst|striptags }}">
                                 <span class="btn-inner--icon pt-1">
-                                    <i data-feather="{{ a.deed.icon|default:'star' }}" class="text-white mb-1"></i>
+                                    <i class="fas fa-{{ a.deed.icon|default:'star' }} text-white mb-1"></i>
                                 </span>
                             </a>
                             <div class="text-xs text-muted mt-1">{{ a.deed.title|capfirst }}</div>
@@ -103,7 +103,7 @@
                                         {% if request.user == object %}
                                         <div class="col-auto">
                                             <a href="{% url 'accounts:settings' object.nametag %}" class="btn btn-xs btn-primary btn-icon rounded-pill">
-                                                <span class="btn-inner--icon"><i data-feather="edit"></i></span>
+                                                <span class="btn-inner--icon"><i class="fas fa-edit"></i></span>
                                                 <span class="btn-inner--text">{% trans "edit"|capfirst %}</span>
                                             </a>
                                         </div>
@@ -182,16 +182,22 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <div>
-                                                                <div class="icon bg-dark text-white rounded-circle icon-shape shadow">
-                                                                    <i data-feather="book"></i>
+                                                                <div class="icon bg-{{ product.category.color|default:'dark' }} text-white rounded-circle icon-shape shadow" data-toggle="tooltip" data-placement="top" title="{{ product.category.title|capfirst }}">
+                                                                    <i class="fas fa-{{ product.category.icon|default:'book' }}"></i>
                                                                 </div>
                                                             </div>
                                                             {% if request.user == object %}
                                                             <div class="text-right">
-                                                                {% if product.book.published and product.published %}                   
+                                                                {% if product.book.published and product.published %}                    
                                                                     <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
                                                                         <span class="btn-inner--text ml-1">
                                                                             {% trans "read online"|capfirst %}
+                                                                        </span>
+                                                                    </a>
+                                                                {% elif product.file and product.published %}
+                                                                    <a href="{% url 'products:user_product_download' product.slug %}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
+                                                                        <span class="btn-inner--text ml-1">
+                                                                            {% trans "download"|capfirst %}
                                                                         </span>
                                                                     </a>
                                                                 {% else %}
@@ -237,6 +243,7 @@
 
                 <!-- Collection -->
                 {% if request.user == object %}
+                {% if user_data.collection_count > 0 %}
                 <div>
                     <div class="row mb-3">
                         <div class="col">
@@ -244,64 +251,85 @@
                         </div>
                     </div>
                     <div class="row">
-                        {% for product in user_data.collection %}
-                        <div class="col-xl-6">
-                            <div class="card card-fluid mb-3">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <!-- App logo + status -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <div class="icon bg-dark text-white rounded-circle icon-shape shadow">
-                                                <i data-feather="book"></i>
-                                            </div>
-                                        </div>
-                                            <div class="text-right">
-                                            {% if product.book.published and product.published %}
-                                                <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
-                                                    <span class="btn-inner--text ml-1">
-                                                        {% trans "read online"|capfirst %}
-                                                    </span>
-                                                </a>
-                                            {% elif product.file %}
-                                                <a href="{% url 'products:user_product_download' product.slug %}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
-                                                    <span class="btn-inner--text ml-1">
-                                                        {% trans "download"|capfirst %}
-                                                    </span>
-                                                </a>
-                                            {% else %}
-                                                {% trans "not available" as default_courtesy_short_message %}
-                                                <div class="d-block stretched-link" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
-                                                    <a href="" tabindex="0" class="btn btn-xs btn-secondary btn-icon rounded-pill ml-0">
-                                                        <span class="btn-inner--text">{{ product.courtesy_short_message|default:default_courtesy_short_message }}</span>
-                                                    </a>                                                
+                        <div class="col">
+                            <!-- Collection Category Nav-Pills -->
+                            <ul class="nav nav-pills mb-3" id="col-pills-tab" role="tablist">
+                            {% for category in user_data.collection_categories %}
+                                <li class="nav-item">
+                                    <a class="nav-link{% if forloop.first %} active{% endif %}" id="col-pills-{{ category.pk }}-tab" data-toggle="pill" href="#col-pills-{{ category.pk }}" role="tab" aria-controls="col-pills-{{ category.pk }}" aria-selected="true">{{ category.title_plural }}</a>
+                                </li>
+                            {% endfor %}
+                            </ul>                     
+
+                            <!-- Collection Tab Content -->
+                            <div class="tab-content" id="col-pills-tabContent">
+                                {% for category in user_data.collection_categories %}                                    
+                                    <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="col-pills-{{ category.pk }}" role="tabpanel" aria-labelledby="col-pills-{{ category.pk }}-tab">
+                                        <div class="row">
+                                            {% for product in category.projects.all %}
+                                            <div class="col-xl-6">
+                                                <div class="card card-fluid mb-3">
+                                                    <!-- Card body -->
+                                                    <div class="card-body">
+                                                        <!-- App logo + status -->
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <div class="icon bg-{{ product.category.color|default:'dark' }} text-white rounded-circle icon-shape shadow" data-toggle="tooltip" data-placement="top" title="{{ product.category.title|capfirst }}">
+                                                                    <i class="fas fa-{{ product.category.icon|default:'book' }}"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                            {% if product.book.published and product.published %}
+                                                                <a href="{{ product.book.get_absolute_url }}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
+                                                                    <span class="btn-inner--text ml-1">
+                                                                        {% trans "read online"|capfirst %}
+                                                                    </span>
+                                                                </a>
+                                                            {% elif product.file %}
+                                                                <a href="{% url 'products:user_product_download' product.slug %}" class="btn btn-xs btn-neutral btn-icon rounded-pill">
+                                                                    <span class="btn-inner--text ml-1">
+                                                                        {% trans "download"|capfirst %}
+                                                                    </span>
+                                                                </a>
+                                                            {% else %}
+                                                                {% trans "not available" as default_courtesy_short_message %}
+                                                                <div class="d-block stretched-link" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="{{ product.courtesy_message }}">
+                                                                    <a href="" tabindex="0" class="btn btn-xs btn-secondary btn-icon rounded-pill ml-0">
+                                                                        <span class="btn-inner--text">{{ product.courtesy_short_message|default:default_courtesy_short_message }}</span>
+                                                                    </a>                                                
+                                                                </div>
+                                                            {% endif %}
+                                                            </div>
+                                                        </div>
+                                                        <!-- App title -->
+                                                        <div class="mt-3">
+                                                            <h6 class="mb-0"><a {% if product.book.published and product.published %}href="{{ product.get_absolute_url }}"{% else %}class="disabled"{% endif %}>{{ product.title|capfirst }}</a></h6>
+                                                            <p class="mb-0 text-sm text-muted">
+                                                                {{ product.abstract|capfirst }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            {% endif %}
                                             </div>
+                                            {% empty %}
+                                            <div class="col-lg-12 px-2">
+                                                <div class="card rounded-lg border-0">
+                                                    <div class="p-4 text-center text-sm-left">
+                                                        <h6 class="mb-0 text-muted">
+                                                            {% trans "This collection is empty." %}   
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>                          
+                                            {% endfor %} 
+                                        </div>
                                     </div>
-                                    <!-- App title -->
-                                    <div class="mt-3">
-                                        <h6 class="mb-0"><a {% if product.book.published and product.published %}href="{{ product.get_absolute_url }}"{% else %}class="disabled"{% endif %}>{{ product.title|capfirst }}</a></h6>
-                                        <p class="mb-0 text-sm text-muted">
-                                            {{ product.abstract|capfirst }}
-                                        </p>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
-                        {% empty %}
-                        <div class="col-lg-12 px-2">
-                            <div class="card rounded-lg border-0">
-                                <div class="p-4 text-center text-sm-left">
-                                    <h6 class="mb-0 text-muted">
-                                        {% trans "This collection is empty." %}   
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>                          
-                        {% endfor %}
                     </div>
                 </div>
+                {% endif %}
                 {% endif %}
 
                 {% if request.user == object %}

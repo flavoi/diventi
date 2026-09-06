@@ -199,6 +199,15 @@ class ProductCategoryQuerySet(models.QuerySet):
         ).distinct()
         return categories
 
+    # Returns categories related to products collected/purchased by the user
+    def collection(self, user):
+        collection_projects = Product.objects.user_collection(user).select_related('book')
+        categories = self.filter(projects__pk__in=collection_projects)
+        categories = categories.prefetch_related(
+            Prefetch('projects', queryset=collection_projects)
+        ).distinct()
+        return categories
+
 
 class ProductCategory(Element):
     """

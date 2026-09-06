@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.3.0] → 2026-08-30
+## [1.3.1] → 2026-09-06
 
 ### Added
 - [accounts] Introduced admin actions to export email of users that has agreed to gdpr
@@ -15,10 +15,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - [all] Refreshed hero sections visual style, unified brand typography, and aligned navigation dropdowns with a Semantic Color Coding system (Blog, Forum, Products)
+- [accounts] Encapsulated `select_related` and `prefetch_related` into `DiventiUserQuerySet` to eliminate heavy N+1 query joins on user profile relations
+- [accounts] Implemented lazy AJAX loading for the user modal profile (`#modal-profile`) to reduce overhead on global page rendering
+- [accounts] Converted profile settings, password changes, and privacy forms to fully asynchronous AJAX workflows with loading states and dynamic alerts
+- [accounts] Unified and cleaned up the template directory: removed legacy views, consolidated settings in `user_settings_quick.html`, and standardized partials with leading underscores (`_`)
+- [accounts] Locked `nametag` generation strictly to user creation time to preserve permanent permalinks when editing account details
+- [accounts] Improved `bio` field layout and auto-cleared input fields on failed or successful password changes to improve UX and security
 - [accounts] Enabled links for pdf attachments in the collection section
 - [blog] Enabled pinned articles to be displayed on the landing page without the need to be marked as featured too
+- [blog] Standardized article QuerySets to minimize redundant database roundtrips
+- [core] Cached static context processors (categories, suggestions, about articles) to drastically cut down SQL execution times across all pages
 - [forum] Redesigned base layout and top navigation toolbar to align with the new site UI theme and custom Terracotta palette
 - [landing] Changed reporting logic from sync to async to improve analytics response time
+- [landing] Optimized section fetching and reduced database overhead during home page rendering
 - [payments] Enabled anonymous users to buy pdfs from the website without signing up
 - [products] Optimized Front End rendering and database performance on detail and list views by enabling relationship prefetching and fixing N+1 queries
 
@@ -29,6 +38,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [landing] Removed legacy dependencies from the business logic
 
 ### Fixed
+- [accounts] Resolved session invalidation issues (`update_session_auth_hash`) during AJAX password updates
+- [accounts] Prevented duplicate flash messages from lingering in session storage during asynchronous form submissions
 - [forum] Fixed machina layout dependencies and link handling on category navigation
 - [machina] Fixed a problem that prevented some pages to be displayed due to legacy dependencies being broken
 

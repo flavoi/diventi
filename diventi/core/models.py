@@ -145,9 +145,13 @@ class Element(models.Model):
 
     def icon_tag(self):
         if self.icon:
-            return mark_safe('<i data-feather="{}"></i>'.format(self.icon))
+            # Assicura il prefisso 'fa-' se non è già presente a DB
+            icon_name = self.icon if self.icon.startswith('fa-') else f'fa-{self.icon}'
+            
+            # Genera la classe standard Font Awesome: 'fa fa-nomeicona'
+            return mark_safe(f'<i class="fa {icon_name}"></i>')
         else:
-            return _('No icon')    
+            return _('No icon')
     icon_tag.short_description = _('Icon')
 
     def color_tag(self):

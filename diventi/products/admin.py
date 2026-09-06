@@ -117,13 +117,13 @@ class ProductAdmin(DiventiTranslationAdmin):
 
 
 class ProductCategoryAdmin(DiventiTranslationAdmin, DiventiIconAdmin):
-    list_display = ('title', 'color_tag', 'meta_category')
+    list_display = ('title', 'icon_tag', 'color_tag', 'meta_category')
     fieldsets = (
         (_('Management'), {
             'fields': ('meta_category',)
         }),
         (_('Multimedia'), {
-            'fields': ('color',),
+            'fields': ('icon', 'color',),
         }),
         (_('Editing'), {
             'fields': ('title', 'title_plural', 'slug'),

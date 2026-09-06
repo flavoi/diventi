@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+    <!-- Metatag OpenGraph -->
     {% block opengraph %}
         {% block base_opengraph %}
             <meta property="og:title" content="{% if graph_section.subtitle %}{{ graph_section.subtitle }}{% else %}Diventi{% endif %}" />
@@ -35,7 +36,7 @@
     <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
     <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">    
     
-    <!-- CSS Preloads & Main Styles -->
+    <!-- Preload Risorse CSS e Stili Principali -->
     <link rel="preload" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{% static 'quick-v110/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css' %}"></noscript>
     
@@ -46,8 +47,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- CSS In-line Ottimizzato -->
+    <!-- Stili Custom e Override In-line -->
     <style>
+        /* 1. Gestione Layout di Base e Scrollbar Modali */
+        html {
+            overflow-y: scroll !important;
+        }
+
+        body.modal-open {
+            padding-right: 0 !important;
+            overflow-y: scroll !important;
+        }
+
+        .fixed-top,
+        body.modal-open .fixed-top,
+        #header-main,
+        #navbar-main {
+            padding-right: 0 !important;
+            margin-right: 0 !important;
+            width: 100% !important;
+        }
+
+        body.modal-open #navbar-main .container {
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+
+        /* 2. Font Personali */
         @font-face {
             font-family: Kravitz;
             src: url('{% static "fonts/Kravitz.woff2" %}') format('woff2'),
@@ -75,6 +101,7 @@
             font-display: swap;
         }
 
+        /* 3. Tipografia Brand */
         .diventi-font {
             font-family: 'Kravitz Thermal';
             font-weight: 400;
@@ -88,43 +115,39 @@
             content: "\f007";
         }
 
+        .diventi-font-title,
+        .card-body h5, 
+        .card-body .h5 {
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
         .honeypot {
             display: none;
         }
 
-        .diventi-font-title {
-            font-family: 'Rajdhani', sans-serif;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .card-body h5, .card-body .h5 {
-            font-family: 'Rajdhani', sans-serif;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
+        /* 4. Badge Custom */
         .badge-soft-purple {
-            color: #6b21a8 !important; /* Testo viola scuro ed elegante */
-            background-color: #f3e8ff !important; /* Sfondo viola chiaro/sfumato */
+            color: #6b21a8 !important;
+            background-color: #f3e8ff !important;
         }
 
         .badge-soft-indigo {
-            color: #4338ca !important;            /* Testo indaco scuro ad alto contrasto */
-            background-color: #e0e7ff !important;   /* Sfondo indaco chiaro/pastello */
+            color: #4338ca !important;            
+            background-color: #e0e7ff !important;   
         }
 
-        /* Sfondo Terracotta Custom per Hero Section */
+        /* 5. Colori e Gradienti Tema */
         .bg-terracotta {
             background-color: #ea580c !important;
         }
 
-        /* Variante sfumata / gradient per l'Hero (opzionale) */
         .bg-gradient-terracotta {
             background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%) !important;
         }
 
-        /* Pulsante Ricerca Navbar */
+        /* 6. Pulsante di Ricerca (Navbar Principale) */
         .btn-soft-secondary {
             background-color: rgba(255, 255, 255, 0.05) !important;
             border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -138,25 +161,58 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
+        .navbar-light .btn-soft-secondary {
+            background-color: rgba(15, 23, 42, 0.05) !important;
+            border-color: rgba(15, 23, 42, 0.15) !important;
+            color: #0f172a !important;
+        }
+
+        .navbar-light .btn-soft-secondary span {
+            color: #0f172a !important;
+        }
+
+        .navbar-light .btn-soft-secondary:hover {
+            background-color: rgba(15, 23, 42, 0.1) !important;
+            border-color: rgba(15, 23, 42, 0.3) !important;
+            color: #0f172a !important;
+        }
+
+        .navbar-dark .btn-soft-secondary {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+        }
+
+        .navbar-dark .btn-soft-secondary span {
+            color: #ffffff !important;
+        }
+
+        .navbar-dark .btn-soft-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+            color: #ffffff !important;
+        }
+
+        /* 7. Pulsante di Ricerca (Overlay Mobile) */
         @media (max-width: 991.98px) {
             #navbar-main-collapse .btn-soft-secondary {
-                background-color: #f1f5f9 !important; /* Sfondo grigio chiaro */
-                border: 1px solid #cbd5e1 !important;  /* Bordo grigio visibile */
-                color: #0f172a !important;            /* Testo scuro */
+                background-color: #f1f5f9 !important;
+                border: 1px solid #cbd5e1 !important;  
+                color: #0f172a !important;            
             }
 
             #navbar-main-collapse .btn-soft-secondary span {
-                color: #0f172a !important;            /* Forza il testo "Search..." in scuro */
+                color: #0f172a !important;            
             }
 
             #navbar-main-collapse .btn-soft-secondary:hover,
             #navbar-main-collapse .btn-soft-secondary:active {
-                background-color: #e2e8f0 !important; /* Sfondo leggermente più scuro al tocco */
+                background-color: #e2e8f0 !important;
                 border-color: #94a3b8 !important;
             }
         }
 
-        /* Preloader Styles */
+        /* 8. Preloader */
         @keyframes hidePreloader {
             0% { width: 100%; height: 100%; }
             100% { width: 0; height: 0; }
@@ -180,45 +236,9 @@
         body:not(.loaded)>div.preloader { opacity: 1; }
         body:not(.loaded) { overflow: hidden; }
         body.loaded>div.preloader { animation: hidePreloader .5s linear .5s forwards; }
-        body.modal-open { overflow: visible; }
-        .modal-open[style] { padding-right: 0px !important; }
-
-        /* 1. Quando la navbar è in TEMA CHIARO (.navbar-light) */
-        .navbar-light .btn-soft-secondary {
-            background-color: rgba(15, 23, 42, 0.05) !important;
-            border-color: rgba(15, 23, 42, 0.15) !important;
-            color: #0f172a !important; /* Testo scuro ben leggibile */
-        }
-
-        .navbar-light .btn-soft-secondary span {
-            color: #0f172a !important;
-        }
-
-        .navbar-light .btn-soft-secondary:hover {
-            background-color: rgba(15, 23, 42, 0.1) !important;
-            border-color: rgba(15, 23, 42, 0.3) !important;
-            color: #0f172a !important;
-        }
-
-        /* 2. Quando la navbar è in TEMA SCURO (.navbar-dark) */
-        .navbar-dark .btn-soft-secondary {
-            background-color: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.2) !important;
-            color: #ffffff !important; /* Testo bianco */
-        }
-
-        .navbar-dark .btn-soft-secondary span {
-            color: #ffffff !important;
-        }
-
-        .navbar-dark .btn-soft-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.15) !important;
-            border-color: rgba(255, 255, 255, 0.4) !important;
-            color: #ffffff !important;
-        }
     </style>
 
-    <!-- Core & Plugin JS Spostati nel HEAD con DEFER -->
+    <!-- Script Librerie Core & Plugin (Caricamento Defer) -->
     <script src="{% static 'quick-v110/libs/jquery/dist/jquery.min.js' %}" defer></script> 
     <script src="{% static 'quick-v110/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}" defer></script>
     <script src="{% static 'quick-v110/libs/svg-injector/dist/svg-injector.min.js' %}" defer></script>
@@ -238,6 +258,7 @@
 </head>
 
 <body {% block extrabody %}{% endblock extrabody%}>
+    <!-- Preloader Screen -->
     {% block preloadermodal %}
     <div class="preloader">
         <div class="spinner-border text-primary" role="status">
@@ -246,6 +267,7 @@
     </div>    
     {% endblock preloadermodal %}
 
+    <!-- Modale Cookie Policy -->
     {% block cookiesmodal %}
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-cookies" data-backdrop="false" aria-labelledby="modal-cookies" aria-hidden="true">
         <div class="modal-dialog modal-dialog-aside left-4 right-4 bottom-4">
@@ -261,30 +283,32 @@
     </div>
     {% endblock cookiesmodal %}
 
+    <!-- Modale Profilo Utente -->
     {% block usermodal %}
     {% include 'accounts/user_detail_quick_modal.html' %}
     {% endblock usermodal %}
     
+    <!-- Intestazione e Navigation Bar -->
     {% block header %}    
     <header class="{% block headerclass %}{% endblock headerclass %}" id="header-main">
         {% block navbar %}
             <nav class="navbar navbar-main navbar-expand-lg {% block navbarclass %}navbar-light shadow{% endblock navbarclass %}" id="navbar-main" style="{% block navbarstyle %}{% endblock navbarstyle %}">
                 <div class="container">
                     
-                    <!-- 1. TOGGLER MOBILE (Per aprire il menu) -->
+                    <!-- Menu Toggler Mobile -->
                     <button class="navbar-toggler order-2 ml-auto ml-lg-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     
-                    <!-- 2. BRAND / LOGO -->
+                    <!-- Brand / Logo -->
                     <a class="navbar-brand diventi-font order-1 order-lg-1 ml-3 ml-lg-0" href="{% url 'landing:home' %}">
                         Diventi
                     </a>
                     
-                    <!-- 3. COLLAPSE (Menu tendina + Cerca) -->
-                    <div class="collapse navbar-collapse navbar-collapse-overlay order-3 order-lg-2  pt-1" id="navbar-main-collapse">
+                    <!-- Contenuto Menu Collapse -->
+                    <div class="collapse navbar-collapse navbar-collapse-overlay order-3 order-lg-2 pt-1" id="navbar-main-collapse">
                         
-                        <!-- Toggler di chiusura overlay mobile -->
+                        <!-- Pulsante di Chiusura Overlay Mobile -->
                         <div class="position-relative d-lg-none">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                                 <i data-feather="x"></i>
@@ -293,14 +317,14 @@
                         
                         <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center w-100">
                             
-                            <!-- Link di navigazione principali -->
+                            <!-- Link Principali -->
                             <div class="order-2 order-lg-1 flex-grow-1">
                                 {% block navbar_links %}
                                     {% include "base_quick_navbar_links.html" %}
                                 {% endblock navbar_links %}
                             </div>
 
-                            <!-- Pulsante Cerca -->                            
+                            <!-- Pulsante Omnisearch -->                            
                             <div class="order-1 order-lg-2 my-3 my-lg-0 ml-lg-3 px-3 px-lg-0">
                                 <a href="#"
                                    data-action="omnisearch-open"
@@ -315,7 +339,7 @@
                         </div>
                     </div>
 
-                    <!-- 4. AREA UTENTE / AUTH (Rimane SEMPRE visibile nella barra principale) -->
+                    <!-- Profilo Utente / Auth Button -->
                     {% if user.is_authenticated %}
                         {% block navbar_user_profile %}
                         <div class="order-4 ml-lg-3">
@@ -337,7 +361,7 @@
     </header>
     {% endblock header %}
     
-    
+    <!-- Modale Omnisearch -->
     {% block omnisearch %}
     <div id="omnisearch" class="omnisearch">
         <div class="container">
@@ -373,6 +397,7 @@
     </div>
     {% endblock omnisearch %}
 
+    <!-- System Messages & Alerts -->
     {% if messages %}
         {% for message in messages %}
         <div class="fixed-top">
@@ -399,10 +424,12 @@
         {% endfor %}
     {% endif %}
 
+    <!-- Contenuto Principale della Pagina -->
     {% block basecontent %}
     {% block content %}{% endblock content %}
     {% endblock basecontent %}
 
+    <!-- Footer di Pagina -->
     {% block footer %}
     <footer class="position-relative" id="footer-main">
         <div class="footer {% block footer_style %}pt-lg-7 footer-dark bg-dark{% endblock footer_style %}">
@@ -458,14 +485,15 @@
     </footer>
     {% endblock footer %}
 
+    <!-- Script In-line Globali -->
     <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
-        // Gestione Preloader
+        // 1. Inizializzazione Preloader Screen
         setTimeout(function() {
             document.querySelector('body').classList.add('loaded');
         }, 300);
 
-        // Inizializzazione Feather Icons
+        // 2. Inizializzazione Feather Icons Globale
         if (typeof feather !== 'undefined') {
             feather.replace({
                 'width': '1em',
@@ -473,7 +501,7 @@
             });
         }
 
-        // Gestione Omnisearch & Modali con jQuery
+        // 3. Gestione Interazioni Omnisearch
         $('.searchs').on('click', function () {
             var text = $('#search_text');
             text.val($(this).attr('data-value'));
@@ -487,7 +515,7 @@
            });            
         });
 
-        // Caricamento AJAX per il Modale Profilo Utente
+        // 4. Caricamento Asincrono Profilo Utente (Modal Profile AJAX)
         var modalProfileLoaded = false;
         $('#modal-profile').on('show.bs.modal', function() {
             if (!modalProfileLoaded) {
@@ -498,7 +526,6 @@
                         $('#modal-profile-body').html(response.html);
                         modalProfileLoaded = true;
                         
-                        // Re-inizializzazione icone Feather per gli elementi caricati dinamicamente
                         if (typeof feather !== 'undefined') {
                             feather.replace({'width': '1em', 'height': '1em'});
                         }
@@ -510,7 +537,7 @@
             }
         });
 
-        // Popovers e Tooltips
+        // 5. Inizializzazione Popover e Tooltip Bootstrap
         if (typeof $().popover === 'function') {
             $('[data-toggle="popover"]').popover();
             $('[data-toggle="tooltip"]').tooltip();

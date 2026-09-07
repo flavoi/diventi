@@ -253,7 +253,7 @@
                 <div class="card hover-translate-y-n3 hover-shadow-lg overflow-hidden card-fluid border-0 shadow-sm">
                     <div class="position-relative overflow-hidden">
                         <a href="{{ pinned_product.get_absolute_url }}" class="d-block">
-                            <img loading="lazy" src="{{ pinned_product.cover_secondary.image|default:'https://diventi-assets.s3.us-east-1.amazonaws.com/media/cover-blog-diventi.jpg' }}" alt="{{ pinned_product.title|capfirst }}" class="card-img-top">
+                            <img loading="lazy" src="{{ pinned_product.cover_primary.image|default:'https://diventi-assets.s3.us-east-1.amazonaws.com/media/cover-blog-diventi.jpg' }}" alt="{{ pinned_product.title|capfirst }}" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body py-4">

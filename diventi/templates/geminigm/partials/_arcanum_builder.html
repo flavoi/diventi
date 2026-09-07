@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-muted text-xs font-weight-bold uppercase">{% trans "HP REMOVED FROM OPPONENTS:" %}</span>
-                                    <span id="spell-damage" class="text-dark font-weight-bold">3 HP</span>
+                                    <span id="spell-damage" class="badge badge-pill badge-primary font-weight-bold px-3">3</span>
                                 </div>
                             </div>
                         </div>
@@ -126,12 +126,10 @@
 <!-- In cima, prima dello script dell'Arcanum -->
 {% trans 'The Arcanum is gathering power...' as arcanum_loading_msg %}
 {% trans 'The Arcanum must recover power... Try again later.' as arcanum_fallback_msg %}
-{% trans 'HP' as hp_msg %}
 
 <script type="text/javascript">
 const i18nLoading = "{{ arcanum_loading_msg|escapejs }}";
 const i18nFallbackMsg = "{{ arcanum_fallback_msg|escapejs }}";
-const i18nHpUnit = "{{ hp_msg|escapejs }}";
 
 function updateStats() {
     const formaElem = document.getElementById('spell-forma');
@@ -148,7 +146,7 @@ function updateStats() {
     const damage = Math.max(0, intensity + 1);
 
     document.getElementById('spell-intensity').innerText = intensity;
-    document.getElementById('spell-damage').innerText = `${damage} ${i18nHpUnit}`;
+    document.getElementById('spell-damage').innerText = `${damage}`;
 }
 
 function calculateSpellFallback() {
@@ -213,7 +211,8 @@ function generateAISpellName() {
     .then(data => {
         if (data.success) {
             spellNameElem.innerText = data.name;
-            spellDescElem.innerText = data.description;
+            // Rimuove eventuali citazioni isolate "HP" o "hp" restituite dal modello IA
+            spellDescElem.innerText = data.description.replace(/\bHP\b/gi, '').trim();
         } else {
             calculateSpellFallback();
         }

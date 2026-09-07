@@ -241,7 +241,7 @@
                             {{ pinned_article.title|capfirst }}
                         </a>
                         <p class="mt-3 mb-0 lh-170 text-muted text-sm">
-                            {{ pinned_article.description|truncatechars:200|safe }}
+                            {{ pinned_article.description|truncatechars:200|striptags }}
                         </p>
                     </div>
                 </div>
@@ -267,7 +267,7 @@
                             {{ pinned_product.title|capfirst }}
                         </a>
                         <p class="mt-3 mb-0 lh-170 text-muted text-sm">
-                            {{ pinned_product.abstract|truncatechars:200 }}
+                            {{ pinned_product.abstract|truncatechars:200|striptags }}
                         </p>
                     </div>
                 </div>

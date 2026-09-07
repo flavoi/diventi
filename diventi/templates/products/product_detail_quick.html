@@ -84,7 +84,7 @@
                 <div class="card border-0 shadow-sm p-4 p-md-5 rounded-lg mb-4">
                     <h3 class="h4 font-weight-bold text-dark mb-3">{% trans "About this game" %}</h3>
                     <div class="lh-180 text-muted text-sm">
-                        {{ product.description|linebreaks }}
+                        {{ product.description|linebreaks|striptags }}
                     </div>
                 </div>
 
@@ -248,7 +248,7 @@
                     </div>
                     <div>
                         <h6 class="font-weight-bold text-dark mb-1">{{ detail.title|capfirst }}</h6>
-                        <p class="text-xs text-muted mb-0 lh-150">{{ detail.description|capfirst }}</p>
+                        <p class="text-xs text-muted mb-0 lh-150">{{ detail.description|capfirst|striptags }}</p>
                     </div>
                 </div>
             </div>

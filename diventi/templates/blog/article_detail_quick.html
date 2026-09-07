@@ -179,7 +179,7 @@
                         </a>
                         
                         <p class="text-muted text-sm mb-4 flex-grow-1 lh-160">
-                            {{ article.description|truncatechars:120|safe }}
+                            {{ article.description|truncatechars:120|striptags }}
                         </p>
                         
                         <div class="pt-3 border-top border-gray-100 d-flex align-items-center justify-content-between text-xs text-muted">

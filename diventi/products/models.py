@@ -11,7 +11,6 @@ from django.utils.functional import cached_property
 from django.contrib.humanize.templatetags.humanize import naturalday
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericRelation
-from django.utils.functional import cached_property
 
 from machina.apps.forum_conversation.models import Topic
 
@@ -29,7 +28,6 @@ from diventi.core.models import (
     TimeStampedModel,
     PublishableModel,
     PublishableModelQuerySet,
-    Element,
     SectionModel,
     HighlightedModel,
     DiventiColModel,
@@ -90,35 +88,26 @@ class ProductQuerySet(FeaturedModelQuerySet):
         products = self.filter(customers=user)
         if current_user != user:
             products = products.published()
-        # Usa prefetch_basic per non caricare capitoli e dettagli inutili
         return products.prefetch_basic()
 
     def user_authored(self, user):
         products = self.filter(authors=user)
-        # Usa prefetch_basic
         return products.prefetch_basic()
 
-    # Get the list of published products of a certain category
     def category(self, category_slug):
         products = self.published().filter(category__slug=category_slug)
         products = products.exclude(category__meta_category=True)
         return products
 
-    # Returns the list of featured products
     def hot(self):
         return self.filter(featured=True)
 
-    # Exclude hot products
     def not_hot(self):
-        products = self.exclude(featured=True)
-        return products
+        return self.exclude(featured=True)
 
-    # Get the list of published products but excludes the hot ones
     def published_but_not_hot(self):
-        products = self.published().not_hot()
-        return products
+        return self.published().not_hot()
 
-    # Get the latest product that has public access
     def latest_public(self):
         try:
             product = self.published().filter(public=True).latest('publication_date')
@@ -126,50 +115,38 @@ class ProductQuerySet(FeaturedModelQuerySet):
             product = self.none()
         return product
 
-    # Get public products only
     def public(self):
-        products = self.filter(public=True)
-        return products
+        return self.filter(public=True)
 
-    # Get the published products, counted by their book hitcount
     def hit_count_book(self):
+        """Prodotti pubblicati ordinati in base alle visite del libro collegato."""
         products = self.published()
-        products = products.prefetch()
-        products = products.prefetch_hitcount()
+        products = products.prefetch_basic()
         products = products.order_by('-book__hit_count_generic__hits')
         return products
 
-    # Get the most popular products, counted by django hitcount
     def public_popular(self):
-        products = self.hit_count_book().public()[:3]
-        return products
+        return self.hit_count_book().public()[:3]
 
-    # Get the most popular, public products, counted by django hitcount
     def public_recent(self):
         products = self.hit_count()
         products = products.public()
         products = products.order_by('-publication_date')[:3]
         return products
 
-    # Get the published products, counted by their own hitcount
     def hit_count(self):
+        """Prodotti pubblicati ordinati in base alle proprie visite."""
         products = self.published()
-        products = products.prefetch()
-        products = products.prefetch_hitcount()
+        products = products.prefetch_basic()
         products = products.order_by('-hit_count_generic__hits')
         return products
 
-    # Exclude public products        
     def not_public(self):
-        products = self.exclude(public=True)
-        return products
+        return self.exclude(public=True)
 
-    # Get the most popular, private products, counted by django hitcount
     def private_popular(self):
-        products = self.hit_count().not_public()
-        return products
+        return self.hit_count().not_public()
 
-    # Return products that are not playtest material, for non-playtester
     def published(self):
         products = self.filter(published=True)
         current_user = CuserMiddleware.get_user()
@@ -180,17 +157,13 @@ class ProductQuerySet(FeaturedModelQuerySet):
 
 class ProductCategoryQuerySet(models.QuerySet):
 
-    # Meta categories won\'t be listed in search results, nor on reporting pages.
-    # In addition, we show categories that are related to published projects only.
     def visible(self):
         categories = self.exclude(meta_category=True)
         published_projects = Product.objects.published()
-        categories = categories.filter(projects__pk__in=published_projects) # Exclude empty categories
+        categories = categories.filter(projects__pk__in=published_projects)
         categories = categories.prefetch_related(Prefetch('projects', queryset=published_projects)).distinct()
         return categories
 
-    # Returns categories related to projects authored by the user
-    # Useful to display projects grouped by their categories
     def authored(self, user):
         authored_projects = Product.objects.user_authored(user).select_related('book')
         categories = self.filter(projects__pk__in=authored_projects)
@@ -199,7 +172,6 @@ class ProductCategoryQuerySet(models.QuerySet):
         ).distinct()
         return categories
 
-    # Returns categories related to products collected/purchased by the user
     def collection(self, user):
         collection_projects = Product.objects.user_collection(user).select_related('book')
         categories = self.filter(projects__pk__in=collection_projects)
@@ -376,7 +348,7 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         HitCount, 
         object_id_field='object_pk',
         related_query_name='hit_count_generic_relation'
-    ) # Counts the views on this model
+    )
     playtest_material = models.BooleanField(
         default=False,
         verbose_name=_('playtest material'),
@@ -385,10 +357,6 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
 
     @property
     def get_cover_url(self):
-        """
-        Restituisce l'URL dell'immagine disponibile (image, cover_secondary, cover_primary)
-        o l'immagine di default su S3 se nessuna copertina è presente.
-        """
         if self.cover_secondary and self.cover_secondary.image:
             return self.cover_secondary.image
         if self.cover_primary and self.cover_primary.image:
@@ -399,7 +367,6 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
 
     @property
     def is_available(self):
-        """Verifica se il prodotto ha almeno una risorsa fruibile."""
         has_book = bool(hasattr(self, 'book') and self.book.published)
         has_gemma = bool(hasattr(self, 'gemma') and self.gemma.active)
         has_file = bool(self.file)
@@ -407,16 +374,12 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
 
     @property
     def can_be_played(self):
-        """Verifica le condizioni per accedere a Gemma."""
         if not (hasattr(self, 'gemma') and self.gemma.active):
             return False
         return not self.unfolded or (self.unfolded and getattr(self, 'bought', False))
 
     @cached_property
     def price_description(self):
-        """
-        Recupera il prezzo da Stripe formattato con valuta.
-        """
         if not self.stripe_price:
             return None
         try:
@@ -470,21 +433,18 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         queryset_public = Product.objects.public_popular()        
         results = []
         for product in queryset_public:
-            if hasattr(product, "book"):
-                title = product.book.hit_count.hits
-                description = product.book.hit_count.hits_in_last(days=7) 
+            if hasattr(product, "book") and product.book and hasattr(product.book, "hit_count_generic"):
+                hit_obj = product.book.hit_count_generic.first()
+                title = hit_obj.hits if hit_obj else 0
+                description = hit_obj.hits_in_last(days=7) if hit_obj else 0
             else:
-                title = ''
-                description = ''
+                title = 0
+                description = 0
             results.append({
                 'columns': 4,
-                'name': '%(product)s' % {
-                    'product': product.title,
-                },
+                'name': product.title,
                 'title': title,
-                'description1': _('views in the last week: %(d)s') % {
-                    'd': description,
-                },
+                'description1': _('views in the last week: %(d)s') % {'d': description},
                 'description2': '',
                 'action': '',
             })
@@ -494,21 +454,18 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         queryset_public = Product.objects.public_recent()
         results = []
         for product in queryset_public:
-            if hasattr(product, "book"):
-                title = product.book.hit_count.hits
-                description = product.book.hit_count.hits_in_last(days=7)
+            if hasattr(product, "book") and product.book and hasattr(product.book, "hit_count_generic"):
+                hit_obj = product.book.hit_count_generic.first()
+                title = hit_obj.hits if hit_obj else '-'
+                description = hit_obj.hits_in_last(days=7) if hit_obj else '-'
             else:
                 title = '-'
                 description = '-'
             results.append({
                 'columns': 4,
-                'name': '%(product)s' % {
-                    'product': product.title,
-                },
+                'name': product.title,
                 'title': title,
-                'description1': _('views in the last week: %(d)s') % {
-                    'd': description,
-                },
+                'description1': _('views in the last week: %(d)s') % {'d': description},
                 'description2': '',
                 'action': '',
             })
@@ -520,75 +477,66 @@ class Product(HitCountMixin, TimeStampedModel, FeaturedModel, DiventiImageModel,
         for product in queryset_not_public:
             last_purchase = Purchase.objects.last_purchase(product)
             prefix = _('Last purchase')
+            
+            prod_hit = product.hit_count_generic.first()
+            prod_hits = prod_hit.hits if prod_hit else 0
+            prod_hits_week = prod_hit.hits_in_last(days=7) if prod_hit else 0
+
             results.append({
                 'columns': 6,
-                'name': _('%(product)s: total customers') % {
-                    'product': product.title,
-                },
+                'name': _('%(product)s: total customers') % {'product': product.title},
                 'title': product.customers.count(),
                 'description1': '',
-                'description2': last_purchase.get_description(prefix) if last_purchase is not None else prefix + ': -',
+                'description2': last_purchase.get_description(prefix) if last_purchase else f"{prefix}: -",
                 'action': '',
             })
 
             results.append({
                 'columns': 3,
-                'name': _('%(product)s: product views') % {
-                    'product': product.title,
-                },
-                'title': product.hit_count.hits,
-                'description1': _('views in the last week:: %(d)s') % {
-                    'd': product.hit_count.hits_in_last(days=7),
-                },
+                'name': _('%(product)s: product views') % {'product': product.title},
+                'title': prod_hits,
+                'description1': _('views in the last week: %(d)s') % {'d': prod_hits_week},
                 'description2': '',
                 'action': ''
             })
 
-            if hasattr(product, "book"):
-                title = product.book.hit_count.hits
-                description = product.book.hit_count.hits_in_last(days=7)
+            if hasattr(product, "book") and product.book and hasattr(product.book, "hit_count_generic"):
+                book_hit = product.book.hit_count_generic.first()
+                book_hits = book_hit.hits if book_hit else '-'
+                book_hits_week = book_hit.hits_in_last(days=7) if book_hit else '-'
             else:
-                title = '-'
-                description = '-'
+                book_hits = '-'
+                book_hits_week = '-'
 
             results.append({
                 'columns': 3,
-                'name': _('%(product)s: book views') % {
-                    'product': product.title,
-                },
-                'title': title,
-                'description1': _('views in the last week:: %(d)s') % {
-                    'd': description,
-                },
+                'name': _('%(product)s: book views') % {'product': product.title},
+                'title': book_hits,
+                'description1': _('views in the last week: %(d)s') % {'d': book_hits_week},
                 'description2': '',
                 'action': ''
             })
         return results
 
     def user_has_already_bought(self, user):
-        """Controllo rapido EXISTS a DB senza caricare oggetti M2M in memoria."""
         if not user or not user.is_authenticated:
             return False
         return self.customers.filter(pk=user.pk).exists()
 
     def user_has_authored(self, user):
-        """Controllo rapido EXISTS per gli autori."""
         if not user or not user.is_authenticated:
             return False
         return self.authors.filter(pk=user.pk).exists()
 
-    # Returns the default currency of any product
     def get_currency(self):
         return 'EUR'
 
-    # Returns the publishable status of the product
     def get_status(self): 
         if self.published:
             return _('published')
         else:
             return _('draft')
 
-    # Returns true if the product has to be paid by the customer
     def _at_a_premium(self):
         if self.stripe_product and self.stripe_price:
             return True
@@ -628,7 +576,7 @@ class ChapterCategory(Element):
 
 class Chapter(Element, DiventiImageModel):
     """ A specific chapter of a product."""
-    product = models.ForeignKey(Product, null=True, related_name='chapters', verbose_name=_('product'), on_delete=models.SET_NULL)     
+    product = models.ForeignKey(Product, null=True, related_name='chapters', verbose_name=_('product'), on_delete=models.SET_NULL)      
     category = models.ForeignKey(ChapterCategory, null=True, verbose_name=_('category'), on_delete=models.SET_NULL)
 
     class Meta:
@@ -647,14 +595,11 @@ class ImagePreview(Element, DiventiImageModel):
 
 class PurchaseQuerySet(models.QuerySet):
 
-    # Prefetch all relevant data
     def related(self):
         purchases = self.select_related('customer')
         purchases = purchases.select_related('product')
         return purchases
 
-    # Returns the users that purchased the product
-    # with "lan" as main language
     def customers(self, product, lan=None):
         purchases = self.filter(product=product)
         customers_id = purchases.values_list('customer')
@@ -665,16 +610,12 @@ class PurchaseQuerySet(models.QuerySet):
         customers = customers.is_active()
         return customers
 
-    # Returns the emails of users that purchased the product
-    # with "lan" as main language
     def customers_emails(self, product, lan):
         customers = self.customers(product, lan)
         customers = customers.has_agreed_gdpr()
         customers = customers.values_list('email', flat=True)
         return customers
 
-    # Returns the last customer that has purchased the product
-    # with "lan" as main language
     def last_purchase(self, product, lan=None):
         purchases = self.related()
         purchases = purchases.filter(product=product)
@@ -694,12 +635,9 @@ class Purchase(TimeStampedModel):
         verbose_name = _('Purchase')
         verbose_name_plural = _('Purchases')
 
-
     def __str__(self):
         return _('Purchase: %(id)s') % {'id': self.id}
 
-    # Returns the description of the purchase
-    # Or none if none is found
     def get_description(self, prefix):
         description = _('%(prefix)s: %(last_pur)s on %(created)s') % {
             'prefix': prefix,
@@ -737,10 +675,8 @@ class ProductDownloadSession(TimeStampedModel):
     )
 
     def is_valid(self, validity_minutes=15):
-        """Controlla se siamo ancora nella finestra temporale valida."""
         now = timezone.now()
         diff = now - self.created
-        # Trasforma la differenza in minuti
         diff_minutes = diff.total_seconds() / 60
         return diff_minutes < validity_minutes
 
@@ -750,4 +686,3 @@ class ProductDownloadSession(TimeStampedModel):
     class Meta:
         verbose_name = _('Download session')
         verbose_name_plural = _('Download sessions')
-

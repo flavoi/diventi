@@ -74,36 +74,36 @@
         <div class="d-flex flex-wrap align-items-center mt-4" style="gap: 12px;">
           
         {% if bought or authored %}
-          {% with current_lang=request.resolver_match.kwargs.language_code %}
+          {% get_current_language as GLOBAL_LANG %}
+          {% comment %}
+            Recupera il parametro 'language_code' dall'URL della rotta custom.
+            Se non esiste (es. rotta standard), usa la lingua globale di Django.
+          {% endcomment %}
+          {% firstof request.resolver_match.kwargs.language_code current_language GLOBAL_LANG|slice:':2' as ACTIVE_LANG %}
+
           <div class="btn-group" role="group" aria-label="Language Selector">
             <!-- Tasto IT -->
             <a href="{% url 'ebooks:book-detail-customlan' book.slug 'it' %}" 
-               class="btn btn-sm btn-outline-light d-inline-flex align-items-center font-weight-bold shadow-sm {% if current_lang == 'it' or not current_lang %}active bg-white text-dark{% endif %}">
+               class="btn btn-sm btn-outline-light d-inline-flex align-items-center font-weight-bold shadow-sm {% if ACTIVE_LANG|lower == 'it' %}active bg-white text-dark{% endif %}">
               <img src="{% static 'quick-v110/img/icons/flags/it.svg' %}" alt="IT" class="mr-1" style="width: 16px;">
               IT
             </a>
 
             <!-- Tasto EN -->
             <a href="{% url 'ebooks:book-detail-customlan' book.slug 'en' %}" 
-               class="btn btn-sm btn-outline-light d-inline-flex align-items-center font-weight-bold shadow-sm {% if current_lang == 'en' %}active bg-white text-dark{% endif %}">
+               class="btn btn-sm btn-outline-light d-inline-flex align-items-center font-weight-bold shadow-sm {% if ACTIVE_LANG|lower == 'en' %}active bg-white text-dark{% endif %}">
               <img src="{% static 'quick-v110/img/icons/flags/gb.svg' %}" alt="EN" class="mr-1" style="width: 16px;">
               EN
             </a>
           </div>
-          {% endwith %}
         {% endif %}
           
           {% if book.book_product.related_forum_topic %}
             {% with book.book_product.related_forum_topic as topic %}
-              <!--
-              <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" 
-                 class="btn btn-sm btn-info font-weight-bold shadow-sm">
-                {% trans 'comment on forum'|capfirst %}
-              </a>-->
               <a href="{% url 'forum_conversation:topic' topic.forum.slug topic.forum.pk topic.slug topic.pk %}" class="btn btn-white btn-sm text-dark font-weight-bold shadow-sm ml-2" target="_blank">
                 <i class="fa-solid fa-comments mr-1" style="color: #ea580c;"></i>
                 {% trans 'comment on forum'|capfirst %}
-                </a>
+              </a>
             {% endwith %}
           {% endif %}
 

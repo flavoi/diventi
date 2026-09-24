@@ -5,11 +5,11 @@
 {% load comments %}
 
 {% block base_opengraph %}
-<meta property="og:title" content="Diventi: {{ blogcover.title }}" />
+<meta property="og:title" content="Diventi: {{ blogcover.title|safe|capfirst }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 <meta property="og:image" content="{{ blogcover.image }}" />
-<meta property="og:description" content="{{ blogcover.description }}" />
+<meta property="og:description" content="{{ blogcover.description|safe|capfirst }}" />
 {% endblock base_opengraph %}
 
 {% block extrahead %}
@@ -113,10 +113,10 @@
                     <!-- Card Body (Titolo + Descrizione) -->
                     <div class="card-body pt-5 mt-auto position-relative zindex-10">
                         <a href="{% url 'blog:detail' article.slug %}" class="d-block h4 text-white font-weight-bold mb-2 stretched-link">
-                            {{ article.title }}
+                            {{ article.title|safe|capfirst }}
                         </a>
                         <p class="mb-0 text-white-50 text-sm lh-160">
-                            {{ article.description|truncatechars:160|striptags }}
+                            {{ article.description|truncatechars:160|striptags|safe|capfirst }}
                         </p>
                     </div>
 

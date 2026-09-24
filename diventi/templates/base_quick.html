@@ -13,12 +13,12 @@
     <!-- Metatag OpenGraph -->
     {% block opengraph %}
         {% block base_opengraph %}
-            <meta property="og:title" content="{% if graph_section.subtitle %}{{ graph_section.subtitle }}{% else %}Diventi{% endif %}" />
+            <meta property="og:title" content="{% if graph_section.subtitle|capfirst %}{{ graph_section.subtitle }}{% else %}Diventi{% endif %}" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="{{ request.build_absolute_uri }}" />
             <meta property="og:image" content="{% static 'diventi/img/diventi-og-image.jpeg' %}" />
             {% block desc_opengraph %}
-                <meta property="og:description" content="{{ graph_section.title|striptags }} &middot; {{ graph_section.description|striptags }}" />
+                <meta property="og:description" content="{{ graph_section.title|striptags|capfirst|safe }} &middot; {{ graph_section.description|striptags|capfirst|safe }}" />
             {% endblock desc_opengraph %}
         {% endblock base_opengraph %}
         {% block lang_opengraph %}

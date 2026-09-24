@@ -4,7 +4,7 @@
 {% load comments %}
 
 {% block base_opengraph %}
-  <meta property="og:title" content="{{ article.title }}" />
+  <meta property="og:title" content="{{ article.title|capfirst }}" />
   <meta property="og:type" content="article" />
   <meta property="og:article:tag" content="{{ article.category }}" />
   <meta property="og:article:author" content="{{ article.author.get_full_name }}" />
@@ -12,7 +12,7 @@
   <meta property="og:article:modified_time" content="{{ article.modified|date:'c' }}" />
   <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <meta property="og:image" content="{{ article.image }}" />
-  <meta property="og:description" content="{{ article.description|striptags }}" />
+  <meta property="og:description" content="{{ article.description|striptags|capfirst }}" />
 {% endblock base_opengraph %}
 
 {% block extrahead %}
@@ -78,7 +78,7 @@
                 </h1>
                 
                 <p class="lead text-white-50 lh-180 mb-0">
-                    {{ article.description|capfirst|striptags }}
+                    {{ article.description|capfirst|striptags|safe }}
                 </p>
             </div>
         </div>

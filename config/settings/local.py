@@ -16,7 +16,7 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.expanduser('~/diventi.sqlite'),
+        'NAME': os.path.join(PROJ_ROOT, 'diventi.sqlite'),
     }
 }
 
